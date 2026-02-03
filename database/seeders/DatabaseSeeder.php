@@ -31,12 +31,12 @@ class DatabaseSeeder extends Seeder
             'image_url' => 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80'
         ]);
 
-        // Apartment 3
+        // Apartment 3 (Updated Image)
         \App\Models\Listing::create([
             'title' => 'Modern Suite',
             'city' => 'Jurmala',
             'price' => 120,
-            'image_url' => 'https://images.unsplash.com/photo-1502005229766-939760a7cb0d?auto=format&fit=crop&w=800&q=80'
+            'image_url' => 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80'
         ]);
     }
 }
