@@ -28,7 +28,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
         @foreach($listings as $listing)
-            <div class="group cursor-pointer">
+            <a href="/listings/{{ $listing->id }}" class="group cursor-pointer block">
                 <div class="relative w-full overflow-hidden rounded-xl aspect-square mb-3">
                     <img src="{{ $listing->image_url }}" alt="{{ $listing->title }}" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300">
                 </div>
@@ -46,7 +46,7 @@
                     <span class="font-semibold text-gray-900">€{{ $listing->price }}</span>
                     <span class="text-gray-500"> night</span>
                 </div>
-            </div>
+            </a>
         @endforeach
 
     </div>
