@@ -10,11 +10,16 @@ RUN install-php-extensions \
     pdo_mysql \
     pdo_sqlite
 
+# FIX: Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Set the working directory
+WORKDIR /app
+
 # Copy our code into the container
 COPY . /app
 
 # Set the entrypoint to run migrations and then start the server
-# We use SQLite for this quick MVP so we don't need an external DB
 ENV DB_CONNECTION=sqlite
 ENV DB_DATABASE=/app/database/database.sqlite
 
