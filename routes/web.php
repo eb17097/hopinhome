@@ -4,7 +4,24 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    $listings = [
+        (object) [
+            'id' => 1,
+            'title' => 'Sunny Loft in Riga',
+            'city' => 'Riga',
+            'price' => 50,  // <-- Added this
+            'image_url' => 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688',
+        ],
+        (object) [
+            'id' => 2,
+            'title' => 'Cozy Studio in Jurmala',
+            'city' => 'Jurmala',
+            'price' => 120, // <-- Added this
+            'image_url' => 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267',
+        ],
+    ];
+
+    return view('welcome', ['listings' => $listings]);
 });
 
 Route::get('/dashboard', function () {

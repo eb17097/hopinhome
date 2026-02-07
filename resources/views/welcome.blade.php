@@ -15,9 +15,21 @@
             <div class="flex items-center">
                 <span class="text-2xl font-bold text-rose-500">Hopinhome</span>
             </div>
+
             <div class="flex items-center space-x-4">
                 <a href="#" class="text-gray-600 hover:text-gray-900 font-medium">Become a Host</a>
-                <a href="#" class="text-gray-600 hover:text-gray-900 font-medium">Login</a>
+
+                @if (Route::has('login'))
+                    @auth
+                        <a href="{{ url('/dashboard') }}" class="text-gray-600 hover:text-gray-900 font-medium">Dashboard</a>
+                    @else
+                        <a href="{{ route('login') }}" class="text-gray-600 hover:text-gray-900 font-medium">Log in</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="rounded-md bg-rose-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-rose-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-500">Register</a>
+                        @endif
+                    @endauth
+                @endif
             </div>
         </div>
     </div>
