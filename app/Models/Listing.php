@@ -9,6 +9,12 @@ class Listing extends Model
 {
     use HasFactory;
 
-    // This tells Laravel: "It's okay to save data into these columns"
-    protected $fillable = ['title', 'city', 'price', 'image_url'];
+    // Allow these fields to be mass-assigned
+    protected $fillable = ['user_id', 'title', 'city', 'price', 'image_url'];
+
+    // Optional: Link to the User
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
