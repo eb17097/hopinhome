@@ -31,7 +31,4 @@ RUN touch /app/database/database.sqlite && \
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN composer install --no-dev --optimize-autoloader
 
-# Run migrations automatically when the container builds
-RUN php artisan migrate --force --seed
-
 ENTRYPOINT ["php", "artisan", "octane:start", "--server=frankenphp", "--host=0.0.0.0", "--port=8080"]

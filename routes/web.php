@@ -13,27 +13,10 @@ Route::get('/', function () {
     return view('welcome', ['listings' => $listings]);
 });
 
-//Route::get('/', function () {
-//    // We will keep your hardcoded listings for now (we'll fix this later!)
-//    $listings = [
-//        (object) [
-//            'id' => 1,
-//            'title' => 'Sunny Loft in Riga',
-//            'city' => 'Riga',
-//            'price' => 50,
-//            'image_url' => 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688',
-//        ],
-//        (object) [
-//            'id' => 2,
-//            'title' => 'Cozy Studio in Jurmala',
-//            'city' => 'Jurmala',
-//            'price' => 120,
-//            'image_url' => 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267',
-//        ],
-//    ];
-//
-//    return view('welcome', ['listings' => $listings]);
-//});
+Route::get('/migrate-prod', function () {
+    \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+    return 'Migration run successfully!';
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
