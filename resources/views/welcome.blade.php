@@ -68,13 +68,15 @@
     </div>
 </nav>
 
-<div class="relative w-full h-[800px] flex items-center justify-center">
+<div class="relative w-full h-[800px] flex items-center justify-center overflow-hidden">
 
     <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 scale-105"
          style="background-image: url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2144&auto=format&fit=crop');">
     </div>
 
-    <div class="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/40 to-slate-900/60"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/70 to-transparent"></div>
+
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-900/50 to-transparent"></div>
 
     <div class="relative z-10 w-full max-w-5xl px-4 text-center mt-16">
 
