@@ -41,7 +41,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
         @foreach($listings as $listing)
-            <a href="/listings/{{ $listing->id }}" class="group cursor-pointer block">
+            <a href="{{ route('listings.show', $listing) }}" class="group cursor-pointer block">
                 <div class="relative w-full overflow-hidden rounded-xl aspect-square mb-3">
                     <img src="{{ $listing->image_url }}" alt="{{ $listing->title }}" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300">
                 </div>

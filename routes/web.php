@@ -13,6 +13,8 @@ Route::get('/', function () {
     return view('welcome', ['listings' => $listings]);
 });
 
+Route::get('/listings/{listing}', [ListingController::class, 'show'])->name('listings.show');
+
 Route::get('/migrate-prod', function () {
     \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
     return 'Migration run successfully!';

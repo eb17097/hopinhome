@@ -39,4 +39,10 @@ class ListingController extends Controller
 
         return redirect()->route('dashboard')->with('success', 'Apartment posted!');
     }
+
+    // 3. Show a single listing
+    public function show(Listing $listing)
+    {
+        return view('listings.show', ['listing' => $listing]);
+    }
 }
