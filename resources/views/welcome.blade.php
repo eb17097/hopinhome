@@ -135,41 +135,41 @@
 <div class="bg-white py-20 border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <h2 class="text-[32px] font-medium text-gray-900 mb-8 font-['General_Sans_Variable']">
+        <h2 class="text-[32px] font-medium leading-[1.28] tracking-[-0.02em] text-gray-900 mb-8 font-['General_Sans_Variable']">
             Popular cities in the UAE
         </h2>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
-            <a href="#" class="group cursor-pointer">
-                <div class="overflow-hidden rounded-xl aspect-[4/3] mb-3">
-                    <img src="https://images.unsplash.com/photo-1512453979798-5ea904f8486d?q=80&w=1000&auto=format&fit=crop"
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-20">
+            <a href="#" class="group cursor-pointer block">
+                <div class="overflow-hidden rounded-xl aspect-[16/10] mb-4">
+                    <img src="https://images.unsplash.com/photo-1512453979798-5ea904f8486d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                          alt="Dubai"
                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
                 <h3 class="text-center font-medium text-gray-900 text-lg">Dubai</h3>
             </a>
 
-            <a href="#" class="group cursor-pointer">
-                <div class="overflow-hidden rounded-xl aspect-[4/3] mb-3">
-                    <img src="https://images.unsplash.com/photo-1512632500735-4db23769c840?q=80&w=1000&auto=format&fit=crop"
+            <a href="#" class="group cursor-pointer block">
+                <div class="overflow-hidden rounded-xl aspect-[16/10] mb-4">
+                    <img src="https://images.unsplash.com/photo-1512632500735-4db23769c840?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                          alt="Abu Dhabi"
                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
                 <h3 class="text-center font-medium text-gray-900 text-lg">Abu Dhabi</h3>
             </a>
 
-            <a href="#" class="group cursor-pointer">
-                <div class="overflow-hidden rounded-xl aspect-[4/3] mb-3">
-                    <img src="https://images.unsplash.com/photo-1577105298013-1b32d20d4182?q=80&w=1000&auto=format&fit=crop"
+            <a href="#" class="group cursor-pointer block">
+                <div class="overflow-hidden rounded-xl aspect-[16/10] mb-4">
+                    <img src="https://images.unsplash.com/photo-1597212618645-568eb471887e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                          alt="Sharjah"
                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
                 <h3 class="text-center font-medium text-gray-900 text-lg">Sharjah</h3>
             </a>
 
-            <a href="#" class="group cursor-pointer">
-                <div class="overflow-hidden rounded-xl aspect-[4/3] mb-3">
-                    <img src="https://images.unsplash.com/photo-1578895210405-92751072c777?q=80&w=1000&auto=format&fit=crop"
+            <a href="#" class="group cursor-pointer block">
+                <div class="overflow-hidden rounded-xl aspect-[16/10] mb-4">
+                    <img src="https://images.unsplash.com/photo-1546412414-e1885259563a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                          alt="Al Ain"
                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
@@ -178,7 +178,7 @@
         </div>
 
 
-        <h2 class="text-[32px] font-medium text-gray-900 mb-8 font-['General_Sans_Variable']">
+        <h2 class="text-[32px] font-medium leading-[1.28] tracking-[-0.02em] text-gray-900 mb-8 font-['General_Sans_Variable']">
             Browse by property type
         </h2>
 
