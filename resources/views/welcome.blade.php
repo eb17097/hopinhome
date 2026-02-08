@@ -503,33 +503,124 @@
     </div>
 </div>
 
-<div class="bg-gray-50 py-20">
+<div class="bg-white pb-20 pt-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-semibold text-gray-900 mb-8">Latest Stays in Latvia & Italy</h2>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            @foreach($listings as $listing)
-                <a href="{{ route('listings.show', $listing) }}" class="group cursor-pointer block bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden border border-gray-100">
-                    <div class="relative w-full aspect-[4/3] overflow-hidden">
-                        <img src="{{ $listing->image_url }}" alt="{{ $listing->title }}" class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center shadow-sm">
-                            <svg class="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <span class="text-xs font-bold text-gray-800">4.9</span>
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-gray-900 text-lg leading-tight">{{ $listing->city }}</h3>
-                        <p class="text-gray-500 text-sm mt-1 line-clamp-1">{{ $listing->title }}</p>
-                        <div class="flex items-end justify-between mt-3 pt-3 border-t border-gray-100">
-                            <div><span class="font-bold text-gray-900 text-xl">€{{ $listing->price }}</span> <span class="text-gray-500 text-sm">/ night</span></div>
-                            <button class="bg-rose-50 text-rose-600 p-2 rounded-full hover:bg-rose-100 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></button>
-                        </div>
-                    </div>
+        <div class="relative bg-blue-600 rounded-[32px] px-8 py-16 md:px-16 md:py-20 overflow-hidden shadow-xl">
+
+            <div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
+                <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
+                    <circle cx="400" cy="200" r="200" fill="white"/>
+                    <circle cx="400" cy="200" r="150" fill="#2563EB"/>
+                </svg>
+            </div>
+
+            <div class="relative z-10 max-w-2xl">
+                <h2 class="text-[42px] md:text-[56px] font-medium leading-[1.1] text-white mb-6 font-['General_Sans',_sans-serif]">
+                    Reach the <br />
+                    Right Renters
+                </h2>
+
+                <p class="text-blue-100 text-lg md:text-xl mb-10 max-w-md font-['General_Sans',_sans-serif] font-light">
+                    Publish your listing and connect with people who value clarity and honesty.
+                </p>
+
+                <a href="#" class="inline-flex items-center justify-center px-8 py-3.5 bg-white text-blue-900 text-base font-semibold rounded-full hover:bg-gray-50 transition shadow-lg font-['General_Sans',_sans-serif]">
+                    Learn more
                 </a>
-            @endforeach
+            </div>
+
         </div>
+
     </div>
 </div>
+
+<footer class="bg-white border-t border-gray-100 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+
+            <div class="md:col-span-6 space-y-8">
+                <div class="flex items-center gap-2 text-blue-900">
+                    <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    <span class="text-2xl font-bold font-['General_Sans',_sans-serif]">HopInHome</span>
+                </div>
+
+                <div class="bg-gray-50 border border-gray-100 rounded-xl p-6 max-w-sm">
+                    <p class="text-sm text-gray-500 mb-4 font-['General_Sans',_sans-serif]">Follow us for the latest insights</p>
+                    <div class="flex space-x-5">
+                        <a href="#" class="text-blue-700 hover:text-blue-800 transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                        <a href="#" class="text-pink-600 hover:text-pink-700 transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                        <a href="#" class="text-blue-800 hover:text-blue-900 transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                        <a href="#" class="text-black hover:text-gray-700 transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.46-.54 2.94-1.5 4.14-1.42 1.79-3.8 2.43-5.92 1.59-2.12-.84-3.56-2.99-3.48-5.26.08-2.27 1.68-4.22 3.91-4.71.55-.12 1.13-.15 1.7-.12.02 1.35.01 2.7.01 4.05-.18-.04-.37-.08-.55-.07-.94.03-1.83.47-2.38 1.25-.56.78-.65 1.83-.24 2.69.41.87 1.31 1.45 2.26 1.48 1.12.04 2.16-.6 2.62-1.62.46-1.02.44-2.19.43-3.3.01-4.8.01-9.6.01-14.4-1.11.02-2.22.01-3.33.02 0-1.35 0-2.7 0-4.05z"/></svg></a>
+                        <a href="#" class="text-red-600 hover:text-red-700 transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-3">
+                <h3 class="font-bold text-gray-900 mb-6 font-['General_Sans',_sans-serif]">HopInHome</h3>
+                <ul class="space-y-4 text-gray-500 font-['General_Sans',_sans-serif]">
+                    <li><a href="#" class="hover:text-blue-600 transition">About Us</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition">Help & Support</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition">FAQ</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-3">
+                <h3 class="font-bold text-gray-900 mb-6 font-['General_Sans',_sans-serif]">Articles</h3>
+                <ul class="space-y-4 text-gray-500 font-['General_Sans',_sans-serif]">
+                    <li><a href="#" class="hover:text-blue-600 transition">Insights</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition">News</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition">Community articles</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition">Tips & Resources</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-gray-400 text-sm font-['General_Sans',_sans-serif]">
+                © 2026 HopInHome.com
+            </p>
+
+            <div class="flex space-x-6">
+                <a href="#" class="text-sm text-gray-400 hover:text-gray-600 transition font-['General_Sans',_sans-serif]">Cookie settings</a>
+                <a href="#" class="text-sm text-gray-400 hover:text-gray-600 transition font-['General_Sans',_sans-serif]">Terms & conditions</a>
+                <a href="#" class="text-sm text-gray-400 hover:text-gray-600 transition font-['General_Sans',_sans-serif]">Privacy Policy</a>
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+{{--<div class="bg-gray-50 py-20">--}}
+{{--    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">--}}
+{{--        <h2 class="text-3xl font-semibold text-gray-900 mb-8">Latest Stays in Latvia & Italy</h2>--}}
+
+{{--        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">--}}
+{{--            @foreach($listings as $listing)--}}
+{{--                <a href="{{ route('listings.show', $listing) }}" class="group cursor-pointer block bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden border border-gray-100">--}}
+{{--                    <div class="relative w-full aspect-[4/3] overflow-hidden">--}}
+{{--                        <img src="{{ $listing->image_url }}" alt="{{ $listing->title }}" class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">--}}
+{{--                        <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center shadow-sm">--}}
+{{--                            <svg class="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>--}}
+{{--                            <span class="text-xs font-bold text-gray-800">4.9</span>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="p-4">--}}
+{{--                        <h3 class="font-bold text-gray-900 text-lg leading-tight">{{ $listing->city }}</h3>--}}
+{{--                        <p class="text-gray-500 text-sm mt-1 line-clamp-1">{{ $listing->title }}</p>--}}
+{{--                        <div class="flex items-end justify-between mt-3 pt-3 border-t border-gray-100">--}}
+{{--                            <div><span class="font-bold text-gray-900 text-xl">€{{ $listing->price }}</span> <span class="text-gray-500 text-sm">/ night</span></div>--}}
+{{--                            <button class="bg-rose-50 text-rose-600 p-2 rounded-full hover:bg-rose-100 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></button>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </a>--}}
+{{--            @endforeach--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
 
 </body>
 </html>
