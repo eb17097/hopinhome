@@ -122,96 +122,124 @@
 
             <div class="space-y-6">
 
-                <div class="flex flex-col md:flex-row bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition duration-300">
-                    <div class="relative w-full md:w-[40%] h-64 md:h-auto group">
-                        <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
-                        <button class="absolute top-3 right-3 text-white hover:text-red-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path></svg></button>
-                        <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-2 opacity-0 group-hover:opacity-100 transition">
-                            <button class="bg-white/80 p-1 rounded-full text-gray-800"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
-                            <button class="bg-white/80 p-1 rounded-full text-gray-800"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
-                        </div>
-                    </div>
+                @php
+                    // Defining Test Data Array for Listings
+                    $listings = [
+                        [
+                            'title' => 'Cozy apartment with great views',
+                            'location' => 'Down Town rd 2, Dubai',
+                            'price' => '200,000',
+                            'period' => 'Yearly',
+                            'beds' => 2, 'baths' => 1, 'sqft' => 861,
+                            'image' => 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=800&auto=format&fit=crop',
+                            'utilities' => 'Utilities excluded',
+                            'images_count' => '13/15'
+                        ],
+                        [
+                            'title' => 'Modern Studio in Business Bay',
+                            'location' => 'Business Bay, Dubai',
+                            'price' => '85,000',
+                            'period' => 'Yearly',
+                            'beds' => 'Studio', 'baths' => 1, 'sqft' => 540,
+                            'image' => 'https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=800&auto=format&fit=crop',
+                            'utilities' => 'Utilities included',
+                            'images_count' => '8/12'
+                        ],
+                        [
+                            'title' => 'Luxury Villa with Private Pool',
+                            'location' => 'Arabian Ranches, Dubai',
+                            'price' => '450,000',
+                            'period' => 'Yearly',
+                            'beds' => 4, 'baths' => 5, 'sqft' => 4500,
+                            'image' => 'https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=800&auto=format&fit=crop',
+                            'utilities' => 'Utilities excluded',
+                            'images_count' => '20/24'
+                        ],
+                        [
+                            'title' => 'Chic apartment in Downtown',
+                            'location' => 'Boulevard Point, Downtown',
+                            'price' => '165,000',
+                            'period' => 'Yearly',
+                            'beds' => 1, 'baths' => 2, 'sqft' => 950,
+                            'image' => 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=800&auto=format&fit=crop',
+                            'utilities' => 'Utilities included',
+                            'images_count' => '15/15'
+                        ],
+                        [
+                            'title' => 'Marina View High Floor',
+                            'location' => 'Dubai Marina, Dubai',
+                            'price' => '140,000',
+                            'period' => 'Yearly',
+                            'beds' => 2, 'baths' => 2, 'sqft' => 1200,
+                            'image' => 'https://images.unsplash.com/photo-1512918760513-95f192972701?q=80&w=800&auto=format&fit=crop',
+                            'utilities' => 'Utilities excluded',
+                            'images_count' => '10/18'
+                        ],
+                        [
+                            'title' => 'Premium Penthouse Palm Jumeirah',
+                            'location' => 'Palm Jumeirah, Dubai',
+                            'price' => '850,000',
+                            'period' => 'Yearly',
+                            'beds' => 5, 'baths' => 6, 'sqft' => 6000,
+                            'image' => 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop',
+                            'utilities' => 'Utilities included',
+                            'images_count' => '25/30'
+                        ],
+                    ];
+                @endphp
 
-                    <div class="p-5 flex flex-col justify-between w-full md:w-[60%]">
-                        <div>
-                            <h3 class="text-xl font-medium text-gray-900 mb-1">Cozy apartment with great views</h3>
-                            <p class="text-sm text-gray-500 mb-4">Down Town rd 2, Dubai</p>
-
-                            <div class="flex items-center gap-4 text-sm text-gray-600 mb-4">
-                                <span class="flex items-center gap-1"><svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg> 861 sqft</span>
-                                <span class="flex items-center gap-1"><svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg> 2 beds</span>
-                                <span class="flex items-center gap-1"><svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8m-5 5h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293h3.172a1 1 0 00.707-.293l2.414-2.414a1 1 0 01.707-.293H20"></path></svg> 1 bath</span>
-                                <span class="text-gray-400 text-xs flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg> 13/15</span>
+                @foreach($listings as $listing)
+                    <div class="flex flex-col md:flex-row bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition duration-300 group">
+                        <div class="relative w-full md:w-[40%] h-64 md:h-auto overflow-hidden">
+                            <img src="{{ $listing['image'] }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <button class="absolute top-3 right-3 text-white hover:text-red-500 transition shadow-sm">
+                                <svg class="w-6 h-6 drop-shadow-md" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path></svg>
+                            </button>
+                            <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-2 opacity-0 group-hover:opacity-100 transition duration-300">
+                                <button class="bg-white/90 p-1.5 rounded-full text-gray-800 hover:bg-white shadow-md"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
+                                <button class="bg-white/90 p-1.5 rounded-full text-gray-800 hover:bg-white shadow-md"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
                             </div>
                         </div>
 
-                        <div class="flex items-end justify-between pt-4 border-t border-gray-100">
+                        <div class="p-5 flex flex-col justify-between w-full md:w-[60%]">
                             <div>
-                                <span class="text-xl font-bold text-gray-900">AED 200,000</span>
-                                <span class="text-xs text-gray-500"> Monthly</span>
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h3 class="text-xl font-medium text-gray-900 mb-1 group-hover:text-blue-600 transition">{{ $listing['title'] }}</h3>
+                                        <p class="text-sm text-gray-500 mb-4">{{ $listing['location'] }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-4 text-sm text-gray-600 mb-4">
+                                <span class="flex items-center gap-1.5" title="Area">
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                                    {{ $listing['sqft'] }} sqft
+                                </span>
+                                    <span class="flex items-center gap-1.5" title="Bedrooms">
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                                    {{ $listing['beds'] }} beds
+                                </span>
+                                    <span class="flex items-center gap-1.5" title="Bathrooms">
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8m-5 5h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293h3.172a1 1 0 00.707-.293l2.414-2.414a1 1 0 01.707-.293H20"></path></svg>
+                                    {{ $listing['baths'] }} bath
+                                </span>
+                                    <span class="text-gray-400 text-xs flex items-center gap-1 ml-auto">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                    {{ $listing['images_count'] }}
+                                </span>
+                                </div>
                             </div>
-                            <span class="text-xs text-gray-400">Utilities excluded</span>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="flex flex-col md:flex-row bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition duration-300">
-                    <div class="relative w-full md:w-[40%] h-64 md:h-auto group">
-                        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
-                        <button class="absolute top-3 right-3 text-white hover:text-red-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path></svg></button>
-                    </div>
-
-                    <div class="p-5 flex flex-col justify-between w-full md:w-[60%]">
-                        <div>
-                            <h3 class="text-xl font-medium text-gray-900 mb-1">Beautiful apartment in Downtown</h3>
-                            <p class="text-sm text-gray-500 mb-4">Down Town rd 2, Dubai</p>
-
-                            <div class="flex items-center gap-4 text-sm text-gray-600 mb-4">
-                                <span class="flex items-center gap-1">861 sqft</span>
-                                <span class="flex items-center gap-1">2 beds</span>
-                                <span class="flex items-center gap-1">1 bath</span>
-                                <span class="text-gray-400 text-xs flex items-center gap-1">13/15</span>
-                            </div>
-                        </div>
-
-                        <div class="flex items-end justify-between pt-4 border-t border-gray-100">
-                            <div>
-                                <span class="text-xl font-bold text-gray-900">AED 400,000</span>
-                                <span class="text-xs text-gray-500"> Monthly</span>
-                            </div>
-                            <span class="text-xs text-gray-400">Utilities included</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition duration-300">
-                    <div class="relative w-full md:w-[40%] h-64 md:h-auto group">
-                        <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
-                        <button class="absolute top-3 right-3 text-white hover:text-red-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path></svg></button>
-                    </div>
-
-                    <div class="p-5 flex flex-col justify-between w-full md:w-[60%]">
-                        <div>
-                            <h3 class="text-xl font-medium text-gray-900 mb-1">Chic apartment in Downtown</h3>
-                            <p class="text-sm text-gray-500 mb-4">Down Town rd 2, Dubai</p>
-
-                            <div class="flex items-center gap-4 text-sm text-gray-600 mb-4">
-                                <span class="flex items-center gap-1">861 sqft</span>
-                                <span class="flex items-center gap-1">2 beds</span>
-                                <span class="flex items-center gap-1">1 bath</span>
-                                <span class="text-gray-400 text-xs flex items-center gap-1">13/15</span>
+                            <div class="flex items-end justify-between pt-4 border-t border-gray-100">
+                                <div>
+                                    <span class="text-xl font-bold text-gray-900">AED {{ $listing['price'] }}</span>
+                                    <span class="text-xs text-gray-500"> {{ $listing['period'] }}</span>
+                                </div>
+                                <span class="text-xs text-gray-400">{{ $listing['utilities'] }}</span>
                             </div>
                         </div>
-
-                        <div class="flex items-end justify-between pt-4 border-t border-gray-100">
-                            <div>
-                                <span class="text-xl font-bold text-gray-900">AED 465,000</span>
-                                <span class="text-xs text-gray-500"> Monthly</span>
-                            </div>
-                            <span class="text-xs text-gray-400">Utilities included</span>
-                        </div>
                     </div>
-                </div>
+                @endforeach
 
             </div>
         </div>
