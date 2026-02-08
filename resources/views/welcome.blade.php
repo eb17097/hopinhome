@@ -140,7 +140,8 @@
         </h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-20">
-            <a href="#" class="group cursor-pointer block">
+
+            <a href="{{ route('listings.index', ['city' => 'Dubai']) }}" class="group cursor-pointer block">
                 <div class="overflow-hidden rounded-xl aspect-[16/10] mb-4">
                     <img src="https://images.unsplash.com/photo-1546412414-e1885259563a?q=80&w=800&auto=format&fit=crop"
                          alt="Dubai"
@@ -149,7 +150,7 @@
                 <h3 class="text-center font-medium text-gray-900 text-lg font-['General_Sans',_sans-serif]">Dubai</h3>
             </a>
 
-            <a href="#" class="group cursor-pointer block">
+            <a href="{{ route('listings.index', ['city' => 'Abu Dhabi']) }}" class="group cursor-pointer block">
                 <div class="overflow-hidden rounded-xl aspect-[16/10] mb-4">
                     <img src="https://images.unsplash.com/photo-1546412414-e1885259563a?q=80&w=800&auto=format&fit=crop"
                          alt="Abu Dhabi"
@@ -158,7 +159,7 @@
                 <h3 class="text-center font-medium text-gray-900 text-lg font-['General_Sans',_sans-serif]">Abu Dhabi</h3>
             </a>
 
-            <a href="#" class="group cursor-pointer block">
+            <a href="{{ route('listings.index', ['city' => 'Sharjah']) }}" class="group cursor-pointer block">
                 <div class="overflow-hidden rounded-xl aspect-[16/10] mb-4">
                     <img src="https://images.unsplash.com/photo-1546412414-e1885259563a?q=80&w=800&auto=format&fit=crop"
                          alt="Sharjah"
@@ -167,7 +168,7 @@
                 <h3 class="text-center font-medium text-gray-900 text-lg font-['General_Sans',_sans-serif]">Sharjah</h3>
             </a>
 
-            <a href="#" class="group cursor-pointer block">
+            <a href="{{ route('listings.index', ['city' => 'Al Ain']) }}" class="group cursor-pointer block">
                 <div class="overflow-hidden rounded-xl aspect-[16/10] mb-4">
                     <img src="https://images.unsplash.com/photo-1546412414-e1885259563a?q=80&w=800&auto=format&fit=crop"
                          alt="Al Ain"
@@ -175,6 +176,7 @@
                 </div>
                 <h3 class="text-center font-medium text-gray-900 text-lg font-['General_Sans',_sans-serif]">Al Ain</h3>
             </a>
+
         </div>
 
 

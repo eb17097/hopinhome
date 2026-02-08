@@ -4,7 +4,7 @@ use App\Models\Listing;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ListingController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     // Fetch all listings from the database (latest first)
@@ -14,6 +14,11 @@ Route::get('/', function () {
 });
 
 Route::get('/listings/{listing}', [ListingController::class, 'show'])->name('listings.show');
+
+Route::get('/listings', function (Request $request) {
+    // In a real app, you would filter data here using $request->input('city')
+    return view('listings.index');
+})->name('listings.index');
 
 Route::get('/migrate-prod', function () {
     \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
