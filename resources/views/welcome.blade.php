@@ -135,50 +135,50 @@
 <div class="bg-white py-20 border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <h2 class="text-[32px] font-medium leading-[1.28] tracking-[-0.02em] text-gray-900 mb-8 font-['General_Sans_Variable']">
+        <h2 class="text-[32px] font-medium leading-[1.28] tracking-[-0.02em] text-gray-900 mb-8 font-['General_Sans',_sans-serif]">
             Popular cities in the UAE
         </h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-20">
             <a href="#" class="group cursor-pointer block">
                 <div class="overflow-hidden rounded-xl aspect-[16/10] mb-4">
-                    <img src="https://images.unsplash.com/photo-1512453979798-5ea904f8486d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    <img src="https://images.unsplash.com/photo-1512453979798-5ea904f8486d?q=80&w=800&auto=format&fit=crop"
                          alt="Dubai"
                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
-                <h3 class="text-center font-medium text-gray-900 text-lg">Dubai</h3>
+                <h3 class="text-center font-medium text-gray-900 text-lg font-['General_Sans',_sans-serif]">Dubai</h3>
             </a>
 
             <a href="#" class="group cursor-pointer block">
                 <div class="overflow-hidden rounded-xl aspect-[16/10] mb-4">
-                    <img src="https://images.unsplash.com/photo-1512632500735-4db23769c840?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    <img src="https://images.unsplash.com/photo-1512632500735-4db23769c840?q=80&w=800&auto=format&fit=crop"
                          alt="Abu Dhabi"
                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
-                <h3 class="text-center font-medium text-gray-900 text-lg">Abu Dhabi</h3>
+                <h3 class="text-center font-medium text-gray-900 text-lg font-['General_Sans',_sans-serif]">Abu Dhabi</h3>
             </a>
 
             <a href="#" class="group cursor-pointer block">
                 <div class="overflow-hidden rounded-xl aspect-[16/10] mb-4">
-                    <img src="https://images.unsplash.com/photo-1597212618645-568eb471887e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    <img src="https://images.unsplash.com/photo-1577105298013-1b32d20d4182?q=80&w=800&auto=format&fit=crop"
                          alt="Sharjah"
                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
-                <h3 class="text-center font-medium text-gray-900 text-lg">Sharjah</h3>
+                <h3 class="text-center font-medium text-gray-900 text-lg font-['General_Sans',_sans-serif]">Sharjah</h3>
             </a>
 
             <a href="#" class="group cursor-pointer block">
                 <div class="overflow-hidden rounded-xl aspect-[16/10] mb-4">
-                    <img src="https://images.unsplash.com/photo-1546412414-e1885259563a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    <img src="https://images.unsplash.com/photo-1546412414-e1885259563a?q=80&w=800&auto=format&fit=crop"
                          alt="Al Ain"
                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
-                <h3 class="text-center font-medium text-gray-900 text-lg">Al Ain</h3>
+                <h3 class="text-center font-medium text-gray-900 text-lg font-['General_Sans',_sans-serif]">Al Ain</h3>
             </a>
         </div>
 
 
-        <h2 class="text-[32px] font-medium leading-[1.28] tracking-[-0.02em] text-gray-900 mb-8 font-['General_Sans_Variable']">
+        <h2 class="text-[32px] font-medium leading-[1.28] tracking-[-0.02em] text-gray-900 mb-8 font-['General_Sans',_sans-serif]">
             Browse by property type
         </h2>
 
@@ -188,48 +188,48 @@
                 <div class="w-12 h-12 mb-4 text-blue-600">
                     <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"></path></svg>
                 </div>
-                <h3 class="font-medium text-gray-900">Apartment</h3>
-                <p class="text-xs text-gray-500 mt-1">800+ listings</p>
+                <h3 class="font-medium text-gray-900 font-['General_Sans',_sans-serif]">Apartment</h3>
+                <p class="text-xs text-gray-500 mt-1 font-['General_Sans',_sans-serif]">800+ listings</p>
             </a>
 
             <a href="#" class="group p-6 border border-gray-100 rounded-2xl bg-white hover:shadow-lg hover:border-transparent transition duration-300 flex flex-col items-center text-center">
                 <div class="w-12 h-12 mb-4 text-blue-600">
                     <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819"></path></svg>
                 </div>
-                <h3 class="font-medium text-gray-900">Villa</h3>
-                <p class="text-xs text-gray-500 mt-1">150+ listings</p>
+                <h3 class="font-medium text-gray-900 font-['General_Sans',_sans-serif]">Villa</h3>
+                <p class="text-xs text-gray-500 mt-1 font-['General_Sans',_sans-serif]">150+ listings</p>
             </a>
 
             <a href="#" class="group p-6 border border-gray-100 rounded-2xl bg-white hover:shadow-lg hover:border-transparent transition duration-300 flex flex-col items-center text-center">
                 <div class="w-12 h-12 mb-4 text-blue-600">
                     <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"></path></svg>
                 </div>
-                <h3 class="font-medium text-gray-900">House</h3>
-                <p class="text-xs text-gray-500 mt-1">300+ listings</p>
+                <h3 class="font-medium text-gray-900 font-['General_Sans',_sans-serif]">House</h3>
+                <p class="text-xs text-gray-500 mt-1 font-['General_Sans',_sans-serif]">300+ listings</p>
             </a>
 
             <a href="#" class="group p-6 border border-gray-100 rounded-2xl bg-white hover:shadow-lg hover:border-transparent transition duration-300 flex flex-col items-center text-center">
                 <div class="w-12 h-12 mb-4 text-blue-600">
                     <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z"></path></svg>
                 </div>
-                <h3 class="font-medium text-gray-900">Townhouse</h3>
-                <p class="text-xs text-gray-500 mt-1">100+ listings</p>
+                <h3 class="font-medium text-gray-900 font-['General_Sans',_sans-serif]">Townhouse</h3>
+                <p class="text-xs text-gray-500 mt-1 font-['General_Sans',_sans-serif]">100+ listings</p>
             </a>
 
             <a href="#" class="group p-6 border border-gray-100 rounded-2xl bg-white hover:shadow-lg hover:border-transparent transition duration-300 flex flex-col items-center text-center">
                 <div class="w-12 h-12 mb-4 text-blue-600">
                     <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"></path></svg>
                 </div>
-                <h3 class="font-medium text-gray-900">Hotel Apt</h3>
-                <p class="text-xs text-gray-500 mt-1">100+ listings</p>
+                <h3 class="font-medium text-gray-900 font-['General_Sans',_sans-serif]">Hotel Apt</h3>
+                <p class="text-xs text-gray-500 mt-1 font-['General_Sans',_sans-serif]">100+ listings</p>
             </a>
 
             <a href="#" class="group p-6 border border-gray-100 rounded-2xl bg-white hover:shadow-lg hover:border-transparent transition duration-300 flex flex-col items-center text-center">
                 <div class="w-12 h-12 mb-4 text-blue-600">
                     <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"></path></svg>
                 </div>
-                <h3 class="font-medium text-gray-900">Penthouse</h3>
-                <p class="text-xs text-gray-500 mt-1">50+ listings</p>
+                <h3 class="font-medium text-gray-900 font-['General_Sans',_sans-serif]">Penthouse</h3>
+                <p class="text-xs text-gray-500 mt-1 font-['General_Sans',_sans-serif]">50+ listings</p>
             </a>
 
         </div>
