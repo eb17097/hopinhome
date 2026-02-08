@@ -246,5 +246,227 @@
     </div>
 </div>
 
+<div class="bg-white border-t border-gray-200 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+            <div class="relative h-[400px] rounded-3xl overflow-hidden shadow-sm">
+                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop"
+                     alt="Ideal Home in Dubai"
+                     class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+            </div>
+
+            <div>
+                <h2 class="text-[32px] font-medium leading-[1.28] tracking-[-0.02em] text-gray-900 mb-6 font-['General_Sans',_sans-serif]">
+                    Find your <span class="text-blue-600">ideal</span> home
+                </h2>
+
+                <div class="space-y-6 text-base text-gray-500 leading-relaxed font-['General_Sans',_sans-serif]">
+                    <p>
+                        Dubai offers one of the most dynamic rental markets in the world, with apartments suited to every lifestyle and budget.
+                        Whether you’re searching for a modern studio in the city center, a family-friendly apartment near schools,
+                        or a luxury residence with skyline views, Dubai has a wide range of rental options to match your needs.
+                    </p>
+
+                    <p>
+                        Our selection of apartments for rent in Dubai allows you to explore verified listings across the city’s most popular neighborhoods.
+                        Renting an apartment in Dubai is an attractive choice for residents, professionals, and expats alike.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div class="bg-white pb-20 pt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+            <div class="lg:col-span-8 space-y-12">
+
+                <div>
+                    <h3 class="text-2xl font-medium text-gray-900 mb-4">Why rent an apartment in Dubai?</h3>
+                    <p class="text-gray-500 mb-4 leading-relaxed">
+                        Dubai is known for its high quality of life, safety, and modern infrastructure.
+                    </p>
+                    <p class="text-gray-500 mb-4">Renting an apartment here gives you access to:</p>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-500 mb-6 marker:text-gray-400">
+                        <li>International schools and universities</li>
+                        <li>World-class healthcare facilities</li>
+                        <li>Beaches, parks, and waterfront promenades</li>
+                        <li>Shopping malls, restaurants, and entertainment hubs</li>
+                        <li>Efficient public transport including the Dubai Metro</li>
+                    </ul>
+                    <p class="text-gray-500 leading-relaxed">
+                        The rental market is regulated and transparent, making it easier for tenants to find secure, well-maintained homes.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-medium text-gray-900 mb-4">Popular areas to rent apartments in Dubai</h3>
+                    <p class="text-gray-500 mb-6 leading-relaxed">
+                        Choosing the right neighborhood is key to finding the perfect apartment. Some of the most in-demand areas include:
+                    </p>
+                    <ul class="space-y-3 text-gray-500">
+                        <li><a href="#" class="text-blue-600 hover:underline">Downtown Dubai</a> – Close to business hubs, shopping, and landmarks</li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Dubai Marina</a> – Waterfront living with restaurants and nightlife</li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Business Bay</a> – Ideal for professionals working in the city</li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Jumeirah Village Circle (JVC)</a> – Affordable and family-friendly</li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Palm Jumeirah</a> – Luxury beachfront apartments</li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Deira & Bur Dubai</a> – Central locations with competitive rental prices</li>
+                    </ul>
+                    <p class="text-gray-500 mt-6 leading-relaxed">
+                        Each area offers a unique lifestyle, price range, and community atmosphere.
+                    </p>
+                </div>
+
+                <div x-data="{ activeAccordion: 1 }">
+                    <h3 class="text-2xl font-medium text-gray-900 mb-6">Frequently asked questions</h3>
+
+                    <div class="border-t border-gray-200">
+                        <div class="border-b border-gray-200">
+                            <button @click="activeAccordion = activeAccordion === 1 ? null : 1" class="flex justify-between items-center w-full py-5 text-left focus:outline-none">
+                                <span class="text-gray-900 font-medium">How much does it cost to rent an apartment in Dubai?</span>
+                                <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" :class="activeAccordion === 1 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div x-show="activeAccordion === 1" x-collapse class="pb-5 text-gray-500 leading-relaxed text-sm">
+                                Furnished apartments are convenient for short-term stays, while unfurnished apartments are more cost-effective for long-term tenants who prefer to personalize their space. Prices vary significantly based on location and amenities.
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-200">
+                            <button @click="activeAccordion = activeAccordion === 2 ? null : 2" class="flex justify-between items-center w-full py-5 text-left focus:outline-none">
+                                <span class="text-gray-900 font-medium">Is it better to rent a furnished or unfurnished apartment?</span>
+                                <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" :class="activeAccordion === 2 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div x-show="activeAccordion === 2" x-collapse class="pb-5 text-gray-500 leading-relaxed text-sm">
+                                It depends on your stay duration. Furnished is easier for quick moves, while unfurnished offers better value long-term.
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-200">
+                            <button @click="activeAccordion = activeAccordion === 3 ? null : 3" class="flex justify-between items-center w-full py-5 text-left focus:outline-none">
+                                <span class="text-gray-900 font-medium">What documents are required to rent an apartment in Dubai?</span>
+                                <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" :class="activeAccordion === 3 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div x-show="activeAccordion === 3" x-collapse class="pb-5 text-gray-500 leading-relaxed text-sm">
+                                Typically you need your Emirates ID, Passport copy, Residency Visa, and a cheque book for rental payments.
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-200">
+                            <button @click="activeAccordion = activeAccordion === 4 ? null : 4" class="flex justify-between items-center w-full py-5 text-left focus:outline-none">
+                                <span class="text-gray-900 font-medium">Are utility bills included in the rent?</span>
+                                <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" :class="activeAccordion === 4 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div x-show="activeAccordion === 4" x-collapse class="pb-5 text-gray-500 leading-relaxed text-sm">
+                                Usually, DEWA (water & electricity) and internet are separate, unless specified as "Bills Included" (common in hotel apartments).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-4">
+                <div class="sticky top-24">
+                    <h3 class="text-2xl font-medium text-gray-900 mb-6">Inside <span class="text-blue-600">the UAE</span>: tips, insights & living</h3>
+
+                    <div class="space-y-6">
+                        <a href="#" class="flex gap-4 group">
+                            <div class="w-24 h-16 shrink-0 rounded-lg overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1516961642265-531546e84af2?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition">
+                            </div>
+                            <div>
+                                <span class="text-blue-600 text-xs font-bold uppercase tracking-wide">Insights</span>
+                                <h4 class="text-sm font-medium text-gray-900 mt-1 leading-snug group-hover:text-blue-600 transition">Best rental locations in Dubai for couples</h4>
+                            </div>
+                        </a>
+
+                        <a href="#" class="flex gap-4 group">
+                            <div class="w-24 h-16 shrink-0 rounded-lg overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1518684079-3c830dcef6c0?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition">
+                            </div>
+                            <div>
+                                <span class="text-blue-600 text-xs font-bold uppercase tracking-wide">Insights</span>
+                                <h4 class="text-sm font-medium text-gray-900 mt-1 leading-snug group-hover:text-blue-600 transition">What to expect when renting in the UAE for the first time</h4>
+                            </div>
+                        </a>
+
+                        <a href="#" class="flex gap-4 group">
+                            <div class="w-24 h-16 shrink-0 rounded-lg overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1584622050111-993a426fbf0a?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition">
+                            </div>
+                            <div>
+                                <span class="text-blue-600 text-xs font-bold uppercase tracking-wide">Community guide</span>
+                                <h4 class="text-sm font-medium text-gray-900 mt-1 leading-snug group-hover:text-blue-600 transition">Hidden Costs to Look Out For When Renting in the UAE</h4>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="mt-8">
+                        <a href="#" class="block w-full py-3 border border-gray-200 rounded-full text-center text-sm font-medium text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition">
+                            View more articles
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer class="bg-white border-t border-gray-100 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+            <div class="md:col-span-6 space-y-8">
+                <div class="flex items-center gap-2 text-blue-900">
+                    <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    <span class="text-2xl font-bold font-['General_Sans',_sans-serif]">HopInHome</span>
+                </div>
+                <div class="bg-gray-50 border border-gray-100 rounded-xl p-6 max-w-sm">
+                    <p class="text-sm text-gray-500 mb-4">Follow us for the latest insights</p>
+                    <div class="flex space-x-5 text-gray-400">
+                        <a href="#" class="hover:text-blue-700 transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                        <a href="#" class="hover:text-pink-600 transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                        <a href="#" class="hover:text-blue-800 transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="md:col-span-3">
+                <h3 class="font-bold text-gray-900 mb-6 font-['General_Sans',_sans-serif]">HopInHome</h3>
+                <ul class="space-y-4 text-gray-500 font-['General_Sans',_sans-serif]">
+                    <li><a href="#" class="hover:text-blue-600 transition">About Us</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition">Help & Support</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition">FAQ</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="md:col-span-3">
+                <h3 class="font-bold text-gray-900 mb-6 font-['General_Sans',_sans-serif]">Articles</h3>
+                <ul class="space-y-4 text-gray-500 font-['General_Sans',_sans-serif]">
+                    <li><a href="#" class="hover:text-blue-600 transition">Insights</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition">News</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition">Community articles</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition">Tips & Resources</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-gray-400 text-sm font-['General_Sans',_sans-serif]">© 2026 HopInHome.com</p>
+            <div class="flex space-x-6">
+                <a href="#" class="text-sm text-gray-400 hover:text-gray-600 transition font-['General_Sans',_sans-serif]">Cookie settings</a>
+                <a href="#" class="text-sm text-gray-400 hover:text-gray-600 transition font-['General_Sans',_sans-serif]">Terms & conditions</a>
+                <a href="#" class="text-sm text-gray-400 hover:text-gray-600 transition font-['General_Sans',_sans-serif]">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>
