@@ -142,7 +142,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-20">
             <a href="#" class="group cursor-pointer block">
                 <div class="overflow-hidden rounded-xl aspect-[16/10] mb-4">
-                    <img src="https://images.unsplash.com/photo-1512453979798-5ea904f8486d?q=80&w=800&auto=format&fit=crop"
+                    <img src="https://images.unsplash.com/photo-1546412414-e1885259563a?q=80&w=800&auto=format&fit=crop"
                          alt="Dubai"
                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
@@ -151,7 +151,7 @@
 
             <a href="#" class="group cursor-pointer block">
                 <div class="overflow-hidden rounded-xl aspect-[16/10] mb-4">
-                    <img src="https://images.unsplash.com/photo-1512632500735-4db23769c840?q=80&w=800&auto=format&fit=crop"
+                    <img src="https://images.unsplash.com/photo-1546412414-e1885259563a?q=80&w=800&auto=format&fit=crop"
                          alt="Abu Dhabi"
                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
@@ -160,7 +160,7 @@
 
             <a href="#" class="group cursor-pointer block">
                 <div class="overflow-hidden rounded-xl aspect-[16/10] mb-4">
-                    <img src="https://images.unsplash.com/photo-1577105298013-1b32d20d4182?q=80&w=800&auto=format&fit=crop"
+                    <img src="https://images.unsplash.com/photo-1546412414-e1885259563a?q=80&w=800&auto=format&fit=crop"
                          alt="Sharjah"
                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
@@ -183,7 +183,6 @@
         </h2>
 
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-
             <a href="#" class="group p-6 border border-gray-100 rounded-2xl bg-white hover:shadow-lg hover:border-transparent transition duration-300 flex flex-col items-center text-center">
                 <div class="w-12 h-12 mb-4 text-blue-600">
                     <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"></path></svg>
