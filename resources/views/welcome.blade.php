@@ -5,15 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hopinhome</title>
     <meta name="robots" content="noindex, nofollow">
+
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
+
     <style>
+        /* 2. APPLY THE FONT GLOBALLY */
+        body {
+            font-family: 'General Sans', sans-serif;
+        }
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
     </style>
 </head>
-<body class="bg-gray-50 font-sans antialiased">
+<body class="bg-gray-50 antialiased">
 
 <nav x-data="{ scrolled: false }"
      @scroll.window="scrolled = (window.pageYOffset > 20)"
@@ -80,13 +88,13 @@
 
     <div class="relative z-10 w-full max-w-5xl px-4 text-center mt-16">
 
-        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-2xl tracking-tight">
+        <h1 class="text-5xl md:text-7xl font-semibold text-white mb-6 drop-shadow-2xl tracking-tight leading-tight">
             Find trusted <br />
             rental properties
         </h1>
 
         <p class="text-lg md:text-xl text-gray-100 mb-12 max-w-2xl mx-auto font-light drop-shadow-lg">
-            HopInHome helps you find <span class="font-semibold text-white">trusted</span> rental properties with ease.
+            HopInHome helps you find <span class="font-medium text-white">trusted</span> rental properties with ease.
             Explore listings and start renting with confidence.
         </p>
 
@@ -127,7 +135,7 @@
 
 <div class="bg-gray-50 py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-gray-900 mb-8">Latest Stays in Latvia & Italy</h2>
+        <h2 class="text-3xl font-semibold text-gray-900 mb-8">Latest Stays in Latvia & Italy</h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             @foreach($listings as $listing)
