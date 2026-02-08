@@ -25,7 +25,7 @@
 
 <nav x-data="{ scrolled: false }"
      @scroll.window="scrolled = (window.pageYOffset > 20)"
-     :class="scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-4'"
+     :class="scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'"
      class="fixed top-0 w-full z-50 transition-all duration-300 ease-in-out">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,8 +41,8 @@
 
             <div class="hidden md:flex items-center space-x-8">
                 @foreach(['Home', 'Find Properties', 'Articles & Insights', 'About Us'] as $item)
-                    <a href="#" class="text-sm font-medium transition-colors duration-300 hover:opacity-75"
-                       :class="scrolled ? 'text-gray-600 hover:text-rose-500' : 'text-white/90 hover:text-white'">
+                    <a href="#" class="text-[18px] font-medium leading-[1.28] tracking-[-0.02em] transition-colors duration-300 hover:opacity-75"
+                       :class="scrolled ? 'text-gray-800 hover:text-rose-500' : 'text-white/90 hover:text-white'">
                         {{ $item }}
                     </a>
                 @endforeach
@@ -53,13 +53,13 @@
                 @if (Route::has('login'))
                     @auth
                         <a href="{{ url('/dashboard') }}"
-                           class="font-medium transition-colors duration-300"
-                           :class="scrolled ? 'text-gray-600 hover:text-gray-900' : 'text-white hover:text-white'">
+                           class="text-[18px] font-medium leading-[1.28] tracking-[-0.02em] transition-colors duration-300"
+                           :class="scrolled ? 'text-gray-800 hover:text-gray-900' : 'text-white hover:text-white'">
                             Dashboard
                         </a>
                     @else
                         <a href="{{ route('login') }}"
-                           class="bg-blue-600 text-white px-6 py-2.5 rounded-full font-medium hover:bg-blue-700 transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                           class="bg-blue-600 text-white px-6 py-2.5 rounded-full text-[16px] font-medium hover:bg-blue-700 transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                             Log in or sign up
                         </a>
                     @endauth
