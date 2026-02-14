@@ -13,11 +13,11 @@
         body { font-family: 'General Sans', sans-serif; }
     </style>
 </head>
-<body class="bg-white text-gray-900 antialiased">
+<body class="bg-white text-gray-900 antialiased pt-20">
 
 <x-header />
 
-<div class="border-b border-gray-200 py-4 bg-white">
+<div class="border-b border-gray-200 py-4 bg-white pt-2">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row gap-3 items-center">
 
