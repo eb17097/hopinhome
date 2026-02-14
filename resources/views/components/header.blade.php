@@ -27,7 +27,7 @@
 
             <div class="flex items-center space-x-4">
                 <button>
-                    <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-э9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m-9 9h18"></path></svg>
+                    <img src="{{ asset('images/language_black.svg') }}" alt="Language" class="w-6 h-6">
                 </button>
                 <a href="#" class="bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition">
                     Log in or sign up
