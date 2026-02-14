@@ -23,16 +23,7 @@
 
 <x-listings.heading-section />
 
-    <div class="flex flex-wrap gap-3 mb-8">
-        <button class="px-5 py-2 bg-blue-600 text-white text-sm font-medium rounded-full shadow-sm hover:bg-blue-700 transition">
-            Downtown Dubai
-        </button>
-        @foreach(['Dubai Marina', 'Jumeirah Village Circle (JVC)', 'Business Bay', 'Arabian Ranches'] as $area)
-            <button class="px-5 py-2 bg-white border border-blue-200 text-blue-600 text-sm font-medium rounded-full hover:bg-blue-50 transition">
-                {{ $area }}
-            </button>
-        @endforeach
-    </div>
+<x-listings.area-filters />
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
