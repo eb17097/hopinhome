@@ -23,58 +23,7 @@
 </head>
 <body class="bg-gray-50 antialiased">
 
-<nav x-data="{ scrolled: false }"
-     @scroll.window="scrolled = (window.pageYOffset > 20)"
-     :class="scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'"
-     class="fixed top-0 w-full z-50 transition-all duration-300 ease-in-out">
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-
-            <div class="flex items-center">
-                <a href="/" class="text-2xl font-bold flex items-center gap-2 transition-colors duration-300"
-                   :class="scrolled ? 'text-rose-500' : 'text-white'">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                    <span>Hopinhome</span>
-                </a>
-            </div>
-
-            <div class="hidden md:flex items-center space-x-8">
-                @foreach(['Home', 'Find Properties', 'Articles & Insights', 'About Us'] as $item)
-                    <a href="#" class="text-[18px] font-medium leading-[1.28] tracking-[-0.02em] transition-colors duration-300 hover:opacity-75"
-                       :class="scrolled ? 'text-gray-800 hover:text-rose-500' : 'text-white/90 hover:text-white'">
-                        {{ $item }}
-                    </a>
-                @endforeach
-
-                <div class="h-6 w-px mx-2 transition-colors duration-300"
-                     :class="scrolled ? 'bg-gray-300' : 'bg-white/30'"></div>
-
-                @if (Route::has('login'))
-                    @auth
-                        <a href="{{ url('/dashboard') }}"
-                           class="text-[18px] font-medium leading-[1.28] tracking-[-0.02em] transition-colors duration-300"
-                           :class="scrolled ? 'text-gray-800 hover:text-gray-900' : 'text-white hover:text-white'">
-                            Dashboard
-                        </a>
-                    @else
-                        <a href="{{ route('login') }}"
-                           class="bg-blue-600 text-white px-6 py-2.5 rounded-full text-[16px] font-medium hover:bg-blue-700 transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                            Log in or sign up
-                        </a>
-                    @endauth
-                @endif
-            </div>
-
-            <div class="md:hidden flex items-center">
-                <button class="focus:outline-none transition-colors duration-300"
-                        :class="scrolled ? 'text-gray-800' : 'text-white'">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                </button>
-            </div>
-        </div>
-    </div>
-</nav>
+<x-landing-header />
 
 <div class="relative w-full h-[800px] flex items-center justify-center overflow-hidden">
 
