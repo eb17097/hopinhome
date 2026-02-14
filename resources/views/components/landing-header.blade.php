@@ -2,9 +2,9 @@
      @scroll.window="scrolled = window.scrollY > 50"
      :class="{
         'bg-white text-gray-900 border-gray-100 shadow-sm': scrolled,
-        'bg-transparent text-white border-transparent': !scrolled
+        'bg-transparent text-white': !scrolled
      }"
-     class="fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300">
+     class="fixed top-0 left-0 right-0 z-50 border-b border-transparent transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-22 py-4">
             <div class="flex items-center">
