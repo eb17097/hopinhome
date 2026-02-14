@@ -50,3 +50,11 @@ When making changes or adding features, adhere to the following:
 5.  **Styling with Tailwind CSS:** All styling should be done using Tailwind CSS utility classes directly in the Blade templates. Avoid adding custom CSS to `resources/css/app.css` unless for a justified, complex component.
 6.  **Create Feature Tests:** All new features or significant bug fixes must be accompanied by corresponding feature tests in the `tests/Feature` directory to ensure correctness and prevent regressions. Use factories for creating test data.
 7.  **Environment Variables:** Do not hardcode credentials or environment-specific settings. Use the `.env` file and reference variables with `env('KEY_NAME', 'default_value')`.
+
+## Gemini Session Notes
+
+-   **Vite is Essential:** I must use the `@vite(['resources/css/app.css', 'resources/js/app.js'])` directive for CSS/JS and not CDN links.
+-   **Component-First Approach:** I should continue building pages by breaking the Figma design into small, dedicated Blade components.
+-   **Server-Side vs. Client-Side Classes:** I must use Blade's server-side logic (e.g., `class="{{ $condition ? 'class-a' : 'class-b' }}"`) for applying initial styles, not Alpine.js's `:class` with PHP variables.
+-   **Multiple Headers:** The application has distinct headers for the landing page (`landing-header.blade.php`), internal pages (`header.blade.php`), and authenticated users (`navigation.blade.php`). I need to be mindful of which one I am editing.
+-   **Asset Paths:** All images and SVGs should be placed in the `public/images` directory and referenced using the `asset()` helper in Blade files.
