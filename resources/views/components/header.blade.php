@@ -1,4 +1,10 @@
-<nav class="bg-white border-b border-gray-100">
+<nav x-data="{ scrolled: false }"
+     @scroll.window="scrolled = window.scrollY > 50"
+     :class="{
+        'bg-transparent text-white': !scrolled,
+        'bg-white text-gray-900 border-b border-gray-100 shadow-sm': scrolled
+     }"
+     class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-22 py-4">
             <div class="flex items-center">
@@ -8,12 +14,14 @@
             </div>
 
             <div class="hidden md:flex items-center space-x-8">
-                <a href="/" class="text-lg font-medium text-gray-900 hover:text-blue-600 transition">Home</a>
+                <a href="/" class="text-lg font-medium hover:text-blue-600 transition" :class="{'text-white': !scrolled, 'text-gray-900': scrolled}">Home</a>
 
                 <div class="relative" x-data="{ open: false }">
-                    <button @click="open = !open" class="flex items-center text-lg font-medium text-gray-500 hover:text-blue-600 transition">
+                    <button @click="open = !open" class="flex items-center text-lg font-medium hover:text-blue-600 transition" :class="{'text-gray-200': !scrolled, 'text-gray-500': scrolled}">
                         <span>Find Properties</span>
-                        <img src="http://localhost:3845/assets/400a9c2ac0844d7cf156ce4903b9b84b765d8c16.svg" class="w-5 h-5 ml-1 transform" :class="{'rotate-180': open}" alt="arrow">
+                        <svg class="w-5 h-5 ml-1 transform" :class="{'rotate-180': open, 'filter-brightness-200': !scrolled}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
                     </button>
                     <div x-show="open" @click.away="open = false" class="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg" style="display: none;">
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">For Sale</a>
@@ -21,13 +29,13 @@
                     </div>
                 </div>
                 
-                <a href="#" class="text-lg font-medium text-gray-500 hover:text-blue-600 transition">Articles & Insights</a>
-                <a href="#" class="text-lg font-medium text-gray-500 hover:text-blue-600 transition">About Us</a>
+                <a href="#" class="text-lg font-medium hover:text-blue-600 transition" :class="{'text-gray-200': !scrolled, 'text-gray-500': scrolled}">Articles & Insights</a>
+                <a href="#" class="text-lg font-medium hover:text-blue-600 transition" :class="{'text-gray-200': !scrolled, 'text-gray-500': scrolled}">About Us</a>
             </div>
 
             <div class="flex items-center space-x-4">
                 <button>
-                    <img src="http://localhost:3845/assets/d749178c561229b7088927e583414f88261b965b.svg" alt="Language" class="w-6 h-6">
+                     <svg class="w-6 h-6" :class="{'text-white': !scrolled, 'text-gray-800': scrolled}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m-9 9h18"></path></svg>
                 </button>
                 <a href="#" class="bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition">
                     Log in or sign up
