@@ -29,17 +29,7 @@
 
         <div class="lg:col-span-8">
 
-            <div class="flex justify-between items-center mb-6">
-                <span class="text-gray-500 text-sm">859 properties</span>
-                <div class="flex items-center gap-2">
-                    <span class="text-sm text-gray-500">Sort by:</span>
-                    <select class="text-sm font-medium text-gray-900 bg-transparent border-none outline-none cursor-pointer">
-                        <option>Most popular</option>
-                        <option>Price: Low to High</option>
-                        <option>Newest</option>
-                    </select>
-                </div>
-            </div>
+  <x-listings.listings-header />
 
             <div class="space-y-6">
 
@@ -113,12 +103,7 @@
                     <x-listings.listing-card :listing="$listing" />
                 @endforeach
 
-                <div class="pt-8 text-center">
-                    <button class="inline-flex items-center justify-center gap-2 px-8 py-3 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition shadow-sm hover:shadow-md">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-                        Show more properties
-                    </button>
-                </div>
+                <x-listings.show-more-button />
 
             </div>
         </div>
