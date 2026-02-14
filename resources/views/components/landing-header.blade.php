@@ -36,10 +36,7 @@
             </div>
 
             <div class="flex items-center space-x-4">
-                <div class="bg-white/10 flex items-center justify-between px-2 rounded-md h-7 w-20 opacity-0" :class="{'opacity-100': !scrolled, 'opacity-0': scrolled}" style="transition: opacity 300ms ease-in-out;">
-                    <p class="font-medium text-sm text-white text-center">UAE</p>
-                    <img src="http://localhost:3845/assets/3d272e5eb77f2b512180fc52feede07c57450657.svg" alt="chevron" class="w-4 h-4">
-                </div>
+
                 <button>
                      <img x-show="!scrolled" src="{{ asset('images/language_white.svg') }}" alt="Language" class="w-6 h-6" style="display: none;">
                     <img x-show="scrolled" src="{{ asset('images/language_black.svg') }}" alt="Language" class="w-6 h-6" style="display: none;">
