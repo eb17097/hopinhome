@@ -15,31 +15,7 @@
 </head>
 <body class="bg-white text-gray-900 antialiased">
 
-<nav class="bg-white border-b border-gray-100 sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex items-center">
-                <a href="/" class="flex items-center gap-2">
-                    <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                    <span class="text-2xl font-bold text-blue-900">HopInHome</span>
-                </a>
-            </div>
-
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="/" class="text-sm font-medium text-gray-500 hover:text-blue-600 transition">Home</a>
-                <a href="#" class="text-sm font-medium text-gray-900">Find Properties</a>
-                <a href="#" class="text-sm font-medium text-gray-500 hover:text-blue-600 transition">Articles & Insights</a>
-                <a href="#" class="text-sm font-medium text-gray-500 hover:text-blue-600 transition">About Us</a>
-            </div>
-
-            <div class="flex items-center">
-                <a href="#" class="bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition">
-                    Log in or sign up
-                </a>
-            </div>
-        </div>
-    </div>
-</nav>
+<x-header />
 
 <div class="border-b border-gray-200 py-4 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
