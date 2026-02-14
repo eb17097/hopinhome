@@ -3,7 +3,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
 
-            <div class="md:col-span-6 space-y-8">
+            <div class="md:col-span-8 space-y-8">
                 <div class="flex items-center gap-2">
                     <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopInHome Logo" class="h-7 w-auto">
                 </div>
@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            <div class="md:col-span-3">
+            <div class="md:col-span-2">
                 <h3 class="font-medium text-gray-900 text-lg mb-6">HopInHome</h3>
                 <ul class="space-y-4 text-gray-500 text-sm">
                     <li><a href="#" class="hover:text-blue-600 transition">About Us</a></li>
@@ -30,7 +30,7 @@
                 </ul>
             </div>
 
-            <div class="md:col-span-3">
+            <div class="md:col-span-2">
                 <h3 class="font-medium text-gray-900 text-lg mb-6">Articles</h3>
                 <ul class="space-y-4 text-gray-500 text-sm">
                     <li><a href="#" class="hover:text-blue-600 transition">Insights</a></li>
