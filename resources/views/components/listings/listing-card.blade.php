@@ -25,30 +25,32 @@
     </div>
 
     <!-- Content Section -->
-    <div class="p-6 flex-grow">
-        <div class="flex justify-between items-start mb-2">
-            <div>
-                <h3 class="text-xl font-medium text-gray-900 leading-tight">{{ $listing['title'] }}</h3>
-                <p class="text-sm text-gray-500">{{ $listing['location'] }}</p>
+    <div class="p-6 flex-grow flex flex-col justify-between">
+        <div>
+            <div class="flex justify-between items-start mb-2">
+                <div>
+                    <h3 class="text-xl font-medium text-gray-900 leading-tight">{{ $listing['title'] }}</h3>
+                    <p class="text-sm text-gray-500">{{ $listing['location'] }}</p>
+                </div>
             </div>
-        </div>
 
-        <div class="flex items-center gap-4 text-sm text-gray-600 mb-6">
-            <div class="flex items-center gap-1">
-                <img src="{{ asset('images/activity_zone.svg') }}" alt="Area Icon" class="w-5 h-5 text-gray-400">
-                <span>{{ $listing['sqft'] }} sqft</span>
-            </div>
-            <div class="flex items-center gap-1">
-                <img src="{{ asset('images/bed.svg') }}" alt="Beds Icon" class="w-5 h-5 text-gray-400">
-                <span>{{ $listing['beds'] }} beds</span>
-            </div>
-            <div class="flex items-center gap-1">
-                <img src="{{ asset('images/bathtub.svg') }}" alt="Baths Icon" class="w-5 h-5 text-gray-400">
-                <span>{{ $listing['baths'] }} bath</span>
-            </div>
-            <div class="flex items-center gap-1 ml-auto text-gray-400 text-xs">
-                <img src="{{ asset('images/floor.svg') }}" alt="Images Icon" class="w-5 h-5">
-                <span>{{ $listing['images_count'] }}</span>
+            <div class="flex items-center gap-4 text-sm text-gray-600 mb-6">
+                <div class="flex items-center gap-1">
+                    <img src="{{ asset('images/activity_zone.svg') }}" alt="Area Icon" class="w-5 h-5 text-gray-400">
+                    <span>{{ $listing['sqft'] }} sqft</span>
+                </div>
+                <div class="flex items-center gap-1">
+                    <img src="{{ asset('images/bed.svg') }}" alt="Beds Icon" class="w-5 h-5 text-gray-400">
+                    <span>{{ $listing['beds'] }} beds</span>
+                </div>
+                <div class="flex items-center gap-1">
+                    <img src="{{ asset('images/bathtub.svg') }}" alt="Baths Icon" class="w-5 h-5 text-gray-400">
+                    <span>{{ $listing['baths'] }} bath</span>
+                </div>
+                <div class="flex items-center gap-1 ml-auto text-gray-400 text-xs">
+                    <img src="{{ asset('images/floor.svg') }}" alt="Images Icon" class="w-5 h-5">
+                    <span>{{ $listing['images_count'] }}</span>
+                </div>
             </div>
         </div>
 
