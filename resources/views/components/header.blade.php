@@ -3,7 +3,7 @@
         <div class="flex justify-between h-22 py-4">
             <div class="flex items-center">
                 <a href="/" class="flex items-center gap-2">
-                    <img src="http://localhost:3845/assets/42353c0345cb2111d061b3f456dce6e2d57c847a.svg" alt="Logo" class="h-8">
+                    <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopInHome Logo" class="h-7 w-auto">
                 </a>
             </div>
 
