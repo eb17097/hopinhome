@@ -31,7 +31,7 @@
          style="background-image: url('{{ asset('images/main_hero_image.png') }}');">
     </div>
 
-    <div class="absolute inset-0" style="background-image: linear-gradient(234.898deg, rgba(10, 23, 57, 0.4) 12.175%, rgba(10, 23, 57, 0.95) 87.85%);"></div>
+
 
     <div class="relative z-10 w-full max-w-5xl px-4 text-center mt-16">
 
