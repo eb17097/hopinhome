@@ -119,9 +119,10 @@
         </div>
 
     </div>
+</div>
 
     <x-listings.find-ideal-home />
-
+<div>
     <div class="bg-white pb-20 pt-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">

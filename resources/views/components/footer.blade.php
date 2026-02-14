@@ -40,8 +40,10 @@
                 </ul>
             </div>
         </div>
+    </div>
 
-        <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+    <div class="border-t">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p class="text-gray-500 text-sm opacity-80">
                 © 2026 HopInHome.com
             </p>
@@ -53,4 +55,5 @@
             </div>
         </div>
     </div>
+
 </footer>
