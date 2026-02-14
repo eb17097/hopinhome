@@ -110,39 +110,11 @@
 
         <div class="lg:col-span-4 space-y-8">
 
-            <div class="bg-[#0A2558] rounded-2xl p-8 text-white relative overflow-hidden shadow-lg">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500 rounded-full blur-3xl opacity-20 -mr-10 -mt-10"></div>
+            <x-listings.we-got-your-back />
 
-                <h3 class="text-2xl font-medium mb-3 relative z-10">We’ve got your back</h3>
-                <p class="text-blue-100 text-sm mb-6 leading-relaxed relative z-10">
-                    From honest listings to practical insights, HopInHome helps you make rental decisions with clarity and peace of mind.
-                </p>
-                <button class="border border-white/30 text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-white hover:text-blue-900 transition relative z-10">
-                    Learn more
-                </button>
-            </div>
+            <x-listings.recommended-for-you />
 
-            <div class="pt-4 border-b border-gray-100 pb-8">
-                <h4 class="font-medium text-gray-900 mb-4 text-lg">Recommended for you</h4>
-                <ul class="space-y-3">
-                    <li><a href="#" class="text-sm text-gray-500 hover:text-blue-600 transition">2 bedroom apartments for rent in Dubai</a></li>
-                    <li><a href="#" class="text-sm text-gray-500 hover:text-blue-600 transition">3 bedroom houses for rent in the UAE</a></li>
-                    <li><a href="#" class="text-sm text-gray-500 hover:text-blue-600 transition">Villas for rent in Dubai</a></li>
-                    <li><a href="#" class="text-sm text-gray-500 hover:text-blue-600 transition">2 bedroom apartments in Abu Dhabi</a></li>
-                    <li><a href="#" class="text-sm text-gray-500 hover:text-blue-600 transition">Penthouses for rent in Downtown Dubai</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="font-medium text-gray-900 mb-4 text-lg">Popular searches</h4>
-                <ul class="space-y-3">
-                    <li><a href="#" class="text-sm text-gray-500 hover:text-blue-600 transition">2 bedroom apartments for rent in Dubai</a></li>
-                    <li><a href="#" class="text-sm text-gray-500 hover:text-blue-600 transition">3 bedroom houses for rent in the UAE</a></li>
-                    <li><a href="#" class="text-sm text-gray-500 hover:text-blue-600 transition">Villas for rent in Dubai</a></li>
-                    <li><a href="#" class="text-sm text-gray-500 hover:text-blue-600 transition">2 bedroom apartments in Abu Dhabi</a></li>
-                    <li><a href="#" class="text-sm text-gray-500 hover:text-blue-600 transition">Penthouses for rent in Downtown Dubai</a></li>
-                </ul>
-            </div>
+            <x-listings.popular-searches />
 
         </div>
 
