@@ -22,7 +22,7 @@
                 <div class="relative" x-data="{ open: false }">
                     <button @click="open = !open" class="flex items-center text-lg font-medium transition" :class="{'text-gray-500 hover:text-blue-600': scrolled, 'text-gray-200 hover:text-white': !scrolled}">
                         <span>Find Properties</span>
-                        <svg class="w-5 h-5 ml-1 transition-transform" :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <img src="http://localhost:3845/assets/dd2c8057d0ba14cbd11e4b2db2a4a638390b4142.svg" alt="arrow" class="w-5 h-5 ml-1 transition-transform" :class="{'rotate-180': open, 'filter-brightness-200': !scrolled}">
                     </button>
                     <div x-show="open" @click.away="open = false" class="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg" style="display: none;">
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">For Sale</a>
@@ -32,9 +32,14 @@
                 
                 <a href="#" class="text-lg font-medium transition" :class="{'text-gray-500 hover:text-blue-600': scrolled, 'text-gray-200 hover:text-white': !scrolled}">Articles & Insights</a>
                 <a href="#" class="text-lg font-medium transition" :class="{'text-gray-500 hover:text-blue-600': scrolled, 'text-gray-200 hover:text-white': !scrolled}">About Us</a>
+                <a href="#" class="text-lg font-medium transition" :class="{'text-gray-500 hover:text-blue-600': scrolled, 'text-white hover:text-gray-200': !scrolled}">Add a listing</a>
             </div>
 
             <div class="flex items-center space-x-4">
+                <div class="bg-white/10 flex items-center justify-between px-2 rounded-md h-7 w-20 opacity-0" :class="{'opacity-100': !scrolled, 'opacity-0': scrolled}" style="transition: opacity 300ms ease-in-out;">
+                    <p class="font-medium text-sm text-white text-center">UAE</p>
+                    <img src="http://localhost:3845/assets/3d272e5eb77f2b512180fc52feede07c57450657.svg" alt="chevron" class="w-4 h-4">
+                </div>
                 <button>
                      <img x-show="!scrolled" src="{{ asset('images/language_white.svg') }}" alt="Language" class="w-6 h-6" style="display: none;">
                     <img x-show="scrolled" src="{{ asset('images/language_black.svg') }}" alt="Language" class="w-6 h-6" style="display: none;">
