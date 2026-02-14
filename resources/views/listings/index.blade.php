@@ -29,7 +29,7 @@
 
         <div class="lg:col-span-8">
 
-  <x-listings.listings-header />
+            <x-listings.listings-header />
 
             <div class="space-y-6">
 
@@ -119,6 +119,24 @@
         </div>
 
     </div>
+
+    <x-listings.find-ideal-home />
+
+    <div class="bg-white pb-20 pt-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-8 space-y-12">
+                    <x-listings.why-rent-in-dubai />
+                    <x-listings.popular-areas />
+                    <x-listings.faq-section />
+                </div>
+                <div class="lg:col-span-4">
+                    <x-listings.uae-insights-section />
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <x-footer />
