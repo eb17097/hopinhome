@@ -28,11 +28,10 @@
 <div class="relative w-full h-[800px] flex items-center justify-center overflow-hidden">
 
     <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 scale-105"
-         style="background-image: url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2144&auto=format&fit=crop');">
+         style="background-image: url('{{ asset('images/main_hero_image.png') }}');">
     </div>
 
-    <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/70 to-transparent"></div>
-    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-900/50 to-transparent"></div>
+    <div class="absolute inset-0" style="background-image: linear-gradient(234.898deg, rgba(10, 23, 57, 0.4) 12.175%, rgba(10, 23, 57, 0.95) 87.85%);"></div>
 
     <div class="relative z-10 w-full max-w-5xl px-4 text-center mt-16">
 
