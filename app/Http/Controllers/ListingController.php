@@ -50,7 +50,7 @@ class ListingController extends Controller
                 'price' => 'required|numeric',
                 'duration' => 'required|integer',
                 'renewal_type' => 'required|string',
-                'video_file' => 'nullable|file|mimetypes:mp4,mov,avi,wmv|max:51200', // 50MB Max
+                'video_file' => 'nullable|file|mimes:mp4,mov,avi,wmv|max:51200', // 50MB Max
                 'photos' => 'nullable|array',
                 'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'features' => 'nullable|array',
