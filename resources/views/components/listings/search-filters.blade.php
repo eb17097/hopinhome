@@ -50,10 +50,10 @@
             </div>
 
             <!-- More filters Button -->
-            <button class="flex items-center gap-1.5 py-2.5 px-4 bg-off-white-blue border border-gray-200 rounded-lg text-base font-medium text-electric-blue hover:bg-gray-200 transition shadow-sm h-[45px]">
+            <button class="relative flex items-center gap-1.5 py-2.5 px-4 bg-off-white-blue border border-gray-200 rounded-lg text-base font-medium text-electric-blue hover:bg-gray-200 transition shadow-sm h-[45px]">
                 <img src="{{ asset('images/tune.svg') }}" alt="Tune Icon" class="w-[18px] h-[18px]">
                 More filters
-                <span class="bg-electric-blue text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full">
+                <span class="absolute top-[-8px] right-[-8px] bg-electric-blue text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
                     3
                 </span>
             </button>
