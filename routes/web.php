@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
 
     // Listing Routes
     Route::post('/listings', [ListingController::class, 'store'])->name('listings.store');
+    Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->name('listings.destroy');
 
     // Manager Routes
     Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index');

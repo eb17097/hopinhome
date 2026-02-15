@@ -129,4 +129,16 @@ class ListingController extends Controller
         $listings = auth()->user()->listings()->latest()->get();
         return view('manager.listings.index', ['listings' => $listings]);
     }
+
+    public function destroy(Listing $listing)
+    {
+        // Authorize that the user owns the listing
+        if (auth()->user()->id !== $listing->user_id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $listing->delete();
+
+        return redirect()->route('manager.listings.index')->with('success', 'Listing deleted successfully.');
+    }
 }

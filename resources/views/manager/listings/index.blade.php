@@ -13,6 +13,14 @@
                 <h2 class="text-3xl font-medium text-black tracking-tight mb-6">
                     My listings
                 </h2>
+
+                <!-- Session Status -->
+                @if(session('success'))
+                    <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                        <span class="block sm:inline">{{ session('success') }}</span>
+                    </div>
+                @endif
+                
                 <x-listings.listing-filter-buttons />
 
                 {{-- Conditional rendering based on whether listings exist --}}
