@@ -10,22 +10,20 @@
 
     <div class="p-4">
         <div class="flex items-start space-x-4">
-            <img src="{{ $listing->images->first()?->image_url ?? asset('images/placeholder_image_1.png') }}" alt="{{ $listing->name }}" class="w-20 h-20 object-cover rounded-md">
-            <div class="flex-1">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="text-lg font-medium text-black">{{ $listing->name }}</h3>
-                        <p class="text-sm text-gray-600">{{ $listing->address }}</p>
+            <a href="{{ route('listings.show', $listing->id) }}" class="flex items-start space-x-4 group">
+                <img src="{{ $listing->images->first()?->image_url ?? asset('images/placeholder_image_1.png') }}" alt="{{ $listing->name }}" class="w-20 h-20 object-cover rounded-md group-hover:opacity-75 transition-opacity">
+                <div class="flex-1">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-lg font-medium text-black group-hover:text-electric-blue transition-colors">{{ $listing->name }}</h3>
+                            <p class="text-sm text-gray-600">{{ $listing->address }}</p>
+                        </div>
                     </div>
-                    <button>
-                        <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg>
-                    </button>
                 </div>
-                <div class="flex items-center space-x-2 mt-2">
-                    <span class="text-base font-medium text-black">AED {{ number_format($listing->price) }}</span>
-                    <span class="text-xs text-gray-500">{{ $listing->payment_option }}</span>
-                </div>
-            </div>
+            </a>
+            <button class="flex-shrink-0">
+                <svg class="w-6 h-6 text-gray-500 hover:text-black transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg>
+            </button>
         </div>
 
         <hr class="my-4">
@@ -43,7 +41,7 @@
             </div>
 
             <div class="flex items-center space-x-2">
-                <a href="#" class="text-sm font-medium text-electric-blue">View</a>
+                <a href="{{ route('listings.show', $listing->id) }}" class="text-sm font-medium text-electric-blue hover:underline">View</a>
                 <a href="#" class="text-sm font-medium text-gray-700">Edit</a>
 
                 @if($listing->status === 'Active')

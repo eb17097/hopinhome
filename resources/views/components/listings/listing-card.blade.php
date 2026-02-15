@@ -1,19 +1,19 @@
 @props(['listing'])
 
-<div class="bg-white rounded-lg shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)] flex items-center group overflow-hidden">
+<a href="{{ route('listings.show', $listing->id) }}" class="bg-white rounded-lg shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)] flex items-center group overflow-hidden">
     <!-- Image Section -->
     <div class="relative w-[380px] h-[238px] flex-shrink-0">
         <img src="{{ $listing->images->first()?->image_url ?? asset('images/placeholder_image_1.png') }}" alt="{{ $listing->name }}" class="w-full h-full object-cover">
 
         <!-- Favorite Icon -->
         <button class="absolute top-3 right-3 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <img src="{{ asset('images/favorite.svg') }}" alt="Favorite" class="w-8 h-8">
+            <img src="{{ asset('images/favorite_white.svg') }}" alt="Favorite" class="w-8 h-8">
         </button>
 
         <!-- Image Navigation (Arrows) -->
         <div class="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <button>
-                <img src="{{ asset('images/arrow.svg') }}" alt="Previous" class="w-6 h-6">
+                <img src="{{ asset('images/arrow_left_white_notail.svg') }}" alt="Previous" class="w-6 h-6">
             </button>
             <button>
                 <img src="{{ asset('images/arrow1.svg') }}" alt="Next" class="w-6 h-6">
@@ -64,4 +64,4 @@
             <span class="text-xs text-gray-400">{{ $listing->utilities_option }}</span>
         </div>
     </div>
-</div>
+</a>
