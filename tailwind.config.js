@@ -14,6 +14,9 @@ export default {
             colors: {
                 'electric-blue': '#1447d4',
                 'off-white-blue': '#f4f4f3',
+                'off-white': '#f9f9f8',
+                'light-gray': '#e8e8e7',
+                'navy-blue': '#04247b',
             },
             spacing: {
                 '1.5': '0.375rem',
