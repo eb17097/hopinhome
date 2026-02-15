@@ -1,7 +1,9 @@
+@props(['listing'])
+
 <div class="bg-white rounded-lg shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)] flex items-center group overflow-hidden">
     <!-- Image Section -->
     <div class="relative w-[380px] h-[238px] flex-shrink-0">
-        <img src="{{ $listing['image'] }}" alt="{{ $listing['title'] }}" class="w-full h-full object-cover">
+        <img src="{{ $listing->images->first()?->image_url ?? asset('images/placeholder_image_1.png') }}" alt="{{ $listing->name }}" class="w-full h-full object-cover">
 
         <!-- Favorite Icon -->
         <button class="absolute top-3 right-3 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -29,37 +31,37 @@
         <div>
             <div class="flex justify-between items-start mb-2">
                 <div>
-                    <h3 class="text-xl font-medium text-gray-900 leading-tight">{{ $listing['title'] }}</h3>
-                    <p class="text-sm text-gray-500">{{ $listing['location'] }}</p>
+                    <h3 class="text-xl font-medium text-gray-900 leading-tight">{{ $listing->name }}</h3>
+                    <p class="text-sm text-gray-500">{{ $listing->address }}</p>
                 </div>
             </div>
 
             <div class="flex items-center gap-4 text-sm text-gray-600 mb-6">
                 <div class="flex items-center gap-1">
                     <img src="{{ asset('images/activity_zone.svg') }}" alt="Area Icon" class="w-5 h-5 text-gray-400">
-                    <span>{{ $listing['sqft'] }} sqft</span>
+                    <span>{{ $listing->area }} sqft</span>
                 </div>
                 <div class="flex items-center gap-1">
                     <img src="{{ asset('images/bed.svg') }}" alt="Beds Icon" class="w-5 h-5 text-gray-400">
-                    <span>{{ $listing['beds'] }} beds</span>
+                    <span>{{ $listing->bedrooms }} beds</span>
                 </div>
                 <div class="flex items-center gap-1">
                     <img src="{{ asset('images/bathtub.svg') }}" alt="Baths Icon" class="w-5 h-5 text-gray-400">
-                    <span>{{ $listing['baths'] }} bath</span>
+                    <span>{{ $listing->bathrooms }} bath</span>
                 </div>
                 <div class="flex items-center gap-1 ml-auto text-gray-400 text-xs">
                     <img src="{{ asset('images/floor.svg') }}" alt="Images Icon" class="w-5 h-5">
-                    <span>{{ $listing['images_count'] }}</span>
+                    <span>{{ $listing->images->count() }}</span>
                 </div>
             </div>
         </div>
 
         <div class="flex items-end justify-between pt-4 border-t border-gray-100">
             <div>
-                <span class="text-2xl font-semibold text-gray-900">AED {{ $listing['price'] }}</span>
-                <span class="text-sm font-medium text-gray-900"> / {{ $listing['period'] }}</span>
+                <span class="text-2xl font-semibold text-gray-900">AED {{ number_format($listing->price) }}</span>
+                <span class="text-sm font-medium text-gray-900"> / {{ $listing->payment_option }}</span>
             </div>
-            <span class="text-xs text-gray-400">{{ $listing['utilities'] }}</span>
+            <span class="text-xs text-gray-400">{{ $listing->utilities_option }}</span>
         </div>
     </div>
 </div>
