@@ -49,7 +49,6 @@
                 <img src="{{ asset('images/tune.svg') }}" alt="Tune Icon" class="w-4 h-4">
                 More filters
                 <span class="bg-blue-600 text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full">
-                    <img src="{{ asset('images/ellipse13.svg') }}" alt="Count Background" class="absolute w-5 h-5 opacity-0">
                     3
                 </span>
             </button>
