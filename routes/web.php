@@ -15,10 +15,7 @@ Route::get('/', function () {
 
 Route::get('/listings/{listing}', [ListingController::class, 'show'])->name('listings.show');
 
-Route::get('/listings', function (Request $request) {
-    // In a real app, you would filter data here using $request->input('city')
-    return view('listings.index');
-})->name('listings.index');
+Route::get('/listings', [ListingController::class, 'index'])->name('listings.index');
 
 Route::get('/migrate-prod', function () {
     \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);

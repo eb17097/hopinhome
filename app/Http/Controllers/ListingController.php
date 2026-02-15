@@ -45,4 +45,11 @@ class ListingController extends Controller
     {
         return view('listings.show', ['listing' => $listing]);
     }
+
+    // 4. Show all listings
+    public function index()
+    {
+        $listings = Listing::latest()->get();
+        return view('listings.index', ['listings' => $listings]);
+    }
 }
