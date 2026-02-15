@@ -4,7 +4,7 @@
         <img src="{{ $listing['image'] }}" alt="{{ $listing['title'] }}" class="w-full h-full object-cover">
 
         <!-- Favorite Icon -->
-        <button class="absolute top-3 right-3 p-2">
+        <button class="absolute top-3 right-3 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <img src="{{ asset('images/favorite.svg') }}" alt="Favorite" class="w-8 h-8">
         </button>
 
