@@ -1,54 +1,65 @@
-@props(['listing'])
+<div class="bg-white rounded-lg shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)] flex items-center group overflow-hidden">
+    <!-- Image Section -->
+    <div class="relative w-[380px] h-[238px] flex-shrink-0">
+        <img src="{{ $listing['image'] }}" alt="{{ $listing['title'] }}" class="w-full h-full object-cover">
 
-<div class="bg-white border border-light-gray rounded-lg shadow-sm">
-    @if($listing->boosted)
-    <div class="bg-gradient-to-r from-navy-blue to-electric-blue text-white text-sm font-medium px-4 py-2 rounded-t-lg flex items-center space-x-2">
-        <img alt="bolt" class="h-4 w-4" src="{{ asset('images/bolt.svg') }}">
-        <span>10x boosted for 3 more days</span>
+        <!-- Favorite Icon -->
+        <button class="absolute top-3 right-3 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <img src="{{ asset('images/favorite.svg') }}" alt="Favorite" class="w-8 h-8">
+        </button>
+
+        <!-- Image Navigation (Arrows) -->
+        <div class="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <button>
+                <img src="{{ asset('images/arrow.svg') }}" alt="Previous" class="w-6 h-6">
+            </button>
+            <button>
+                <img src="{{ asset('images/arrow1.svg') }}" alt="Next" class="w-6 h-6">
+            </button>
+        </div>
+
+        <!-- Image Navigation (Dots) -->
+        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <img src="{{ asset('images/dots.svg') }}" alt="Dots" class="h-[7px] w-auto">
+        </div>
     </div>
-    @endif
-    <div class="p-4">
-        <div class="flex space-x-4">
-            <img src="{{ $listing->image_url ?? asset('images/placeholder_image_4.png') }}" alt="{{ $listing->title }}" class="w-20 h-20 object-cover rounded-md">
-            <div>
-                <h3 class="text-lg font-medium text-black">{{ $listing->title }}</h3>
-                <p class="text-sm text-gray-600">{{ $listing->city }}</p>
-                <p class="text-base font-bold text-electric-blue mt-1">${{ number_format($listing->price) }} <span class="text-xs font-normal text-gray-600">Yearly</span></p>
+
+    <!-- Content Section -->
+    <div class="p-6 flex-grow flex flex-col justify-between">
+        <div>
+            <div class="flex justify-between items-start mb-2">
+                <div>
+                    <h3 class="text-xl font-medium text-gray-900 leading-tight">{{ $listing['title'] }}</h3>
+                    <p class="text-sm text-gray-500">{{ $listing['location'] }}</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4 text-sm text-gray-600 mb-6">
+                <div class="flex items-center gap-1">
+                    <img src="{{ asset('images/activity_zone.svg') }}" alt="Area Icon" class="w-5 h-5 text-gray-400">
+                    <span>{{ $listing['sqft'] }} sqft</span>
+                </div>
+                <div class="flex items-center gap-1">
+                    <img src="{{ asset('images/bed.svg') }}" alt="Beds Icon" class="w-5 h-5 text-gray-400">
+                    <span>{{ $listing['beds'] }} beds</span>
+                </div>
+                <div class="flex items-center gap-1">
+                    <img src="{{ asset('images/bathtub.svg') }}" alt="Baths Icon" class="w-5 h-5 text-gray-400">
+                    <span>{{ $listing['baths'] }} bath</span>
+                </div>
+                <div class="flex items-center gap-1 ml-auto text-gray-400 text-xs">
+                    <img src="{{ asset('images/floor.svg') }}" alt="Images Icon" class="w-5 h-5">
+                    <span>{{ $listing['images_count'] }}</span>
+                </div>
             </div>
         </div>
-        <hr class="my-4 border-light-gray">
-        <div class="flex justify-between items-center">
-            <div class="flex space-x-4">
-                <div class="flex items-center space-x-1">
-                    <img alt="visibility" class="h-4 w-4" src="{{ asset('images/visibility_black.svg') }}">
-                    <span class="text-sm font-medium text-black">357</span>
-                </div>
-                <div class="flex items-center space-x-1">
-                    <img alt="chat" class="h-4 w-4" src="{{ asset('images/chat_black.svg') }}">
-                    <span class="text-sm font-medium text-black">13</span>
-                </div>
+
+        <div class="flex items-end justify-between pt-4 border-t border-gray-100">
+            <div>
+                <span class="text-2xl font-semibold text-gray-900">AED {{ $listing['price'] }}</span>
+                <span class="text-sm font-medium text-gray-900"> / {{ $listing['period'] }}</span>
             </div>
-            <div class="px-3 py-1 rounded-full text-sm font-medium
-                @switch($listing->status)
-                    @case('Active')
-                        bg-green-100 text-green-800
-                        @break
-                    @case('In review')
-                        bg-yellow-100 text-yellow-800
-                        @break
-                    @case('Draft')
-                        bg-gray-100 text-gray-800
-                        @break
-                    @case('Expired')
-                        bg-gray-100 text-gray-800
-                        @break
-                    @case('Declined')
-                        bg-red-100 text-red-800
-                        @break
-                @endswitch
-            ">
-                {{ $listing->status }}
-            </div>
+            <span class="text-xs text-gray-400">{{ $listing['utilities'] }}</span>
         </div>
     </div>
 </div>
