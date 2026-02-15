@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
 
     // Manager Route
     Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index');
+    Route::get('/manager/listings', [ListingController::class, 'myListings'])->name('manager.listings.index');
 });
 
 require __DIR__.'/auth.php';

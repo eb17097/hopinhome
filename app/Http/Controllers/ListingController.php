@@ -52,4 +52,11 @@ class ListingController extends Controller
         $listings = Listing::latest()->get();
         return view('listings.index', ['listings' => $listings]);
     }
+
+    // 5. Show user's listings
+    public function myListings()
+    {
+        $listings = auth()->user()->listings()->latest()->get();
+        return view('manager.listings.index', ['listings' => $listings]);
+    }
 }
