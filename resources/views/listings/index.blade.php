@@ -13,7 +13,7 @@
         body { font-family: 'General Sans', sans-serif; }
     </style>
 </head>
-<body class="bg-white text-gray-900 antialiased pt-20">
+<body class="bg-white text-gray-900 antialiased">
 
 <x-header />
 

@@ -12,7 +12,16 @@
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="/" class="text-lg font-medium text-gray-900 hover:text-blue-600 transition">Home</a>
-                    <a href="#" class="text-lg font-medium text-gray-500 hover:text-blue-600 transition">Find Properties</a>
+                    <div class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="flex items-center text-lg font-medium text-gray-500 hover:text-blue-600 transition">
+                            <span>Find Properties</span>
+                            <img src="{{ asset('images/chevron.svg') }}" alt="Dropdown Arrow" class="w-5 h-5 ml-1 transform" :class="{'rotate-180': open}">
+                        </button>
+                        <div x-show="open" @click.away="open = false" class="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg" style="display: none;">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">For Sale</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">For Rent</a>
+                        </div>
+                    </div>
                     <a href="#" class="text-lg font-medium text-gray-500 hover:text-blue-600 transition">Articles & Insights</a>
                     <a href="#" class="text-lg font-medium text-gray-500 hover:text-blue-600 transition">About Us</a>
                 </div>
