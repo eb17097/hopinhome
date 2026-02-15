@@ -59,7 +59,7 @@
             </button>
 
             <!-- Search Button -->
-            <button class="bg-blue-600 text-white px-8 py-2.5 rounded-lg text-sm font-medium hover:bg-blue-700 transition shadow-sm flex items-center gap-2 h-[45px]">
+            <button class="bg-electric-blue text-white px-8 py-2.5 rounded-lg text-sm font-medium hover:bg-blue-700 transition shadow-sm flex items-center gap-2 h-[45px]">
                 <img src="{{ asset('images/search.svg') }}" alt="Search Icon" class="w-4 h-4">
                 Search
             </button>

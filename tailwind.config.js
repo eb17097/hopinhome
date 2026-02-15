@@ -11,6 +11,9 @@ export default {
 
     theme: {
         extend: {
+            colors: {
+                'electric-blue': '#1447d4',
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
