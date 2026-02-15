@@ -37,6 +37,7 @@
                     // Test Data Array
                     $listings = [
                         [
+                            'id' => 1,
                             'title' => 'Cozy apartment with great views',
                             'location' => 'Down Town rd 2, Dubai',
                             'price' => '200,000',
@@ -47,6 +48,7 @@
                             'images_count' => '13/15'
                         ],
                         [
+                            'id' => 2,
                             'title' => 'Modern Studio in Business Bay',
                             'location' => 'Business Bay, Dubai',
                             'price' => '85,000',
@@ -57,6 +59,7 @@
                             'images_count' => '8/12'
                         ],
                         [
+                            'id' => 3,
                             'title' => 'Luxury Villa with Private Pool',
                             'location' => 'Arabian Ranches, Dubai',
                             'price' => '450,000',
@@ -67,26 +70,7 @@
                             'images_count' => '20/24'
                         ],
                         [
-                            'title' => 'Chic apartment in Downtown',
-                            'location' => 'Boulevard Point, Downtown',
-                            'price' => '165,000',
-                            'period' => 'Monthly',
-                            'beds' => 1, 'baths' => 2, 'sqft' => 950,
-                            'image' => 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=800&auto=format&fit=crop',
-                            'utilities' => 'Utilities included',
-                            'images_count' => '15/15'
-                        ],
-                        [
-                            'title' => 'Marina View High Floor',
-                            'location' => 'Dubai Marina, Dubai',
-                            'price' => '140,000',
-                            'period' => 'Monthly',
-                            'beds' => 2, 'baths' => 2, 'sqft' => 1200,
-                            'image' => 'https://images.unsplash.com/photo-1512918760513-95f192972701?q=80&w=800&auto=format&fit=crop',
-                            'utilities' => 'Utilities excluded',
-                            'images_count' => '10/18'
-                        ],
-                        [
+                            'id' => 6,
                             'title' => 'Premium Penthouse Palm Jumeirah',
                             'location' => 'Palm Jumeirah, Dubai',
                             'price' => '850,000',
