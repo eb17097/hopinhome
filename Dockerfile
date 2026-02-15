@@ -1,7 +1,7 @@
 FROM dunglas/frankenphp
 
 # Install extensions required by Laravel
-RUN install-php-extensions \
+RUN apt-get update && apt-get install -y ffmpeg && install-php-extensions \
     pcntl \
     bcmath \
     gd \
