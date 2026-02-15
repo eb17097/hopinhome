@@ -20,19 +20,17 @@
                     <x-listings.empty-listings-state />
                 @else
                     {{-- Display listings here --}}
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-                        @foreach($listings as $listing)
-                            <div class="bg-white border border-light-gray rounded-lg shadow-sm p-4">
-                                <h3 class="text-lg font-medium text-black">{{ $listing->title }}</h3>
-                                <p class="text-sm text-gray-600">{{ $listing->city }}</p>
-                                <p class="text-base font-bold text-electric-blue mt-2">${{ number_format($listing->price) }}</p>
-                                <img src="{{ $listing->image_url }}" alt="{{ $listing->title }}" class="w-full h-32 object-cover rounded-md mt-4">
-                                <div class="flex justify-end mt-4">
-                                    <a href="{{ route('listings.show', $listing) }}" class="text-electric-blue hover:underline text-sm font-medium">View Details</a>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                    @foreach($listings as $listing)
+                        <x-listings.listing-card :listing="$listing" />
+                    @endforeach
+                </div>
+                <div class="mt-8">
+                    <a href="{{ route('listings.create') }}" class="bg-electric-blue text-white font-medium px-8 py-3 rounded-md flex items-center justify-center space-x-2 hover:bg-blue-700 transition w-full">
+                        <img alt="add" class="h-4 w-4" src="{{ asset('images/add.svg') }}">
+                        <span>Create a new listing</span>
+                    </a>
+                </div>
                 @endif
             </div>
         </div>
