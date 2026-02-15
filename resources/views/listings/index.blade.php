@@ -33,56 +33,6 @@
 
             <div class="space-y-6">
 
-                @php
-                    // Test Data Array
-                    $listings = [
-                        [
-                            'id' => 1,
-                            'title' => 'Cozy apartment with great views',
-                            'location' => 'Down Town rd 2, Dubai',
-                            'price' => '200,000',
-                            'period' => 'Monthly',
-                            'beds' => 2, 'baths' => 1, 'sqft' => 861,
-                            'image' => 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=800&auto=format&fit=crop',
-                            'utilities' => 'Utilities excluded',
-                            'images_count' => '13/15'
-                        ],
-                        [
-                            'id' => 2,
-                            'title' => 'Modern Studio in Business Bay',
-                            'location' => 'Business Bay, Dubai',
-                            'price' => '85,000',
-                            'period' => 'Monthly',
-                            'beds' => 'Studio', 'baths' => 1, 'sqft' => 540,
-                            'image' => 'https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=800&auto=format&fit=crop',
-                            'utilities' => 'Utilities included',
-                            'images_count' => '8/12'
-                        ],
-                        [
-                            'id' => 3,
-                            'title' => 'Luxury Villa with Private Pool',
-                            'location' => 'Arabian Ranches, Dubai',
-                            'price' => '450,000',
-                            'period' => 'Monthly',
-                            'beds' => 4, 'baths' => 5, 'sqft' => 4500,
-                            'image' => 'https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=800&auto=format&fit=crop',
-                            'utilities' => 'Utilities excluded',
-                            'images_count' => '20/24'
-                        ],
-                        [
-                            'id' => 6,
-                            'title' => 'Premium Penthouse Palm Jumeirah',
-                            'location' => 'Palm Jumeirah, Dubai',
-                            'price' => '850,000',
-                            'period' => 'Monthly',
-                            'beds' => 5, 'baths' => 6, 'sqft' => 6000,
-                            'image' => 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop',
-                            'utilities' => 'Utilities included',
-                            'images_count' => '25/30'
-                        ],
-                    ];
-                @endphp
-
                 @foreach($listings as $listing)
                     <x-listings.listing-card :listing="$listing" />
                 @endforeach

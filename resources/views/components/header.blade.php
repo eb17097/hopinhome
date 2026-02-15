@@ -32,7 +32,7 @@
                         </button>
                         <div x-show="open" @click.away="open = false" class="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg" style="display: none;">
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">For Sale</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">For Rent</a>
+                            <a href="{{ route('listings.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">For Rent</a>
                         </div>
                     </div>
                     <a href="#" class="text-lg font-medium transition" :class="{'text-gray-500 hover:text-blue-600': scrolled, 'text-gray-200 hover:text-white': !scrolled}">Articles & Insights</a>
@@ -91,7 +91,7 @@
                         </button>
                         <div x-show="open" @click.away="open = false" class="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg" style="display: none;">
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">For Sale</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">For Rent</a>
+                            <a href="{{ route('listings.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">For Rent</a>
                         </div>
                     </div>
                     <a href="#" class="text-lg font-medium text-gray-500 hover:text-blue-600 transition">Articles & Insights</a>
