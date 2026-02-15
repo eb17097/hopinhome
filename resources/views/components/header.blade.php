@@ -23,9 +23,9 @@
                         <span class="absolute text-white text-xs font-medium" style="top: 1px; left: 4.5px;">5</span>
                     </div>
                 </div>
-                <div class="w-11 h-11 rounded-full border border-light-gray overflow-hidden">
+                <a href="{{ route('manager.index') }}" class="w-11 h-11 rounded-full border border-light-gray overflow-hidden">
                     <img alt="profile picture" class="h-full w-full object-cover" src="{{ asset('images/profile_picture.png') }}">
-                </div>
+                </a>
                 <div class="bg-light-gray rounded-full p-2">
                     <img src="{{ asset('images/hamburger.svg') }}" alt="Menu" class="w-6 h-6">
                 </div>
