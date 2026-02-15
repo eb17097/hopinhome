@@ -10,7 +10,14 @@ use Illuminate\Support\Facades\Storage;
 
 class ListingController extends Controller
 {
-    // ... (other methods)
+    // 1. Show the form
+    public function create()
+    {
+        $propertyTypes = ['Apartment', 'Villa', 'House', 'Townhouse', 'Hotel apartment', 'Penthouse'];
+        $features = \App\Models\Feature::all();
+        $amenities = \App\Models\Amenity::all();
+        return view('listings.create', compact('propertyTypes', 'features', 'amenities'));
+    }
 
     public function store(Request $request)
     {

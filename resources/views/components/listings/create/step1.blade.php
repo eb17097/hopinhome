@@ -2,6 +2,8 @@
     <h3 class="text-2xl font-medium text-black tracking-tight">What type of listing are you adding?</h3>
     <p class="text-base text-gray-600 mt-2">Choose the property type.</p>
 
+    <input type="hidden" name="property_type" x-model="formData.property_type">
+
     <div class="space-y-4 mt-8">
         @foreach($propertyTypes as $type)
             <div 

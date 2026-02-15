@@ -2,6 +2,9 @@
     <h3 class="text-2xl font-medium text-black tracking-tight">Listing publishing</h3>
     <p class="text-base text-gray-600 mt-2">Set up publishing settings</p>
 
+    <input type="hidden" name="duration" x-model="formData.duration">
+    <input type="hidden" name="renewal_type" x-model="formData.renewal_type">
+
     <div class="mt-8 bg-off-white p-4 rounded-md flex items-center justify-between">
         <span class="text-sm font-medium text-black">Listing credits available</span>
         <div class="flex items-center space-x-2">

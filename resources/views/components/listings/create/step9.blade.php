@@ -2,6 +2,9 @@
     <h3 class="text-2xl font-medium text-black tracking-tight">How much will the property cost to rent?</h3>
     <p class="text-base text-gray-600 mt-2">Fill in the information</p>
 
+    <input type="hidden" name="payment_option" x-model="formData.payment_option">
+    <input type="hidden" name="utilities_option" x-model="formData.utilities_option">
+
     <div class="mt-8">
         <label class="block text-sm font-medium text-gray-700">Payment option</label>
         <div class="flex space-x-2 mt-2">

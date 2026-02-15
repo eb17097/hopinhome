@@ -2,6 +2,9 @@
     <h3 class="text-2xl font-medium text-black tracking-tight">More property details</h3>
     <p class="text-base text-gray-600 mt-2">Fill in more information about your property.</p>
 
+    <input type="hidden" name="bedrooms" x-model="formData.bedrooms">
+    <input type="hidden" name="bathrooms" x-model="formData.bathrooms">
+
     <div class="mt-8">
         <label class="block text-sm font-medium text-gray-700">Bedrooms</label>
         <div class="flex space-x-2 mt-2">
