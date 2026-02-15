@@ -50,7 +50,7 @@ class ListingController extends Controller
                 'price' => 'required|numeric',
                 'duration' => 'required|integer',
                 'renewal_type' => 'required|string',
-                'video_url' => 'nullable|url',
+                'video_file' => 'nullable|file|mimetypes:mp4,mov,avi,wmv|max:51200', // 50MB Max
                 'photos' => 'nullable|array',
                 'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'features' => 'nullable|array',
@@ -58,6 +58,12 @@ class ListingController extends Controller
                 'amenities' => 'nullable|array',
                 'amenities.*' => 'exists:amenities,id',
             ]);
+
+            // Handle video upload
+            if ($request->hasFile('video_file')) {
+                $videoPath = $request->file('video_file')->storePublicly('videos', 's3');
+                $validatedData['video_url'] = Storage::disk('s3')->url($videoPath);
+            }
 
             DB::beginTransaction();
 
