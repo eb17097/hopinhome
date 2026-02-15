@@ -13,6 +13,10 @@ export default {
         extend: {
             colors: {
                 'electric-blue': '#1447d4',
+                'off-white-blue': '#f4f4f3',
+            },
+            spacing: {
+                '1.5': '0.375rem',
             },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
