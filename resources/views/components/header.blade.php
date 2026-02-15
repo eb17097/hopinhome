@@ -29,7 +29,7 @@
                 <button>
                     <img src="{{ asset('images/language_black.svg') }}" alt="Language" class="w-6 h-6">
                 </button>
-                <a href="#" class="bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition">
+                <a href="{{ route('login') }}" class="bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition">
                     Log in or sign up
                 </a>
             </div>
