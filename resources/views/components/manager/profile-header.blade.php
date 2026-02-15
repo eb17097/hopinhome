@@ -1,44 +1,37 @@
-<div class="bg-off-white h-[193px] rounded-[6px] w-[567px]">
-    <div class="border border-light-gray border-solid rounded-[32px] size-[64px] absolute top-[24px] left-[24px]">
-        <div class="absolute inset-0 overflow-hidden pointer-events-none rounded-[32px]">
-            <img alt="profile picture" class="absolute h-[186.44%] left-[-11.29%] max-w-none top-[-1.74%] w-[129.55%]" src="{{ asset('images/profile_picture.png') }}">
+<div class="space-y-6">
+    <div class="bg-off-white rounded-lg p-6">
+        <div class="flex items-start">
+            <div class="w-16 h-16 rounded-full border border-light-gray overflow-hidden">
+                <img alt="profile picture" class="h-full w-full object-cover" src="{{ asset('images/profile_picture.png') }}">
+            </div>
+            <div class="ml-4">
+                <div class="flex items-center gap-2">
+                    <h3 class="text-lg font-medium text-black">Sarah Johnson</h3>
+                    <img alt="verified user" class="h-5 w-5" src="{{ asset('images/verified_user.svg') }}">
+                </div>
+                <p class="text-sm font-medium text-gray-600">
+                    sarah@example.com • verified
+                </p>
+            </div>
         </div>
-    </div>
-    <div class="absolute flex gap-[4px] items-center left-[104px] top-[34px]">
-        <div class="flex flex-col font-medium justify-end leading-[0] not-italic relative shrink-0 text-[18px] text-black tracking-[-0.36px] whitespace-nowrap">
-            <p class="leading-[1.28]">Sarah Johnson</p>
-        </div>
-        <div class="relative shrink-0 size-[18px]">
-            <img alt="verified user" class="block max-w-none size-full" src="{{ asset('images/verified_user.svg') }}">
-        </div>
-    </div>
-    <div class="absolute left-[104px] top-[57px]">
-        <p class="absolute font-medium leading-[1.5] not-italic text-[14px] text-black">
-            sarah@example.com • verified
+        <hr class="my-4 border-light-gray">
+        <p class="text-base text-gray-700">
+            I am a friendly professional relocating to Dubai. Non-smoker, no pets, and looking for a long-term rental close to work.
         </p>
     </div>
-    <div class="absolute bg-light-gray h-px left-[0px] top-[104px] w-[567px]"></div>
-    <div class="absolute flex flex-col font-normal justify-end leading-[0] left-[24px] not-italic text-[16px] text-gray top-[139px] w-[519px]">
-        <p class="leading-[1.5] whitespace-pre-wrap">I am a friendly professional relocating to Dubai. Non-smoker, no pets, and looking for a long-term rental close to work.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white border border-light-gray rounded-lg p-6 flex justify-between items-center">
+            <span class="text-base font-medium text-black">Edit bio</span>
+            <button class="block cursor-pointer">
+                <img alt="arrow forward" class="h-5 w-5" src="{{ asset('images/arrow_forward_black.svg') }}">
+            </button>
+        </div>
+        <div class="bg-white border border-light-gray rounded-lg p-6 flex justify-between items-center">
+            <span class="text-base font-medium text-black">Change profile picture</span>
+            <button class="block cursor-pointer">
+                <img alt="arrow forward" class="h-5 w-5" src="{{ asset('images/arrow_forward_black.svg') }}">
+            </button>
+        </div>
     </div>
 </div>
-<div class="absolute bg-white border border-light-gray border-solid content-stretch flex flex-col items-start left-[0px] px-[24px] py-[26px] rounded-[6px] top-[209px] w-[275px]">
-    <div class="content-stretch flex gap-[10px] items-center relative shrink-0 w-full">
-        <p class="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[16px] text-black whitespace-pre-wrap">
-            Edit bio
-        </p>
-        <button class="block cursor-pointer relative shrink-0 size-[18px]">
-            <img alt="arrow forward" class="block max-w-none size-full" src="{{ asset('images/arrow_forward_black.svg') }}">
-        </button>
-    </div>
-</div>
-<div class="absolute bg-white border border-light-gray border-solid content-stretch flex flex-col items-start left-[292px] px-[24px] py-[26px] rounded-[6px] top-[209px] w-[276px]">
-    <div class="content-stretch flex gap-[10px] items-center relative shrink-0 w-full">
-        <p class="flex-[1_0_0] font-medium leading-[1.5] min-h-px min-w-px not-italic relative text-[16px] text-black whitespace-pre-wrap">
-            Change profile picture
-        </p>
-        <button class="block cursor-pointer relative shrink-0 size-[18px]">
-            <img alt="arrow forward" class="block max-w-none size-full" src="{{ asset('images/arrow_forward_black.svg') }}">
-        </button>
-    </div>
-</div>
+

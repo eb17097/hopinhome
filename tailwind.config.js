@@ -22,7 +22,7 @@ export default {
                 '1.5': '0.375rem',
             },
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['General Sans Variable', ...defaultTheme.fontFamily.sans],
             },
         },
     },
