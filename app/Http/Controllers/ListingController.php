@@ -72,6 +72,7 @@ class ListingController extends Controller
                 $video = $ffmpeg->open(Storage::disk('local')->path($tempVideoPath));
                 
                 $thumbnailFileName = 'thumbnails/' . $videoOriginalName . '-' . uniqid() . '.jpg';
+                Storage::disk('local')->makeDirectory('thumbnails');
                 
                 $thumbnailPath = Storage::disk('local')->path($thumbnailFileName);
                 $video->frame(\FFMpeg\Coordinate\TimeCode::fromSeconds(1))
