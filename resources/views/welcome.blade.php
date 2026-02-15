@@ -241,7 +241,7 @@
                         <div class="flex items-end justify-between border-t border-gray-100 pt-4">
                             <div>
                                 <span class="text-xl font-bold text-gray-900 font-['General_Sans',_sans-serif]">AED 200,000</span>
-                                <span class="text-sm text-gray-500 font-normal"> Yearly</span>
+                                <span class="text-sm text-gray-500 font-normal"> Monthly</span>
                             </div>
                             <span class="text-xs text-gray-400">Utilities excluded</span>
                         </div>
@@ -280,7 +280,7 @@
                         <div class="flex items-end justify-between border-t border-gray-100 pt-4">
                             <div>
                                 <span class="text-xl font-bold text-gray-900 font-['General_Sans',_sans-serif]">AED 400,000</span>
-                                <span class="text-sm text-gray-500 font-normal"> Yearly</span>
+                                <span class="text-sm text-gray-500 font-normal"> Monthly</span>
                             </div>
                             <span class="text-xs text-gray-400">Utilities included</span>
                         </div>
@@ -319,7 +319,7 @@
                         <div class="flex items-end justify-between border-t border-gray-100 pt-4">
                             <div>
                                 <span class="text-xl font-bold text-gray-900 font-['General_Sans',_sans-serif]">AED 465,000</span>
-                                <span class="text-sm text-gray-500 font-normal"> Yearly</span>
+                                <span class="text-sm text-gray-500 font-normal"> Monthly</span>
                             </div>
                             <span class="text-xs text-gray-400">Utilities excluded</span>
                         </div>
