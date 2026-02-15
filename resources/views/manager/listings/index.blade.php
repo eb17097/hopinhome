@@ -20,9 +20,9 @@
                     <x-listings.empty-listings-state />
                 @else
                     {{-- Display listings here --}}
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                    <div class="space-y-6 mt-8">
                     @foreach($listings as $listing)
-                        <x-listings.listing-card :listing="$listing" />
+                        <x-manager.listing-card :listing="$listing" />
                     @endforeach
                 </div>
                 <div class="mt-8">
