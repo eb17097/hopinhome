@@ -23,7 +23,7 @@
 
 <main class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        
+
         <x-listings.show.header :listing="$listing" />
         <x-listings.show.gallery :listing="$listing" />
 
@@ -51,10 +51,6 @@
 
         <x-listings.show.similar-listings :listing="$listing" />
 
-    </div>
-
-    <div class="mt-24">
-        {{-- Reusing the existing FAQ component as requested --}}
         <x-listings.faq-section />
     </div>
 
