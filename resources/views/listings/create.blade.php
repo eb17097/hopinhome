@@ -60,6 +60,10 @@
                             <div x-show="step === 9" style="display: none;"><x-listings.create.step9 /></div>
                             <div x-show="step === 10" style="display: none;"><x-listings.create.step10 /></div>
 
+                            {{-- Hidden inputs to bridge Alpine data with the form submission --}}
+                            <input type="hidden" name="features" :value="JSON.stringify(formData.features)">
+                            <input type="hidden" name="amenities" :value="JSON.stringify(formData.amenities)">
+
                             {{-- Navigation --}}
                             <div class="flex justify-between mt-8">
                                 <button type="button" x-show="step > 1" @click="step--" class="bg-gray-200 text-gray-700 font-bold py-2 px-4 rounded">
