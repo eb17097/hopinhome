@@ -48,9 +48,8 @@
                         {{-- Authenticated Controls --}}
                         <div class="relative">
                             <img src="{{ asset('images/notifications.svg') }}" alt="Notifications" class="w-6 h-6">
-                            <div class="absolute -top-1 -right-1">
-                                <img src="{{ asset('images/notification_dot.svg') }}" alt="Notification Dot" class="w-4 h-4">
-                                <span class="absolute text-white text-xs font-medium" style="top: 1px; left: 4.5px;">5</span>
+                            <div class="absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 rounded-full text-white text-xs font-normal" :class="scrolled ? 'bg-electric-blue' : 'bg-blue-600'">
+                                <span>5</span>
                             </div>
                         </div>
                         <a href="{{ route('manager.index') }}" class="w-11 h-11 rounded-full border overflow-hidden" :class="scrolled ? 'border-light-gray' : 'border-white/50'">
@@ -102,9 +101,8 @@
                     @auth
                         <div class="relative">
                             <img src="{{ asset('images/notifications.svg') }}" alt="Notifications" class="w-6 h-6">
-                            <div class="absolute -top-1 -right-1">
-                                <img src="{{ asset('images/notification_dot.svg') }}" alt="Notification Dot" class="w-4 h-4">
-                                <span class="absolute text-white text-xs font-medium" style="top: 1px; left: 4.5px;">5</span>
+                            <div class="absolute -top-1 -right-1 flex items-center justify-center w-4 h-4 rounded-full text-white text-xs font-normal bg-electric-blue">
+                                <span>5</span>
                             </div>
                         </div>
                         <a href="{{ route('manager.index') }}" class="w-11 h-11 rounded-full border border-light-gray overflow-hidden">
@@ -117,7 +115,7 @@
                          <button>
                             <img src="{{ asset('images/language_black.svg') }}" alt="Language" class="w-6 h-6">
                         </button>
-                        <a href="{{ route('login') }}" class="bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition">
+                        <a href="{{ route('login') }}" class="bg-electric-blue text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition">
                             Log in or sign up
                         </a>
                     @endauth
