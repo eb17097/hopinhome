@@ -1,7 +1,7 @@
 <div class="bg-white rounded-lg shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)] flex items-center group overflow-hidden">
     <!-- Image Section -->
     <div class="relative w-[380px] h-[238px] flex-shrink-0">
-        <img src="{{ $listing['image'] }}" alt="{{ $listing['title'] }}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+        <img src="{{ $listing['image'] }}" alt="{{ $listing['title'] }}" class="w-full h-full object-cover">
 
         <!-- Favorite Icon -->
         <button class="absolute top-3 right-3 p-2">
