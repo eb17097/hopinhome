@@ -8,6 +8,24 @@ use Illuminate\View\Component;
 
 class Amenities extends Component
 {
+    public array $iconMap = [
+        'High-speed internet' => 'android_wifi_3_bar.svg',
+        'Dishwasher' => 'dishwasher.svg',
+        'Fully furnished' => 'dine_lamp.svg',
+        'Air conditioner' => 'ac_unit.svg',
+        'Pets allowed' => 'pet_supplies.svg',
+        'Maid room' => 'local_laundry_service.svg', // Placeholder, using laundry
+        'Balcony or terrace' => 'local_laundry_service.svg', // Placeholder
+        'Hot Tub' => 'bathtub.svg', // Placeholder
+        'Fireplace' => 'local_laundry_service.svg', // Placeholder
+        'Swimming pool' => 'pool.svg',
+        'Parking garage' => 'parking_sign.svg',
+        'Security cameras' => 'camera_outdoor.svg',
+        'Gym' => 'exercise.svg',
+        'Elevator / lift' => 'elevator.svg',
+        'Built in' => 'calendar_check.svg' // Placeholder for year
+    ];
+
     /**
      * Create a new component instance.
      */
