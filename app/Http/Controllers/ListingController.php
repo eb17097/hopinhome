@@ -4,44 +4,72 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ListingController extends Controller
 {
-    // 1. Show the form
-    public function create()
-    {
-        $propertyTypes = ['Apartment', 'Villa', 'House', 'Townhouse', 'Hotel apartment', 'Penthouse'];
-        $features = ['High-speed internet', 'Maid room', 'Fully furnished', 'Laundry room', 'Pets allowed', 'Balcony or terrace', 'Air conditioner', 'Hot Tub', 'Dishwasher', 'Fireplace'];
-        $amenities = ['Swimming pool', 'Gym', 'Reception', 'Concierge', 'Parking garage', 'Elevator / lift', 'Children’s play area', 'Outdoor area', 'Garden', 'BBQ area', 'Tennis court', 'Community lounge', 'Business center', 'Bicycle storage'];
-        return view('listings.create', compact('propertyTypes', 'features', 'amenities'));
-    }
+    // ... (other methods remain unchanged)
 
-    // 2. Handle the upload
+    // 2. Handle the multi-step form submission
     public function store(Request $request)
     {
-        // Validate the form data
-        $request->validate([
-            'title' => 'required',
-            'city' => 'required',
-            'price' => 'required|integer',
-            'image' => 'required|image|max:2048', // Max 2MB file
+        // Note: For a real application, using a Form Request for validation is recommended.
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'property_type' => 'required|string',
+            'address' => 'required|string',
+            'description' => 'required|string',
+            'bedrooms' => 'required|string',
+            'bathrooms' => 'required|integer',
+            'area' => 'required|integer',
+            'floor_number' => 'nullable|integer',
+            'total_floors' => 'nullable|integer',
+            'construction_year' => 'required|integer',
+            'payment_option' => 'required|string',
+            'utilities_option' => 'required|string',
+            'price' => 'required|numeric',
+            'duration' => 'required|integer',
+            'renewal_type' => 'required|string',
+            'video_url' => 'nullable|url',
+            'photos' => 'nullable|array',
+            'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'features' => 'nullable|array',
+            'features.*' => 'exists:features,id',
+            'amenities' => 'nullable|array',
+            'amenities.*' => 'exists:amenities,id',
         ]);
 
-        // Upload to AWS S3
-        $path = $request->file('image')->storePublicly('apartments', 's3');
+        try {
+            DB::beginTransaction();
 
-        // Create the listing in the database
-        Listing::create([
-            'user_id' => auth()->id(),
-            'title' => $request->title,
-            'city' => $request->city,
-            'price' => $request->price,
-            'image_url' => Storage::disk('s3')->url($path), // Save the S3 link
-        ]);
+            $listing = auth()->user()->listings()->create($validatedData);
 
-        return redirect()->route('dashboard')->with('success', 'Apartment posted!');
+            if ($request->hasFile('photos')) {
+                foreach ($request->file('photos') as $photo) {
+                    $path = $photo->store('listings', 'public');
+                    $listing->images()->create(['image_url' => Storage::url($path)]);
+                }
+            }
+
+            if (!empty($validatedData['features'])) {
+                $listing->features()->sync($validatedData['features']);
+            }
+            if (!empty($validatedData['amenities'])) {
+                $listing->amenities()->sync($validatedData['amenities']);
+            }
+
+            DB::commit();
+
+            return redirect()->route('manager.listings.index')->with('success', 'New listing created successfully!');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            logger()->error($e->getMessage());
+            return redirect()->back()->with('error', 'There was an error creating your listing. Please try again.')->withInput();
+        }
     }
+    // ... (other methods remain unchanged)
 
     // 3. Show a single listing
     public function show(Listing $listing)
