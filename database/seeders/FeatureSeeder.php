@@ -27,7 +27,7 @@ class FeatureSeeder extends Seeder
         ];
 
         foreach ($features as $feature) {
-            Feature::create(['name' => $feature]);
+            Feature::firstOrCreate(['name' => $feature]);
         }
     }
 }
