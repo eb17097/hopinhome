@@ -3,6 +3,7 @@
 use App\Models\Listing;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\ManagerController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -35,6 +36,9 @@ Route::middleware('auth')->group(function () {
     // Listing Routes (Added these!)
     Route::get('/listings/create', [ListingController::class, 'create'])->name('listings.create');
     Route::post('/listings', [ListingController::class, 'store'])->name('listings.store');
+
+    // Manager Route
+    Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index');
 });
 
 require __DIR__.'/auth.php';
