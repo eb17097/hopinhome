@@ -16,7 +16,7 @@
 
             <!-- Property Type Dropdown -->
             <div class="relative">
-                <select class="block w-[170px] h-[45px] py-2.5 px-4 bg-white border border-gray-200 rounded-lg shadow-sm text-sm text-gray-700 outline-none focus:ring-1 focus:ring-blue-500 appearance-none cursor-pointer">
+                <select class="block w-[170px] h-[45px] py-2.5 px-4 bg-white border border-gray-200 rounded-lg shadow-sm text-sm text-gray-700 outline-none focus:ring-1 focus:ring-blue-500 appearance-none cursor-pointer" style="appearance: none;">
                     <option>Property type</option>
                 </select>
                 <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -26,7 +26,7 @@
 
             <!-- Bedrooms Dropdown -->
             <div class="relative">
-                <select class="block w-[170px] h-[45px] py-2.5 px-4 bg-white border border-gray-200 rounded-lg shadow-sm text-sm text-gray-700 outline-none focus:ring-1 focus:ring-blue-500 appearance-none cursor-pointer">
+                <select class="block w-[170px] h-[45px] py-2.5 px-4 bg-white border border-gray-200 rounded-lg shadow-sm text-sm text-gray-700 outline-none focus:ring-1 focus:ring-blue-500 appearance-none cursor-pointer" style="appearance: none;">
                     <option>Bedrooms</option>
                 </select>
                 <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -36,7 +36,7 @@
 
             <!-- Price Dropdown -->
             <div class="relative">
-                <select class="block w-[170px] h-[45px] py-2.5 px-4 bg-white border border-gray-200 rounded-lg shadow-sm text-sm text-gray-700 outline-none focus:ring-1 focus:ring-blue-500 appearance-none cursor-pointer">
+                <select class="block w-[170px] h-[45px] py-2.5 px-4 bg-white border border-gray-200 rounded-lg shadow-sm text-sm text-gray-700 outline-none focus:ring-1 focus:ring-blue-500 appearance-none cursor-pointer" style="appearance: none;">
                     <option>Price</option>
                 </select>
                 <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
