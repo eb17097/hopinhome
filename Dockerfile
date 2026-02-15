@@ -29,6 +29,9 @@ RUN touch /app/database/database.sqlite && \
 
 # Install Composer dependencies
 ENV COMPOSER_ALLOW_SUPERUSER=1
-RUN composer require php-ffmpeg/php-ffmpeg && composer install --no-dev --optimize-autoloader
+RUN composer clear-cache && \
+    composer require php-ffmpeg/php-ffmpeg && \
+    composer install --no-dev --optimize-autoloader && \
+    composer dump-autoload
 
 ENTRYPOINT ["php", "artisan", "octane:start", "--server=frankenphp", "--host=0.0.0.0", "--port=8080"]
