@@ -36,12 +36,12 @@
                             <x-listings.create.stepper />
 
                             {{-- Step Components --}}
-                            <div x-show="step === 1"><x-listings.create.step1 /></div>
+                            <div x-show="step === 1"><x-listings.create.step1 :propertyTypes="$propertyTypes" /></div>
                             <div x-show="step === 2" style="display: none;"><x-listings.create.step2 /></div>
                             <div x-show="step === 3" style="display: none;"><x-listings.create.step3 /></div>
                             <div x-show="step === 4" style="display: none;"><x-listings.create.step4 /></div>
-                            <div x-show="step === 5" style="display: none;"><x-listings.create.step5 /></div>
-                            <div x-show="step === 6" style="display: none;"><x-listings.create.step6 /></div>
+                            <div x-show="step === 5" style="display: none;"><x-listings.create.step5 :features="$features" /></div>
+                            <div x-show="step === 6" style="display: none;"><x-listings.create.step6 :amenities="$amenities" /></div>
                             <div x-show="step === 7" style="display: none;"><x-listings.create.step7 /></div>
                             <div x-show="step === 8" style="display: none;"><x-listings.create.step8 /></div>
                             <div x-show="step === 9" style="display: none;"><x-listings.create.step9 /></div>
