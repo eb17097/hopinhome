@@ -6,24 +6,11 @@
     <title>Hopinhome</title>
     <meta name="robots" content="noindex, nofollow">
 
-    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="//unpkg.com/alpinejs" defer></script>
-
-    <style>
-        /* 2. APPLY THE FONT GLOBALLY */
-        body {
-            font-family: 'General Sans', sans-serif;
-        }
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-    </style>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-50 antialiased">
 
-<x-landing-header />
+<x-header :is-landing="true" />
 
 <div class="relative w-full h-[800px] flex items-center justify-center overflow-hidden">
 
