@@ -10,7 +10,7 @@
             <div class="flex items-center">
                 <a href="/" class="flex items-center gap-2">
                     <img x-show="scrolled" src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopInHome Logo" class="h-7 w-auto" style="display: none;">
-                    <img x-show="!scrolled" src="{{ asset('images/hopinhome_logo_white.svg') }}" 
+                    <img x-show="!scrolled" src="{{ asset('images/hopinhome_logo_white.svg') }}"
                          onerror="this.onerror=null; this.src='{{ asset('images/hopinhome_logo_blue.svg') }}';"
                          alt="HopInHome Logo" class="h-7 w-auto">
                 </a>
@@ -22,14 +22,14 @@
                 <div class="relative" x-data="{ open: false }">
                     <button @click="open = !open" class="flex items-center text-lg font-medium transition" :class="{'text-gray-500 hover:text-blue-600': scrolled, 'text-gray-200 hover:text-white': !scrolled}">
                         <span>Find Properties</span>
-                        <img src="http://localhost:3845/assets/dd2c8057d0ba14cbd11e4b2db2a4a638390b4142.svg" alt="arrow" class="w-5 h-5 ml-1 transition-transform" :class="{'rotate-180': open, 'filter-brightness-200': !scrolled}">
+                        <img src="{{ asset('images/keyboard_arrow_down.svg') }}" alt="Dropdown Arrow" class="w-5 h-5 ml-1 transform" :class="{'rotate-180': open}">
                     </button>
                     <div x-show="open" @click.away="open = false" class="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg" style="display: none;">
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">For Sale</a>
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">For Rent</a>
                     </div>
                 </div>
-                
+
                 <a href="#" class="text-lg font-medium transition" :class="{'text-gray-500 hover:text-blue-600': scrolled, 'text-gray-200 hover:text-white': !scrolled}">Articles & Insights</a>
                 <a href="#" class="text-lg font-medium transition" :class="{'text-gray-500 hover:text-blue-600': scrolled, 'text-gray-200 hover:text-white': !scrolled}">About Us</a>
                 <a href="#" class="text-lg font-medium transition" :class="{'text-gray-500 hover:text-blue-600': scrolled, 'text-white hover:text-gray-200': !scrolled}">Add a listing</a>

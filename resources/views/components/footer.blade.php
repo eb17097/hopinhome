@@ -5,17 +5,17 @@
 
             <div class="md:col-span-8 space-y-8">
                 <div class="flex items-center gap-2">
-                    <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopInHome Logo" class="h-7 w-auto">
+                    <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopInHome Logo" class="h-12 w-auto">
                 </div>
 
                 <div class="bg-gray-50 border border-gray-100 rounded-xl p-6 max-w-sm">
                     <p class="text-base text-gray-500 mb-4">Follow us for the latest insights</p>
                     <div class="flex space-x-5 text-gray-400">
-                        <a href="#" class="hover:text-blue-700 transition"><img src="{{ asset('images/vector.svg') }}" alt="Facebook" class="w-6 h-6"></a>
-                        <a href="#" class="hover:text-pink-600 transition"><img src="{{ asset('images/vector1.svg') }}" alt="Instagram" class="w-6 h-6"></a>
-                        <a href="#" class="hover:text-blue-800 transition"><img src="{{ asset('images/vector2.svg') }}" alt="LinkedIn" class="w-6 h-6"></a>
-                        <a href="#" class="hover:text-black transition"><img src="{{ asset('images/vector3.svg') }}" alt="TikTok" class="w-6 h-6"></a>
-                        <a href="#" class="hover:text-red-600 transition"><img src="{{ asset('images/vector4.svg') }}" alt="YouTube" class="w-6 h-6"></a>
+                        <a href="#" class="hover:text-blue-700 transition"><img src="{{ asset('images/facebook.svg') }}" alt="Facebook" class="w-6 h-6"></a>
+                        <a href="#" class="hover:text-pink-600 transition"><img src="{{ asset('images/instagram.svg') }}" alt="Instagram" class="w-6 h-6"></a>
+                        <a href="#" class="hover:text-blue-800 transition"><img src="{{ asset('images/linkedin.svg') }}" alt="LinkedIn" class="w-6 h-6"></a>
+                        <a href="#" class="hover:text-black transition"><img src="{{ asset('images/tiktok.svg') }}" alt="TikTok" class="w-6 h-6"></a>
+                        <a href="#" class="hover:text-red-600 transition"><img src="{{ asset('images/youtube.svg') }}" alt="YouTube" class="w-6 h-6"></a>
                     </div>
                 </div>
             </div>
