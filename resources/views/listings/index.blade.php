@@ -1,130 +1,42 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Apartments for Rent in Dubai - HopInHome</title>
-
-    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script src="//unpkg.com/alpinejs" defer></script>
-
-    <style>
-        body { font-family: 'General Sans', sans-serif; }
-    </style>
-</head>
-<body class="bg-white text-gray-900 antialiased">
-
-<x-header />
-
-<x-listings.search-filters />
-
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-
-    <x-listings.heading-section />
-
-    <x-listings.area-filters />
-
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-
-        <div class="lg:col-span-8">
-
-            <x-listings.listings-header />
-
-            <div class="space-y-6">
-
-                @php
-                    // Test Data Array
-                    $listings = [
-                        [
-                            'id' => 1,
-                            'title' => 'Cozy apartment with great views',
-                            'location' => 'Down Town rd 2, Dubai',
-                            'price' => '200,000',
-                            'period' => 'Monthly',
-                            'beds' => 2, 'baths' => 1, 'sqft' => 861,
-                            'image' => 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=800&auto=format&fit=crop',
-                            'utilities' => 'Utilities excluded',
-                            'images_count' => '13/15'
-                        ],
-                        [
-                            'id' => 2,
-                            'title' => 'Modern Studio in Business Bay',
-                            'location' => 'Business Bay, Dubai',
-                            'price' => '85,000',
-                            'period' => 'Monthly',
-                            'beds' => 'Studio', 'baths' => 1, 'sqft' => 540,
-                            'image' => 'https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=800&auto=format&fit=crop',
-                            'utilities' => 'Utilities included',
-                            'images_count' => '8/12'
-                        ],
-                        [
-                            'id' => 3,
-                            'title' => 'Luxury Villa with Private Pool',
-                            'location' => 'Arabian Ranches, Dubai',
-                            'price' => '450,000',
-                            'period' => 'Monthly',
-                            'beds' => 4, 'baths' => 5, 'sqft' => 4500,
-                            'image' => 'https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=800&auto=format&fit=crop',
-                            'utilities' => 'Utilities excluded',
-                            'images_count' => '20/24'
-                        ],
-                        [
-                            'id' => 6,
-                            'title' => 'Premium Penthouse Palm Jumeirah',
-                            'location' => 'Palm Jumeirah, Dubai',
-                            'price' => '850,000',
-                            'period' => 'Monthly',
-                            'beds' => 5, 'baths' => 6, 'sqft' => 6000,
-                            'image' => 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop',
-                            'utilities' => 'Utilities included',
-                            'images_count' => '25/30'
-                        ],
-                    ];
-                @endphp
-
-                @foreach($listings as $listing)
-                    <x-listings.listing-card :listing="$listing" />
-                @endforeach
-
-                <x-listings.show-more-button />
-
+<x-manager-layout>
+    <x-header />
+    <div class="max-w-7xl mx-auto py-12 sm:px-6 lg:px-8">
+        <div class="flex">
+            <div class="w-1/4">
+                <x-manager.sidebar />
             </div>
-        </div>
+            <div class="w-3/4 pl-12">
+                <a href="{{ route('dashboard') }}" class="inline-flex items-center text-navy-blue text-base font-medium mb-4">
+                    <img alt="arrow forward" class="h-5 w-5 transform rotate-180 mr-2" src="{{ asset('images/arrow_forward_dark_blue.svg') }}">
+                    Back to dashboard
+                </a>
+                <h2 class="text-3xl font-medium text-black tracking-tight mb-6">
+                    My listings
+                </h2>
+                <x-listings.listing-filter-buttons />
 
-        <div class="lg:col-span-4 space-y-8">
-
-            <x-listings.we-got-your-back />
-
-            <x-listings.recommended-for-you />
-
-            <x-listings.popular-searches />
-
-        </div>
-
-    </div>
-</div>
-
-    <x-listings.find-ideal-home />
-<div>
-    <div class="bg-white pb-20 pt-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                <div class="lg:col-span-8 space-y-12">
-                    <x-listings.why-rent-in-dubai />
-                    <x-listings.popular-areas />
-                    <x-listings.faq-section />
-                </div>
-                <div class="lg:col-span-4">
-                    <x-listings.uae-insights-section />
-                </div>
+                {{-- Conditional rendering based on whether listings exist --}}
+                @if($listings->isEmpty())
+                    <x-listings.empty-listings-state />
+                @else
+                    {{-- Display listings here --}}
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                        @foreach($listings as $listing)
+                            <div class="bg-white border border-light-gray rounded-lg shadow-sm p-4">
+                                <h3 class="text-lg font-medium text-black">{{ $listing->title }}</h3>
+                                <p class="text-sm text-gray-600">{{ $listing->city }}</p>
+                                <p class="text-base font-bold text-electric-blue mt-2">${{ number_format($listing->price) }}</p>
+                                <img src="{{ $listing->image_url }}" alt="{{ $listing->title }}" class="w-full h-32 object-cover rounded-md mt-4">
+                                <div class="flex justify-end mt-4">
+                                    <a href="{{ route('listings.show', $listing) }}" class="text-electric-blue hover:underline text-sm font-medium">View Details</a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
     </div>
-
-</div>
-
-<x-footer />
-
-</body>
-</html>
+    <x-listings.listing-mobile-navbar />
+    <x-footer />
+</x-manager-layout>
