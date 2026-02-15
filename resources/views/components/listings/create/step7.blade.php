@@ -34,32 +34,27 @@
     <script>
         function photoPicker() {
             return {
+                files: [],
                 previews: [],
                 handleFileSelect(event) {
+                    this.files = Array.from(event.target.files);
                     this.previews = [];
-                    const files = event.target.files;
-                    for (let i = 0; i < files.length; i++) {
+                    this.files.forEach(file => {
                         const reader = new FileReader();
                         reader.onload = (e) => {
                             this.previews.push(e.target.result);
                         };
-                        reader.readAsDataURL(files[i]);
-                    }
+                        reader.readAsDataURL(file);
+                    });
                 },
                 remove(index) {
-                    // This is tricky as we can't directly manipulate the FileList.
-                    // For a real app, you'd need a more robust solution to manage the files themselves.
-                    // For this UI, we will just remove the preview. The controller will get what's left.
+                    this.files.splice(index, 1);
                     this.previews.splice(index, 1);
-                    const dt = new DataTransfer();
-                    const input = document.getElementById('photos');
-                    const { files } = input;
-                    for(let i=0; i < files.length; i++) {
-                        if (i !== index) {
-                            dt.items.add(files[i]);
-                        }
-                    }
-                    input.files = dt.files;
+
+                    // Update the native file input
+                    const dataTransfer = new DataTransfer();
+                    this.files.forEach(file => dataTransfer.items.add(file));
+                    document.getElementById('photos').files = dataTransfer.files;
                 }
             }
         }
