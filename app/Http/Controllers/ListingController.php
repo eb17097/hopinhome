@@ -69,14 +69,15 @@ class ListingController extends Controller
                 $tempVideoPath = $videoFile->storeAs('temp_videos', $videoOriginalName . '-' . uniqid() . '.' . $videoExtension, 'local');
                 
                 // Generate thumbnail
-                $video = $ffmpeg->open($tempVideoPath);
+                $video = $ffmpeg->open(Storage::disk('local')->path($tempVideoPath));
                 
                 $thumbnailFileName = 'thumbnails/' . $videoOriginalName . '-' . uniqid() . '.jpg';
                 
+                $thumbnailPath = Storage::disk('local')->path($thumbnailFileName);
                 $video->frame(\FFMpeg\Coordinate\TimeCode::fromSeconds(1))
-                      ->save($thumbnailFileName, false, true); // Use local disk, overwrite, use frame as base
+                      ->save($thumbnailPath);
                 
-                Log::info('Thumbnail generated locally:', ['path' => $thumbnailFileName]);
+                Log::info('Thumbnail generated locally:', ['path' => $thumbnailPath]);
 
                 // Upload thumbnail to S3
                 $thumbnailS3Path = 'apartments/' . $thumbnailFileName;
