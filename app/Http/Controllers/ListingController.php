@@ -21,7 +21,15 @@ class ListingController extends Controller
     // 2. Handle the multi-step form submission
     public function store(Request $request)
     {
-        // Note: For a real application, using a Form Request for validation is recommended.
+        // Decode JSON strings for features and amenities if they are present
+        $features = json_decode($request->input('features'), true);
+        $amenities = json_decode($request->input('amenities'), true);
+
+        $request->merge([
+            'features' => $features,
+            'amenities' => $amenities,
+        ]);
+
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'property_type' => 'required|string',

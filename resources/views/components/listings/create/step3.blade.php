@@ -5,7 +5,7 @@
     <div class="mt-8">
         <label for="listing-name" class="block text-sm font-medium text-gray-700">Listing name</label>
         <div class="mt-1">
-            <input type="text" name="listing-name" id="listing-name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="e.g. Cozy Apartment with Great Views">
+            <input type="text" name="name" id="listing-name" x-model="formData.name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="e.g. Cozy Apartment with Great Views">
         </div>
     </div>
 
@@ -20,7 +20,7 @@
             <span class="text-sm text-gray-500">1500 characters remaining</span>
         </div>
         <div class="mt-1">
-            <textarea id="description" name="description" rows="4" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Write a description here"></textarea>
+            <textarea id="description" name="description" rows="4" x-model="formData.description" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Write a description here"></textarea>
         </div>
     </div>
 
