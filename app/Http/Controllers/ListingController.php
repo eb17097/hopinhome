@@ -106,6 +106,7 @@ class ListingController extends Controller
     // 3. Show a single listing
     public function show(Listing $listing)
     {
+        $listing->load(['images', 'features', 'amenities', 'user']);
         return view('listings.show', ['listing' => $listing]);
     }
 

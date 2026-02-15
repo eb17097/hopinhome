@@ -1,28 +1,66 @@
-<x-app-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <x-listings.show.header :listing="$listing" />
-                    <x-listings.show.gallery :listing="$listing" />
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ $listing->name }} - HopInHome</title>
 
-                    <div class="flex gap-8">
-                        <div class="w-2/3">
-                            <x-listings.show.details :listing="$listing" />
-                            <x-listings.show.about :listing="$listing" />
-                            <x-listings.show.amenities :listing="$listing" />
-                            <x-listings.show.location :listing="$listing" />
-                            <x-listings.show.regulatory-info :listing="$listing" />
-                        </div>
-                        <div class="w-1/3">
-                            <x-listings.show.booking-card :listing="$listing" />
-                        </div>
-                    </div>
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="//unpkg.com/alpinejs" defer></script>
 
-                    <x-listings.show.similar-listings />
-                    <x-listings.show.faq />
-                </div>
+    <style>
+        body { font-family: 'General Sans', sans-serif; }
+        .sticky-card {
+            position: sticky;
+            top: 120px; /* Adjust based on header height */
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 antialiased">
+
+<x-header />
+
+<main class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        
+        <x-listings.show.header :listing="$listing" />
+        <x-listings.show.gallery :listing="$listing" />
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-8">
+            {{-- Main Content --}}
+            <div class="lg:col-span-2">
+                <x-listings.show.details :listing="$listing" />
+                <hr class="my-8">
+                <x-listings.show.about :listing="$listing" />
+                <hr class="my-8">
+                <x-listings.show.amenities :listing="$listing" />
+                <hr class="my-8">
+                <x-listings.show.location :listing="$listing" />
+                <hr class="my-8">
+                <x-listings.show.regulatory-info :listing="$listing" />
+            </div>
+
+            {{-- Sidebar --}}
+            <div>
+                <x-listings.show.booking-card :listing="$listing" />
             </div>
         </div>
+
+        <hr class="my-12">
+
+        <x-listings.show.similar-listings :listing="$listing" />
+
     </div>
-</x-app-layout>
+
+    <div class="mt-24">
+        {{-- Reusing the existing FAQ component as requested --}}
+        <x-listings.faq-section />
+    </div>
+
+</main>
+
+<x-footer />
+
+</body>
+</html>
