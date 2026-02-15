@@ -2,19 +2,19 @@
     <!-- Image Section -->
     <div class="relative w-[380px] h-[238px] flex-shrink-0">
         <img src="{{ $listing['image'] }}" alt="{{ $listing['title'] }}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
-        
+
         <!-- Favorite Icon -->
-        <button class="absolute top-3 right-3 p-2 rounded-full bg-white/80 text-gray-800 hover:text-red-500 transition shadow-sm">
+        <button class="absolute top-3 right-3 p-2">
             <img src="{{ asset('images/favorite.svg') }}" alt="Favorite" class="w-8 h-8">
         </button>
 
         <!-- Image Navigation (Arrows) -->
         <div class="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <button class="bg-white/90 p-1.5 rounded-full text-gray-800 hover:bg-white shadow-md">
+            <button>
                 <img src="{{ asset('images/arrow.svg') }}" alt="Previous" class="w-6 h-6">
             </button>
-            <button class="bg-white/90 p-1.5 rounded-full text-gray-800 hover:bg-white shadow-md">
-                <img src="{{ asset('images/arrow1.svg') }}" alt="Next" class="w-6 h-6 transform rotate-180">
+            <button>
+                <img src="{{ asset('images/arrow1.svg') }}" alt="Next" class="w-6 h-6">
             </button>
         </div>
 
