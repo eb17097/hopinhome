@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use FFMpeg;
 
 class ListingController extends Controller
 {
@@ -20,7 +19,7 @@ class ListingController extends Controller
         return view('listings.create', compact('propertyTypes', 'features', 'amenities'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, \FFMpeg\FFMpeg $ffmpeg)
     {
         Log::info('--- Starting Listing Creation Process ---');
         Log::info('Incoming Request Data:', $request->except('photos')); // Don't log file content
@@ -68,21 +67,16 @@ class ListingController extends Controller
 
                 // Save video temporarily to local storage for FFmpeg processing
                 $tempVideoPath = $videoFile->storeAs('temp_videos', $videoOriginalName . '-' . uniqid() . '.' . $videoExtension, 'local');
-                $fullTempVideoPath = Storage::disk('local')->path($tempVideoPath);
-                Log::info('Temp video saved locally:', ['path' => $fullTempVideoPath]);
-
+                
                 // Generate thumbnail
-                $ffmpeg = FFMpeg::fromDisk('local')
-                                ->open($tempVideoPath);
+                $video = $ffmpeg->open($tempVideoPath);
                 
                 $thumbnailFileName = 'thumbnails/' . $videoOriginalName . '-' . uniqid() . '.jpg';
-                $tempThumbnailPath = Storage::disk('local')->path($thumbnailFileName);
                 
-                $ffmpeg->getFrameFromSeconds(1)
-                       ->export()
-                       ->toDisk('local')
-                       ->save($thumbnailFileName);
-                Log::info('Thumbnail generated locally:', ['path' => $tempThumbnailPath]);
+                $video->frame(\FFMpeg\Coordinate\TimeCode::fromSeconds(1))
+                      ->save($thumbnailFileName, false, true); // Use local disk, overwrite, use frame as base
+                
+                Log::info('Thumbnail generated locally:', ['path' => $thumbnailFileName]);
 
                 // Upload thumbnail to S3
                 $thumbnailS3Path = 'apartments/' . $thumbnailFileName;
