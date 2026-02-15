@@ -11,7 +11,8 @@ class ListingController extends Controller
     // 1. Show the form
     public function create()
     {
-        return view('listings.create');
+        $propertyTypes = ['Apartment', 'Villa', 'House', 'Townhouse', 'Hotel apartment', 'Penthouse'];
+        return view('listings.create', compact('propertyTypes'));
     }
 
     // 2. Handle the upload
