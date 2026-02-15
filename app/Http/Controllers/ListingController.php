@@ -64,9 +64,13 @@ class ListingController extends Controller
             $listing = auth()->user()->listings()->create($validatedData);
 
             if ($request->hasFile('photos')) {
+                Log::info('Processing photo uploads...');
                 foreach ($request->file('photos') as $photo) {
-                    $path = $photo->store('listings', 'public');
-                    $listing->images()->create(['image_url' => Storage::url($path)]);
+                    Log::info('Uploading file:', ['original_name' => $photo->getClientOriginalName()]);
+                    $path = $photo->storePublicly('apartments', 's3');
+                    $url = Storage::disk('s3')->url($path);
+                    Log::info('File stored on S3.', ['path' => $path, 'url' => $url]);
+                    $listing->images()->create(['image_url' => $url]);
                 }
             }
 
