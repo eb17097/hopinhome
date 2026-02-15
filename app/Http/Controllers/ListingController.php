@@ -12,7 +12,9 @@ class ListingController extends Controller
     public function create()
     {
         $propertyTypes = ['Apartment', 'Villa', 'House', 'Townhouse', 'Hotel apartment', 'Penthouse'];
-        return view('listings.create', compact('propertyTypes'));
+        $features = ['High-speed internet', 'Maid room', 'Fully furnished', 'Laundry room', 'Pets allowed', 'Balcony or terrace', 'Air conditioner', 'Hot Tub', 'Dishwasher', 'Fireplace'];
+        $amenities = ['Swimming pool', 'Gym', 'Reception', 'Concierge', 'Parking garage', 'Elevator / lift', 'Children’s play area', 'Outdoor area', 'Garden', 'BBQ area', 'Tennis court', 'Community lounge', 'Business center', 'Bicycle storage'];
+        return view('listings.create', compact('propertyTypes', 'features', 'amenities'));
     }
 
     // 2. Handle the upload
