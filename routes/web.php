@@ -14,6 +14,8 @@ Route::get('/', function () {
     return view('welcome', ['listings' => $listings]);
 });
 
+// IMPORTANT: Define specific routes like 'create' before parameterized routes like '{listing}'
+Route::get('/listings/create', [ListingController::class, 'create'])->name('listings.create')->middleware('auth');
 Route::get('/listings/{listing}', [ListingController::class, 'show'])->name('listings.show');
 Route::get('/listings', [ListingController::class, 'index'])->name('listings.index');
 
@@ -27,11 +29,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Listing Routes (Added these!)
-    Route::get('/listings/create', [ListingController::class, 'create'])->name('listings.create');
+    // Listing Routes
     Route::post('/listings', [ListingController::class, 'store'])->name('listings.store');
 
-    // Manager Route
+    // Manager Routes
     Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index');
     Route::get('/manager/listings', [ListingController::class, 'myListings'])->name('manager.listings.index');
 });
