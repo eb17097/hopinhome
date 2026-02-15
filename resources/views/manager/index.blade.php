@@ -1,7 +1,7 @@
 <x-manager-layout>
     <div class="bg-white">
         <x-header />
-        <div class="max-w-7xl mx-auto py-12 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto py-12 sm:px-6 lg:px-8 pt-28">
             <div class="flex">
                 <div class="w-1/4">
                     <x-manager.sidebar />
