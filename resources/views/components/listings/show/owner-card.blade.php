@@ -3,7 +3,7 @@
     use Illuminate\Support\Str;
 @endphp
 
-<div class="w-[390px] bg-white rounded-[8px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)] mt-[32px] sticky top-[455px]">
+<div class="w-[390px] bg-white rounded-[8px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)] mt-[24px] sticky top-[456px]">
     <div class="p-[20px] pt-[24px]">
         <div class="flex items-center gap-[12px]">
             <img src="{{ $listing->user->profile_photo_url ?? asset('images/profile_picture.png') }}" alt="{{ $listing->user->name }}" class="w-[64px] h-[64px] rounded-full border border-[#E8E8E7] object-cover">
