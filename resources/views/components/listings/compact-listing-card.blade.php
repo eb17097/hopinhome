@@ -3,7 +3,7 @@
 <a href="{{ route('listings.show', $listing) }}" class="block w-[358px] h-[417px] bg-white rounded-lg shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)] overflow-hidden group">
     <div class="relative h-[225px]">
         <img class="w-full h-full object-cover" 
-             src="{{ $listing->images->first() ? Illuminate\Support\Facades\Storage::url($listing->images->first()->image_url) : asset('images/placeholder-image.png') }}" 
+             src="{{ $listing->images->first() ? (Str::startsWith($listing->images->first()->image_url, 'http') ? $listing->images->first()->image_url : Illuminate\Support\Facades\Storage::url($listing->images->first()->image_url)) : asset('images/placeholder-image.png') }}" 
              alt="{{ $listing->name }}">
         <div class="absolute top-[12px] right-[12px]">
             <img src="{{ asset('images/favorite_white.svg') }}" alt="Favorite" class="size-[32px]">
