@@ -1,37 +1,41 @@
 @props(['listing'])
+@php
+    use Illuminate\Support\Facades\Storage;
+    use Illuminate\Support\Str;
+@endphp
 
-<div class="sticky-card bg-white p-6 rounded-lg shadow-lg border border-light-gray">
-    <div class="flex justify-between items-center">
-        <div>
-            <span class="text-3xl font-semibold text-black">AED {{ number_format($listing->price) }}</span>
-            <span class="text-base text-gray-600">/ {{ $listing->payment_option }}</span>
+<div class="w-[390px] h-[312px] bg-white rounded-[8px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)] sticky top-[120px]">
+    <div class="p-[20px] pb-[16px]">
+        <div class="flex justify-between items-end">
+            <div class="flex items-end gap-[4px]">
+                <span class="text-[32px] font-semibold text-black tracking-[-0.64px] leading-[1.28]">AED {{ number_format($listing->price) }}</span>
+                <span class="text-[14px] font-medium text-black leading-[1.5]">Yearly</span>
+            </div>
+            {{-- The Figma design for the booking card itself does not show the user avatar in this position --}}
         </div>
-        @if($listing->user)
-        <a href="#" class="w-12 h-12 rounded-full overflow-hidden border border-light-gray">
-            <img src="{{ $listing->user->profile_photo_url ?? asset('images/profile_picture.png') }}" alt="{{ $listing->user->name }}" class="w-full h-full object-cover">
-        </a>
-        @endif
+
+        <hr class="w-[358px] h-px bg-[#E8E8E7] my-[20px]">
+
+        <div class="space-y-[12px]">
+            <div class="flex justify-between items-center">
+                <span class="text-[16px] text-[#464646] leading-[1.3]">Rental period</span>
+                <span class="font-medium text-black leading-[1.3]">{{ Str::title($listing->payment_option) }}</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-[16px] text-[#464646] leading-[1.3]">Utilities</span>
+                <span class="font-medium text-black leading-[1.3]">{{ Str::title($listing->utilities_option) }}</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-[16px] text-[#464646] leading-[1.3]">Security deposit</span>
+                <span class="font-medium text-black leading-[1.3]">AED {{ number_format($listing->price * 0.1) }}</span>
+            </div>
+        </div>
+
+        <button class="w-full h-[52px] bg-[#1447D4] rounded-[29.5px] flex items-center justify-center gap-[10px] mt-[32px] hover:bg-blue-700 transition">
+            <img src="{{ asset('images/send.svg') }}" alt="Send message" class="w-[17px] h-[17px]">
+            <span class="text-[16px] font-medium text-white tracking-[-0.48px] leading-[1.22]">Send a message</span>
+        </button>
+
+        <p class="text-[14px] text-[#464646] text-center leading-[1.5] mt-[16px]">Send a message request to the property manager</p>
     </div>
-
-    <div class="mt-6 space-y-3">
-        <div class="flex justify-between text-gray-700">
-            <span>Rental period</span>
-            <span class="font-medium text-black">{{ $listing->payment_option }}</span>
-        </div>
-        <div class="flex justify-between text-gray-700">
-            <span>Utilities</span>
-            <span class="font-medium text-black">{{ $listing->utilities_option }}</span>
-        </div>
-        <div class="flex justify-between text-gray-700">
-            <span>Security deposit</span>
-            <span class="font-medium text-black">AED {{ number_format($listing->price * 0.1) }}</span>
-        </div>
-    </div>
-
-    <div class="mt-6 space-y-3">
-        <button class="w-full bg-electric-blue text-white font-medium py-3 rounded-full hover:bg-blue-700 transition">Send a message</button>
-        <button class="w-full bg-white text-black font-medium py-3 rounded-full border border-light-gray hover:bg-gray-50 transition">Request a tour</button>
-    </div>
-
-    <p class="text-xs text-gray-500 text-center mt-4">Send a message request to the property manager</p>
 </div>

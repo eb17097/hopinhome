@@ -1,49 +1,53 @@
 @props(['listing'])
+@php
+    use Illuminate\Support\Facades\Storage;
+    use Illuminate\Support\Str;
+@endphp
 
 <div x-data="{ isVideoModalOpen: false }" class="mt-6 relative">
-    <div class="grid grid-cols-3 gap-2">
+    <div class="grid grid-cols-2 gap-[16px]">
         {{-- Main Image --}}
-        <div class="col-span-2">
+        <div class="col-span-1">
             @if($listing->images->first())
-                <img src="{{ $listing->images->first()->image_url }}" alt="{{ $listing->name }}" class="w-full h-[499px] object-cover rounded-tl-[14px] rounded-bl-[14px]">
+                <img src="{{ Str::startsWith($listing->images->first()->image_url, 'http') ? $listing->images->first()->image_url : Storage::url($listing->images->first()->image_url) }}" alt="{{ $listing->name }}" class="w-full h-[499px] object-cover rounded-tl-[14px] rounded-bl-[14px]">
             @else
                 <div class="w-full h-[499px] bg-gray-200 rounded-tl-[14px] rounded-bl-[14px]"></div>
             @endif
         </div>
         
         {{-- Side Images --}}
-        <div class="col-span-1 grid grid-rows-2 gap-2">
+        <div class="col-span-1 grid grid-rows-2 gap-[16px]">
             @if($listing->images->get(1))
-                <img src="{{ $listing->images->get(1)->image_url }}" alt="{{ $listing->name }}" class="w-full h-[245px] object-cover rounded-tr-[14px]">
+                <img src="{{ Str::startsWith($listing->images->get(1)->image_url, 'http') ? $listing->images->get(1)->image_url : Storage::url($listing->images->get(1)->image_url) }}" alt="{{ $listing->name }}" class="w-full h-[241.5px] object-cover rounded-tr-[14px]">
             @else
-                <div class="w-full h-[245px] bg-gray-200 rounded-tr-[14px]"></div>
+                <div class="w-full h-[241.5px] bg-gray-200 rounded-tr-[14px]"></div>
             @endif
 
             @if($listing->images->get(2))
-                <img src="{{ $listing->images->get(2)->image_url }}" alt="{{ $listing->name }}" class="w-full h-[245px] object-cover rounded-br-[14px]">
+                <img src="{{ Str::startsWith($listing->images->get(2)->image_url, 'http') ? $listing->images->get(2)->image_url : Storage::url($listing->images->get(2)->image_url) }}" alt="{{ $listing->name }}" class="w-full h-[241.5px] object-cover rounded-br-[14px]">
             @else
-                <div class="w-full h-[245px] bg-gray-200 rounded-br-[14px]"></div>
+                <div class="w-full h-[241.5px] bg-gray-200 rounded-br-[14px]"></div>
             @endif
         </div>
     </div>
 
     {{-- Overlay Buttons --}}
-    <div class="absolute bottom-6 left-6 flex space-x-2">
-        <button class="backdrop-blur-sm bg-black/30 text-white font-medium text-sm py-2 px-4 rounded-md flex items-center space-x-2">
-            <img src="{{ asset('images/location_on.svg') }}" alt="Map" class="w-5 h-5">
+    <div class="absolute bottom-[24px] left-[24px] flex space-x-[16px]">
+        <a href="#" class="backdrop-blur-[3px] bg-black/30 text-white font-medium text-[14px] py-[10px] px-[16px] rounded-[4px] flex items-center space-x-[8px]">
+            <img src="{{ asset('images/location_on.svg') }}" alt="Map" class="w-[28px] h-[28px]">
             <span>View map</span>
-        </button>
+        </a>
         @if($listing->video_url)
-        <button @click="isVideoModalOpen = true" class="backdrop-blur-sm bg-black/30 text-white font-medium text-sm py-2 px-4 rounded-md flex items-center space-x-2">
-            <img src="{{ asset('images/play_arrow.svg') }}" alt="Video" class="w-5 h-5">
+        <button @click="isVideoModalOpen = true" class="backdrop-blur-[3px] bg-black/30 text-white font-medium text-[14px] py-[10px] px-[16px] rounded-[4px] flex items-center space-x-[8px]">
+            <img src="{{ asset('images/play_arrow.svg') }}" alt="Video" class="w-[30px] h-[30px]">
             <span>Watch video tour</span>
         </button>
         @endif
     </div>
 
     @if($listing->images->count() > 3)
-    <button class="absolute bottom-6 right-6 backdrop-blur-sm bg-black/30 text-white font-medium text-sm py-2 px-3 rounded-md flex items-center space-x-2">
-        <img src="{{ asset('images/filter.svg') }}" alt="All photos" class="w-4 h-4">
+    <button class="absolute bottom-[24px] right-[24px] backdrop-blur-[3px] bg-black/30 text-white font-medium text-[16px] py-[6px] px-[12px] rounded-[4px] flex items-center space-x-[4px]">
+        <img src="{{ asset('images/filter.svg') }}" alt="All photos" class="w-[16px] h-[16px]">
         <span>{{ $listing->images->count() }}</span>
     </button>
     @endif
@@ -71,7 +75,7 @@
                  class="inline-block bg-black rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 w-full max-w-4xl">
                 
                 <div class="relative">
-                    <video class="w-full h-auto" src="{{ $listing->video_url }}" controls autoplay></video>
+                    <video class="w-full h-auto" src="{{ Str::startsWith($listing->video_url, 'http') ? $listing->video_url : Storage::url($listing->video_url) }}" controls autoplay></video>
                     <button @click="isVideoModalOpen = false" class="absolute top-4 right-4 text-white">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                     </button>

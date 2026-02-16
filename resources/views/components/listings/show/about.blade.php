@@ -1,12 +1,14 @@
 @props(['listing'])
 
 <div x-data="{ open: false }">
-    <h3 class="text-lg font-medium text-black">About this apartment</h3>
-    <div class="mt-4 text-gray-700 leading-relaxed" :class="{ 'max-h-24 overflow-hidden': !open }">
-        <p>{{ $listing->description }}</p>
+    <h3 class="text-[18px] font-medium text-black tracking-[-0.36px] leading-[1.28]">About this apartment</h3>
+    <div class="mt-[20px] text-[16px] text-[#282828] leading-[1.5] whitespace-pre-wrap" :class="{ 'max-h-[72px] overflow-hidden': !open }" style="word-break: break-word;">
+        @foreach(explode("\n", $listing->description) as $paragraph)
+            <p class="mb-[18px]">{{ $paragraph }}</p>
+        @endforeach
     </div>
-    <button @click="open = !open" class="mt-4 text-electric-blue font-medium flex items-center space-x-2">
-        <span x-text="open ? 'Read less' : 'Read the full description'"></span>
-        <img src="{{ asset('images/arrow_downward.svg') }}" alt="Arrow" class="w-4 h-4 transition-transform" :class="{ 'transform rotate-180': open }">
+    <button @click="open = !open" class="mt-[20px] text-[#1447D4] font-medium flex items-center gap-[8px]">
+        <span class="text-[16px] tracking-[-0.48px] leading-[1.22]" x-text="open ? 'Read less' : 'Read the full description'"></span>
+        <img src="{{ asset('images/arrow_downward.svg') }}" alt="Arrow" class="size-[18px] transition-transform" :class="{ 'transform rotate-180': open }">
     </button>
 </div>
