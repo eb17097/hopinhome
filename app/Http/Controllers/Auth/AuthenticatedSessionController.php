@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
+use Illuminate\Http\JsonResponse;
+
 class AuthenticatedSessionController extends Controller
 {
     /**
@@ -29,6 +31,18 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         return redirect()->intended(route('manager.index', absolute: false));
+    }
+
+    /**
+     * Handle an incoming API authentication request.
+     */
+    public function apiStore(LoginRequest $request): JsonResponse
+    {
+        $request->authenticate();
+
+        $request->session()->regenerate();
+
+        return response()->json(['status' => 'success', 'message' => 'Login successful']);
     }
 
     /**
