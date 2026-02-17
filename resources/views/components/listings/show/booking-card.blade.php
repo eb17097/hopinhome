@@ -4,7 +4,7 @@
     use Illuminate\Support\Str;
 @endphp
 
-<div class="w-[390px] bg-white rounded-[8px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)]">
+<div class="w-full bg-white rounded-[8px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)]">
     <div class="p-[20px] pb-[16px]">
         <div class="flex justify-between items-end">
             <div class="flex items-end gap-[4px]">
@@ -14,7 +14,7 @@
             {{-- The Figma design for the booking card itself does not show the user avatar in this position --}}
         </div>
 
-        <hr class="w-[358px] h-px bg-[#E8E8E7] my-[20px]">
+        <hr class="w-full h-px bg-[#E8E8E7] my-[20px]">
 
         <div class="space-y-[12px]">
             <div class="flex justify-between items-center">

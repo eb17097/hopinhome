@@ -3,7 +3,7 @@
     use Illuminate\Support\Str;
 @endphp
 
-<div class="w-[390px] bg-white rounded-[8px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)]">
+<div class="w-full bg-white rounded-[8px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)]">
     <div class="bg-[#04247B] h-[82px] rounded-tl-[8px] rounded-tr-[8px] p-[20px] flex items-center gap-[12px]">
         <img src="{{ asset('images/ChatGPT Image Jan 22, 2026, 03_20_07 PM 1.png') }}" alt="Azure Crescent Realty Logo" class="w-[50px] h-[50px] object-cover rounded-full">
         <div>
