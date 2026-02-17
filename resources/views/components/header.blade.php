@@ -64,14 +64,15 @@
                              <img x-show="!scrolled" src="{{ asset('images/language_white.svg') }}" alt="Language" class="w-6 h-6" style="display: none;">
                             <img x-show="scrolled" src="{{ asset('images/language_black.svg') }}" alt="Language" class="w-6 h-6" style="display: none;">
                         </button>
-                        <a href="{{ route('login') }}" class="bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition">
+                        <button @click.prevent="$dispatch('open-auth-modal')" class="bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition">
                             Log in or sign up
-                        </a>
+                        </button>
                     @endauth
                 </div>
             </div>
         </div>
     </nav>
+    <x-auth-modal />
 @else
     {{-- Standard Solid Header for All Other Pages --}}
     <nav class="bg-white border-b border-gray-100 sticky top-0 left-0 right-0 z-50 shadow-sm">
@@ -115,12 +116,14 @@
                          <button>
                             <img src="{{ asset('images/language_black.svg') }}" alt="Language" class="w-6 h-6">
                         </button>
-                        <a href="{{ route('login') }}" class="bg-electric-blue text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition">
+                         <button @click.prevent="$dispatch('open-auth-modal')" class="bg-electric-blue text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition">
                             Log in or sign up
-                        </a>
+                        </button>
                     @endauth
                 </div>
             </div>
         </div>
     </nav>
 @endif
+
+<x-auth-modal />
