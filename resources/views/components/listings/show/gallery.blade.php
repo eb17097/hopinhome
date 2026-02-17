@@ -45,9 +45,9 @@
     class="mt-6 relative">
 
     {{-- Gallery Display --}}
-    <div class="grid grid-cols-2 gap-[16px]">
+    <div class="grid grid-cols-3 gap-[8px]">
         {{-- Main Image --}}
-        <div class="col-span-1">
+        <div class="col-span-2">
             @if($listing->images->first())
                 <img @click="openSlider(0)" src="{{ $imageUrls[0] }}" alt="{{ $listing->name }}" class="w-full h-[499px] object-cover rounded-tl-[14px] rounded-bl-[14px] cursor-pointer">
             @else
@@ -56,17 +56,17 @@
         </div>
         
         {{-- Side Images --}}
-        <div class="col-span-1 grid grid-rows-2 gap-[16px]">
+        <div class="col-span-1 grid grid-rows-2 gap-[8px]">
             @if($imageUrls->get(1))
-                <img @click="openSlider(1)" src="{{ $imageUrls[1] }}" alt="{{ $listing->name }}" class="w-full h-[241.5px] object-cover rounded-tr-[14px] cursor-pointer">
+                <img @click="openSlider(1)" src="{{ $imageUrls[1] }}" alt="{{ $listing->name }}" class="w-full h-[245.5px] object-cover rounded-tr-[14px] cursor-pointer">
             @else
-                <div class="w-full h-[241.5px] bg-gray-200 rounded-tr-[14px]"></div>
+                <div class="w-full h-[245.5px] bg-gray-200 rounded-tr-[14px]"></div>
             @endif
 
             @if($imageUrls->get(2))
-                <img @click="openSlider(2)" src="{{ $imageUrls[2] }}" alt="{{ $listing->name }}" class="w-full h-[241.5px] object-cover rounded-br-[14px] cursor-pointer">
+                <img @click="openSlider(2)" src="{{ $imageUrls[2] }}" alt="{{ $listing->name }}" class="w-full h-[245.5px] object-cover rounded-br-[14px] cursor-pointer">
             @else
-                <div class="w-full h-[241.5px] bg-gray-200 rounded-br-[14px]"></div>
+                <div class="w-full h-[245.5px] bg-gray-200 rounded-br-[14px]"></div>
             @endif
         </div>
     </div>
