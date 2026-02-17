@@ -1,44 +1,74 @@
-<div x-data="{ showAuthModal: false }" @open-auth-modal.window="showAuthModal = true" @close-auth-modal.window="showAuthModal = false" x-show="showAuthModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" style="display: none;">
-    <div @click.away="showAuthModal = false" class="bg-white rounded-[14px] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] w-full max-w-md mx-auto p-6 relative">
-        <button @click="showAuthModal = false" class="absolute top-4 left-4 text-gray-500 hover:text-gray-700">
-            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-        </button>
-        <h2 class="text-center text-xl font-medium text-gray-900 mb-6">Log in or sign up</h2>
+<div x-data="{ showAuthModal: false, step: 'email' }" @open-auth-modal.window="showAuthModal = true" @close-auth-modal.window="showAuthModal = false; setTimeout(() => step = 'email', 300)" x-show="showAuthModal" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" style="display: none;">
+    <div @click.away="showAuthModal = false; setTimeout(() => step = 'email', 300)" class="bg-white rounded-[14px] shadow-lg w-full max-w-md mx-auto p-8 relative" x-show="showAuthModal" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-95">
 
-        <div class="space-y-4">
-            <button class="w-full flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">
-                <img src="{{ asset('images/google.svg') }}" alt="Google icon" class="h-5 w-5">
-                Continue with Google
-            </button>
-            <button class="w-full flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">
-                <img src="{{ asset('images/facebook.svg') }}" alt="Facebook icon" class="h-5 w-5">
-                Continue with Facebook
-            </button>
-            <button class="w-full flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">
-                <img src="{{ asset('images/apple.svg') }}" alt="Apple icon" class="h-5 w-5">
-                Continue with Apple
-            </button>
-        </div>
-
-        <div class="flex items-center my-6">
-            <hr class="flex-grow border-gray-200">
-            <span class="px-4 text-gray-400 text-sm">or</span>
-            <hr class="flex-grow border-gray-200">
-        </div>
-
-        <div>
-            <label for="email-phone" class="block text-sm font-medium text-gray-700 mb-2">Email address or phone number</label>
-            <input type="text" id="email-phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your email or phone">
-        </div>
-
-        <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition mt-6">
-            Continue
+        <button @click="showAuthModal = false; setTimeout(() => step = 'email', 300)" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
 
-        <p class="text-xs text-gray-500 text-center mt-6">
-            By continuing, you agree to our <a href="#" class="text-blue-600 hover:underline">Terms</a> & <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>.
-        </p>
+        <!-- Email/Phone Step -->
+        <div x-show="step === 'email'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+            <h2 class="text-center text-xl font-medium text-gray-900 mb-6">Log in or sign up</h2>
+            <div class="space-y-3">
+                <button class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors">
+                    <img src="{{ asset('images/google.svg') }}" alt="Google icon" class="h-5 w-5">
+                    Continue with Google
+                </button>
+                <button class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors">
+                    <img src="{{ asset('images/facebook.svg') }}" alt="Facebook icon" class="h-5 w-5">
+                    Continue with Facebook
+                </button>
+                <button class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors">
+                    <img src="{{ asset('images/apple.svg') }}" alt="Apple icon" class="h-5 w-5">
+                    Continue with Apple
+                </button>
+            </div>
+
+            <div class="flex items-center my-6">
+                <hr class="flex-grow border-gray-200">
+                <span class="px-3 text-gray-400 text-sm">or</span>
+                <hr class="flex-grow border-gray-200">
+            </div>
+
+            <div>
+                <label for="email-phone" class="block text-sm font-medium text-gray-700 mb-1.5">Email address or phone number</label>
+                <input type="text" id="email-phone" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" placeholder="Enter your email or phone">
+            </div>
+
+            <button @click="step = 'password'" class="w-full bg-electric-blue text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors mt-6">
+                Continue
+            </button>
+
+            <p class="text-xs text-gray-500 text-center mt-6">
+                By continuing, you agree to our <a href="#" class="text-electric-blue hover:underline">Terms</a> & <a href="#" class="text-electric-blue hover:underline">Privacy Policy</a>.
+            </p>
+        </div>
+
+        <!-- Password Step -->
+        <div x-show="step === 'password'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" style="display: none;">
+             <button @click="step = 'email'" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+            <h2 class="text-center text-xl font-medium text-gray-900 mb-2">Log in</h2>
+            <p class="text-center text-sm text-gray-500 mb-6">Enter your password to continue.</p>
+
+            <div x-data="{ showPassword: false }">
+                <label for="password" class="block text-sm font-medium text-gray-700 mb-1.5">Password</label>
+                <div class="relative">
+                    <input :type="showPassword ? 'text' : 'password'" id="password" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" placeholder="Your password">
+                    <button @click="showPassword = !showPassword" class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-400 hover:text-gray-600">
+                        <svg x-show="!showPassword" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                        <svg x-show="showPassword" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7 .95-3.036 3.401-5.413 6.32-6.32m8.905 8.905a10.025 10.025 0 01-1.318 1.318M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21L3 3"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <button class="w-full bg-electric-blue text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors mt-6">
+                Log in
+            </button>
+
+            <a href="#" class="block text-center text-sm text-electric-blue hover:underline mt-6">
+                Forgot password?
+            </a>
+        </div>
     </div>
 </div>
