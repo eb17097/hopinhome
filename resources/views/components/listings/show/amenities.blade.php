@@ -16,6 +16,18 @@
         'Swimming pool' => 'pool.svg',
         'Gym' => 'exercise.svg',
     ];
+
+    // Partition features into those with an icon and those without, then merge them.
+    [$featuresWithIcon, $featuresWithoutIcon] = $listing->features->partition(function ($feature) use ($featureIconMap) {
+        return isset($featureIconMap[$feature->name]);
+    });
+    $sortedFeatures = $featuresWithIcon->merge($featuresWithoutIcon);
+
+    // Partition amenities into those with an icon and those without, then merge them.
+    [$amenitiesWithIcon, $amenitiesWithoutIcon] = $listing->amenities->partition(function ($amenity) use ($amenityIconMap) {
+        return isset($amenityIconMap[$amenity->name]);
+    });
+    $sortedAmenities = $amenitiesWithIcon->merge($amenitiesWithoutIcon);
 @endphp
 
 <div>
@@ -48,7 +60,7 @@
         <div x-ref="featuresGrid"
              class="grid grid-cols-2 sm:grid-cols-3 gap-y-[20px] gap-x-[40px] mt-[20px] overflow-hidden transition-all duration-300"
              :style="{ 'max-height': open ? `${$refs.featuresGrid.scrollHeight}px` : clampedHeight }">
-            @foreach($listing->features as $feature)
+            @foreach($sortedFeatures as $feature)
                 <div class="flex items-center gap-[8px]">
                     @if(isset($featureIconMap[$feature->name]))
                         <img src="{{ asset('images/' . $featureIconMap[$feature->name]) }}" alt="{{ $feature->name }}" class="w-[24px] h-[24px]">
@@ -94,7 +106,7 @@
         <div x-ref="amenitiesGrid"
              class="grid grid-cols-2 sm:grid-cols-3 gap-y-[20px] gap-x-[40px] mt-[20px] overflow-hidden transition-all duration-300"
              :style="{ 'max-height': open ? `${$refs.amenitiesGrid.scrollHeight}px` : clampedHeight }">
-            @foreach($listing->amenities as $amenity)
+            @foreach($sortedAmenities as $amenity)
                 <div class="flex items-center gap-[8px]">
                     @if(isset($amenityIconMap[$amenity->name]))
                         <img src="{{ asset('images/' . $amenityIconMap[$amenity->name]) }}" alt="{{ $amenity->name }}" class="w-[24px] h-[24px]">
