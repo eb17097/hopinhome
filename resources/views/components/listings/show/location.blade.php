@@ -7,8 +7,8 @@
 
         <script>
             function initMap() {
-                const defaultLat = 34.0522; // Default to Los Angeles latitude
-                const defaultLng = -118.2437; // Default to Los Angeles longitude
+                const defaultLat = 25.1972; // Default to Burj Khalifa latitude
+                const defaultLng = 55.2744; // Default to Burj Khalifa longitude
                 const latitude = {{ $listing->latitude ?? 'defaultLat' }};
                 const longitude = {{ $listing->longitude ?? 'defaultLng' }};
 
