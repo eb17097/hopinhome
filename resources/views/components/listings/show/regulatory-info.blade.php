@@ -31,7 +31,7 @@
         </div>
         <div class="text-center">
             <div class="inline-block">
-                <img src="{{ asset('images/trakheesi_qr_code.png') }}" alt="Trakheesi permit QR code" class="w-40 h-40">
+                <img src="{{ asset('images/trakheesi_qr_code.png') }}" alt="Trakheesi permit QR code" class="w-48 h-48">
                 <p class="text-center text-base font-medium text-black">Trakheesi permit</p>
             </div>
         </div>
