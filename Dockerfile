@@ -14,6 +14,9 @@ RUN apt-get update && apt-get install -y git && install-php-extensions \
 # FIX: Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# Add custom PHP configuration
+COPY php/conf.d/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
+
 # Set the working directory
 WORKDIR /app
 
