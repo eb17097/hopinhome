@@ -1,7 +1,7 @@
 FROM dunglas/frankenphp
 
 # Install extensions required by Laravel
-RUN apt-get update && apt-get install -y ffmpeg && install-php-extensions \
+RUN apt-get update && install-php-extensions \
     pcntl \
     bcmath \
     gd \
@@ -30,7 +30,6 @@ RUN touch /app/database/database.sqlite && \
 # Install Composer dependencies
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN composer clear-cache && \
-    composer require php-ffmpeg/php-ffmpeg && \
     composer install --no-dev --optimize-autoloader && \
     composer dump-autoload
 

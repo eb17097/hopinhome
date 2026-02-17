@@ -19,7 +19,7 @@ class ListingController extends Controller
         return view('listings.create', compact('propertyTypes', 'features', 'amenities'));
     }
 
-    public function store(Request $request, \FFMpeg\FFMpeg $ffmpeg)
+    public function store(Request $request)
     {
         Log::info('--- Starting Listing Creation Process ---');
         Log::info('Incoming Request Data:', $request->except('photos')); // Don't log file content
@@ -59,32 +59,9 @@ class ListingController extends Controller
                 'amenities.*' => 'exists:amenities,id',
             ]);
 
-            // Handle video upload and thumbnail generation
+            // Handle video upload
             if ($request->hasFile('video_file')) {
                 $videoFile = $request->file('video_file');
-                $videoOriginalName = pathinfo($videoFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $videoExtension = $videoFile->getClientOriginalExtension();
-
-                // Save video temporarily to local storage for FFmpeg processing
-                $tempVideoPath = $videoFile->storeAs('temp_videos', $videoOriginalName . '-' . uniqid() . '.' . $videoExtension, 'local');
-                
-                // Generate thumbnail
-                $video = $ffmpeg->open(Storage::disk('local')->path($tempVideoPath));
-                
-                $thumbnailFileName = 'thumbnails/' . $videoOriginalName . '-' . uniqid() . '.jpg';
-                Storage::disk('local')->makeDirectory('thumbnails');
-                
-                $thumbnailPath = Storage::disk('local')->path($thumbnailFileName);
-                $video->frame(\FFMpeg\Coordinate\TimeCode::fromSeconds(1))
-                      ->save($thumbnailPath);
-                
-                Log::info('Thumbnail generated locally:', ['path' => $thumbnailPath]);
-
-                // Upload thumbnail to S3
-                $thumbnailS3Path = 'apartments/' . $thumbnailFileName;
-                Storage::disk('s3')->put($thumbnailS3Path, Storage::disk('local')->get($thumbnailFileName), 'public');
-                $thumbnailUrl = Storage::disk('s3')->url($thumbnailS3Path);
-                Log::info('Thumbnail uploaded to S3:', ['url' => $thumbnailUrl]);
 
                 // Upload video to S3
                 $videoS3Path = $videoFile->storePublicly('videos', 's3');
@@ -92,21 +69,11 @@ class ListingController extends Controller
                 Log::info('Video uploaded to S3:', ['url' => $videoUrl]);
 
                 $validatedData['video_url'] = $videoUrl;
-
-                // Clean up temporary files
-                Storage::disk('local')->delete([$tempVideoPath, $thumbnailFileName]);
-                Log::info('Temporary video and thumbnail files deleted locally.');
             }
 
             DB::beginTransaction();
 
             $listing = auth()->user()->listings()->create($validatedData);
-
-            // Attach generated thumbnail as the first image
-            if (isset($thumbnailUrl)) {
-                $listing->images()->create(['image_url' => $thumbnailUrl]);
-                Log::info('Video thumbnail attached as first image.', ['url' => $thumbnailUrl]);
-            }
 
             if ($request->hasFile('photos')) {
                 Log::info('Processing photo uploads...');
