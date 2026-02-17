@@ -50,7 +50,9 @@
              :style="{ 'max-height': open ? `${$refs.featuresGrid.scrollHeight}px` : clampedHeight }">
             @foreach($listing->features as $feature)
                 <div class="flex items-center gap-[8px]">
-                    <img src="{{ asset('images/' . ($featureIconMap[$feature->name] ?? 'check.svg')) }}" alt="{{ $feature->name }}" class="w-[24px] h-[24px]">
+                    @if(isset($featureIconMap[$feature->name]))
+                        <img src="{{ asset('images/' . $featureIconMap[$feature->name]) }}" alt="{{ $feature->name }}" class="w-[24px] h-[24px]">
+                    @endif
                     <span class="text-[14px] font-medium text-[#464646] leading-[1.3]">{{ $feature->name }}</span>
                 </div>
             @endforeach
@@ -94,7 +96,9 @@
              :style="{ 'max-height': open ? `${$refs.amenitiesGrid.scrollHeight}px` : clampedHeight }">
             @foreach($listing->amenities as $amenity)
                 <div class="flex items-center gap-[8px]">
-                    <img src="{{ asset('images/' . ($amenityIconMap[$amenity->name] ?? 'check.svg')) }}" alt="{{ $amenity->name }}" class="w-[24px] h-[24px]">
+                    @if(isset($amenityIconMap[$amenity->name]))
+                        <img src="{{ asset('images/' . $amenityIconMap[$amenity->name]) }}" alt="{{ $amenity->name }}" class="w-[24px] h-[24px]">
+                    @endif
                     <span class="text-[14px] font-medium text-[#464646] leading-[1.3]">{{ $amenity->name }}</span>
                 </div>
             @endforeach
