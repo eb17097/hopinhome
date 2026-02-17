@@ -21,18 +21,22 @@
 
 <div x-data="{ featuresOpen: false, amenitiesOpen: false }">
     <h3 class="text-[18px] font-medium text-black tracking-[-0.36px] leading-[1.28]">Apartment features</h3>
+    <div class="relative" :class="{'max-h-[90px] overflow-hidden': !featuresOpen}">
         <div class="grid grid-cols-3 gap-y-[20px] gap-x-[40px] mt-[20px]">
-        @foreach($listing->features as $feature)
-            <div class="flex items-center gap-[8px]">
-                <img src="{{ asset('images/' . ($featureIconMap[$feature->name] ?? 'check.svg')) }}" alt="{{ $feature->name }}" class="w-[24px] h-[24px]">
-                <span class="text-[14px] font-medium text-[#464646] leading-[1.3]">{{ $feature->name }}</span>
-            </div>
-        @endforeach
+            @foreach($listing->features as $feature)
+                <div class="flex items-center gap-[8px]">
+                    <img src="{{ asset('images/' . ($featureIconMap[$feature->name] ?? 'check.svg')) }}" alt="{{ $feature->name }}" class="w-[24px] h-[24px]">
+                    <span class="text-[14px] font-medium text-[#464646] leading-[1.3]">{{ $feature->name }}</span>
+                </div>
+            @endforeach
+        </div>
     </div>
-    <button @click="featuresOpen = !featuresOpen" class="mt-[28px] text-[#1447D4] font-medium flex items-center gap-[8px]">
-        <span class="text-[16px] tracking-[-0.48px] leading-[1.22]" x-text="featuresOpen ? 'Show less features' : 'Show all features'"></span>
-        <img src="{{ asset('images/arrow_downward.svg') }}" alt="Arrow" class="size-[18px] transition-transform" :class="{ 'transform rotate-180': featuresOpen }">
-    </button>
+    @if(count($listing->features) > 6)
+        <button @click="featuresOpen = !featuresOpen" class="mt-[28px] text-[#1447D4] font-medium flex items-center gap-[8px]">
+            <span class="text-[16px] tracking-[-0.48px] leading-[1.22]" x-text="featuresOpen ? 'Show less features' : 'Show all features'"></span>
+            <img src="{{ asset('images/arrow_downward.svg') }}" alt="Arrow" class="size-[18px] transition-transform" :class="{ 'transform rotate-180': featuresOpen }">
+        </button>
+    @endif
 
     <h3 class="text-[18px] font-medium text-black tracking-[-0.36px] leading-[1.28] mt-[40px]">Building amenities</h3>
         <div class="grid grid-cols-3 gap-y-[20px] gap-x-[40px] mt-[20px]">
