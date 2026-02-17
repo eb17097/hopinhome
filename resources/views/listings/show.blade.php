@@ -18,7 +18,7 @@
 <x-header />
 
 <main>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pt-6">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pt-6 pb-20">
 
         <x-listings.show.breadcrumbs :listing="$listing" />
 
@@ -52,11 +52,16 @@
             </div>
         </div>
 
-        <hr class="my-[96px] border-[#E8E8E7]">
+    </div>
 
-        <x-listings.show.similar-listings :listing="$listing" />
+    <x-listings.show.similar-listings :listing="$listing" />
 
-        <x-listings.faq-section />
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pt-6 pb-20">
+        <div class="flex gap-x-[32px] mt-[40px]">
+            <div class="w-[792px]">
+                <x-listings.faq-section />
+            </div>
+        </div>
     </div>
 
 </main>
