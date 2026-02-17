@@ -25,7 +25,7 @@
         <x-listings.show.header :listing="$listing" />
         <x-listings.show.gallery :listing="$listing" />
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-[32px] mt-[40px]">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-[32px] mt-[32px]">
             {{-- Main Content --}}
             <div class="lg:col-span-2">
                 <x-listings.show.details :listing="$listing" />

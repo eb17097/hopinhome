@@ -3,7 +3,6 @@
 <div class="flex justify-between items-end mb-[24px]">
     <div>
         <h1 class="text-[32px] font-medium text-black tracking-[-0.64px] leading-[1.28]">{{ $listing->name }}</h1>
-        <p class="text-[14px] text-[#464646] leading-[1.5] mt-1">{{ $listing->address }}</p>
     </div>
     <div class="flex items-center space-x-[20px]">
         <button class="p-[4px] rounded-full hover:bg-gray-100 flex items-center justify-center">

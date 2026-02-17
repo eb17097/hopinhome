@@ -4,7 +4,7 @@
     use Illuminate\Support\Str;
 @endphp
 
-<div class="w-[390px] h-[312px] bg-white rounded-[8px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)] sticky top-[120px]">
+<div class="w-[390px] bg-white rounded-[8px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)] sticky top-[120px]">
     <div class="p-[20px] pb-[16px]">
         <div class="flex justify-between items-end">
             <div class="flex items-end gap-[4px]">
