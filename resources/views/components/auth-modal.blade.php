@@ -1,7 +1,7 @@
-<div x-data="{ showModal: false, step: 'email', email: '', error: '', passwordError: '', showPassword: false }"
+<div x-data="{ showModal: false, step: 'email', email: '', emailError: '', error: '', passwordError: '', showPassword: false }"
      @open-auth-modal.window="showModal = true"
-     @close-auth-modal.window="showModal = false; setTimeout(() => { step = 'email'; email = ''; error = ''; passwordError = ''; showPassword = false }, 300)"
-     @keydown.escape.window="showModal = false; setTimeout(() => { step = 'email'; email = ''; error = ''; passwordError = ''; showPassword = false }, 300)"
+     @close-auth-modal.window="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false }, 300)"
+     @keydown.escape.window="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false }, 300)"
      x-show="showModal"
      x-transition:enter="transition ease-out duration-300"
      x-transition:enter-start="opacity-0"
@@ -12,7 +12,7 @@
      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60"
      style="display: none;">
 
-    <div @click.away="showModal = false; setTimeout(() => { step = 'email'; email = ''; error = ''; passwordError = ''; showPassword = false }, 300)"
+    <div @click.away="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false }, 300)"
          class="bg-white rounded-xl shadow-lg w-full max-w-md mx-auto relative"
          x-show="showModal"
          x-transition:enter="transition ease-out duration-300"
@@ -23,7 +23,7 @@
          x-transition:leave-end="opacity-0 transform scale-95">
 
         <div class="p-8">
-            <button @click="showModal = false; setTimeout(() => { step = 'email'; email = ''; error = ''; passwordError = ''; showPassword = false }, 300)" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+            <button @click="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false }, 300)" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
                 <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
 
@@ -47,9 +47,10 @@
                 <div class="flex items-center my-6"><hr class="flex-grow border-gray-200"><span class="px-3 text-gray-400 text-sm">or</span><hr class="flex-grow border-gray-200"></div>
                 <div>
                     <label for="email-phone" class="block text-sm font-medium text-gray-700 mb-1.5">Email address or phone number</label>
-                    <input x-model="email" type="text" id="email-phone" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" placeholder="Enter your email or phone">
+                    <input x-model="email" @input="emailError = ''" type="text" id="email-phone" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" placeholder="Enter your email or phone">
+                    <div x-show="emailError" x-text="emailError" class="text-red-500 text-sm mt-2"></div>
                 </div>
-                <button @click="step = 'password'; error = ''; passwordError = ''" class="w-full bg-electric-blue text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors mt-6">Continue</button>
+                <button @click="if (email.trim() === '') { emailError = 'Email address is required.' } else { step = 'password'; error = ''; passwordError = ''; }" class="w-full bg-electric-blue text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors mt-6">Continue</button>
                 <p class="text-xs text-gray-500 text-center mt-6">By continuing, you agree to our <a href="#" class="text-electric-blue hover:underline">Terms</a> & <a href="#" class="text-electric-blue hover:underline">Privacy Policy</a>.</p>
             </div>
 
@@ -61,6 +62,10 @@
                 <h2 class="text-center text-xl font-medium text-gray-900 mb-2">Log in</h2>
                 <p class="text-center text-sm text-gray-500 mb-6">Enter your password to continue.</p>
                 <form @submit.prevent="
+                    if ($refs.password.value.trim() === '') {
+                        passwordError = 'Password is required.';
+                        return;
+                    }
                     fetch('/ajax/login', {
                         method: 'POST',
                         headers: {
