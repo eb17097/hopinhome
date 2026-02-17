@@ -13,7 +13,9 @@ class Listing extends Model
         'user_id', 'name', 'price', 'property_type', 'address', 'description',
         'bedrooms', 'bathrooms', 'area', 'floor_number', 'total_floors',
         'construction_year', 'video_url', 'payment_option', 'utilities_option',
-        'duration', 'renewal_type'
+        'duration', 'renewal_type',
+        'latitude',
+        'longitude'
     ];
 
     /**
