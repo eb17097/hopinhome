@@ -6,28 +6,38 @@
         <img src="{{ asset('images/info.svg') }}" alt="Info" class="w-5 h-5">
     </div>
 
-    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-        <div class="flex justify-between border-b pb-2">
-            <span class="text-gray-600">Permit number</span>
-            <span class="font-medium text-black">12345678912</span>
+    <div class="flex mt-4">
+        <div class="grid flex-1 grid-cols-1 gap-x-8 mr-6">
+            <div class="flex justify-between border-b items-center">
+                <span class="text-gray-600">Permit number</span>
+                <span class="font-medium text-black">12345678912</span>
+            </div>
+            <div class="flex justify-between border-b items-center">
+                <span class="text-gray-600">Zone name</span>
+                <span class="font-medium text-black">Marsa Dubai</span>
+            </div>
+            <div class="flex justify-between border-b items-center">
+                <span class="text-gray-600">Agency name</span>
+                <span class="font-medium text-black">EXAMPLE PROPERTIES</span>
+            </div>
+            <div class="flex justify-between border-b items-center">
+                <span class="text-gray-600">Agent license no.</span>
+                <span class="font-medium text-black">31139</span>
+            </div>
+            <div class="flex justify-between border-b items-center">
+                <span class="text-gray-600">Broker license no.</span>
+                <span class="font-medium text-black">57053</span>
+            </div>
         </div>
-        <div class="flex justify-between border-b pb-2">
-            <span class="text-gray-600">Zone name</span>
-            <span class="font-medium text-black">Marsa Dubai</span>
-        </div>
-        <div class="flex justify-between border-b pb-2">
-            <span class="text-gray-600">Agency name</span>
-            <span class="font-medium text-black">EXAMPLE PROPERTIES</span>
-        </div>
-        <div class="flex justify-between border-b pb-2">
-            <span class="text-gray-600">Agent license no.</span>
-            <span class="font-medium text-black">31139</span>
-        </div>
-        <div class="flex justify-between border-b pb-2">
-            <span class="text-gray-600">Broker license no.</span>
-            <span class="font-medium text-black">57053</span>
+        <div class="text-center">
+            <div class="inline-block">
+                <img src="{{ asset('images/trakheesi_qr_code.png') }}" alt="Trakheesi permit QR code" class="w-40 h-40">
+                <p class="text-center text-base font-medium text-black">Trakheesi permit</p>
+            </div>
         </div>
     </div>
+
+
 
     <div class="mt-6 bg-off-white p-4 rounded-md flex items-center space-x-4">
         <img src="{{ asset('images/lock.svg') }}" alt="Lock" class="w-8 h-8 flex-shrink-0">
