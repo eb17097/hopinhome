@@ -124,6 +124,5 @@
             </div>
         </div>
     </nav>
+    <x-auth-modal />
 @endif
-
-<x-auth-modal />
