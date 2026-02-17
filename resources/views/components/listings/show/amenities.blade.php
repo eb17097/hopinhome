@@ -21,7 +21,7 @@
 
 <div x-data="{ featuresOpen: false, amenitiesOpen: false }">
     <h3 class="text-[18px] font-medium text-black tracking-[-0.36px] leading-[1.28]">Apartment features</h3>
-    <div class="relative" :class="{'max-h-[90px] overflow-hidden': !featuresOpen}">
+    <div class="relative" :class="{'max-h-[68px] overflow-hidden': !featuresOpen}">
         <div class="grid grid-cols-3 gap-y-[20px] gap-x-[40px] mt-[20px]">
             @foreach($listing->features as $feature)
                 <div class="flex items-center gap-[8px]">
@@ -39,13 +39,20 @@
     @endif
 
     <h3 class="text-[18px] font-medium text-black tracking-[-0.36px] leading-[1.28] mt-[40px]">Building amenities</h3>
+    <div class="relative" :class="{'max-h-[68px] overflow-hidden': !amenitiesOpen}">
         <div class="grid grid-cols-3 gap-y-[20px] gap-x-[40px] mt-[20px]">
-        @foreach($listing->amenities as $amenity)
-            <div class="flex items-center gap-[8px]">
-                <img src="{{ asset('images/' . ($amenityIconMap[$amenity->name] ?? 'check.svg')) }}" alt="{{ $amenity->name }}" class="w-[24px] h-[24px]">
-                <span class="text-[14px] font-medium text-[#464646] leading-[1.3]">{{ $amenity->name }}</span>
-            </div>
-        @endforeach
+            @foreach($listing->amenities as $amenity)
+                <div class="flex items-center gap-[8px]">
+                    <img src="{{ asset('images/' . ($amenityIconMap[$amenity->name] ?? 'check.svg')) }}" alt="{{ $amenity->name }}" class="w-[24px] h-[24px]">
+                    <span class="text-[14px] font-medium text-[#464646] leading-[1.3]">{{ $amenity->name }}</span>
+                </div>
+            @endforeach
+        </div>
     </div>
-    {{-- No 'Show all amenities' button in Figma for building amenities, so not adding one --}}
+    @if(count($listing->amenities) > 6)
+    <button @click="amenitiesOpen = !amenitiesOpen" class="mt-[28px] text-[#1447D4] font-medium flex items-center gap-[8px]">
+        <span class="text-[16px] tracking-[-0.48px] leading-[1.22]" x-text="amenitiesOpen ? 'Show less amenities' : 'Show all amenities'"></span>
+        <img src="{{ asset('images/arrow_downward.svg') }}" alt="Arrow" class="size-[18px] transition-transform" :class="{ 'transform rotate-180': amenitiesOpen }">
+    </button>
+    @endif
 </div>
