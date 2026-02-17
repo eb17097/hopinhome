@@ -8,7 +8,8 @@ RUN apt-get update && apt-get install -y git && install-php-extensions \
     zip \
     intl \
     pdo_mysql \
-    pdo_sqlite
+    pdo_sqlite \
+    fileinfo
 
 # FIX: Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
