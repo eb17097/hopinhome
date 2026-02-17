@@ -72,8 +72,8 @@
     <template x-if="isSliderOpen">
         <div class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center" @click.self="closeSlider()">
             <!-- Close Button -->
-            <button @click="closeSlider()" class="absolute top-10 right-10 text-white z-50">
-                <img src="{{ asset('images/close.svg') }}" alt="Close" class="w-6 h-6">
+            <button @click="closeSlider()" class="absolute top-10 right-10 z-50">
+                <img src="{{ asset('images/close_white.svg') }}" alt="Close" class="w-6 h-6">
             </button>
 
             <!-- Image Counter -->
@@ -93,7 +93,7 @@
 
             <!-- Next Button -->
             <button @click="nextImage()" class="absolute right-10 top-1/2 -translate-y-1/2 bg-white/20 rounded-full p-3 text-white z-50 hover:bg-white/30 transition">
-                <img src="{{ asset('images/arrow_forward_white.svg') }}" alt="Next" class="w-6 h-6">
+                <img src="{{ asset('images/arrow1.svg') }}" alt="Next" class="w-6 h-6">
             </button>
         </div>
     </template>
