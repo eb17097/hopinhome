@@ -20,6 +20,7 @@
 @endphp
 
 <div x-data="{ featuresOpen: false, amenitiesOpen: false }">
+    <h3 class="text-[18px] font-medium text-black tracking-[-0.36px] leading-[1.28]">Apartment features</h3>
         <div class="grid grid-cols-3 gap-y-[20px] gap-x-[40px] mt-[20px]">
         @foreach($listing->features as $feature)
             <div class="flex items-center gap-[8px]">
@@ -33,6 +34,7 @@
         <img src="{{ asset('images/arrow_downward.svg') }}" alt="Arrow" class="size-[18px] transition-transform" :class="{ 'transform rotate-180': featuresOpen }">
     </button>
 
+    <h3 class="text-[18px] font-medium text-black tracking-[-0.36px] leading-[1.28] mt-[40px]">Building amenities</h3>
         <div class="grid grid-cols-3 gap-y-[20px] gap-x-[40px] mt-[20px]">
         @foreach($listing->amenities as $amenity)
             <div class="flex items-center gap-[8px]">
