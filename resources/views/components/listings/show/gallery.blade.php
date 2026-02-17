@@ -72,12 +72,12 @@
     <template x-if="isSliderOpen">
         <div class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center" @click.self="closeSlider()">
             <!-- Close Button -->
-            <button @click="closeSlider()" class="absolute top-10 right-10 z-50">
+            <button @click="closeSlider()" class="absolute top-10 left-10 z-50">
                 <img src="{{ asset('images/close_white.svg') }}" alt="Close" class="w-6 h-6">
             </button>
 
             <!-- Image Counter -->
-            <div class="absolute top-10 left-1/2 -translate-x-1/2 text-white text-lg z-50">
+            <div class="absolute top-10 right-10 text-white text-lg z-50">
                 <span x-text="currentImageIndex + 1"></span> / <span x-text="images.length"></span>
             </div>
 
