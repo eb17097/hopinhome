@@ -10,11 +10,10 @@
     ];
 
     $amenityIconMap = [
-        'Built in 2025' => 'calendar_check.svg',
-        'Free parking' => 'parking_sign.svg',
-        'Swimming pool' => 'pool.svg',
         'Elevator' => 'elevator.svg',
+        'Free parking' => 'parking_sign.svg',
         'Security cameras' => 'camera_outdoor.svg',
+        'Swimming pool' => 'pool.svg',
         'Gym' => 'exercise.svg',
     ];
 
