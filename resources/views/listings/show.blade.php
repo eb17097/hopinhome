@@ -25,9 +25,9 @@
         <x-listings.show.header :listing="$listing" />
         <x-listings.show.gallery :listing="$listing" />
 
-        <div class="flex gap-x-[32px] mt-[40px]">
+        <div class="flex gap-x-[48px] mt-[40px]">
             {{-- Main Content --}}
-            <div class="w-[746px]">
+            <div class="w-[758px]">
                 <x-listings.show.details :listing="$listing" />
                 <hr class="my-[40px] border-[#E8E8E7]">
                 <x-listings.show.about :listing="$listing" />
@@ -40,7 +40,7 @@
             </div>
 
             {{-- Sidebar --}}
-            <div class="w-[436px]">
+            <div class="w-[408px]">
                 <div class="sticky top-[120px] flex flex-col gap-6">
                     <x-listings.show.booking-card :listing="$listing" />
                     @if ($listing->user && $listing->user->is_agent)
@@ -57,8 +57,8 @@
     <x-listings.show.similar-listings :listing="$listing" />
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pt-6 pb-20">
-        <div class="flex gap-x-[32px] mt-[40px]">
-            <div class="w-[746px]">
+        <div class="flex gap-x-[48px] mt-[40px]">
+            <div class="w-[758px]">
                 <x-listings.faq-section />
             </div>
         </div>
