@@ -1,7 +1,7 @@
 FROM dunglas/frankenphp
 
 # Install extensions required by Laravel
-RUN apt-get update && install-php-extensions \
+RUN apt-get update && apt-get install -y git && install-php-extensions \
     pcntl \
     bcmath \
     gd \
