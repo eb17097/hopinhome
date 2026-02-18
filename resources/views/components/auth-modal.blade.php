@@ -35,11 +35,11 @@
                         <img src="{{ asset('images/google.svg') }}" alt="Google icon" class="h-5 w-5">
                         Continue with Google
                     </button>
-                    <button class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors">
+                    <button class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium opacity-50 pointer-events-none cursor-not-allowed transition-colors">
                         <img src="{{ asset('images/facebook.svg') }}" alt="Facebook icon" class="h-5 w-5">
                         Continue with Facebook
                     </button>
-                    <button class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors">
+                    <button class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium opacity-50 pointer-events-none cursor-not-allowed transition-colors">
                         <img src="{{ asset('images/apple.svg') }}" alt="Apple icon" class="h-5 w-5">
                         Continue with Apple
                     </button>
