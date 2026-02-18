@@ -77,48 +77,55 @@
     <x-auth-modal />
 @else
     {{-- Standard Solid Header for All Other Pages --}}
-    <nav x-data class="bg-white border-b border-gray-100 sticky top-0 left-0 right-0 z-50 shadow-sm">
-         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-22 py-4">
+    <nav x-data class="bg-white border-b border-[#e8e8e7] sticky top-0 left-0 right-0 z-50 h-[88px] flex items-center">
+         <div class="max-w-[1440px] mx-auto px-8 w-full">
+            <div class="flex justify-between items-center h-full">
                  <div class="flex items-center">
                     <a href="/" class="flex items-center gap-2">
                         <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopInHome Logo" class="h-7 w-auto">
                     </a>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="/" class="text-lg font-medium text-gray-900 hover:text-blue-600 transition">Home</a>
+                
+                {{-- Main Navigation --}}
+                <div class="hidden md:flex items-center space-x-12">
+                    <a href="/" class="text-[16px] font-medium text-[#1e1d1d] hover:text-blue-600 transition-colors">Home</a>
                     <div class="relative" x-data="{ open: false }">
-                        <button @click="open = !open" class="flex items-center text-lg font-medium text-gray-500 hover:text-blue-600 transition">
+                        <button @click="open = !open" class="flex items-center text-[16px] font-medium text-[#1e1d1d] hover:text-blue-600 transition-colors">
                             <span>Find Properties</span>
-                            <img src="{{ asset('images/chevron.svg') }}" alt="Dropdown Arrow" class="w-5 h-5 ml-1 transform" :class="{'rotate-180': open}">
+                            <img src="{{ asset('images/keyboard_arrow_down.svg') }}" alt="Dropdown Arrow" class="w-5 h-5 ml-1 transition-transform" :class="{'rotate-180': open}">
                         </button>
-                        <div x-show="open" @click.away="open = false" class="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg" style="display: none;">
+                        <div x-show="open" @click.away="open = false" class="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100" style="display: none;">
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">For Sale</a>
                             <a href="{{ route('listings.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">For Rent</a>
                         </div>
                     </div>
-                    <a href="#" class="text-lg font-medium text-gray-500 hover:text-blue-600 transition">Articles & Insights</a>
-                    <a href="#" class="text-lg font-medium text-gray-500 hover:text-blue-600 transition">About Us</a>
+                    <a href="#" class="text-[16px] font-medium text-[#1e1d1d] hover:text-blue-600 transition-colors">Articles & Insights</a>
+                    <a href="#" class="text-[16px] font-medium text-[#1e1d1d] hover:text-blue-600 transition-colors">About Us</a>
                 </div>
-                <div class="flex items-center space-x-4">
+
+                <div class="flex items-center space-x-6">
                     @auth
-                        <div class="relative">
-                            <img src="{{ asset('images/notifications.svg') }}" alt="Notifications" class="w-6 h-6">
-                            <div class="absolute -top-1 -right-1 flex items-center justify-center w-4 h-4 rounded-full text-white text-xs font-normal bg-electric-blue">
+                        <a href="{{ route('property_manager.listings.create') }}" class="text-[16px] font-medium text-[#1e1d1d] hover:text-blue-600 transition-colors">Add a listing</a>
+                        
+                        <div class="relative cursor-pointer">
+                            <img src="{{ asset('images/notifications.svg') }}" alt="Notifications" class="w-6 h-6 opacity-80">
+                            <div class="absolute -top-1.5 -right-1.5 flex items-center justify-center w-[18px] h-[18px] rounded-full text-white text-[10px] font-medium bg-electric-blue border-2 border-white">
                                 <span>5</span>
                             </div>
                         </div>
-                        <a href="{{ Auth::user()->isPropertyManager() ? route('property_manager.index') : route('renter.index') }}" class="w-11 h-11 rounded-full border border-light-gray overflow-hidden">
+
+                        <a href="{{ Auth::user()->isPropertyManager() ? route('property_manager.index') : route('renter.index') }}" class="w-11 h-11 rounded-full border border-light-gray overflow-hidden hover:opacity-90 transition-opacity">
                             <img alt="profile picture" class="h-full w-full object-cover" src="{{ asset('images/profile_picture.png') }}">
                         </a>
-                        <div class="bg-light-gray rounded-full p-2">
-                            <img src="{{ asset('images/hamburger.svg') }}" alt="Menu" class="w-6 h-6">
-                        </div>
+
+                        <button class="bg-[#e8e8e7] rounded-full p-2 hover:bg-gray-300 transition-colors">
+                            <img src="{{ asset('images/dehaze.svg') }}" alt="Menu" class="w-6 h-6">
+                        </button>
                     @else
-                         <button>
+                        <button>
                             <img src="{{ asset('images/language_black.svg') }}" alt="Language" class="w-6 h-6">
                         </button>
-                         <button @click.prevent="$dispatch('open-auth-modal')" class="bg-electric-blue text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition">
+                         <button @click.prevent="$dispatch('open-auth-modal')" class="bg-electric-blue text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-blue-700 transition">
                             Log in or sign up
                         </button>
                     @endauth
