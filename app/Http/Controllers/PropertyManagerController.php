@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PropertyManagerController extends Controller
 {
@@ -14,6 +15,7 @@ class PropertyManagerController extends Controller
      */
     public function index()
     {
-        return view('property_manager.dashboard');
+        $listings = Auth::user()->listings()->latest()->get();
+        return view('property_manager.dashboard', compact('listings'));
     }
 }
