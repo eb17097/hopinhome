@@ -22,7 +22,7 @@
             <img alt="speed" class="h-4 w-4" src="{{ asset('images/speed.svg') }}">
             <span class="font-medium text-base text-black">Dashboard</span>
         </a>
-        <a href="{{ route('property_manager.listings.index') }}" class="flex items-center space-x-3 p-2 rounded-md {{ request()->routeIs('property_manager.listings.index') ? 'bg-white shadow' : 'hover:bg-white/50' }} transition">
+        <a href="{{ route('property_manager.index') }}" class="flex items-center space-x-3 p-2 rounded-md {{ request()->routeIs('property_manager.index') ? 'bg-white shadow' : 'hover:bg-white/50' }} transition">
             <img alt="apartment" class="h-4 w-4" src="{{ asset('images/apartment_sidebar.svg') }}">
             <span class="font-medium text-base text-black">My listings</span>
         </a>
