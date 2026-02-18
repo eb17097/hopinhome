@@ -21,7 +21,7 @@ Route::get('/', function () {
     $listings = Listing::latest()->get();
 
     return view('welcome', ['listings' => $listings]);
-});
+})->name('home');
 
 // IMPORTANT: Define specific routes like 'create' before parameterized routes like '{listing}'
 Route::get('/listings/create', [ListingController::class, 'create'])->name('listings.create')->middleware('auth');
