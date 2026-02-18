@@ -24,13 +24,16 @@
 
 
             <div class="flex">
-                <div x-show="sidebarOpen" class="relative w-[232px] h-screen bg-white border-r border-light-gray shadow-sm pt-24 pb-8 overflow-y-auto transition-all duration-300 ease-in-out">
+                <div x-show="sidebarOpen" class="relative w-[280px] h-screen bg-white border-r border-light-gray shadow-sm pt-24 pb-8 overflow-y-auto transition-all duration-300 ease-in-out">
                     <button @click="sidebarOpen = false" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 z-50">
-                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        <img src="{{ asset('images/left_panel_close.svg') }}" alt="Close" class="h-6 w-6">
                     </button>
                     <x-property_manager.property-manager-sidebar />
                 </div>
-                <main class="flex-1 pt-24 transition-all duration-300 ease-in-out" :class="{ 'ml-[232px]': sidebarOpen, 'ml-0': !sidebarOpen }">
+                <main class="flex-1 pt-24 transition-all duration-300 ease-in-out" :class="{ 'ml-[280px]': sidebarOpen, 'ml-0': !sidebarOpen }">
+                    <button x-show="!sidebarOpen" @click="sidebarOpen = true" class="absolute top-4 left-4 z-50 p-2 rounded-full bg-white shadow-sm hover:bg-gray-100 transition">
+                        <img src="{{ asset('images/hamburger.svg') }}" alt="Open Menu" class="w-6 h-6">
+                    </button>
                     <div class="py-12 px-8">
                         {{ $slot }}
                     </div>
