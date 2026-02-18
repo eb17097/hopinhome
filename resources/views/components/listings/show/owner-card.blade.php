@@ -9,7 +9,7 @@
             <img src="{{ $listing->user->profile_photo_url ?? asset('images/profile_picture.png') }}" alt="{{ $listing->user->name }}" class="w-[64px] h-[64px] rounded-full border border-[#E8E8E7] object-cover">
             <div>
                 <div class="flex items-center gap-[4px]">
-                    <p class="text-[18px] font-medium text-black tracking-[-0.36px] leading-[1.28]">Jane Smith</p>
+                    <p class="text-[18px] font-medium text-black tracking-[-0.36px] leading-[1.28]">{{ $listing->user->name }}</p>
                     <img src="{{ asset('images/verified_user.svg') }}" alt="Verified" class="w-[18px] h-[18px]">
                 </div>
                 <p class="text-[14px] text-[#464646] leading-[1.5] mt-1">Property owner</p>
