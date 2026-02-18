@@ -21,7 +21,7 @@
     </head>
     <body class="font-sans antialiased bg-gray-50">
         <div x-data="{ sidebarOpen: true }" class="min-h-screen bg-off-white">
-            <x-header />
+
 
             <div class="flex">
                 <div x-show="sidebarOpen" class="relative w-[232px] h-screen bg-white border-r border-light-gray shadow-sm pt-24 pb-8 overflow-y-auto transition-all duration-300 ease-in-out">
@@ -36,7 +36,7 @@
                     </div>
                 </main>
             </div>
-            <x-footer />
+
         </div>
     </body>
 </html>
