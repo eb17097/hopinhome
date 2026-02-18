@@ -15,8 +15,20 @@ class CheckUserRole
      */
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
-        if (! $request->user() || ! in_array($request->user()->role, $roles)) {
-            return redirect('/dashboard')->with('error', 'You do not have permission to access this page.');
+        $user = $request->user();
+
+        if (! $user || ! in_array($user->role, $roles)) {
+            $redirectUrl = '/';
+            
+            if ($user) {
+                if ($user->isRenter()) {
+                    $redirectUrl = route('renter.index');
+                } elseif ($user->isPropertyManager()) {
+                    $redirectUrl = route('property_manager.index');
+                }
+            }
+
+            return redirect($redirectUrl)->with('error', 'You do not have permission to access this page.');
         }
 
         return $next($request);

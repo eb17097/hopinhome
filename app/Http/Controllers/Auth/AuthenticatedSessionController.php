@@ -56,7 +56,20 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return response()->json(['status' => 'success', 'message' => 'Login successful']);
+        $user = Auth::user();
+        $redirectUrl = route('home');
+
+        if ($user->isRenter()) {
+            $redirectUrl = route('renter.index');
+        } elseif ($user->isPropertyManager()) {
+            $redirectUrl = route('property_manager.index');
+        }
+
+        return response()->json([
+            'status' => 'success', 
+            'message' => 'Login successful',
+            'redirect' => $redirectUrl
+        ]);
     }
 
     /**

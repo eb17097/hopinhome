@@ -26,7 +26,14 @@ class GoogleController extends Controller
             if ($user) {
                 // If the user exists, log them in
                 Auth::login($user);
-                return redirect()->intended(route('manager.index', absolute: false));
+                
+                if ($user->isRenter()) {
+                    return redirect()->intended(route('renter.index', absolute: false));
+                } elseif ($user->isPropertyManager()) {
+                    return redirect()->intended(route('property_manager.index', absolute: false));
+                }
+                
+                return redirect()->intended(route('home', absolute: false));
             } else {
                 // Check if a user with this email exists but no google_id
                 $existingUser = User::where('email', $googleUser->email)->first();
@@ -43,13 +50,21 @@ class GoogleController extends Controller
                         'name' => $googleUser->name,
                         'email' => $googleUser->email,
                         'google_id' => $googleUser->id,
+                        'role' => 'renter', // Default role
                         // Generate a random password since they are using Google auth
                         'password' => bcrypt(Str::random(16)), 
                     ]);
                     Auth::login($newUser);
                 }
 
-                return redirect()->intended(route('manager.index', absolute: false));
+                $user = Auth::user();
+                if ($user->isRenter()) {
+                    return redirect()->intended(route('renter.index', absolute: false));
+                } elseif ($user->isPropertyManager()) {
+                    return redirect()->intended(route('property_manager.index', absolute: false));
+                }
+
+                return redirect()->intended(route('home', absolute: false));
             }
 
         } catch (\Exception $e) {

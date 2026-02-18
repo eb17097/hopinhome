@@ -80,7 +80,13 @@
                     })
                     .then(response => {
                         if (response.status === 200) {
-                            window.location.reload();
+                            response.json().then(data => {
+                                if (data.redirect) {
+                                    window.location.href = data.redirect;
+                                } else {
+                                    window.location.reload();
+                                }
+                            });
                         } else {
                             response.json().then(data => {
                                 error = ''; // Clear previous general errors
