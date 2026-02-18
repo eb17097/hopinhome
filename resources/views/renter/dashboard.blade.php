@@ -2,7 +2,7 @@
     <div class="bg-white min-h-screen">
         <div class="max-w-[1440px] mx-auto flex">
             {{-- Left Sidebar --}}
-            <aside class="w-[277px] shrink-0 px-8 py-12">
+            <aside class="w-[320px] shrink-0 px-4 py-12">
                 <x-renter.renter-sidebar />
             </aside>
 

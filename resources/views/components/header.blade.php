@@ -85,7 +85,7 @@
                         <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopInHome Logo" class="h-7 w-auto">
                     </a>
                 </div>
-                
+
                 {{-- Main Navigation --}}
                 <div class="hidden md:flex items-center space-x-12">
                     <a href="/" class="text-[16px] font-medium text-[#1e1d1d] hover:text-blue-600 transition-colors">Home</a>
@@ -105,8 +105,6 @@
 
                 <div class="flex items-center space-x-6">
                     @auth
-                        <a href="{{ route('property_manager.listings.create') }}" class="text-[16px] font-medium text-[#1e1d1d] hover:text-blue-600 transition-colors">Add a listing</a>
-                        
                         <div class="relative cursor-pointer">
                             <img src="{{ asset('images/notifications.svg') }}" alt="Notifications" class="w-6 h-6 opacity-80">
                             <div class="absolute -top-1.5 -right-1.5 flex items-center justify-center w-[18px] h-[18px] rounded-full text-white text-[10px] font-medium bg-electric-blue border-2 border-white">
