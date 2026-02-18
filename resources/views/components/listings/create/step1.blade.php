@@ -6,9 +6,9 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         @foreach($propertyTypes as $type)
-            <div 
+            <div
                 @click="formData.property_type = '{{ $type }}'"
-                :class="{ 
+                :class="{
                     'border-[#1447d4] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)]': formData.property_type === '{{ $type }}',
                     'border-[#e8e8e7]': formData.property_type !== '{{ $type }}'
                 }"
@@ -16,12 +16,12 @@
                 <div class="flex items-center space-x-4">
                     <div class="w-12 h-12 shrink-0 flex items-center justify-center">
                         @switch($type)
-                            @case('Apartment') <img src="{{ asset('images/apartment.svg') }}" class="w-full h-full"> @break
+                            @case('Apartment') <img src="{{ asset('images/apartment_big.svg') }}" class="w-full h-full"> @break
                             @case('Villa') <img src="{{ asset('images/house.svg') }}" class="w-full h-full"> @break
                             @case('House') <img src="{{ asset('images/house.svg') }}" class="w-full h-full"> @break
                             @case('Townhouse') <img src="{{ asset('images/house.svg') }}" class="w-full h-full"> @break
-                            @case('Hotel apartment') <img src="{{ asset('images/apartment.svg') }}" class="w-full h-full"> @break
-                            @case('Penthouse') <img src="{{ asset('images/apartment.svg') }}" class="w-full h-full"> @break
+                            @case('Hotel apartment') <img src="{{ asset('images/hotel_apartment.svg') }}" class="w-full h-full"> @break
+                            @case('Penthouse') <img src="{{ asset('images/penthouse.svg') }}" class="w-full h-full"> @break
                             @default <img src="{{ asset('images/apartment.svg') }}" class="w-full h-full">
                         @endswitch
                     </div>
