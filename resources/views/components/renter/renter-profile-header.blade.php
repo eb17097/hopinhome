@@ -23,11 +23,11 @@
 
     {{-- Action Buttons --}}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <a href="#" class="bg-white border border-[#e8e8e7] rounded-[6px] px-6 py-[26px] flex justify-between items-center w-full max-w-[275px] hover:bg-gray-50 transition-colors">
+        <a href="#" class="bg-white border border-[#e8e8e7] rounded-[6px] px-6 py-[26px] flex justify-between items-center w-full hover:bg-gray-50 transition-colors">
             <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">Edit bio</span>
             <img alt="arrow forward" class="w-[18px] h-[18px]" src="{{ asset('images/arrow_forward_black.svg') }}">
         </a>
-        <a href="#" class="bg-white border border-[#e8e8e7] rounded-[6px] px-6 py-[26px] flex justify-between items-center w-full max-w-[276px] hover:bg-gray-50 transition-colors">
+        <a href="#" class="bg-white border border-[#e8e8e7] rounded-[6px] px-6 py-[26px] flex justify-between items-center w-full hover:bg-gray-50 transition-colors">
             <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">Change profile picture</span>
             <img alt="arrow forward" class="w-[18px] h-[18px]" src="{{ asset('images/arrow_forward_black.svg') }}">
         </a>
