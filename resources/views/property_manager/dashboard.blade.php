@@ -5,13 +5,13 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="py-6">
+        <div class="mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 {{-- Left Column (Wider) --}}
                 <div class="lg:col-span-8 space-y-8">
                     <div>
-                        <div class="flex items-center space-x-2 mb-6">
+                        <div class="flex items-center space-x-2 mb-4">
                             <img src="{{ asset('images/speed.svg') }}" alt="Dashboard Icon" class="w-[30px] h-[30px]">
                             <h2 class="text-[22px] font-medium text-black">Dashboard</h2>
                         </div>
@@ -71,7 +71,7 @@
                 </div>
 
                 {{-- Right Column (Sticky) --}}
-                <div class="lg:col-span-4 space-y-8 sticky top-8">
+                <div class="lg:col-span-4 space-y-8 py-12 sticky top-8">
                     <x-property_manager.property-manager-profile-summary />
 
                     <x-property_manager.property-manager-setup-checklist />
