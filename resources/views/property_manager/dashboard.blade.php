@@ -56,15 +56,15 @@
 
                                     <!-- My listings section -->
                                     <div>
-                                        <div class="flex justify-between items-center mb-6">
-                                            <h2 class="text-2xl font-medium text-black tracking-tight">My listings</h2>
-                                            <a href="{{ route('property_manager.listings.index') }}" class="text-sm font-medium text-electric-blue hover:underline">View all listings</a>
-                                        </div>
                                         <div class="space-y-6">
                                             @php
                                                 $listings = Auth::user()->listings()->latest()->get(); // Fetch actual listings
                                             @endphp
                                             @forelse($listings as $listing)
+                                                <div class="flex justify-between items-center mb-6">
+                                                    <h2 class="text-2xl font-medium text-black tracking-tight">My listings</h2>
+                                                    <a href="{{ route('property_manager.listings.index') }}" class="text-sm font-medium text-electric-blue hover:underline">View all listings</a>
+                                                </div>
                                                 <x-property_manager.property-manager-listing-card :listing="$listing" />
                                             @empty
                                                 <x-listings.empty-listings-state />
