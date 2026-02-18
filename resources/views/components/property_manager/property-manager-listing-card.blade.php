@@ -1,6 +1,6 @@
 @props(['listing'])
 
-<div class="px-6 py-5 border-b border-light-gray last:border-b-0 flex items-center justify-between group hover:bg-gray-50/50 transition-colors">
+<a href="{{ route('listings.show', $listing) }}" class="px-6 py-5 border-b border-light-gray last:border-b-0 flex items-center justify-between group hover:bg-gray-50/50 transition-colors block">
     <div class="flex items-center space-x-4">
         {{-- Thumbnail --}}
         <div class="w-[69px] h-[69px] rounded-[4px] overflow-hidden border border-light-gray shrink-0">
@@ -54,4 +54,4 @@
             @endif
         </div>
     </div>
-</div>
+</a>

@@ -65,7 +65,7 @@
                                                 {{-- Header --}}
                                                 <div class="px-6 py-4 border-b border-light-gray flex justify-between items-center">
                                                     <h3 class="text-[18px] font-medium text-[#1e1d1d]">My listings</h3>
-                                                    <a href="{{ route('property_manager.index') }}">
+                                                    <a href="{{ route('property_manager.listings.index') }}">
                                                         <img src="{{ asset('images/arrow_forward.svg') }}" alt="Arrow Forward" class="w-[18px] h-[18px] brightness-0 opacity-70">
                                                     </a>
                                                 </div>
@@ -79,7 +79,7 @@
 
                                                 {{-- Footer --}}
                                                 <div class="p-6 border-t border-light-gray">
-                                                    <a href="{{ route('property_manager.index') }}" class="w-full border border-light-gray rounded-[6px] py-4 flex justify-center items-center text-[18px] font-medium text-[#1e1d1d] hover:bg-gray-50 transition-colors">
+                                                    <a href="{{ route('property_manager.listings.index') }}" class="w-full border border-light-gray rounded-[6px] py-4 flex justify-center items-center text-[18px] font-medium text-[#1e1d1d] hover:bg-gray-50 transition-colors">
                                                         View all listings
                                                     </a>
                                                 </div>
