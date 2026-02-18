@@ -24,7 +24,7 @@
 
 
             <div class="flex">
-                <div x-show="sidebarOpen" id="property-manager-sidebar" class="relative w-[336px] h-screen bg-white border-r border-light-gray shadow-sm pb-8 overflow-y-auto transition-all duration-300 ease-in-out">
+                <div x-show="sidebarOpen" id="property-manager-sidebar" class="relative w-[269px] h-screen bg-white border-r border-light-gray shadow-sm pb-8 overflow-y-auto transition-all duration-300 ease-in-out">
                     <div class="flex justify-between items-center px-4 py-4">
                         <div class="flex items-center gap-2">
                             <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopInHome Logo" class="h-6 w-auto">
@@ -37,7 +37,7 @@
                         <x-property_manager.property-manager-sidebar />
                     </div>
                 </div>
-                <main class="flex-1 pt-24 transition-all duration-300 ease-in-out" :class="{ 'ml-[336px]': sidebarOpen, 'ml-0': !sidebarOpen }">
+                <main class="flex-1 pt-24 transition-all duration-300 ease-in-out" :class="{ 'ml-[269px]': sidebarOpen, 'ml-0': !sidebarOpen }">
                     <button x-show="!sidebarOpen" @click="sidebarOpen = true" class="absolute top-4 left-4 z-50 p-2 rounded-full bg-white shadow-sm hover:bg-gray-100 transition">
                         <img src="{{ asset('images/left_panel_close.svg') }}" alt="Open Menu" class="w-6 h-6">
                     </button>
