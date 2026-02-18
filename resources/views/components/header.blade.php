@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <a href="{{ Auth::user()->isPropertyManager() ? route('property_manager.index') : route('renter.index') }}" class="w-11 h-11 rounded-full border overflow-hidden" :class="scrolled ? 'border-light-gray' : 'border-white/50'">
-                            <img alt="profile picture" class="h-full w-full object-cover" src="{{ asset('images/profile_picture.png') }}">
+                            <img alt="profile picture" class="h-full w-full object-cover" src="{{ Auth::user()->profile_photo_url ?? asset('images/profile_picture.png') }}">
                         </a>
                         <div class="rounded-full p-2" :class="scrolled ? 'bg-light-gray' : 'bg-white/20'">
                             <img src="{{ asset('images/hamburger.svg') }}" alt="Menu" class="w-6 h-6">
@@ -113,7 +113,7 @@
                         </div>
 
                         <a href="{{ Auth::user()->isPropertyManager() ? route('property_manager.index') : route('renter.index') }}" class="w-11 h-11 rounded-full border border-light-gray overflow-hidden hover:opacity-90 transition-opacity">
-                            <img alt="profile picture" class="h-full w-full object-cover" src="{{ asset('images/profile_picture.png') }}">
+                            <img alt="profile picture" class="h-full w-full object-cover" src="{{ Auth::user()->profile_photo_url ?? asset('images/profile_picture.png') }}">
                         </a>
 
                         <button class="bg-[#e8e8e7] rounded-full p-2 hover:bg-gray-300 transition-colors">

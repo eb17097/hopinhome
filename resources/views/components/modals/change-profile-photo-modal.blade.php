@@ -39,6 +39,7 @@
                 <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
+                    <input type="hidden" name="redirect_to" value="{{ url()->current() }}">
                     
                     <label class="block text-[16px] font-medium text-[#1e1d1d] mb-4">Profile picture</label>
                     

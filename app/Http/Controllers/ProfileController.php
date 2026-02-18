@@ -26,15 +26,27 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+        
+        // Only fill fields that were actually sent and validated
+        $user->fill($request->safe()->only(['name', 'email']));
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
 
-        $request->user()->save();
+        if ($request->hasFile('photo')) {
+            $path = $request->file('photo')->storePublicly('profiles', 's3');
+            $user->profile_photo_url = \Illuminate\Support\Facades\Storage::disk('s3')->url($path);
+        }
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        $user->save();
+
+        if ($request->filled('redirect_to')) {
+            return Redirect::to($request->input('redirect_to'))->with('status', 'profile-updated');
+        }
+
+        return Redirect::back()->with('status', 'profile-updated');
     }
 
     /**
