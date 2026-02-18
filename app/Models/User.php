@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -52,5 +53,20 @@ class User extends Authenticatable
     public function listings()
     {
         return $this->hasMany(Listing::class);
+    }
+
+    public function isRenter(): bool
+    {
+        return $this->role === 'renter';
+    }
+
+    public function isPropertyManager(): bool
+    {
+        return $this->role === 'property_manager';
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
     }
 }

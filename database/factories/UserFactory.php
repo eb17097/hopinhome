@@ -29,7 +29,38 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'role' => 'renter',
         ];
+    }
+
+    /**
+     * Indicate that the user is a renter.
+     */
+    public function renter(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => 'renter',
+        ]);
+    }
+
+    /**
+     * Indicate that the user is a property manager.
+     */
+    public function propertyManager(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => 'property_manager',
+        ]);
+    }
+
+    /**
+     * Indicate that the user is an admin.
+     */
+    public function admin(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => 'admin',
+        ]);
     }
 
     /**

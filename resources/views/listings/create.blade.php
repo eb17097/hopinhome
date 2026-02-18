@@ -22,7 +22,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('listings.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('property_manager.listings.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div x-data="{ step: 1, formData: {
                             property_type: '',

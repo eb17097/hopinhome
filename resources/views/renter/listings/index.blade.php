@@ -1,9 +1,9 @@
-<x-manager-layout>
+<x-renter-layout>
     <x-header />
     <div class="max-w-7xl mx-auto py-12 sm:px-6 lg:px-8">
         <div class="flex">
             <div class="w-1/4">
-                <x-manager.sidebar />
+                <x-renter.renter-sidebar />
             </div>
             <div class="w-3/4 pl-12">
                 <a href="{{ route('dashboard') }}" class="inline-flex items-center text-navy-blue text-base font-medium mb-4">
@@ -30,7 +30,7 @@
                     {{-- Display listings here --}}
                     <div class="space-y-6 mt-8">
                     @foreach($listings as $listing)
-                        <x-manager.listing-card :listing="$listing" />
+                        <x-renter.renter-listing-card :listing="$listing" />
                     @endforeach
                 </div>
                 <div class="mt-8">
@@ -45,4 +45,4 @@
     </div>
     <x-listings.listing-mobile-navbar />
     <x-footer />
-</x-manager-layout>
+</x-renter-layout>

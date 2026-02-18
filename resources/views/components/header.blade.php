@@ -1,5 +1,7 @@
 @props(['isLanding' => false])
 
+@php use Illuminate\Support\Facades\Auth; @endphp
+
 @if ($isLanding)
     {{-- Dynamic Transparent Header for Landing Page (for both guests and logged-in users) --}}
     <nav x-data="{ scrolled: window.scrollY > 50 }"
@@ -52,7 +54,7 @@
                                 <span>5</span>
                             </div>
                         </div>
-                        <a href="{{ route('manager.index') }}" class="w-11 h-11 rounded-full border overflow-hidden" :class="scrolled ? 'border-light-gray' : 'border-white/50'">
+                        <a href="{{ Auth::user()->isPropertyManager() ? route('property_manager.index') : route('renter.index') }}" class="w-11 h-11 rounded-full border overflow-hidden" :class="scrolled ? 'border-light-gray' : 'border-white/50'">
                             <img alt="profile picture" class="h-full w-full object-cover" src="{{ asset('images/profile_picture.png') }}">
                         </a>
                         <div class="rounded-full p-2" :class="scrolled ? 'bg-light-gray' : 'bg-white/20'">
@@ -106,7 +108,7 @@
                                 <span>5</span>
                             </div>
                         </div>
-                        <a href="{{ route('manager.index') }}" class="w-11 h-11 rounded-full border border-light-gray overflow-hidden">
+                        <a href="{{ Auth::user()->isPropertyManager() ? route('property_manager.index') : route('renter.index') }}" class="w-11 h-11 rounded-full border border-light-gray overflow-hidden">
                             <img alt="profile picture" class="h-full w-full object-cover" src="{{ asset('images/profile_picture.png') }}">
                         </a>
                         <div class="bg-light-gray rounded-full p-2">

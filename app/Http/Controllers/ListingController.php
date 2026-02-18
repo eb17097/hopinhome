@@ -96,7 +96,7 @@ class ListingController extends Controller
             DB::commit();
 
             Log::info('--- Listing Creation SUCCESS ---', ['listing_id' => $listing->id]);
-            return redirect()->route('manager.listings.index')->with('success', 'New listing created successfully!');
+            return redirect()->route('property_manager.listings.index')->with('success', 'New listing created successfully!');
 
         } catch (\Illuminate\Validation\ValidationException $e) {
             // Laravel's validator handles the redirect. We just log the failure.
@@ -133,7 +133,7 @@ class ListingController extends Controller
     public function myListings()
     {
         $listings = auth()->user()->listings()->latest()->get();
-        return view('manager.listings.index', ['listings' => $listings]);
+        return view('property_manager.listings.index', ['listings' => $listings]);
     }
 
     public function destroy(Listing $listing)
@@ -145,6 +145,6 @@ class ListingController extends Controller
 
         $listing->delete();
 
-        return redirect()->route('manager.listings.index')->with('success', 'Listing deleted successfully.');
+        return redirect()->route('property_manager.listings.index')->with('success', 'Listing deleted successfully.');
     }
 }

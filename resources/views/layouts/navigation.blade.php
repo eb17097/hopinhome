@@ -1,4 +1,5 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100 fixed top-0 left-0 right-0 z-50">
+    @php use Illuminate\Support\Facades\Auth; @endphp
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -15,7 +16,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('manager.index')" :active="request()->routeIs('manager.index')">
+                    <x-nav-link :href="route(Auth::user()->isPropertyManager() ? 'property_manager.index' : 'renter.index')" :active="request()->routeIs(Auth::user()->isPropertyManager() ? 'property_manager.index' : 'renter.index')">
                         {{ __('Manager') }}
                     </x-nav-link>
                 </div>
@@ -79,7 +80,7 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('manager.index')" :active="request()->routeIs('manager.index')">
+            <x-responsive-nav-link :href="route(Auth::user()->isPropertyManager() ? 'property_manager.index' : 'renter.index')" :active="request()->routeIs(Auth::user()->isPropertyManager() ? 'property_manager.index' : 'renter.index')">
                 {{ __('Manager') }}
             </x-responsive-nav-link>
         </div>
