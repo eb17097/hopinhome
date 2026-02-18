@@ -71,10 +71,18 @@
                 </div>
 
                 {{-- Right Column (Sticky) --}}
-                <div class="lg:col-span-4 space-y-8 py-12 sticky top-8">
+                <div class="lg:col-span-4 space-y-8 sticky top-8">
                     <x-property_manager.property-manager-profile-summary />
 
                     <x-property_manager.property-manager-setup-checklist />
+
+                    <x-property_manager.property-manager-listing-credits />
+
+                    <x-property_manager.property-manager-boost-credits />
+
+                    <x-property_manager.property-manager-reviews />
+
+                    <x-property_manager.property-manager-current-plan />
                 </div>
             </div>
         </div>
