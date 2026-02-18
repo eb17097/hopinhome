@@ -17,7 +17,9 @@ class Listing extends Model
         'latitude',
         'longitude',
         'status',
-        'is_boosted'
+        'is_boosted',
+        'views_count',
+        'comments_count'
     ];
 
     /**

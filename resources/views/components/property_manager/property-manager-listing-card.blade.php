@@ -22,11 +22,11 @@
         <div class="flex items-center space-x-8">
             <div class="flex items-center space-x-2">
                 <img src="{{ asset('images/visibility.svg') }}" alt="Views" class="w-4 h-4 opacity-70">
-                <span class="text-[14px] text-[#1e1d1d]">{{ $listing->views ?? '-' }}</span>
+                <span class="text-[14px] text-[#1e1d1d]">{{ $listing->views_count }}</span>
             </div>
             <div class="flex items-center space-x-2">
                 <img src="{{ asset('images/chat_light.svg') }}" alt="Messages" class="w-4 h-4 opacity-70">
-                <span class="text-[14px] text-[#1e1d1d]">{{ $listing->messages ?? '-' }}</span>
+                <span class="text-[14px] text-[#1e1d1d]">{{ $listing->comments_count }}</span>
             </div>
         </div>
 
