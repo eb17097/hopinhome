@@ -15,7 +15,9 @@ class Listing extends Model
         'construction_year', 'video_url', 'payment_option', 'utilities_option',
         'duration', 'renewal_type',
         'latitude',
-        'longitude'
+        'longitude',
+        'status',
+        'is_boosted'
     ];
 
     /**
