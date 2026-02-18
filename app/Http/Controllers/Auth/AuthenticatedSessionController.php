@@ -30,7 +30,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('manager.index', absolute: false));
+        $user = Auth::user();
+
+        if ($user->isRenter()) {
+            return redirect()->intended(route('renter.index', absolute: false));
+        } elseif ($user->isPropertyManager()) {
+            return redirect()->intended(route('property_manager.index', absolute: false));
+        }
+
+        return redirect()->intended(route('dashboard', absolute: false));
     }
 
     /**
