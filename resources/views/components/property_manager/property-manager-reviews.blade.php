@@ -1,88 +1,57 @@
-<div>
-    <h3 class="text-xl font-medium text-black">My reviews</h3>
-    <div class="bg-white border border-light-gray rounded-lg shadow-sm mt-4">
-        <div class="p-6 flex items-center">
-            <div class="flex flex-col items-center">
-                <div class="flex">
-                    @for ($i = 0; $i < 5; $i++)
-                        <img alt="star" class="h-7 w-7" src="{{ asset('images/star_filled.svg') }}">
-                    @endfor
-                </div>
-                <p class="text-6xl font-medium text-electric-blue">4.7</p>
-                <p class="text-sm text-gray-600">Based on 15 reviews</p>
-            </div>
-            <div class="border-l border-light-gray self-stretch mx-6"></div>
-            <div class="flex-grow">
-                <div class="flex items-center gap-2">
-                    <span class="text-base font-medium text-gray-600">5</span>
-                    <img alt="star" class="h-3.5 w-3.5" src="{{ asset('images/star_filled.svg') }}">
-                    <div class="w-full bg-gray-200 rounded-full h-1.5">
-                        <div class="bg-navy-blue h-1.5 rounded-full" style="width: 73%"></div>
-                    </div>
-                    <span class="text-base font-medium text-gray-600 w-4 text-right">11</span>
-                </div>
-                <div class="flex items-center gap-2 mt-1">
-                    <span class="text-base font-medium text-gray-600">4</span>
-                    <img alt="star" class="h-3.5 w-3.5" src="{{ asset('images/star_filled.svg') }}">
-                    <div class="w-full bg-gray-200 rounded-full h-1.5">
-                        <div class="bg-navy-blue h-1.5 rounded-full" style="width: 27%"></div>
-                    </div>
-                    <span class="text-base font-medium text-gray-600 w-4 text-right">4</span>
-                </div>
-                <div class="flex items-center gap-2 mt-1">
-                    <span class="text-base font-medium text-gray-600">3</span>
-                    <img alt="star" class="h-3.5 w-3.5" src="{{ asset('images/star_filled.svg') }}">
-                    <div class="w-full bg-gray-200 rounded-full h-1.5"></div>
-                    <span class="text-base font-medium text-gray-600 w-4 text-right">0</span>
-                </div>
-                <div class="flex items-center gap-2 mt-1">
-                    <span class="text-base font-medium text-gray-600">2</span>
-                    <img alt="star" class="h-3.5 w-3.5" src="{{ asset('images/star_filled.svg') }}">
-                    <div class="w-full bg-gray-200 rounded-full h-1.5"></div>
-                    <span class="text-base font-medium text-gray-600 w-4 text-right">0</span>
-                </div>
-                <div class="flex items-center gap-2 mt-1">
-                    <span class="text-base font-medium text-gray-600">1</span>
-                    <img alt="star" class="h-3.5 w-3.5" src="{{ asset('images/star_filled.svg') }}">
-                    <div class="w-full bg-gray-200 rounded-full h-1.5"></div>
-                    <span class="text-base font-medium text-gray-600 w-4 text-right">0</span>
-                </div>
-            </div>
-        </div>
+<div class="bg-white border border-light-gray rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] overflow-hidden">
+    {{-- Header --}}
+    <div class="px-6 py-4 border-b border-light-gray flex justify-between items-center">
+        <h3 class="text-[18px] font-medium text-[#1e1d1d]">My reviews</h3>
+        <img src="{{ asset('images/arrow_forward.svg') }}" alt="Arrow Forward" class="w-4 h-4">
     </div>
-    <div class="flex gap-2 items-center mt-6">
-        <button class="bg-electric-blue text-white rounded-full px-4 py-2 text-sm">All (15)</button>
-        <button class="bg-white border border-electric-blue text-electric-blue rounded-full px-4 py-2 text-sm">5 stars (11)</button>
-        <button class="bg-white border border-electric-blue text-electric-blue rounded-full px-4 py-2 text-sm">4 stars (4)</button>
-    </div>
-    <div class="space-y-6 mt-6">
-        <div class="bg-white border border-light-gray rounded-lg shadow-sm p-6">
-            <div class="flex justify-between items-start">
-                <div class="flex">
-                    @for ($i = 0; $i < 5; $i++)
-                        <img alt="star" class="h-5 w-5" src="{{ asset('images/star_filled.svg') }}">
-                    @endfor
-                </div>
-                <img alt="flag" class="h-6 w-6" src="{{ asset('images/flag.svg') }}">
+
+    {{-- Content --}}
+    <div class="flex">
+        {{-- Left: Score Summary --}}
+        <div class="w-[30%] p-10 flex flex-col items-center justify-center">
+            <div class="flex space-x-1 mb-4">
+                @for ($i = 0; $i < 4; $i++)
+                    <img alt="star" class="h-6 w-6" src="{{ asset('images/star_filled.svg') }}">
+                @endfor
+                {{-- Half or empty star --}}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" stroke="#1447D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </path>
+                </svg>
             </div>
-            <p class="text-sm text-gray-600 mt-4">Very professional and helpful throughout the application process. One small repair took a bit longer than expected, but overall I had a great experience.</p>
-            <p class="font-medium text-base text-black mt-4">Emily T.</p>
-            <p class="text-sm text-gray-600">June 12, 2025</p>
+            <p class="text-[64px] font-medium text-electric-blue leading-none">4.7</p>
+            <p class="text-[14px] text-[#464646] mt-4">Based on 15 reviews</p>
         </div>
-        <div class="bg-white border border-light-gray rounded-lg shadow-sm p-6">
-            <div class="flex justify-between items-start">
-                <div class="flex">
-                    @for ($i = 0; $i < 4; $i++)
-                        <img alt="star" class="h-5 w-5" src="{{ asset('images/star_filled.svg') }}">
-                    @endfor
-                    {{-- Placeholder for empty star --}}
-                    <svg class="h-5 w-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+
+        {{-- Vertical Divider --}}
+        <div class="w-[1px] bg-light-gray my-6"></div>
+
+        {{-- Right: Bars --}}
+        <div class="flex-grow p-10 flex flex-col justify-center space-y-3">
+            @php
+                $stats = [
+                    ['stars' => 5, 'count' => 11, 'width' => '73%'],
+                    ['stars' => 4, 'count' => 4, 'width' => '27%'],
+                    ['stars' => 3, 'count' => 0, 'width' => '0%'],
+                    ['stars' => 2, 'count' => 0, 'width' => '0%'],
+                    ['stars' => 1, 'count' => 0, 'width' => '0%'],
+                ];
+            @endphp
+
+            @foreach ($stats as $stat)
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center gap-1 w-8">
+                        <span class="text-[14px] font-medium text-[#1e1d1d]">{{ $stat['stars'] }}</span>
+                        <img alt="star" class="h-3 w-3" src="{{ asset('images/star_filled.svg') }}">
+                    </div>
+                    <div class="flex-grow bg-[#e8e8e7] rounded-full h-[6px]">
+                        @if ($stat['count'] > 0)
+                            <div class="bg-navy-blue h-[6px] rounded-full" style="width: {{ $stat['width'] }}"></div>
+                        @endif
+                    </div>
+                    <span class="text-[14px] text-[#1e1d1d] w-6 text-right">{{ $stat['count'] }}</span>
                 </div>
-                <img alt="flag" class="h-6 w-6" src="{{ asset('images/flag.svg') }}">
-            </div>
-            <p class="text-sm text-gray-600 mt-4">Sarah made the whole process stress-free. She was a bit slow to respond but explained the contract clearly, and checked in after I moved in to make sure everything was fine.</p>
-            <p class="font-medium text-base text-black mt-4">James R.</p>
-            <p class="text-sm text-gray-600">April 3, 2025</p>
+            @endforeach
         </div>
     </div>
 </div>
