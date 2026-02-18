@@ -1,9 +1,5 @@
 @php use Illuminate\Support\Facades\Auth; @endphp
 <div class="w-full space-y-6">
-    <div class="flex items-center gap-2 px-4 mb-6">
-        <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopInHome Logo" class="h-6 w-auto">
-    </div>
-
     {{-- Home Section --}}
     <div class="space-y-2">
         <p class="text-xs text-gray-600 px-4 uppercase font-medium mb-2">Home</p>
