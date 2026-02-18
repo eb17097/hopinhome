@@ -20,14 +20,17 @@
         @php use Illuminate\Support\Facades\Auth; @endphp
     </head>
     <body class="font-sans antialiased bg-gray-50">
-        <div class="min-h-screen bg-off-white">
+        <div x-data="{ sidebarOpen: true }" class="min-h-screen bg-off-white">
             <x-header />
 
             <div class="flex">
-                <div class="w-[232px] fixed h-screen bg-white border-r border-light-gray shadow-sm pt-24 pb-8 overflow-y-auto">
+                <div x-show="sidebarOpen" class="relative w-[232px] h-screen bg-white border-r border-light-gray shadow-sm pt-24 pb-8 overflow-y-auto transition-all duration-300 ease-in-out">
+                    <button @click="sidebarOpen = false" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 z-50">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
                     <x-property_manager.property-manager-sidebar />
                 </div>
-                <main class="flex-1 ml-[232px] pt-24">
+                <main class="flex-1 pt-24 transition-all duration-300 ease-in-out" :class="{ 'ml-[232px]': sidebarOpen, 'ml-0': !sidebarOpen }">
                     <div class="py-12 px-8">
                         {{ $slot }}
                     </div>
