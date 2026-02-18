@@ -75,7 +75,7 @@
     <x-auth-modal />
 @else
     {{-- Standard Solid Header for All Other Pages --}}
-    <nav class="bg-white border-b border-gray-100 sticky top-0 left-0 right-0 z-50 shadow-sm">
+    <nav x-data class="bg-white border-b border-gray-100 sticky top-0 left-0 right-0 z-50 shadow-sm">
          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-22 py-4">
                  <div class="flex items-center">
