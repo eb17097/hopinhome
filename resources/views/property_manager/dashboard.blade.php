@@ -69,9 +69,11 @@
                                         </div>
                                     </div>
                                     
-                                    <x-property_manager.property-manager-listing-credits />
-                
-                                    <x-property_manager.property-manager-boost-credits />
+                                    <div class="flex gap-8">
+                                        <x-property_manager.property-manager-listing-credits />
+                    
+                                        <x-property_manager.property-manager-boost-credits />
+                                    </div>
                 
                                     <x-property_manager.property-manager-reviews />
                 
