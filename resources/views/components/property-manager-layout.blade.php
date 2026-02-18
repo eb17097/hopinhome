@@ -20,7 +20,7 @@
         @php use Illuminate\Support\Facades\Auth; @endphp
     </head>
     <body class="font-sans antialiased bg-gray-50">
-        <div x-data="{ sidebarOpen: true }" class="min-h-screen bg-off-white">
+        <div x-data="{ sidebarOpen: true }" @toggle-sidebar.window="sidebarOpen = !sidebarOpen" class="min-h-screen bg-off-white">
 
 
             <div class="flex">
@@ -37,11 +37,9 @@
                         <x-property_manager.property-manager-sidebar />
                     </div>
                 </div>
-                <main class="flex-1 pt-24 transition-all duration-300 ease-in-out" :class="{ 'ml-[269px]': sidebarOpen, 'ml-0': !sidebarOpen }">
-                    <button x-show="!sidebarOpen" @click="sidebarOpen = true" class="absolute top-4 left-4 z-50 p-2 rounded-full bg-white shadow-sm hover:bg-gray-100 transition">
-                        <img src="{{ asset('images/left_panel_close.svg') }}" alt="Open Menu" class="w-6 h-6">
-                    </button>
-                    <div class="py-12 px-8">
+                <main class="flex-1 transition-all duration-300 ease-in-out">
+                    <x-property_manager.property-manager-header />
+                    <div class="px-8">
                         {{ $slot }}
                     </div>
                 </main>
