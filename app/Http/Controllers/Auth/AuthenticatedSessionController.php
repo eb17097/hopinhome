@@ -33,12 +33,12 @@ class AuthenticatedSessionController extends Controller
         $user = Auth::user();
 
         if ($user->isRenter()) {
-            return redirect()->intended(route('renter.index', absolute: false));
+            return redirect()->route('renter.index');
         } elseif ($user->isPropertyManager()) {
-            return redirect()->intended(route('property_manager.index', absolute: false));
+            return redirect()->route('property_manager.index');
         }
 
-        return redirect()->intended(route('home', absolute: false));
+        return redirect()->route('home');
     }
 
     /**
