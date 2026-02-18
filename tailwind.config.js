@@ -17,6 +17,7 @@ export default {
                 'off-white': '#f9f9f8',
                 'light-gray': '#e8e8e7',
                 'navy-blue': '#04247b',
+                'like-green': '#10a810',
             },
             spacing: {
                 '1.5': '0.375rem',
