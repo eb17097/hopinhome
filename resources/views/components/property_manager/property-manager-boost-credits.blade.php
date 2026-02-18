@@ -1,4 +1,4 @@
-<div class="border border-[#283351] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] overflow-hidden" style="background: linear-gradient(-54.74deg, #0a1739 0%, #122557 100%);">
+<div class="flex-1 border border-[#283351] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] overflow-hidden" style="background: linear-gradient(-54.74deg, #0a1739 0%, #122557 100%);">
     {{-- Header --}}
     <div class="px-6 py-4 border-b border-[#283351] flex justify-between items-center">
         <h3 class="text-[18px] font-medium text-white">Boost credits</h3>

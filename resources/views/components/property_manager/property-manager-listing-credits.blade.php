@@ -1,4 +1,4 @@
-<div class="bg-white border border-light-gray rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] overflow-hidden">
+<div class="flex-1 bg-white border border-light-gray rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] overflow-hidden">
     {{-- Header --}}
     <div class="px-6 py-4 border-b border-light-gray flex justify-between items-center">
         <h3 class="text-[18px] font-medium text-[#1e1d1d]">Listing credits</h3>
