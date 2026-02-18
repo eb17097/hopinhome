@@ -38,7 +38,13 @@ class AuthenticatedSessionController extends Controller
      */
     public function apiStore(LoginRequest $request): JsonResponse
     {
-        $request->authenticate();
+        try {
+            $request->authenticate();
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'errors' => $e->errors(),
+            ], 422);
+        }
 
         $request->session()->regenerate();
 

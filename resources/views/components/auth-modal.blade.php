@@ -70,6 +70,7 @@
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
+                            'Accept': 'application/json',
                             'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')
                         },
                         body: JSON.stringify({
@@ -78,7 +79,7 @@
                         })
                     })
                     .then(response => {
-                        if (response.ok) {
+                        if (response.status === 200) {
                             window.location.reload();
                         } else {
                             response.json().then(data => {
