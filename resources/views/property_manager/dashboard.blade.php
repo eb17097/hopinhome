@@ -56,20 +56,37 @@
 
                                     <!-- My listings section -->
                                     <div>
-                                        <div class="space-y-6">
-                                            @php
-                                                $listings = Auth::user()->listings()->latest()->get(); // Fetch actual listings
-                                            @endphp
-                                            @forelse($listings as $listing)
-                                                <div class="flex justify-between items-center mb-6">
-                                                    <h2 class="text-2xl font-medium text-black tracking-tight">My listings</h2>
-                                                    <a href="{{ route('property_manager.index') }}" class="text-sm font-medium text-electric-blue hover:underline">View all listings</a>
+                                        @php
+                                            $listings = Auth::user()->listings()->latest()->get(); // Fetch actual listings
+                                        @endphp
+
+                                        @if($listings->isNotEmpty())
+                                            <div class="bg-white border border-light-gray rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] overflow-hidden">
+                                                {{-- Header --}}
+                                                <div class="px-6 py-4 border-b border-light-gray flex justify-between items-center">
+                                                    <h3 class="text-[18px] font-medium text-[#1e1d1d]">My listings</h3>
+                                                    <a href="{{ route('property_manager.index') }}">
+                                                        <img src="{{ asset('images/arrow_forward.svg') }}" alt="Arrow Forward" class="w-[18px] h-[18px] brightness-0 opacity-70">
+                                                    </a>
                                                 </div>
-                                                <x-property_manager.property-manager-listing-card :listing="$listing" />
-                                            @empty
-                                                <x-listings.empty-listings-state />
-                                            @endforelse
-                                        </div>
+
+                                                {{-- Listing Rows --}}
+                                                <div>
+                                                    @foreach($listings as $listing)
+                                                        <x-property_manager.property-manager-listing-card :listing="$listing" />
+                                                    @endforeach
+                                                </div>
+
+                                                {{-- Footer --}}
+                                                <div class="p-6 border-t border-light-gray">
+                                                    <a href="{{ route('property_manager.index') }}" class="w-full border border-light-gray rounded-[6px] py-4 flex justify-center items-center text-[18px] font-medium text-[#1e1d1d] hover:bg-gray-50 transition-colors">
+                                                        View all listings
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <x-listings.empty-listings-state />
+                                        @endif
                                     </div>
 
                                     <div class="flex gap-8">
