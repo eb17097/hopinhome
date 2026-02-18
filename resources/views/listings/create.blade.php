@@ -80,7 +80,7 @@
                          :class="{'left-0': !sidebarOpen}">
                         <div class="max-w-[728px] mx-auto w-full flex justify-between items-center px-4">
                             <button type="button" x-show="step > 1" @click="step--" class="flex items-center gap-2 group">
-                                <img src="{{ asset('images/arrow_forward.svg') }}" alt="Back" class="w-[18px] h-[18px] transform rotate-180 opacity-60 group-hover:opacity-100 transition-opacity">
+                                <img src="{{ asset('images/arrow_forward.svg') }}" alt="Back" class="w-4 h-4 transform rotate-180 opacity-60 group-hover:opacity-100 transition-opacity">
                                 <span class="text-[16px] font-medium text-[#707070] group-hover:text-[#1e1d1d] transition-colors tracking-[-0.48px]">Back</span>
                             </button>
                             <div x-show="step === 1" class="w-10"></div> {{-- Spacer --}}

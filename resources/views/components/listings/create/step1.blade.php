@@ -39,11 +39,9 @@
                         </p>
                     </div>
                 </div>
-                <div class="w-6 h-6 rounded-full border flex items-center justify-center transition-colors"
-                     :class="{ 'border-[#1447d4]': formData.property_type === '{{ $type }}', 'border-[#e8e8e7]': formData.property_type !== '{{ $type }}' }">
-                    <div class="w-4 h-4 rounded-full transition-all"
-                         :class="{ 'bg-[#1447d4]': formData.property_type === '{{ $type }}', 'bg-transparent': formData.property_type !== '{{ $type }}' }">
-                    </div>
+                <div class="relative w-6 h-6 shrink-0">
+                    <div x-show="formData.property_type !== '{{ $type }}'" class="w-6 h-6 rounded-full border border-[#e8e8e7]"></div>
+                    <img x-show="formData.property_type === '{{ $type }}'" src="{{ asset('images/white_checkmark_on_blue.svg') }}" class="w-6 h-6" alt="Selected">
                 </div>
             </div>
         @endforeach
