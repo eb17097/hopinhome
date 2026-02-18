@@ -3,21 +3,6 @@
     <div class="flex items-center gap-2 px-4 mb-6">
         <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopInHome Logo" class="h-7 w-auto">
     </div>
-    {{-- User Profile Section --}}
-    <div class="flex items-center space-x-4 p-4 bg-off-white rounded-md">
-        <div class="w-16 h-16 rounded-full border border-light-gray overflow-hidden">
-            <img alt="profile picture" class="h-full w-full object-cover" src="{{ Auth::user()->profile_photo_url ?? asset('images/profile_picture.png') }}">
-        </div>
-        <div>
-            <div class="flex items-center space-x-2">
-                <span class="font-medium text-lg text-black">{{ Auth::user()->name }}</span>
-                <img alt="verified user" class="h-4 w-4" src="{{ asset('images/verified_user.svg') }}">
-            </div>
-            <a href="{{ route('property_manager.index') }}" class="text-sm text-gray-600 hover:underline">View your profile</a>
-        </div>
-    </div>
-
-    <hr class="border-light-gray">
 
     {{-- My Account Section --}}
     <div class="space-y-2">
