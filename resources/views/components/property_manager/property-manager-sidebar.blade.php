@@ -4,125 +4,92 @@
         <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopInHome Logo" class="h-6 w-auto">
     </div>
 
-    {{-- My Account Section --}}
+    {{-- Home Section --}}
     <div class="space-y-2">
-        <h4 class="text-xs text-gray-600 px-2 uppercase font-medium">My Account</h4>
-        <a href="{{ route('property_manager.index') }}" class="flex items-center space-x-3 p-2 rounded-md {{ request()->routeIs('property_manager.index') ? 'bg-white shadow' : 'hover:bg-white/50' }} transition">
+        <p class="text-xs text-gray-600 px-4 uppercase font-medium mb-2">Home</p>
+        <a href="{{ route('property_manager.index') }}" class="flex items-center space-x-3 p-2 rounded-md {{ request()->routeIs('property_manager.index') ? 'bg-gray-100 shadow-sm text-black' : 'hover:bg-gray-50 text-gray-700' }} transition">
             <img alt="speed" class="h-4 w-4" src="{{ asset('images/speed.svg') }}">
-            <span class="font-medium text-base text-black">Dashboard</span>
+            <span class="font-medium text-base">Dashboard</span>
         </a>
-        <a href="{{ route('property_manager.listings.index') }}" class="flex items-center space-x-3 p-2 rounded-md {{ request()->routeIs('property_manager.listings.index') ? 'bg-white shadow' : 'hover:bg-white/50' }} transition">
+        <a href="{{ route('property_manager.listings.index') }}" class="flex items-center space-x-3 p-2 rounded-md {{ request()->routeIs('property_manager.listings.index') ? 'bg-gray-100 shadow-sm text-black' : 'hover:bg-gray-50 text-gray-700' }} transition">
             <img alt="apartment" class="h-4 w-4" src="{{ asset('images/apartment_sidebar.svg') }}">
-            <span class="font-medium text-base text-black">My listings</span>
+            <span class="font-medium text-base">Listings</span>
         </a>
-        <a href="#" class="flex items-center space-x-3 p-2 rounded-md hover:bg-white/50 transition">
+        <a href="#" class="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50 transition text-gray-700">
             <img alt="group" class="h-4 w-4" src="{{ asset('images/group.svg') }}">
-            <span class="font-medium text-base text-black">My tenants</span>
+            <span class="font-medium text-base">Tenants</span>
         </a>
-        {{-- Placeholder link --}}
-        <a href="#" class="flex items-center justify-between p-2 rounded-md hover:bg-white/50 transition">
+        <a href="#" class="flex items-center justify-between p-2 rounded-md hover:bg-gray-50 transition text-gray-700">
             <div class="flex items-center space-x-3">
                 <img alt="chat" class="h-4 w-4" src="{{ asset('images/chat.svg') }}">
-                <span class="font-medium text-base text-black">Messages</span>
+                <span class="font-medium text-base">Messages</span>
             </div>
             <span class="bg-electric-blue text-white text-xs font-medium px-1.5 py-0.5 rounded">17</span>
         </a>
-        {{-- Placeholder link --}}
-        <a href="#" class="flex items-center justify-between p-2 rounded-md hover:bg-white/50 transition">
+        <a href="#" class="flex items-center justify-between p-2 rounded-md hover:bg-gray-50 transition text-gray-700">
             <div class="flex items-center space-x-3">
                 <img alt="notifications" class="h-4 w-4" src="{{ asset('images/notifications_sidebar.svg') }}">
-                <span class="font-medium text-base text-black">Notifications</span>
+                <span class="font-medium text-base">Notifications</span>
             </div>
             <span class="bg-electric-blue text-white text-xs font-medium px-1.5 py-0.5 rounded">5</span>
         </a>
-        {{-- Placeholder link --}}
-        <a href="#" class="flex items-center space-x-3 p-2 rounded-md hover:bg-white/50 transition">
-            <img alt="favorite" class="h-4 w-4" src="{{ asset('images/favorite.svg') }}">
-            <span class="font-medium text-base text-black">Saved properties</span>
+        <a href="#" class="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50 transition text-gray-700">
+            <img alt="analytics" class="h-4 w-4" src="{{ asset('images/speed.svg') }}"> {{-- Using speed.svg for analytics --}}
+            <span class="font-medium text-base">Analytics</span>
         </a>
-        {{-- Placeholder link --}}
-        <a href="#" class="flex items-center space-x-3 p-2 rounded-md hover:bg-white/50 transition">
-            <img alt="search" class="h-4 w-4" src="{{ asset('images/search.svg') }}">
-            <span class="font-medium text-base text-black">Search properties</span>
+        <a href="#" class="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50 transition text-gray-700">
+            <img alt="reviews" class="h-4 w-4" src="{{ asset('images/star.svg') }}">
+            <span class="font-medium text-base">Reviews</span>
         </a>
     </div>
 
-    <hr class="border-light-gray">
-
-    {{-- My Properties Section --}}
-    <div class="space-y-2">
-        <h4 class="text-xs text-gray-600 px-2 uppercase font-medium">My Properties</h4>
-        <a href="{{ route('property_manager.listings.create') }}" class="flex justify-between items-center py-3 px-2 rounded-md hover:bg-white/50 transition">
-            <span class="font-medium text-base text-black">Add new property</span>
-            <img alt="arrow forward" class="h-4 w-4" src="{{ asset('images/arrow_forward_black.svg') }}">
-        </a>
-    </div>
-
-    <hr class="border-light-gray">
+    <hr class="border-light-gray mx-4">
 
     {{-- Settings Section --}}
     <div class="space-y-2">
-        <h4 class="text-xs text-gray-600 px-2 uppercase font-medium">Settings</h4>
-        <a href="{{ route('profile.edit') }}" class="flex items-center space-x-3 p-2 rounded-md {{ request()->routeIs('profile.edit') ? 'bg-white shadow' : 'hover:bg-white/50' }} transition">
+        <p class="text-xs text-gray-600 px-4 uppercase font-medium mb-2">Settings</p>
+        <a href="{{ route('profile.edit') }}" class="flex items-center space-x-3 p-2 rounded-md {{ request()->routeIs('profile.edit') ? 'bg-gray-100 shadow-sm text-black' : 'hover:bg-gray-50 text-gray-700' }} transition">
             <img alt="account circle" class="h-4 w-4" src="{{ asset('images/account_circle.svg') }}">
-            <span class="font-medium text-base text-black">Profile settings</span>
+            <span class="font-medium text-base">Profile settings</span>
         </a>
-        <a href="#" class="flex items-center space-x-3 p-2 rounded-md hover:bg-white/50 transition">
+        <a href="#" class="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50 transition text-gray-700">
             <img alt="language" class="h-4 w-4" src="{{ asset('images/language_sidebar.svg') }}">
-            <span class="font-medium text-base text-black">Regional settings</span>
+            <span class="font-medium text-base">Regional settings</span>
         </a>
     </div>
 
-    <hr class="border-light-gray">
+    <hr class="border-light-gray mx-4">
 
     {{-- Support Section --}}
     <div class="space-y-2">
-        <h4 class="text-xs text-gray-600 px-2 uppercase font-medium">Support</h4>
-        {{-- Placeholder link --}}
-        <a href="#" class="flex items-center space-x-3 p-2 rounded-md hover:bg-white/50 transition">
+        <p class="text-xs text-gray-600 px-4 uppercase font-medium mb-2">Support</p>
+        <a href="#" class="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50 transition text-gray-700">
             <img alt="contact support" class="h-4 w-4" src="{{ asset('images/contact_support.svg') }}">
-            <span class="font-medium text-base text-black">Help center</span>
+            <span class="font-medium text-base">Help center</span>
         </a>
-        {{-- Placeholder link --}}
-        <a href="#" class="flex items-center space-x-3 p-2 rounded-md hover:bg-white/50 transition">
+        <a href="#" class="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-50 transition text-gray-700">
             <img alt="headset mic" class="h-4 w-4" src="{{ asset('images/headset_mic.svg') }}">
-            <span class="font-medium text-base text-black">Request support</span>
+            <span class="font-medium text-base">Request support</span>
         </a>
     </div>
 
-    <hr class="border-light-gray">
+    <hr class="border-light-gray mx-4">
 
-    {{-- Articles Section --}}
-    <div class="space-y-2">
-        <h4 class="text-xs text-gray-600 px-2 uppercase font-medium">Articles</h4>
-        {{-- Placeholder link --}}
-        <a href="#" class="flex items-center space-x-3 p-2 rounded-md hover:bg-white/50 transition">
-            <span class="font-medium text-base text-black">Insights</span>
-        </a>
-        {{-- Placeholder link --}}
-        <a href="#" class="flex items-center space-x-3 p-2 rounded-md hover:bg-white/50 transition">
-            <span class="font-medium text-base text-black">News</span>
-        </a>
-        {{-- Placeholder link --}}
-        <a href="#" class="flex items-center space-x-3 p-2 rounded-md hover:bg-white/50 transition">
-            <span class="font-medium text-base text-black">Community articles</span>
-        </a>
-        {{-- Placeholder link --}}
-        <a href="#" class="flex items-center space-x-3 p-2 rounded-md hover:bg-white/50 transition">
-            <span class="font-medium text-base text-black">Tips & Resources</span>
+    {{-- Create a Listing Button --}}
+    <div class="px-4 mt-6">
+        <a href="{{ route('property_manager.listings.create') }}" class="bg-electric-blue text-white font-medium px-[32px] py-[10.5px] rounded-[6px] flex items-center justify-center space-x-2 hover:bg-blue-700 transition w-full">
+            <img alt="add" class="h-4 w-4" src="{{ asset('images/add.svg') }}">
+            <span class="font-medium text-base">Create a listing</span>
         </a>
     </div>
 
-    <hr class="border-light-gray">
+    <hr class="border-light-gray mx-4">
 
     {{-- Sign Out --}}
     <form method="POST" action="{{ route('logout') }}" class="w-full">
         @csrf
         <button type="submit" class="flex items-center space-x-3 p-2 rounded-md text-red-600 hover:bg-red-50/50 transition w-full">
-            <img alt="arrow forward" class="h-4 w-4 transform rotate-180" src="{{ asset('images/arrow_forward_red.svg') }}">
             <span class="font-medium text-base">Sign out</span>
         </button>
     </form>
 </div>
-
-
