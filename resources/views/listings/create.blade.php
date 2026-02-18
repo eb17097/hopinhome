@@ -2,32 +2,36 @@
     <div class="bg-white min-h-screen">
         <div class="max-w-[1440px] mx-auto">
             
-            <form action="{{ route('property_manager.listings.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div x-data="{ 
-                    step: 1, 
-                    formData: {
-                        property_type: '',
-                        address: '',
-                        name: '',
-                        description: '',
-                        bedrooms: 'Studio',
-                        bathrooms: 1,
-                        area: '',
-                        floor_number: '',
-                        total_floors: '',
-                        construction_year: new Date().getFullYear(),
-                        features: [],
-                        amenities: [],
-                        photos: [],
-                        video_url: '',
-                        payment_option: 'Yearly',
-                        utilities_option: 'Included',
-                        price: '',
-                        duration: 30,
-                        renewal_type: 'Monthly'
-                    } 
-                }">
+                                    <form action="{{ route('property_manager.listings.store') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <div id="listing-form-container" 
+                                             x-data="{ 
+                                                step: 1, 
+                                                formData: {
+                                                    property_type: '',
+                                                    address: '',
+                                                    latitude: 25.1972,
+                                                    longitude: 55.2744,
+                                                    name: '',
+                                                    description: '',
+                                                    bedrooms: 'Studio',
+                                                    bathrooms: 1,
+                                                    area: '',
+                                                    floor_number: '',
+                                                    total_floors: '',
+                                                    construction_year: new Date().getFullYear(),
+                                                    features: [],
+                                                    amenities: [],
+                                                    photos: [],
+                                                    video_url: '',
+                                                    payment_option: 'Yearly',
+                                                    utilities_option: 'Included',
+                                                    price: '',
+                                                    duration: 30,
+                                                    renewal_type: 'Monthly'
+                                                } 
+                                             }"
+                                             x-init="window.listingForm = $data">
                     
                     {{-- Header Area with Stepper --}}
                     <div class="max-w-[728px] mx-auto pt-10">
@@ -73,6 +77,8 @@
                         {{-- Hidden inputs to bridge Alpine data with the form submission --}}
                         <input type="hidden" name="features" :value="JSON.stringify(formData.features)">
                         <input type="hidden" name="amenities" :value="JSON.stringify(formData.amenities)">
+                        <input type="hidden" name="latitude" :value="formData.latitude">
+                        <input type="hidden" name="longitude" :value="formData.longitude">
                     </div>
 
                     {{-- Sticky Footer Navigation --}}
