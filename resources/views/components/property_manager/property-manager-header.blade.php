@@ -1,7 +1,20 @@
 @php use Illuminate\Support\Facades\Auth; @endphp
 <nav class="bg-white border-b border-light-gray h-16 flex items-center px-6 justify-between">
-    <div class="flex items-center space-x-4">
-        <h2 class="text-[15px] font-medium text-[#1e1d1d]">Dashboard</h2>
+    <div class="flex items-center space-x-[5px]">
+        @if(request()->routeIs('property_manager.index'))
+            <h2 class="text-[15px] font-medium text-[#1e1d1d]">Dashboard</h2>
+        @else
+            <a href="{{ route('property_manager.index') }}" class="text-[15px] font-medium text-[#1e1d1d] opacity-60 hover:opacity-100 transition-opacity">Dashboard</a>
+            <img src="{{ asset('images/chevron.svg') }}" class="w-4 h-4 transform -rotate-90 opacity-60" alt="">
+            
+            @if(request()->routeIs('property_manager.listings.create'))
+                <a href="{{ route('property_manager.index') }}" class="text-[15px] font-medium text-[#1e1d1d] opacity-60 hover:opacity-100 transition-opacity">Listings</a>
+                <img src="{{ asset('images/chevron.svg') }}" class="w-4 h-4 transform -rotate-90 opacity-60" alt="">
+                <h2 class="text-[15px] font-medium text-[#1e1d1d]">Create a listing</h2>
+            @else
+                <h2 class="text-[15px] font-medium text-[#1e1d1d]">Listings</h2>
+            @endif
+        @endif
     </div>
 
     <div class="flex items-center space-x-6">
