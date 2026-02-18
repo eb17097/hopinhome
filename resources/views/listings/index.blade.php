@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Apartments for Rent in Dubai - HopInHome</title>
-
-    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script src="//unpkg.com/alpinejs" defer></script>
-
-    <style>
-        body { font-family: 'General Sans', sans-serif; }
-    </style>
-</head>
-<body class="bg-white text-gray-900 antialiased">
+<x-layout title="Apartments for Rent in Dubai - HopInHome">
 
 <x-header />
 
@@ -76,5 +61,4 @@
 
 <x-footer />
 
-</body>
-</html>
+</x-layout>
