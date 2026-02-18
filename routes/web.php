@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileController;
@@ -9,6 +10,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/ajax/login', [AuthenticatedSessionController::class, 'apiStore'])->name('ajax.login');
+
+// Google Authentication Routes
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 Route::get('/', function () {
     // Fetch all listings from the database (latest first)

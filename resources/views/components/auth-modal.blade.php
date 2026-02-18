@@ -31,10 +31,10 @@
             <div x-show="step === 'email'">
                 <h2 class="text-center text-xl font-medium text-gray-900 mb-6">Log in or sign up</h2>
                 <div class="space-y-3">
-                    <button class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors">
+                    <a href="{{ route('auth.google') }}" class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors">
                         <img src="{{ asset('images/google.svg') }}" alt="Google icon" class="h-5 w-5">
                         Continue with Google
-                    </button>
+                    </a>
                     <button class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium opacity-50 pointer-events-none cursor-not-allowed transition-colors">
                         <img src="{{ asset('images/facebook.svg') }}" alt="Facebook icon" class="h-5 w-5">
                         Continue with Facebook
