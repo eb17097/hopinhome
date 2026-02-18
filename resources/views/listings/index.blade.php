@@ -1,4 +1,4 @@
-<x-layout title="Apartments for Rent in Dubai - HopInHome">
+<x-main-layout title="Apartments for Rent in Dubai - HopInHome">
 
 <x-header />
 
@@ -61,4 +61,4 @@
 
 <x-footer />
 
-</x-layout>
+</x-main-layout>

@@ -1,4 +1,4 @@
-<x-layout title="Hopinhome">
+<x-main-layout title="Hopinhome">
 
 <x-header :is-landing="true" />
 
@@ -464,4 +464,4 @@
 
 <x-footer />
 
-</x-layout>
+</x-main-layout>
