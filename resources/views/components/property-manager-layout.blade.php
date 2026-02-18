@@ -54,5 +54,6 @@
             </div>
 
         </div>
+        <x-modals.change-profile-photo-modal />
     </body>
 </html>

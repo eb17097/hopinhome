@@ -19,7 +19,8 @@
         @endphp
 
         @foreach($completedSteps as $step)
-            <div class="bg-[#f9f9f8] rounded-[6px] p-4 flex items-center gap-4">
+            <div @if($step === 'Upload a profile photo') @click="$dispatch('open-profile-photo-modal')" @endif 
+                 class="bg-[#f9f9f8] rounded-[6px] p-4 flex items-center gap-4 {{ $step === 'Upload a profile photo' ? 'cursor-pointer hover:bg-gray-100' : '' }} transition-colors">
                 <div class="w-6 h-6 rounded-full bg-like-green flex items-center justify-center shrink-0">
                     <img alt="checkmark" class="h-4 w-4" src="{{ asset('images/checkmark.svg') }}">
                 </div>
