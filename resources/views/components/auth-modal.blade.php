@@ -149,25 +149,20 @@
                             <template x-for="(code, index) in verifyCode" :key="index">
                                 <div class="flex items-center gap-2">
                                     <input type="text" maxlength="1" 
-                                           class="w-[52px] h-[52px] text-center text-[20px] font-medium border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors"
+                                           class="otp-input w-[52px] h-[52px] text-center text-[20px] font-medium border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors"
                                            :class="{'bg-[#f2f2f2]': index < 2}"
                                            x-model="verifyCode[index]"
                                            @input="
                                               otpError = '';
                                               if ($event.target.value.length === 1 && index < 5) {
-                                                  $el.nextElementSibling?.nextElementSibling?.tagName === 'INPUT' ? $el.nextElementSibling.nextElementSibling.focus() : $el.nextElementSibling?.focus();
-                                                  if($el.nextElementSibling?.tagName === 'SPAN') {
-                                                      $el.nextElementSibling.nextElementSibling.focus();
-                                                  }
+                                                  let inputs = document.querySelectorAll('.otp-input');
+                                                  if (inputs[index + 1]) inputs[index + 1].focus();
                                               }
                                            "
                                            @keydown.backspace="
                                               if ($event.target.value.length === 0 && index > 0) {
-                                                  if($el.previousElementSibling?.tagName === 'SPAN') {
-                                                      $el.previousElementSibling.previousElementSibling.focus();
-                                                  } else {
-                                                      $el.previousElementSibling?.focus();
-                                                  }
+                                                  let inputs = document.querySelectorAll('.otp-input');
+                                                  if (inputs[index - 1]) inputs[index - 1].focus();
                                               }
                                            "
                                     >
