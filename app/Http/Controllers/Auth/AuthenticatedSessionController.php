@@ -46,18 +46,20 @@ class AuthenticatedSessionController extends Controller
      */
     public function apiStore(LoginRequest $request): JsonResponse
     {
-        try {
-            $request->authenticate();
-        } catch (\Illuminate\Validation\ValidationException $e) {
+        $request->ensureIsNotRateLimited();
+
+        $user = \App\Models\User::where('email', $request->email)->first();
+
+        if (! $user || ! \Illuminate\Support\Facades\Hash::check($request->password, $user->password)) {
+            \Illuminate\Support\Facades\RateLimiter::hit($request->throttleKey());
             return response()->json([
-                'errors' => $e->errors(),
+                'errors' => ['email' => [trans('auth.failed')]],
             ], 422);
         }
 
-        $user = Auth::user();
+        \Illuminate\Support\Facades\RateLimiter::clear($request->throttleKey());
 
         if ($user->two_factor_auth) {
-            Auth::logout();
             $request->session()->put('2fa_user_id', $user->id);
 
             $code = random_int(100000, 999999);
@@ -70,6 +72,7 @@ class AuthenticatedSessionController extends Controller
             ]);
         }
 
+        Auth::login($user, $request->boolean('remember'));
         $request->session()->regenerate();
 
         $redirectUrl = route('home');
