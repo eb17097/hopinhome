@@ -445,6 +445,10 @@
                         passwordError = 'Password is required.';
                         return;
                     }
+                    isLoading = true;
+                    error = '';
+                    passwordError = '';
+                    
                     fetch('/ajax/login', {
                         method: 'POST',
                         headers: {
@@ -467,9 +471,8 @@
                                 }
                             });
                         } else {
+                            isLoading = false;
                             response.json().then(data => {
-                                error = ''; // Clear previous general errors
-                                passwordError = ''; // Clear previous password errors
                                 if (data.errors) {
                                     if (data.errors.password) {
                                         passwordError = data.errors.password[0];
@@ -482,6 +485,10 @@
                             })
                         }
                     })
+                    .catch(err => {
+                        isLoading = false;
+                        error = 'An error occurred. Please try again.';
+                    });
                 ">
                         <div>
                             <label for="password"
@@ -512,8 +519,13 @@
                         <div x-show="passwordError" x-text="passwordError" class="text-red-500 text-sm mt-2"></div>
                         <div x-show="error && !passwordError" x-text="error" class="text-red-500 text-sm mt-2"></div>
                         <button type="submit"
-                                class="w-full bg-electric-blue text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors mt-6">
-                            Log in
+                                :disabled="isLoading"
+                                class="w-full bg-electric-blue text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors mt-6 flex justify-center items-center disabled:opacity-70">
+                            <span x-show="!isLoading">Log in</span>
+                            <svg x-show="isLoading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="display: none;">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
                         </button>
                         <a href="#" class="block text-center text-sm text-electric-blue hover:underline mt-6">Forgot
                             password?</a>
