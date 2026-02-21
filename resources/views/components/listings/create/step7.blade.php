@@ -26,7 +26,7 @@
         <!-- List of uploaded photos -->
         <div class="space-y-4" x-show="previews.length > 0">
             <template x-for="(preview, index) in previews" :key="index">
-                <div class="flex items-stretch space-x-0 rounded-md overflow-hidden border border-gray-100 shadow-sm">
+                <div class="flex items-stretch space-x-0 overflow-hidden">
                     <!-- Image Area -->
                     <div class="relative flex-1 aspect-[16/9] md:aspect-[21/9] overflow-hidden bg-gray-100">
                         <img :src="preview" class="w-full h-full object-cover">
@@ -47,7 +47,7 @@
                     </div>
 
                     <!-- Controls Bar (Figma Style) -->
-                    <div class="w-10 bg-white border-l border-gray-100 flex flex-col justify-between py-2 items-center">
+                    <div class="w-10 bg-white flex flex-col justify-between items-center">
                         <button type="button" @click="moveUp(index)" class="p-1 hover:bg-gray-50 rounded transition text-gray-400 hover:text-black" :class="index === 0 ? 'invisible' : ''">
                             <svg class="w-6 h-6 rotate-180" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
