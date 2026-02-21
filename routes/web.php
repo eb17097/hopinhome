@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\AjaxAuthController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\RenterController;
 use App\Http\Controllers\PropertyManagerController;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/ajax/login', [AuthenticatedSessionController::class, 'apiStore'])->name('ajax.login');
+Route::post('/ajax/check-email', [AjaxAuthController::class, 'checkEmail'])->name('ajax.check-email');
 
 // Google Authentication Routes
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
