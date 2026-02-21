@@ -3,15 +3,15 @@
     <div class="bg-[#f9f9f8] rounded-[6px] p-8">
         <div class="flex items-start">
             <div class="w-16 h-16 rounded-full border border-light-gray overflow-hidden shrink-0">
-                <img alt="profile picture" class="h-full w-full object-cover" src="{{ asset('images/profile_picture.png') }}">
+                <img alt="profile picture" class="h-full w-full object-cover" src="{{ auth()->user()->profile_photo_url ? Storage::url(auth()->user()->profile_photo_url) : asset('images/profile_picture.png') }}">
             </div>
             <div class="ml-4 pt-1">
                 <div class="flex items-center gap-1">
-                    <h3 class="text-[18px] font-medium text-[#1e1d1d] tracking-[-0.36px]">Sarah Johnson</h3>
+                    <h3 class="text-[18px] font-medium text-[#1e1d1d] tracking-[-0.36px]">{{ auth()->user()->name }}</h3>
                     <img alt="verified user" class="w-[18px] h-[18px]" src="{{ asset('images/verified_user.svg') }}">
                 </div>
                 <p class="text-[14px] font-medium text-[#1e1d1d] leading-[1.5]">
-                    sarah@example.com • verified
+                    {{ auth()->user()->email }} • verified
                 </p>
             </div>
         </div>
