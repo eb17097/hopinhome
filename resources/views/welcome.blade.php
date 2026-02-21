@@ -27,32 +27,32 @@
             Explore listings and start renting with confidence.
         </p>
 
-        <div class="bg-[#FBFBFB]/90 backdrop-blur-[6px] p-[16px] rounded-[14px] shadow-sm mx-auto w-full max-w-4xl text-left border border-white/20">
-            <form action="#" method="GET">
-                <div class="flex flex-col md:flex-row gap-2 mb-2">
+        <div class="bg-[#FBFBFB]/90 backdrop-blur-[6.05px] p-[20px] rounded-[14px] shadow-sm mx-auto w-full max-w-[792px] text-left border border-white/20">
+            <form action="#" method="GET" style="margin-bottom:0;">
+                <div class="flex flex-col md:flex-row gap-[16px] mb-[15px]">
                     <div class="relative flex-grow">
-                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <img src="{{ asset('images/location_on.svg') }}" class="size-6" alt="Location">
+                        <div class="absolute inset-y-0 left-0 pl-[18px] flex items-center pointer-events-none">
+                            <img src="{{ asset('images/location_on.svg') }}" class="size-[23px]" alt="Location">
                         </div>
                         <input type="text"
-                               class="block w-full pl-12 pr-4 py-4 bg-white border-transparent focus:ring-0 rounded-[8px] text-[#464646] placeholder-[#464646]/60 font-medium text-[16px] leading-[1.2] tracking-[-0.32px] transition h-[56px]"
+                               class="block w-full pl-[50px] pr-[18px] py-[14px] bg-white border border-[#E8E8E7] focus:ring-0 rounded-[6px] text-[#464646] placeholder-[#464646]/60 font-normal text-[18px] leading-[1.3] transition h-[52px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]"
                                placeholder="Enter City or Location">
                     </div>
 
-                    <button class="bg-[#1447D4] text-white font-medium py-4 px-8 rounded-[8px] hover:opacity-90 transition flex items-center justify-center gap-2 h-[56px] whitespace-nowrap">
-                        <img src="{{ asset('images/search.svg') }}" alt="Search Icon" class="size-5 brightness-0 invert">
-                        <span class="text-[16px] leading-[1.2] tracking-[-0.32px]">Search properties</span>
+                    <button class="bg-[#1447D4] text-white font-medium py-[15px] px-[20px] md:min-w-[240px] rounded-[6px] hover:opacity-90 transition flex items-center justify-center gap-[6px] h-[52px] whitespace-nowrap">
+                        <img src="{{ asset('images/search.svg') }}" alt="Search Icon" class="size-[18px] brightness-0 invert">
+                        <span class="text-[18px] leading-[1.18] tracking-[-0.54px]">Search properties</span>
                     </button>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-[16px]">
                     @foreach(['Property type', 'Bedrooms', 'Price'] as $label)
                         <div class="relative">
-                            <select class="block w-full h-[56px] pl-4 pr-12 py-3 bg-white border-transparent focus:ring-0 rounded-[8px] text-[#464646] font-medium text-[16px] leading-[1.2] tracking-[-0.32px] appearance-none cursor-pointer">
+                            <select class="block w-full h-[51px] pl-[18px] pr-[50px] py-[14px] bg-white border border-[#E8E8E7] focus:ring-0 rounded-[6px] text-[#464646] font-normal text-[18px] leading-[1.3] appearance-none cursor-pointer shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]">
                                 <option>{{ $label }}</option>
                             </select>
-                            <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none">
-                                <img src="{{ asset('images/chevron.svg') }}" class="size-6 opacity-60" alt="">
+                            <div class="absolute inset-y-0 right-0 flex items-center px-[18px] pointer-events-none">
+                                <img src="{{ asset('images/chevron.svg') }}" class="size-[23px] opacity-60" alt="">
                             </div>
                         </div>
                     @endforeach
