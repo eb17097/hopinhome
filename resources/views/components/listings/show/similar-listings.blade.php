@@ -41,7 +41,7 @@
                         if (!this.isDown) return;
                         this.isDown = false;
                         
-                        const cardWidth = 358 + 32;
+                        const cardWidth = 380 + 32;
                         const momentum = -this.velocity * 10;
                         const target = Math.round(($el.scrollLeft + momentum) / cardWidth) * cardWidth;
                         
