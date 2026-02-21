@@ -21,8 +21,9 @@
         <!-- List of uploaded photos -->
         <div class="space-y-4" x-show="previews.length > 0">
             <template x-for="(preview, index) in previews" :key="index">
-                <div class="flex items-center space-x-4">
-                    <div class="relative flex-1 aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-md group bg-gray-100">
+                <div class="flex items-stretch space-x-0 rounded-md overflow-hidden border border-gray-100 shadow-sm">
+                    <!-- Image Area -->
+                    <div class="relative flex-1 aspect-[16/9] md:aspect-[21/9] overflow-hidden bg-gray-100">
                         <img :src="preview" class="w-full h-full object-cover">
                         
                         <!-- Cover photo badge -->
@@ -40,20 +41,24 @@
                         </template>
                     </div>
                     
-                    <!-- Controls -->
-                    <div class="flex flex-col items-center justify-between h-24 md:h-32 py-1">
-                        <button type="button" @click="moveUp(index)" class="p-1 hover:bg-gray-100 rounded transition" :class="index === 0 ? 'invisible' : ''">
-                            <img src="{{ asset('images/keyboard_arrow_down.svg') }}" class="w-6 h-6 rotate-180" alt="Move up">
+                    <!-- Controls Bar (Figma Style) -->
+                    <div class="w-10 bg-white border-l border-gray-100 flex flex-col justify-between py-2 items-center">
+                        <button type="button" @click="moveUp(index)" class="p-1 hover:bg-gray-50 rounded transition text-gray-400 hover:text-black" :class="index === 0 ? 'invisible' : ''">
+                            <svg class="w-6 h-6 rotate-180" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                            </svg>
                         </button>
                         
-                        <button type="button" @click="remove(index)" class="p-1 hover:bg-gray-100 rounded transition text-red-500">
-                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                 <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                        <button type="button" @click="remove(index)" class="p-1 hover:bg-red-50 rounded transition text-gray-400 hover:text-red-500">
+                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                              </svg>
                         </button>
                         
-                        <button type="button" @click="moveDown(index)" class="p-1 hover:bg-gray-100 rounded transition" :class="index === previews.length - 1 ? 'invisible' : ''">
-                            <img src="{{ asset('images/keyboard_arrow_down.svg') }}" class="w-6 h-6" alt="Move down">
+                        <button type="button" @click="moveDown(index)" class="p-1 hover:bg-gray-50 rounded transition text-gray-400 hover:text-black" :class="index === previews.length - 1 ? 'invisible' : ''">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                            </svg>
                         </button>
                     </div>
                 </div>
