@@ -1,6 +1,6 @@
 @props(['listing'])
 
-<a href="{{ route('listings.show', $listing) }}" draggable="false" class="block w-full max-w-[380px] h-[430px] bg-white rounded-[8px] shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)] overflow-hidden group relative">
+<a href="{{ route('listings.show', $listing) }}" draggable="false" class="block w-full max-w-[380px] bg-white rounded-[8px] shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)] overflow-hidden group relative">
     <div class="relative h-[238px]">
         <img class="w-full h-full object-cover"
              draggable="false"

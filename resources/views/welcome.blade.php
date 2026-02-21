@@ -7,23 +7,19 @@
 
 <x-header :is-landing="true" />
 
-<div class="relative w-full h-[800px] flex items-center justify-center overflow-hidden">
-
+{{-- Hero Section --}}
+<div class="relative w-full h-[785px] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 scale-105"
          style="background-image: url('{{ asset('images/main_hero_image.png') }}');">
     </div>
 
-
-
     <div class="relative z-10 w-full max-w-5xl px-4 text-center mt-16">
-
-        <h1 class="text-[64px] font-medium leading-[1.22] tracking-[-0.03em] text-white mb-6 drop-shadow-2xl font-['PP_Formula','General_Sans',_sans-serif]">
-            Find trusted <br />
-            rental properties
+        <h1 class="text-[64px] font-medium leading-[1.22] tracking-[-1.92px] text-[#F9F9F8] mb-6 font-['PP_Formula','General_Sans',_sans-serif]">
+            Find trusted rental properties in the UAE
         </h1>
 
-        <p class="text-[18px] font-normal leading-[1.5] tracking-normal text-gray-100 mb-12 max-w-2xl mx-auto drop-shadow-lg font-['General_Sans_Variable','General_Sans',_sans-serif]">
-            HopInHome helps you find <span class="font-semibold text-white">trusted</span> rental properties with ease.
+        <p class="text-[18px] font-normal leading-[1.5] text-[#F9F9F8] mb-12 max-w-2xl mx-auto font-['General_Sans_Variable','General_Sans',_sans-serif]">
+            HopInHome helps you find <span class="font-medium">trusted</span> rental properties in Dubai <span class="font-medium">with ease.</span>
             Explore listings and start renting with confidence.
         </p>
 
@@ -62,263 +58,180 @@
     </div>
 </div>
 
-<div class="bg-white pt-20 border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <h2 class="text-[32px] font-medium leading-[1.28] tracking-[-0.02em] text-gray-900 mb-8 font-['General_Sans',_sans-serif]">
+{{-- Popular Cities Section --}}
+<div class="bg-white py-[80px]">
+    <div class="max-w-[1204px] mx-auto px-4 lg:px-0">
+        <h2 class="text-[32px] font-medium leading-[1.28] tracking-[-0.64px] text-[#1E1D1D] mb-8 font-['General_Sans',_sans-serif]">
             Popular cities in the UAE
         </h2>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-20">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-[32px]">
+            @php
+                $cities = [
+                    ['name' => 'Dubai', 'image' => 'https://images.unsplash.com/photo-1546412414-e1885259563a?q=80&w=800&auto=format&fit=crop'],
+                    ['name' => 'Abu Dhabi', 'image' => 'https://images.unsplash.com/photo-1583997052301-0042b33fc598?q=80&w=800&auto=format&fit=crop'],
+                    ['name' => 'Sharjah', 'image' => 'https://images.unsplash.com/photo-1578895210405-907db486c111?q=80&w=800&auto=format&fit=crop'],
+                    ['name' => 'Al Ain', 'image' => 'https://images.unsplash.com/photo-1546412414-e1885259563a?q=80&w=800&auto=format&fit=crop'],
+                ];
+            @endphp
 
-            <a href="{{ route('listings.index', ['city' => 'Dubai']) }}" class="group cursor-pointer block">
-                <div class="overflow-hidden rounded-xl aspect-[16/10] mb-4">
-                    <img src="https://images.unsplash.com/photo-1546412414-e1885259563a?q=80&w=800&auto=format&fit=crop"
-                         alt="Dubai"
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                </div>
-                <h3 class="text-center font-medium text-gray-900 text-lg font-['General_Sans',_sans-serif]">Dubai</h3>
-            </a>
-
-            <a href="{{ route('listings.index', ['city' => 'Abu Dhabi']) }}" class="group cursor-pointer block">
-                <div class="overflow-hidden rounded-xl aspect-[16/10] mb-4">
-                    <img src="https://images.unsplash.com/photo-1546412414-e1885259563a?q=80&w=800&auto=format&fit=crop"
-                         alt="Abu Dhabi"
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                </div>
-                <h3 class="text-center font-medium text-gray-900 text-lg font-['General_Sans',_sans-serif]">Abu Dhabi</h3>
-            </a>
-
-            <a href="{{ route('listings.index', ['city' => 'Sharjah']) }}" class="group cursor-pointer block">
-                <div class="overflow-hidden rounded-xl aspect-[16/10] mb-4">
-                    <img src="https://images.unsplash.com/photo-1546412414-e1885259563a?q=80&w=800&auto=format&fit=crop"
-                         alt="Sharjah"
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                </div>
-                <h3 class="text-center font-medium text-gray-900 text-lg font-['General_Sans',_sans-serif]">Sharjah</h3>
-            </a>
-
-            <a href="{{ route('listings.index', ['city' => 'Al Ain']) }}" class="group cursor-pointer block">
-                <div class="overflow-hidden rounded-xl aspect-[16/10] mb-4">
-                    <img src="https://images.unsplash.com/photo-1546412414-e1885259563a?q=80&w=800&auto=format&fit=crop"
-                         alt="Al Ain"
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                </div>
-                <h3 class="text-center font-medium text-gray-900 text-lg font-['General_Sans',_sans-serif]">Al Ain</h3>
-            </a>
-
-        </div>
-
-
-        <h2 class="text-[32px] font-medium leading-[1.28] tracking-[-0.02em] text-gray-900 mb-8 font-['General_Sans',_sans-serif]">
-            Browse by property type
-        </h2>
-
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            <a href="#" class="group p-6 border border-gray-100 rounded-2xl bg-white hover:shadow-lg hover:border-transparent transition duration-300 flex flex-col items-center text-center">
-                <div class="w-12 h-12 mb-4 text-blue-600">
-                    <img src="{{ asset('images/apartment_big.svg') }}" class="w-full h-full">
-                </div>
-                <h3 class="font-medium text-gray-900 font-['General_Sans',_sans-serif]">Apartment</h3>
-                <p class="text-xs text-gray-500 mt-1 font-['General_Sans',_sans-serif]">800+ listings</p>
-            </a>
-
-            <a href="#" class="group p-6 border border-gray-100 rounded-2xl bg-white hover:shadow-lg hover:border-transparent transition duration-300 flex flex-col items-center text-center">
-                <div class="w-12 h-12 mb-4 text-blue-600">
-                    <img src="{{ asset('images/villa.svg') }}" class="w-full h-full">
-                </div>
-                <h3 class="font-medium text-gray-900 font-['General_Sans',_sans-serif]">Villa</h3>
-                <p class="text-xs text-gray-500 mt-1 font-['General_Sans',_sans-serif]">150+ listings</p>
-            </a>
-
-            <a href="#" class="group p-6 border border-gray-100 rounded-2xl bg-white hover:shadow-lg hover:border-transparent transition duration-300 flex flex-col items-center text-center">
-                <div class="w-12 h-12 mb-4 text-blue-600">
-                    <img src="{{ asset('images/house.svg') }}" class="w-full h-full">
-                </div>
-                <h3 class="font-medium text-gray-900 font-['General_Sans',_sans-serif]">House</h3>
-                <p class="text-xs text-gray-500 mt-1 font-['General_Sans',_sans-serif]">300+ listings</p>
-            </a>
-
-            <a href="#" class="group p-6 border border-gray-100 rounded-2xl bg-white hover:shadow-lg hover:border-transparent transition duration-300 flex flex-col items-center text-center">
-                <div class="w-12 h-12 mb-4 text-blue-600">
-                    <img src="{{ asset('images/townhouse.svg') }}" class="w-full h-full">
-                </div>
-                <h3 class="font-medium text-gray-900 font-['General_Sans',_sans-serif]">Townhouse</h3>
-                <p class="text-xs text-gray-500 mt-1 font-['General_Sans',_sans-serif]">100+ listings</p>
-            </a>
-
-            <a href="#" class="group p-6 border border-gray-100 rounded-2xl bg-white hover:shadow-lg hover:border-transparent transition duration-300 flex flex-col items-center text-center">
-                <div class="w-12 h-12 mb-4 text-blue-600">
-                    <img src="{{ asset('images/hotel_apartment.svg') }}" class="w-full h-full">
-                </div>
-                <h3 class="font-medium text-gray-900 font-['General_Sans',_sans-serif]">Hotel Apt</h3>
-                <p class="text-xs text-gray-500 mt-1 font-['General_Sans',_sans-serif]">100+ listings</p>
-            </a>
-
-            <a href="#" class="group p-6 border border-gray-100 rounded-2xl bg-white hover:shadow-lg hover:border-transparent transition duration-300 flex flex-col items-center text-center">
-                <div class="w-12 h-12 mb-4 text-blue-600">
-                    <img src="{{ asset('images/penthouse.svg') }}" class="w-full h-full">
-                </div>
-                <h3 class="font-medium text-gray-900 font-['General_Sans',_sans-serif]">Penthouse</h3>
-                <p class="text-xs text-gray-500 mt-1 font-['General_Sans',_sans-serif]">50+ listings</p>
-            </a>
-
-        </div>
-    </div>
-
-    <x-listings.popular-listings :listings="$listings" />
-
-
-<div class="bg-gray-50 py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
-            <div>
-                <h2 class="text-[32px] font-medium leading-[1.28] tracking-[-0.02em] text-gray-900 font-['General_Sans',_sans-serif]">
-                    Inside <span class="text-blue-600">the UAE</span>: Tips, Insights & Living
-                </h2>
-            </div>
-
-            <a href="#" class="inline-flex items-center justify-center px-6 py-2.5 border border-gray-200 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 hover:border-gray-300 transition font-['General_Sans',_sans-serif]">
-                View more articles
-            </a>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-
-            <a href="#" class="group cursor-pointer block">
-                <div class="relative overflow-hidden rounded-xl aspect-[16/10] mb-4">
-                    <img src="https://images.unsplash.com/photo-1516961642265-531546e84af2?q=80&w=800&auto=format&fit=crop"
-                         alt="Couple in Dubai"
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-
-                    <span class="absolute top-3 right-3 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-md uppercase tracking-wide">
-                        Insights
-                    </span>
-                </div>
-                <h3 class="text-lg font-medium text-gray-900 leading-snug group-hover:text-blue-600 transition font-['General_Sans',_sans-serif]">
-                    Best rental locations in Dubai for couples
-                </h3>
-            </a>
-
-            <a href="#" class="group cursor-pointer block">
-                <div class="relative overflow-hidden rounded-xl aspect-[16/10] mb-4">
-                    <img src="https://images.unsplash.com/photo-1516961642265-531546e84af2?q=80&w=800&auto=format&fit=crop"
-                         alt="Dubai Street"
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-
-                    <span class="absolute top-3 right-3 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-md uppercase tracking-wide">
-                        Community guide
-                    </span>
-                </div>
-                <h3 class="text-lg font-medium text-gray-900 leading-snug group-hover:text-blue-600 transition font-['General_Sans',_sans-serif]">
-                    What to expect when renting in the UAE for the first time
-                </h3>
-            </a>
-
-            <a href="#" class="group cursor-pointer block">
-                <div class="relative overflow-hidden rounded-xl aspect-[16/10] mb-4">
-                    <img src="https://images.unsplash.com/photo-1516961642265-531546e84af2?q=80&w=800&auto=format&fit=crop"
-                         alt="Bathroom Interior"
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-
-                    <span class="absolute top-3 right-3 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-md uppercase tracking-wide">
-                        Community guide
-                    </span>
-                </div>
-                <h3 class="text-lg font-medium text-gray-900 leading-snug group-hover:text-blue-600 transition font-['General_Sans',_sans-serif]">
-                    Hidden Costs to Look Out For When Renting in the UAE
-                </h3>
-            </a>
-
-            <a href="#" class="group cursor-pointer block">
-                <div class="relative overflow-hidden rounded-xl aspect-[16/10] mb-4">
-                    <img src="https://images.unsplash.com/photo-1516961642265-531546e84af2?q=80&w=800&auto=format&fit=crop"
-                         alt="UAE Culture"
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-
-                    <span class="absolute top-3 right-3 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-md uppercase tracking-wide">
-                        Insights
-                    </span>
-                </div>
-                <h3 class="text-lg font-medium text-gray-900 leading-snug group-hover:text-blue-600 transition font-['General_Sans',_sans-serif]">
-                    UAE Cultural Norms Every New Resident Should Know
-                </h3>
-            </a>
-
+            @foreach($cities as $city)
+                <a href="{{ route('listings.index', ['city' => $city['name']]) }}" class="group block">
+                    <div class="overflow-hidden rounded-[6px] aspect-[277/172] mb-3">
+                        <img src="{{ $city['image'] }}"
+                             alt="{{ $city['name'] }}"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="text-center font-normal text-[#1E1D1D] text-[18px] leading-[1.5] font-['General_Sans',_sans-serif]">{{ $city['name'] }}</h3>
+                </a>
+            @endforeach
         </div>
     </div>
 </div>
 
-<div class="bg-white py-20 border-t border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+{{-- Property Types Section --}}
+<div class="bg-white py-[40px]">
+    <div class="max-w-[1204px] mx-auto px-4 lg:px-0">
+        <h2 class="text-[32px] font-medium leading-[1.28] tracking-[-0.64px] text-[#1E1D1D] mb-8 font-['General_Sans',_sans-serif]">
+            Browse by property type
+        </h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-[32px]">
+            @php
+                $types = [
+                    ['name' => 'Apartment', 'icon' => 'apartment_big.svg', 'count' => '800+ listings'],
+                    ['name' => 'Villa', 'icon' => 'villa.svg', 'count' => '150+ listings'],
+                    ['name' => 'House', 'icon' => 'house.svg', 'count' => '300+ listings'],
+                    ['name' => 'Townhouse', 'icon' => 'townhouse.svg', 'count' => '100+ listings'],
+                    ['name' => 'Hotel Apt', 'icon' => 'hotel_apartment.svg', 'count' => '100+ listings'],
+                    ['name' => 'Penthouse', 'icon' => 'penthouse.svg', 'count' => '50+ listings'],
+                ];
+            @endphp
 
-            <div class="relative rounded-3xl overflow-hidden aspect-square shadow-lg">
+            @foreach($types as $type)
+                <a href="#" class="group p-[20px] bg-white border border-[#E8E8E7] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] hover:shadow-lg transition flex flex-col items-center text-center">
+                    <div class="size-[63px] mb-[18px]">
+                        <img src="{{ asset('images/' . $type['icon']) }}" class="w-full h-full" alt="{{ $type['name'] }}">
+                    </div>
+                    <h3 class="font-medium text-[#1E1D1D] text-[18px] leading-[1.28] tracking-[-0.36px] font-['General_Sans',_sans-serif]">{{ $type['name'] }}</h3>
+                    <p class="text-[14px] text-[#464646] mt-1 font-['General_Sans',_sans-serif] leading-[1.5]">{{ $type['count'] }}</p>
+                </a>
+            @endforeach
+        </div>
+    </div>
+</div>
+
+{{-- Popular Homes Section --}}
+<x-listings.popular-listings :listings="$listings" />
+
+{{-- Articles Section --}}
+<div class="bg-[#F9F9F8] py-[80px]">
+    <div class="max-w-[1204px] mx-auto px-4 lg:px-0">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-[40px] gap-4">
+            <div>
+                <h2 class="text-[32px] font-medium leading-[1.28] tracking-[-0.64px] text-[#1E1D1D] font-['General_Sans',_sans-serif]">
+                    Inside <span class="text-[#1447D4]">the UAE:</span> Tips, Insights & Living
+                </h2>
+            </div>
+
+            <a href="#" class="inline-flex items-center justify-center px-[32px] py-[16px] border border-[#E8E8E7] rounded-[29.5px] text-[16px] font-medium text-[#1E1D1D] bg-white hover:bg-gray-50 transition tracking-[-0.48px] shadow-sm font-['General_Sans',_sans-serif]">
+                View more articles
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-[32px]">
+            @php
+                $articles = [
+                    ['title' => 'Best rental locations in Dubai for couples', 'tag' => 'Insights', 'image' => 'https://images.unsplash.com/photo-1516961642265-531546e84af2?q=80&w=800&auto=format&fit=crop'],
+                    ['title' => 'What to expect when renting in the UAE for the first time', 'tag' => 'Community guide', 'image' => 'https://images.unsplash.com/photo-1518684079-3c830dcef090?q=80&w=800&auto=format&fit=crop'],
+                    ['title' => 'Hidden Costs to Look Out For When Renting in the UAE', 'tag' => 'Community guide', 'image' => 'https://images.unsplash.com/photo-1516961642265-531546e84af2?q=80&w=800&auto=format&fit=crop'],
+                    ['title' => 'UAE Cultural Norms Every New Resident Should Know', 'tag' => 'Insights', 'image' => 'https://images.unsplash.com/photo-1528702748617-c64d49f918af?q=80&w=800&auto=format&fit=crop'],
+                ];
+            @endphp
+
+            @foreach($articles as $article)
+                <a href="#" class="group block">
+                    <div class="relative overflow-hidden rounded-[6px] aspect-[277/172] mb-4">
+                        <img src="{{ $article['image'] }}"
+                             alt="{{ $article['title'] }}"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+
+                        <span class="absolute top-0 right-0 bg-[#1447D4] text-white text-[12px] font-medium px-[13px] py-[4px] rounded-bl-[6px] rounded-tr-[6px]">
+                            {{ $article['tag'] }}
+                        </span>
+                    </div>
+                    <h3 class="text-[18px] font-normal text-[#1E1D1D] leading-[1.3] group-hover:text-[#1447D4] transition font-['General_Sans',_sans-serif]">
+                        {{ $article['title'] }}
+                    </h3>
+                </a>
+            @endforeach
+        </div>
+    </div>
+</div>
+
+{{-- About Section --}}
+<div class="bg-white py-[80px]">
+    <div class="max-w-[1204px] mx-auto px-4 lg:px-0">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-[120px] items-center">
+            <div class="relative rounded-[14px] overflow-hidden aspect-square shadow-sm">
                 <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop"
                      alt="Cozy Living Room"
-                     class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                     class="w-full h-full object-cover">
             </div>
 
             <div>
-                <h2 class="text-[32px] font-medium leading-[1.28] tracking-[-0.02em] text-gray-900 mb-6 font-['General_Sans',_sans-serif]">
-                    About <span class="text-blue-600">HopInHome</span>
+                <h2 class="text-[32px] font-medium leading-[1.28] tracking-[-0.64px] text-[#1E1D1D] mb-6 font-['General_Sans',_sans-serif]">
+                    About <span class="text-[#1447D4]">HopInHome</span>
                 </h2>
 
-                <div class="space-y-6 text-lg text-gray-600 leading-relaxed font-['General_Sans',_sans-serif]">
+                <div class="space-y-6 text-[18px] text-[#464646] leading-[1.5] font-['General_Sans',_sans-serif]">
                     <p>
-                        At HopInHome our mission is to make renting <span class="font-semibold text-gray-900">easier and more transparent</span>.
+                        At HopInHome our mission is to make renting <span class="font-medium text-[#1E1D1D]">easier and more transparent</span>.
                         We help renters navigate one of the most stressful parts of moving by providing verified listings,
                         straightforward guidance, and trusted insights from the community.
                     </p>
 
                     <p>
-                        Our goal is to <span class="font-semibold text-gray-900">reduce surprises</span>, remove uncertainty, and
-                        <span class="font-semibold text-gray-900">help people</span> make confident decisions - without pressure or hidden risks.
+                        Our goal is to <span class="font-medium text-[#1E1D1D]">reduce surprises</span>, remove uncertainty, and
+                        <span class="font-medium text-[#1E1D1D]">help people</span> make confident decisions - without pressure or hidden risks.
                     </p>
                 </div>
 
                 <div class="mt-8">
-                    <a href="#" class="inline-flex items-center justify-center px-8 py-3 border border-blue-600 rounded-full text-base font-medium text-blue-600 bg-transparent hover:bg-blue-50 transition duration-300 font-['General_Sans',_sans-serif]">
+                    <a href="#" class="inline-flex items-center justify-center px-[32px] py-[16px] border border-[#1447D4] rounded-[29.5px] text-[16px] font-medium text-[#1447D4] hover:bg-blue-50 transition duration-300 font-['General_Sans',_sans-serif] tracking-[-0.48px]">
                         Learn more
                     </a>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
 
-<div class="bg-white pb-20 pt-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <div class="relative bg-blue-600 rounded-[32px] px-8 py-16 md:px-16 md:py-20 overflow-hidden shadow-xl">
-
+{{-- CTA Section --}}
+<div class="bg-white pb-[80px]">
+    <div class="max-w-[1204px] mx-auto px-4 lg:px-0">
+        <div class="relative bg-[#1447D4] rounded-[14px] px-[80px] py-[100px] overflow-hidden">
+            {{-- Decorative pattern --}}
             <div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
-                <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
+                <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover scale-150">
                     <circle cx="400" cy="200" r="200" fill="white"/>
-                    <circle cx="400" cy="200" r="150" fill="#2563EB"/>
                 </svg>
             </div>
 
-            <div class="relative z-10 max-w-2xl">
-                <h2 class="text-[42px] md:text-[56px] font-medium leading-[1.1] text-white mb-6 font-['General_Sans',_sans-serif]">
-                    Reach the <br />
-                    Right Renters
+            <div class="relative z-10 max-w-[500px]">
+                <h2 class="text-[64px] font-medium leading-[1.22] text-[#F9F9F8] mb-6 font-['PP_Formula','General_Sans',_sans-serif] tracking-[-1.92px]">
+                    Reach the <br /> Right Renters
                 </h2>
 
-                <p class="text-blue-100 text-lg md:text-xl mb-10 max-w-md font-['General_Sans',_sans-serif] font-light">
+                <p class="text-[#F9F9F8] text-[18px] leading-[1.5] mb-10 font-['General_Sans',_sans-serif]">
                     Publish your listing and connect with people who value clarity and honesty.
                 </p>
 
-                <a href="#" class="inline-flex items-center justify-center px-8 py-3.5 bg-white text-blue-900 text-base font-semibold rounded-full hover:bg-gray-50 transition shadow-lg font-['General_Sans',_sans-serif]">
+                <a href="#" class="inline-flex items-center justify-center px-[32px] py-[16px] bg-white text-[#1E1D1D] text-[16px] font-medium rounded-[29.5px] hover:bg-gray-50 transition shadow-sm font-['General_Sans',_sans-serif] tracking-[-0.48px]">
                     Learn more
                 </a>
             </div>
-
         </div>
-
     </div>
 </div>
 
