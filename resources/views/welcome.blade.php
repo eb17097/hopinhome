@@ -168,9 +168,6 @@
 
     <x-listings.popular-listings :listings="$listings" />
 
-    <div class="bg-gray-50 py-20 border-t border-gray-200">
-
-</div>
 
 <div class="bg-gray-50 py-20 border-t border-gray-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
