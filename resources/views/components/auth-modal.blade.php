@@ -137,7 +137,7 @@
                         <input x-model="email" @input="emailError = ''" type="text" id="email-phone" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" placeholder="Enter your email or phone">
                         <div x-show="emailError" x-text="emailError" class="text-red-500 text-sm mt-2"></div>
                     </div>
-                    <button type="submit" :disabled="isLoading" class="w-full bg-electric-blue text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors mt-6 flex justify-center items-center disabled:opacity-70">
+                    <button type="submit" :disabled="isLoading" class="w-full bg-electric-blue text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors mt-3 flex justify-center items-center disabled:opacity-70">
                         <span x-show="!isLoading">Continue</span>
                         <svg x-show="isLoading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="display: none;">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -229,7 +229,11 @@
                                     </div>
                                 </template>
                             </div>
-                            <div x-show="otpError" x-text="otpError" class="text-red-500 text-sm mt-3" style="display: none;"></div>
+                            <div x-show="otpError || otpSuccessMessage"
+                                 x-text="otpError || otpSuccessMessage"
+                                 class="text-sm mt-3 font-medium"
+                                 :class="otpError ? 'text-red-500' : 'text-green-600'"
+                                 style="display: none;"></div>
                         </div>
 
                         <button type="submit" :disabled="isLoading" class="w-full bg-[#1447d4] text-white py-[14px] rounded-[8px] font-medium text-[16px] hover:bg-blue-800 transition-colors mt-8 flex justify-center items-center disabled:opacity-70">
@@ -277,7 +281,7 @@
                                 isLoading = false;
                                 otpError = 'An error occurred while resending the code.';
                             });
-                        " 
+                        "
                         :disabled="resendTimer > 0 || isLoading"
                         class="underline decoration-solid transition-colors relative"
                         :class="{'text-gray-400 cursor-not-allowed': resendTimer > 0 || isLoading, 'text-[#464646] hover:text-black': resendTimer === 0 && !isLoading}">
@@ -290,7 +294,6 @@
                             </div>
                         </button>
                     </p>
-                    <div x-show="otpSuccessMessage" x-text="otpSuccessMessage" class="text-green-600 text-sm mt-3 text-center font-medium" style="display: none;"></div>
                 </div>
             </div>
 
