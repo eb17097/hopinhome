@@ -1,10 +1,10 @@
 @props(['listing'])
 
-<a href="{{ route('listings.show', $listing) }}" draggable="false" class="block w-[358px] h-[417px] bg-white rounded-lg shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)] overflow-hidden group">
+<a href="{{ route('listings.show', $listing) }}" draggable="false" class="block w-[358px] bg-white rounded-lg shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)] overflow-hidden group">
     <div class="relative h-[225px]">
-        <img class="w-full h-full object-cover" 
+        <img class="w-full h-full object-cover"
              draggable="false"
-             src="{{ $listing->images->first() ? (Str::startsWith($listing->images->first()->image_url, 'http') ? $listing->images->first()->image_url : Illuminate\Support\Facades\Storage::url($listing->images->first()->image_url)) : asset('images/placeholder-image.png') }}" 
+             src="{{ $listing->images->first() ? (Str::startsWith($listing->images->first()->image_url, 'http') ? $listing->images->first()->image_url : Illuminate\Support\Facades\Storage::url($listing->images->first()->image_url)) : asset('images/placeholder-image.png') }}"
              alt="{{ $listing->name }}">
         <div class="absolute top-[12px] right-[12px]">
             <img src="{{ asset('images/favorite_white.svg') }}" draggable="false" alt="Favorite" class="size-[32px]">
@@ -15,7 +15,7 @@
     </div>
     <div class="p-[20px] pt-[24px]">
         <h3 class="font-medium text-[20px] text-black tracking-[-0.4px] leading-[1.28]">{{ $listing->name }}</h3>
-        <p class="text-[14px] text-[#464646] leading-[1.5] mt-1">{{ $listing->address }}</p>
+        <p class="text-[14px] text-[#464646] leading-[1.5] mt-1 truncate">{{ $listing->address }}</p>
 
         <div class="flex items-center gap-x-[16px] text-[14px] text-[#464646] mt-[19px]">
             <div class="flex items-end gap-[3px]">

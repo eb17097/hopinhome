@@ -12,20 +12,6 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-visible relative group">
         @if($similarListings->isNotEmpty())
-            {{-- Navigation Arrows (PC only) --}}
-            <button 
-                @click="$refs.carousel.scrollBy({ left: -400, behavior: 'smooth' })"
-                class="absolute left-[-20px] top-1/2 -translate-y-1/2 z-10 size-[48px] bg-white rounded-full border border-[#E8E8E7] flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity hidden lg:flex hover:bg-gray-50"
-            >
-                <img src="{{ asset('images/arrow.svg') }}" class="rotate-180 size-6" alt="Previous">
-            </button>
-            <button 
-                @click="$refs.carousel.scrollBy({ left: 400, behavior: 'smooth' })"
-                class="absolute right-[-20px] top-1/2 -translate-y-1/2 z-10 size-[48px] bg-white rounded-full border border-[#E8E8E7] flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity hidden lg:flex hover:bg-gray-50"
-            >
-                <img src="{{ asset('images/arrow.svg') }}" class="size-6" alt="Next">
-            </button>
-
             <div 
                 x-ref="carousel"
                 x-data="{ 
@@ -101,16 +87,5 @@
     .carousel-container.dragging {
         scroll-snap-type: none;
         scroll-behavior: auto;
-    }
-</style>
-</div>
-
-<style>
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
-    .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
     }
 </style>
