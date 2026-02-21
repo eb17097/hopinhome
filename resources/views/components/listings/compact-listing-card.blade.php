@@ -42,7 +42,7 @@
                 <span class="font-semibold text-[24px] text-black tracking-[-0.48px] leading-[1.28]">AED {{ number_format($listing->price) }}</span>
                 <span class="font-medium text-[14px] text-black leading-[1.5]">Yearly</span>
             </div>
-            <p class="text-[12px] text-[#464646] leading-[1.5]">Utilities included</p>
+            <p class="text-[12px] text-[#464646] leading-[1.5]">Utilities {{ strtolower($listing->utilities_option) }}</p>
         </div>
     </div>
 </a>

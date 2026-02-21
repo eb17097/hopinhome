@@ -27,7 +27,7 @@ class SimilarListings extends Component
         $this->similarListings = \App\Models\Listing::where('id', '!=', $this->listing->id)
             ->with('images') // Eager load images to avoid N+1 issues
             ->inRandomOrder()
-            ->take(3)
+            ->take(4)
             ->get();
             
         return view('components.listings.show.similar-listings');
