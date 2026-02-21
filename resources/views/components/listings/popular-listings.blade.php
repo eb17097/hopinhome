@@ -34,6 +34,9 @@
                         this.startX = e.pageX - $el.offsetLeft;
                         this.scrollLeft = $el.scrollLeft;
                         this.lastX = e.pageX;
+                        
+                        // Stop any ongoing animations
+                        if (this.animationId) cancelAnimationFrame(this.animationId);
                     },
                     handleMouseLeave() {
                         if (!this.isDown) return;
@@ -43,25 +46,35 @@
                         if (!this.isDown) return;
                         this.isDown = false;
                         
-                        // Calculate manual snap point
-                        const cardWidth = 358 + 32; // Card width + gap
-                        const momentum = -this.velocity * 5;
-                        const targetScroll = Math.round(($el.scrollLeft + momentum) / cardWidth) * cardWidth;
+                        const cardWidth = 358 + 32;
+                        const momentum = -this.velocity * 10;
+                        const target = Math.round(($el.scrollLeft + momentum) / cardWidth) * cardWidth;
                         
-                        // Smoothly scroll to the snap point
-                        $el.scrollTo({ left: targetScroll, behavior: 'smooth' });
-
-                        // Delay removing 'dragging' class to let the smooth animation finish 
-                        // before re-enabling the browser's aggressive native snapping
-                        setTimeout(() => {
-                            if (!this.isDown) {
-                                $el.classList.remove('dragging');
-                            }
-                        }, 600);
+                        this.animateTo(target);
 
                         if (this.moved && e) {
                             e.preventDefault();
                         }
+                    },
+                    animateTo(target) {
+                        const start = $el.scrollLeft;
+                        const startTime = performance.now();
+                        const duration = 600;
+
+                        const step = (now) => {
+                            const progress = Math.min((now - startTime) / duration, 1);
+                            // Ease out cubic
+                            const ease = 1 - Math.pow(1 - progress, 3);
+                            
+                            $el.scrollLeft = start + (target - start) * ease;
+
+                            if (progress < 1) {
+                                this.animationId = requestAnimationFrame(step);
+                            } else {
+                                $el.classList.remove('dragging');
+                            }
+                        };
+                        this.animationId = requestAnimationFrame(step);
                     },
                     handleMouseMove(e) {
                         if (!this.isDown) return;
@@ -88,7 +101,7 @@
                 @mouseup="handleMouseUp($event)"
                 @mousemove="handleMouseMove($event)"
                 @click.capture="handleChildClick($event)"
-                class="carousel-container flex gap-x-[32px] overflow-x-auto pb-8 no-scrollbar scroll-smooth snap-x snap-mandatory cursor-grab active:cursor-grabbing select-none"
+                class="carousel-container flex gap-x-[32px] overflow-x-auto pb-8 no-scrollbar snap-x snap-mandatory cursor-grab active:cursor-grabbing select-none"
             >
                 @foreach($listings as $listing)
                     <div class="flex-shrink-0 snap-start snap-always" draggable="false">
