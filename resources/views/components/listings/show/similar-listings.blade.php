@@ -19,12 +19,16 @@
                     startX: 0, 
                     scrollLeft: 0,
                     moved: false,
+                    velocity: 0,
+                    lastX: 0,
                     handleMouseDown(e) {
                         this.isDown = true;
                         this.moved = false;
+                        this.velocity = 0;
                         $el.classList.add('dragging');
                         this.startX = e.pageX - $el.offsetLeft;
                         this.scrollLeft = $el.scrollLeft;
+                        this.lastX = e.pageX;
                     },
                     handleMouseLeave() {
                         this.isDown = false;
@@ -33,8 +37,13 @@
                     handleMouseUp(e) {
                         this.isDown = false;
                         $el.classList.remove('dragging');
+                        
+                        // Apply momentum for smoother release
+                        if (Math.abs(this.velocity) > 10) {
+                            $el.scrollBy({ left: -this.velocity * 5, behavior: 'smooth' });
+                        }
+
                         if (this.moved) {
-                            // If we moved, prevent the click from navigating
                             e.preventDefault();
                         }
                     },
@@ -42,6 +51,11 @@
                         if (!this.isDown) return;
                         const x = e.pageX - $el.offsetLeft;
                         const walk = (x - this.startX) * 1.5;
+                        
+                        // Calculate velocity for momentum
+                        this.velocity = e.pageX - this.lastX;
+                        this.lastX = e.pageX;
+
                         if (Math.abs(walk) > 5) {
                             this.moved = true;
                         }
@@ -59,10 +73,10 @@
                 @mouseup="handleMouseUp($event)"
                 @mousemove="handleMouseMove($event)"
                 @click.capture="handleChildClick($event)"
-                class="carousel-container flex gap-x-[32px] overflow-x-auto pb-8 no-scrollbar scroll-smooth snap-x snap-mandatory cursor-grab active:cursor-grabbing select-none"
+                class="carousel-container flex gap-x-[32px] overflow-x-auto pb-8 no-scrollbar scroll-smooth snap-x snap-proximity cursor-grab active:cursor-grabbing select-none"
             >
                 @foreach($similarListings as $similar)
-                    <div class="flex-shrink-0 snap-start" draggable="false">
+                    <div class="flex-shrink-0 snap-start snap-always" draggable="false">
                         <x-listings.compact-listing-card :listing="$similar" />
                     </div>
                 @endforeach
