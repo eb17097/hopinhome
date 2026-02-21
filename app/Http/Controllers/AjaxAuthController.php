@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Str;
 use App\Mail\OTPCode;
+use Illuminate\Support\Facades\Password;
 
 class AjaxAuthController extends Controller
 {
@@ -110,5 +111,25 @@ class AjaxAuthController extends Controller
             'message' => 'Registration successful',
             'redirect' => $redirectUrl,
         ]);
+    }
+
+    /**
+     * Send a password reset link to the given user.
+     */
+    public function sendResetLink(Request $request): JsonResponse
+    {
+        $request->validate([
+            'email' => ['required', 'email'],
+        ]);
+
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+
+        if ($status == Password::RESET_LINK_SENT) {
+            return response()->json(['status' => 'success', 'message' => __($status)]);
+        }
+
+        return response()->json(['status' => 'error', 'message' => __($status)], 400);
     }
 }
