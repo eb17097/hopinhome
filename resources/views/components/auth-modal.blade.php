@@ -148,11 +148,10 @@
                         <div class="flex items-center gap-2">
                             <template x-for="(code, index) in verifyCode" :key="index">
                                 <div class="flex items-center gap-2">
-                                    <input type="text" maxlength="1"
-                                           class="otp-input w-[52px] h-[52px] text-center text-[20px] font-medium border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors"
-                                           :class="{'bg-[#f2f2f2]': index < 2}"
-                                           x-model="verifyCode[index]"
-                                           @input="
+                                                                        <input type="text" maxlength="1" 
+                                                                               class="otp-input w-[52px] h-[52px] text-center text-[20px] font-medium border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors"
+                                                                               :class="{'bg-[#f2f2f2]': verifyCode[index] !== ''}"
+                                                                               x-model="verifyCode[index]"                                           @input="
                                               otpError = '';
                                               if ($event.target.value.length === 1 && index < 5) {
                                                   let inputs = document.querySelectorAll('.otp-input');
