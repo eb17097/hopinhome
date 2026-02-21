@@ -10,7 +10,7 @@
 
     <x-listings.area-filters />
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
         <div class="lg:col-span-8">
 
@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <div class="lg:col-span-4 space-y-8">
+        <div style="margin-top:69px;" class="lg:col-span-4 space-y-8">
 
             <x-listings.we-got-your-back />
 
