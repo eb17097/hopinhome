@@ -95,7 +95,7 @@
         </div>
 
         <!-- Suggestion banner at the bottom -->
-        <div class="mt-4 mb-6 bg-off-white p-4 rounded-md flex items-center space-x-3" x-show="previews.length === 0">
+        <div class="mt-4 bg-off-white p-4 rounded-md flex items-center space-x-3" x-show="previews.length === 0">
             <img src="{{ asset('images/contact_support_blue.svg') }}" alt="Support" class="h-6 w-6">
             <p class="text-sm text-gray-600">
                 <span class="font-medium text-black">Suggestion:</span> Upload clear, high-quality photos of <span class="font-medium text-black">every room</span> to help your property stand out.

@@ -7,9 +7,9 @@
         <div>
             <label for="address-input" class="block text-[14px] font-medium text-[#1e1d1d] mb-2">Address</label>
             <div class="relative">
-                <input 
-                    type="text" 
-                    id="address-input" 
+                <input
+                    type="text"
+                    id="address-input"
                     x-model="formData.address"
                     name="address"
                     class="w-full px-4 py-3 border border-[#e8e8e7] rounded-[6px] focus:ring-2 focus:ring-[#1447d4] focus:border-transparent transition-all outline-none text-[16px]"
@@ -24,7 +24,7 @@
         {{-- Map Picker --}}
         <div class="relative">
             <div id="create-listing-map" class="w-full h-[400px] rounded-[8px] border border-[#e8e8e7] overflow-hidden bg-gray-50"></div>
-            
+
             {{-- Map Controls Overlay --}}
             <div class="absolute bottom-4 right-4 flex flex-col gap-2">
                 <button type="button" onclick="zoomIn()" class="w-10 h-10 bg-white rounded-[6px] shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors border border-[#e8e8e7]">
@@ -35,8 +35,8 @@
                 </button>
             </div>
         </div>
-        
-        <p class="text-[14px] text-[#464646] flex items-center gap-2">
+
+        <p class="text-[14px] text-[#464646] flex items-center gap-2 mb-6">
             <img src="{{ asset('images/info.svg') }}" class="w-4 h-4 opacity-60" alt="">
             You can drag the marker to pin the exact location.
         </p>
@@ -54,9 +54,9 @@
                 return;
             }
 
-            const defaultLocation = { 
-                lat: parseFloat(window.listingForm.formData.latitude) || 25.1972, 
-                lng: parseFloat(window.listingForm.formData.longitude) || 55.2744 
+            const defaultLocation = {
+                lat: parseFloat(window.listingForm.formData.latitude) || 25.1972,
+                lng: parseFloat(window.listingForm.formData.longitude) || 55.2744
             };
 
             map = new google.maps.Map(document.getElementById("create-listing-map"), {
@@ -98,9 +98,9 @@
                 map.setCenter(place.geometry.location);
                 map.setZoom(17);
                 marker.setPosition(place.geometry.location);
-                
+
                 updateLocation(
-                    place.geometry.location.lat(), 
+                    place.geometry.location.lat(),
                     place.geometry.location.lng(),
                     place.formatted_address
                 );

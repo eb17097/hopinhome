@@ -1,12 +1,12 @@
 <x-property-manager-layout>
     <div class="bg-white min-h-screen">
         <div class="max-w-[1440px] mx-auto">
-            
+
                                     <form action="{{ route('property_manager.listings.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
-                                        <div id="listing-form-container" 
-                                             x-data="{ 
-                                                step: 1, 
+                                        <div id="listing-form-container"
+                                             x-data="{
+                                                step: 1,
                                                 formData: {
                                                     property_type: '',
                                                     address: '',
@@ -29,12 +29,12 @@
                                                     price: '',
                                                     duration: 30,
                                                     renewal_type: 'Monthly'
-                                                } 
+                                                }
                                              }"
                                              x-init="window.listingForm = $data">
-                    
+
                     {{-- Header Area with Stepper --}}
-                    <div class="max-w-[728px] mx-auto pt-10">
+                    <div class="max-w-[728px] mx-auto">
                         <div class="flex justify-between items-center mb-4">
                             <button type="button" class="text-[14px] text-[#464646] underline decoration-solid">Save & exit</button>
                             <h1 class="text-[18px] font-medium text-[#1e1d1d] tracking-[-0.36px]">Create a listing</h1>
@@ -42,7 +42,7 @@
                                 <img src="{{ asset('images/info.svg') }}" alt="Info" class="w-6 h-6">
                             </div>
                         </div>
-                        
+
                         {{-- Stepper --}}
                         <div class="w-full bg-[#e8e8e7] h-[6px] rounded-full overflow-hidden">
                             <div class="bg-[#1447d4] h-full transition-all duration-500" :style="'width:' + (step / 10 * 100) + '%'"></div>
@@ -50,7 +50,7 @@
                     </div>
 
                     {{-- Content Area --}}
-                    <div class="max-w-[728px] mx-auto py-16">
+                    <div class="max-w-[728px] mx-auto py-16 pt-8 pb-24">
                         {{-- Display Validation Errors --}}
                         @if ($errors->any())
                             <div class="mb-8 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-[6px]" role="alert">
@@ -91,12 +91,12 @@
                             </button>
                             <div x-show="step === 1" class="w-10"></div> {{-- Spacer --}}
 
-                            <button type="button" x-show="step < 10" @click="step++" 
+                            <button type="button" x-show="step < 10" @click="step++"
                                     class="bg-[#1447d4] hover:bg-[#04247b] text-white font-medium px-10 py-2.5 rounded-full transition-all text-[16px] tracking-[-0.48px] w-[149px] h-[40px] flex items-center justify-center">
                                 Next
                             </button>
-                            
-                            <button type="submit" x-show="step === 10" 
+
+                            <button type="submit" x-show="step === 10"
                                     class="bg-[#1447d4] hover:bg-[#04247b] text-white font-medium px-10 py-2.5 rounded-full transition-all text-[16px] tracking-[-0.48px] h-[40px] flex items-center justify-center">
                                 Submit Listing
                             </button>
