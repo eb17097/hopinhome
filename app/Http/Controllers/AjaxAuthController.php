@@ -84,12 +84,13 @@ class AjaxAuthController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'country' => 'nullable|string|max:255',
+            'password' => 'required|string|min:8',
         ]);
 
         $user = User::create([
             'name' => $request->first_name . ' ' . $request->last_name,
             'email' => $request->email,
-            'password' => Hash::make(Str::random(16)), // Generate a secure random password
+            'password' => Hash::make($request->password),
         ]);
 
         event(new Registered($user));

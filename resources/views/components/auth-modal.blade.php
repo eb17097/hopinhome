@@ -26,13 +26,15 @@
         },
         firstName: '',
         lastName: '',
+        password: '',
+        showRegisterPassword: false,
         country: '',
         agreeTerms: false,
         registerError: ''
      }"
      @open-auth-modal.window="showModal = true"
-     @close-auth-modal.window="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; }, 300)"
-     @keydown.escape.window="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; }, 300)"
+     @close-auth-modal.window="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; showRegisterPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; password = ''; }, 300)"
+     @keydown.escape.window="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; showRegisterPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; password = ''; }, 300)"
      x-show="showModal"
      x-transition:enter="transition ease-out duration-300"
      x-transition:enter-start="opacity-0"
@@ -310,7 +312,7 @@
                     <p class="text-[16px] text-[#464646] mb-6 leading-[1.5]">Enter your details to get started</p>
 
                     <form @submit.prevent="
-                        if (!firstName || !lastName || !country || !agreeTerms) {
+                        if (!firstName || !lastName || !country || !agreeTerms || !password) {
                             registerError = 'Please fill out all required fields and agree to the terms.';
                             return;
                         }
@@ -326,7 +328,8 @@
                                 first_name: firstName,
                                 last_name: lastName,
                                 email: email,
-                                country: country
+                                country: country,
+                                password: password
                             })
                         })
                         .then(res => res.json())
@@ -357,6 +360,17 @@
                             <div>
                                 <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">Email address (optional)</label>
                                 <input x-model="email" type="email" readonly class="w-full px-4 py-3 border border-[#e8e8e7] bg-gray-50 rounded-[8px] text-gray-500 cursor-not-allowed outline-none">
+                            </div>
+
+                            <div>
+                                <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">Password</label>
+                                <div class="relative">
+                                    <input x-model="password" :type="showRegisterPassword ? 'text' : 'password'" class="w-full px-4 py-3 border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors" placeholder="Create a password" @input="registerError = ''">
+                                    <button type="button" @click="showRegisterPassword = !showRegisterPassword" class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-400 hover:text-gray-600">
+                                        <svg x-show="!showRegisterPassword" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                        <svg x-show="showRegisterPassword" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7 .95-3.036 3.401-5.413 6.32-6.32m8.905 8.905a10.025 10.025 0 01-1.318 1.318M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21L3 3"></path></svg>
+                                    </button>
+                                </div>
                             </div>
 
                             <div>
