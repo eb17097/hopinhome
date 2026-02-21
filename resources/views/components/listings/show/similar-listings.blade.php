@@ -31,19 +31,30 @@
                         this.lastX = e.pageX;
                     },
                     handleMouseLeave() {
-                        this.isDown = false;
-                        $el.classList.remove('dragging');
+                        if (!this.isDown) return;
+                        this.handleMouseUp();
                     },
                     handleMouseUp(e) {
+                        if (!this.isDown) return;
                         this.isDown = false;
-                        $el.classList.remove('dragging');
                         
-                        // Apply momentum for smoother release
-                        if (Math.abs(this.velocity) > 10) {
-                            $el.scrollBy({ left: -this.velocity * 5, behavior: 'smooth' });
-                        }
+                        // Calculate manual snap point
+                        const cardWidth = 358 + 32; // Card width + gap
+                        const momentum = -this.velocity * 5;
+                        const targetScroll = Math.round(($el.scrollLeft + momentum) / cardWidth) * cardWidth;
+                        
+                        // Smoothly scroll to the snap point
+                        $el.scrollTo({ left: targetScroll, behavior: 'smooth' });
 
-                        if (this.moved) {
+                        // Delay removing 'dragging' class to let the smooth animation finish 
+                        // before re-enabling the browser's aggressive native snapping
+                        setTimeout(() => {
+                            if (!this.isDown) {
+                                $el.classList.remove('dragging');
+                            }
+                        }, 600);
+
+                        if (this.moved && e) {
                             e.preventDefault();
                         }
                     },
@@ -52,7 +63,6 @@
                         const x = e.pageX - $el.offsetLeft;
                         const walk = (x - this.startX) * 1.5;
                         
-                        // Calculate velocity for momentum
                         this.velocity = e.pageX - this.lastX;
                         this.lastX = e.pageX;
 
@@ -73,7 +83,7 @@
                 @mouseup="handleMouseUp($event)"
                 @mousemove="handleMouseMove($event)"
                 @click.capture="handleChildClick($event)"
-                class="carousel-container flex gap-x-[32px] overflow-x-auto pb-8 no-scrollbar scroll-smooth snap-x snap-proximity cursor-grab active:cursor-grabbing select-none"
+                class="carousel-container flex gap-x-[32px] overflow-x-auto pb-8 no-scrollbar scroll-smooth snap-x snap-mandatory cursor-grab active:cursor-grabbing select-none"
             >
                 @foreach($similarListings as $similar)
                     <div class="flex-shrink-0 snap-start snap-always" draggable="false">
