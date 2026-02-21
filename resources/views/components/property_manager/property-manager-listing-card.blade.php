@@ -12,7 +12,7 @@
             <h3 class="text-[18px] font-medium text-[#1e1d1d] leading-[1.28]">{{ $listing->name }}</h3>
             <div class="flex items-baseline space-x-1 mt-1">
                 <span class="text-[16px] font-medium text-[#1e1d1d]">AED {{ number_format($listing->price) }}</span>
-                <span class="text-[14px] text-[#464646]">Yearly</span>
+                <span class="text-[14px] text-[#464646]">{{ $listing->payment_option }}</span>
             </div>
         </div>
     </div>

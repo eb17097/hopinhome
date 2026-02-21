@@ -9,7 +9,7 @@
         <div class="flex justify-between items-end">
             <div class="flex items-end gap-[4px]">
                 <span class="text-[32px] font-semibold text-black tracking-[-0.64px] leading-[1.28]">AED {{ number_format($listing->price) }}</span>
-                <span class="text-[14px] font-medium text-black leading-[1.5]">Yearly</span>
+                <span class="text-[14px] font-medium text-black leading-[1.5]">{{ $listing->payment_option }}</span>
             </div>
             {{-- The Figma design for the booking card itself does not show the user avatar in this position --}}
         </div>
