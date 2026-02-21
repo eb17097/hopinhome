@@ -2,26 +2,28 @@
     <h3 class="text-2xl font-medium text-black tracking-tight">Add a video tour (optional)</h3>
     <p class="text-base text-gray-600 mt-2">A video tour makes it easier to understand the space, layout, and surroundings.</p>
 
-    <div class="mt-8" x-data="videoUploader()">
-        <label for="video_file" class="block text-sm font-medium text-gray-700">Upload a video</label>
-        <div class="mt-1">
+    <div class="mt-10" x-data="videoUploader()">
+        <label for="video_file" class="block text-sm font-medium text-black mb-1.5">Video tour</label>
+        <div class="relative">
             <input type="file" name="video_file" id="video_file" @change="handleFileSelect" class="sr-only" accept="video/mp4,video/quicktime,video/x-ms-wmv,video/x-msvideo">
-            <label for="video_file" class="flex justify-center px-6 pt-5 pb-6 border-2 border-dashed border-electric-blue rounded-md cursor-pointer">
-                <div class="space-y-1 text-center">
-                    <svg class="mx-auto h-12 w-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9A2.25 2.25 0 0 0 13.5 5.25h-9A2.25 2.25 0 0 0 2.25 7.5v9A2.25 2.25 0 0 0 4.5 18.75Z" />
-                    </svg>
-                    <div class="flex text-sm text-gray-600">
-                        <span class="font-medium text-electric-blue">Tap to upload a video</span>
-                    </div>
-                    <p class="text-xs text-gray-500">MP4, MOV, WMV, AVI up to 50MB</p>
-                </div>
-            </label>
-        </div>
 
-        <div class="mt-4" x-show="videoPreviewUrl">
-            <video :src="videoPreviewUrl" controls class="w-full rounded-md"></video>
-            <button type="button" @click="removeVideo" class="mt-2 text-sm font-medium text-red-600 hover:text-red-800">Remove video</button>
+            <div x-show="!videoPreviewUrl">
+                <label for="video_file" class="flex flex-col items-center justify-center h-[307px] border-2 border-dashed border-electric-blue rounded-md cursor-pointer bg-white">
+                    <div class="flex flex-col items-center">
+                        <img src="{{ asset('images/upload-icon.svg') }}" alt="Upload" class="w-[54px] h-[54px] mb-2">
+                        <p class="text-base font-medium text-black">Tap to upload your video</p>
+                        <p class="text-sm text-gray-600 mt-1">Max. length <span class="font-medium text-black">2 minutes</span></p>
+                    </div>
+                </label>
+            </div>
+
+            <div class="mt-4" x-show="videoPreviewUrl">
+                <video :src="videoPreviewUrl" controls class="w-full rounded-md"></video>
+                <button type="button" @click="removeVideo" class="mt-3 text-sm font-medium text-red-600 hover:text-red-800 flex items-center gap-1">
+                    <img src="{{ asset('images/delete.svg') }}" class="w-4 h-4" alt="">
+                    Remove video
+                </button>
+            </div>
         </div>
     </div>
 
@@ -43,11 +45,11 @@
         }
     </script>
 
-    <div class="mt-4 bg-off-white p-4 rounded-md flex items-start space-x-3">
+    <div class="mt-4 bg-off-white p-[14px] rounded-md flex items-center space-x-3">
         <img src="{{ asset('images/contact_support_blue.svg') }}" alt="Support" class="h-7 w-7">
-        <p class="text-sm text-gray-600">
+        <p class="text-sm text-gray-600 leading-[1.5]">
             <span class="font-medium text-black">Suggestion:</span>
-            Please avoid adding music and focus on showing the property clearly.
+            Please <span class="font-medium text-black">avoid adding music</span> and focus on showing the property clearly.
         </p>
     </div>
 </div>
