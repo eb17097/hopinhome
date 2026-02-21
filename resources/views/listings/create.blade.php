@@ -1,4 +1,17 @@
 <x-property-manager-layout>
+    <style>
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
     <div class="bg-white min-h-screen">
         <div class="max-w-[1440px] mx-auto">
 
