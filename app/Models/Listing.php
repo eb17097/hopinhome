@@ -35,7 +35,7 @@ class Listing extends Model
      */
     public function images()
     {
-        return $this->hasMany(ListingImage::class);
+        return $this->hasMany(ListingImage::class)->orderBy('sequence');
     }
 
     /**
