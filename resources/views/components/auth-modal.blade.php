@@ -64,72 +64,72 @@
                     </button>
                 </div>
                 <div class="flex items-center my-6"><hr class="flex-grow border-gray-200"><span class="px-3 text-gray-400 text-sm">or</span><hr class="flex-grow border-gray-200"></div>
-                <div>
-                    <label for="email-phone" class="block text-sm font-medium text-gray-700 mb-1.5">Email address or phone number</label>
-                    <input x-model="email" @input="emailError = ''" type="text" id="email-phone" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" placeholder="Enter your email or phone">
-                    <div x-show="emailError" x-text="emailError" class="text-red-500 text-sm mt-2"></div>
-                </div>
-                <button
-                    @click="
-                        if (email.trim() === '') {
-                            emailError = 'Email address is required.';
-                        } else {
-                            isLoading = true;
-                            fetch('{{ route('ajax.check-email') }}', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Accept': 'application/json',
-                                    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')
-                                },
-                                body: JSON.stringify({ email: email })
-                            })
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.exists) {
-                                    isLoading = false;
-                                    step = 'password';
-                                } else {
-                                    // New user, send OTP
-                                    fetch('{{ route('ajax.send-otp') }}', {
-                                        method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                            'Accept': 'application/json',
-                                            'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')
-                                        },
-                                        body: JSON.stringify({ email: email })
-                                    })
-                                    .then(res => res.json())
-                                    .then(otpData => {
-                                        isLoading = false;
-                                        if (otpData.status === 'success') {
-                                            step = 'verify_email';
-                                        } else {
-                                            emailError = otpData.message || 'Failed to send verification code.';
-                                        }
-                                    }).catch(err => {
-                                        isLoading = false;
-                                        emailError = 'An error occurred sending the code. Please try again.';
-                                    });
-                                }
-                                error = '';
-                                passwordError = '';
-                            })
-                            .catch(err => {
+
+                <form @submit.prevent="
+                    if (email.trim() === '') {
+                        emailError = 'Email address is required.';
+                    } else {
+                        isLoading = true;
+                        fetch('{{ route('ajax.check-email') }}', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')
+                            },
+                            body: JSON.stringify({ email: email })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.exists) {
                                 isLoading = false;
-                                emailError = 'An error occurred. Please try again.';
-                            });
-                        }
-                    "
-                    :disabled="isLoading"
-                    class="w-full bg-electric-blue text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors mt-6 flex justify-center items-center disabled:opacity-70">
-                    <span x-show="!isLoading">Continue</span>
-                    <svg x-show="isLoading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="display: none;">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                </button>
+                                step = 'password';
+                            } else {
+                                // New user, send OTP
+                                fetch('{{ route('ajax.send-otp') }}', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'Accept': 'application/json',
+                                        'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')
+                                    },
+                                    body: JSON.stringify({ email: email })
+                                })
+                                .then(res => res.json())
+                                .then(otpData => {
+                                    isLoading = false;
+                                    if (otpData.status === 'success') {
+                                        step = 'verify_email';
+                                    } else {
+                                        emailError = otpData.message || 'Failed to send verification code.';
+                                    }
+                                }).catch(err => {
+                                    isLoading = false;
+                                    emailError = 'An error occurred sending the code. Please try again.';
+                                });
+                            }
+                            error = '';
+                            passwordError = '';
+                        })
+                        .catch(err => {
+                            isLoading = false;
+                            emailError = 'An error occurred. Please try again.';
+                        });
+                    }
+                ">
+                    <div>
+                        <label for="email-phone" class="block text-sm font-medium text-gray-700 mb-1.5">Email address or phone number</label>
+                        <input x-model="email" @input="emailError = ''" type="text" id="email-phone" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" placeholder="Enter your email or phone">
+                        <div x-show="emailError" x-text="emailError" class="text-red-500 text-sm mt-2"></div>
+                    </div>
+                    <button type="submit" :disabled="isLoading" class="w-full bg-electric-blue text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors mt-6 flex justify-center items-center disabled:opacity-70">
+                        <span x-show="!isLoading">Continue</span>
+                        <svg x-show="isLoading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="display: none;">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </button>
+                </form>
                 <p class="text-xs text-gray-500 text-center mt-6">By continuing, you agree to our <a href="#" class="text-electric-blue hover:underline">Terms</a> & <a href="#" class="text-electric-blue hover:underline">Privacy Policy</a>.</p>
             </div>
 
@@ -143,88 +143,88 @@
                     <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-2">Verify your email</h3>
                     <p class="text-[16px] text-[#464646] mb-8 leading-[1.5]">We sent a 6-digit code to <span class="font-medium text-[#1e1d1d]" x-text="email"></span>.</p>
 
-                    <div>
-                        <label class="block text-[14px] font-medium text-[#1e1d1d] mb-3">Verification code</label>
-                        <div class="flex items-center gap-2">
-                            <template x-for="(code, index) in verifyCode" :key="index">
-                                <div class="flex items-center gap-2">
-                                                                        <input type="text" maxlength="1" 
-                                                                               class="otp-input w-[52px] h-[52px] text-center text-[20px] font-medium border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors"
-                                                                               :class="{'bg-[#f2f2f2]': verifyCode[index] !== ''}"
-                                                                               x-model="verifyCode[index]"                                           @input="
-                                              otpError = '';
-                                              if ($event.target.value.length === 1 && index < 5) {
-                                                  let inputs = document.querySelectorAll('.otp-input');
-                                                  if (inputs[index + 1]) inputs[index + 1].focus();
-                                              }
-                                           "
-                                           @keydown.backspace="
-                                              if ($event.target.value.length === 0 && index > 0) {
-                                                  let inputs = document.querySelectorAll('.otp-input');
-                                                  if (inputs[index - 1]) inputs[index - 1].focus();
-                                              }
-                                           "
-                                           @paste.prevent="
-                                              otpError = '';
-                                              let paste = ($event.clipboardData || window.clipboardData).getData('text');
-                                              paste = paste.replace(/\D/g, '').substring(0, 6);
-                                              for (let i = 0; i < paste.length; i++) {
-                                                  if (index + i < 6) {
-                                                      verifyCode[index + i] = paste[i];
-                                                  }
-                                              }
-                                              setTimeout(() => {
-                                                  let inputs = document.querySelectorAll('.otp-input');
-                                                  let focusIndex = Math.min(index + paste.length, 5);
-                                                  if (inputs[focusIndex]) inputs[focusIndex].focus();
-                                              }, 10);
-                                           "
-                                    >
-                                    <span x-show="index === 2" class="w-4 text-center text-gray-400">-</span>
-                                </div>
-                            </template>
-                        </div>
-                        <div x-show="otpError" x-text="otpError" class="text-red-500 text-sm mt-3" style="display: none;"></div>
-                    </div>
-
-                    <button
-                        @click="
-                            const code = verifyCode.join('');
-                            if (code.length < 6) {
-                                otpError = 'Please enter the 6-digit code.';
-                                return;
+                    <form @submit.prevent="
+                        const code = verifyCode.join('');
+                        if (code.length < 6) {
+                            otpError = 'Please enter the 6-digit code.';
+                            return;
+                        }
+                        isLoading = true;
+                        fetch('{{ route('ajax.verify-otp') }}', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')
+                            },
+                            body: JSON.stringify({ email: email, code: code })
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            isLoading = false;
+                            if (data.status === 'success') {
+                                step = 'finish_signup';
+                            } else {
+                                otpError = data.message || 'Invalid code.';
                             }
-                            isLoading = true;
-                            fetch('{{ route('ajax.verify-otp') }}', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Accept': 'application/json',
-                                    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')
-                                },
-                                body: JSON.stringify({ email: email, code: code })
-                            })
-                            .then(res => res.json())
-                            .then(data => {
-                                isLoading = false;
-                                if (data.status === 'success') {
-                                    step = 'finish_signup';
-                                } else {
-                                    otpError = data.message || 'Invalid code.';
-                                }
-                            }).catch(err => {
-                                isLoading = false;
-                                otpError = 'An error occurred verifying the code.';
-                            });
-                        "
-                        :disabled="isLoading"
-                        class="w-full bg-[#1447d4] text-white py-[14px] rounded-[8px] font-medium text-[16px] hover:bg-blue-800 transition-colors mt-8 flex justify-center items-center disabled:opacity-70">
-                        <span x-show="!isLoading">Continue</span>
-                        <svg x-show="isLoading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="display: none;">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                    </button>
+                        }).catch(err => {
+                            isLoading = false;
+                            otpError = 'An error occurred verifying the code.';
+                        });
+                    ">
+                        <div>
+                            <label class="block text-[14px] font-medium text-[#1e1d1d] mb-3">Verification code</label>
+                            <div class="flex items-center gap-2">
+                                <template x-for="(code, index) in verifyCode" :key="index">
+                                    <div class="flex items-center gap-2">
+                                        <input type="text" maxlength="1"
+                                               class="otp-input w-[52px] h-[52px] text-center text-[20px] font-medium border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors"
+                                               :class="{'bg-[#f2f2f2]': verifyCode[index] !== ''}"
+                                               x-model="verifyCode[index]"
+                                               @input="
+                                                  otpError = '';
+                                                  if ($event.target.value.length === 1 && index < 5) {
+                                                      let inputs = document.querySelectorAll('.otp-input');
+                                                      if (inputs[index + 1]) inputs[index + 1].focus();
+                                                  }
+                                               "
+                                               @keydown.backspace="
+                                                  if ($event.target.value.length === 0 && index > 0) {
+                                                      let inputs = document.querySelectorAll('.otp-input');
+                                                      if (inputs[index - 1]) inputs[index - 1].focus();
+                                                  }
+                                               "
+                                               @paste.prevent="
+                                                  otpError = '';
+                                                  let paste = ($event.clipboardData || window.clipboardData).getData('text');
+                                                  paste = paste.replace(/\D/g, '').substring(0, 6);
+                                                  for (let i = 0; i < paste.length; i++) {
+                                                      if (index + i < 6) {
+                                                          verifyCode[index + i] = paste[i];
+                                                      }
+                                                  }
+                                                  setTimeout(() => {
+                                                      let inputs = document.querySelectorAll('.otp-input');
+                                                      let focusIndex = Math.min(index + paste.length, 5);
+                                                      if (inputs[focusIndex]) inputs[focusIndex].focus();
+                                                  }, 10);
+                                               "
+                                        >
+                                        <span x-show="index === 2" class="w-4 text-center text-gray-400">-</span>
+                                    </div>
+                                </template>
+                            </div>
+                            <div x-show="otpError" x-text="otpError" class="text-red-500 text-sm mt-3" style="display: none;"></div>
+                        </div>
+
+                        <button type="submit" :disabled="isLoading" class="w-full bg-[#1447d4] text-white py-[14px] rounded-[8px] font-medium text-[16px] hover:bg-blue-800 transition-colors mt-8 flex justify-center items-center disabled:opacity-70">
+                            <span x-show="!isLoading">Continue</span>
+                            <svg x-show="isLoading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="display: none;">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
+                    </form>
 
                     <p class="text-[14px] text-[#464646] text-center mt-6">
                         Didn't receive a code?
@@ -262,113 +262,112 @@
                     <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-1">Set up your profile</h3>
                     <p class="text-[16px] text-[#464646] mb-6 leading-[1.5]">Enter your details to get started</p>
 
-                    <div class="space-y-4">
-                        <div class="flex gap-4">
-                            <div class="flex-1">
-                                <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">First name</label>
-                                <input x-model="firstName" type="text" class="w-full px-4 py-3 border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors" placeholder="John" @input="registerError = ''">
-                            </div>
-                            <div class="flex-1">
-                                <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">Last name</label>
-                                <input x-model="lastName" type="text" class="w-full px-4 py-3 border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors" placeholder="Your last name" @input="registerError = ''">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">Email address (optional)</label>
-                            <input x-model="email" type="email" readonly class="w-full px-4 py-3 border border-[#e8e8e7] bg-gray-50 rounded-[8px] text-gray-500 cursor-not-allowed outline-none">
-                        </div>
-
-                        <div>
-                            <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">Country</label>
-                            <div class="relative">
-                                <select x-model="country" class="w-full px-4 py-3 pl-10 border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors appearance-none bg-white">
-                                    <option value="" disabled selected>Select a country</option>
-                                    <option value="United Arab Emirates">United Arab Emirates</option>
-                                    <option value="United States">United States</option>
-                                    <option value="United Kingdom">United Kingdom</option>
-                                    <option value="Saudi Arabia">Saudi Arabia</option>
-                                </select>
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <img src="http://localhost/images/language_black.svg" alt="Language" class="w-6 h-6">
-                                </div>
-                                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                    <svg class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-6 space-y-4">
-                            <label class="flex items-start gap-3 cursor-pointer group">
-                                <div class="relative flex items-center justify-center w-5 h-5 mt-0.5">
-                                    <input type="checkbox" x-model="agreeTerms" class="peer sr-only">
-                                    <div class="w-5 h-5 border border-gray-300 rounded bg-white peer-checked:bg-[#1447d4] peer-checked:border-[#1447d4] transition-colors"></div>
-                                    <svg class="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="text-[14px] text-[#1e1d1d]">I agree to the Terms of Service and Privacy Policy.</span>
-                            </label>
-
-                            <label class="flex items-start gap-3 cursor-pointer group">
-                                <div class="relative flex items-center justify-center w-5 h-5 mt-0.5">
-                                    <input type="checkbox" class="peer sr-only">
-                                    <div class="w-5 h-5 border border-gray-300 rounded bg-white peer-checked:bg-[#1447d4] peer-checked:border-[#1447d4] transition-colors"></div>
-                                    <svg class="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="text-[14px] text-[#1e1d1d]">I want to receive updates and offers from HopInHome.</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div x-show="registerError" x-text="registerError" class="text-red-500 text-sm mt-4" style="display: none;"></div>
-
-                    <button
-                        @click="
-                            if (!firstName || !lastName || !country || !agreeTerms) {
-                                registerError = 'Please fill out all required fields and agree to the terms.';
-                                return;
-                            }
-                            isLoading = true;
-                            fetch('{{ route('ajax.register') }}', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Accept': 'application/json',
-                                    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')
-                                },
-                                body: JSON.stringify({
-                                    first_name: firstName,
-                                    last_name: lastName,
-                                    email: email,
-                                    country: country
-                                })
+                    <form @submit.prevent="
+                        if (!firstName || !lastName || !country || !agreeTerms) {
+                            registerError = 'Please fill out all required fields and agree to the terms.';
+                            return;
+                        }
+                        isLoading = true;
+                        fetch('{{ route('ajax.register') }}', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')
+                            },
+                            body: JSON.stringify({
+                                first_name: firstName,
+                                last_name: lastName,
+                                email: email,
+                                country: country
                             })
-                            .then(res => res.json())
-                            .then(data => {
-                                isLoading = false;
-                                if (data.status === 'success') {
-                                    window.location.href = data.redirect;
-                                } else {
-                                    registerError = data.message || 'Registration failed.';
-                                }
-                            }).catch(err => {
-                                isLoading = false;
-                                registerError = 'An error occurred during registration.';
-                            });
-                        "
-                        :disabled="isLoading"
-                        class="w-full bg-[#1447d4] text-white py-[14px] rounded-[8px] font-medium text-[16px] hover:bg-blue-800 transition-colors mt-6 flex justify-center items-center disabled:opacity-70">
-                        <span x-show="!isLoading">Create account</span>
-                        <svg x-show="isLoading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="display: none;">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                    </button>
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            isLoading = false;
+                            if (data.status === 'success') {
+                                window.location.href = data.redirect;
+                            } else {
+                                registerError = data.message || 'Registration failed.';
+                            }
+                        }).catch(err => {
+                            isLoading = false;
+                            registerError = 'An error occurred during registration.';
+                        });
+                    ">
+                        <div class="space-y-4">
+                            <div class="flex gap-4">
+                                <div class="flex-1">
+                                    <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">First name</label>
+                                    <input x-model="firstName" type="text" class="w-full px-4 py-3 border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors" placeholder="John" @input="registerError = ''">
+                                </div>
+                                <div class="flex-1">
+                                    <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">Last name</label>
+                                    <input x-model="lastName" type="text" class="w-full px-4 py-3 border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors" placeholder="Your last name" @input="registerError = ''">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">Email address (optional)</label>
+                                <input x-model="email" type="email" readonly class="w-full px-4 py-3 border border-[#e8e8e7] bg-gray-50 rounded-[8px] text-gray-500 cursor-not-allowed outline-none">
+                            </div>
+
+                            <div>
+                                <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">Country</label>
+                                <div class="relative">
+                                    <select x-model="country" class="w-full px-4 py-3 pl-10 border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors appearance-none bg-white">
+                                        <option value="" disabled selected>Select a country</option>
+                                        <option value="United Arab Emirates">United Arab Emirates</option>
+                                        <option value="United States">United States</option>
+                                        <option value="United Kingdom">United Kingdom</option>
+                                        <option value="Saudi Arabia">Saudi Arabia</option>
+                                    </select>
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <img src="{{ asset('images/language_black.svg') }}" alt="Language" class="w-[22px]">
+                                    </div>
+                                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                        <svg class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 space-y-4">
+                                <label class="flex items-start gap-3 cursor-pointer group">
+                                    <div class="relative flex items-center justify-center w-5 h-5 mt-0.5">
+                                        <input type="checkbox" x-model="agreeTerms" class="peer sr-only">
+                                        <div class="w-5 h-5 border border-gray-300 rounded bg-white peer-checked:bg-[#1447d4] peer-checked:border-[#1447d4] transition-colors"></div>
+                                        <svg class="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <span class="text-[14px] text-[#1e1d1d]">I agree to the Terms of Service and Privacy Policy.</span>
+                                </label>
+
+                                <label class="flex items-start gap-3 cursor-pointer group">
+                                    <div class="relative flex items-center justify-center w-5 h-5 mt-0.5">
+                                        <input type="checkbox" class="peer sr-only">
+                                        <div class="w-5 h-5 border border-gray-300 rounded bg-white peer-checked:bg-[#1447d4] peer-checked:border-[#1447d4] transition-colors"></div>
+                                        <svg class="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <span class="text-[14px] text-[#1e1d1d]">I want to receive updates and offers from HopInHome.</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div x-show="registerError" x-text="registerError" class="text-red-500 text-sm mt-4" style="display: none;"></div>
+
+                        <button type="submit" :disabled="isLoading" class="w-full bg-[#1447d4] text-white py-[14px] rounded-[8px] font-medium text-[16px] hover:bg-blue-800 transition-colors mt-6 flex justify-center items-center disabled:opacity-70">
+                            <span x-show="!isLoading">Create account</span>
+                            <svg x-show="isLoading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="display: none;">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
+                    </form>
                 </div>
             </div>
 
