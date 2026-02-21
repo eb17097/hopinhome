@@ -24,11 +24,11 @@
         <input type="file" name="photos[]" id="photos" @change="handleFileSelect" multiple class="sr-only" accept="image/*">
 
         <!-- List of uploaded photos -->
-        <div class="space-y-4" x-show="previews.length > 0">
+        <div style="width:520px; margin:auto;" class="space-y-4" x-show="previews.length > 0">
             <template x-for="(preview, index) in previews" :key="index">
-                <div class="flex items-stretch space-x-0 overflow-hidden">
+                <div class="flex items-stretch space-x-0">
                     <!-- Image Area -->
-                    <div class="relative flex-1 aspect-[16/9] md:aspect-[21/9] overflow-hidden bg-gray-100">
+                    <div class="relative flex-1" style="border: 1px solid lightgray; border-radius: 3px; overflow: hidden;">
                         <img :src="preview" class="w-full h-full object-cover">
 
                         <!-- Cover photo badge -->
@@ -55,9 +55,11 @@
                         </button>
 
                         <button type="button" @click="remove(index)" class="p-1 hover:bg-red-50 rounded transition text-gray-400 hover:text-red-500">
-                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                             </svg>
+                            <img src="{{ asset('images/delete.svg') }}" alt="Support" class="h-5 w-5">
+
+{{--                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">--}}
+{{--                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />--}}
+{{--                             </svg>--}}
                         </button>
 
                         <button type="button" @click="moveDown(index)" class="p-1 hover:bg-gray-50 rounded transition text-gray-400 hover:text-black" :class="index === previews.length - 1 ? 'invisible' : ''">
@@ -74,10 +76,11 @@
         <div class="mb-6">
             <label
                 for="photos"
-                class="flex flex-col items-center justify-center w-full border-2 border-dashed rounded-md cursor-pointer transition-colors"
+                style="margin-left: auto; margin-right:auto; position: relative;"
+                class="flex flex-col items-center justify-center border-2 border-dashed rounded-md cursor-pointer transition-colors"
                 :class="{
                     'border-electric-blue bg-white py-24': previews.length === 0,
-                    'border-electric-blue bg-white py-12 mt-4': previews.length > 0,
+                    'border-electric-blue bg-white py-12 mt-4 w-[480px] left-[-20px]': previews.length > 0,
                     'border-green-500 bg-green-50': isDragging
                 }"
                 @dragover.prevent="isDragging = true"
