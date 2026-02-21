@@ -62,7 +62,7 @@
     </div>
 </div>
 
-<div class="bg-white py-20 border-b border-gray-100">
+<div class="bg-white pt-20 border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <h2 class="text-[32px] font-medium leading-[1.28] tracking-[-0.02em] text-gray-900 mb-8 font-['General_Sans',_sans-serif]">
@@ -125,7 +125,7 @@
 
             <a href="#" class="group p-6 border border-gray-100 rounded-2xl bg-white hover:shadow-lg hover:border-transparent transition duration-300 flex flex-col items-center text-center">
                 <div class="w-12 h-12 mb-4 text-blue-600">
-                    <img src="{{ asset('images/apartment_big.svg') }}" class="w-full h-full">
+                    <img src="{{ asset('images/villa.svg') }}" class="w-full h-full">
                 </div>
                 <h3 class="font-medium text-gray-900 font-['General_Sans',_sans-serif]">Villa</h3>
                 <p class="text-xs text-gray-500 mt-1 font-['General_Sans',_sans-serif]">150+ listings</p>
@@ -133,7 +133,7 @@
 
             <a href="#" class="group p-6 border border-gray-100 rounded-2xl bg-white hover:shadow-lg hover:border-transparent transition duration-300 flex flex-col items-center text-center">
                 <div class="w-12 h-12 mb-4 text-blue-600">
-                    <img src="{{ asset('images/apartment_big.svg') }}" class="w-full h-full">
+                    <img src="{{ asset('images/house.svg') }}" class="w-full h-full">
                 </div>
                 <h3 class="font-medium text-gray-900 font-['General_Sans',_sans-serif]">House</h3>
                 <p class="text-xs text-gray-500 mt-1 font-['General_Sans',_sans-serif]">300+ listings</p>
@@ -141,7 +141,7 @@
 
             <a href="#" class="group p-6 border border-gray-100 rounded-2xl bg-white hover:shadow-lg hover:border-transparent transition duration-300 flex flex-col items-center text-center">
                 <div class="w-12 h-12 mb-4 text-blue-600">
-                    <img src="{{ asset('images/apartment_big.svg') }}" class="w-full h-full">
+                    <img src="{{ asset('images/townhouse.svg') }}" class="w-full h-full">
                 </div>
                 <h3 class="font-medium text-gray-900 font-['General_Sans',_sans-serif]">Townhouse</h3>
                 <p class="text-xs text-gray-500 mt-1 font-['General_Sans',_sans-serif]">100+ listings</p>
@@ -149,7 +149,7 @@
 
             <a href="#" class="group p-6 border border-gray-100 rounded-2xl bg-white hover:shadow-lg hover:border-transparent transition duration-300 flex flex-col items-center text-center">
                 <div class="w-12 h-12 mb-4 text-blue-600">
-                    <img src="{{ asset('images/apartment_big.svg') }}" class="w-full h-full">
+                    <img src="{{ asset('images/hotel_apartment.svg') }}" class="w-full h-full">
                 </div>
                 <h3 class="font-medium text-gray-900 font-['General_Sans',_sans-serif]">Hotel Apt</h3>
                 <p class="text-xs text-gray-500 mt-1 font-['General_Sans',_sans-serif]">100+ listings</p>
@@ -157,7 +157,7 @@
 
             <a href="#" class="group p-6 border border-gray-100 rounded-2xl bg-white hover:shadow-lg hover:border-transparent transition duration-300 flex flex-col items-center text-center">
                 <div class="w-12 h-12 mb-4 text-blue-600">
-                    <img src="{{ asset('images/apartment_big.svg') }}" class="w-full h-full">
+                    <img src="{{ asset('images/penthouse.svg') }}" class="w-full h-full">
                 </div>
                 <h3 class="font-medium text-gray-900 font-['General_Sans',_sans-serif]">Penthouse</h3>
                 <p class="text-xs text-gray-500 mt-1 font-['General_Sans',_sans-serif]">50+ listings</p>

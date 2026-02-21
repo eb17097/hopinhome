@@ -17,9 +17,9 @@
                     <div class="w-12 h-12 shrink-0 flex items-center justify-center">
                         @switch($type)
                             @case('Apartment') <img src="{{ asset('images/apartment_big.svg') }}" class="w-full h-full"> @break
-                            @case('Villa') <img src="{{ asset('images/house.svg') }}" class="w-full h-full"> @break
+                            @case('Villa') <img src="{{ asset('images/villa.svg') }}" class="w-full h-full"> @break
                             @case('House') <img src="{{ asset('images/house.svg') }}" class="w-full h-full"> @break
-                            @case('Townhouse') <img src="{{ asset('images/house.svg') }}" class="w-full h-full"> @break
+                            @case('Townhouse') <img src="{{ asset('images/townhouse.svg') }}" class="w-full h-full"> @break
                             @case('Hotel apartment') <img src="{{ asset('images/hotel_apartment.svg') }}" class="w-full h-full"> @break
                             @case('Penthouse') <img src="{{ asset('images/penthouse.svg') }}" class="w-full h-full"> @break
                             @default <img src="{{ asset('images/apartment.svg') }}" class="w-full h-full">
