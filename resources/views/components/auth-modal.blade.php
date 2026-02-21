@@ -13,6 +13,8 @@
         otpSuccessMessage: '',
         resendTimer: 60,
         resendInterval: null,
+        resetToken: '',
+        passwordConfirmation: '',
         startResendTimer() {
             this.resendTimer = 60;
             clearInterval(this.resendInterval);
@@ -32,6 +34,19 @@
         agreeTerms: false,
         registerError: ''
      }"
+     x-init="
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('reset_token') && urlParams.has('email')) {
+            showModal = true;
+            step = 'reset_password';
+            resetToken = urlParams.get('reset_token');
+            email = urlParams.get('email');
+            
+            // Clean up the URL for security/cleanliness
+            const cleanUrl = window.location.origin + window.location.pathname;
+            window.history.replaceState({}, document.title, cleanUrl);
+        }
+     "
      @open-auth-modal.window="showModal = true"
      @close-auth-modal.window="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; showRegisterPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; password = ''; }, 300)"
      @keydown.escape.window="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; showRegisterPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; password = ''; }, 300)"
@@ -569,6 +584,96 @@
                     <button @click="step = 'password'" class="w-full bg-[#1447d4] text-white py-[14px] rounded-[8px] font-medium text-[16px] hover:bg-blue-800 transition-colors mt-4">
                         Log In
                     </button>
+                </div>
+            </div>
+            <!-- Reset Password Step -->
+            <div x-show="step === 'reset_password'" style="display: none;" class="-mt-8 -mx-8 bg-white relative">
+                <div class="px-8 py-4 border-b border-gray-100 flex items-center justify-center">
+                    <h2 class="text-[16px] font-medium text-[#1e1d1d]">Reset password</h2>
+                    <button @click="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; showRegisterPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; password = ''; passwordConfirmation = ''; resetToken = ''; }, 300)" class="absolute left-6 top-4 text-gray-400 hover:text-gray-600">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                
+                <div class="p-8 pt-6">
+                    <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-1">Set your new password</h3>
+                    <p class="text-[16px] text-[#464646] mb-6 leading-[1.5]">Enter a new password for your account.</p>
+
+                    <form @submit.prevent="
+                        if (!password || !passwordConfirmation) {
+                            error = 'Both password fields are required.';
+                            return;
+                        }
+                        if (password !== passwordConfirmation) {
+                            error = 'Passwords do not match.';
+                            return;
+                        }
+                        isLoading = true;
+                        fetch('{{ route('ajax.reset-password') }}', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')
+                            },
+                            body: JSON.stringify({
+                                token: resetToken,
+                                email: email,
+                                password: password,
+                                password_confirmation: passwordConfirmation
+                            })
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            isLoading = false;
+                            // Laravel's default reset password controller returns different structures based on success/failure
+                            if (data.message) {
+                                // Success typically redirects, but if it returns JSON:
+                                window.location.href = '{{ route('home') }}';
+                            } else if (data.errors) {
+                                error = Object.values(data.errors)[0][0] || 'Reset failed.';
+                            }
+                        }).catch(err => {
+                            isLoading = false;
+                            // Since Laravel redirects on success, a fetch error might just mean it redirected.
+                            // Let's just try to reload.
+                            window.location.href = '{{ route('home') }}';
+                        });
+                    ">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">New password</label>
+                                <div class="relative">
+                                    <input x-model="password" :type="showPassword ? 'text' : 'password'" class="w-full px-4 py-3 border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors" placeholder="Enter new password" @input="error = ''">
+                                    <button type="button" @click="showPassword = !showPassword" class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-400 hover:text-gray-600">
+                                        <svg x-show="!showPassword" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                        <svg x-show="showPassword" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7 .95-3.036 3.401-5.413 6.32-6.32m8.905 8.905a10.025 10.025 0 01-1.318 1.318M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21L3 3"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">Confirm new password</label>
+                                <div class="relative">
+                                    <input x-model="passwordConfirmation" :type="showRegisterPassword ? 'text' : 'password'" class="w-full px-4 py-3 border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors" placeholder="Enter new password again" @input="error = ''">
+                                    <button type="button" @click="showRegisterPassword = !showRegisterPassword" class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-400 hover:text-gray-600">
+                                        <svg x-show="!showRegisterPassword" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                        <svg x-show="showRegisterPassword" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7 .95-3.036 3.401-5.413 6.32-6.32m8.905 8.905a10.025 10.025 0 01-1.318 1.318M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21L3 3"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div x-show="error" x-text="error" class="text-red-500 text-sm mt-4" style="display: none;"></div>
+
+                        <button type="submit" :disabled="isLoading" class="w-full bg-[#1447d4] text-white py-[14px] rounded-[8px] font-medium text-[16px] hover:bg-blue-800 transition-colors mt-6 flex justify-center items-center disabled:opacity-70">
+                            <span x-show="!isLoading">Reset password</span>
+                            <svg x-show="isLoading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="display: none;">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

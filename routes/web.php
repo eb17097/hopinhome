@@ -17,6 +17,7 @@ Route::post('/ajax/send-otp', [AjaxAuthController::class, 'sendOtp'])->name('aja
 Route::post('/ajax/verify-otp', [AjaxAuthController::class, 'verifyOtp'])->name('ajax.verify-otp');
 Route::post('/ajax/register', [AjaxAuthController::class, 'register'])->name('ajax.register');
 Route::post('/ajax/forgot-password', [AjaxAuthController::class, 'sendResetLink'])->name('ajax.forgot-password');
+Route::post('/ajax/reset-password', [AjaxAuthController::class, 'resetPassword'])->name('ajax.reset-password');
 
 // Google Authentication Routes
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');

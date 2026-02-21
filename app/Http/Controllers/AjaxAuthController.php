@@ -132,4 +132,34 @@ class AjaxAuthController extends Controller
 
         return response()->json(['status' => 'error', 'message' => __($status)], 400);
     }
+
+    /**
+     * Handle an incoming new password request via AJAX.
+     */
+    public function resetPassword(Request $request): JsonResponse
+    {
+        $request->validate([
+            'token' => ['required'],
+            'email' => ['required', 'email'],
+            'password' => ['required', 'confirmed', \Illuminate\Validation\Rules\Password::defaults()],
+        ]);
+
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function (User $user) use ($request) {
+                $user->forceFill([
+                    'password' => Hash::make($request->password),
+                    'remember_token' => Str::random(60),
+                ])->save();
+
+                event(new \Illuminate\Auth\Events\PasswordReset($user));
+            }
+        );
+
+        if ($status == Password::PASSWORD_RESET) {
+            return response()->json(['status' => 'success', 'message' => __($status)]);
+        }
+
+        return response()->json(['status' => 'error', 'errors' => ['email' => [__($status)]]], 400);
+    }
 }
