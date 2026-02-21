@@ -1,7 +1,7 @@
 @props(['listing'])
 
 <div>
-    <h2 class="text-[24px] font-medium text-black tracking-[-0.48px] leading-[1.28] mb-1">Apartment for rent</h2>
+    <h2 class="text-[24px] font-medium text-black tracking-[-0.48px] leading-[1.28] mb-1">{{ $listing->property_type }} for rent</h2>
     <p class="text-[14px] text-[#464646] leading-[1.5] mb-4">{{ $listing->address }}</p>
 
     <div class="flex items-center gap-[16px]">
