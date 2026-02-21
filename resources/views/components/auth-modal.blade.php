@@ -1,10 +1,10 @@
-<div x-data="{ 
-        showModal: false, 
-        step: 'email', 
-        email: '', 
-        emailError: '', 
-        error: '', 
-        passwordError: '', 
+<div x-data="{
+        showModal: false,
+        step: 'email',
+        email: '',
+        emailError: '',
+        error: '',
+        passwordError: '',
         showPassword: false,
         isLoading: false,
         verifyCode: ['', '', '', '', '', ''],
@@ -69,11 +69,11 @@
                     <input x-model="email" @input="emailError = ''" type="text" id="email-phone" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" placeholder="Enter your email or phone">
                     <div x-show="emailError" x-text="emailError" class="text-red-500 text-sm mt-2"></div>
                 </div>
-                <button 
+                <button
                     @click="
-                        if (email.trim() === '') { 
-                            emailError = 'Email address is required.'; 
-                        } else { 
+                        if (email.trim() === '') {
+                            emailError = 'Email address is required.';
+                        } else {
                             isLoading = true;
                             fetch('{{ route('ajax.check-email') }}', {
                                 method: 'POST',
@@ -88,7 +88,7 @@
                             .then(data => {
                                 if (data.exists) {
                                     isLoading = false;
-                                    step = 'password'; 
+                                    step = 'password';
                                 } else {
                                     // New user, send OTP
                                     fetch('{{ route('ajax.send-otp') }}', {
@@ -113,7 +113,7 @@
                                         emailError = 'An error occurred sending the code. Please try again.';
                                     });
                                 }
-                                error = ''; 
+                                error = '';
                                 passwordError = '';
                             })
                             .catch(err => {
@@ -121,7 +121,7 @@
                                 emailError = 'An error occurred. Please try again.';
                             });
                         }
-                    " 
+                    "
                     :disabled="isLoading"
                     class="w-full bg-electric-blue text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors mt-6 flex justify-center items-center disabled:opacity-70">
                     <span x-show="!isLoading">Continue</span>
@@ -138,7 +138,7 @@
                 <div class="px-8 py-4 border-b border-gray-100 flex items-center justify-center">
                     <h2 class="text-[16px] font-medium text-[#1e1d1d]">Sign up</h2>
                 </div>
-                
+
                 <div class="p-8 pt-6">
                     <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-2">Verify your email</h3>
                     <p class="text-[16px] text-[#464646] mb-8 leading-[1.5]">We sent a 6-digit code to <span class="font-medium text-[#1e1d1d]" x-text="email"></span>.</p>
@@ -148,7 +148,7 @@
                         <div class="flex items-center gap-2">
                             <template x-for="(code, index) in verifyCode" :key="index">
                                 <div class="flex items-center gap-2">
-                                    <input type="text" maxlength="1" 
+                                    <input type="text" maxlength="1"
                                            class="otp-input w-[52px] h-[52px] text-center text-[20px] font-medium border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors"
                                            :class="{'bg-[#f2f2f2]': index < 2}"
                                            x-model="verifyCode[index]"
@@ -165,6 +165,21 @@
                                                   if (inputs[index - 1]) inputs[index - 1].focus();
                                               }
                                            "
+                                           @paste.prevent="
+                                              otpError = '';
+                                              let paste = ($event.clipboardData || window.clipboardData).getData('text');
+                                              paste = paste.replace(/\D/g, '').substring(0, 6);
+                                              for (let i = 0; i < paste.length; i++) {
+                                                  if (index + i < 6) {
+                                                      verifyCode[index + i] = paste[i];
+                                                  }
+                                              }
+                                              setTimeout(() => {
+                                                  let inputs = document.querySelectorAll('.otp-input');
+                                                  let focusIndex = Math.min(index + paste.length, 5);
+                                                  if (inputs[focusIndex]) inputs[focusIndex].focus();
+                                              }, 10);
+                                           "
                                     >
                                     <span x-show="index === 2" class="w-4 text-center text-gray-400">-</span>
                                 </div>
@@ -173,7 +188,7 @@
                         <div x-show="otpError" x-text="otpError" class="text-red-500 text-sm mt-3" style="display: none;"></div>
                     </div>
 
-                    <button 
+                    <button
                         @click="
                             const code = verifyCode.join('');
                             if (code.length < 6) {
@@ -213,7 +228,7 @@
                     </button>
 
                     <p class="text-[14px] text-[#464646] text-center mt-6">
-                        Didn't receive a code? 
+                        Didn't receive a code?
                         <button @click="
                             otpError = '';
                             fetch('{{ route('ajax.send-otp') }}', {
@@ -243,7 +258,7 @@
                 <div class="px-8 py-4 border-b border-gray-100 flex items-center justify-center">
                     <h2 class="text-[16px] font-medium text-[#1e1d1d]">Sign up</h2>
                 </div>
-                
+
                 <div class="p-8 pt-6">
                     <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-1">Set up your profile</h3>
                     <p class="text-[16px] text-[#464646] mb-6 leading-[1.5]">Enter your details to get started</p>
@@ -276,9 +291,7 @@
                                     <option value="Saudi Arabia">Saudi Arabia</option>
                                 </select>
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
+                                    <img src="http://localhost/images/language_black.svg" alt="Language" class="w-6 h-6">
                                 </div>
                                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                                     <svg class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -315,7 +328,7 @@
 
                     <div x-show="registerError" x-text="registerError" class="text-red-500 text-sm mt-4" style="display: none;"></div>
 
-                    <button 
+                    <button
                         @click="
                             if (!firstName || !lastName || !country || !agreeTerms) {
                                 registerError = 'Please fill out all required fields and agree to the terms.';
@@ -329,7 +342,7 @@
                                     'Accept': 'application/json',
                                     'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')
                                 },
-                                body: JSON.stringify({ 
+                                body: JSON.stringify({
                                     first_name: firstName,
                                     last_name: lastName,
                                     email: email,
@@ -365,7 +378,7 @@
                  <div class="px-8 py-4 border-b border-gray-100 flex items-center justify-center">
                     <h2 class="text-[16px] font-medium text-[#1e1d1d]">Log in</h2>
                 </div>
-                
+
                 <div class="p-8 pt-6">
                     <p class="text-[16px] text-[#464646] mb-8">Enter your password to continue to <span class="font-medium text-[#1e1d1d]" x-text="email"></span>.</p>
                     <form @submit.prevent="
