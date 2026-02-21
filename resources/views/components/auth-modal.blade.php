@@ -626,18 +626,16 @@
                         .then(res => res.json())
                         .then(data => {
                             isLoading = false;
-                            // Laravel's default reset password controller returns different structures based on success/failure
-                            if (data.message) {
-                                // Success typically redirects, but if it returns JSON:
-                                window.location.href = '{{ route('home') }}';
+                            if (data.status === 'success') {
+                                step = 'password_reset_success';
+                                password = '';
+                                passwordConfirmation = '';
                             } else if (data.errors) {
                                 error = Object.values(data.errors)[0][0] || 'Reset failed.';
                             }
                         }).catch(err => {
                             isLoading = false;
-                            // Since Laravel redirects on success, a fetch error might just mean it redirected.
-                            // Let's just try to reload.
-                            window.location.href = '{{ route('home') }}';
+                            error = 'An error occurred. Please try again.';
                         });
                     ">
                         <div class="space-y-4">
@@ -674,6 +672,22 @@
                             </svg>
                         </button>
                     </form>
+                </div>
+            </div>
+
+            <!-- Password Reset Success Step -->
+            <div x-show="step === 'password_reset_success'" style="display: none;" class="-mt-8 -mx-8 bg-white relative">
+                <div class="px-8 py-4 border-b border-gray-100 flex items-center justify-center">
+                    <h2 class="text-[16px] font-medium text-[#1e1d1d]">Reset password</h2>
+                </div>
+                
+                <div class="p-8 pt-6">
+                    <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-2">Your new password is set</h3>
+                    <p class="text-[16px] text-[#464646] mb-8 leading-[1.5]">The new password is set for your account.</p>
+
+                    <button @click="step = 'password'" class="w-full bg-[#1447d4] text-white py-[14px] rounded-[8px] font-medium text-[16px] hover:bg-blue-800 transition-colors mt-4">
+                        Log In
+                    </button>
                 </div>
             </div>
         </div>
