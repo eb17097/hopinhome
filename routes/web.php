@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/ajax/login', [AuthenticatedSessionController::class, 'apiStore'])->name('ajax.login');
 Route::post('/ajax/check-email', [AjaxAuthController::class, 'checkEmail'])->name('ajax.check-email');
+Route::post('/ajax/send-otp', [AjaxAuthController::class, 'sendOtp'])->name('ajax.send-otp');
+Route::post('/ajax/verify-otp', [AjaxAuthController::class, 'verifyOtp'])->name('ajax.verify-otp');
+Route::post('/ajax/register', [AjaxAuthController::class, 'register'])->name('ajax.register');
 
 // Google Authentication Routes
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');

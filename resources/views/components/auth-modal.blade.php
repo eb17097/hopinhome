@@ -1,17 +1,23 @@
-<div x-data="{
-        showModal: false,
-        step: 'email',
-        email: '',
-        emailError: '',
-        error: '',
-        passwordError: '',
+<div x-data="{ 
+        showModal: false, 
+        step: 'email', 
+        email: '', 
+        emailError: '', 
+        error: '', 
+        passwordError: '', 
         showPassword: false,
         isLoading: false,
-        verifyCode: ['', '', '', '', '', '']
+        verifyCode: ['', '', '', '', '', ''],
+        otpError: '',
+        firstName: '',
+        lastName: '',
+        country: '',
+        agreeTerms: false,
+        registerError: ''
      }"
      @open-auth-modal.window="showModal = true"
-     @close-auth-modal.window="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', ''] }, 300)"
-     @keydown.escape.window="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', ''] }, 300)"
+     @close-auth-modal.window="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; registerError = ''; }, 300)"
+     @keydown.escape.window="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; registerError = ''; }, 300)"
      x-show="showModal"
      x-transition:enter="transition ease-out duration-300"
      x-transition:enter-start="opacity-0"
@@ -22,73 +28,52 @@
      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60"
      style="display: none;">
 
-    <div
-        @click.away="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', ''] }, 300)"
-        class="bg-white rounded-xl shadow-lg w-full max-w-md mx-auto relative overflow-hidden"
-        x-show="showModal"
-        x-transition:enter="transition ease-out duration-300"
-        x-transition:enter-start="opacity-0 transform scale-95"
-        x-transition:enter-end="opacity-100 transform scale-100"
-        x-transition:leave="transition ease-in duration-200"
-        x-transition:leave-start="opacity-100 transform scale-100"
-        x-transition:leave-end="opacity-0 transform scale-95">
+    <div @click.away="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; registerError = ''; }, 300)"
+         class="bg-white rounded-xl shadow-lg w-full max-w-md mx-auto relative overflow-hidden"
+         x-show="showModal"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 transform scale-95"
+         x-transition:enter-end="opacity-100 transform scale-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100 transform scale-100"
+         x-transition:leave-end="opacity-0 transform scale-95">
 
         <div class="p-8">
-            <button x-show="step === 'email'"
-                    @click="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', ''] }, 300)"
-                    class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
+            <button x-show="step === 'email'" @click="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; registerError = ''; }, 300)" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
-            <button x-show="step === 'verify_email' || step === 'password'"
-                    @click="step = 'email'; error = ''; passwordError = ''; verifyCode = ['', '', '', '', '', '']"
-                    class="absolute top-4 left-4 text-gray-400 hover:text-gray-600">
-                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
+            <button x-show="step === 'verify_email' || step === 'password' || step === 'finish_signup'" @click="step = 'email'; error = ''; passwordError = ''; otpError = ''; registerError = ''; verifyCode = ['', '', '', '', '', '']" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600 z-10">
+                 <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
 
             <!-- Email/Phone Step -->
             <div x-show="step === 'email'">
                 <h2 class="text-center text-xl font-medium text-gray-900 mb-6 mt-2">Log in or sign up</h2>
                 <div class="space-y-3">
-                    <a href="{{ route('auth.google') }}"
-                       class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors">
+                    <a href="{{ route('auth.google') }}" class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors">
                         <img src="{{ asset('images/google.svg') }}" alt="Google icon" class="h-5 w-5">
                         Continue with Google
                     </a>
-                    <button
-                        class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium opacity-50 pointer-events-none cursor-not-allowed transition-colors">
+                    <button class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium opacity-50 pointer-events-none cursor-not-allowed transition-colors">
                         <img src="{{ asset('images/facebook.svg') }}" alt="Facebook icon" class="h-5 w-5">
                         Continue with Facebook
                     </button>
-                    <button
-                        class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium opacity-50 pointer-events-none cursor-not-allowed transition-colors">
+                    <button class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium opacity-50 pointer-events-none cursor-not-allowed transition-colors">
                         <img src="{{ asset('images/apple.svg') }}" alt="Apple icon" class="h-5 w-5">
                         Continue with Apple
                     </button>
                 </div>
-                <div class="flex items-center my-6">
-                    <hr class="flex-grow border-gray-200">
-                    <span class="px-3 text-gray-400 text-sm">or</span>
-                    <hr class="flex-grow border-gray-200">
-                </div>
+                <div class="flex items-center my-6"><hr class="flex-grow border-gray-200"><span class="px-3 text-gray-400 text-sm">or</span><hr class="flex-grow border-gray-200"></div>
                 <div>
-                    <label for="email-phone" class="block text-sm font-medium text-gray-700 mb-1.5">Email address or
-                        phone number</label>
-                    <input x-model="email" @input="emailError = ''" type="text" id="email-phone"
-                           class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                           placeholder="Enter your email or phone">
+                    <label for="email-phone" class="block text-sm font-medium text-gray-700 mb-1.5">Email address or phone number</label>
+                    <input x-model="email" @input="emailError = ''" type="text" id="email-phone" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" placeholder="Enter your email or phone">
                     <div x-show="emailError" x-text="emailError" class="text-red-500 text-sm mt-2"></div>
                 </div>
-                <button
+                <button 
                     @click="
-                        if (email.trim() === '') {
-                            emailError = 'Email address is required.';
-                        } else {
+                        if (email.trim() === '') { 
+                            emailError = 'Email address is required.'; 
+                        } else { 
                             isLoading = true;
                             fetch('{{ route('ajax.check-email') }}', {
                                 method: 'POST',
@@ -101,13 +86,34 @@
                             })
                             .then(response => response.json())
                             .then(data => {
-                                isLoading = false;
                                 if (data.exists) {
-                                    step = 'password';
+                                    isLoading = false;
+                                    step = 'password'; 
                                 } else {
-                                    step = 'verify_email';
+                                    // New user, send OTP
+                                    fetch('{{ route('ajax.send-otp') }}', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'Accept': 'application/json',
+                                            'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')
+                                        },
+                                        body: JSON.stringify({ email: email })
+                                    })
+                                    .then(res => res.json())
+                                    .then(otpData => {
+                                        isLoading = false;
+                                        if (otpData.status === 'success') {
+                                            step = 'verify_email';
+                                        } else {
+                                            emailError = otpData.message || 'Failed to send verification code.';
+                                        }
+                                    }).catch(err => {
+                                        isLoading = false;
+                                        emailError = 'An error occurred sending the code. Please try again.';
+                                    });
                                 }
-                                error = '';
+                                error = ''; 
                                 passwordError = '';
                             })
                             .catch(err => {
@@ -115,50 +121,39 @@
                                 emailError = 'An error occurred. Please try again.';
                             });
                         }
-                    "
+                    " 
                     :disabled="isLoading"
                     class="w-full bg-electric-blue text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors mt-6 flex justify-center items-center disabled:opacity-70">
                     <span x-show="!isLoading">Continue</span>
-                    <svg x-show="isLoading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
-                         fill="none" viewBox="0 0 24 24" style="display: none;">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor"
-                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    <svg x-show="isLoading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="display: none;">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
                 </button>
-                <p class="text-xs text-gray-500 text-center mt-6">By continuing, you agree to our <a href="#"
-                                                                                                     class="text-electric-blue hover:underline">Terms</a>
-                    & <a href="#" class="text-electric-blue hover:underline">Privacy Policy</a>.</p>
+                <p class="text-xs text-gray-500 text-center mt-6">By continuing, you agree to our <a href="#" class="text-electric-blue hover:underline">Terms</a> & <a href="#" class="text-electric-blue hover:underline">Privacy Policy</a>.</p>
             </div>
 
             <!-- Verify Email Step (Sign Up) -->
             <div x-show="step === 'verify_email'" style="display: none;" class="-mt-8 -mx-8 bg-white relative">
                 <div class="px-8 py-4 border-b border-gray-100 flex items-center justify-center">
                     <h2 class="text-[16px] font-medium text-[#1e1d1d]">Sign up</h2>
-                    <button @click="step = 'email'" class="absolute left-6 top-4 text-gray-400 hover:text-gray-600">
-                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
                 </div>
-
+                
                 <div class="p-8 pt-6">
                     <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-2">Verify your email</h3>
-                    <p class="text-[16px] text-[#464646] mb-8 leading-[1.5]">We sent a 6-digit code to <span
-                            class="font-medium text-[#1e1d1d]" x-text="email"></span>.</p>
+                    <p class="text-[16px] text-[#464646] mb-8 leading-[1.5]">We sent a 6-digit code to <span class="font-medium text-[#1e1d1d]" x-text="email"></span>.</p>
 
                     <div>
                         <label class="block text-[14px] font-medium text-[#1e1d1d] mb-3">Verification code</label>
                         <div class="flex items-center gap-2">
                             <template x-for="(code, index) in verifyCode" :key="index">
                                 <div class="flex items-center gap-2">
-                                    <input type="text" maxlength="1"
+                                    <input type="text" maxlength="1" 
                                            class="w-[52px] h-[52px] text-center text-[20px] font-medium border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors"
                                            :class="{'bg-[#f2f2f2]': index < 2}"
                                            x-model="verifyCode[index]"
                                            @input="
+                                              otpError = '';
                                               if ($event.target.value.length === 1 && index < 5) {
                                                   $el.nextElementSibling?.nextElementSibling?.tagName === 'INPUT' ? $el.nextElementSibling.nextElementSibling.focus() : $el.nextElementSibling?.focus();
                                                   if($el.nextElementSibling?.tagName === 'SPAN') {
@@ -180,36 +175,204 @@
                                 </div>
                             </template>
                         </div>
+                        <div x-show="otpError" x-text="otpError" class="text-red-500 text-sm mt-3" style="display: none;"></div>
                     </div>
 
-                    <button
-                        class="w-full bg-[#1447d4] text-white py-[14px] rounded-[8px] font-medium text-[16px] hover:bg-blue-800 transition-colors mt-8">
-                        Continue
+                    <button 
+                        @click="
+                            const code = verifyCode.join('');
+                            if (code.length < 6) {
+                                otpError = 'Please enter the 6-digit code.';
+                                return;
+                            }
+                            isLoading = true;
+                            fetch('{{ route('ajax.verify-otp') }}', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json',
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')
+                                },
+                                body: JSON.stringify({ email: email, code: code })
+                            })
+                            .then(res => res.json())
+                            .then(data => {
+                                isLoading = false;
+                                if (data.status === 'success') {
+                                    step = 'finish_signup';
+                                } else {
+                                    otpError = data.message || 'Invalid code.';
+                                }
+                            }).catch(err => {
+                                isLoading = false;
+                                otpError = 'An error occurred verifying the code.';
+                            });
+                        "
+                        :disabled="isLoading"
+                        class="w-full bg-[#1447d4] text-white py-[14px] rounded-[8px] font-medium text-[16px] hover:bg-blue-800 transition-colors mt-8 flex justify-center items-center disabled:opacity-70">
+                        <span x-show="!isLoading">Continue</span>
+                        <svg x-show="isLoading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="display: none;">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
                     </button>
 
                     <p class="text-[14px] text-[#464646] text-center mt-6">
-                        Didn't receive a code? <a href="#"
-                                                  class="text-[#464646] underline decoration-solid hover:text-black">Resend
-                            in 0:59</a>
+                        Didn't receive a code? 
+                        <button @click="
+                            otpError = '';
+                            fetch('{{ route('ajax.send-otp') }}', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json',
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')
+                                },
+                                body: JSON.stringify({ email: email })
+                            })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.status === 'success') {
+                                    otpError = 'A new code has been sent!';
+                                } else {
+                                    otpError = data.message || 'Failed to resend.';
+                                }
+                            });
+                        " class="text-[#464646] underline decoration-solid hover:text-black">Resend</button>
                     </p>
                 </div>
             </div>
 
-            <!-- Password Step -->
-            <div x-show="step === 'password'" style="display: none;" class="-mt-8 -mx-8 bg-white relative">
+            <!-- Finish Sign Up Step (Profile Setup) -->
+            <div x-show="step === 'finish_signup'" style="display: none;" class="-mt-8 -mx-8 bg-white relative">
                 <div class="px-8 py-4 border-b border-gray-100 flex items-center justify-center">
-                    <h2 class="text-[16px] font-medium text-[#1e1d1d]">Log in</h2>
-                    <button @click="step = 'email'" class="absolute left-6 top-4 text-gray-400 hover:text-gray-600">
-                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M6 18L18 6M6 6l12 12"></path>
+                    <h2 class="text-[16px] font-medium text-[#1e1d1d]">Sign up</h2>
+                </div>
+                
+                <div class="p-8 pt-6">
+                    <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-1">Set up your profile</h3>
+                    <p class="text-[16px] text-[#464646] mb-6 leading-[1.5]">Enter your details to get started</p>
+
+                    <div class="space-y-4">
+                        <div class="flex gap-4">
+                            <div class="flex-1">
+                                <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">First name</label>
+                                <input x-model="firstName" type="text" class="w-full px-4 py-3 border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors" placeholder="John" @input="registerError = ''">
+                            </div>
+                            <div class="flex-1">
+                                <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">Last name</label>
+                                <input x-model="lastName" type="text" class="w-full px-4 py-3 border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors" placeholder="Your last name" @input="registerError = ''">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">Email address (optional)</label>
+                            <input x-model="email" type="email" readonly class="w-full px-4 py-3 border border-[#e8e8e7] bg-gray-50 rounded-[8px] text-gray-500 cursor-not-allowed outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">Country</label>
+                            <div class="relative">
+                                <select x-model="country" class="w-full px-4 py-3 pl-10 border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors appearance-none bg-white">
+                                    <option value="" disabled selected>Select a country</option>
+                                    <option value="United Arab Emirates">United Arab Emirates</option>
+                                    <option value="United States">United States</option>
+                                    <option value="United Kingdom">United Kingdom</option>
+                                    <option value="Saudi Arabia">Saudi Arabia</option>
+                                </select>
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                    <svg class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 space-y-4">
+                            <label class="flex items-start gap-3 cursor-pointer group">
+                                <div class="relative flex items-center justify-center w-5 h-5 mt-0.5">
+                                    <input type="checkbox" x-model="agreeTerms" class="peer sr-only">
+                                    <div class="w-5 h-5 border border-gray-300 rounded bg-white peer-checked:bg-[#1447d4] peer-checked:border-[#1447d4] transition-colors"></div>
+                                    <svg class="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
+                                <span class="text-[14px] text-[#1e1d1d]">I agree to the Terms of Service and Privacy Policy.</span>
+                            </label>
+
+                            <label class="flex items-start gap-3 cursor-pointer group">
+                                <div class="relative flex items-center justify-center w-5 h-5 mt-0.5">
+                                    <input type="checkbox" class="peer sr-only">
+                                    <div class="w-5 h-5 border border-gray-300 rounded bg-white peer-checked:bg-[#1447d4] peer-checked:border-[#1447d4] transition-colors"></div>
+                                    <svg class="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
+                                <span class="text-[14px] text-[#1e1d1d]">I want to receive updates and offers from HopInHome.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div x-show="registerError" x-text="registerError" class="text-red-500 text-sm mt-4" style="display: none;"></div>
+
+                    <button 
+                        @click="
+                            if (!firstName || !lastName || !country || !agreeTerms) {
+                                registerError = 'Please fill out all required fields and agree to the terms.';
+                                return;
+                            }
+                            isLoading = true;
+                            fetch('{{ route('ajax.register') }}', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json',
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')
+                                },
+                                body: JSON.stringify({ 
+                                    first_name: firstName,
+                                    last_name: lastName,
+                                    email: email,
+                                    country: country
+                                })
+                            })
+                            .then(res => res.json())
+                            .then(data => {
+                                isLoading = false;
+                                if (data.status === 'success') {
+                                    window.location.href = data.redirect;
+                                } else {
+                                    registerError = data.message || 'Registration failed.';
+                                }
+                            }).catch(err => {
+                                isLoading = false;
+                                registerError = 'An error occurred during registration.';
+                            });
+                        "
+                        :disabled="isLoading"
+                        class="w-full bg-[#1447d4] text-white py-[14px] rounded-[8px] font-medium text-[16px] hover:bg-blue-800 transition-colors mt-6 flex justify-center items-center disabled:opacity-70">
+                        <span x-show="!isLoading">Create account</span>
+                        <svg x-show="isLoading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="display: none;">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
                     </button>
                 </div>
+            </div>
 
+            <!-- Password Step (For Existing Users) -->
+            <div x-show="step === 'password'" style="display: none;" class="-mt-8 -mx-8 bg-white relative">
+                 <div class="px-8 py-4 border-b border-gray-100 flex items-center justify-center">
+                    <h2 class="text-[16px] font-medium text-[#1e1d1d]">Log in</h2>
+                </div>
+                
                 <div class="p-8 pt-6">
-                    <p class="text-[16px] text-[#464646] mb-8">Enter your password to continue to <span
-                            class="font-medium text-[#1e1d1d]" x-text="email"></span>.</p>
+                    <p class="text-[16px] text-[#464646] mb-8">Enter your password to continue to <span class="font-medium text-[#1e1d1d]" x-text="email"></span>.</p>
                     <form @submit.prevent="
                     if ($refs.password.value.trim() === '') {
                         passwordError = 'Password is required.';
