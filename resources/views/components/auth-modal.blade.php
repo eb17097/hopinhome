@@ -239,7 +239,7 @@
                                  style="display: none;"></div>
                         </div>
 
-                        <button type="submit" :disabled="isLoading || isResending" 
+                        <button type="submit" :disabled="isLoading || isResending"
                                 class="w-full bg-[#1447d4] text-white py-[14px] rounded-[8px] font-medium text-[16px] hover:bg-blue-800 transition-colors mt-8 flex justify-center items-center disabled:opacity-70"
                                 :class="{'opacity-50 pointer-events-none': isResending}">
                             <span x-show="!isLoading">Continue</span>
@@ -286,7 +286,7 @@
                                                         isResending = false;
                                                         otpError = 'An error occurred while resending the code.';
                                                     });
-                                                " 
+                                                "
                                                 :disabled="resendTimer > 0 || isResending"
                                                 class="underline decoration-solid transition-colors relative"
                                                 :class="{'text-gray-400 cursor-not-allowed': resendTimer > 0 || isResending, 'text-[#464646] hover:text-black': resendTimer === 0 && !isResending}">
@@ -358,7 +358,7 @@
                             </div>
 
                             <div>
-                                <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">Email address (optional)</label>
+                                <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">Email address</label>
                                 <input x-model="email" type="email" readonly class="w-full px-4 py-3 border border-[#e8e8e7] bg-gray-50 rounded-[8px] text-gray-500 cursor-not-allowed outline-none">
                             </div>
 
