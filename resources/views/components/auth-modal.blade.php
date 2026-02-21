@@ -9,6 +9,20 @@
         isLoading: false,
         verifyCode: ['', '', '', '', '', ''],
         otpError: '',
+        otpSuccessMessage: '',
+        resendTimer: 60,
+        resendInterval: null,
+        startResendTimer() {
+            this.resendTimer = 60;
+            clearInterval(this.resendInterval);
+            this.resendInterval = setInterval(() => {
+                if (this.resendTimer > 0) {
+                    this.resendTimer--;
+                } else {
+                    clearInterval(this.resendInterval);
+                }
+            }, 1000);
+        },
         firstName: '',
         lastName: '',
         country: '',
@@ -16,8 +30,8 @@
         registerError: ''
      }"
      @open-auth-modal.window="showModal = true"
-     @close-auth-modal.window="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; registerError = ''; }, 300)"
-     @keydown.escape.window="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; registerError = ''; }, 300)"
+     @close-auth-modal.window="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; }, 300)"
+     @keydown.escape.window="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; }, 300)"
      x-show="showModal"
      x-transition:enter="transition ease-out duration-300"
      x-transition:enter-start="opacity-0"
@@ -28,7 +42,7 @@
      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60"
      style="display: none;">
 
-    <div @click.away="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; registerError = ''; }, 300)"
+    <div @click.away="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; }, 300)"
          class="bg-white rounded-xl shadow-lg w-full max-w-md mx-auto relative overflow-hidden"
          x-show="showModal"
          x-transition:enter="transition ease-out duration-300"
@@ -39,10 +53,10 @@
          x-transition:leave-end="opacity-0 transform scale-95">
 
         <div class="p-8">
-            <button x-show="step === 'email'" @click="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; registerError = ''; }, 300)" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+            <button x-show="step === 'email'" @click="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; }, 300)" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
                 <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
-            <button x-show="step === 'verify_email' || step === 'password' || step === 'finish_signup'" @click="step = 'email'; error = ''; passwordError = ''; otpError = ''; registerError = ''; verifyCode = ['', '', '', '', '', '']" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600 z-10">
+            <button x-show="step === 'verify_email' || step === 'password' || step === 'finish_signup'" @click="step = 'email'; error = ''; passwordError = ''; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; verifyCode = ['', '', '', '', '', '']" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600 z-10">
                  <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
 
@@ -100,6 +114,7 @@
                                     isLoading = false;
                                     if (otpData.status === 'success') {
                                         step = 'verify_email';
+                                        startResendTimer();
                                     } else {
                                         emailError = otpData.message || 'Failed to send verification code.';
                                     }
@@ -229,7 +244,9 @@
                     <p class="text-[14px] text-[#464646] text-center mt-6">
                         Didn't receive a code?
                         <button @click="
+                            if (resendTimer > 0) return;
                             otpError = '';
+                            otpSuccessMessage = '';
                             fetch('{{ route('ajax.send-otp') }}', {
                                 method: 'POST',
                                 headers: {
@@ -242,13 +259,20 @@
                             .then(res => res.json())
                             .then(data => {
                                 if (data.status === 'success') {
-                                    otpError = 'A new code has been sent!';
+                                    otpSuccessMessage = 'A new code has been sent!';
+                                    startResendTimer();
                                 } else {
                                     otpError = data.message || 'Failed to resend.';
                                 }
                             });
-                        " class="text-[#464646] underline decoration-solid hover:text-black">Resend</button>
+                        " 
+                        :disabled="resendTimer > 0"
+                        class="underline decoration-solid transition-colors"
+                        :class="{'text-gray-400 cursor-not-allowed': resendTimer > 0, 'text-[#464646] hover:text-black': resendTimer === 0}">
+                            Resend <span x-show="resendTimer > 0" x-text="`in 0:${resendTimer < 10 ? '0' : ''}${resendTimer}`"></span>
+                        </button>
                     </p>
+                    <div x-show="otpSuccessMessage" x-text="otpSuccessMessage" class="text-green-600 text-sm mt-3 text-center font-medium" style="display: none;"></div>
                 </div>
             </div>
 
