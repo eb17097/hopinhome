@@ -1,15 +1,16 @@
 @props(['listing'])
 
-<a href="{{ route('listings.show', $listing) }}" class="block w-[358px] h-[417px] bg-white rounded-lg shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)] overflow-hidden group">
+<a href="{{ route('listings.show', $listing) }}" draggable="false" class="block w-[358px] h-[417px] bg-white rounded-lg shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)] overflow-hidden group">
     <div class="relative h-[225px]">
         <img class="w-full h-full object-cover" 
+             draggable="false"
              src="{{ $listing->images->first() ? (Str::startsWith($listing->images->first()->image_url, 'http') ? $listing->images->first()->image_url : Illuminate\Support\Facades\Storage::url($listing->images->first()->image_url)) : asset('images/placeholder-image.png') }}" 
              alt="{{ $listing->name }}">
         <div class="absolute top-[12px] right-[12px]">
-            <img src="{{ asset('images/favorite_white.svg') }}" alt="Favorite" class="size-[32px]">
+            <img src="{{ asset('images/favorite_white.svg') }}" draggable="false" alt="Favorite" class="size-[32px]">
         </div>
         <div class="absolute top-[206px] left-1/2 -translate-x-1/2">
-            <img src="{{ asset('images/Dots.svg') }}" alt="Image carousel indicator" class="h-[7px] w-[82px]">
+            <img src="{{ asset('images/Dots.svg') }}" draggable="false" alt="Image carousel indicator" class="h-[7px] w-[82px]">
         </div>
     </div>
     <div class="p-[20px] pt-[24px]">

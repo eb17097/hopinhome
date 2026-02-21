@@ -10,43 +10,73 @@
         </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-visible">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-visible relative group">
         @if($similarListings->isNotEmpty())
+            {{-- Navigation Arrows (PC only) --}}
+            <button 
+                @click="$refs.carousel.scrollBy({ left: -400, behavior: 'smooth' })"
+                class="absolute left-[-20px] top-1/2 -translate-y-1/2 z-10 size-[48px] bg-white rounded-full border border-[#E8E8E7] flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity hidden lg:flex hover:bg-gray-50"
+            >
+                <img src="{{ asset('images/arrow.svg') }}" class="rotate-180 size-6" alt="Previous">
+            </button>
+            <button 
+                @click="$refs.carousel.scrollBy({ left: 400, behavior: 'smooth' })"
+                class="absolute right-[-20px] top-1/2 -translate-y-1/2 z-10 size-[48px] bg-white rounded-full border border-[#E8E8E7] flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity hidden lg:flex hover:bg-gray-50"
+            >
+                <img src="{{ asset('images/arrow.svg') }}" class="size-6" alt="Next">
+            </button>
+
             <div 
+                x-ref="carousel"
                 x-data="{ 
                     isDown: false, 
                     startX: 0, 
                     scrollLeft: 0,
+                    moved: false,
                     handleMouseDown(e) {
                         this.isDown = true;
+                        this.moved = false;
+                        $el.classList.add('dragging');
                         this.startX = e.pageX - $el.offsetLeft;
                         this.scrollLeft = $el.scrollLeft;
-                        $el.classList.add('active');
                     },
                     handleMouseLeave() {
                         this.isDown = false;
-                        $el.classList.remove('active');
+                        $el.classList.remove('dragging');
                     },
-                    handleMouseUp() {
+                    handleMouseUp(e) {
                         this.isDown = false;
-                        $el.classList.remove('active');
+                        $el.classList.remove('dragging');
+                        if (this.moved) {
+                            // If we moved, prevent the click from navigating
+                            e.preventDefault();
+                        }
                     },
                     handleMouseMove(e) {
                         if (!this.isDown) return;
-                        e.preventDefault();
                         const x = e.pageX - $el.offsetLeft;
-                        const walk = (x - this.startX) * 2;
+                        const walk = (x - this.startX) * 1.5;
+                        if (Math.abs(walk) > 5) {
+                            this.moved = true;
+                        }
                         $el.scrollLeft = this.scrollLeft - walk;
+                    },
+                    handleChildClick(e) {
+                        if (this.moved) {
+                            e.preventDefault();
+                            e.stopImmediatePropagation();
+                        }
                     }
                 }"
                 @mousedown="handleMouseDown($event)"
                 @mouseleave="handleMouseLeave()"
-                @mouseup="handleMouseUp()"
+                @mouseup="handleMouseUp($event)"
                 @mousemove="handleMouseMove($event)"
-                class="flex gap-x-[32px] overflow-x-auto pb-8 no-scrollbar scroll-smooth snap-x snap-mandatory cursor-grab active:cursor-grabbing select-none"
+                @click.capture="handleChildClick($event)"
+                class="carousel-container flex gap-x-[32px] overflow-x-auto pb-8 no-scrollbar scroll-smooth snap-x snap-mandatory cursor-grab active:cursor-grabbing select-none"
             >
                 @foreach($similarListings as $similar)
-                    <div class="flex-shrink-0 snap-start">
+                    <div class="flex-shrink-0 snap-start" draggable="false">
                         <x-listings.compact-listing-card :listing="$similar" />
                     </div>
                 @endforeach
@@ -57,6 +87,22 @@
             </div>
         @endif
     </div>
+</div>
+
+<style>
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    /* Disable snap and smooth scroll while dragging to prevent jitter on PC */
+    .carousel-container.dragging {
+        scroll-snap-type: none;
+        scroll-behavior: auto;
+    }
+</style>
 </div>
 
 <style>
