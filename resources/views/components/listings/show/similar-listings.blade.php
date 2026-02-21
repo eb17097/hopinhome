@@ -12,9 +12,41 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-visible">
         @if($similarListings->isNotEmpty())
-            <div class="flex gap-x-[32px] overflow-x-auto pb-8 no-scrollbar scroll-smooth">
+            <div 
+                x-data="{ 
+                    isDown: false, 
+                    startX: 0, 
+                    scrollLeft: 0,
+                    handleMouseDown(e) {
+                        this.isDown = true;
+                        this.startX = e.pageX - $el.offsetLeft;
+                        this.scrollLeft = $el.scrollLeft;
+                        $el.classList.add('active');
+                    },
+                    handleMouseLeave() {
+                        this.isDown = false;
+                        $el.classList.remove('active');
+                    },
+                    handleMouseUp() {
+                        this.isDown = false;
+                        $el.classList.remove('active');
+                    },
+                    handleMouseMove(e) {
+                        if (!this.isDown) return;
+                        e.preventDefault();
+                        const x = e.pageX - $el.offsetLeft;
+                        const walk = (x - this.startX) * 2;
+                        $el.scrollLeft = this.scrollLeft - walk;
+                    }
+                }"
+                @mousedown="handleMouseDown($event)"
+                @mouseleave="handleMouseLeave()"
+                @mouseup="handleMouseUp()"
+                @mousemove="handleMouseMove($event)"
+                class="flex gap-x-[32px] overflow-x-auto pb-8 no-scrollbar scroll-smooth snap-x snap-mandatory cursor-grab active:cursor-grabbing select-none"
+            >
                 @foreach($similarListings as $similar)
-                    <div class="flex-shrink-0">
+                    <div class="flex-shrink-0 snap-start">
                         <x-listings.compact-listing-card :listing="$similar" />
                     </div>
                 @endforeach
