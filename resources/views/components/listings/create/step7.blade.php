@@ -71,27 +71,21 @@
         </div>
 
         <!-- Initial Upload Box / Upload More Box -->
-        <div class="mt-2">
+        <div class="mb-6">
             <label
                 for="photos"
                 class="flex flex-col items-center justify-center w-full border-2 border-dashed rounded-md cursor-pointer transition-colors"
                 :class="{
                     'border-electric-blue bg-white py-24': previews.length === 0,
-                    'border-electric-blue bg-white py-12 mt-6': previews.length > 0,
+                    'border-electric-blue bg-white py-12 mt-4': previews.length > 0,
                     'border-green-500 bg-green-50': isDragging
                 }"
                 @dragover.prevent="isDragging = true"
                 @dragleave.prevent="isDragging = false"
                 @drop.prevent="handleDrop">
 
-                <div class="mb-4" x-show="previews.length === 0">
+                <div class="mb-2">
                     <img src="{{ asset('images/upload-icon.svg') }}" alt="Support" class="h-12 w-12">
-                </div>
-
-                <div class="p-3 bg-electric-blue/10 rounded-full mb-3" x-show="previews.length > 0">
-                    <svg class="w-6 h-6 text-electric-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                    </svg>
                 </div>
 
                 <div class="text-center">
@@ -102,7 +96,7 @@
         </div>
 
         <!-- Suggestion banner at the bottom -->
-        <div class="mt-4 bg-off-white p-4 rounded-md flex items-center space-x-3" x-show="previews.length === 0">
+        <div class="mt-4 mb-6 bg-off-white p-4 rounded-md flex items-center space-x-3" x-show="previews.length === 0">
             <img src="{{ asset('images/contact_support_blue.svg') }}" alt="Support" class="h-6 w-6">
             <p class="text-sm text-gray-600">
                 <span class="font-medium text-black">Suggestion:</span> Upload clear, high-quality photos of <span class="font-medium text-black">every room</span> to help your property stand out.
