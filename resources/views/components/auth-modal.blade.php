@@ -49,7 +49,6 @@
      "
      @open-auth-modal.window="showModal = true"
      @close-auth-modal.window="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; showRegisterPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; password = ''; }, 300)"
-     @keydown.escape.window="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; showRegisterPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; password = ''; }, 300)"
      x-show="showModal"
      x-transition:enter="transition ease-out duration-300"
      x-transition:enter-start="opacity-0"
@@ -60,8 +59,7 @@
      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60"
      style="display: none;">
 
-    <div @click.away="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; }, 300)"
-         class="bg-white rounded-xl shadow-lg w-full max-w-md mx-auto relative overflow-hidden"
+    <div class="bg-white rounded-xl shadow-lg w-full max-w-md mx-auto relative overflow-hidden"
          x-show="showModal"
          x-transition:enter="transition ease-out duration-300"
          x-transition:enter-start="opacity-0 transform scale-95"
