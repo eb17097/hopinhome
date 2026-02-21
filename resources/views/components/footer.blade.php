@@ -11,7 +11,7 @@
                 <div class="bg-gray-50 border border-gray-100 rounded-xl p-6 max-w-sm">
                     <p class="text-base text-gray-500 mb-4">Follow us for the latest insights</p>
                     <div class="flex space-x-5 text-gray-400">
-                        <a href="#" class="hover:text-blue-700 transition"><img src="{{ asset('images/facebook.svg') }}" alt="Facebook" class="w-6 h-6"></a>
+                        <a href="#" class="hover:text-blue-700 transition"><img src="{{ asset('images/facebook-darkblue.svg') }}" alt="Facebook" class="w-6 h-6"></a>
                         <a href="#" class="hover:text-pink-600 transition"><img src="{{ asset('images/instagram.svg') }}" alt="Instagram" class="w-6 h-6"></a>
                         <a href="#" class="hover:text-blue-800 transition"><img src="{{ asset('images/linkedin.svg') }}" alt="LinkedIn" class="w-6 h-6"></a>
                         <a href="#" class="hover:text-black transition"><img src="{{ asset('images/tiktok.svg') }}" alt="TikTok" class="w-6 h-6"></a>
