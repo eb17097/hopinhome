@@ -17,11 +17,11 @@
 
     {{-- Scripts & Styles --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
+
     {{-- Additional Head Content --}}
     {{ $head ?? '' }}
 </head>
-<body class="bg-gray-50 antialiased">
+<body class="antialiased">
 
     {{ $slot }}
 

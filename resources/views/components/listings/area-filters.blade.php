@@ -1,4 +1,4 @@
-<div class="flex flex-wrap gap-3 mb-8">
+<div class="flex flex-wrap gap-3 mb-6">
     @php
         $areas = [
             ['name' => 'Downtown Dubai', 'active' => true],

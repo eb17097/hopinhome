@@ -3,7 +3,7 @@
     <div class="flex items-center gap-2">
         <span class="text-sm text-gray-500">Sort by:</span>
         <div class="relative">
-            <select class="block appearance-none bg-transparent border-none outline-none cursor-pointer text-sm font-medium text-gray-900 pr-8">
+            <select class="form-select block w-[170px] h-[45px] py-2.5 px-4 bg-white border border-gray-200 rounded-lg shadow-sm text-sm text-gray-700 outline-none focus:ring-1 focus:ring-blue-500 appearance-none cursor-pointer">
                 <option>Most popular</option>
                 <option>Price: Low to High</option>
                 <option>Newest</option>
