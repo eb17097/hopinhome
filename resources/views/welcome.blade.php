@@ -1,3 +1,8 @@
+<style>
+    select {
+        background-image: none !important;
+    }
+</style>
 <x-main-layout title="Hopinhome">
 
 <x-header :is-landing="true" />
@@ -27,7 +32,8 @@
                 <div class="flex flex-col md:flex-row gap-4 mb-4">
                     <div class="relative flex-grow">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <img src="/images/location_on.svg"
+                                 alt="Location">
                         </div>
                         <input type="text"
                                class="block w-full pl-12 pr-4 py-4 bg-gray-50 border-transparent focus:bg-white border focus:border-blue-500 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition"
@@ -35,7 +41,7 @@
                     </div>
 
                     <button class="bg-blue-600 text-white font-semibold py-4 px-8 rounded-xl hover:bg-blue-700 transition flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        <img src="http://localhost/images/search.svg" alt="Search Icon" class="w-4 h-4">
                         Search properties
                     </button>
                 </div>
