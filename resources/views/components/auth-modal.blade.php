@@ -477,7 +477,16 @@
                     .then(response => {
                         if (response.status === 200) {
                             response.json().then(data => {
-                                if (data.redirect) {
+                                if (data.status === '2fa_required') {
+                                    isLoading = false;
+                                    step = 'two_factor_verify';
+                                    verifyCode = ['', '', '', '', '', ''];
+                                    startResendTimer();
+                                    setTimeout(() => {
+                                        let inputs = document.querySelectorAll('.otp-input-2fa');
+                                        if (inputs[0]) inputs[0].focus();
+                                    }, 10);
+                                } else if (data.redirect) {
                                     window.location.href = data.redirect;
                                 } else {
                                     window.location.reload();
@@ -686,6 +695,161 @@
                     <button @click="step = 'password'" class="w-full bg-[#1447d4] text-white py-[14px] rounded-[8px] font-medium text-[16px] hover:bg-blue-800 transition-colors mt-4">
                         Log In
                     </button>
+                </div>
+            </div>
+
+            <!-- Two Factor Verify Step -->
+            <div x-show="step === 'two_factor_verify'" style="display: none;" class="-mt-8 -mx-8 bg-white relative">
+                <div class="px-8 py-4 border-b border-gray-100 flex items-center justify-center">
+                    <h2 class="text-[16px] font-medium text-[#1e1d1d]">Log in</h2>
+                    <button @click="step = 'password'" class="absolute left-6 top-4 text-gray-400 hover:text-gray-600">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+
+                <div class="p-8 pt-6">
+                    <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-2">Verify your login</h3>
+                    <p class="text-[16px] text-[#464646] mb-8 leading-[1.5]">We sent a 6-digit code to <span class="font-medium text-[#1e1d1d]" x-text="email"></span>.</p>
+
+                    <form @submit.prevent="
+                        const code = verifyCode.join('');
+                        if (code.length < 6) {
+                            otpError = 'Please enter the 6-digit code.';
+                            return;
+                        }
+                        isLoading = true;
+                        fetch('{{ route('ajax.verify-login-2fa') }}', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')
+                            },
+                            body: JSON.stringify({ email: email, code: code })
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                window.location.href = data.redirect;
+                            } else {
+                                isLoading = false;
+                                otpError = data.message || 'Invalid code.';
+                            }
+                        }).catch(err => {
+                            isLoading = false;
+                            otpError = 'An error occurred verifying the code.';
+                        });
+                    ">
+                        <div>
+                            <label class="block text-[14px] font-medium text-[#1e1d1d] mb-3">Verification code</label>
+                            <div class="flex items-center gap-2">
+                                <template x-for="(code, index) in verifyCode" :key="index">
+                                    <div class="flex items-center gap-2">
+                                        <input type="text" maxlength="1"
+                                               class="otp-input-2fa w-[52px] h-[52px] text-center text-[20px] font-medium border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors"
+                                               :class="{'bg-[#f2f2f2]': verifyCode[index] !== ''}"
+                                               x-model="verifyCode[index]"
+                                               @input="
+                                                  otpError = '';
+                                                  if ($event.target.value.length === 1 && index < 5) {
+                                                      let inputs = document.querySelectorAll('.otp-input-2fa');
+                                                      if (inputs[index + 1]) inputs[index + 1].focus();
+                                                  }
+                                               "
+                                               @keydown.backspace="
+                                                  if ($event.target.value.length === 0 && index > 0) {
+                                                      let inputs = document.querySelectorAll('.otp-input-2fa');
+                                                      if (inputs[index - 1]) inputs[index - 1].focus();
+                                                  }
+                                               "
+                                               @paste.prevent="
+                                                  otpError = '';
+                                                  let paste = ($event.clipboardData || window.clipboardData).getData('text');
+                                                  paste = paste.replace(/\D/g, '').substring(0, 6);
+                                                  for (let i = 0; i < paste.length; i++) {
+                                                      if (index + i < 6) {
+                                                          verifyCode[index + i] = paste[i];
+                                                      }
+                                                  }
+                                                  setTimeout(() => {
+                                                      let inputs = document.querySelectorAll('.otp-input-2fa');
+                                                      let focusIndex = Math.min(index + paste.length, 5);
+                                                      if (inputs[focusIndex]) inputs[focusIndex].focus();
+                                                  }, 10);
+                                               "
+                                        >
+                                        <span x-show="index === 2" class="w-4 text-center text-gray-400">-</span>
+                                    </div>
+                                </template>
+                            </div>
+                            <div x-show="otpError || otpSuccessMessage"
+                                 x-text="otpError || otpSuccessMessage"
+                                 class="text-sm mt-3 font-medium"
+                                 :class="otpError ? 'text-red-500' : 'text-green-600'"
+                                 style="display: none;"></div>
+                        </div>
+
+                        <button type="submit" :disabled="isLoading || isResending"
+                                class="w-full bg-[#1447d4] text-white py-[14px] rounded-[8px] font-medium text-[16px] hover:bg-blue-800 transition-colors mt-8 flex justify-center items-center disabled:opacity-70"
+                                :class="{'opacity-50 pointer-events-none': isResending}">
+                            <span x-show="!isLoading">Verify</span>
+                            <svg x-show="isLoading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="display: none;">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
+                    </form>
+
+                    <p class="text-[14px] text-[#464646] text-center mt-6">
+                        Didn't receive a code?
+                        <button @click="
+                            if (resendTimer > 0 || isResending) return;
+                            otpError = '';
+                            otpSuccessMessage = '';
+                            isResending = true;
+                            // Since this is 2FA login resend, we can just use the standard send-otp endpoint,
+                            // as it just generates a code and emails it to the requested email.
+                            fetch('{{ route('ajax.send-otp') }}', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json',
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')
+                                },
+                                body: JSON.stringify({ email: email })
+                            })
+                            .then(res => res.json())
+                            .then(data => {
+                                isResending = false;
+                                if (data.status === 'success') {
+                                    otpSuccessMessage = 'A new code has been sent!';
+                                    verifyCode = ['', '', '', '', '', ''];
+                                    startResendTimer();
+                                    setTimeout(() => {
+                                        let inputs = document.querySelectorAll('.otp-input-2fa');
+                                        if (inputs[0]) inputs[0].focus();
+                                    }, 10);
+                                } else {
+                                    otpError = data.message || 'Failed to resend.';
+                                }
+                            })
+                            .catch(err => {
+                                isResending = false;
+                                otpError = 'An error occurred while resending the code.';
+                            });
+                        "
+                        :disabled="resendTimer > 0 || isResending"
+                        class="underline decoration-solid transition-colors relative"
+                        :class="{'text-gray-400 cursor-not-allowed': resendTimer > 0 || isResending, 'text-[#464646] hover:text-black': resendTimer === 0 && !isResending}">
+                            <span :class="{'opacity-0': isResending && resendTimer === 0}">Resend <span x-show="resendTimer > 0" x-text="`in 0:${resendTimer < 10 ? '0' : ''}${resendTimer}`"></span></span>
+                            <div x-show="isResending && resendTimer === 0" class="absolute inset-0 flex items-center justify-center">
+                                <svg class="animate-spin h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </div>
+                        </button>
+                    </p>
                 </div>
             </div>
         </div>

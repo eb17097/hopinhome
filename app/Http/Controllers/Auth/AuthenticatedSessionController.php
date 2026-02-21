@@ -54,11 +54,75 @@ class AuthenticatedSessionController extends Controller
             ], 422);
         }
 
+        $user = Auth::user();
+
+        if ($user->two_factor_auth) {
+            Auth::logout();
+            $request->session()->put('2fa_user_id', $user->id);
+
+            $code = random_int(100000, 999999);
+            \Illuminate\Support\Facades\Cache::put('otp_' . $user->email, $code, 600);
+            \Illuminate\Support\Facades\Mail::to($user->email)->send(new \App\Mail\OTPCode($code));
+
+            return response()->json([
+                'status' => '2fa_required', 
+                'message' => 'A verification code has been sent to your email.'
+            ]);
+        }
+
         $request->session()->regenerate();
 
-        $user = Auth::user();
         $redirectUrl = route('home');
 
+        if ($user->isRenter()) {
+            $redirectUrl = route('renter.index');
+        } elseif ($user->isPropertyManager()) {
+            $redirectUrl = route('property_manager.index');
+        }
+
+        return response()->json([
+            'status' => 'success', 
+            'message' => 'Login successful',
+            'redirect' => $redirectUrl
+        ]);
+    }
+
+    /**
+     * Verify the 2FA code and log the user in.
+     */
+    public function verifyLogin2fa(Request $request): JsonResponse
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'code' => 'required|digits:6',
+        ]);
+
+        $userId = $request->session()->get('2fa_user_id');
+        
+        if (!$userId) {
+            return response()->json(['status' => 'error', 'message' => 'Session expired. Please log in again.'], 400);
+        }
+
+        $user = \App\Models\User::find($userId);
+
+        if (!$user || $user->email !== $request->email) {
+            return response()->json(['status' => 'error', 'message' => 'Invalid request.'], 400);
+        }
+
+        $cachedCode = \Illuminate\Support\Facades\Cache::get('otp_' . $request->email);
+
+        if (!$cachedCode || $cachedCode != $request->code) {
+            return response()->json(['status' => 'error', 'message' => 'Invalid or expired verification code.'], 400);
+        }
+
+        // Success
+        \Illuminate\Support\Facades\Cache::forget('otp_' . $request->email);
+        $request->session()->forget('2fa_user_id');
+        
+        Auth::login($user);
+        $request->session()->regenerate();
+
+        $redirectUrl = route('home');
         if ($user->isRenter()) {
             $redirectUrl = route('renter.index');
         } elseif ($user->isPropertyManager()) {

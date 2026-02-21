@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/ajax/login', [AuthenticatedSessionController::class, 'apiStore'])->name('ajax.login');
+Route::post('/ajax/verify-login-2fa', [AuthenticatedSessionController::class, 'verifyLogin2fa'])->name('ajax.verify-login-2fa');
 Route::post('/ajax/check-email', [AjaxAuthController::class, 'checkEmail'])->name('ajax.check-email');
 Route::post('/ajax/send-otp', [AjaxAuthController::class, 'sendOtp'])->name('ajax.send-otp');
 Route::post('/ajax/verify-otp', [AjaxAuthController::class, 'verifyOtp'])->name('ajax.verify-otp');
