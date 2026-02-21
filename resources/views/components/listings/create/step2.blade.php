@@ -28,7 +28,7 @@
             {{-- Map Controls Overlay --}}
             <div class="absolute bottom-4 right-4 flex flex-col gap-2">
                 <button type="button" onclick="zoomIn()" class="w-10 h-10 bg-white rounded-[6px] shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors border border-[#e8e8e7]">
-                    <img src="{{ asset('images/add.svg') }}" class="w-4 h-4" alt="Zoom In">
+                    <img src="{{ asset('images/add_zoom.svg') }}" class="w-4 h-4" alt="Zoom In">
                 </button>
                 <button type="button" onclick="zoomOut()" class="w-10 h-10 bg-white rounded-[6px] shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors border border-[#e8e8e7]">
                     <img src="{{ asset('images/remove.svg') }}" class="w-4 h-4" alt="Zoom Out">
@@ -74,7 +74,7 @@
                 map: map,
                 draggable: true,
                 icon: {
-                    url: "{{ asset('images/location_on.svg') }}",
+                    url: "{{ asset('images/map-location-icon.svg') }}",
                     scaledSize: new google.maps.Size(40, 40)
                 }
             });
