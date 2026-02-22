@@ -57,5 +57,6 @@
         <x-modals.change-profile-photo-modal />
         <x-modals.profile-photo-success-modal />
         <x-modals.edit-bio-modal />
+        <x-modals.enable-notifications-modal />
     </body>
 </html>

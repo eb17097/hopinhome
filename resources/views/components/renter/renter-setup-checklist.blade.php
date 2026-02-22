@@ -45,7 +45,8 @@
             <span class="font-medium text-[16px] text-[#1e1d1d]">Upload a profile photo</span>
         </div>
 
-        <div class="bg-white border border-[#e8e8e7] rounded-[4px] h-[73px] px-4 flex items-center gap-4">
+        <div @click="$dispatch('open-notifications-modal')" 
+             class="bg-white border border-[#e8e8e7] rounded-[4px] h-[73px] px-4 flex items-center gap-4 cursor-pointer hover:bg-gray-50 transition-colors">
             <div class="w-[23px] h-[23px] rounded-full border border-[#e8e8e7]"></div>
             <div class="flex-grow">
                 <span class="font-medium text-[16px] text-[#1e1d1d]">Enable notifications</span>
