@@ -59,5 +59,6 @@
         <x-modals.edit-bio-modal />
         <x-modals.enable-notifications-modal />
         <x-modals.notification-preferences-modal />
+        <x-modals.regional-preferences-modal />
     </body>
 </html>

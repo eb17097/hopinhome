@@ -50,7 +50,7 @@
                 <img alt="account circle" class="w-[18px] h-[18px]" src="{{ asset('images/account_circle.svg') }}">
                 <span class="font-medium text-[14px] leading-[1.3]">Profile settings</span>
             </a>
-            <a href="#" class="flex items-center space-x-[10px] p-2 rounded-[4px] hover:bg-gray-50 text-[#1e1d1d] transition-colors">
+            <a href="#" @click.prevent="$dispatch('open-regional-preferences-modal')" class="flex items-center space-x-[10px] p-2 rounded-[4px] hover:bg-gray-50 text-[#1e1d1d] transition-colors">
                 <img alt="language" class="w-[18px] h-[18px]" src="{{ asset('images/language_sidebar.svg') }}">
                 <span class="font-medium text-[14px] leading-[1.3]">Regional settings</span>
             </a>
