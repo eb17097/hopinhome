@@ -44,7 +44,7 @@
                 <p class="text-[16px] font-medium text-[#1e1d1d] mb-10">You can change your preferences at any time.</p>
 
                 <div class="space-y-4">
-                    <button @click="show = false" 
+                    <button @click="show = false; $dispatch('open-notification-preferences-modal')" 
                             class="w-full h-[52px] bg-[#1447d4] hover:bg-[#04247b] text-white font-medium rounded-[8px] transition-all text-[16px]">
                         Go to notification preferences
                     </button>

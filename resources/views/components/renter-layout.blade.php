@@ -28,5 +28,6 @@
         <x-modals.profile-photo-success-modal />
         <x-modals.edit-bio-modal />
         <x-modals.enable-notifications-modal />
+        <x-modals.notification-preferences-modal />
     </body>
 </html>
