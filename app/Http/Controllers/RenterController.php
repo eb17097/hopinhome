@@ -15,4 +15,12 @@ class RenterController extends Controller
     {
         return view('renter.dashboard');
     }
+
+    /**
+     * Display the renter security page.
+     */
+    public function security()
+    {
+        return view('renter.security');
+    }
 }

@@ -18,4 +18,12 @@ class PropertyManagerController extends Controller
         $listings = Auth::user()->listings()->latest()->get();
         return view('property_manager.dashboard', compact('listings'));
     }
+
+    /**
+     * Display the property manager security page.
+     */
+    public function security()
+    {
+        return view('property_manager.security');
+    }
 }

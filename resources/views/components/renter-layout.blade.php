@@ -30,6 +30,5 @@
         <x-modals.enable-notifications-modal />
         <x-modals.notification-preferences-modal />
         <x-modals.regional-preferences-modal />
-        <x-modals.account-security-modal />
     </body>
 </html>

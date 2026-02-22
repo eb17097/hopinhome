@@ -62,10 +62,12 @@ Route::middleware(['auth'])->group(function () {
 
 Route::middleware(['auth', 'role:renter'])->prefix('renter')->name('renter.')->group(function () {
     Route::get('/', [RenterController::class, 'index'])->name('index');
+    Route::get('/security', [RenterController::class, 'security'])->name('security');
 });
 
 Route::middleware(['auth', 'role:property_manager'])->prefix('property-manager')->name('property_manager.')->group(function () {
     Route::get('/', [PropertyManagerController::class, 'index'])->name('index');
+    Route::get('/security', [PropertyManagerController::class, 'security'])->name('security');
     Route::get('/listings/create', [ListingController::class, 'create'])->name('listings.create');
     Route::post('/listings', [ListingController::class, 'store'])->name('listings.store');
     Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->name('listings.destroy');
