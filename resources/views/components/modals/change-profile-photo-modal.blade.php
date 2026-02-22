@@ -260,8 +260,8 @@
                         const canvasData = cropperInstance.getCanvasData();
                         // Setup zoom bounds
                         const baseZoom = canvasData.width / canvasData.naturalWidth;
-                        this.minZoom = baseZoom * 0.5; // Allow zooming out significantly more
-                        this.maxZoom = baseZoom * 3;   // Reduce max zoom depth
+                        this.minZoom = baseZoom * 0.7; // Reduced zoom out range further
+                        this.maxZoom = baseZoom * 3;   // Maintain max zoom depth
                         this.sliderValue = 50;         // Start in the middle
                         this.updateZoomFromSlider();
                     },
