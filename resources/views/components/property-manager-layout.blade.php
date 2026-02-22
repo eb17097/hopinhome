@@ -55,5 +55,6 @@
 
         </div>
         <x-modals.change-profile-photo-modal />
+        <x-modals.profile-photo-success-modal />
     </body>
 </html>

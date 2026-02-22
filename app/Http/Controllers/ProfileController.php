@@ -42,11 +42,13 @@ class ProfileController extends Controller
 
         $user->save();
 
+        $statusMessage = $request->hasFile('photo') ? 'profile-photo-updated' : 'profile-updated';
+
         if ($request->filled('redirect_to')) {
-            return Redirect::to($request->input('redirect_to'))->with('status', 'profile-updated');
+            return Redirect::to($request->input('redirect_to'))->with('status', $statusMessage);
         }
 
-        return Redirect::back()->with('status', 'profile-updated');
+        return Redirect::back()->with('status', $statusMessage);
     }
 
     /**
