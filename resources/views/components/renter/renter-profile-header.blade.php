@@ -17,16 +17,16 @@
         </div>
         <hr class="my-6 border-[#e8e8e7]">
         <p class="text-[16px] leading-[1.5] text-[#464646] max-w-[519px]">
-            I am a friendly professional relocating to Dubai. Non-smoker, no pets, and looking for a long-term rental close to work.
+            {{ auth()->user()->bio ?? 'Tell property managers about yourself...' }}
         </p>
     </div>
 
     {{-- Action Buttons --}}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <a href="#" class="bg-white border border-[#e8e8e7] rounded-[6px] px-6 py-[26px] flex justify-between items-center w-full hover:bg-gray-50 transition-colors">
+        <button @click="$dispatch('open-edit-bio-modal')" class="bg-white border border-[#e8e8e7] rounded-[6px] px-6 py-[26px] flex justify-between items-center w-full hover:bg-gray-50 transition-colors">
             <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">Edit bio</span>
             <img alt="arrow forward" class="w-[18px] h-[18px]" src="{{ asset('images/arrow_forward_black.svg') }}">
-        </a>
+        </button>
         <button @click="$dispatch('open-profile-photo-modal')" class="bg-white border border-[#e8e8e7] rounded-[6px] px-6 py-[26px] flex justify-between items-center w-full hover:bg-gray-50 transition-colors">
             <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">Change profile picture</span>
             <img alt="arrow forward" class="w-[18px] h-[18px]" src="{{ asset('images/arrow_forward_black.svg') }}">

@@ -1,6 +1,6 @@
 @php
     $hasPhoto = auth()->user()->profile_photo_url ? true : false;
-    $hasBio = true; // Placeholder for now
+    $hasBio = !empty(auth()->user()->bio);
     $hasEmailVerified = auth()->user()->hasVerifiedEmail();
     $hasNotifications = false;
     
@@ -25,8 +25,13 @@
             <span class="font-medium text-[16px] text-[#1e1d1d]">Verify your email address</span>
         </div>
 
-        <div class="bg-[#f9f9f8] rounded-[4px] h-[55px] px-4 flex items-center gap-4">
-            <img alt="checkmark" class="w-[23px] h-[23px]" src="{{ asset('images/white_checkmark_on_green.svg') }}">
+        <div @click="$dispatch('open-edit-bio-modal')" 
+             class="rounded-[4px] h-[55px] px-4 flex items-center gap-4 cursor-pointer hover:bg-gray-100 transition-colors {{ $hasBio ? 'bg-[#f9f9f8]' : 'bg-white border border-[#e8e8e7]' }}">
+            @if($hasBio)
+                <img alt="checkmark" class="w-[23px] h-[23px]" src="{{ asset('images/white_checkmark_on_green.svg') }}">
+            @else
+                <div class="w-[23px] h-[23px] rounded-full border border-[#e8e8e7]"></div>
+            @endif
             <span class="font-medium text-[16px] text-[#1e1d1d]">Write a bio</span>
         </div>
 

@@ -29,7 +29,7 @@ class ProfileController extends Controller
         $user = $request->user();
         
         // Only fill fields that were actually sent and validated
-        $user->fill($request->safe()->only(['name', 'email']));
+        $user->fill($request->safe()->only(['name', 'email', 'bio']));
 
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
