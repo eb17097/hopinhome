@@ -2,7 +2,7 @@
     <div class="bg-off-white rounded-lg p-6">
         <div class="flex items-start">
             <div class="w-16 h-16 rounded-full border border-light-gray overflow-hidden">
-                <img alt="profile picture" class="h-full w-full object-cover" src="{{ asset('images/profile_picture.png') }}">
+                <img alt="profile picture" class="h-full w-full object-cover" src="{{ Auth::user()->profile_photo_url ?? asset('images/user-placeholder.svg') }}">
             </div>
             <div class="ml-4">
                 <div class="flex items-center gap-2">

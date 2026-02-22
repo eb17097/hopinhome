@@ -3,7 +3,7 @@
     <div class="bg-[#f9f9f8] rounded-[6px] p-8">
         <div class="flex items-start">
             <div class="w-16 h-16 rounded-full border border-light-gray overflow-hidden shrink-0">
-                <img alt="profile picture" class="h-full w-full object-cover" src="{{ auth()->user()->profile_photo_url ?? asset('images/profile_picture.png') }}">
+                <img alt="profile picture" class="h-full w-full object-cover" src="{{ auth()->user()->profile_photo_url ?? asset('images/user-placeholder.svg') }}">
             </div>
             <div class="ml-4 pt-1">
                 <div class="flex items-center gap-1">

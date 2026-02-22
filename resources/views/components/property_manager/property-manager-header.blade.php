@@ -28,7 +28,7 @@
         </div>
 
         <a href="#" class="w-8 h-8 rounded-full border border-light-gray overflow-hidden">
-            <img alt="profile picture" class="h-full w-full object-cover" src="{{ Auth::user()->profile_photo_url ?? asset('images/profile_picture.png') }}">
+            <img alt="profile picture" class="h-full w-full object-cover" src="{{ Auth::user()->profile_photo_url ?? asset('images/user-placeholder.svg') }}">
         </a>
 
         <button @click="$dispatch('toggle-sidebar')" class="bg-light-gray rounded-full p-2 hover:bg-gray-200 transition-colors">
