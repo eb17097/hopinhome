@@ -46,6 +46,14 @@
                 });
 
                 if (response.ok) {
+                    const data = await response.json();
+                    this.$dispatch('notifications-updated', { 
+                        hasNotifications: data.settings.push_enabled || 
+                                         data.settings.email_enabled || 
+                                         data.settings.marketing_enabled || 
+                                         data.settings.announcements_enabled || 
+                                         data.settings.newsletter_enabled 
+                    });
                     this.show = false;
                 } else {
                     console.error('Failed to save settings');
