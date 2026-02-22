@@ -70,7 +70,7 @@
                     <div class="mt-8 p-4 bg-[#f9f9f8] rounded-[8px] flex items-start gap-3">
                         <img src="{{ asset('images/info.svg') }}" class="w-5 h-5 mt-0.5" alt="Info">
                         <p class="text-[14px] leading-[1.5] text-[#464646]">
-                            <span class="font-medium text-[#1e1d1d]">Suggestion:</span> Use an image where you are the only one in the frame so property managers can easily recognize you.
+                            <span class="font-medium text-[#1e1d1d]">Suggestion:</span> Use a clear, high-quality image of yourself so that other users can easily recognize you.
                         </p>
                     </div>
 
