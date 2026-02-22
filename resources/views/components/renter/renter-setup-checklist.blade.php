@@ -1,8 +1,19 @@
 @php
-    $hasPhoto = auth()->user()->profile_photo_url ? true : false;
-    $hasBio = !empty(auth()->user()->bio);
-    $hasEmailVerified = auth()->user()->hasVerifiedEmail();
-    $hasNotifications = false;
+    $user = auth()->user();
+    $settings = $user->notificationSettings;
+    
+    $hasPhoto = $user->profile_photo_url ? true : false;
+    $hasBio = !empty($user->bio);
+    $hasEmailVerified = $user->hasVerifiedEmail();
+    
+    // Check if at least one notification setting is enabled
+    $hasNotifications = $settings && (
+        $settings->push_enabled || 
+        $settings->email_enabled || 
+        $settings->marketing_enabled || 
+        $settings->announcements_enabled || 
+        $settings->newsletter_enabled
+    );
     
     $completedCount = ($hasEmailVerified ? 1 : 0) + ($hasBio ? 1 : 0) + ($hasPhoto ? 1 : 0) + ($hasNotifications ? 1 : 0);
     $progressPercent = ($completedCount / 4) * 100;
@@ -46,8 +57,12 @@
         </div>
 
         <div @click="$dispatch('open-notifications-modal')" 
-             class="bg-white border border-[#e8e8e7] rounded-[4px] h-[73px] px-4 flex items-center gap-4 cursor-pointer hover:bg-gray-50 transition-colors">
-            <div class="w-[23px] h-[23px] rounded-full border border-[#e8e8e7]"></div>
+             class="rounded-[4px] h-[73px] px-4 flex items-center gap-4 cursor-pointer hover:bg-gray-100 transition-colors {{ $hasNotifications ? 'bg-[#f9f9f8]' : 'bg-white border border-[#e8e8e7]' }}">
+            @if($hasNotifications)
+                <img alt="checkmark" class="w-[23px] h-[23px]" src="{{ asset('images/white_checkmark_on_green.svg') }}">
+            @else
+                <div class="w-[23px] h-[23px] rounded-full border border-[#e8e8e7]"></div>
+            @endif
             <div class="flex-grow">
                 <span class="font-medium text-[16px] text-[#1e1d1d]">Enable notifications</span>
                 <p class="text-[14px] text-[#464646]">Stay updated on messages & news</p>
@@ -60,4 +75,3 @@
         <button class="text-[14px] text-[#464646] underline decoration-solid">Hide completed steps</button>
     </div>
 </div>
-

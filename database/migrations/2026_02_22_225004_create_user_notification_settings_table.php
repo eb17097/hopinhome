@@ -16,13 +16,13 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             
             // Channels
-            $table->boolean('push_enabled')->default(true);
-            $table->boolean('email_enabled')->default(true);
+            $table->boolean('push_enabled')->default(false);
+            $table->boolean('email_enabled')->default(false);
             
             // Categories
-            $table->boolean('marketing_enabled')->default(true);
-            $table->boolean('announcements_enabled')->default(true);
-            $table->boolean('newsletter_enabled')->default(true);
+            $table->boolean('marketing_enabled')->default(false);
+            $table->boolean('announcements_enabled')->default(false);
+            $table->boolean('newsletter_enabled')->default(false);
             
             $table->timestamps();
         });

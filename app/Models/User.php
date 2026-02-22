@@ -65,11 +65,11 @@ class User extends Authenticatable
     public function notificationSettings()
     {
         return $this->hasOne(UserNotificationSetting::class)->withDefault([
-            'push_enabled' => true,
-            'email_enabled' => true,
-            'marketing_enabled' => true,
-            'announcements_enabled' => true,
-            'newsletter_enabled' => true,
+            'push_enabled' => false,
+            'email_enabled' => false,
+            'marketing_enabled' => false,
+            'announcements_enabled' => false,
+            'newsletter_enabled' => false,
         ]);
     }
 
