@@ -8,6 +8,7 @@ use App\Http\Controllers\RenterController;
 use App\Http\Controllers\PropertyManagerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NotificationSettingController;
+use App\Http\Controllers\RegionalPreferenceController;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,7 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
 
 Route::middleware('auth')->group(function () {
     Route::put('/notification-settings', [NotificationSettingController::class, 'update'])->name('notification-settings.update');
+    Route::put('/regional-preferences', [RegionalPreferenceController::class, 'update'])->name('regional-preferences.update');
 });
 
 Route::get('/', function () {

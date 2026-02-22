@@ -1,18 +1,43 @@
+@php
+    $user = auth()->user();
+@endphp
+
 <div x-data="{ 
         show: false,
         loading: false,
-        region: 'United Arab Emirates',
-        language: 'English',
-        currency: 'AED - United Arab Emirates Dirham',
-        unit: 'm2',
+        region: '{{ $user?->region ?? 'United Arab Emirates' }}',
+        language: '{{ $user?->language ?? 'English' }}',
+        currency: '{{ $user?->currency ?? 'AED - United Arab Emirates Dirham' }}',
+        unit: '{{ $user?->measurement_unit ?? 'm2' }}',
         
         async saveRegionalPreferences() {
             this.loading = true;
-            // Simulate API call for now or implement if you want to save these too
-            setTimeout(() => {
+            try {
+                const response = await fetch('{{ route('regional-preferences.update') }}', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        region: this.region,
+                        language: this.language,
+                        currency: this.currency,
+                        measurement_unit: this.unit
+                    })
+                });
+
+                if (response.ok) {
+                    this.show = false;
+                } else {
+                    console.error('Failed to save regional preferences');
+                }
+            } catch (error) {
+                console.error('Error saving regional preferences:', error);
+            } finally {
                 this.loading = false;
-                this.show = false;
-            }, 500);
+            }
         }
      }" 
      @open-regional-preferences-modal.window="show = true"

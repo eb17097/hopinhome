@@ -25,6 +25,10 @@ class User extends Authenticatable
         'profile_photo_url',
         'two_factor_auth',
         'bio',
+        'region',
+        'language',
+        'currency',
+        'measurement_unit',
     ];
 
     /**
