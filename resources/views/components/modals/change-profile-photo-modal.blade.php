@@ -1,31 +1,31 @@
-<div x-data="profilePhotoModal()" 
+<div x-data="profilePhotoModal()"
      @open-profile-photo-modal.window="show = true"
-     x-show="show" 
-     class="fixed inset-0 z-50 overflow-y-auto" 
+     x-show="show"
+     class="fixed inset-0 z-50 overflow-y-auto"
      style="display: none;">
-    
+
     <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
         {{-- Background overlay --}}
-        <div x-show="show" 
-             x-transition:enter="ease-out duration-300" 
-             x-transition:enter-start="opacity-0" 
-             x-transition:enter-end="opacity-100" 
-             x-transition:leave="ease-in duration-200" 
-             x-transition:leave-start="opacity-100" 
-             x-transition:leave-end="opacity-0" 
+        <div x-show="show"
+             x-transition:enter="ease-out duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="ease-in duration-200"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0"
              @click="show = false"
              class="fixed inset-0 transition-opacity bg-black bg-opacity-40"></div>
 
         {{-- Modal panel --}}
-        <div x-show="show" 
-             x-transition:enter="ease-out duration-300" 
-             x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
-             x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" 
-             x-transition:leave="ease-in duration-200" 
-             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
-             x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+        <div x-show="show"
+             x-transition:enter="ease-out duration-300"
+             x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+             x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+             x-transition:leave="ease-in duration-200"
+             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+             x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
              class="inline-block w-full max-w-[560px] my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] rounded-[14px]">
-            
+
             {{-- Header --}}
             <div class="px-6 py-4 border-b border-[#e8e8e7] flex items-center justify-between relative">
                 <button @click="show = false" class="text-[#1e1d1d] hover:opacity-70 transition-opacity z-10">
@@ -43,11 +43,11 @@
                     @method('PATCH')
                     <input type="hidden" name="redirect_to" value="{{ url()->current() }}">
                     <input type="file" name="photo" id="photo" class="hidden" accept="image/*" @change="handleFileSelect">
-                    
+
                     {{-- Upload Step --}}
                     <div x-show="step === 'upload'">
                         <label class="block text-[16px] font-medium text-[#1e1d1d] mb-4">Profile picture</label>
-                        
+
                         {{-- Upload Area --}}
                         <div class="relative">
                             <label for="photo" class="flex flex-col items-center justify-center w-full h-[240px] border-2 border-dashed border-[#1447d4] rounded-[8px] cursor-pointer hover:bg-blue-50 transition-colors overflow-hidden">
@@ -88,15 +88,15 @@
                         {{-- Zoom Slider --}}
                         <div class="flex items-center gap-4 mt-6">
                             <img src="{{ asset('images/zoom_out.svg') }}" class="w-5 h-5 opacity-80 cursor-pointer" alt="-" @click="sliderValue = Math.max(0, sliderValue - 10); updateZoomFromSlider()">
-                            <input type="range" min="0" max="100" x-model="sliderValue" @input="updateZoomFromSlider" 
+                            <input type="range" min="0" max="100" x-model="sliderValue" @input="updateZoomFromSlider"
                                    class="w-full h-1 bg-[#e8e8e7] rounded-lg appearance-none cursor-pointer custom-range-slider"
                                    :style="'background: linear-gradient(to right, #1447d4 ' + sliderValue + '%, #e8e8e7 ' + sliderValue + '%)'">
-                            <img src="{{ asset('images/add_zoom.svg') }}" class="w-5 h-5 opacity-80 cursor-pointer" alt="+" @click="sliderValue = Math.min(100, Number(sliderValue) + 10); updateZoomFromSlider()">
+                            <img src="{{ asset('images/zoom_in.svg') }}" class="w-5 h-5 opacity-80 cursor-pointer" alt="+" @click="sliderValue = Math.min(100, Number(sliderValue) + 10); updateZoomFromSlider()">
                         </div>
 
                         {{-- Actions --}}
                         <div class="mt-8 space-y-4">
-                            <button type="button" @click="confirmCrop" 
+                            <button type="button" @click="confirmCrop"
                                     class="w-full h-[48px] bg-[#1447d4] hover:bg-[#04247b] text-white font-medium rounded-[8px] transition-all text-[16px]">
                                 Confirm
                             </button>
@@ -109,7 +109,7 @@
                     {{-- Preview Step --}}
                     <div x-show="step === 'preview'" style="display: none;">
                         <p class="text-[16px] font-medium text-[#1e1d1d] mb-4">New profile picture</p>
-                        
+
                         <div class="w-full h-[280px] border border-[#e8e8e7] rounded-[12px] flex items-center justify-center bg-white mb-6">
                             <div class="w-[200px] h-[200px] rounded-full overflow-hidden border border-[#e8e8e7]">
                                 <img :src="croppedPreview" class="w-full h-full object-cover" alt="Preview">
@@ -130,7 +130,7 @@
                         </div>
 
                         <div class="space-y-4">
-                            <button type="button" @click="savePhoto" 
+                            <button type="button" @click="savePhoto"
                                     class="w-full h-[52px] bg-[#1447d4] hover:bg-[#04247b] text-white font-medium rounded-[8px] transition-all text-[16px]">
                                 Save
                             </button>
@@ -151,7 +151,7 @@
     .cropper-face {
         border-radius: 50%;
     }
-    
+
     /* Blue outline for crop box */
     .cropper-view-box {
         outline: 2px solid #1447d4;
@@ -169,7 +169,7 @@
     .cropper-modal {
         background-color: rgba(0, 0, 0, 0.4);
     }
-    
+
     /* Custom Range Slider Styling */
     .custom-range-slider {
         -webkit-appearance: none;
@@ -239,14 +239,14 @@
             initCropper() {
                 const image = document.getElementById('cropper-image');
                 image.src = this.photoPreview;
-                
+
                 if (cropperInstance) {
                     cropperInstance.destroy();
                 }
 
                 cropperInstance = new Cropper(image, {
                     aspectRatio: 1,
-                    viewMode: 1,
+                    viewMode: 0, // Changed from 1 to 0 to allow zooming out further than the crop box
                     dragMode: 'move',
                     autoCropArea: 0.8,
                     cropBoxMovable: false,
@@ -259,9 +259,11 @@
                     ready: () => {
                         const canvasData = cropperInstance.getCanvasData();
                         // Setup zoom bounds
-                        this.minZoom = canvasData.width / canvasData.naturalWidth;
-                        this.maxZoom = this.minZoom * 4; 
-                        this.sliderValue = 0;
+                        const baseZoom = canvasData.width / canvasData.naturalWidth;
+                        this.minZoom = baseZoom * 0.5; // Allow zooming out significantly more
+                        this.maxZoom = baseZoom * 3;   // Reduce max zoom depth
+                        this.sliderValue = 50;         // Start in the middle
+                        this.updateZoomFromSlider();
                     },
                     zoom: (e) => {
                         // Enforce zoom limits
@@ -300,7 +302,7 @@
 
             confirmCrop() {
                 if (!cropperInstance) return;
-                
+
                 const canvas = cropperInstance.getCroppedCanvas({
                     width: 400,
                     height: 400,
@@ -309,7 +311,7 @@
                 });
 
                 this.croppedPreview = canvas.toDataURL('image/png');
-                
+
                 canvas.toBlob((blob) => {
                     finalBlob = blob;
                     this.step = 'preview';
