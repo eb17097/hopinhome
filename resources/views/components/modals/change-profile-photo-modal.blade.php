@@ -152,11 +152,12 @@
 
 <script>
     function profilePhotoModal() {
+        let cropperInstance = null; // Store outside reactive data to avoid Alpine Proxy issues
+
         return {
             show: false,
             step: 'upload', // 'upload' or 'crop'
             photoPreview: null,
-            cropper: null,
             sliderValue: 0,
             minZoom: 0,
             maxZoom: 3,
@@ -173,9 +174,9 @@
                 this.step = 'upload';
                 this.photoPreview = null;
                 document.getElementById('photo').value = '';
-                if (this.cropper) {
-                    this.cropper.destroy();
-                    this.cropper = null;
+                if (cropperInstance) {
+                    cropperInstance.destroy();
+                    cropperInstance = null;
                 }
                 this.sliderValue = 0;
             },
@@ -199,11 +200,11 @@
                 const image = document.getElementById('cropper-image');
                 image.src = this.photoPreview;
                 
-                if (this.cropper) {
-                    this.cropper.destroy();
+                if (cropperInstance) {
+                    cropperInstance.destroy();
                 }
 
-                this.cropper = new Cropper(image, {
+                cropperInstance = new Cropper(image, {
                     aspectRatio: 1,
                     viewMode: 1,
                     dragMode: 'move',
@@ -216,7 +217,7 @@
                     highlight: false,
                     background: false,
                     ready: () => {
-                        const canvasData = this.cropper.getCanvasData();
+                        const canvasData = cropperInstance.getCanvasData();
                         // Setup zoom bounds
                         this.minZoom = canvasData.width / canvasData.naturalWidth;
                         this.maxZoom = this.minZoom * 4; 
@@ -231,9 +232,9 @@
             },
 
             updateZoomFromSlider() {
-                if (this.cropper) {
+                if (cropperInstance) {
                     const ratio = this.minZoom + ((this.sliderValue / 100) * (this.maxZoom - this.minZoom));
-                    this.cropper.zoomTo(ratio);
+                    cropperInstance.zoomTo(ratio);
                 }
             },
 
@@ -242,10 +243,10 @@
             },
 
             confirmCrop() {
-                if (!this.cropper) return;
+                if (!cropperInstance) return;
                 
                 // Get the cropped canvas (square)
-                const canvas = this.cropper.getCroppedCanvas({
+                const canvas = cropperInstance.getCroppedCanvas({
                     width: 400,
                     height: 400,
                     imageSmoothingEnabled: true,
