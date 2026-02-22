@@ -1,6 +1,6 @@
 <x-renter-layout>
-    <div class="bg-white min-h-screen">
-        <div class="max-w-[1440px] mx-auto flex">
+    <div class="bg-white">
+        <div class="max-w-[1440px] mx-auto flexmin-h-screen ">
             {{-- Left Sidebar --}}
             <aside class="w-[320px] shrink-0 px-4 py-12">
                 <x-renter.renter-sidebar />
@@ -14,14 +14,14 @@
                 <h2 class="text-[32px] font-medium text-[#1e1d1d] tracking-[-0.64px] mb-8 leading-[1.28]">
                     My profile
                 </h2>
-                
+
                 <div class="space-y-8">
                     <x-renter.renter-profile-header />
-                    
+
                     <x-renter.renter-setup-checklist />
-                    
+
                     <x-renter.renter-reviews />
-                    
+
                     {{-- Footer Action --}}
                     <div class="flex justify-center pt-8 pb-20">
                         <button class="bg-white border border-[#e8e8e7] rounded-full flex items-center justify-center gap-2 h-[52px] w-[280px] hover:bg-gray-50 transition-colors">
