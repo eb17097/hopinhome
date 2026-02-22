@@ -347,10 +347,10 @@
                         })
                         .then(res => res.json())
                         .then(data => {
-                            isLoading = false;
                             if (data.status === 'success') {
                                 window.location.href = data.redirect;
                             } else {
+                                isLoading = false;
                                 registerError = data.message || 'Registration failed.';
                             }
                         }).catch(err => {
