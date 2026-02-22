@@ -1,18 +1,60 @@
+@php
+    $settings = auth()->user()?->notificationSettings;
+@endphp
+
 <div x-data="{ 
         show: false,
-        pushNotifications: true,
-        emailNotifications: false,
+        loading: false,
+        pushNotifications: {{ $settings?->push_enabled ? 'true' : 'false' }},
+        emailNotifications: {{ $settings?->email_enabled ? 'true' : 'false' }},
         selectAll: false,
-        marketing: true,
-        announcements: false,
-        newsletter: false,
+        marketing: {{ $settings?->marketing_enabled ? 'true' : 'false' }},
+        announcements: {{ $settings?->announcements_enabled ? 'true' : 'false' }},
+        newsletter: {{ $settings?->newsletter_enabled ? 'true' : 'false' }},
+        
+        init() {
+            this.updateSelectAll();
+        },
+
         toggleSelectAll() {
             this.marketing = this.selectAll;
             this.announcements = this.selectAll;
             this.newsletter = this.selectAll;
         },
+
         updateSelectAll() {
             this.selectAll = this.marketing && this.announcements && this.newsletter;
+        },
+
+        async saveSettings() {
+            this.loading = true;
+            try {
+                const response = await fetch('{{ route('notification-settings.update') }}', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        push_enabled: this.pushNotifications,
+                        email_enabled: this.emailNotifications,
+                        marketing_enabled: this.marketing,
+                        announcements_enabled: this.announcements,
+                        newsletter_enabled: this.newsletter
+                    })
+                });
+
+                if (response.ok) {
+                    this.show = false;
+                } else {
+                    console.error('Failed to save settings');
+                }
+            } catch (error) {
+                console.error('Error saving settings:', error);
+            } finally {
+                this.loading = false;
+            }
         }
      }" 
      @open-notification-preferences-modal.window="show = true"
@@ -127,9 +169,12 @@
                 </div>
 
                 <div class="mt-10">
-                    <button @click="show = false" 
-                            class="w-full h-[52px] bg-[#1447d4] hover:bg-[#04247b] text-white font-medium rounded-[8px] transition-all text-[16px]">
-                        Save changes
+                    <button @click="saveSettings()" 
+                            :disabled="loading"
+                            class="w-full h-[52px] bg-[#1447d4] hover:bg-[#04247b] text-white font-medium rounded-[8px] transition-all text-[16px] flex items-center justify-center disabled:opacity-50">
+                        <span x-show="!loading">Save changes</span>
+                        <span x-show="loading" class="inline-block animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white mr-2"></span>
+                        <span x-show="loading">Saving...</span>
                     </button>
                 </div>
             </div>

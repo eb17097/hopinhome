@@ -59,6 +59,20 @@ class User extends Authenticatable
         return $this->hasMany(Listing::class);
     }
 
+    /**
+     * Get the notification settings for the user.
+     */
+    public function notificationSettings()
+    {
+        return $this->hasOne(UserNotificationSetting::class)->withDefault([
+            'push_enabled' => true,
+            'email_enabled' => true,
+            'marketing_enabled' => true,
+            'announcements_enabled' => true,
+            'newsletter_enabled' => true,
+        ]);
+    }
+
     public function isRenter(): bool
     {
         return $this->role === 'renter';

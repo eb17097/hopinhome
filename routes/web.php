@@ -7,6 +7,7 @@ use App\Http\Controllers\ListingController;
 use App\Http\Controllers\RenterController;
 use App\Http\Controllers\PropertyManagerController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\NotificationSettingController;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,10 @@ Route::post('/ajax/reset-password', [AjaxAuthController::class, 'resetPassword']
 // Google Authentication Routes
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+Route::middleware('auth')->group(function () {
+    Route::put('/notification-settings', [NotificationSettingController::class, 'update'])->name('notification-settings.update');
+});
 
 Route::get('/', function () {
     // Fetch all listings from the database (latest first)
