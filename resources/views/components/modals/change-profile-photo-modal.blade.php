@@ -264,6 +264,18 @@
                         this.sliderValue = 0;
                     },
                     zoom: (e) => {
+                        // Enforce zoom limits
+                        if (e.detail.ratio > this.maxZoom) {
+                            e.preventDefault();
+                            cropperInstance.zoomTo(this.maxZoom);
+                            return;
+                        }
+                        if (e.detail.ratio < this.minZoom) {
+                            e.preventDefault();
+                            cropperInstance.zoomTo(this.minZoom);
+                            return;
+                        }
+
                         const ratio = e.detail.ratio;
                         let val = ((ratio - this.minZoom) / (this.maxZoom - this.minZoom)) * 100;
                         this.sliderValue = Math.max(0, Math.min(100, val));
