@@ -69,7 +69,7 @@ class GoogleController extends Controller
 
         } catch (\Exception $e) {
             // Log the error or handle it as needed
-            return redirect()->route('login')->withErrors(['email' => 'Unable to login with Google. Please try again.']);
+            return redirect()->route('home')->withErrors(['email' => 'Unable to login with Google. Please try again.']);
         }
     }
 }
