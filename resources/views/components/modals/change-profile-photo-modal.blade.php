@@ -272,7 +272,7 @@
                             // Setup zoom bounds
                             const baseZoom = canvasData.width / canvasData.naturalWidth;
                             this.minZoom = baseZoom * 0.8; // Reduced zoom out range even further
-                            this.maxZoom = baseZoom * 3;   // Maintain max zoom depth
+                            this.maxZoom = baseZoom * 2.4; // Reduced max zoom in by 20%
                             this.sliderValue = 50;         // Start in the middle
                             this.updateZoomFromSlider();
                         },
