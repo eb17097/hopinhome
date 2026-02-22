@@ -218,6 +218,11 @@
                     cropperInstance.destroy();
                     cropperInstance = null;
                 }
+                const image = document.getElementById('cropper-image');
+                if (image) {
+                    image.src = '';
+                    image.removeAttribute('style');
+                }
                 this.sliderValue = 0;
             },
 
@@ -237,52 +242,61 @@
             },
 
             initCropper() {
-                const image = document.getElementById('cropper-image');
-                image.src = this.photoPreview;
-
                 if (cropperInstance) {
                     cropperInstance.destroy();
+                    cropperInstance = null;
                 }
 
-                cropperInstance = new Cropper(image, {
-                    aspectRatio: 1,
-                    viewMode: 0, // Changed from 1 to 0 to allow zooming out further than the crop box
-                    dragMode: 'move',
-                    autoCropArea: 0.8,
-                    cropBoxMovable: false,
-                    cropBoxResizable: false,
-                    toggleDragModeOnDblclick: false,
-                    guides: false,
-                    center: false,
-                    highlight: false,
-                    background: false,
-                    ready: () => {
-                        const canvasData = cropperInstance.getCanvasData();
-                        // Setup zoom bounds
-                        const baseZoom = canvasData.width / canvasData.naturalWidth;
-                        this.minZoom = baseZoom * 0.8; // Reduced zoom out range even further
-                        this.maxZoom = baseZoom * 3;   // Maintain max zoom depth
-                        this.sliderValue = 50;         // Start in the middle
-                        this.updateZoomFromSlider();
-                    },
-                    zoom: (e) => {
-                        // Enforce zoom limits
-                        if (e.detail.ratio > this.maxZoom) {
-                            e.preventDefault();
-                            cropperInstance.zoomTo(this.maxZoom);
-                            return;
-                        }
-                        if (e.detail.ratio < this.minZoom) {
-                            e.preventDefault();
-                            cropperInstance.zoomTo(this.minZoom);
-                            return;
-                        }
+                // Completely recreate the image element to wipe any leftover cropper state
+                const oldImage = document.getElementById('cropper-image');
+                const newImage = oldImage.cloneNode();
+                newImage.removeAttribute('style');
+                oldImage.parentNode.replaceChild(newImage, oldImage);
 
-                        const ratio = e.detail.ratio;
-                        let val = ((ratio - this.minZoom) / (this.maxZoom - this.minZoom)) * 100;
-                        this.sliderValue = Math.max(0, Math.min(100, val));
-                    }
-                });
+                // Wait for the image to load before initializing Cropper
+                newImage.onload = () => {
+                    cropperInstance = new Cropper(newImage, {
+                        aspectRatio: 1,
+                        viewMode: 0, // Changed from 1 to 0 to allow zooming out further than the crop box
+                        dragMode: 'move',
+                        autoCropArea: 0.8,
+                        cropBoxMovable: false,
+                        cropBoxResizable: false,
+                        toggleDragModeOnDblclick: false,
+                        guides: false,
+                        center: false,
+                        highlight: false,
+                        background: false,
+                        ready: () => {
+                            const canvasData = cropperInstance.getCanvasData();
+                            // Setup zoom bounds
+                            const baseZoom = canvasData.width / canvasData.naturalWidth;
+                            this.minZoom = baseZoom * 0.8; // Reduced zoom out range even further
+                            this.maxZoom = baseZoom * 3;   // Maintain max zoom depth
+                            this.sliderValue = 50;         // Start in the middle
+                            this.updateZoomFromSlider();
+                        },
+                        zoom: (e) => {
+                            // Enforce zoom limits
+                            if (e.detail.ratio > this.maxZoom) {
+                                e.preventDefault();
+                                cropperInstance.zoomTo(this.maxZoom);
+                                return;
+                            }
+                            if (e.detail.ratio < this.minZoom) {
+                                e.preventDefault();
+                                cropperInstance.zoomTo(this.minZoom);
+                                return;
+                            }
+
+                            const ratio = e.detail.ratio;
+                            let val = ((ratio - this.minZoom) / (this.maxZoom - this.minZoom)) * 100;
+                            this.sliderValue = Math.max(0, Math.min(100, val));
+                        }
+                    });
+                };
+                
+                newImage.src = this.photoPreview;
             },
 
             updateZoomFromSlider() {
