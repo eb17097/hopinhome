@@ -218,11 +218,17 @@
                     cropperInstance.destroy();
                     cropperInstance = null;
                 }
-                const image = document.getElementById('cropper-image');
-                if (image) {
-                    image.src = '';
-                    image.removeAttribute('style');
+                
+                // Fully recreate image element on reset to guarantee a clean slate
+                const oldImage = document.getElementById('cropper-image');
+                if (oldImage) {
+                    const newImage = document.createElement('img');
+                    newImage.id = 'cropper-image';
+                    newImage.className = 'max-w-full';
+                    newImage.alt = 'Picture';
+                    oldImage.parentNode.replaceChild(newImage, oldImage);
                 }
+                
                 this.sliderValue = 0;
             },
 
@@ -249,50 +255,55 @@
 
                 // Completely recreate the image element to wipe any leftover cropper state
                 const oldImage = document.getElementById('cropper-image');
-                const newImage = oldImage.cloneNode();
-                newImage.removeAttribute('style');
+                const newImage = document.createElement('img');
+                newImage.id = 'cropper-image';
+                newImage.className = 'max-w-full';
+                newImage.alt = 'Picture';
                 oldImage.parentNode.replaceChild(newImage, oldImage);
 
                 // Wait for the image to load before initializing Cropper
                 newImage.onload = () => {
-                    cropperInstance = new Cropper(newImage, {
-                        aspectRatio: 1,
-                        viewMode: 0, // Changed from 1 to 0 to allow zooming out further than the crop box
-                        dragMode: 'move',
-                        autoCropArea: 0.8,
-                        cropBoxMovable: false,
-                        cropBoxResizable: false,
-                        toggleDragModeOnDblclick: false,
-                        guides: false,
-                        center: false,
-                        highlight: false,
-                        background: false,
-                        ready: () => {
-                            const canvasData = cropperInstance.getCanvasData();
-                            // Setup zoom bounds
-                            const baseZoom = canvasData.width / canvasData.naturalWidth;
-                            this.minZoom = baseZoom * 0.6; // Increased zoom out range by 20%
-                            this.maxZoom = baseZoom * 2.4; // Maintain max zoom in
-                            this.sliderValue = 50;         // Start in the middle
-                            this.updateZoomFromSlider();
-                        },
-                        zoom: (e) => {
-                            // Enforce zoom limits
-                            if (e.detail.ratio > this.maxZoom) {
-                                e.preventDefault();
-                                cropperInstance.zoomTo(this.maxZoom);
-                                return;
-                            }
-                            if (e.detail.ratio < this.minZoom) {
-                                e.preventDefault();
-                                cropperInstance.zoomTo(this.minZoom);
-                                return;
-                            }
+                    // Force the browser to complete layout calculations before Cropper measures the element
+                    requestAnimationFrame(() => {
+                        cropperInstance = new Cropper(newImage, {
+                            aspectRatio: 1,
+                            viewMode: 0, // Changed from 1 to 0 to allow zooming out further than the crop box
+                            dragMode: 'move',
+                            autoCropArea: 0.8,
+                            cropBoxMovable: false,
+                            cropBoxResizable: false,
+                            toggleDragModeOnDblclick: false,
+                            guides: false,
+                            center: false,
+                            highlight: false,
+                            background: false,
+                            ready: () => {
+                                const canvasData = cropperInstance.getCanvasData();
+                                // Setup zoom bounds
+                                const baseZoom = canvasData.width / canvasData.naturalWidth;
+                                this.minZoom = baseZoom * 0.6; // Increased zoom out range by 20%
+                                this.maxZoom = baseZoom * 2.4; // Maintain max zoom in
+                                this.sliderValue = 50;         // Start in the middle
+                                this.updateZoomFromSlider();
+                            },
+                            zoom: (e) => {
+                                // Enforce zoom limits
+                                if (e.detail.ratio > this.maxZoom) {
+                                    e.preventDefault();
+                                    cropperInstance.zoomTo(this.maxZoom);
+                                    return;
+                                }
+                                if (e.detail.ratio < this.minZoom) {
+                                    e.preventDefault();
+                                    cropperInstance.zoomTo(this.minZoom);
+                                    return;
+                                }
 
-                            const ratio = e.detail.ratio;
-                            let val = ((ratio - this.minZoom) / (this.maxZoom - this.minZoom)) * 100;
-                            this.sliderValue = Math.max(0, Math.min(100, val));
-                        }
+                                const ratio = e.detail.ratio;
+                                let val = ((ratio - this.minZoom) / (this.maxZoom - this.minZoom)) * 100;
+                                this.sliderValue = Math.max(0, Math.min(100, val));
+                            }
+                        });
                     });
                 };
                 
