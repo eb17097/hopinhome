@@ -6,7 +6,7 @@
                 <x-renter.renter-sidebar />
             </div>
             <div class="w-3/4 pl-12">
-                <a href="{{ route('dashboard') }}" class="inline-flex items-center text-navy-blue text-base font-medium mb-4">
+                <a href="{{ route('renter.index') }}" class="inline-flex items-center text-navy-blue text-base font-medium mb-4">
                     <img alt="arrow forward" class="h-5 w-5 transform rotate-180 mr-2" src="{{ asset('images/arrow_forward_dark_blue.svg') }}">
                     Back to dashboard
                 </a>

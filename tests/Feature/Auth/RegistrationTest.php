@@ -13,7 +13,7 @@ class RegistrationTest extends TestCase
     {
         $response = $this->get('/register');
 
-        $response->assertStatus(200);
+        $response->assertRedirect(route('home'));
     }
 
     public function test_new_users_can_register(): void
@@ -26,6 +26,7 @@ class RegistrationTest extends TestCase
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect(route('dashboard', absolute: false));
+        // Since default role is renter
+        $response->assertRedirect(route('renter.index', absolute: false));
     }
 }

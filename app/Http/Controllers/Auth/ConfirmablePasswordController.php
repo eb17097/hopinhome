@@ -35,6 +35,13 @@ class ConfirmablePasswordController extends Controller
 
         $request->session()->put('auth.password_confirmed_at', time());
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        $user = $request->user();
+        if ($user->isRenter()) {
+            return redirect()->intended(route('renter.index'));
+        } elseif ($user->isPropertyManager()) {
+            return redirect()->intended(route('property_manager.index'));
+        }
+
+        return redirect()->intended(route('home'));
     }
 }

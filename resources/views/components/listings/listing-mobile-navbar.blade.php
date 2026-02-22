@@ -1,5 +1,5 @@
 <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-light-gray shadow-lg p-4 flex justify-around items-center md:hidden">
-    <a href="{{ route('dashboard') }}" class="flex flex-col items-center text-electric-blue">
+    <a href="{{ auth()->user()->isPropertyManager() ? route('property_manager.index') : route('renter.index') }}" class="flex flex-col items-center text-electric-blue">
         <img alt="speed" class="h-6 w-6" src="{{ asset('images/speed_sidebar.svg') }}">
         <span class="text-xs font-medium mt-1">Dashboard</span>
     </a>

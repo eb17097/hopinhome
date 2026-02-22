@@ -42,7 +42,13 @@ Route::get('/listings/{listing}', [ListingController::class, 'show'])->name('lis
 Route::get('/listings', [ListingController::class, 'index'])->name('listings.index');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $user = auth()->user();
+    if ($user->isRenter()) {
+        return redirect()->route('renter.index');
+    } elseif ($user->isPropertyManager()) {
+        return redirect()->route('property_manager.index');
+    }
+    return redirect()->route('home');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
