@@ -11,7 +11,7 @@
             'bg-transparent text-white': !scrolled
          }"
          class="fixed top-0 left-0 right-0 z-50 border-b border-transparent transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-22 py-4">
                 {{-- Logo with dynamic color --}}
                 <div class="flex items-center">
@@ -68,7 +68,7 @@
 @else
     {{-- Standard Solid Header for All Other Pages --}}
     <nav x-data class="bg-white border-b border-[#e8e8e7] sticky top-0 left-0 right-0 z-50 h-[88px] flex items-center">
-         <div class="max-w-7xl mx-auto px-8 w-full">
+         <div class="max-w-[1440px] mx-auto px-8 w-full">
             <div class="flex justify-between items-center h-full">
                  <div class="flex items-center">
                     <a href="/" class="flex items-center gap-2">

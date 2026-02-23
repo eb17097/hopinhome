@@ -44,7 +44,7 @@
     </div>
 
     <div class="space-y-3">
-        {{-- Email Verification (Static for now as it usually requires a reload/new tab) --}}
+        {{-- Email Verification --}}
         <div class="bg-[#f9f9f8] rounded-[4px] h-[55px] px-4 flex items-center gap-4">
             <img alt="checkmark" class="w-[23px] h-[23px]" src="{{ asset('images/white_checkmark_on_green.svg') }}">
             <span class="font-medium text-[16px] text-[#1e1d1d]">Verify your email address</span>
