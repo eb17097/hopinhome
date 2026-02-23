@@ -1,6 +1,6 @@
 <x-renter-layout>
     <div class="bg-white">
-        <div class="max-w-[1440px] mx-auto flexmin-h-screen ">
+        <div class="max-w-[1440px] mx-auto flex min-h-screen">
             {{-- Left Sidebar --}}
             <aside class="w-[320px] shrink-0 px-4 py-12">
                 <x-renter.renter-sidebar />
