@@ -26,4 +26,29 @@ class PasswordController extends Controller
 
         return back()->with('status', 'password-updated');
     }
+
+    /**
+     * Update the user's password via AJAX (no current password required as per new design).
+     */
+    public function ajaxUpdate(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
+            'password' => ['required', Password::defaults(), 'confirmed'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $request->user()->update([
+            'password' => Hash::make($request->password),
+        ]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Password updated successfully.'
+        ]);
+    }
 }

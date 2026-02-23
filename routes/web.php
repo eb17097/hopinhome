@@ -29,6 +29,7 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
 Route::middleware('auth')->group(function () {
     Route::put('/notification-settings', [NotificationSettingController::class, 'update'])->name('notification-settings.update');
     Route::put('/regional-preferences', [RegionalPreferenceController::class, 'update'])->name('regional-preferences.update');
+    Route::post('/ajax/password/update', [\App\Http\Controllers\Auth\PasswordController::class, 'ajaxUpdate'])->name('ajax.password.update');
 });
 
 Route::get('/', function () {
