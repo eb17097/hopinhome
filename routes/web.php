@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OnboardingController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\AjaxAuthController;
@@ -27,6 +28,8 @@ Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 Route::middleware('auth')->group(function () {
+    Route::get('/onboarding', [OnboardingController::class, 'index'])->name('onboarding.index');
+    Route::post('/onboarding/step-1', [OnboardingController::class, 'step1'])->name('onboarding.step1');
     Route::put('/notification-settings', [NotificationSettingController::class, 'update'])->name('notification-settings.update');
     Route::put('/regional-preferences', [RegionalPreferenceController::class, 'update'])->name('regional-preferences.update');
     Route::post('/ajax/password/update', [\App\Http\Controllers\Auth\PasswordController::class, 'ajaxUpdate'])->name('ajax.password.update');
@@ -46,6 +49,11 @@ Route::get('/listings', [ListingController::class, 'index'])->name('listings.ind
 
 Route::get('/dashboard', function () {
     $user = auth()->user();
+
+    if (!$user->onboarding_completed) {
+        return redirect()->route('onboarding.index');
+    }
+
     if ($user->isRenter()) {
         return redirect()->route('renter.index');
     } elseif ($user->isPropertyManager()) {

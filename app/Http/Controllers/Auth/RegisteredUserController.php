@@ -37,12 +37,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        if ($user->isRenter()) {
-            return redirect()->route('renter.index');
-        } elseif ($user->isPropertyManager()) {
-            return redirect()->route('property_manager.index');
-        }
-
-        return redirect()->route('home');
+        return redirect()->route('onboarding.index');
     }
 }

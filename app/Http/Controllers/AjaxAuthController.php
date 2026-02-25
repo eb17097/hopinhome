@@ -98,18 +98,10 @@ class AjaxAuthController extends Controller
 
         Auth::login($user);
 
-        $redirectUrl = route('home');
-
-        if ($user->isRenter()) {
-            $redirectUrl = route('renter.index');
-        } elseif ($user->isPropertyManager()) {
-            $redirectUrl = route('property_manager.index');
-        }
-
         return response()->json([
             'status' => 'success',
             'message' => 'Registration successful',
-            'redirect' => $redirectUrl,
+            'redirect' => route('onboarding.index'),
         ]);
     }
 
