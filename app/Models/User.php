@@ -29,6 +29,8 @@ class User extends Authenticatable
         'language',
         'currency',
         'measurement_unit',
+        'onboarding_step',
+        'onboarding_completed',
     ];
 
     /**

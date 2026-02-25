@@ -30,6 +30,9 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
 Route::middleware('auth')->group(function () {
     Route::get('/onboarding', [OnboardingController::class, 'index'])->name('onboarding.index');
     Route::post('/onboarding/step-1', [OnboardingController::class, 'step1'])->name('onboarding.step1');
+    Route::post('/onboarding/step-2', [OnboardingController::class, 'step2'])->name('onboarding.step2');
+    Route::post('/onboarding/step-3', [OnboardingController::class, 'step3'])->name('onboarding.step3');
+    Route::post('/onboarding/complete', [OnboardingController::class, 'complete'])->name('onboarding.complete');
     Route::put('/notification-settings', [NotificationSettingController::class, 'update'])->name('notification-settings.update');
     Route::put('/regional-preferences', [RegionalPreferenceController::class, 'update'])->name('regional-preferences.update');
     Route::post('/ajax/password/update', [\App\Http\Controllers\Auth\PasswordController::class, 'ajaxUpdate'])->name('ajax.password.update');
