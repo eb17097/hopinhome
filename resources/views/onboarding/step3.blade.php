@@ -41,7 +41,6 @@
                         @else
                             <div class="flex flex-col items-center">
                                 <div class="w-[54px] h-[54px] mb-4">
-                                    {{-- Using the upload icon from Figma context --}}
                                     <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect width="54" height="54" rx="27" fill="#F0F4FF"/>
                                         <path d="M27 31V23M27 23L24 26M27 23L30 26M19 31.5V32.2C19 33.8802 19 34.7202 19.327 35.362C19.6146 35.9265 20.0735 36.3854 20.638 36.673C21.2798 37 22.1198 37 23.8 37H30.2C31.8802 37 32.7202 37 33.362 36.673C33.9265 36.3854 34.3854 35.9265 34.673 35.362C35 34.7202 35 33.8802 35 32.2V31.5M31 20.5C31 22.7091 29.2091 24.5 27 24.5C24.7909 24.5 23 22.7091 23 20.5C23 18.2909 24.7909 16.5 27 16.5C29.2091 16.5 31 18.2909 31 20.5Z" stroke="#1447D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -87,8 +86,7 @@
                         @endif
                     "
                     :disabled="isLoading"
-                    class="w-full lg:w-40 bg-[#1447d4] text-white py-3.5 rounded-full font-medium text-[16px] tracking-[-0.48px] hover:bg-blue-800 transition-all flex justify-center items-center disabled:opacity-20"
-                    :class="!{{ auth()->user()->profile_photo_url ? 'true' : 'false' }} ? 'opacity-20' : ''">
+                    class="w-full lg:w-40 bg-[#1447d4] text-white py-3.5 rounded-full font-medium text-[16px] tracking-[-0.48px] hover:bg-blue-800 transition-all flex justify-center items-center disabled:opacity-20 {{ !auth()->user()->profile_photo_url ? 'opacity-20' : '' }}">
                         <span x-show="!isLoading">Next</span>
                         <svg x-show="isLoading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="display: none;">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -127,7 +125,7 @@
         </div>
     </div>
 
-    {{-- Modal Inclusion --}}
+    {{-- Modal Inclusion - Outside main x-data to avoid conflicts --}}
     <x-modals.change-profile-photo-modal 
         :action="route('onboarding.step3')" 
         :redirectTo="route('onboarding.index')" 

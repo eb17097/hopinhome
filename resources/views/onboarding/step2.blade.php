@@ -1,5 +1,5 @@
 <x-main-layout title="Onboarding - HopinHome">
-    <div class="flex h-screen overflow-hidden bg-white" x-data="{ bio: '{{ addslashes(auth()->user()->bio ?? '') }}', isLoading: false, maxChars: 500 }">
+    <div class="flex h-screen overflow-hidden bg-white" x-data="{ bio: {{ json_encode(auth()->user()->bio ?? '') }}, isLoading: false, maxChars: 500 }">
         <!-- Left Side -->
         <div class="w-full lg:w-1/2 flex flex-col p-8 lg:p-16 overflow-y-auto">
             <!-- Logo & Back Button -->
@@ -112,4 +112,10 @@
             </div>
         </div>
     </div>
+
+    {{-- 
+        CRITICAL: We MUST NOT include the modal here because it has its own x-data 
+        that defines 'bio' and 'remaining', which conflicts with this page's x-data.
+        Since this page HAS the bio input inline as per Figma, the modal is redundant.
+    --}}
 </x-main-layout>

@@ -1,12 +1,12 @@
 <div x-data="{ 
         show: false, 
-        bio: '{{ addslashes(auth()->user()->bio ?? '') }}', 
+        bio: {{ json_encode(auth()->user()->bio ?? '') }}, 
         maxLength: 500,
         get remaining() {
             return this.maxLength - this.bio.length;
         }
      }" 
-     @open-edit-bio-modal.window="show = true; bio = '{{ addslashes(auth()->user()->bio ?? '') }}';"
+     @open-edit-bio-modal.window="show = true; bio = {{ json_encode(auth()->user()->bio ?? '') }};"
      x-show="show" 
      class="fixed inset-0 z-50 overflow-y-auto" 
      style="display: none;">
