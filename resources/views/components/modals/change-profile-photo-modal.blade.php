@@ -1,3 +1,5 @@
+@props(['action' => null, 'redirectTo' => null])
+
 <div x-data="profilePhotoModal()"
      @open-profile-photo-modal.window="show = true"
      x-show="show"

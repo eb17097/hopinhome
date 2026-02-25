@@ -67,25 +67,30 @@ class OnboardingController extends Controller
 
     public function step3(Request $request)
     {
+        \Illuminate\Support\Facades\Log::info('Onboarding step3 hit', ['has_file' => $request->hasFile('photo')]);
+
         $request->validate([
-            'photo' => 'nullable|image|max:5120', // Changed from profile_photo to photo to match modal
+            'photo' => 'nullable|image|max:5120',
         ]);
 
         $user = Auth::user();
 
         if ($request->hasFile('photo')) {
-            // Delete old photo if exists
-            if ($user->profile_photo_url) {
+            // Delete old photo if exists and is local
+            if ($user->profile_photo_url && !filter_var($user->profile_photo_url, FILTER_VALIDATE_URL)) {
                 Storage::disk('public')->delete($user->profile_photo_url);
             }
 
             $path = $request->file('photo')->store('profile-photos', 'public');
-            $user->update(['profile_photo_url' => $path]);
+            \Illuminate\Support\Facades\Log::info('New photo stored', ['path' => $path]);
+            $user->profile_photo_url = $path;
+            $user->save();
         }
 
-        $user->update([
-            'onboarding_step' => 4,
-        ]);
+        $user->onboarding_step = 4;
+        $user->save();
+
+        \Illuminate\Support\Facades\Log::info('User onboarding step updated', ['step' => $user->onboarding_step, 'photo_url' => $user->profile_photo_url]);
 
         if ($request->wantsJson()) {
             return response()->json([

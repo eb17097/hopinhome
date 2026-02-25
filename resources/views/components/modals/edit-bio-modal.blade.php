@@ -1,3 +1,5 @@
+@props(['action' => null, 'redirectTo' => null])
+
 <div x-data="{ 
         show: false, 
         bio: {{ json_encode(auth()->user()->bio ?? '') }}, 
