@@ -80,9 +80,10 @@ class OnboardingController extends Controller
             }
 
             $path = $request->file('photo')->store('profiles', 's3');
+            $url = \Illuminate\Support\Facades\Storage::disk('s3')->url($path);
             
             $user->fill([
-                'profile_photo_url' => $path,
+                'profile_photo_url' => $url,
                 'onboarding_step' => 4
             ])->save();
         } else {

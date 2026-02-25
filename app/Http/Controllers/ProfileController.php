@@ -37,7 +37,7 @@ class ProfileController extends Controller
 
         if ($request->hasFile('photo')) {
             $path = $request->file('photo')->store('profiles', 's3');
-            $user->profile_photo_url = $path;
+            $user->profile_photo_url = \Illuminate\Support\Facades\Storage::disk('s3')->url($path);
         }
 
         $user->save();
