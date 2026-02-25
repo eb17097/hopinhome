@@ -45,10 +45,10 @@
             </div>
 
             <div class="p-8">
-                <form action="{{ route('profile.update') }}" method="POST">
+                <form action="{{ $action ?? route('profile.update') }}" method="POST">
                     @csrf
-                    @method('PATCH')
-                    <input type="hidden" name="redirect_to" value="{{ url()->current() }}">
+                    @if(!isset($action)) @method('PATCH') @endif
+                    <input type="hidden" name="redirect_to" value="{{ $redirectTo ?? url()->current() }}">
                     
                     <div class="flex justify-between items-end mb-2">
                         <label for="bio" class="block text-[16px] font-medium text-[#1e1d1d]">Bio</label>

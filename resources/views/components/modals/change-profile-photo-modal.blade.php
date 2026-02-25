@@ -38,10 +38,10 @@
             </div>
 
             <div class="p-8">
-                <form id="profilePhotoForm" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                <form id="profilePhotoForm" action="{{ $action ?? route('profile.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @method('PATCH')
-                    <input type="hidden" name="redirect_to" value="{{ url()->current() }}">
+                    @if(!isset($action)) @method('PATCH') @endif
+                    <input type="hidden" name="redirect_to" value="{{ $redirectTo ?? url()->current() }}">
                     <input type="file" name="photo" id="photo" class="hidden" accept="image/*" @change="handleFileSelect">
 
                     {{-- Upload Step --}}

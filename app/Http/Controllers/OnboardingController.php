@@ -68,18 +68,18 @@ class OnboardingController extends Controller
     public function step3(Request $request)
     {
         $request->validate([
-            'profile_photo' => 'nullable|image|max:5120', // Max 5MB
+            'photo' => 'nullable|image|max:5120', // Changed from profile_photo to photo to match modal
         ]);
 
         $user = Auth::user();
 
-        if ($request->hasFile('profile_photo')) {
+        if ($request->hasFile('photo')) {
             // Delete old photo if exists
             if ($user->profile_photo_url) {
                 Storage::disk('public')->delete($user->profile_photo_url);
             }
 
-            $path = $request->file('profile_photo')->store('profile-photos', 'public');
+            $path = $request->file('photo')->store('profile-photos', 'public');
             $user->update(['profile_photo_url' => $path]);
         }
 
@@ -87,10 +87,14 @@ class OnboardingController extends Controller
             'onboarding_step' => 4,
         ]);
 
-        return response()->json([
-            'status' => 'success',
-            'redirect' => route('onboarding.index'),
-        ]);
+        if ($request->wantsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'redirect' => route('onboarding.index'),
+            ]);
+        }
+
+        return redirect()->route('onboarding.index');
     }
 
     public function complete()
