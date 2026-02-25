@@ -79,7 +79,7 @@ class OnboardingController extends Controller
                 Storage::disk('s3')->delete($user->profile_photo_url);
             }
 
-            $path = $request->file('photo')->store('profiles', 's3');
+            $path = $request->file('photo')->storePublicly('profiles', 's3');
             $url = \Illuminate\Support\Facades\Storage::disk('s3')->url($path);
             
             $user->fill([

@@ -108,7 +108,7 @@ class User extends Authenticatable
             return $this->profile_photo_url;
         }
 
-        // Fallback for paths: check public storage first
-        return \Illuminate\Support\Facades\Storage::disk('public')->url($this->profile_photo_url);
+        // Fallback for relative paths: resolve through S3 disk
+        return \Illuminate\Support\Facades\Storage::disk('s3')->url($this->profile_photo_url);
     }
 }
