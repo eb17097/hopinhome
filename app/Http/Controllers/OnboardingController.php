@@ -67,8 +67,6 @@ class OnboardingController extends Controller
 
     public function step3(Request $request)
     {
-        \Illuminate\Support\Facades\Log::info('Onboarding step3 hit', ['has_file' => $request->hasFile('photo')]);
-
         $request->validate([
             'photo' => 'nullable|image|max:5120',
         ]);
@@ -82,15 +80,14 @@ class OnboardingController extends Controller
             }
 
             $path = $request->file('photo')->store('profile-photos', 'public');
-            \Illuminate\Support\Facades\Log::info('New photo stored', ['path' => $path]);
-            $user->profile_photo_url = $path;
-            $user->save();
+            
+            $user->fill([
+                'profile_photo_url' => $path,
+                'onboarding_step' => 4
+            ])->save();
+        } else {
+            $user->update(['onboarding_step' => 4]);
         }
-
-        $user->onboarding_step = 4;
-        $user->save();
-
-        \Illuminate\Support\Facades\Log::info('User onboarding step updated', ['step' => $user->onboarding_step, 'photo_url' => $user->profile_photo_url]);
 
         if ($request->wantsJson()) {
             return response()->json([
