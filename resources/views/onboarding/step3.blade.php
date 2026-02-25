@@ -94,23 +94,8 @@
                         </svg>
                     </button>
 
-                    <button @click="
-                        isLoading = true;
-                        fetch('{{ route('onboarding.step3') }}', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json',
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                            }
-                        })
-                        .then(res => res.json())
-                        .then(data => {
-                            if (data.status === 'success') {
-                                window.location.href = data.redirect;
-                            }
-                        })
-                    " class="text-[14px] text-[#464646] underline hover:text-[#1e1d1d] transition-colors">
+                    <button @click="$dispatch('open-skip-setup-modal', { skipUrl: '{{ route('onboarding.index') }}' })" 
+                            class="text-[14px] text-[#464646] underline hover:text-[#1e1d1d] transition-colors">
                         Set up later
                     </button>
                 </div>
@@ -125,9 +110,9 @@
         </div>
     </div>
 
-    {{-- Modal Inclusion - Outside main x-data to avoid conflicts --}}
     <x-modals.change-profile-photo-modal 
         :action="route('onboarding.step3')" 
         :redirectTo="route('onboarding.index')" 
     />
+    <x-modals.skip-setup-modal />
 </x-main-layout>

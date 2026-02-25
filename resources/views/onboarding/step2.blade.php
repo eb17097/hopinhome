@@ -80,24 +80,8 @@
                     </div>
 
                     <div class="flex justify-center lg:justify-start">
-                        <button @click="
-                            isLoading = true;
-                            fetch('{{ route('onboarding.step2') }}', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Accept': 'application/json',
-                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                                },
-                                body: JSON.stringify({ bio: '' })
-                            })
-                            .then(res => res.json())
-                            .then(data => {
-                                if (data.status === 'success') {
-                                    window.location.href = data.redirect;
-                                }
-                            })
-                        " class="text-[14px] text-[#464646] underline hover:text-[#1e1d1d] transition-colors">
+                        <button @click="$dispatch('open-skip-setup-modal', { skipUrl: '{{ route('onboarding.index') }}' })" 
+                                class="text-[14px] text-[#464646] underline hover:text-[#1e1d1d] transition-colors">
                             Set up later
                         </button>
                     </div>
@@ -113,9 +97,5 @@
         </div>
     </div>
 
-    {{-- 
-        CRITICAL: We MUST NOT include the modal here because it has its own x-data 
-        that defines 'bio' and 'remaining', which conflicts with this page's x-data.
-        Since this page HAS the bio input inline as per Figma, the modal is redundant.
-    --}}
+    <x-modals.skip-setup-modal />
 </x-main-layout>
