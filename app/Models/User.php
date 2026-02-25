@@ -109,6 +109,6 @@ class User extends Authenticatable
         }
 
         // Otherwise, resolve it through the storage disk
-        return \Illuminate\Support\Facades\Storage::url($this->profile_photo_url);
+        return \Illuminate\Support\Facades\Storage::disk('s3')->url($this->profile_photo_url);
     }
 }

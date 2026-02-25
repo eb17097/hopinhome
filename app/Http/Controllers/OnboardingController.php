@@ -76,10 +76,10 @@ class OnboardingController extends Controller
         if ($request->hasFile('photo')) {
             // Delete old photo if exists and is local
             if ($user->profile_photo_url && !filter_var($user->profile_photo_url, FILTER_VALIDATE_URL)) {
-                Storage::disk('public')->delete($user->profile_photo_url);
+                Storage::disk('s3')->delete($user->profile_photo_url);
             }
 
-            $path = $request->file('photo')->store('profile-photos', 'public');
+            $path = $request->file('photo')->store('profiles', 's3');
             
             $user->fill([
                 'profile_photo_url' => $path,
