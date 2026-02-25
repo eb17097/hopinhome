@@ -93,4 +93,22 @@ class User extends Authenticatable
     {
         return $this->role === 'admin';
     }
+
+    /**
+     * Get the profile photo URL, handling full URLs (S3/Google) and local paths.
+     */
+    public function getProfilePhotoUrl(): string
+    {
+        if (!$this->profile_photo_url) {
+            return asset('images/user-placeholder.svg');
+        }
+
+        // If it's already a full URL (S3, Google, etc.), return it as is
+        if (filter_var($this->profile_photo_url, FILTER_VALIDATE_URL)) {
+            return $this->profile_photo_url;
+        }
+
+        // Otherwise, resolve it through the storage disk
+        return \Illuminate\Support\Facades\Storage::url($this->profile_photo_url);
+    }
 }

@@ -3,7 +3,7 @@
 <div @click="$dispatch('open-profile-photo-modal')" class="bg-[#f9f9f8] rounded-[6px] p-4 flex items-center justify-between cursor-pointer hover:bg-gray-100 transition-colors">
     <div class="flex items-center space-x-4">
         <div class="w-16 h-16 rounded-full border border-light-gray overflow-hidden shrink-0">
-            <img alt="profile picture" class="h-full w-full object-cover" src="{{ Auth::user()->profile_photo_url ? Storage::url(Auth::user()->profile_photo_url) : asset('images/user-placeholder.svg') }}">
+            <img alt="profile picture" class="h-full w-full object-cover" src="{{ Auth::user()->getProfilePhotoUrl() }}">
         </div>
         <div>
             <div class="flex items-center gap-1">

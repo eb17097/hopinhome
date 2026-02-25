@@ -33,7 +33,7 @@
                         
                         @if(auth()->user()->profile_photo_url)
                             <div class="relative w-full h-full flex items-center justify-center bg-gray-50">
-                                <img src="{{ Storage::url(auth()->user()->profile_photo_url) }}" alt="Profile" class="h-full w-auto object-contain">
+                                <img src="{{ auth()->user()->getProfilePhotoUrl() }}" alt="Profile" class="h-full w-auto object-contain">
                                 <div class="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
                                     <p class="text-white font-medium">Change photo</p>
                                 </div>
