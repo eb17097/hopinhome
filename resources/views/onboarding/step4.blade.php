@@ -57,7 +57,7 @@
                         }
                     })
                 "
-                :disabled="isLoading"
+                :disabled="isLoading" style="margin-left: auto;"
                 class="w-full lg:w-56 bg-[#1447d4] text-white py-4 rounded-full font-medium text-[16px] tracking-[-0.48px] hover:bg-blue-800 transition-all flex justify-center items-center disabled:opacity-20">
                     <span x-show="!isLoading">Start exploring</span>
                     <svg x-show="isLoading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="display: none;">
