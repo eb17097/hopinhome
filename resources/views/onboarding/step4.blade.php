@@ -66,9 +66,9 @@
         </div>
 
         <!-- Right Side (Blue) -->
-        <div class="hidden lg:block w-1/2 bg-[#1447d4] relative">
-            <div class="absolute inset-0 flex items-center justify-center overflow-hidden">
-                <img src="{{ asset('images/hopinhome_logo_white.svg') }}" alt="" class="w-full opacity-10 transform scale-150 rotate-[-15deg]">
+        <div class="hidden lg:block w-1/2 bg-[#1447d4] relative overflow-hidden">
+            <div class="absolute -bottom-[20%] left-1/2 -translate-x-1/2 w-[120%] opacity-10">
+                <img src="{{ asset('images/hopinhome_symbol_white.svg') }}" alt="" class="w-full h-auto">
             </div>
         </div>
     </div>
