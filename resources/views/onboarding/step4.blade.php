@@ -2,8 +2,11 @@
     <div class="flex h-screen overflow-hidden bg-white" x-data="{ isLoading: false }">
         <!-- Left Side -->
         <div class="w-full lg:w-1/2 flex flex-col p-8 lg:p-16 overflow-y-auto">
-            <!-- Logo -->
-            <div class="mb-12">
+            <!-- Logo & Back Button -->
+            <div class="flex items-center gap-6 mb-12">
+                <a href="{{ route('onboarding.back') }}" class="hover:opacity-70 transition-opacity">
+                    <img src="{{ asset('images/arrow_left_blue.svg') }}" alt="Back" class="w-6 h-6">
+                </a>
                 <a href="{{ route('home') }}">
                     <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopinHome" class="h-8">
                 </a>
