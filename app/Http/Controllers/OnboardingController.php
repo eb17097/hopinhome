@@ -100,6 +100,19 @@ class OnboardingController extends Controller
         return redirect()->route('onboarding.index');
     }
 
+    public function back()
+    {
+        $user = Auth::user();
+
+        if ($user->onboarding_step > 1) {
+            $user->update([
+                'onboarding_step' => $user->onboarding_step - 1,
+            ]);
+        }
+
+        return redirect()->route('onboarding.index');
+    }
+
     public function complete()
     {
         $user = Auth::user();

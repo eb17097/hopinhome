@@ -29,6 +29,7 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
 
 Route::middleware('auth')->group(function () {
     Route::get('/onboarding', [OnboardingController::class, 'index'])->name('onboarding.index');
+    Route::get('/onboarding/back', [OnboardingController::class, 'back'])->name('onboarding.back');
     Route::post('/onboarding/step-1', [OnboardingController::class, 'step1'])->name('onboarding.step1');
     Route::post('/onboarding/step-2', [OnboardingController::class, 'step2'])->name('onboarding.step2');
     Route::post('/onboarding/step-3', [OnboardingController::class, 'step3'])->name('onboarding.step3');
