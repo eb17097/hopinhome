@@ -145,7 +145,7 @@
                     requestAnimationFrame(() => {
                         cropperInstance = new Cropper(image, {
                             aspectRatio: 1,
-                            viewMode: 0,
+                            viewMode: 1,
                             dragMode: 'move',
                             autoCropArea: 0.8,
                             cropBoxMovable: false,
@@ -157,13 +157,15 @@
                             background: false,
                             ready() {
                                 const canvasData = cropperInstance.getCanvasData();
-                                const baseZoom = canvasData.width / canvasData.naturalWidth;
-                                self.minZoom = baseZoom * 0.6;
-                                self.maxZoom = baseZoom * 2.4;
-                                self.sliderValue = 50;
+                                // In viewMode 1, Cropper automatically calculates the minimum zoom 
+                                // that keeps the image covering the crop box.
+                                self.minZoom = canvasData.width / canvasData.naturalWidth;
+                                self.maxZoom = self.minZoom * 3;
+                                self.sliderValue = 0; // Start at min zoom
                                 self.updateZoomFromSlider();
                             },
                             zoom(e) {
+                                // Enforce zoom limits
                                 if (e.detail.ratio > self.maxZoom) {
                                     e.preventDefault();
                                     cropperInstance.zoomTo(self.maxZoom);

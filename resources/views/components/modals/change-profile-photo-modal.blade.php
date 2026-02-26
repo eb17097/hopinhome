@@ -269,7 +269,7 @@
                     requestAnimationFrame(() => {
                         cropperInstance = new Cropper(newImage, {
                             aspectRatio: 1,
-                            viewMode: 0, // Changed from 1 to 0 to allow zooming out further than the crop box
+                            viewMode: 1,
                             dragMode: 'move',
                             autoCropArea: 0.8,
                             cropBoxMovable: false,
@@ -281,11 +281,10 @@
                             background: false,
                             ready: () => {
                                 const canvasData = cropperInstance.getCanvasData();
-                                // Setup zoom bounds
-                                const baseZoom = canvasData.width / canvasData.naturalWidth;
-                                this.minZoom = baseZoom * 0.6; // Increased zoom out range by 20%
-                                this.maxZoom = baseZoom * 2.4; // Maintain max zoom in
-                                this.sliderValue = 50;         // Start in the middle
+                                // In viewMode 1, Cropper enforces the image covers the crop box.
+                                this.minZoom = canvasData.width / canvasData.naturalWidth;
+                                this.maxZoom = this.minZoom * 3;
+                                this.sliderValue = 0; // Start at min zoom
                                 this.updateZoomFromSlider();
                             },
                             zoom: (e) => {
