@@ -39,7 +39,7 @@
             <div class="p-8">
                 {{-- Crop Area --}}
                 <div class="w-full h-[397px] bg-[#f9f9f8] rounded-[8px] overflow-hidden relative mb-12">
-                    <img id="onboarding-cropper-image" src="" alt="Picture" class="max-w-full">
+                    <img id="onboarding-cropper-image" src="" alt="Picture" class="max-w-full" crossorigin="anonymous">
                 </div>
 
                 {{-- Zoom Slider --}}
@@ -123,8 +123,8 @@
 
             handleOpen(event) {
                 this.photoPreview = event.detail.preview;
-                originalFile = event.detail.file;
                 this.show = true;
+                
                 this.$nextTick(() => {
                     this.initCropper();
                 });
@@ -132,50 +132,66 @@
 
             initCropper() {
                 const image = document.getElementById('onboarding-cropper-image');
-                image.src = this.photoPreview;
+                if (!image) return;
 
+                // Cleanup any existing instance
                 if (cropperInstance) {
                     cropperInstance.destroy();
+                    cropperInstance = null;
                 }
 
-                image.onload = () => {
-                    cropperInstance = new Cropper(image, {
-                        aspectRatio: 1,
-                        viewMode: 0,
-                        dragMode: 'move',
-                        autoCropArea: 0.8,
-                        cropBoxMovable: false,
-                        cropBoxResizable: false,
-                        toggleDragModeOnDblclick: false,
-                        guides: false,
-                        center: false,
-                        highlight: false,
-                        background: false,
-                        ready: () => {
-                            const canvasData = cropperInstance.getCanvasData();
-                            const baseZoom = canvasData.width / canvasData.naturalWidth;
-                            this.minZoom = baseZoom * 0.6;
-                            this.maxZoom = baseZoom * 2.4;
-                            this.sliderValue = 50;
-                            this.updateZoomFromSlider();
-                        },
-                        zoom: (e) => {
-                            if (e.detail.ratio > this.maxZoom) {
-                                e.preventDefault();
-                                cropperInstance.zoomTo(this.maxZoom);
-                                return;
+                const self = this;
+                const runSetup = () => {
+                    requestAnimationFrame(() => {
+                        cropperInstance = new Cropper(image, {
+                            aspectRatio: 1,
+                            viewMode: 0,
+                            dragMode: 'move',
+                            autoCropArea: 0.8,
+                            cropBoxMovable: false,
+                            cropBoxResizable: false,
+                            toggleDragModeOnDblclick: false,
+                            guides: false,
+                            center: false,
+                            highlight: false,
+                            background: false,
+                            ready() {
+                                const canvasData = cropperInstance.getCanvasData();
+                                const baseZoom = canvasData.width / canvasData.naturalWidth;
+                                self.minZoom = baseZoom * 0.6;
+                                self.maxZoom = baseZoom * 2.4;
+                                self.sliderValue = 50;
+                                self.updateZoomFromSlider();
+                            },
+                            zoom(e) {
+                                if (e.detail.ratio > self.maxZoom) {
+                                    e.preventDefault();
+                                    cropperInstance.zoomTo(self.maxZoom);
+                                    return;
+                                }
+                                if (e.detail.ratio < self.minZoom) {
+                                    e.preventDefault();
+                                    cropperInstance.zoomTo(self.minZoom);
+                                    return;
+                                }
+                                const ratio = e.detail.ratio;
+                                let val = ((ratio - self.minZoom) / (self.maxZoom - self.minZoom)) * 100;
+                                self.sliderValue = Math.max(0, Math.min(100, val));
                             }
-                            if (e.detail.ratio < this.minZoom) {
-                                e.preventDefault();
-                                cropperInstance.zoomTo(this.minZoom);
-                                return;
-                            }
-                            const ratio = e.detail.ratio;
-                            let val = ((ratio - this.minZoom) / (this.maxZoom - this.minZoom)) * 100;
-                            this.sliderValue = Math.max(0, Math.min(100, val));
-                        }
+                        });
                     });
                 };
+
+                // Remove existing onload to prevent leaks/conflicts
+                image.onload = null;
+
+                // Force re-load if it's already the same src, or wait for load
+                if (image.src === this.photoPreview && image.complete) {
+                    runSetup();
+                } else {
+                    image.onload = runSetup;
+                    image.src = this.photoPreview;
+                }
             },
 
             updateZoomFromSlider() {

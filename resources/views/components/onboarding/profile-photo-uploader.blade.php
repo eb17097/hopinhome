@@ -45,7 +45,7 @@
             <img src="{{ asset('images/close.svg') }}" class="w-5 h-5" alt="">
             <span>Remove photo</span>
         </button>
-        <button type="button" @click="triggerUpload" class="flex items-center justify-center gap-3 h-[44px] border border-[#e8e8e7] rounded-[4px] text-[#1e1d1d] font-medium hover:bg-gray-50 transition-colors">
+        <button type="button" @click="editCurrentPhoto" class="flex items-center justify-center gap-3 h-[44px] border border-[#e8e8e7] rounded-[4px] text-[#1e1d1d] font-medium hover:bg-gray-50 transition-colors">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
             </svg>
@@ -67,10 +67,20 @@
             return {
                 hasPhoto: {{ $initialPhoto ? 'true' : 'false' }},
                 photoPreview: '{{ $initialPhoto }}',
+                originalSource: '{{ $initialPhoto }}', // Store the uncropped/original source
                 croppedBlob: null,
 
                 triggerUpload() {
                     document.getElementById('onboarding-photo-input').click();
+                },
+
+                editCurrentPhoto() {
+                    if (this.originalSource) {
+                        this.$dispatch('open-onboarding-photo-modal', {
+                            preview: this.originalSource,
+                            isReEdit: true
+                        });
+                    }
                 },
 
                 handleFileSelect(event) {
@@ -79,6 +89,7 @@
 
                     const reader = new FileReader();
                     reader.onload = (e) => {
+                        this.originalSource = e.target.result; // Save as the new original
                         this.$dispatch('open-onboarding-photo-modal', {
                             preview: e.target.result,
                             file: file
@@ -104,6 +115,7 @@
                 removePhoto() {
                     this.hasPhoto = false;
                     this.photoPreview = null;
+                    this.originalSource = null;
                     this.croppedBlob = null;
                     document.getElementById('onboarding-photo-input').value = '';
                     this.$dispatch('photo-updated', { hasPhoto: false });
