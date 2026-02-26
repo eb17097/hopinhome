@@ -44,11 +44,11 @@
 
     {{-- Action Buttons (Only when photo exists) --}}
     <div x-show="hasPhoto" class="grid grid-cols-2 gap-6 mb-12">
-        <button type="button" @click="removePhoto" class="flex items-center justify-center gap-3 h-[44px] border border-[#e8e8e7] rounded-[4px] text-[#1e1d1d] font-medium hover:bg-gray-50 transition-colors">
-            <img src="{{ asset('images/close.svg') }}" class="w-5 h-5" alt="">
+        <button type="button" @click="removePhoto" class="flex items-center justify-center gap-[6px] px-[32px] py-[12px] border border-[#ed0707] rounded-[6px] text-[#ed0707] text-[16px] font-medium tracking-[-0.48px] hover:bg-red-50 transition-colors">
+            <img src="{{ asset('images/close.svg') }}" class="w-5 h-5 brightness-0 [filter:invert(13%)_sepia(97%)_saturate(5764%)_hue-rotate(357deg)_brightness(89%)_contrast(106%)]" alt="">
             <span>Remove photo</span>
         </button>
-        <button type="button" @click="editCurrentPhoto" class="flex items-center justify-center gap-3 h-[44px] border border-[#e8e8e7] rounded-[4px] text-[#1e1d1d] font-medium hover:bg-gray-50 transition-colors">
+        <button type="button" @click="editCurrentPhoto" class="flex items-center justify-center gap-3 h-[48px] border border-[#e8e8e7] rounded-[6px] text-[#1e1d1d] font-medium hover:bg-gray-50 transition-colors">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
             </svg>
