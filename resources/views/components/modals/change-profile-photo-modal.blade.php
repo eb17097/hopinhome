@@ -281,8 +281,9 @@
                             background: false,
                             ready: () => {
                                 // Force zoom out fully in viewMode 1 to capture the min zoom
-                                cropperInstance.zoomTo(0.001);
-                                const minRatio = cropperInstance.getImageData().ratio;
+                                cropperInstance.zoomTo(0);
+                                const imageData = cropperInstance.getImageData();
+                                const minRatio = imageData.width / imageData.naturalWidth;
                                 
                                 this.minZoom = minRatio;
                                 this.maxZoom = minRatio * 3;

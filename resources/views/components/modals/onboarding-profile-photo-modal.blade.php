@@ -157,8 +157,9 @@
                             background: false,
                             ready() {
                                 // Force zoom out to find the absolute minimum zoom allowed by viewMode 1
-                                cropperInstance.zoomTo(0.001);
-                                const minRatio = cropperInstance.getImageData().ratio;
+                                cropperInstance.zoomTo(0);
+                                const imageData = cropperInstance.getImageData();
+                                const minRatio = imageData.width / imageData.naturalWidth;
                                 
                                 self.minZoom = minRatio;
                                 self.maxZoom = minRatio * 3;
