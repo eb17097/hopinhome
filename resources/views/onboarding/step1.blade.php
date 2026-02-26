@@ -34,9 +34,9 @@
                                 </h3>
                                 <p class="text-[14px] text-[#464646] leading-[1.5]">I want to find rental properties.</p>
                             </div>
-                            <div class="w-6 h-6 rounded-full border flex items-center justify-center shrink-0 ml-4"
-                                :class="selectedRole === 'renter' ? 'border-[#1447d4] bg-white' : 'border-[#e8e8e7]'">
-                                <div x-show="selectedRole === 'renter'" class="w-3 h-3 rounded-full bg-[#1447d4]"></div>
+                            <div class="relative w-6 h-6 shrink-0 ml-4">
+                                <div x-show="selectedRole !== 'renter'" class="w-6 h-6 rounded-full border border-[#e8e8e7]"></div>
+                                <img x-show="selectedRole === 'renter'" src="{{ asset('images/white_checkmark_on_blue.svg') }}" class="w-6 h-6" alt="Selected">
                             </div>
                         </div>
                     </label>
@@ -52,9 +52,9 @@
                                 </h3>
                                 <p class="text-[14px] text-[#464646] leading-[1.5]">I want to post property listings as a self employed agent.</p>
                             </div>
-                            <div class="w-6 h-6 rounded-full border flex items-center justify-center shrink-0 ml-4"
-                                :class="selectedRole === 'agent' ? 'border-[#1447d4] bg-white' : 'border-[#e8e8e7]'">
-                                <div x-show="selectedRole === 'agent'" class="w-3 h-3 rounded-full bg-[#1447d4]"></div>
+                            <div class="relative w-6 h-6 shrink-0 ml-4">
+                                <div x-show="selectedRole !== 'agent'" class="w-6 h-6 rounded-full border border-[#e8e8e7]"></div>
+                                <img x-show="selectedRole === 'agent'" src="{{ asset('images/white_checkmark_on_blue.svg') }}" class="w-6 h-6" alt="Selected">
                             </div>
                         </div>
                     </label>
@@ -70,9 +70,9 @@
                                 </h3>
                                 <p class="text-[14px] text-[#464646] leading-[1.5]">I want my agents to post property listings on behalf of the business.</p>
                             </div>
-                            <div class="w-6 h-6 rounded-full border flex items-center justify-center shrink-0 ml-4"
-                                :class="selectedRole === 'brokerage' ? 'border-[#1447d4] bg-white' : 'border-[#e8e8e7]'">
-                                <div x-show="selectedRole === 'brokerage'" class="w-3 h-3 rounded-full bg-[#1447d4]"></div>
+                            <div class="relative w-6 h-6 shrink-0 ml-4">
+                                <div x-show="selectedRole !== 'brokerage'" class="w-6 h-6 rounded-full border border-[#e8e8e7]"></div>
+                                <img x-show="selectedRole === 'brokerage'" src="{{ asset('images/white_checkmark_on_blue.svg') }}" class="w-6 h-6" alt="Selected">
                             </div>
                         </div>
                     </label>
@@ -88,9 +88,9 @@
                                 </h3>
                                 <p class="text-[14px] text-[#464646] leading-[1.5]">I want to rent out my own property.</p>
                             </div>
-                            <div class="w-6 h-6 rounded-full border flex items-center justify-center shrink-0 ml-4"
-                                :class="selectedRole === 'owner' ? 'border-[#1447d4] bg-white' : 'border-[#e8e8e7]'">
-                                <div x-show="selectedRole === 'owner'" class="w-3 h-3 rounded-full bg-[#1447d4]"></div>
+                            <div class="relative w-6 h-6 shrink-0 ml-4">
+                                <div x-show="selectedRole !== 'owner'" class="w-6 h-6 rounded-full border border-[#e8e8e7]"></div>
+                                <img x-show="selectedRole === 'owner'" src="{{ asset('images/white_checkmark_on_blue.svg') }}" class="w-6 h-6" alt="Selected">
                             </div>
                         </div>
                     </label>
