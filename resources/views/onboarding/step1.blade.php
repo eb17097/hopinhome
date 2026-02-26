@@ -98,7 +98,7 @@
 
                 <!-- Next Button -->
                 <div class="max-w-[560px]">
-                    <button @click="
+                    <button style="margin-left: auto;" @click="
                         if (!selectedRole) return;
                         isLoading = true;
                         fetch('{{ route('onboarding.step1') }}', {
