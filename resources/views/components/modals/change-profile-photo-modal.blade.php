@@ -280,11 +280,13 @@
                             highlight: false,
                             background: false,
                             ready: () => {
-                                const canvasData = cropperInstance.getCanvasData();
-                                // In viewMode 1, Cropper enforces the image covers the crop box.
-                                this.minZoom = canvasData.width / canvasData.naturalWidth;
-                                this.maxZoom = this.minZoom * 3;
-                                this.sliderValue = 0; // Start at min zoom
+                                // Force zoom out fully in viewMode 1 to capture the min zoom
+                                cropperInstance.zoomTo(0.001);
+                                const minRatio = cropperInstance.getImageData().ratio;
+                                
+                                this.minZoom = minRatio;
+                                this.maxZoom = minRatio * 3;
+                                this.sliderValue = 0; // Start at absolute min zoom
                                 this.updateZoomFromSlider();
                             },
                             zoom: (e) => {
