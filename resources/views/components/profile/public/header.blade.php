@@ -12,7 +12,7 @@
             <h1 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px]">{{ $user->name }}</h1>
             <img src="{{ asset('images/verified_user.svg') }}" alt="Verified" class="w-[23px] h-[23px]">
         </div>
-        <p class="text-[14px] text-[#464646]">{{ $user->role }} • License no. {{ $user->license_number }}</p>
+        <p class="text-[14px] text-[#464646]">{{ $user->display_role }} • License no. {{ $user->license_number }}</p>
     </div>
 
     {{-- Flag/Report --}}
