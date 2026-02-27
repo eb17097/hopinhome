@@ -3,7 +3,7 @@
 <div class="flex items-start gap-6 relative">
     {{-- Profile Photo --}}
     <div class="w-[126px] h-[126px] rounded-full border-2 border-light-gray overflow-hidden flex-shrink-0">
-        <img src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}" class="w-full h-full object-cover">
+        <img src="{{ $user->getProfilePhotoUrl() }}" alt="{{ $user->name }}" class="w-full h-full object-cover">
     </div>
 
     {{-- Info --}}

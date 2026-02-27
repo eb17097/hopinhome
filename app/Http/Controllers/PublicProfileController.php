@@ -13,27 +13,34 @@ class PublicProfileController extends Controller
      */
     public function show($id)
     {
-        // Mocking a property manager user
-        $user = (object) [
-            'id' => $id,
-            'name' => 'Jane Smith',
-            'role' => 'Property manager',
-            'license_number' => '31139',
-            'profile_photo_url' => asset('images/candice-picard-vLENm-coX5Y-unsplash-1.png'),
-            'bio' => 'Jane Smith is an experienced Dubai-based property manager specializing in luxury residences, tenant relations, and seamless operations, delivering exceptional value to owners across the UAE real estate market.',
-            'member_since' => '2024',
-            'response_time' => 'less than 2 hours',
-            'total_listings' => 136,
-            'rating' => 4.7,
-            'review_count' => 15,
-            'reviews_stats' => [
-                5 => 11,
-                4 => 4,
-                3 => 0,
-                2 => 0,
-                1 => 0,
-            ],
+        $realUser = User::findOrFail($id);
+
+        // Map role to display name
+        $realUser->display_role = $realUser->role === 'property_manager' 
+            ? 'Property manager' 
+            : str_replace('_', ' ', ucfirst($realUser->role));
+
+        // Enhance the real user with mock data for fields not yet in DB
+        $realUser->license_number = '31139';
+        $realUser->member_since = $realUser->created_at->year;
+        $realUser->response_time = 'less than 2 hours';
+        $realUser->total_listings = $realUser->listings()->count() ?: 136;
+        $realUser->rating = 4.7;
+        $realUser->review_count = 15;
+        $realUser->reviews_stats = [
+            5 => 11,
+            4 => 4,
+            3 => 0,
+            2 => 0,
+            1 => 0,
         ];
+
+        // Use real bio if available, otherwise fallback
+        if (!$realUser->bio) {
+            $realUser->bio = $realUser->name . ' is an experienced Dubai-based professional specializing in luxury residences, tenant relations, and seamless operations, delivering exceptional value to clients across the UAE real estate market.';
+        }
+
+        $user = $realUser;
 
         // Mocking reviews
         $reviews = collect([
@@ -53,9 +60,8 @@ class PublicProfileController extends Controller
             ],
         ]);
 
-        // Mocking listings
-        // We fetch a few listings if they exist, otherwise we mock them too
-        $listings = Listing::with('images')->take(3)->get();
+        // Fetch real listings for this user
+        $listings = $user->listings()->with('images')->take(3)->get();
         
         if ($listings->isEmpty()) {
             $listings = collect([
