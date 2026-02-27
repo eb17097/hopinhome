@@ -51,6 +51,9 @@ Route::get('/listings/create', [ListingController::class, 'create'])->name('list
 Route::get('/listings/{listing}', [ListingController::class, 'show'])->name('listings.show');
 Route::get('/listings', [ListingController::class, 'index'])->name('listings.index');
 
+// Public Profile Route
+Route::get('/profile/pm/{id}', [\App\Http\Controllers\PublicProfileController::class, 'show'])->name('public_profile.show');
+
 Route::get('/dashboard', function () {
     $user = auth()->user();
 
