@@ -13,16 +13,16 @@
         <img src="{{ asset('images/verified_user.svg') }}" alt="Verified" class="w-[16px] h-[16px] ml-auto">
     </div>
     <div class="p-[20px] pt-[24px]">
-        <div class="flex items-center gap-[12px]">
-            <img src="{{ $listing->user->profile_photo_url ?? asset('images/user-placeholder.svg') }}" alt="{{ $listing->user->name }}" class="w-[64px] h-[64px] rounded-full border border-[#E8E8E7] object-cover">
+        <a href="{{ route('public_profile.show', $listing->user->id) }}" class="flex items-center gap-[12px] group">
+            <img src="{{ $listing->user->getProfilePhotoUrl() }}" alt="{{ $listing->user->name }}" class="w-[64px] h-[64px] rounded-full border border-[#E8E8E7] object-cover group-hover:opacity-90 transition">
             <div>
                 <div class="flex items-center gap-[4px]">
-                    <p class="text-[18px] font-medium text-black tracking-[-0.36px] leading-[1.28]">Jane Smith</p>
+                    <p class="text-[18px] font-medium text-black tracking-[-0.36px] leading-[1.28] group-hover:text-electric-blue transition">{{ $listing->user->name }}</p>
                     <img src="{{ asset('images/verified_user.svg') }}" alt="Verified" class="w-[18px] h-[18px]">
                 </div>
                 <p class="text-[14px] text-[#464646] leading-[1.5] mt-1">Usually responds in less than 2 hours</p>
             </div>
-        </div>
+        </a>
 
         <div class="flex items-center gap-[4px] mt-[16px]">
             <span class="text-[18px] font-medium text-[#1447D4] tracking-[-0.36px] leading-[1.28]">4.7</span>
@@ -34,10 +34,10 @@
             <span class="text-[14px] font-medium text-[#464646] leading-[1.3] ml-[4px]">15 reviews</span>
         </div>
 
-        <p class="text-[14px] text-[#464646] leading-[1.5] mt-[16px]">Jane Smith is an experienced Dubai-based property manager specializing in luxury residences, tenant relations, and seamless operations, delivering exceptional value to owners across the UAE.</p>
+        <p class="text-[14px] text-[#464646] leading-[1.5] mt-[16px]">{{ $listing->user->bio ?? $listing->user->name . ' is an experienced Dubai-based property manager specializing in luxury residences.' }}</p>
 
-        <button class="w-full bg-white rounded-[29.5px] border border-[#E8E8E7] text-black font-medium text-[16px] leading-[1.22] tracking-[-0.48px] py-[10px] px-[20px] mt-[32px] hover:bg-gray-50 transition">
+        <a href="{{ route('public_profile.show', $listing->user->id) }}" class="block w-full bg-white rounded-[29.5px] border border-[#E8E8E7] text-black font-medium text-[16px] leading-[1.22] tracking-[-0.48px] py-[10px] px-[20px] mt-[32px] text-center hover:bg-gray-50 transition">
             View full profile
-        </button>
+        </a>
     </div>
 </div>
