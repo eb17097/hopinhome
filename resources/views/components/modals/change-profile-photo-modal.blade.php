@@ -119,13 +119,14 @@
                         </div>
 
                         <div class="grid grid-cols-2 gap-4 mb-10">
-                            <button type="button" @click="removePhoto" class="flex items-center justify-center gap-2 h-[48px] border border-[#ed0707] rounded-[8px] text-[#ed0707] font-medium hover:bg-red-50 transition-colors">
-                                <img src="{{ asset('images/close.svg') }}" class="w-4 h-4 brightness-0 [filter:invert(13%)_sepia(95%)_cache(72%)_saturate(6784%)_hue-rotate(356deg)_brightness(94%)_contrast(116%)]" alt="Remove">
+                            <button type="button" @click="removePhoto" class="flex items-center justify-center gap-[6px] px-[32px] py-[12px] border border-[#ed0707] rounded-[6px] text-[#ed0707] text-[16px] font-medium tracking-[-0.48px] hover:bg-red-50 transition-colors">
+                                <img src="{{ asset('images/close.svg') }}" class="w-5 h-5 brightness-0 [filter:invert(13%)_sepia(97%)_saturate(5764%)_hue-rotate(357deg)_brightness(89%)_contrast(106%)]" alt="Remove">
                                 Remove photo
                             </button>
-                            <button type="button" @click="step = 'crop'" class="flex items-center justify-center gap-2 h-[48px] border border-[#e8e8e7] rounded-[8px] text-[#1e1d1d] font-medium hover:bg-gray-50 transition-colors">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                            <button type="button" @click="step = 'crop'" class="flex items-center justify-center gap-[6px] px-[32px] py-[12px] border border-[#e8e8e7] rounded-[6px] text-[#1e1d1d] text-[16px] font-medium tracking-[-0.48px] hover:bg-gray-50 transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                                 </svg>
                                 Crop photo
                             </button>
