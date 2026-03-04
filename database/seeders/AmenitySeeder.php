@@ -33,7 +33,7 @@ class AmenitySeeder extends Seeder
         ];
 
         foreach ($amenities as $amenity) {
-            Amenity::create(['name' => $amenity]);
+            Amenity::firstOrCreate(['name' => $amenity]);
         }
     }
 }
