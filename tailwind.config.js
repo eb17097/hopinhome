@@ -23,7 +23,15 @@ export default {
                 '1.5': '0.375rem',
             },
             fontFamily: {
-                sans: ['General Sans Variable', ...defaultTheme.fontFamily.sans],
+                // Set General Sans as your primary sans-serif
+                sans: ['General Sans', ...defaultTheme.fontFamily.sans],
+
+                // Formula Variations
+                'formula': ['PP Formula', 'sans-serif'],
+                'formula-cond': ['PP Formula Condensed', 'sans-serif'],
+                'formula-ext': ['PP Formula Extended', 'sans-serif'],
+                'formula-narrow': ['PP Formula Narrow', 'sans-serif'],
+                'formula-semi-cond': ['PP Formula SemiCondensed', 'sans-serif'],
             },
         },
     },

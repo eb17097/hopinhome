@@ -1,5 +1,41 @@
-@import url('https://api.fontshare.com/v2/css?f[]=general-sans@500,600,400,700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* --- General Sans (Variable) --- */
+@font-face {
+    font-family: 'General Sans';
+    src: url('../fonts/GeneralSans-Variable.woff2') format('woff2-variations');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* --- Formula Widths --- */
+/* Regular */
+@font-face {
+    font-family: 'PP Formula';
+    src: url('../fonts/PPFormula-Regular.woff2') format('woff2');
+    font-weight: 400;
+}
+
+/* Condensed (Example: Black weight) */
+@font-face {
+    font-family: 'PP Formula Condensed';
+    src: url('../fonts/PPFormula-CondensedBlack.woff2') format('woff2');
+    font-weight: 900;
+}
+
+/* Extended (Example: Bold weight) */
+@font-face {
+    font-family: 'PP Formula Extended';
+    src: url('../fonts/PPFormula-ExtendedBold.woff2') format('woff2');
+    font-weight: 700;
+}
+
+/* SemiCondensed (Example: Medium weight) */
+@font-face {
+    font-family: 'PP Formula SemiCondensed';
+    src: url('../fonts/PPFormula-SemiCondensedMedium.woff2') format('woff2');
+    font-weight: 500;
+}
