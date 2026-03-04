@@ -18,7 +18,7 @@
             Find trusted rental<br>properties in the UAE
         </h1>
 
-        <p class="text-[18px] font-normal leading-[1.5] text-[#F9F9F8] mb-12 max-w-2xl mx-auto font-['General_Sans_Variable','General_Sans',_sans-serif]">
+        <p class="text-[18px] font-light leading-[1.5] text-[#F9F9F8] mb-12 max-w-2xl mx-auto font-['General_Sans_Variable','General_Sans',_sans-serif]">
             HopInHome helps you find <span class="font-medium">trusted</span> rental properties in Dubai <span class="font-medium">with ease.</span><br>
             Explore listings and start renting with confidence.
         </p>
@@ -35,7 +35,7 @@
                                placeholder="Enter City or Location">
                     </div>
 
-                    <button class="bg-[#1447D4] text-white font-medium py-[15px] px-[20px] md:min-w-[240px] rounded-[6px] hover:opacity-90 transition flex items-center justify-center gap-[6px] h-[52px] whitespace-nowrap">
+                    <button class="bg-[#1447D4] text-white font-normal py-[15px] px-[20px] md:min-w-[240px] rounded-[6px] hover:opacity-90 transition flex items-center justify-center gap-[6px] h-[52px] whitespace-nowrap">
                         <img src="{{ asset('images/search.svg') }}" alt="Search Icon" class="size-[18px] brightness-0 invert">
                         <span class="text-[18px] leading-[1.18] tracking-[-0.54px]">Search properties</span>
                     </button>

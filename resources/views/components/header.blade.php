@@ -25,12 +25,12 @@
 
                 {{-- Navigation Links --}}
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="/" class="text-lg font-medium transition" :class="{'text-gray-900 hover:text-blue-600': scrolled, 'text-white hover:text-gray-200': !scrolled}">Home</a>
-                    <a href="{{ route('listings.index') }}" class="text-lg font-medium transition" :class="{'text-gray-500 hover:text-blue-600': scrolled, 'text-gray-200 hover:text-white': !scrolled}">Find Properties</a>
-                    <a href="#" class="text-lg font-medium transition" :class="{'text-gray-500 hover:text-blue-600': scrolled, 'text-gray-200 hover:text-white': !scrolled}">Articles & Insights</a>
-                    <a href="#" class="text-lg font-medium transition" :class="{'text-gray-500 hover:text-blue-600': scrolled, 'text-gray-200 hover:text-white': !scrolled}">About Us</a>
+                    <a href="/" class="text-lg transition" :class="{'text-gray-900 hover:text-blue-600': scrolled, 'text-white hover:text-gray-200': !scrolled}">Home</a>
+                    <a href="{{ route('listings.index') }}" class="text-lg  transition" :class="{'text-gray-500 hover:text-blue-600': scrolled, 'text-gray-200 hover:text-white': !scrolled}">Find Properties</a>
+                    <a href="#" class="text-lg transition" :class="{'text-gray-500 hover:text-blue-600': scrolled, 'text-gray-200 hover:text-white': !scrolled}">Articles & Insights</a>
+                    <a href="#" class="text-lg transition" :class="{'text-gray-500 hover:text-blue-600': scrolled, 'text-gray-200 hover:text-white': !scrolled}">About Us</a>
                     @guest
-                    <a href="#" class="text-lg font-medium transition" :class="{'text-gray-500 hover:text-blue-600': scrolled, 'text-white hover:text-gray-200': !scrolled}">Add a listing</a>
+                    <a href="#" class="text-lg transition" :class="{'text-gray-500 hover:text-blue-600': scrolled, 'text-white hover:text-gray-200': !scrolled}">Add a listing</a>
                     @endguest
                 </div>
 
