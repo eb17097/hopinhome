@@ -28,7 +28,7 @@
 
     <!-- Image Section -->
     <div class="relative w-[380px] h-[238px] flex-shrink-0 z-10">
-        <div class="w-full h-full relative overflow-hidden">
+        <div class="w-full h-full relative overflow-hidden bg-gray-100">
             <template x-for="(image, index) in images" :key="index">
                 <img 
                     x-show="currentIndex === index"
@@ -36,9 +36,12 @@
                     draggable="false"
                     :src="image"
                     alt="{{ $listing->name }}"
-                    x-transition:enter="transition opacity duration-300"
+                    x-transition:enter="transition ease-in-out duration-500"
                     x-transition:enter-start="opacity-0"
                     x-transition:enter-end="opacity-100"
+                    x-transition:leave="transition ease-in-out duration-500"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
                 >
             </template>
         </div>
