@@ -10,8 +10,8 @@
 class="z-50 {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
     
     <nav :class="{
-            'bg-white border-b border-[#e8e8e7] shadow-sm': scrolled || !@json($isLanding),
-            'bg-transparent border-b border-transparent': !scrolled && @json($isLanding)
+            'bg-white border-b border-[#e8e8e7] shadow-sm': scrolled || showGlobalMenu || !@json($isLanding),
+            'bg-transparent border-b border-transparent': !scrolled && !showGlobalMenu && @json($isLanding)
          }"
          class="transition-all duration-300 h-[88px] flex items-center">
         
@@ -20,8 +20,8 @@ class="z-50 {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
             <div class="flex items-center">
                 <a href="/" class="flex items-center gap-2">
                     @if($isLanding)
-                        <img x-show="scrolled" src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopInHome Logo" class="h-7 w-auto" style="display: none;">
-                        <img x-show="!scrolled" src="{{ asset('images/hopinhome_logo_white.svg') }}" alt="HopInHome Logo" class="h-7 w-auto">
+                        <img x-show="scrolled || showGlobalMenu" src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopInHome Logo" class="h-7 w-auto" style="display: none;">
+                        <img x-show="!scrolled && !showGlobalMenu" src="{{ asset('images/hopinhome_logo_white.svg') }}" alt="HopInHome Logo" class="h-7 w-auto">
                     @else
                         <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopInHome Logo" class="h-7 w-auto">
                     @endif
@@ -30,13 +30,13 @@ class="z-50 {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
 
             {{-- Main Navigation --}}
             <div class="hidden md:flex items-center space-x-12">
-                <a href="/" class="text-[16px] font-medium transition-colors" :class="(scrolled || !@json($isLanding)) ? 'text-[#1e1d1d] hover:text-blue-600' : 'text-white hover:text-gray-200'">Home</a>
-                <a href="{{ route('listings.index') }}" class="text-[16px] font-medium transition-colors" :class="(scrolled || !@json($isLanding)) ? 'text-[#1e1d1d] hover:text-blue-600' : 'text-gray-200 hover:text-white'">Find Properties</a>
-                <a href="#" class="text-[16px] font-medium transition-colors" :class="(scrolled || !@json($isLanding)) ? 'text-[#1e1d1d] hover:text-blue-600' : 'text-gray-200 hover:text-white'">Articles & Insights</a>
-                <a href="#" class="text-[16px] font-medium transition-colors" :class="(scrolled || !@json($isLanding)) ? 'text-[#1e1d1d] hover:text-blue-600' : 'text-gray-200 hover:text-white'">About Us</a>
+                <a href="/" class="text-[16px] font-medium transition-colors" :class="(scrolled || showGlobalMenu || !@json($isLanding)) ? 'text-[#1e1d1d] hover:text-blue-600' : 'text-white hover:text-gray-200'">Home</a>
+                <a href="{{ route('listings.index') }}" class="text-[16px] font-medium transition-colors" :class="(scrolled || showGlobalMenu || !@json($isLanding)) ? 'text-[#1e1d1d] hover:text-blue-600' : 'text-gray-200 hover:text-white'">Find Properties</a>
+                <a href="#" class="text-[16px] font-medium transition-colors" :class="(scrolled || showGlobalMenu || !@json($isLanding)) ? 'text-[#1e1d1d] hover:text-blue-600' : 'text-gray-200 hover:text-white'">Articles & Insights</a>
+                <a href="#" class="text-[16px] font-medium transition-colors" :class="(scrolled || showGlobalMenu || !@json($isLanding)) ? 'text-[#1e1d1d] hover:text-blue-600' : 'text-gray-200 hover:text-white'">About Us</a>
                 @if($isLanding)
                     @guest
-                    <a href="#" class="text-[16px] font-medium transition-colors" :class="scrolled ? 'text-[#1e1d1d] hover:text-blue-600' : 'text-white hover:text-gray-200'">Add a listing</a>
+                    <a href="#" class="text-[16px] font-medium transition-colors" :class="(scrolled || showGlobalMenu) ? 'text-[#1e1d1d] hover:text-blue-600' : 'text-white hover:text-gray-200'">Add a listing</a>
                     @endguest
                 @endif
             </div>
@@ -44,7 +44,7 @@ class="z-50 {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
             <div class="flex items-center space-x-6">
                 @auth
                     <div class="relative cursor-pointer">
-                        <img src="{{ asset('images/notifications.svg') }}" alt="Notifications" class="w-6 h-6 opacity-80" :class="!scrolled && @json($isLanding) ? 'invert brightness-0' : ''">
+                        <img src="{{ asset('images/notifications.svg') }}" alt="Notifications" class="w-6 h-6 opacity-80" :class="(!scrolled && !showGlobalMenu && @json($isLanding)) ? 'invert brightness-0' : ''">
                         <div class="absolute -top-1.5 -right-1.5 flex items-center justify-center w-[18px] h-[18px] rounded-full text-white text-[10px] font-medium bg-electric-blue border-2 border-white">
                             <span>5</span>
                         </div>
@@ -54,19 +54,19 @@ class="z-50 {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
                         <img alt="profile picture" class="h-full w-full object-cover" src="{{ Auth::user()->profile_photo_url ?? asset('images/user-placeholder.svg') }}">
                     </a>
 
-                    <button class="rounded-full p-2 transition-colors" :class="(scrolled || !@json($isLanding)) ? 'bg-[#e8e8e7] hover:bg-gray-300' : 'bg-white/20 hover:bg-white/30'">
-                        <img src="{{ asset('images/dehaze.svg') }}" alt="Menu" class="w-6 h-6" :class="!scrolled && @json($isLanding) ? 'invert brightness-0' : ''">
+                    <button class="rounded-full p-2 transition-colors" :class="(scrolled || showGlobalMenu || !@json($isLanding)) ? 'bg-[#e8e8e7] hover:bg-gray-300' : 'bg-white/20 hover:bg-white/30'">
+                        <img src="{{ asset('images/dehaze.svg') }}" alt="Menu" class="w-6 h-6" :class="(!scrolled && !showGlobalMenu && @json($isLanding)) ? 'invert brightness-0' : ''">
                     </button>
                 @else
                     <button @click="showGlobalMenu = !showGlobalMenu" class="focus:outline-none flex items-center">
                         @if($isLanding)
-                            <img x-show="!scrolled" src="{{ asset('images/language_white.svg') }}" alt="Language" class="w-6 h-6">
-                            <img x-show="scrolled" src="{{ asset('images/language_black.svg') }}" alt="Language" class="w-6 h-6" style="display: none;">
+                            <img x-show="!scrolled && !showGlobalMenu" src="{{ asset('images/language_white.svg') }}" alt="Language" class="w-6 h-6">
+                            <img x-show="scrolled || showGlobalMenu" src="{{ asset('images/language_black.svg') }}" alt="Language" class="w-6 h-6" style="display: none;">
                         @else
                             <img src="{{ asset('images/language_black.svg') }}" alt="Language" class="w-6 h-6">
                         @endif
                     </button>
-                    <button @click.prevent="$dispatch('open-auth-modal')" class="text-white px-6 py-2.5 rounded-full text-sm font-medium transition" :class="(scrolled || !@json($isLanding)) ? 'bg-electric-blue hover:bg-blue-700' : 'bg-[#1447D4] hover:bg-blue-700'">
+                    <button @click.prevent="$dispatch('open-auth-modal')" class="text-white px-6 py-2.5 rounded-full text-sm font-medium transition" :class="(scrolled || showGlobalMenu || !@json($isLanding)) ? 'bg-electric-blue hover:bg-blue-700' : 'bg-[#1447D4] hover:bg-blue-700'">
                         Log in or sign up
                     </button>
                 @endauth
