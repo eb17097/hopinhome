@@ -96,7 +96,7 @@
                 @mouseup="handleMouseUp($event)"
                 @mousemove="handleMouseMove($event)"
                 @click.capture="handleChildClick($event)"
-                class="carousel-container flex gap-x-[32px] overflow-x-auto pb-8 no-scrollbar snap-x snap-mandatory cursor-grab active:cursor-grabbing select-none"
+                class="carousel-container flex gap-x-[32px] overflow-x-auto pb-8 no-scrollbar snap-x snap-mandatory select-none"
             >
                 @foreach($similarListings as $similar)
                     <div class="flex-shrink-0 snap-start snap-always" draggable="false">
