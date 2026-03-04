@@ -19,7 +19,7 @@
         </h1>
 
         <p class="text-[18px] font-normal leading-[1.5] text-[#F9F9F8] mb-12 max-w-2xl mx-auto font-['General_Sans_Variable','General_Sans',_sans-serif]">
-            HopInHome helps you find <span class="font-medium">trusted</span> rental properties in Dubai <span class="font-medium">with ease.</span>
+            HopInHome helps you find <span class="font-medium">trusted</span> rental properties in Dubai <span class="font-medium">with ease.</span><br>
             Explore listings and start renting with confidence.
         </p>
 
