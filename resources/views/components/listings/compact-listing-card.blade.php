@@ -28,19 +28,19 @@
 
         <div class="flex items-center gap-x-[16px] text-[14px] text-[#464646] mt-[18px]">
             <div class="flex items-end gap-[3px]">
-                <img src="{{ asset('images/activity_zone.svg') }}" class="size-5" alt="">
+                <img src="{{ asset('images/activity_zone_gray.svg') }}" class="size-5" alt="">
                 <span class="leading-[1.5]">{{ $listing->area }} sqft</span>
             </div>
             <div class="flex items-end gap-[3px]">
-                <img src="{{ asset('images/bed.svg') }}" class="size-5" alt="">
+                <img src="{{ asset('images/bed_gray.svg') }}" class="size-5" alt="">
                 <span class="leading-[1.5]">{{ $listing->bedrooms }} beds</span>
             </div>
             <div class="flex items-end gap-[4px]">
-                <img src="{{ asset('images/bathtub.svg') }}" class="size-5" alt="">
+                <img src="{{ asset('images/bathtub_gray.svg') }}" class="size-5" alt="">
                 <span class="leading-[1.5]">{{ $listing->bathrooms }} bath</span>
             </div>
             <div class="flex items-end gap-[4px]">
-                <img src="{{ asset('images/floor.svg') }}" class="size-5" alt="">
+                <img src="{{ asset('images/floor_gray.svg') }}" class="size-5" alt="">
                 <span class="leading-[1.5]">{{ $listing->floor_number }}/{{ $listing->total_floors }}</span>
             </div>
         </div>

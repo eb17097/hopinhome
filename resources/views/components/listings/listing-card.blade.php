@@ -38,19 +38,19 @@
 
             <div class="flex items-center gap-4 text-sm text-gray-600 mb-6">
                 <div class="flex items-center gap-1">
-                    <img src="{{ asset('images/activity_zone.svg') }}" alt="Area Icon" class="w-5 h-5 text-gray-400">
+                    <img src="{{ asset('images/activity_zone_gray.svg') }}" alt="Area Icon" class="w-5 h-5 text-gray-400">
                     <span>{{ $listing->area }} sqft</span>
                 </div>
                 <div class="flex items-center gap-1">
-                    <img src="{{ asset('images/bed.svg') }}" alt="Beds Icon" class="w-5 h-5 text-gray-400">
+                    <img src="{{ asset('images/bed_gray.svg') }}" alt="Beds Icon" class="w-5 h-5 text-gray-400">
                     <span>{{ $listing->bedrooms }} beds</span>
                 </div>
                 <div class="flex items-center gap-1">
-                    <img src="{{ asset('images/bathtub.svg') }}" alt="Baths Icon" class="w-5 h-5 text-gray-400">
+                    <img src="{{ asset('images/bathtub_gray.svg') }}" alt="Baths Icon" class="w-5 h-5 text-gray-400">
                     <span>{{ $listing->bathrooms }} bath</span>
                 </div>
                 <div class="flex items-center gap-1 ml-auto text-gray-400 text-xs">
-                    <img src="{{ asset('images/floor.svg') }}" alt="Images Icon" class="w-5 h-5">
+                    <img src="{{ asset('images/floor_gray.svg') }}" alt="Images Icon" class="w-5 h-5">
                     <span>{{ $listing->images->count() }}</span>
                 </div>
             </div>
