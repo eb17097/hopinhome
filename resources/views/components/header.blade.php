@@ -66,7 +66,8 @@ class="z-50 {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
                             <img src="{{ asset('images/language_black.svg') }}" alt="Language" class="w-6 h-6">
                         @endif
                     </button>
-                    <button @click.prevent="$dispatch('open-auth-modal')" class="text-white px-6 py-2.5 rounded-full text-sm font-medium transition" :class="(scrolled || showGlobalMenu || !@json($isLanding)) ? 'bg-electric-blue hover:bg-blue-700' : 'bg-[#1447D4] hover:bg-blue-700'">
+                    <button @click.prevent="$dispatch('open-auth-modal')" 
+                            class="bg-electric-blue border border-electric-blue text-[#f9f9f8] px-[20px] py-[10px] rounded-[29.5px] text-[16px] font-medium leading-[1.22] tracking-[-0.48px] hover:opacity-90 transition-all text-center whitespace-nowrap">
                         Log in or sign up
                     </button>
                 @endauth
