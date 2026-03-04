@@ -9,10 +9,10 @@
 
         {{-- Decorative Arrows --}}
         <div class="absolute top-[107px] left-[10px] pointer-events-none">
-            <img src="{{ asset('images/arrow.svg') }}" class="size-6 rotate-180 opacity-80" alt="">
+            <img src="{{ asset('images/arrow_left_white_notail.svg') }}" class="size-6 opacity-80" alt="">
         </div>
         <div class="absolute top-[107px] right-[10px] pointer-events-none">
-            <img src="{{ asset('images/arrow.svg') }}" class="size-6 opacity-80" alt="">
+            <img src="{{ asset('images/arrow1.svg') }}" class="size-6 opacity-80" alt="">
         </div>
 
         <div class="absolute top-[12px] right-[12px]">
