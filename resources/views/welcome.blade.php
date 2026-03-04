@@ -2,6 +2,7 @@
     select {
         background-image: none !important;
     }
+    [x-cloak] { display: none !important; }
 </style>
 <x-main-layout title="Hopinhome">
 
@@ -23,35 +24,179 @@
             Explore listings and start renting with confidence.
         </p>
 
-        <div class="bg-[#FBFBFB]/90 backdrop-blur-[6.05px] p-[20px] rounded-[14px] shadow-sm mx-auto w-full max-w-[792px] text-left border border-white/20">
-            <form action="#" method="GET" style="margin-bottom:0;">
-                <div class="flex flex-col md:flex-row gap-[16px] mb-[15px]">
-                    <div class="relative flex-grow">
-                        <div class="absolute inset-y-0 left-0 pl-[18px] flex items-center pointer-events-none">
-                            <img src="{{ asset('images/location_on.svg') }}" class="size-[23px]" alt="Location">
-                        </div>
-                        <input type="text"
-                               class="block w-full pl-[50px] pr-[18px] py-[14px] bg-white border border-[#E8E8E7] focus:ring-0 rounded-[6px] text-[#464646] placeholder-[#464646] font-normal text-[18px] leading-[1.3] transition h-[52px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]"
-                               placeholder="Enter City or Location">
-                    </div>
+        {{-- Filters Section --}}
+        <div x-data="{ 
+            openFilter: null,
+            location: 'Dubai',
+            propertyType: 'Property type',
+            bedrooms: 'Bedrooms',
+            price: 'Price'
+        }" class="bg-[#FBFBFB]/90 backdrop-blur-[6.05px] p-[20px] rounded-[14px] shadow-sm mx-auto w-full max-w-[800px] text-left border border-white/20 relative z-20">
+            <form action="#" method="GET" style="margin-bottom:0;" @submit.prevent>
+                <div class="flex flex-col gap-[16px]">
+                    {{-- Top Row --}}
+                    <div class="flex items-center gap-[16px]">
+                        {{-- Location Input --}}
+                        <div class="relative flex-grow">
+                            <div class="bg-white border border-[#E8E8E7] h-[45px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center px-[12px] gap-[8px] cursor-pointer"
+                                 @click="openFilter = openFilter === 'location' ? null : 'location'">
+                                <img src="{{ asset('images/location_on.svg') }}" class="size-[23px]" alt="Location">
+                                <div class="flex items-center gap-[8px] flex-grow">
+                                    <div x-show="location" class="bg-[#F9F9F8] border border-[#E8E8E7] px-[10px] py-[6px] rounded-[4px] flex items-center gap-[8px]">
+                                        <span class="text-[16px] text-[#464646]" x-text="location"></span>
+                                        <img src="{{ asset('images/close.svg') }}" class="size-[16px]" alt="Remove" @click.stop="location = ''">
+                                    </div>
+                                    <span x-show="!location" class="text-[16px] text-[#464646] opacity-50">Enter City or Location</span>
+                                </div>
+                            </div>
 
-                    <button class="bg-[#1447D4] text-white font-normal py-[15px] px-[20px] md:min-w-[240px] rounded-[6px] hover:opacity-90 transition flex items-center justify-center gap-[6px] h-[52px] whitespace-nowrap">
-                        <img src="{{ asset('images/search.svg') }}" alt="Search Icon" class="size-[18px] brightness-0 invert">
-                        <span class="text-[18px] leading-[1.18] tracking-[-0.54px]">Search properties</span>
-                    </button>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-[16px]">
-                    @foreach(['Property type', 'Bedrooms', 'Price'] as $label)
-                        <div class="relative">
-                            <select class="block w-full h-[51px] pl-[18px] pr-[50px] py-[14px] bg-white border border-[#E8E8E7] focus:ring-0 rounded-[6px] text-[#464646] font-normal text-[18px] leading-[1.3] appearance-none cursor-pointer shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]">
-                                <option>{{ $label }}</option>
-                            </select>
-                            <div class="absolute inset-y-0 right-0 flex items-center px-[18px] pointer-events-none">
-                                <img src="{{ asset('images/chevron.svg') }}" class="size-[23px] opacity-60" alt="">
+                            {{-- Location Dropdown --}}
+                            <div x-show="openFilter === 'location'" 
+                                 x-transition 
+                                 @click.away="openFilter = null"
+                                 class="absolute top-full left-0 mt-2 w-full bg-white rounded-[6px] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] border border-[#E8E8E7] z-30 py-4 overflow-hidden"
+                                 x-cloak>
+                                <div class="px-4 space-y-4">
+                                    <div class="flex items-center gap-3 p-2 hover:bg-[#F9F9F8] rounded-[6px] cursor-pointer" @click="location = 'Dubai, United Arab Emirates'; openFilter = null">
+                                        <div class="bg-[#F9F9F8] p-2.5 rounded-[6px]">
+                                            <img src="{{ asset('images/language_black.svg') }}" class="size-[24px]" alt="Global">
+                                        </div>
+                                        <span class="text-[16px] font-medium text-[#1E1D1D]">Dubai, United Arab Emirates</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 p-2 hover:bg-[#F9F9F8] rounded-[6px] cursor-pointer" @click="location = 'Downtown Dubai'; openFilter = null">
+                                        <div class="bg-[#F9F9F8] p-2.5 rounded-[6px]">
+                                            <img src="{{ asset('images/apartment.svg') }}" class="size-[24px]" alt="Apartment">
+                                        </div>
+                                        <div>
+                                            <p class="text-[15px] font-medium text-[#1E1D1D]">Downtown Dubai</p>
+                                            <p class="text-[14px] text-[#707070]">Dubai</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3 p-2 hover:bg-[#F9F9F8] rounded-[6px] cursor-pointer" @click="location = 'Burj Khalifa'; openFilter = null">
+                                        <div class="bg-[#F9F9F8] p-2.5 rounded-[6px]">
+                                            <img src="{{ asset('images/location_on.svg') }}" class="size-[24px]" alt="Location">
+                                        </div>
+                                        <div>
+                                            <p class="text-[15px] font-medium text-[#1E1D1D]">Burj Khalifa</p>
+                                            <p class="text-[14px] text-[#707070]">Dubai</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    @endforeach
+
+                        {{-- Search Button --}}
+                        <button class="bg-[#1447D4] text-[#F9F9F8] px-[32px] h-[45px] rounded-[6px] font-medium text-[16px] tracking-[-0.48px] flex items-center gap-2 hover:opacity-90 transition-all">
+                            <img src="{{ asset('images/search.svg') }}" class="size-[18px] brightness-0 invert" alt="Search">
+                            Search properties
+                        </button>
+                    </div>
+
+                    {{-- Bottom Row --}}
+                    <div class="flex items-center gap-[16px]">
+                        {{-- Property Type --}}
+                        <div class="relative flex-1">
+                            <div class="bg-white border border-[#E8E8E7] h-[45px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center justify-between px-[14px] cursor-pointer"
+                                 @click="openFilter = openFilter === 'propertyType' ? null : 'propertyType'">
+                                <span class="text-[16px] text-[#464646]" x-text="propertyType"></span>
+                                <img src="{{ asset('images/chevron.svg') }}" class="size-[23px] transition-transform" :class="openFilter === 'propertyType' ? 'rotate-180' : ''" alt="">
+                            </div>
+
+                            {{-- Property Type Dropdown --}}
+                            <div x-show="openFilter === 'propertyType'" 
+                                 x-transition 
+                                 @click.away="openFilter = null"
+                                 class="absolute top-full left-0 mt-2 w-[832px] bg-white rounded-[6px] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] border border-[#E8E8E7] z-30 p-6 flex gap-4"
+                                 x-cloak>
+                                @php
+                                    $types = [
+                                        ['name' => 'Apartment', 'icon' => 'apartment_big.svg'],
+                                        ['name' => 'Villa', 'icon' => 'villa.svg'],
+                                        ['name' => 'House', 'icon' => 'house.svg'],
+                                        ['name' => 'Townhouse', 'icon' => 'townhouse.svg'],
+                                        ['name' => 'Hotel Apartment', 'icon' => 'hotel_apartment.svg'],
+                                        ['name' => 'Penthouse', 'icon' => 'penthouse.svg'],
+                                    ];
+                                @endphp
+                                @foreach($types as $type)
+                                    <div class="flex-1 flex flex-col items-center gap-3 p-4 border border-[#E8E8E7] rounded-[6px] cursor-pointer hover:border-[#1447D4] group"
+                                         @click="propertyType = '{{ $type['name'] }}'; openFilter = null">
+                                        <div class="size-[48px]">
+                                            <img src="{{ asset('images/' . $type['icon']) }}" class="w-full h-full" alt="{{ $type['name'] }}">
+                                        </div>
+                                        <span class="text-[15px] font-medium text-[#1E1D1D] group-hover:text-[#1447D4] transition-colors">{{ $type['name'] }}</span>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        {{-- Bedrooms --}}
+                        <div class="relative flex-1">
+                            <div class="bg-white border border-[#E8E8E7] h-[45px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center justify-between px-[14px] cursor-pointer"
+                                 @click="openFilter = openFilter === 'bedrooms' ? null : 'bedrooms'">
+                                <span class="text-[16px] text-[#464646]" x-text="bedrooms"></span>
+                                <img src="{{ asset('images/chevron.svg') }}" class="size-[23px] transition-transform" :class="openFilter === 'bedrooms' ? 'rotate-180' : ''" alt="">
+                            </div>
+
+                            {{-- Bedrooms Dropdown --}}
+                            <div x-show="openFilter === 'bedrooms'" 
+                                 x-transition 
+                                 @click.away="openFilter = null"
+                                 class="absolute top-full left-0 mt-2 w-[378px] bg-white rounded-[6px] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] border border-[#E8E8E7] z-30 p-6"
+                                 x-cloak>
+                                <h4 class="text-[16px] text-[#1E1D1D] mb-4">Bedrooms</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    @foreach(['Studio', '1', '2', '3', '4', '5+'] as $val)
+                                        <button type="button" 
+                                                @click="bedrooms = '{{ $val }} bedrooms'; openFilter = null"
+                                                class="px-5 py-2.5 border border-[#E8E8E7] rounded-full text-[16px] font-medium transition-all hover:border-[#1447D4] hover:bg-blue-50"
+                                                :class="bedrooms.includes('{{ $val }}') ? 'bg-[#1447D4] text-white border-[#1447D4]' : 'text-[#1E1D1D]'">
+                                            {{ $val }}
+                                        </button>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Price --}}
+                        <div class="relative flex-1">
+                            <div class="bg-white border border-[#E8E8E7] h-[45px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center justify-between px-[14px] cursor-pointer"
+                                 @click="openFilter = openFilter === 'price' ? null : 'price'">
+                                <span class="text-[16px] text-[#464646]" x-text="price"></span>
+                                <img src="{{ asset('images/chevron.svg') }}" class="size-[23px] transition-transform" :class="openFilter === 'price' ? 'rotate-180' : ''" alt="">
+                            </div>
+
+                            {{-- Price Dropdown --}}
+                            <div x-show="openFilter === 'price'" 
+                                 x-transition 
+                                 @click.away="openFilter = null"
+                                 class="absolute top-full left-0 mt-2 w-[390px] bg-white rounded-[6px] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] border border-[#E8E8E7] z-30 p-6"
+                                 x-cloak>
+                                <h4 class="text-[16px] text-[#1E1D1D] mb-4">Price</h4>
+                                <div class="grid grid-cols-2 gap-4 mb-6">
+                                    <div>
+                                        <p class="text-[16px] text-[#464646] mb-1">Minimum Price</p>
+                                        <div class="border border-[#E8E8E7] p-4 rounded-[6px] flex justify-between">
+                                            <input type="text" class="w-full bg-transparent border-none p-0 focus:ring-0 text-[18px] text-[#1E1D1D]" value="100,000">
+                                            <span class="text-[18px] text-[#464646] opacity-50">AED</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-[16px] text-[#464646] mb-1">Maximum Price</p>
+                                        <div class="border border-[#E8E8E7] p-4 rounded-[6px] flex justify-between">
+                                            <input type="text" class="w-full bg-transparent border-none p-0 focus:ring-0 text-[18px] text-[#1E1D1D]" placeholder="Any">
+                                            <span class="text-[18px] text-[#464646] opacity-50">AED</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="relative h-1.5 bg-[#D9D9D9] rounded-full">
+                                    <div class="absolute inset-y-0 left-[20%] right-[10%] bg-[#1447D4] rounded-full"></div>
+                                    <div class="absolute top-1/2 left-[20%] -translate-y-1/2 size-6 bg-white border border-[#1447D4] rounded-full shadow-sm"></div>
+                                    <div class="absolute top-1/2 right-[10%] -translate-y-1/2 size-6 bg-white border border-[#1447D4] rounded-full shadow-sm"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
