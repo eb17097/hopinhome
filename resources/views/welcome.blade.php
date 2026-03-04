@@ -15,7 +15,7 @@
 
     <div class="relative z-10 w-full max-w-5xl px-4 text-center mt-16">
         <h1 class="text-[64px] font-medium leading-[1.22] tracking-[-1.92px] text-[#F9F9F8] mb-6 font-['PP_Formula','General_Sans',_sans-serif]">
-            Find trusted rental properties in the UAE
+            Find trusted rental<br>properties in the UAE
         </h1>
 
         <p class="text-[18px] font-normal leading-[1.5] text-[#F9F9F8] mb-12 max-w-2xl mx-auto font-['General_Sans_Variable','General_Sans',_sans-serif]">
@@ -224,7 +224,7 @@
                 </h2>
 
                 <p class="text-[#F9F9F8] text-[18px] leading-[1.5] mb-10 font-['General_Sans',_sans-serif]">
-                    Publish your listing and connect with people who value clarity and honesty.
+                    Publish your listing and connect with people<br>who value clarity and honesty.
                 </p>
 
                 <a href="#" class="inline-flex items-center justify-center px-[32px] py-[16px] bg-white text-[#1E1D1D] text-[16px] font-medium rounded-[29.5px] hover:bg-gray-50 transition shadow-sm font-['General_Sans',_sans-serif] tracking-[-0.48px]">
