@@ -31,13 +31,20 @@
             openFilter: null,
             location: '',
             selectedPropertyTypes: [],
-            bedrooms: 'Bedrooms',
+            selectedBedrooms: [],
             price: 'Price',
             togglePropertyType(type) {
                 if (this.selectedPropertyTypes.includes(type)) {
                     this.selectedPropertyTypes = this.selectedPropertyTypes.filter(t => t !== type);
                 } else {
                     this.selectedPropertyTypes.push(type);
+                }
+            },
+            toggleBedroom(val) {
+                if (this.selectedBedrooms.includes(val)) {
+                    this.selectedBedrooms = this.selectedBedrooms.filter(b => b !== val);
+                } else {
+                    this.selectedBedrooms.push(val);
                 }
             }
         }" class="bg-[#FBFBFB]/90 backdrop-blur-[6.05px] p-[12px] rounded-[14px] shadow-sm mx-auto w-full max-w-[720px] text-left border border-white/20 relative z-20">
@@ -176,9 +183,9 @@
                             <div
                                 @click.stop="openFilter = openFilter === 'bedrooms' ? null : 'bedrooms'"
                                 class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200 select-none"
-                                :class="openFilter === 'bedrooms' ? 'rounded-t-[6px] border-b-white' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
+                                :class="openFilter === 'bedrooms' ? 'rounded-t-[6px] border-b-white shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
                             >
-                                <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="bedrooms"></span>
+                                <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="selectedBedrooms.length > 0 ? selectedBedrooms.join(', ') : 'Bedrooms'"></span>
                                 <img src="{{ asset('images/chevron.svg') }}"
                                      class="size-[16px] opacity-60 transition-transform duration-200"
                                      :class="openFilter === 'bedrooms' ? 'rotate-180' : ''" alt="">
@@ -199,14 +206,14 @@
 
                                     {{-- Dropdown Panel --}}
                                     <div
-                                        class="absolute z-10 top-[60px] left-0 bg-white border border-[#E8E8E7] rounded-b-[8px] rounded-tr-[8px] p-4 pt-5 flex items-center gap-[12px] w-max"
+                                        class="absolute z-10 top-[60px] left-0 bg-white border border-[#E8E8E7] rounded-b-[10px] rounded-tr-[10px] p-4 pt-5 flex items-center gap-[12px] w-max"
                                         @click.away="openFilter = null"
                                     >
                                         @foreach(['Studio', '1', '2', '3', '4', '5+'] as $val)
                                             <button type="button"
-                                                    @click="bedrooms = '{{ $val }}'; openFilter = null"
+                                                    @click="toggleBedroom('{{ $val }}')"
                                                     class="flex items-center justify-center transition-all duration-150 text-[16px] font-medium focus:outline-none {{ $val === 'Studio' ? 'px-5 py-[7px]' : 'w-[40px] h-[40px]' }} rounded-full"
-                                                    :class="bedrooms === '{{ $val }}' ? 'bg-[#1447D4] text-white shadow-sm' : 'bg-white border border-[#E2E2E2] text-[#222222] hover:border-[#222222] hover:bg-gray-50'">
+                                                    :class="selectedBedrooms.includes('{{ $val }}') ? 'bg-[#1447D4] text-white shadow-sm' : 'bg-white border border-[#E2E2E2] text-[#222222] hover:border-[#222222] hover:bg-gray-50'">
                                                 {{ $val }}
                                             </button>
                                         @endforeach
