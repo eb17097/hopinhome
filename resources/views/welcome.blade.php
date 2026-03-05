@@ -3,7 +3,7 @@
         background-image: none !important;
     }
     [x-cloak] { display: none !important; }
-    
+
     /* Enable dual range slider handles */
     input[type=range] {
         pointer-events: none;
@@ -79,7 +79,7 @@
             maxRange: 1000000,
             get formattedBedrooms() {
                 if (this.selectedBedrooms.length === 0) return 'Bedrooms';
-                
+
                 let sorted = [...this.selectedBedrooms].sort((a, b) => {
                     if (a === 'Studio') return -1;
                     if (b === 'Studio') return 1;
@@ -88,14 +88,14 @@
 
                 let studio = sorted.filter(v => v === 'Studio');
                 let numbers = sorted.filter(v => v !== 'Studio');
-                
+
                 let result = [];
                 if (studio.length > 0) result.push('Studio');
                 if (numbers.length > 0) {
                     let suffix = (numbers.length === 1 && numbers[0] === '1') ? ' bedroom' : ' bedrooms';
                     result.push(numbers.join(', ') + suffix);
                 }
-                
+
                 return result.join(', ');
             },
             get formattedPrice() {
@@ -136,13 +136,13 @@
                         {{-- Location Input --}}
                         <div class="relative col-span-2">
                             {{-- Trigger Container --}}
-                            <div 
+                            <div
                                 class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center px-[12px] gap-[8px] cursor-text transition-all duration-200 rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]"
                                 :class="openFilter === 'location' ? 'border-[#1447D4] ring-1 ring-[#1447D4]/10' : ''"
                                 @click.stop="$refs.locationInput.focus()"
                             >
                                 <img src="{{ asset('images/location_on.svg') }}" class="size-[20px] opacity-70" alt="Location">
-                                
+
                                 <div class="flex items-center gap-[8px] flex-grow overflow-hidden">
                                     {{-- Selected Location Tag --}}
                                     <template x-if="location">
@@ -153,10 +153,10 @@
                                             </button>
                                         </div>
                                     </template>
-                                    
-                                    <input 
+
+                                    <input
                                         x-ref="locationInput"
-                                        type="text" 
+                                        type="text"
                                         x-model="locationQuery"
                                         @focus="openFilter = 'location'"
                                         placeholder="Enter City or Location"
@@ -170,14 +170,14 @@
                                  x-transition:enter="transition ease-out duration-100"
                                  x-transition:enter-start="opacity-0 scale-95"
                                  x-transition:enter-end="opacity-100 scale-100"
-                                 class="absolute top-full left-0 mt-2 w-full bg-white border border-[#E8E8E7] rounded-[10px] py-4 z-30 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)]"
+                                 class="absolute top-full left-0 w-full bg-white border border-[#E8E8E7] rounded-[10px] py-4 z-30 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)]"
                                  @click.stop
                                  @click.away="openFilter = null"
                                  x-cloak
                             >
                                 <div class="px-4 space-y-1 py-2">
                                     <template x-for="loc in filteredLocations" :key="loc.name">
-                                        <div class="flex items-center gap-3 p-2.5 hover:bg-[#F9F9F8] rounded-[8px] cursor-pointer transition-colors" 
+                                        <div class="flex items-center gap-3 p-2.5 hover:bg-[#F9F9F8] rounded-[8px] cursor-pointer transition-colors"
                                              @click="location = loc.name; locationQuery = ''; openFilter = null">
                                             <div class="bg-[#F9F9F8] p-2 rounded-[6px] shrink-0">
                                                 <img :src="loc.icon" class="size-[20px]" alt="">
@@ -204,22 +204,22 @@
                         {{-- Property Type --}}
                         <div class="relative" :style="openFilter === 'propertyType' ? 'filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.06)) drop-shadow(0 2px 4px rgba(0,0,0,0.02))' : ''">
                             {{-- Trigger Button --}}
-                            <div 
+                            <div
                                 @click.stop="openFilter = openFilter === 'propertyType' ? null : 'propertyType'"
                                 class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200 select-none"
                                 :class="openFilter === 'propertyType' ? 'rounded-t-[6px] border-b-white shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
                             >
                                 <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="selectedPropertyTypes.length > 0 ? selectedPropertyTypes.join(', ') : 'Property type'"></span>
-                                <img src="{{ asset('images/chevron.svg') }}" 
-                                     class="size-[16px] opacity-60 transition-transform duration-200" 
+                                <img src="{{ asset('images/chevron.svg') }}"
+                                     class="size-[16px] opacity-60 transition-transform duration-200"
                                      :class="openFilter === 'propertyType' ? 'rotate-180' : ''" alt="">
                             </div>
 
                             <template x-if="openFilter === 'propertyType'">
                                 <div class="absolute top-0 left-0 w-full">
                                     {{-- Stem --}}
-                                    <div 
-                                        class="absolute z-30 left-0 bg-white border-l border-r border-[#E8E8E7] w-full" 
+                                    <div
+                                        class="absolute z-30 left-0 bg-white border-l border-r border-[#E8E8E7] w-full"
                                         style="top: 45px; height: 16px;"
                                     >
                                         {{-- Flawless Inner Curve Fillet --}}
@@ -229,7 +229,7 @@
                                     </div>
 
                                     {{-- Dropdown Panel --}}
-                                    <div 
+                                    <div
                                         class="absolute z-10 top-[60px] left-0 bg-white border border-[#E8E8E7] rounded-b-[12px] rounded-tr-[12px] p-4 grid grid-cols-6 gap-3 w-[832px]"
                                         @click.away="openFilter = null"
                                     >
@@ -247,16 +247,16 @@
                                             <div class="flex flex-col items-center justify-center gap-3 p-4 border rounded-[10px] cursor-pointer transition-all relative group h-[120px]"
                                                  @click="togglePropertyType('{{ $type['name'] }}')"
                                                  :class="selectedPropertyTypes.includes('{{ $type['name'] }}') ? 'border-[#1447D4] bg-white' : 'border-[#E8E8E7] hover:border-[#1447D4]'">
-                                                
+
                                                 {{-- Selection Badge --}}
-                                                <div x-show="selectedPropertyTypes.includes('{{ $type['name'] }}')" 
+                                                <div x-show="selectedPropertyTypes.includes('{{ $type['name'] }}')"
                                                      class="absolute -top-2 -right-2 size-6 bg-[#1447D4] rounded-full flex items-center justify-center shadow-sm z-10">
                                                     <img src="{{ asset('images/check.svg') }}" class="size-3 brightness-0 invert" alt="">
                                                 </div>
 
                                                 <div class="size-[48px] flex items-center justify-center">
                                                     <div class="w-full h-full transition-colors duration-200"
-                                                         :style="{ 
+                                                         :style="{
                                                             'mask-image': 'url({{ asset('images/') }}/' + '{{ $type['icon'] }}' + ')',
                                                             '-webkit-mask-image': 'url({{ asset('images/') }}/' + '{{ $type['icon'] }}' + ')',
                                                             'mask-size': 'contain',
@@ -289,8 +289,8 @@
                                 :class="openFilter === 'bedrooms' ? 'rounded-t-[6px] border-b-white shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
                             >
                                 <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="formattedBedrooms"></span>
-                                <img src="{{ asset('images/chevron.svg') }}" 
-                                     class="size-[16px] opacity-60 transition-transform duration-200" 
+                                <img src="{{ asset('images/chevron.svg') }}"
+                                     class="size-[16px] opacity-60 transition-transform duration-200"
                                      :class="openFilter === 'bedrooms' ? 'rotate-180' : ''" alt="">
                             </div>
 
@@ -328,14 +328,14 @@
                         {{-- Price --}}
                         <div class="relative" :style="openFilter === 'price' ? 'filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.06)) drop-shadow(0 2px 4px rgba(0,0,0,0.02))' : ''">
                             {{-- Trigger Button --}}
-                            <div 
+                            <div
                                 @click.stop="openFilter = openFilter === 'price' ? null : 'price'"
                                 class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200 select-none"
                                 :class="openFilter === 'price' ? 'rounded-t-[6px] border-b-white shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
                             >
                                 <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="formattedPrice"></span>
-                                <img src="{{ asset('images/chevron.svg') }}" 
-                                     class="size-[16px] opacity-60 transition-transform duration-200" 
+                                <img src="{{ asset('images/chevron.svg') }}"
+                                     class="size-[16px] opacity-60 transition-transform duration-200"
                                      :class="openFilter === 'price' ? 'rotate-180' : ''" alt="">
                             </div>
 
@@ -355,8 +355,8 @@
                                             <div class="flex-1">
                                                 <p class="text-[14px] text-[#1E1D1D] mb-2 font-medium">Minimum Price</p>
                                                 <div class="relative">
-                                                    <input type="number" 
-                                                           x-model.number="minPrice" 
+                                                    <input type="number"
+                                                           x-model.number="minPrice"
                                                            @input="if(minPrice > (maxPrice || maxRange)) minPrice = (maxPrice || maxRange)"
                                                            class="w-full border border-[#E8E8E7] rounded-[8px] px-4 py-3 text-[15px] font-medium text-[#1E1D1D] focus:ring-0 focus:border-[#1447D4] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
                                                     <span class="absolute right-4 top-1/2 -translate-y-1/2 text-[#707070] text-[14px]">AED</span>
@@ -365,32 +365,32 @@
                                             <div class="flex-1">
                                                 <p class="text-[14px] text-[#1E1D1D] mb-2 font-medium">Maximum Price</p>
                                                 <div class="relative">
-                                                    <input type="number" 
-                                                           x-model.number="maxPrice" 
+                                                    <input type="number"
+                                                           x-model.number="maxPrice"
                                                            @input="if(maxPrice < minPrice) maxPrice = minPrice"
-                                                           class="w-full border border-[#E8E8E7] rounded-[8px] px-4 py-3 text-[15px] font-medium text-[#1E1D1D] focus:ring-0 focus:border-[#1447D4] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" 
+                                                           class="w-full border border-[#E8E8E7] rounded-[8px] px-4 py-3 text-[15px] font-medium text-[#1E1D1D] focus:ring-0 focus:border-[#1447D4] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                                                            placeholder="Any">
                                                     <span class="absolute right-4 top-1/2 -translate-y-1/2 text-[#707070] text-[14px]">AED</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         {{-- Real Range Slider --}}
                                         <div class="relative h-1.5 bg-[#E8E8E7] rounded-full mb-2 mx-3">
                                             {{-- Track --}}
                                             <div class="absolute h-full bg-[#1447D4] rounded-full"
                                                  :style="`left: ${minPercent}%; right: ${100 - maxPercent}%`"
                                             ></div>
-                                            
+
                                             {{-- Native range inputs with edge-fix geometry --}}
-                                            <input type="range" 
-                                                   x-model.number="minPrice" 
+                                            <input type="range"
+                                                   x-model.number="minPrice"
                                                    :min="minRange" :max="maxRange" step="1000"
                                                    class="absolute h-6 -top-2 opacity-0 cursor-pointer z-40 pointer-events-auto m-0 p-0"
                                                    style="width: calc(100% + 20px); left: -10px;"
                                                    @input="if(minPrice > (maxPrice || maxRange)) minPrice = (maxPrice || maxRange)">
-                                            <input type="range" 
-                                                   x-model.number="maxPrice" 
+                                            <input type="range"
+                                                   x-model.number="maxPrice"
                                                    :min="minRange" :max="maxRange" step="1000"
                                                    class="absolute h-6 -top-2 opacity-0 cursor-pointer z-40 pointer-events-auto m-0 p-0"
                                                    style="width: calc(100% + 20px); left: -10px;"
