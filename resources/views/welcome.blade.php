@@ -48,7 +48,8 @@
                 let result = [];
                 if (studio.length > 0) result.push('Studio');
                 if (numbers.length > 0) {
-                    result.push(numbers.join(', ') + (numbers.length === 1 ? ' bedroom' : ' bedrooms'));
+                    let suffix = (numbers.length === 1 && numbers[0] === '1') ? ' bedroom' : ' bedrooms';
+                    result.push(numbers.join(', ') + suffix);
                 }
                 
                 return result.join(', ');
