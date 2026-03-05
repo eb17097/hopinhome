@@ -57,7 +57,7 @@
             location: '',
             locationQuery: '',
             locations: [
-                { name: 'Dubai, UAE', area: 'All areas', icon: '{{ asset('images/language_black.svg') }}' },
+                { name: 'Dubai, UAE', area: 'All areas', icon: '{{ asset('images/world_one.svg') }}' },
                 { name: 'Downtown Dubai', area: 'Dubai', icon: '{{ asset('images/apartment.svg') }}' },
                 { name: 'Dubai Marina', area: 'Dubai', icon: '{{ asset('images/apartment.svg') }}' },
                 { name: 'Palm Jumeirah', area: 'Dubai', icon: '{{ asset('images/house.svg') }}' },
@@ -175,9 +175,9 @@
                                  @click.away="openFilter = null"
                                  x-cloak
                             >
-                                <div class="space-y-1">
+                                <div>
                                     <template x-for="loc in filteredLocations" :key="loc.name">
-                                        <div class="flex items-center gap-3 p-2.5 hover:bg-[#F9F9F8] rounded-[8px] cursor-pointer transition-colors"
+                                        <div class="flex items-center py-2 px-2 gap-3 hover:bg-[#F9F9F8] cursor-pointer transition-colors"
                                              @click="location = loc.name; locationQuery = ''; openFilter = null">
                                             <div class="bg-[#F9F9F8] size-[46px] flex items-center justify-center rounded-[6px] shrink-0">
                                                 <img :src="loc.icon" class="size-[20px]" alt="">
