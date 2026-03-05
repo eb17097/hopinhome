@@ -472,7 +472,9 @@
             @foreach($types as $type)
                 <a href="#" class="group p-[20px] bg-white border border-[#E8E8E7] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] hover:shadow-lg transition flex flex-col items-center text-center">
                     <div class="size-[63px] mb-[18px]">
-                        <img src="{{ asset('images/' . $type['icon']) }}" class="w-full h-full" alt="{{ $type['name'] }}">
+                        <div class="w-full h-full bg-[#04247B]"
+                             style="mask-image: url('{{ asset('images/' . $type['icon']) }}'); -webkit-mask-image: url('{{ asset('images/' . $type['icon']) }}'); mask-size: contain; -webkit-mask-size: contain; mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat; mask-position: center; -webkit-mask-position: center;">
+                        </div>
                     </div>
                     <h3 class="font-medium text-[#1E1D1D] text-[18px] leading-[1.28] tracking-[-0.36px] font-['General_Sans',_sans-serif]">{{ $type['name'] }}</h3>
                     <p class="text-[14px] text-[#464646] mt-1 font-['General_Sans',_sans-serif] leading-[1.5]">{{ $type['count'] }}</p>
