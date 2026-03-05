@@ -33,17 +33,17 @@
             price: 'Price'
         }" class="bg-[#FBFBFB]/90 backdrop-blur-[6.05px] p-[20px] rounded-[14px] shadow-sm mx-auto w-full max-w-[720px] text-left border border-white/20 relative z-20">
             <form action="#" method="GET" style="margin-bottom:0;" @submit.prevent>
-                <div class="flex flex-col gap-[16px]">
+                <div class="flex flex-col gap-[12px]">
                     {{-- Top Row --}}
-                    <div class="flex items-center gap-[12px]">
+                    <div class="grid grid-cols-3 gap-[12px]">
                         {{-- Location Input --}}
-                        <div class="relative flex-grow">
+                        <div class="relative col-span-2">
                             <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center px-[16px] gap-[12px] cursor-pointer"
                                  @click.stop="openFilter = openFilter === 'location' ? null : 'location'">
                                 <img src="{{ asset('images/location_on.svg') }}" class="size-[20px] opacity-70" alt="Location">
-                                <div class="flex items-center flex-grow">
-                                    <span x-show="location" class="text-[16px] text-[#1E1D1D]" x-text="location"></span>
-                                    <span x-show="!location" class="text-[16px] text-[#707070]">Enter City or Location</span>
+                                <div class="flex items-center flex-grow overflow-hidden">
+                                    <span x-show="location" class="text-[16px] text-[#1E1D1D] truncate" x-text="location"></span>
+                                    <span x-show="!location" class="text-[16px] text-[#707070] truncate">Enter City or Location</span>
                                 </div>
                             </div>
 
@@ -74,20 +74,20 @@
                         </div>
 
                         {{-- Search Button --}}
-                        <button class="bg-[#1447D4] text-white px-[24px] h-[48px] rounded-[6px] font-medium text-[16px] flex items-center justify-center gap-2 hover:bg-[#0F36A9] transition-all min-w-[220px]">
+                        <button class="bg-[#1447D4] text-white h-[48px] rounded-[6px] font-medium text-[16px] flex items-center justify-center gap-2 hover:bg-[#0F36A9] transition-all w-full">
                             <img src="{{ asset('images/search.svg') }}" class="size-[18px] brightness-0 invert" alt="Search">
-                            <span>Search properties</span>
+                            <span>Search</span>
                         </button>
                     </div>
 
                     {{-- Bottom Row --}}
-                    <div class="flex items-center gap-[12px]">
+                    <div class="grid grid-cols-3 gap-[12px]">
                         {{-- Property Type --}}
-                        <div class="relative flex-1">
+                        <div class="relative">
                             <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center justify-between px-[16px] cursor-pointer"
                                  @click.stop="openFilter = openFilter === 'propertyType' ? null : 'propertyType'">
-                                <span class="text-[16px] text-[#1E1D1D]" x-text="propertyType"></span>
-                                <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform" :class="openFilter === 'propertyType' ? 'rotate-180' : ''" alt="">
+                                <span class="text-[16px] text-[#1E1D1D] truncate" x-text="propertyType"></span>
+                                <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform flex-shrink-0" :class="openFilter === 'propertyType' ? 'rotate-180' : ''" alt="">
                             </div>
 
                             {{-- Property Type Dropdown --}}
@@ -112,18 +112,18 @@
                                         <div class="size-[32px]">
                                             <img src="{{ asset('images/' . $type['icon']) }}" class="w-full h-full" alt="{{ $type['name'] }}">
                                         </div>
-                                        <span class="text-[13px] font-medium text-[#1E1D1D] group-hover:text-[#1447D4] transition-colors">{{ $type['name'] }}</span>
+                                        <span class="text-[13px] font-medium text-[#1E1D1D] group-hover:text-[#1447D4] transition-colors text-center">{{ $type['name'] }}</span>
                                     </div>
                                 @endforeach
                             </div>
                         </div>
 
                         {{-- Bedrooms --}}
-                        <div class="relative flex-1">
+                        <div class="relative">
                             <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center justify-between px-[16px] cursor-pointer"
                                  @click.stop="openFilter = openFilter === 'bedrooms' ? null : 'bedrooms'">
-                                <span class="text-[16px] text-[#1E1D1D]" x-text="bedrooms"></span>
-                                <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform" :class="openFilter === 'bedrooms' ? 'rotate-180' : ''" alt="">
+                                <span class="text-[16px] text-[#1E1D1D] truncate" x-text="bedrooms"></span>
+                                <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform flex-shrink-0" :class="openFilter === 'bedrooms' ? 'rotate-180' : ''" alt="">
                             </div>
 
                             {{-- Bedrooms Dropdown --}}
@@ -146,11 +146,11 @@
                         </div>
 
                         {{-- Price --}}
-                        <div class="relative flex-1">
+                        <div class="relative">
                             <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center justify-between px-[16px] cursor-pointer"
                                  @click.stop="openFilter = openFilter === 'price' ? null : 'price'">
-                                <span class="text-[16px] text-[#1E1D1D]" x-text="price"></span>
-                                <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform" :class="openFilter === 'price' ? 'rotate-180' : ''" alt="">
+                                <span class="text-[16px] text-[#1E1D1D] truncate" x-text="price"></span>
+                                <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform flex-shrink-0" :class="openFilter === 'price' ? 'rotate-180' : ''" alt="">
                             </div>
 
                             {{-- Price Dropdown --}}
@@ -177,6 +177,7 @@
                     </div>
                 </div>
             </form>
+        </div>
         </div>
     </div>
 </div>
