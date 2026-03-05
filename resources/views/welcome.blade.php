@@ -55,6 +55,7 @@
         <div x-data="{
             openFilter: null,
             location: '',
+            locationQuery: '',
             selectedPropertyTypes: [],
             selectedBedrooms: [],
             minPrice: 100000,
@@ -119,10 +120,11 @@
                     <div class="grid grid-cols-3 gap-[12px] relative" :class="openFilter === 'location' ? 'z-50' : 'z-30'">
                         {{-- Location Input --}}
                         <div class="relative col-span-2">
-                            {{-- Trigger Button --}}
+                            {{-- Trigger Container --}}
                             <div 
-                                @click.stop="openFilter = openFilter === 'location' ? null : 'location'"
-                                class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center px-[12px] gap-[8px] cursor-pointer transition-all duration-200 select-none rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]"
+                                class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center px-[12px] gap-[8px] cursor-text transition-all duration-200 rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]"
+                                :class="openFilter === 'location' ? 'border-[#1447D4] ring-1 ring-[#1447D4]/10' : ''"
+                                @click="$refs.locationInput.focus()"
                             >
                                 <img src="{{ asset('images/location_on.svg') }}" class="size-[20px] opacity-70" alt="Location">
                                 
@@ -130,19 +132,26 @@
                                     {{-- Selected Location Tag --}}
                                     <template x-if="location">
                                         <div class="flex items-center gap-2 bg-[#F9F9F8] border border-[#E8E8E7] rounded-[4px] px-2 py-1 h-[32px] shrink-0">
-                                            <span class="text-[16px] text-[#464646] font-normal truncate" x-text="location"></span>
-                                            <button type="button" @click.stop="location = ''" class="flex items-center justify-center">
-                                                <img src="{{ asset('images/close.svg') }}" class="size-3 opacity-60" alt="Clear">
+                                            <span class="text-[14px] text-[#464646] font-medium truncate" x-text="location"></span>
+                                            <button type="button" @click.stop="location = ''; locationQuery = ''" class="flex items-center justify-center hover:bg-gray-200 rounded-full size-4 transition-colors">
+                                                <img src="{{ asset('images/close.svg') }}" class="size-2.5 opacity-60" alt="Clear">
                                             </button>
                                         </div>
                                     </template>
                                     
-                                    <span class="text-[16px] text-[#707070] truncate font-normal">Enter City or Location</span>
+                                    <input 
+                                        x-ref="locationInput"
+                                        type="text" 
+                                        x-model="locationQuery"
+                                        @focus="openFilter = 'location'"
+                                        placeholder="Enter City or Location"
+                                        class="flex-grow bg-transparent border-none focus:ring-0 p-0 text-[16px] text-[#1E1D1D] placeholder-[#707070] font-normal"
+                                    >
                                 </div>
                             </div>
 
                             {{-- Simple Dropdown Panel --}}
-                            <div x-show="openFilter === 'location'"
+                            <div x-show="openFilter === 'location' && (locationQuery.length > 0 || !location)"
                                  x-transition:enter="transition ease-out duration-100"
                                  x-transition:enter-start="opacity-0 scale-95"
                                  x-transition:enter-end="opacity-100 scale-100"
@@ -151,7 +160,7 @@
                                  x-cloak
                             >
                                 <div class="px-4 space-y-2">
-                                    <div class="flex items-center gap-3 p-3 hover:bg-[#F9F9F8] rounded-[8px] cursor-pointer transition-colors" @click="location = 'Dubai, UAE'; openFilter = null">
+                                    <div class="flex items-center gap-3 p-3 hover:bg-[#F9F9F8] rounded-[8px] cursor-pointer transition-colors" @click="location = 'Dubai, UAE'; locationQuery = ''; openFilter = null">
                                         <div class="bg-[#F9F9F8] p-2.5 rounded-[6px]">
                                             <img src="{{ asset('images/language_black.svg') }}" class="size-[20px]" alt="Global">
                                         </div>
@@ -160,7 +169,7 @@
                                             <p class="text-[13px] text-[#707070]">All areas</p>
                                         </div>
                                     </div>
-                                    <div class="flex items-center gap-3 p-3 hover:bg-[#F9F9F8] rounded-[8px] cursor-pointer transition-colors" @click="location = 'Downtown Dubai'; openFilter = null">
+                                    <div class="flex items-center gap-3 p-3 hover:bg-[#F9F9F8] rounded-[8px] cursor-pointer transition-colors" @click="location = 'Downtown Dubai'; locationQuery = ''; openFilter = null">
                                         <div class="bg-[#F9F9F8] p-2.5 rounded-[6px]">
                                             <img src="{{ asset('images/apartment.svg') }}" class="size-[20px]" alt="Apartment">
                                         </div>
