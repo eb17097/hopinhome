@@ -137,8 +137,8 @@
                         <div class="relative col-span-2">
                             {{-- Trigger Container --}}
                             <div
-                                class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center px-[12px] gap-[8px] cursor-text transition-all duration-200 rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]"
-                                :class="openFilter === 'location' ? 'border-[#1447D4] ring-1 ring-[#1447D4]/10' : ''"
+                                class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center px-[12px] gap-[8px] cursor-text transition-all duration-200"
+                                :class="openFilter === 'location' ? 'border-[#1447D4] ring-1 ring-[#1447D4]/10 rounded-t-[6px] border-b-transparent shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
                                 @click.stop="$refs.locationInput.focus()"
                             >
                                 <img src="{{ asset('images/location_on.svg') }}" class="size-[20px] opacity-70" alt="Location">
@@ -170,8 +170,7 @@
                                  x-transition:enter="transition ease-out duration-100"
                                  x-transition:enter-start="opacity-0 scale-95"
                                  x-transition:enter-end="opacity-100 scale-100"
-                                 class="absolute top-full left-0 w-full bg-white border border-[#E8E8E7] rounded-[10px] py-4 z-30 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)]"
-                                 @click.stop
+                                 class="absolute top-full left-0 w-full bg-white border border-[#E8E8E7] rounded-b-[10px] py-4 z-30 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)]"                                 @click.stop
                                  @click.away="openFilter = null"
                                  x-cloak
                             >
