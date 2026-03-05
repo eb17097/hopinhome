@@ -35,10 +35,10 @@
             <form action="#" method="GET" style="margin-bottom:0;" @submit.prevent>
                 <div class="flex flex-col gap-[12px]">
                     {{-- Top Row --}}
-                    <div class="grid grid-cols-3 gap-[12px]">
+                    <div class="grid grid-cols-4 gap-[12px]">
                         {{-- Location Input --}}
-                        <div class="relative col-span-2">
-                            <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center px-[16px] gap-[12px] cursor-pointer"
+                        <div class="relative col-span-3">
+                            <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center px-[16px] gap-[12px] cursor-pointer select-none"
                                  @click.stop="openFilter = openFilter === 'location' ? null : 'location'">
                                 <img src="{{ asset('images/location_on.svg') }}" class="size-[20px] opacity-70" alt="Location">
                                 <div class="flex items-center flex-grow overflow-hidden">
@@ -76,12 +76,12 @@
                         {{-- Search Button --}}
                         <button class="bg-[#1447D4] text-white h-[48px] rounded-[6px] font-medium text-[16px] flex items-center justify-center gap-2 hover:bg-[#0F36A9] transition-all w-full">
                             <img src="{{ asset('images/search.svg') }}" class="size-[18px] brightness-0 invert" alt="Search">
-                            <span>Search properties</span>
+                            <span class="hidden lg:inline">Search properties</span>
                         </button>
                     </div>
 
                     {{-- Bottom Row --}}
-                    <div class="grid grid-cols-3 gap-[12px]">
+                    <div class="grid grid-cols-4 gap-[12px]">
                         {{-- Property Type --}}
                         <div class="relative">
                             <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center justify-between px-[16px] cursor-pointer select-none"
@@ -134,10 +134,10 @@
 
                             <template x-if="openFilter === 'bedrooms'">
                                 <div class="absolute top-0 left-0 w-full">
-                                    {{-- Stem - Connecting piece --}}
+                                    {{-- Stem --}}
                                     <div
                                         class="absolute z-30 left-0 bg-white border-l border-r border-[#E8E8E7] w-full"
-                                        style="top: 44px; height: 16px;"
+                                        style="top: 45px; height: 16px;"
                                     >
                                         {{-- Flawless Inner Curve Fillet --}}
                                         <div class="absolute bottom-0 -right-[12px] size-[12px] overflow-hidden pointer-events-none">
@@ -147,7 +147,7 @@
 
                                     {{-- Dropdown Panel --}}
                                     <div
-                                        class="absolute z-10 top-[59px] left-0 bg-white border border-[#E8E8E7] rounded-b-[8px] rounded-tr-[8px] p-4 pt-5 flex items-center gap-[12px] w-max"
+                                        class="absolute z-10 top-[60px] left-0 bg-white border border-[#E8E8E7] rounded-b-[8px] rounded-tr-[8px] p-4 pt-5 flex items-center gap-[12px] w-max"
                                         @click.away="openFilter = null"
                                     >
                                         @foreach(['Studio', '1', '2', '3', '4', '5+'] as $val)
@@ -164,34 +164,68 @@
                         </div>
 
                         {{-- Price --}}
-                        <div class="relative z-50">
-                            <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center justify-between px-[16px] cursor-pointer select-none"
-                                 @click.stop="openFilter = openFilter === 'price' ? null : 'price'">
-                                <span class="text-[16px] text-[#1E1D1D] truncate" x-text="price"></span>
-                                <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform flex-shrink-0" :class="openFilter === 'price' ? 'rotate-180' : ''" alt="">
+                        <div class="relative" :style="openFilter === 'price' ? 'filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.06)) drop-shadow(0 2px 4px rgba(0,0,0,0.02))' : ''">
+                            {{-- Trigger Button --}}
+                            <div 
+                                @click.stop="openFilter = openFilter === 'price' ? null : 'price'"
+                                class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200 select-none"
+                                :class="openFilter === 'price' ? 'rounded-t-[6px] border-b-white' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
+                            >
+                                <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="price"></span>
+                                <img src="{{ asset('images/chevron.svg') }}" 
+                                     class="size-[16px] opacity-60 transition-transform duration-200" 
+                                     :class="openFilter === 'price' ? 'rotate-180' : ''" alt="">
                             </div>
 
-                            {{-- Price Dropdown --}}
-                            <div x-show="openFilter === 'price'"
-                                 x-transition
-                                 @click.away="openFilter = null"
-                                 class="absolute top-full left-0 mt-2 w-full min-w-[260px] bg-white rounded-[6px] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] border border-[#E8E8E7] z-30 p-5"
-                                 x-cloak>
-                                <div class="space-y-4">
-                                    <div class="flex gap-2">
-                                        <div class="flex-1">
-                                            <p class="text-[12px] text-[#707070] mb-1">Min Price</p>
-                                            <input type="text" class="w-full border border-[#E8E8E7] rounded-[4px] px-2 py-1.5 text-[14px]" placeholder="Any">
-                                        </div>
-                                        <div class="flex-1">
-                                            <p class="text-[12px] text-[#707070] mb-1">Max Price</p>
-                                            <input type="text" class="w-full border border-[#E8E8E7] rounded-[4px] px-2 py-1.5 text-[14px]" placeholder="Any">
+                            <template x-if="openFilter === 'price'">
+                                <div class="absolute top-0 left-0 w-full">
+                                    {{-- Stem --}}
+                                    <div class="absolute z-30 left-0 bg-white border-l border-r border-[#E8E8E7] w-full" style="top: 45px; height: 16px;">
+                                        {{-- Fillet --}}
+                                        <div class="absolute bottom-0 -right-[12px] size-[12px] overflow-hidden pointer-events-none">
+                                            <div class="absolute top-0 left-0 size-full rounded-bl-[12px] border-b border-l border-[#E8E8E7] shadow-[0_0_0_20px_white]"></div>
                                         </div>
                                     </div>
-                                    <button class="w-full bg-[#1447D4] text-white py-2 rounded-[4px] text-[14px] font-medium" @click="openFilter = null">Apply</button>
+
+                                    {{-- Dropdown Panel --}}
+                                    <div class="absolute z-10 top-[60px] left-0 bg-white border border-[#E8E8E7] rounded-b-[10px] rounded-tr-[10px] p-6 w-[440px]" @click.away="openFilter = null">
+                                        <div class="flex gap-4 mb-6">
+                                            <div class="flex-1">
+                                                <p class="text-[14px] text-[#1E1D1D] mb-2">Minimum Price</p>
+                                                <div class="relative">
+                                                    <input type="text" class="w-full border border-[#E8E8E7] rounded-[8px] px-4 py-3 text-[15px] font-medium text-[#1E1D1D] focus:ring-0 focus:border-[#1447D4]" value="100,000">
+                                                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-[#707070] text-[14px]">AED</span>
+                                                </div>
+                                            </div>
+                                            <div class="flex-1">
+                                                <p class="text-[14px] text-[#1E1D1D] mb-2">Maximum Price</p>
+                                                <div class="relative">
+                                                    <input type="text" class="w-full border border-[#E8E8E7] rounded-[8px] px-4 py-3 text-[15px] font-medium text-[#707070] focus:ring-0 focus:border-[#1447D4]" placeholder="Any">
+                                                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-[#707070] text-[14px]">AED</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        {{-- Range Slider Visual --}}
+                                        <div class="relative h-1.5 bg-[#E8E8E7] rounded-full mb-2 mx-2">
+                                            <div class="absolute left-1/4 right-0 h-full bg-[#1447D4] rounded-full"></div>
+                                            <div class="absolute left-1/4 top-1/2 -translate-y-1/2 -translate-x-1/2 size-5 bg-white border-2 border-[#1447D4] rounded-full cursor-pointer shadow-sm hover:scale-110 transition-transform"></div>
+                                            <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 size-5 bg-white border-2 border-[#1447D4] rounded-full cursor-pointer shadow-sm hover:scale-110 transition-transform"></div>
+                                        </div>
+                                    </div>
                                 </div>
+                            </template>
+                        </div>
+
+                        {{-- More Filters --}}
+                        <div class="relative z-50">
+                            <div class="bg-[#F9F9F8] border border-[#E8E8E7] h-[48px] rounded-[6px] flex items-center justify-center px-[16px] gap-2 cursor-pointer hover:bg-white transition-colors relative select-none shadow-sm">
+                                <img src="{{ asset('images/filter.svg') }}" class="size-[18px] opacity-70" alt="Filters">
+                                <span class="text-[15px] font-medium text-[#1447D4]">More filters</span>
+                                <div class="absolute -top-2 -right-2 size-5 bg-[#1447D4] text-white text-[11px] font-bold rounded-full flex items-center justify-center shadow-sm">3</div>
                             </div>
                         </div>
+                    </div>
                     </div>
                 </div>
             </form>
