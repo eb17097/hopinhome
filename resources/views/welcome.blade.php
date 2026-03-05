@@ -84,7 +84,7 @@
                     <div class="grid grid-cols-3 gap-[12px]">
                         {{-- Property Type --}}
                         <div class="relative">
-                            <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center justify-between px-[16px] cursor-pointer"
+                            <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center justify-between px-[16px] cursor-pointer select-none"
                                  @click.stop="openFilter = openFilter === 'propertyType' ? null : 'propertyType'">
                                 <span class="text-[16px] text-[#1E1D1D] truncate" x-text="propertyType"></span>
                                 <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform flex-shrink-0" :class="openFilter === 'propertyType' ? 'rotate-180' : ''" alt="">
@@ -123,7 +123,7 @@
                             {{-- Trigger Button --}}
                             <div
                                 @click.stop="openFilter = openFilter === 'bedrooms' ? null : 'bedrooms'"
-                                class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200"
+                                class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200 select-none"
                                 :class="openFilter === 'bedrooms' ? 'rounded-t-[6px] border-b-white' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
                             >
                                 <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="bedrooms"></span>
@@ -137,7 +137,7 @@
                                     {{-- Stem - Connecting piece --}}
                                     <div
                                         class="absolute z-30 left-0 bg-white border-l border-r border-[#E8E8E7] w-full"
-                                        style="top: 45px; height: 16px;"
+                                        style="top: 44px; height: 16px;"
                                     >
                                         {{-- Flawless Inner Curve Fillet --}}
                                         <div class="absolute bottom-0 -right-[12px] size-[12px] overflow-hidden pointer-events-none">
@@ -147,13 +147,13 @@
 
                                     {{-- Dropdown Panel --}}
                                     <div
-                                        class="absolute z-10 top-[60px] left-0 bg-white border border-[#E8E8E7] rounded-b-[8px] rounded-tr-[8px] p-5 flex items-center gap-[12px] w-max"
+                                        class="absolute z-10 top-[59px] left-0 bg-white border border-[#E8E8E7] rounded-b-[8px] rounded-tr-[8px] p-4 pt-5 flex items-center gap-[12px] w-max"
                                         @click.away="openFilter = null"
                                     >
                                         @foreach(['Studio', '1', '2', '3', '4', '5+'] as $val)
                                             <button type="button"
                                                     @click="bedrooms = '{{ $val }}'; openFilter = null"
-                                                    class="flex items-center justify-center transition-all duration-150 text-[16px] font-medium focus:outline-none {{ $val === 'Studio' ? 'px-6 py-[7px]' : 'w-[40px] h-[40px]' }} rounded-full"
+                                                    class="flex items-center justify-center transition-all duration-150 text-[16px] font-medium focus:outline-none {{ $val === 'Studio' ? 'px-5 py-[7px]' : 'w-[40px] h-[40px]' }} rounded-full"
                                                     :class="bedrooms === '{{ $val }}' ? 'bg-[#1447D4] text-white shadow-sm' : 'bg-white border border-[#E2E2E2] text-[#222222] hover:border-[#222222] hover:bg-gray-50'">
                                                 {{ $val }}
                                             </button>
@@ -165,7 +165,7 @@
 
                         {{-- Price --}}
                         <div class="relative z-50">
-                            <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center justify-between px-[16px] cursor-pointer"
+                            <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center justify-between px-[16px] cursor-pointer select-none"
                                  @click.stop="openFilter = openFilter === 'price' ? null : 'price'">
                                 <span class="text-[16px] text-[#1E1D1D] truncate" x-text="price"></span>
                                 <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform flex-shrink-0" :class="openFilter === 'price' ? 'rotate-180' : ''" alt="">
