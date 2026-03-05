@@ -31,7 +31,7 @@
             propertyType: 'Property type',
             bedrooms: 'Bedrooms',
             price: 'Price'
-        }" class="bg-[#FBFBFB]/90 backdrop-blur-[6.05px] p-[20px] rounded-[14px] shadow-sm mx-auto w-full max-w-[720px] text-left border border-white/20 relative z-20">
+        }" class="bg-[#FBFBFB]/90 backdrop-blur-[6.05px] p-[12px] rounded-[14px] shadow-sm mx-auto w-full max-w-[720px] text-left border border-white/20 relative z-20">
             <form action="#" method="GET" style="margin-bottom:0;" @submit.prevent>
                 <div class="flex flex-col gap-[12px]">
                     {{-- Top Row --}}
@@ -76,7 +76,7 @@
                         {{-- Search Button --}}
                         <button class="bg-[#1447D4] text-white h-[48px] rounded-[6px] font-medium text-[16px] flex items-center justify-center gap-2 hover:bg-[#0F36A9] transition-all w-full">
                             <img src="{{ asset('images/search.svg') }}" class="size-[18px] brightness-0 invert" alt="Search">
-                            <span>Search</span>
+                            <span>Search properties</span>
                         </button>
                     </div>
 
