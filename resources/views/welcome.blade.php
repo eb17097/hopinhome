@@ -170,7 +170,8 @@
                                  x-transition:enter="transition ease-out duration-100"
                                  x-transition:enter-start="opacity-0 scale-95"
                                  x-transition:enter-end="opacity-100 scale-100"
-                                 class="absolute top-full left-0 w-full bg-white border border-[#E8E8E7] rounded-b-[10px] z-30 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)]"                                 @click.stop
+                                 class="absolute top-full left-0 w-full bg-white border border-[#E8E8E7] rounded-b-[10px] z-30 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)]"
+                                 @click.stop
                                  @click.away="openFilter = null"
                                  x-cloak
                             >
