@@ -57,13 +57,11 @@
             location: '',
             locationQuery: '',
             locations: [
-                { name: 'Dubai, UAE', area: 'All areas', icon: '{{ asset('images/world_one.svg') }}' },
-                { name: 'Downtown Dubai', area: 'Dubai', icon: '{{ asset('images/apartment.svg') }}' },
-                { name: 'Dubai Marina', area: 'Dubai', icon: '{{ asset('images/apartment.svg') }}' },
-                { name: 'Palm Jumeirah', area: 'Dubai', icon: '{{ asset('images/house.svg') }}' },
-                { name: 'JVC', area: 'Jumeirah Village Circle', icon: '{{ asset('images/apartment.svg') }}' },
-                { name: 'Business Bay', area: 'Dubai', icon: '{{ asset('images/apartment.svg') }}' },
-                { name: 'Dubai Hills Estate', area: 'Dubai', icon: '{{ asset('images/house.svg') }}' }
+                { name: 'Dubai, United Arab Emirates', area: '', icon: '{{ asset('images/world_one.svg') }}' },
+                { name: 'Downtown Dubai', area: 'Dubai', icon: '{{ asset('images/downtown_loc.svg') }}' },
+                { name: 'Burj Khalifa', area: 'Dubai', icon: '{{ asset('images/location_loc.svg') }}' },
+                { name: 'Palm Jumeirah', area: 'Dubai', icon: '{{ asset('images/street_loc.svg') }}' },
+                { name: 'Abu Dhabi', area: 'United Arab Emirates', icon: '{{ asset('images/location_loc.svg') }}' }
             ],
             get filteredLocations() {
                 if (!this.locationQuery) return this.locations.slice(0, 5);
@@ -179,8 +177,8 @@
                                     <template x-for="loc in filteredLocations" :key="loc.name">
                                         <div class="flex items-center py-2 px-2 gap-3 hover:bg-[#F9F9F8] cursor-pointer transition-colors"
                                              @click="location = loc.name; locationQuery = ''; openFilter = null">
-                                            <div class="bg-[#F9F9F8] size-[46px] flex items-center justify-center rounded-[6px] shrink-0">
-                                                <img :src="loc.icon" class="size-[20px]" alt="">
+                                            <div class="shrink-0">
+                                                <img :src="loc.icon" class="size-[46px]" alt="">
                                             </div>
                                             <div>
                                                 <p class="text-[15px] font-medium text-[#1E1D1D]" x-text="loc.name"></p>
