@@ -145,9 +145,9 @@
                                     {{-- Selected Location Tag --}}
                                     <template x-if="location">
                                         <div class="flex items-center gap-2 bg-[#F9F9F8] border border-[#E8E8E7] rounded-[4px] px-2 py-1 h-[32px] shrink-0">
-                                            <span class="text-[14px] text-[#464646] font-medium truncate" x-text="location"></span>
-                                            <button type="button" @click.stop="location = ''; locationQuery = ''" class="flex items-center justify-center hover:bg-gray-200 rounded-full size-4 transition-colors">
-                                                <img src="{{ asset('images/close.svg') }}" class="size-2.5 opacity-60" alt="Clear">
+                                            <span class="text-[16px] text-[#464646] font-normal truncate" x-text="location"></span>
+                                            <button type="button" @click.stop="location = ''; locationQuery = ''" class="flex items-center justify-center hover:bg-gray-200 rounded-[2px] size-5 transition-colors">
+                                                <img src="{{ asset('images/close.svg') }}" class="h-[16px] w-[16px] opacity-60" alt="Clear">
                                             </button>
                                         </div>
                                     </template>
