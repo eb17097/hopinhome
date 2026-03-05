@@ -139,7 +139,7 @@
                             {{-- Trigger Container --}}
                             <div
                                 class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center px-[12px] gap-[8px] cursor-text transition-all duration-200"
-                                :class="isLocationDropdownOpen ? 'border-[#1447D4] ring-1 ring-[#1447D4]/10 rounded-t-[6px] border-b-transparent shadow-none' : (openFilter === 'location' ? 'border-[#1447D4] ring-1 ring-[#1447D4]/10 rounded-[6px] shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]')"
+                                :class="isLocationDropdownOpen ? 'border-[#1447D4] rounded-t-[6px] border-b-transparent shadow-none' : (openFilter === 'location' ? 'border-[#1447D4] rounded-[6px] shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]')"
                                 @click.stop="$refs.locationInput.focus()"
                             >
                                 <img src="{{ asset('images/location_on.svg') }}" class="size-[20px] opacity-70" alt="Location">
