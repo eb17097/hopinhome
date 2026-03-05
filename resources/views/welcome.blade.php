@@ -58,7 +58,7 @@
             selectedPropertyTypes: [],
             selectedBedrooms: [],
             minPrice: 100000,
-            maxPrice: null,
+            maxPrice: 1000000,
             minRange: 0,
             maxRange: 1000000,
             get formattedBedrooms() {
