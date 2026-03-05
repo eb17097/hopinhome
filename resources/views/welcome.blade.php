@@ -9,9 +9,11 @@
 <x-header :is-landing="true" />
 
 {{-- Hero Section --}}
-<div class="relative w-full h-[785px] flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 scale-105"
-         style="background-image: url('{{ asset('images/main_hero_image.png') }}');">
+<div class="relative w-full h-[785px] flex items-center justify-center">
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 scale-105"
+             style="background-image: url('{{ asset('images/main_hero_image.png') }}');">
+        </div>
     </div>
 
     <div class="relative z-10 w-full max-w-5xl px-4 text-center mt-16">
