@@ -159,25 +159,31 @@
                                  @click.away="openFilter = null"
                                  x-cloak
                             >
-                                <div class="px-4 space-y-2">
-                                    <div class="flex items-center gap-3 p-3 hover:bg-[#F9F9F8] rounded-[8px] cursor-pointer transition-colors" @click="location = 'Dubai, UAE'; locationQuery = ''; openFilter = null">
-                                        <div class="bg-[#F9F9F8] p-2.5 rounded-[6px]">
-                                            <img src="{{ asset('images/language_black.svg') }}" class="size-[20px]" alt="Global">
+                                <div class="px-4 space-y-1 max-h-[320px] overflow-y-auto custom-scrollbar py-2">
+                                    @php
+                                        $locations = [
+                                            ['name' => 'Dubai, UAE', 'area' => 'All areas', 'icon' => 'language_black.svg'],
+                                            ['name' => 'Downtown Dubai', 'area' => 'Dubai', 'icon' => 'apartment.svg'],
+                                            ['name' => 'Dubai Marina', 'area' => 'Dubai', 'icon' => 'apartment.svg'],
+                                            ['name' => 'Palm Jumeirah', 'area' => 'Dubai', 'icon' => 'house.svg'],
+                                            ['name' => 'JVC', 'area' => 'Jumeirah Village Circle', 'icon' => 'apartment.svg'],
+                                            ['name' => 'Business Bay', 'area' => 'Dubai', 'icon' => 'apartment.svg'],
+                                            ['name' => 'Dubai Hills Estate', 'area' => 'Dubai', 'icon' => 'house.svg'],
+                                        ];
+                                    @endphp
+                                    @foreach($locations as $loc)
+                                        <div class="flex items-center gap-3 p-2.5 hover:bg-[#F9F9F8] rounded-[8px] cursor-pointer transition-colors" 
+                                             x-show="!locationQuery || '{{ strtolower($loc['name']) }}'.includes(locationQuery.toLowerCase())"
+                                             @click="location = '{{ $loc['name'] }}'; locationQuery = ''; openFilter = null">
+                                            <div class="bg-[#F9F9F8] p-2 rounded-[6px] shrink-0">
+                                                <img src="{{ asset('images/' . $loc['icon']) }}" class="size-[20px]" alt="">
+                                            </div>
+                                            <div>
+                                                <p class="text-[15px] font-medium text-[#1E1D1D]">{{ $loc['name'] }}</p>
+                                                <p class="text-[13px] text-[#707070]">{{ $loc['area'] }}</p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <p class="text-[15px] font-medium text-[#1E1D1D]">Dubai, United Arab Emirates</p>
-                                            <p class="text-[13px] text-[#707070]">All areas</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center gap-3 p-3 hover:bg-[#F9F9F8] rounded-[8px] cursor-pointer transition-colors" @click="location = 'Downtown Dubai'; locationQuery = ''; openFilter = null">
-                                        <div class="bg-[#F9F9F8] p-2.5 rounded-[6px]">
-                                            <img src="{{ asset('images/apartment.svg') }}" class="size-[20px]" alt="Apartment">
-                                        </div>
-                                        <div>
-                                            <p class="text-[15px] font-medium text-[#1E1D1D]">Downtown Dubai</p>
-                                            <p class="text-[13px] text-[#707070]">Dubai</p>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
