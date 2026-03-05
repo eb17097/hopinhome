@@ -128,29 +128,23 @@
                                 <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform flex-shrink-0" :class="openFilter === 'bedrooms' ? 'rotate-180' : ''" alt="">
                             </div>
 
-                            {{-- Flawless Connection and Dropdown Wrapper --}}
+                            {{-- Dropdown Wrapper --}}
                             <div x-show="openFilter === 'bedrooms'" 
                                  x-transition:enter="transition ease-out duration-100"
                                  x-transition:enter-start="opacity-0"
                                  x-transition:enter-end="opacity-100"
                                  @click.away="openFilter = null"
-                                 class="absolute top-[47px] left-0 z-40"
+                                 class="absolute top-[47px] left-0 w-[378px] bg-white rounded-b-[12px] rounded-tr-[12px] shadow-[0px_10px_30px_rgba(0,0,0,0.1)] border border-[#E8E8E7] z-30 pt-12 pb-6 px-5"
                                  x-cloak>
-                                {{-- Bridge: Same width as trigger, no top/bottom border --}}
-                                <div class="w-full h-[20px] bg-white border-x border-[#E8E8E7] -mt-[1px]"></div>
-                                
-                                {{-- Dropdown Content --}}
-                                <div class="w-[378px] bg-white rounded-b-[6px] rounded-tr-[6px] shadow-[0px_12px_32px_rgba(0,0,0,0.12)] border border-[#E8E8E7] px-4 py-5 -mt-[1px]">
-                                    <div class="flex items-center gap-[8px]">
-                                        @foreach(['Studio', '1', '2', '3', '4', '5+'] as $val)
-                                            <button type="button" 
-                                                    @click="bedrooms = '{{ $val }}'; openFilter = null"
-                                                    class="h-[42px] {{ $val === 'Studio' ? 'px-5' : 'w-[42px]' }} border border-[#E8E8E7] rounded-full text-[14px] font-medium transition-all hover:border-[#1447D4] flex items-center justify-center flex-shrink-0"
-                                                    :class="bedrooms === '{{ $val }}' ? 'bg-[#1447D4] text-white border-[#1447D4]' : 'bg-white text-[#1E1D1D] border-[#E8E8E7]'">
-                                                {{ $val }}
-                                            </button>
-                                        @endforeach
-                                    </div>
+                                <div class="flex items-center gap-[8px]">
+                                    @foreach(['Studio', '1', '2', '3', '4', '5+'] as $val)
+                                        <button type="button" 
+                                                @click="bedrooms = '{{ $val }}'; openFilter = null"
+                                                class="h-[42px] {{ $val === 'Studio' ? 'px-5' : 'w-[42px]' }} border border-[#E8E8E7] rounded-full text-[14px] font-medium transition-all hover:border-[#1447D4] flex items-center justify-center flex-shrink-0"
+                                                :class="bedrooms === '{{ $val }}' ? 'bg-[#1447D4] text-white border-[#1447D4]' : 'bg-white text-[#1E1D1D] border-[#E8E8E7]'">
+                                            {{ $val }}
+                                        </button>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
