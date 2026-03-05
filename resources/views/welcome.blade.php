@@ -35,9 +35,9 @@
             <form action="#" method="GET" style="margin-bottom:0;" @submit.prevent>
                 <div class="flex flex-col gap-[12px]">
                     {{-- Top Row --}}
-                    <div class="grid grid-cols-4 gap-[12px]">
+                    <div class="grid grid-cols-3 gap-[12px]">
                         {{-- Location Input --}}
-                        <div class="relative col-span-3">
+                        <div class="relative col-span-2">
                             <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center px-[16px] gap-[12px] cursor-pointer select-none"
                                  @click.stop="openFilter = openFilter === 'location' ? null : 'location'">
                                 <img src="{{ asset('images/location_on.svg') }}" class="size-[20px] opacity-70" alt="Location">
@@ -81,7 +81,7 @@
                     </div>
 
                     {{-- Bottom Row --}}
-                    <div class="grid grid-cols-4 gap-[12px]">
+                    <div class="grid grid-cols-3 gap-[12px]">
                         {{-- Property Type --}}
                         <div class="relative">
                             <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center justify-between px-[16px] cursor-pointer select-none"
@@ -216,16 +216,6 @@
                                 </div>
                             </template>
                         </div>
-
-                        {{-- More Filters --}}
-                        <div class="relative z-50">
-                            <div class="bg-[#F9F9F8] border border-[#E8E8E7] h-[48px] rounded-[6px] flex items-center justify-center px-[16px] gap-2 cursor-pointer hover:bg-white transition-colors relative select-none shadow-sm">
-                                <img src="{{ asset('images/filter.svg') }}" class="size-[18px] opacity-70" alt="Filters">
-                                <span class="text-[15px] font-medium text-[#1447D4]">More filters</span>
-                                <div class="absolute -top-2 -right-2 size-5 bg-[#1447D4] text-white text-[11px] font-bold rounded-full flex items-center justify-center shadow-sm">3</div>
-                            </div>
-                        </div>
-                    </div>
                     </div>
                 </div>
             </form>
