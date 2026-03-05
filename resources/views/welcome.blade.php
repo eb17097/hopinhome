@@ -85,39 +85,59 @@
                     {{-- Bottom Row --}}
                     <div class="grid grid-cols-3 gap-[12px]">
                         {{-- Property Type --}}
-                        <div class="relative">
-                            <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center justify-between px-[16px] cursor-pointer select-none"
-                                 @click.stop="openFilter = openFilter === 'propertyType' ? null : 'propertyType'">
-                                <span class="text-[16px] text-[#1E1D1D] truncate" x-text="propertyType"></span>
-                                <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform flex-shrink-0" :class="openFilter === 'propertyType' ? 'rotate-180' : ''" alt="">
+                        <div class="relative" :style="openFilter === 'propertyType' ? 'filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.06)) drop-shadow(0 2px 4px rgba(0,0,0,0.02))' : ''">
+                            {{-- Trigger Button --}}
+                            <div 
+                                @click.stop="openFilter = openFilter === 'propertyType' ? null : 'propertyType'"
+                                class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200 select-none"
+                                :class="openFilter === 'propertyType' ? 'rounded-t-[6px] border-b-white shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
+                            >
+                                <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="propertyType"></span>
+                                <img src="{{ asset('images/chevron.svg') }}" 
+                                     class="size-[16px] opacity-60 transition-transform duration-200" 
+                                     :class="openFilter === 'propertyType' ? 'rotate-180' : ''" alt="">
                             </div>
 
-                            {{-- Property Type Dropdown --}}
-                            <div x-show="openFilter === 'propertyType'"
-                                 x-transition
-                                 @click.away="openFilter = null"
-                                 class="absolute top-full left-0 mt-2 w-[600px] bg-white rounded-[6px] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] border border-[#E8E8E7] z-30 p-4 grid grid-cols-3 gap-3"
-                                 x-cloak>
-                                @php
-                                    $types = [
-                                        ['name' => 'Apartment', 'icon' => 'apartment_big.svg'],
-                                        ['name' => 'Villa', 'icon' => 'villa.svg'],
-                                        ['name' => 'House', 'icon' => 'house.svg'],
-                                        ['name' => 'Townhouse', 'icon' => 'townhouse.svg'],
-                                        ['name' => 'Hotel Apartment', 'icon' => 'hotel_apartment.svg'],
-                                        ['name' => 'Penthouse', 'icon' => 'penthouse.svg'],
-                                    ];
-                                @endphp
-                                @foreach($types as $type)
-                                    <div class="flex flex-col items-center gap-2 p-3 border border-[#E8E8E7] rounded-[6px] cursor-pointer hover:border-[#1447D4] group"
-                                         @click="propertyType = '{{ $type['name'] }}'; openFilter = null">
-                                        <div class="size-[32px]">
-                                            <img src="{{ asset('images/' . $type['icon']) }}" class="w-full h-full" alt="{{ $type['name'] }}">
+                            <template x-if="openFilter === 'propertyType'">
+                                <div class="absolute top-0 left-0 w-full">
+                                    {{-- Stem --}}
+                                    <div 
+                                        class="absolute z-30 left-0 bg-white border-l border-r border-[#E8E8E7] w-full" 
+                                        style="top: 45px; height: 16px;"
+                                    >
+                                        {{-- Flawless Inner Curve Fillet --}}
+                                        <div class="absolute bottom-0 -right-[12px] size-[12px] overflow-hidden pointer-events-none">
+                                            <div class="absolute top-0 left-0 size-full rounded-bl-[12px] border-b border-l border-[#E8E8E7] shadow-[0_0_0_20px_white]"></div>
                                         </div>
-                                        <span class="text-[13px] font-medium text-[#1E1D1D] group-hover:text-[#1447D4] transition-colors text-center">{{ $type['name'] }}</span>
                                     </div>
-                                @endforeach
-                            </div>
+
+                                    {{-- Dropdown Panel --}}
+                                    <div 
+                                        class="absolute z-10 top-[60px] left-0 bg-white border border-[#E8E8E7] rounded-b-[10px] rounded-tr-[10px] p-4 grid grid-cols-3 gap-3 w-[600px]"
+                                        @click.away="openFilter = null"
+                                    >
+                                        @php
+                                            $types = [
+                                                ['name' => 'Apartment', 'icon' => 'apartment_big.svg'],
+                                                ['name' => 'Villa', 'icon' => 'villa.svg'],
+                                                ['name' => 'House', 'icon' => 'house.svg'],
+                                                ['name' => 'Townhouse', 'icon' => 'townhouse.svg'],
+                                                ['name' => 'Hotel Apartment', 'icon' => 'hotel_apartment.svg'],
+                                                ['name' => 'Penthouse', 'icon' => 'penthouse.svg'],
+                                            ];
+                                        @endphp
+                                        @foreach($types as $type)
+                                            <div class="flex flex-col items-center gap-2 p-3 border border-[#E8E8E7] rounded-[6px] cursor-pointer hover:border-[#1447D4] group"
+                                                 @click="propertyType = '{{ $type['name'] }}'; openFilter = null">
+                                                <div class="size-[32px]">
+                                                    <img src="{{ asset('images/' . $type['icon']) }}" class="w-full h-full" alt="{{ $type['name'] }}">
+                                                </div>
+                                                <span class="text-[13px] font-medium text-[#1E1D1D] group-hover:text-[#1447D4] transition-colors text-center">{{ $type['name'] }}</span>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </template>
                         </div>
 
                         {{-- Bedrooms --}}
