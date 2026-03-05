@@ -138,7 +138,12 @@
                                     <div 
                                         class="absolute z-30 left-0 bg-white border-l border-r border-[#E8E8E7] w-full" 
                                         style="top: 47px; height: 16px;"
-                                    ></div>
+                                    >
+                                        {{-- Inner Curve Fillet --}}
+                                        <div class="absolute bottom-0 -right-[12px] w-[12px] h-[12px] bg-white">
+                                            <div class="w-full h-full bg-[#FBFBFB] rounded-bl-[12px] border-b border-l border-[#E8E8E7]"></div>
+                                        </div>
+                                    </div>
 
                                     {{-- Dropdown Panel --}}
                                     <div 
