@@ -123,12 +123,12 @@
                             {{-- Trigger Button --}}
                             <div 
                                 @click.stop="openFilter = openFilter === 'bedrooms' ? null : 'bedrooms'"
-                                class="relative z-20 w-full h-[48px] bg-white border border-[#E2E2E2] flex items-center justify-between px-4 cursor-pointer transition-all duration-200"
-                                :class="openFilter === 'bedrooms' ? 'rounded-t-xl border-b-white' : 'rounded-xl shadow-sm hover:bg-gray-50'"
+                                class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200"
+                                :class="openFilter === 'bedrooms' ? 'rounded-t-[6px] border-b-white' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
                             >
-                                <span class="text-[15px] text-[#222222] font-normal tracking-wide" x-text="bedrooms"></span>
+                                <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="bedrooms"></span>
                                 <img src="{{ asset('images/chevron.svg') }}" 
-                                     class="size-[18px] text-[#666666] opacity-60 transition-transform duration-200" 
+                                     class="size-[16px] opacity-60 transition-transform duration-200" 
                                      :class="openFilter === 'bedrooms' ? 'rotate-180' : ''" alt="">
                             </div>
 
@@ -136,13 +136,13 @@
                                 <div class="absolute top-0 left-0 w-full">
                                     {{-- Stem - Connecting piece --}}
                                     <div 
-                                        class="absolute z-30 left-0 bg-white border-l border-r border-[#E2E2E2] w-full" 
+                                        class="absolute z-30 left-0 bg-white border-l border-r border-[#E8E8E7] w-full" 
                                         style="top: 47px; height: 16px;"
                                     ></div>
 
                                     {{-- Dropdown Panel --}}
                                     <div 
-                                        class="absolute z-10 top-[62px] left-0 bg-white border border-[#E2E2E2] rounded-b-xl rounded-tr-xl p-5 flex items-center gap-[12px] w-max"
+                                        class="absolute z-10 top-[62px] left-0 bg-white border border-[#E8E8E7] rounded-b-[10px] rounded-tr-[10px] p-5 flex items-center gap-[12px] w-max"
                                         @click.away="openFilter = null"
                                     >
                                         @foreach(['Studio', '1', '2', '3', '4', '5+'] as $val)
@@ -160,10 +160,10 @@
 
                         {{-- Price --}}
                         <div class="relative z-50">
-                            <div class="bg-white border border-[#E2E2E2] h-[48px] rounded-xl shadow-sm flex items-center justify-between px-4 cursor-pointer hover:bg-gray-50 transition-colors"
+                            <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center justify-between px-[16px] cursor-pointer"
                                  @click.stop="openFilter = openFilter === 'price' ? null : 'price'">
-                                <span class="text-[15px] text-[#222222] font-normal tracking-wide" x-text="price"></span>
-                                <img src="{{ asset('images/chevron.svg') }}" class="size-[18px] opacity-60 text-[#666666] transition-transform duration-200" :class="openFilter === 'price' ? 'rotate-180' : ''" alt="">
+                                <span class="text-[16px] text-[#1E1D1D] truncate" x-text="price"></span>
+                                <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform flex-shrink-0" :class="openFilter === 'price' ? 'rotate-180' : ''" alt="">
                             </div>
 
                             {{-- Price Dropdown --}}
