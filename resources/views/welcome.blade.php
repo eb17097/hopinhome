@@ -338,29 +338,33 @@
                                         </div>
                                         
                                         {{-- Real Range Slider --}}
-                                        <div class="relative h-1.5 bg-[#E8E8E7] rounded-full mb-2 mx-2">
+                                        <div class="relative h-1.5 bg-[#E8E8E7] rounded-full mb-2 mx-3">
                                             {{-- Track --}}
                                             <div class="absolute h-full bg-[#1447D4] rounded-full"
                                                  :style="`left: ${minPercent}%; right: ${100 - maxPercent}%`"
                                             ></div>
                                             
-                                            {{-- Native range inputs for logic --}}
+                                            {{-- Native range inputs with edge-fix geometry --}}
                                             <input type="range" 
                                                    x-model.number="minPrice" 
                                                    :min="minRange" :max="maxRange" step="1000"
-                                                   class="absolute w-full h-6 -top-2 left-0 opacity-0 cursor-pointer z-40 pointer-events-auto m-0 p-0"
+                                                   class="absolute h-6 -top-2 opacity-0 cursor-pointer z-40 pointer-events-auto m-0 p-0"
+                                                   style="width: calc(100% + 20px); left: -10px;"
                                                    @input="if(minPrice > (maxPrice || maxRange)) minPrice = (maxPrice || maxRange)">
                                             <input type="range" 
                                                    x-model.number="maxPrice" 
                                                    :min="minRange" :max="maxRange" step="1000"
-                                                   class="absolute w-full h-6 -top-2 left-0 opacity-0 cursor-pointer z-40 pointer-events-auto m-0 p-0"
+                                                   class="absolute h-6 -top-2 opacity-0 cursor-pointer z-40 pointer-events-auto m-0 p-0"
+                                                   style="width: calc(100% + 20px); left: -10px;"
                                                    @input="if(!maxPrice) maxPrice = maxRange; if(maxPrice < minPrice) maxPrice = minPrice">
 
                                             {{-- Visual Handles --}}
-                                            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 size-5 bg-white border-2 border-[#1447D4] rounded-full pointer-events-none shadow-sm z-30 transition-transform"
+                                            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 size-5 bg-white border-2 border-[#1447D4] rounded-full pointer-events-none shadow-sm transition-transform"
+                                                 :class="minPrice > (maxRange/2) ? 'z-30' : 'z-20'"
                                                  :style="`left: ${minPercent}%`"
                                             ></div>
-                                            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 size-5 bg-white border-2 border-[#1447D4] rounded-full pointer-events-none shadow-sm z-30 transition-transform"
+                                            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 size-5 bg-white border-2 border-[#1447D4] rounded-full pointer-events-none shadow-sm transition-transform"
+                                                 :class="minPrice > (maxRange/2) ? 'z-20' : 'z-30'"
                                                  :style="`left: ${maxPercent}%`"
                                             ></div>
                                         </div>
