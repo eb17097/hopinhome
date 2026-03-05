@@ -32,7 +32,10 @@
             location: '',
             selectedPropertyTypes: [],
             selectedBedrooms: [],
-            price: 'Price',
+            minPrice: 100000,
+            maxPrice: null,
+            minRange: 0,
+            maxRange: 1000000,
             get formattedBedrooms() {
                 if (this.selectedBedrooms.length === 0) return 'Bedrooms';
                 
@@ -53,6 +56,22 @@
                 }
                 
                 return result.join(', ');
+            },
+            get formattedPrice() {
+                if (this.minPrice === this.minRange && !this.maxPrice) return 'Price';
+                let min = this.minPrice ? this.minPrice.toLocaleString() : '0';
+                let max = this.maxPrice ? this.maxPrice.toLocaleString() : 'Any';
+
+                if (this.maxPrice) {
+                    return `${min} - ${max} AED`;
+                }
+                return `From ${min} AED`;
+            },
+            get minPercent() {
+                return ((this.minPrice - this.minRange) / (this.maxRange - this.minRange)) * 100;
+            },
+            get maxPercent() {
+                return (((this.maxPrice || this.maxRange) - this.minRange) / (this.maxRange - this.minRange)) * 100;
             },
             togglePropertyType(type) {
                 if (this.selectedPropertyTypes.includes(type)) {
@@ -113,7 +132,7 @@
                         {{-- Search Button --}}
                         <button class="bg-[#1447D4] text-white h-[48px] rounded-[6px] font-medium text-[16px] flex items-center justify-center gap-2 hover:bg-[#0F36A9] transition-all w-full">
                             <img src="{{ asset('images/search.svg') }}" class="size-[18px] brightness-0 invert" alt="Search">
-                            <span class="hidden lg:inline">Search properties</span>
+                            <span>Search properties</span>
                         </button>
                     </div>
 
@@ -249,9 +268,9 @@
                             <div 
                                 @click.stop="openFilter = openFilter === 'price' ? null : 'price'"
                                 class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200 select-none"
-                                :class="openFilter === 'price' ? 'rounded-t-[6px] border-b-white' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
+                                :class="openFilter === 'price' ? 'rounded-t-[6px] border-b-white shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
                             >
-                                <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="price"></span>
+                                <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="formattedPrice"></span>
                                 <img src="{{ asset('images/chevron.svg') }}" 
                                      class="size-[16px] opacity-60 transition-transform duration-200" 
                                      :class="openFilter === 'price' ? 'rotate-180' : ''" alt="">
@@ -271,26 +290,54 @@
                                     <div class="absolute z-10 top-[60px] left-0 bg-white border border-[#E8E8E7] rounded-b-[10px] rounded-tr-[10px] p-6 w-[440px]" @click.away="openFilter = null">
                                         <div class="flex gap-4 mb-6">
                                             <div class="flex-1">
-                                                <p class="text-[14px] text-[#1E1D1D] mb-2">Minimum Price</p>
+                                                <p class="text-[14px] text-[#1E1D1D] mb-2 font-medium">Minimum Price</p>
                                                 <div class="relative">
-                                                    <input type="text" class="w-full border border-[#E8E8E7] rounded-[8px] px-4 py-3 text-[15px] font-medium text-[#1E1D1D] focus:ring-0 focus:border-[#1447D4]" value="100,000">
+                                                    <input type="number" 
+                                                           x-model.number="minPrice" 
+                                                           @input="if(minPrice > (maxPrice || maxRange)) minPrice = (maxPrice || maxRange)"
+                                                           class="w-full border border-[#E8E8E7] rounded-[8px] px-4 py-3 text-[15px] font-medium text-[#1E1D1D] focus:ring-0 focus:border-[#1447D4] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
                                                     <span class="absolute right-4 top-1/2 -translate-y-1/2 text-[#707070] text-[14px]">AED</span>
                                                 </div>
                                             </div>
                                             <div class="flex-1">
-                                                <p class="text-[14px] text-[#1E1D1D] mb-2">Maximum Price</p>
+                                                <p class="text-[14px] text-[#1E1D1D] mb-2 font-medium">Maximum Price</p>
                                                 <div class="relative">
-                                                    <input type="text" class="w-full border border-[#E8E8E7] rounded-[8px] px-4 py-3 text-[15px] font-medium text-[#707070] focus:ring-0 focus:border-[#1447D4]" placeholder="Any">
+                                                    <input type="number" 
+                                                           x-model.number="maxPrice" 
+                                                           @input="if(maxPrice < minPrice) maxPrice = minPrice"
+                                                           class="w-full border border-[#E8E8E7] rounded-[8px] px-4 py-3 text-[15px] font-medium text-[#1E1D1D] focus:ring-0 focus:border-[#1447D4] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" 
+                                                           placeholder="Any">
                                                     <span class="absolute right-4 top-1/2 -translate-y-1/2 text-[#707070] text-[14px]">AED</span>
                                                 </div>
                                             </div>
                                         </div>
                                         
-                                        {{-- Range Slider Visual --}}
+                                        {{-- Real Range Slider --}}
                                         <div class="relative h-1.5 bg-[#E8E8E7] rounded-full mb-2 mx-2">
-                                            <div class="absolute left-1/4 right-0 h-full bg-[#1447D4] rounded-full"></div>
-                                            <div class="absolute left-1/4 top-1/2 -translate-y-1/2 -translate-x-1/2 size-5 bg-white border-2 border-[#1447D4] rounded-full cursor-pointer shadow-sm hover:scale-110 transition-transform"></div>
-                                            <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 size-5 bg-white border-2 border-[#1447D4] rounded-full cursor-pointer shadow-sm hover:scale-110 transition-transform"></div>
+                                            {{-- Track --}}
+                                            <div class="absolute h-full bg-[#1447D4] rounded-full"
+                                                 :style="`left: ${minPercent}%; right: ${100 - maxPercent}%`"
+                                            ></div>
+                                            
+                                            {{-- Native range inputs for logic --}}
+                                            <input type="range" 
+                                                   x-model.number="minPrice" 
+                                                   :min="minRange" :max="maxRange" step="1000"
+                                                   class="absolute w-full h-full opacity-0 cursor-pointer z-40 pointer-events-auto"
+                                                   @input="if(minPrice > (maxPrice || maxRange)) minPrice = (maxPrice || maxRange)">
+                                            <input type="range" 
+                                                   x-model.number="maxPrice" 
+                                                   :min="minRange" :max="maxRange" step="1000"
+                                                   class="absolute w-full h-full opacity-0 cursor-pointer z-40 pointer-events-auto"
+                                                   @input="if(!maxPrice) maxPrice = maxRange; if(maxPrice < minPrice) maxPrice = minPrice">
+
+                                            {{-- Visual Handles --}}
+                                            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 size-5 bg-white border-2 border-[#1447D4] rounded-full pointer-events-none shadow-sm z-30"
+                                                 :style="`left: ${minPercent}%`"
+                                            ></div>
+                                            <div class="absolute top-1/2 -translate-y-1/2 translate-x-1/2 size-5 bg-white border-2 border-[#1447D4] rounded-full pointer-events-none shadow-sm z-30"
+                                                 :style="`left: ${maxPercent}%`"
+                                            ></div>
                                         </div>
                                     </div>
                                 </div>
@@ -355,7 +402,7 @@
             @endphp
 
             @foreach($types as $type)
-                <a href="#" class="group p-[20px] bg-white border border-[#E8E8E7] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] hover:shadow-lg transition flex flex-col items-center text-center">
+                <a href="#" class="group p-[20px] bg-white border border-[#E8E8E7] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] hover:shadow-lg transition flex flex-col items-center text-center">
                     <div class="size-[63px] mb-[18px]">
                         <img src="{{ asset('images/' . $type['icon']) }}" class="w-full h-full" alt="{{ $type['name'] }}">
                     </div>
