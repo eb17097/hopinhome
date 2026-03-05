@@ -348,19 +348,19 @@
                                             <input type="range" 
                                                    x-model.number="minPrice" 
                                                    :min="minRange" :max="maxRange" step="1000"
-                                                   class="absolute w-full h-full opacity-0 cursor-pointer z-40 pointer-events-auto"
+                                                   class="absolute w-full h-6 -top-2 left-0 opacity-0 cursor-pointer z-40 pointer-events-auto m-0 p-0"
                                                    @input="if(minPrice > (maxPrice || maxRange)) minPrice = (maxPrice || maxRange)">
                                             <input type="range" 
                                                    x-model.number="maxPrice" 
                                                    :min="minRange" :max="maxRange" step="1000"
-                                                   class="absolute w-full h-full opacity-0 cursor-pointer z-40 pointer-events-auto"
+                                                   class="absolute w-full h-6 -top-2 left-0 opacity-0 cursor-pointer z-40 pointer-events-auto m-0 p-0"
                                                    @input="if(!maxPrice) maxPrice = maxRange; if(maxPrice < minPrice) maxPrice = minPrice">
 
                                             {{-- Visual Handles --}}
-                                            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 size-5 bg-white border-2 border-[#1447D4] rounded-full pointer-events-none shadow-sm z-30"
+                                            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 size-5 bg-white border-2 border-[#1447D4] rounded-full pointer-events-none shadow-sm z-30 transition-transform"
                                                  :style="`left: ${minPercent}%`"
                                             ></div>
-                                            <div class="absolute top-1/2 -translate-y-1/2 translate-x-1/2 size-5 bg-white border-2 border-[#1447D4] rounded-full pointer-events-none shadow-sm z-30"
+                                            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 size-5 bg-white border-2 border-[#1447D4] rounded-full pointer-events-none shadow-sm z-30 transition-transform"
                                                  :style="`left: ${maxPercent}%`"
                                             ></div>
                                         </div>
