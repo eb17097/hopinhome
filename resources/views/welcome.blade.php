@@ -126,7 +126,7 @@
                                 class="relative z-20 w-full h-[48px] bg-white border border-[#E2E2E2] flex items-center justify-between px-4 cursor-pointer transition-all duration-200"
                                 :class="openFilter === 'bedrooms' ? 'rounded-t-xl border-b-white' : 'rounded-xl shadow-sm hover:bg-gray-50'"
                             >
-                                <span class="text-[15px] text-[#222222] font-normal tracking-wide">Bedrooms</span>
+                                <span class="text-[15px] text-[#222222] font-normal tracking-wide" x-text="bedrooms"></span>
                                 <img src="{{ asset('images/chevron.svg') }}" 
                                      class="size-[18px] text-[#666666] opacity-60 transition-transform duration-200" 
                                      :class="openFilter === 'bedrooms' ? 'rotate-180' : ''" alt="">
