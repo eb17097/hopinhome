@@ -119,42 +119,51 @@
                         </div>
 
                         {{-- Bedrooms --}}
-                        <div class="relative">
-                            {{-- Trigger --}}
-                            <div class="bg-white border border-[#E8E8E7] h-[48px] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200 z-50 relative"
-                                 :class="openFilter === 'bedrooms' ? 'rounded-t-[6px] border-b-white' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
-                                 @click.stop="openFilter = openFilter === 'bedrooms' ? null : 'bedrooms'">
-                                <span class="text-[16px] text-[#1E1D1D] truncate" x-text="bedrooms"></span>
-                                <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform flex-shrink-0" :class="openFilter === 'bedrooms' ? 'rotate-180' : ''" alt="">
+                        <div class="relative" :style="openFilter === 'bedrooms' ? 'filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.06)) drop-shadow(0 2px 4px rgba(0,0,0,0.02))' : ''">
+                            {{-- Trigger Button --}}
+                            <div 
+                                @click.stop="openFilter = openFilter === 'bedrooms' ? null : 'bedrooms'"
+                                class="relative z-20 w-full h-[48px] bg-white border border-[#E2E2E2] flex items-center justify-between px-4 cursor-pointer transition-all duration-200"
+                                :class="openFilter === 'bedrooms' ? 'rounded-t-xl border-b-white' : 'rounded-xl shadow-sm hover:bg-gray-50'"
+                            >
+                                <span class="text-[15px] text-[#222222] font-normal tracking-wide">Bedrooms</span>
+                                <img src="{{ asset('images/chevron.svg') }}" 
+                                     class="size-[18px] text-[#666666] opacity-60 transition-transform duration-200" 
+                                     :class="openFilter === 'bedrooms' ? 'rotate-180' : ''" alt="">
                             </div>
 
-                            {{-- Dropdown Wrapper --}}
-                            <div x-show="openFilter === 'bedrooms'" 
-                                 x-transition:enter="transition ease-out duration-100"
-                                 x-transition:enter-start="opacity-0"
-                                 x-transition:enter-end="opacity-100"
-                                 @click.away="openFilter = null"
-                                 class="absolute top-[47px] left-0 w-[378px] bg-white rounded-b-[10px] rounded-tr-[10px] shadow-[0px_10px_30px_rgba(0,0,0,0.08)] border border-[#E8E8E7] z-30 pt-[64px] pb-[14px] px-4"
-                                 x-cloak>
-                                <div class="flex items-center gap-[8px]">
-                                    @foreach(['Studio', '1', '2', '3', '4', '5+'] as $val)
-                                        <button type="button" 
-                                                @click="bedrooms = '{{ $val }}'; openFilter = null"
-                                                class="h-[42px] {{ $val === 'Studio' ? 'px-5' : 'w-[42px]' }} border border-[#E8E8E7] rounded-full text-[14px] font-medium transition-all hover:border-[#1447D4] flex items-center justify-center flex-shrink-0"
-                                                :class="bedrooms === '{{ $val }}' ? 'bg-[#1447D4] text-white border-[#1447D4]' : 'bg-white text-[#1E1D1D] border-[#E8E8E7]'">
-                                            {{ $val }}
-                                        </button>
-                                    @endforeach
+                            <template x-if="openFilter === 'bedrooms'">
+                                <div class="absolute top-0 left-0 w-full">
+                                    {{-- Stem - Connecting piece --}}
+                                    <div 
+                                        class="absolute z-30 left-0 bg-white border-l border-r border-[#E2E2E2] w-full" 
+                                        style="top: 47px; height: 16px;"
+                                    ></div>
+
+                                    {{-- Dropdown Panel --}}
+                                    <div 
+                                        class="absolute z-10 top-[62px] left-0 bg-white border border-[#E2E2E2] rounded-b-xl rounded-tr-xl p-5 flex items-center gap-[12px] w-max"
+                                        @click.away="openFilter = null"
+                                    >
+                                        @foreach(['Studio', '1', '2', '3', '4', '5+'] as $val)
+                                            <button type="button" 
+                                                    @click="bedrooms = '{{ $val }}'; openFilter = null"
+                                                    class="flex items-center justify-center transition-all duration-150 text-[15px] font-medium focus:outline-none {{ $val === 'Studio' ? 'px-6 py-[11px]' : 'w-[46px] h-[46px]' }} rounded-full"
+                                                    :class="bedrooms === '{{ $val }}' ? 'bg-[#1447D4] text-white shadow-sm' : 'bg-white border border-[#E2E2E2] text-[#222222] hover:border-[#222222] hover:bg-gray-50'">
+                                                {{ $val }}
+                                            </button>
+                                        @endforeach
+                                    </div>
                                 </div>
-                            </div>
+                            </template>
                         </div>
 
                         {{-- Price --}}
                         <div class="relative z-50">
-                            <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center justify-between px-[16px] cursor-pointer"
+                            <div class="bg-white border border-[#E2E2E2] h-[48px] rounded-xl shadow-sm flex items-center justify-between px-4 cursor-pointer hover:bg-gray-50 transition-colors"
                                  @click.stop="openFilter = openFilter === 'price' ? null : 'price'">
-                                <span class="text-[16px] text-[#1E1D1D] truncate" x-text="price"></span>
-                                <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform flex-shrink-0" :class="openFilter === 'price' ? 'rotate-180' : ''" alt="">
+                                <span class="text-[15px] text-[#222222] font-normal tracking-wide" x-text="price"></span>
+                                <img src="{{ asset('images/chevron.svg') }}" class="size-[18px] opacity-60 text-[#666666] transition-transform duration-200" :class="openFilter === 'price' ? 'rotate-180' : ''" alt="">
                             </div>
 
                             {{-- Price Dropdown --}}
