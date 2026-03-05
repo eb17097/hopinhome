@@ -1,7 +1,7 @@
 <footer class="bg-white border-t border-[#E8E8E7]">
     <div class="max-w-[1204px] py-[96px] mx-auto">
 
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
 
             <div class="md:col-span-8 space-y-8">
                 <div class="flex items-center gap-2">

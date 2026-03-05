@@ -15,7 +15,7 @@ class="z-50 {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
          }"
          class="transition-all duration-300 h-[88px] flex items-center">
 
-        <div class="max-w-[1440px] mx-auto px-8 w-full flex justify-between items-center h-full">
+        <div class="max-w-[1204px] mx-auto w-full flex justify-between items-center h-full">
             {{-- Logo --}}
             <div class="flex items-center">
                 <a href="/" class="flex items-center gap-2">
