@@ -118,40 +118,61 @@
                     {{-- Top Row --}}
                     <div class="grid grid-cols-3 gap-[12px]">
                         {{-- Location Input --}}
-                        <div class="relative col-span-2">
-                            <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center px-[16px] gap-[12px] cursor-pointer select-none"
-                                 @click.stop="openFilter = openFilter === 'location' ? null : 'location'">
+                        <div class="relative col-span-2" :style="openFilter === 'location' ? 'filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.06)) drop-shadow(0 2px 4px rgba(0,0,0,0.02))' : ''">
+                            {{-- Trigger Button --}}
+                            <div 
+                                @click.stop="openFilter = openFilter === 'location' ? null : 'location'"
+                                class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center px-[16px] gap-[12px] cursor-pointer transition-all duration-200 select-none"
+                                :class="openFilter === 'location' ? 'rounded-t-[6px] border-b-white shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
+                            >
                                 <img src="{{ asset('images/location_on.svg') }}" class="size-[20px] opacity-70" alt="Location">
                                 <div class="flex items-center flex-grow overflow-hidden">
-                                    <span x-show="location" class="text-[16px] text-[#1E1D1D] truncate" x-text="location"></span>
-                                    <span x-show="!location" class="text-[16px] text-[#707070] truncate">Enter City or Location</span>
+                                    <span x-show="location" class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="location"></span>
+                                    <span x-show="!location" class="text-[16px] text-[#707070] truncate font-normal">Enter City or Location</span>
                                 </div>
                             </div>
 
-                            {{-- Location Dropdown --}}
-                            <div x-show="openFilter === 'location'"
-                                 x-transition
-                                 @click.away="openFilter = null"
-                                 class="absolute top-full left-0 mt-2 w-full bg-white rounded-[6px] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] border border-[#E8E8E7] z-30 py-4 overflow-hidden"
-                                 x-cloak>
-                                <div class="px-4 space-y-4">
-                                    <div class="flex items-center gap-3 p-2 hover:bg-[#F9F9F8] rounded-[6px] cursor-pointer" @click="location = 'Dubai, UAE'; openFilter = null">
-                                        <div class="bg-[#F9F9F8] p-2.5 rounded-[6px]">
-                                            <img src="{{ asset('images/language_black.svg') }}" class="size-[20px]" alt="Global">
+                            <template x-if="openFilter === 'location'">
+                                <div class="absolute top-0 left-0 w-full">
+                                    {{-- Stem --}}
+                                    <div 
+                                        class="absolute z-30 left-0 bg-white border-l border-r border-[#E8E8E7] w-full" 
+                                        style="top: 45px; height: 16px;"
+                                    >
+                                        {{-- Flawless Inner Curve Fillet --}}
+                                        <div class="absolute bottom-0 -right-[12px] size-[12px] overflow-hidden pointer-events-none">
+                                            <div class="absolute top-0 left-0 size-full rounded-bl-[12px] border-b border-l border-[#E8E8E7] shadow-[0_0_0_20px_white]"></div>
                                         </div>
-                                        <span class="text-[15px] font-medium text-[#1E1D1D]">Dubai, United Arab Emirates</span>
                                     </div>
-                                    <div class="flex items-center gap-3 p-2 hover:bg-[#F9F9F8] rounded-[6px] cursor-pointer" @click="location = 'Downtown Dubai'; openFilter = null">
-                                        <div class="bg-[#F9F9F8] p-2.5 rounded-[6px]">
-                                            <img src="{{ asset('images/apartment.svg') }}" class="size-[20px]" alt="Apartment">
-                                        </div>
-                                        <div>
-                                            <p class="text-[15px] font-medium text-[#1E1D1D]">Downtown Dubai</p>
-                                            <p class="text-[13px] text-[#707070]">Dubai</p>
+
+                                    {{-- Dropdown Panel --}}
+                                    <div 
+                                        class="absolute z-10 top-[60px] left-0 bg-white border border-[#E8E8E7] rounded-b-[10px] rounded-tr-[10px] py-4 w-full"
+                                        @click.away="openFilter = null"
+                                    >
+                                        <div class="px-4 space-y-2">
+                                            <div class="flex items-center gap-3 p-3 hover:bg-[#F9F9F8] rounded-[8px] cursor-pointer transition-colors" @click="location = 'Dubai, UAE'; openFilter = null">
+                                                <div class="bg-[#F9F9F8] p-2.5 rounded-[6px]">
+                                                    <img src="{{ asset('images/language_black.svg') }}" class="size-[20px]" alt="Global">
+                                                </div>
+                                                <div>
+                                                    <p class="text-[15px] font-medium text-[#1E1D1D]">Dubai, United Arab Emirates</p>
+                                                    <p class="text-[13px] text-[#707070]">All areas</p>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center gap-3 p-3 hover:bg-[#F9F9F8] rounded-[8px] cursor-pointer transition-colors" @click="location = 'Downtown Dubai'; openFilter = null">
+                                                <div class="bg-[#F9F9F8] p-2.5 rounded-[6px]">
+                                                    <img src="{{ asset('images/apartment.svg') }}" class="size-[20px]" alt="Apartment">
+                                                </div>
+                                                <div>
+                                                    <p class="text-[15px] font-medium text-[#1E1D1D]">Downtown Dubai</p>
+                                                    <p class="text-[13px] text-[#707070]">Dubai</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </template>
                         </div>
 
                         {{-- Search Button --}}
