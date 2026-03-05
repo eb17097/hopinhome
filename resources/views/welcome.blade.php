@@ -9,14 +9,24 @@
         pointer-events: none;
         -webkit-appearance: none;
         appearance: none;
+        background: none;
     }
     input[type=range]::-webkit-slider-thumb {
         pointer-events: auto;
         -webkit-appearance: none;
         appearance: none;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        cursor: pointer;
     }
     input[type=range]::-moz-range-thumb {
         pointer-events: auto;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: none;
     }
 </style>
 <x-main-layout title="Hopinhome">
