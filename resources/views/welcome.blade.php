@@ -170,15 +170,15 @@
                                  x-transition:enter="transition ease-out duration-100"
                                  x-transition:enter-start="opacity-0 scale-95"
                                  x-transition:enter-end="opacity-100 scale-100"
-                                 class="absolute top-full left-0 w-full bg-white border border-[#E8E8E7] rounded-b-[10px] py-4 z-30 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)]"                                 @click.stop
+                                 class="absolute top-full left-0 w-full bg-white border border-[#E8E8E7] rounded-b-[10px] z-30 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)]"                                 @click.stop
                                  @click.away="openFilter = null"
                                  x-cloak
                             >
-                                <div class="px-4 space-y-1 py-2">
+                                <div class="space-y-1">
                                     <template x-for="loc in filteredLocations" :key="loc.name">
                                         <div class="flex items-center gap-3 p-2.5 hover:bg-[#F9F9F8] rounded-[8px] cursor-pointer transition-colors"
                                              @click="location = loc.name; locationQuery = ''; openFilter = null">
-                                            <div class="bg-[#F9F9F8] p-2 rounded-[6px] shrink-0">
+                                            <div class="bg-[#F9F9F8] size-[46px] flex items-center justify-center rounded-[6px] shrink-0">
                                                 <img :src="loc.icon" class="size-[20px]" alt="">
                                             </div>
                                             <div>
