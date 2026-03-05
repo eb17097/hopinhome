@@ -69,6 +69,9 @@
                     .filter(loc => loc.name.toLowerCase().includes(this.locationQuery.toLowerCase()))
                     .slice(0, 5);
             },
+            get isLocationDropdownOpen() {
+                return this.openFilter === 'location' && (this.locationQuery.length > 0 || !this.location);
+            },
             selectedPropertyTypes: [],
             selectedBedrooms: [],
             minPrice: 100000,
@@ -136,7 +139,7 @@
                             {{-- Trigger Container --}}
                             <div
                                 class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center px-[12px] gap-[8px] cursor-text transition-all duration-200"
-                                :class="openFilter === 'location' ? 'border-[#1447D4] ring-1 ring-[#1447D4]/10 rounded-t-[6px] border-b-transparent shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
+                                :class="isLocationDropdownOpen ? 'border-[#1447D4] ring-1 ring-[#1447D4]/10 rounded-t-[6px] border-b-transparent shadow-none' : (openFilter === 'location' ? 'border-[#1447D4] ring-1 ring-[#1447D4]/10 rounded-[6px] shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]')"
                                 @click.stop="$refs.locationInput.focus()"
                             >
                                 <img src="{{ asset('images/location_on.svg') }}" class="size-[20px] opacity-70" alt="Location">
@@ -164,7 +167,7 @@
                             </div>
 
                             {{-- Simple Dropdown Panel --}}
-                            <div x-show="openFilter === 'location' && (locationQuery.length > 0 || !location)"
+                            <div x-show="isLocationDropdownOpen"
                                  x-transition:enter="transition ease-out duration-100"
                                  x-transition:enter-start="opacity-0 scale-95"
                                  x-transition:enter-end="opacity-100 scale-100"
