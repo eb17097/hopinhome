@@ -113,7 +113,7 @@
 
                                     {{-- Dropdown Panel --}}
                                     <div 
-                                        class="absolute z-10 top-[60px] left-0 bg-white border border-[#E8E8E7] rounded-b-[10px] rounded-tr-[10px] p-4 grid grid-cols-3 gap-3 w-[600px]"
+                                        class="absolute z-10 top-[60px] left-0 bg-white border border-[#E8E8E7] rounded-b-[12px] rounded-tr-[12px] p-4 grid grid-cols-6 gap-3 w-[832px]"
                                         @click.away="openFilter = null"
                                     >
                                         @php
@@ -127,12 +127,26 @@
                                             ];
                                         @endphp
                                         @foreach($types as $type)
-                                            <div class="flex flex-col items-center gap-2 p-3 border border-[#E8E8E7] rounded-[6px] cursor-pointer hover:border-[#1447D4] group"
-                                                 @click="propertyType = '{{ $type['name'] }}'; openFilter = null">
-                                                <div class="size-[32px]">
-                                                    <img src="{{ asset('images/' . $type['icon']) }}" class="w-full h-full" alt="{{ $type['name'] }}">
+                                            <div class="flex flex-col items-center justify-center gap-3 p-4 border rounded-[10px] cursor-pointer transition-all relative group h-[120px]"
+                                                 @click="propertyType = '{{ $type['name'] }}'; openFilter = null"
+                                                 :class="propertyType === '{{ $type['name'] }}' ? 'border-[#1447D4] bg-white' : 'border-[#E8E8E7] hover:border-[#1447D4]'">
+                                                
+                                                {{-- Selection Badge --}}
+                                                <div x-show="propertyType === '{{ $type['name'] }}'" 
+                                                     class="absolute -top-2 -right-2 size-6 bg-[#1447D4] rounded-full flex items-center justify-center shadow-sm z-10">
+                                                    <img src="{{ asset('images/check.svg') }}" class="size-3 brightness-0 invert" alt="">
                                                 </div>
-                                                <span class="text-[13px] font-medium text-[#1E1D1D] group-hover:text-[#1447D4] transition-colors text-center">{{ $type['name'] }}</span>
+
+                                                <div class="size-[48px] flex items-center justify-center">
+                                                    <img src="{{ asset('images/' . $type['icon']) }}" 
+                                                         class="w-full h-full object-contain transition-colors" 
+                                                         :class="propertyType === '{{ $type['name'] }}' ? 'brightness-0 saturate-100 invert-[21%] sepia-[86%] saturate-[4198%] hue-rotate-[222deg] brightness-[89%] contrast-[103%]' : ''"
+                                                         alt="{{ $type['name'] }}">
+                                                </div>
+                                                <span class="text-[14px] font-medium transition-colors text-center leading-tight"
+                                                      :class="propertyType === '{{ $type['name'] }}' ? 'text-[#1447D4]' : 'text-[#1E1D1D]'">
+                                                    {{ $type['name'] }}
+                                                </span>
                                             </div>
                                         @endforeach
                                     </div>
