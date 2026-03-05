@@ -33,6 +33,26 @@
             selectedPropertyTypes: [],
             selectedBedrooms: [],
             price: 'Price',
+            get formattedBedrooms() {
+                if (this.selectedBedrooms.length === 0) return 'Bedrooms';
+                
+                let sorted = [...this.selectedBedrooms].sort((a, b) => {
+                    if (a === 'Studio') return -1;
+                    if (b === 'Studio') return 1;
+                    return parseInt(a) - parseInt(b);
+                });
+
+                let studio = sorted.filter(v => v === 'Studio');
+                let numbers = sorted.filter(v => v !== 'Studio');
+                
+                let result = [];
+                if (studio.length > 0) result.push('Studio');
+                if (numbers.length > 0) {
+                    result.push(numbers.join(', ') + (numbers.length === 1 ? ' bedroom' : ' bedrooms'));
+                }
+                
+                return result.join(', ');
+            },
             togglePropertyType(type) {
                 if (this.selectedPropertyTypes.includes(type)) {
                     this.selectedPropertyTypes = this.selectedPropertyTypes.filter(t => t !== type);
@@ -185,9 +205,9 @@
                                 class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200 select-none"
                                 :class="openFilter === 'bedrooms' ? 'rounded-t-[6px] border-b-white shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
                             >
-                                <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="selectedBedrooms.length > 0 ? selectedBedrooms.join(', ') : 'Bedrooms'"></span>
-                                <img src="{{ asset('images/chevron.svg') }}"
-                                     class="size-[16px] opacity-60 transition-transform duration-200"
+                                <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="formattedBedrooms"></span>
+                                <img src="{{ asset('images/chevron.svg') }}" 
+                                     class="size-[16px] opacity-60 transition-transform duration-200" 
                                      :class="openFilter === 'bedrooms' ? 'rotate-180' : ''" alt="">
                             </div>
 
