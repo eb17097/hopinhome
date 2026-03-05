@@ -120,7 +120,8 @@
 
                         {{-- Bedrooms --}}
                         <div class="relative">
-                            <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center justify-between px-[16px] cursor-pointer"
+                            <div class="bg-white border border-[#E8E8E7] h-[48px] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200 z-40 relative"
+                                 :class="openFilter === 'bedrooms' ? 'rounded-t-[6px] border-b-white shadow-[0px_-4px_16px_rgba(0,0,0,0.05)]' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
                                  @click.stop="openFilter = openFilter === 'bedrooms' ? null : 'bedrooms'">
                                 <span class="text-[16px] text-[#1E1D1D] truncate" x-text="bedrooms"></span>
                                 <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform flex-shrink-0" :class="openFilter === 'bedrooms' ? 'rotate-180' : ''" alt="">
@@ -130,7 +131,7 @@
                             <div x-show="openFilter === 'bedrooms'" 
                                  x-transition 
                                  @click.away="openFilter = null"
-                                 class="absolute top-full left-0 mt-2 w-[378px] bg-white rounded-[6px] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] border border-[#E8E8E7] z-30 px-4 py-5"
+                                 class="absolute top-[47px] left-0 w-[378px] bg-white rounded-b-[6px] rounded-tr-[6px] shadow-[0px_8px_24px_rgba(0,0,0,0.1)] border border-[#E8E8E7] z-30 px-4 py-5"
                                  x-cloak>
                                 <div class="flex items-center gap-[8px]">
                                     @foreach(['Studio', '1', '2', '3', '4', '5+'] as $val)
