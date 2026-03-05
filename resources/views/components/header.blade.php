@@ -2,19 +2,19 @@
 
 @php use Illuminate\Support\Facades\Auth; @endphp
 
-<div x-data="{ 
+<div x-data="{
     scrolled: window.scrollY > 50,
     showGlobalMenu: false
 }"
 @scroll.window="scrolled = window.scrollY > 50"
 class="z-50 {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
-    
+
     <nav :class="{
-            'bg-white border-b border-[#e8e8e7] shadow-sm': scrolled || showGlobalMenu || !@json($isLanding),
+            'bg-white border-b border-[#e8e8e7]': scrolled || showGlobalMenu || !@json($isLanding),
             'bg-transparent border-b border-transparent': !scrolled && !showGlobalMenu && @json($isLanding)
          }"
          class="transition-all duration-300 h-[88px] flex items-center">
-        
+
         <div class="max-w-[1440px] mx-auto px-8 w-full flex justify-between items-center h-full">
             {{-- Logo --}}
             <div class="flex items-center">
@@ -66,7 +66,7 @@ class="z-50 {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
                             <img src="{{ asset('images/language_black.svg') }}" alt="Language" class="w-6 h-6">
                         @endif
                     </button>
-                    <button @click.prevent="$dispatch('open-auth-modal')" 
+                    <button @click.prevent="$dispatch('open-auth-modal')"
                             class="bg-electric-blue border border-electric-blue text-[#f9f9f8] px-[20px] py-[10px] rounded-[29.5px] text-[16px] font-medium leading-[1.22] tracking-[-0.48px] hover:opacity-90 transition-all text-center whitespace-nowrap">
                         Log in or sign up
                     </button>
@@ -76,7 +76,7 @@ class="z-50 {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
     </nav>
 
     {{-- Global Mega Menu --}}
-    <div x-show="showGlobalMenu" 
+    <div x-show="showGlobalMenu"
          x-cloak
          x-transition:enter="transition ease-out duration-200"
          x-transition:enter-start="opacity-0 -translate-y-2"
@@ -85,12 +85,12 @@ class="z-50 {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
          x-transition:leave-start="opacity-100 translate-y-0"
          x-transition:leave-end="opacity-0 -translate-y-2"
          @click.away="showGlobalMenu = false"
-         class="absolute top-full left-0 w-full bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] border-t border-[#E8E8E7] py-12">
-        
+         class="absolute top-full left-0 w-full bg-white border-b border-[#e8e8e7]">
+
         <div class="max-w-[1440px] mx-auto px-8 grid grid-cols-4 relative">
             {{-- United Arab Emirates --}}
-            <div class="pr-12">
-                <h3 class="text-[18px] font-medium text-[#1E1D1D] tracking-[-0.36px] mb-6">United Arab Emirates</h3>
+            <div class="pr-8 py-10">
+                <h3 class="text-[18px] font-medium text-[#1E1D1D] tracking-[-0.36px] mb-3">United Arab Emirates</h3>
                 <ul class="space-y-3">
                     @foreach(['Dubai', 'Abu Dhabi', 'Sharjah', 'Ajman', 'Ras Al Khaimah', 'Fujairah', 'Umm Al Quwain'] as $city)
                         <li><a href="#" class="text-[15px] text-[#1E1D1D] hover:text-electric-blue transition-colors">{{ $city }}</a></li>
@@ -100,8 +100,8 @@ class="z-50 {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
             </div>
 
             {{-- Germany --}}
-            <div class="px-12 border-l border-[#d9d9d9]/30">
-                <h3 class="text-[18px] font-medium text-[#1E1D1D] tracking-[-0.36px] mb-6">Germany</h3>
+            <div class="px-8 py-10 border-l border-[#d9d9d9]/30">
+                <h3 class="text-[18px] font-medium text-[#1E1D1D] tracking-[-0.36px] mb-3">Germany</h3>
                 <ul class="space-y-3">
                     @foreach(['Berlin', 'Munich', 'Hamburg', 'Frankfurt am Main', 'Cologne', 'Stuttgart', 'Düsseldorf'] as $city)
                         <li><a href="#" class="text-[15px] text-[#1E1D1D] hover:text-electric-blue transition-colors">{{ $city }}</a></li>
@@ -111,8 +111,8 @@ class="z-50 {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
             </div>
 
             {{-- Latvia --}}
-            <div class="px-12 border-l border-[#d9d9d9]/30">
-                <h3 class="text-[18px] font-medium text-[#1E1D1D] tracking-[-0.36px] mb-6">Latvia</h3>
+            <div class="px-8 py-10 border-l border-[#d9d9d9]/30">
+                <h3 class="text-[18px] font-medium text-[#1E1D1D] tracking-[-0.36px] mb-3">Latvia</h3>
                 <ul class="space-y-3">
                     @foreach(['Riga', 'Daugavpils', 'Liepāja', 'Jelgava', 'Jūrmala', 'Ventspils', 'Rēzekne'] as $city)
                         <li><a href="#" class="text-[15px] text-[#1E1D1D] hover:text-electric-blue transition-colors">{{ $city }}</a></li>
@@ -122,8 +122,8 @@ class="z-50 {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
             </div>
 
             {{-- Countries --}}
-            <div class="pl-12 border-l border-[#d9d9d9]/30">
-                <h3 class="text-[18px] font-medium text-[#1E1D1D] tracking-[-0.36px] mb-6">Countries</h3>
+            <div class="pl-8 py-10 border-l border-[#d9d9d9]/30">
+                <h3 class="text-[18px] font-medium text-[#1E1D1D] tracking-[-0.36px] mb-3">Countries</h3>
                 <ul class="space-y-3">
                     <li><a href="#" class="text-[16px] text-[#1E1D1D] hover:text-electric-blue transition-colors">United Arab Emirates</a></li>
                     <li><a href="#" class="text-[16px] text-[#1E1D1D] hover:text-electric-blue transition-colors">Germany</a></li>
