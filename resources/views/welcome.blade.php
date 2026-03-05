@@ -3,6 +3,21 @@
         background-image: none !important;
     }
     [x-cloak] { display: none !important; }
+    
+    /* Enable dual range slider handles */
+    input[type=range] {
+        pointer-events: none;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+    input[type=range]::-webkit-slider-thumb {
+        pointer-events: auto;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+    input[type=range]::-moz-range-thumb {
+        pointer-events: auto;
+    }
 </style>
 <x-main-layout title="Hopinhome">
 
