@@ -1,6 +1,6 @@
 @props(['listings'])
 
-<div class="bg-white py-[80px]">
+<div class="bg-white py-[96px]">
     <div class="max-w-[1204px] mx-auto px-4 lg:px-0">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-[40px] gap-4">
             <div>

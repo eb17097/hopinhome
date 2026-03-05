@@ -420,7 +420,7 @@
 </div>
 
 {{-- Popular Cities Section --}}
-<div class="bg-white py-[80px]">
+<div class="bg-white py-[96px]">
     <div class="max-w-[1204px] mx-auto px-4 lg:px-0">
         <h2 class="text-[32px] font-medium leading-[1.28] tracking-[-0.64px] text-[#1E1D1D] mb-8 font-['General_Sans',_sans-serif]">
             Popular cities in the UAE
@@ -488,16 +488,16 @@
 <x-listings.popular-listings :listings="$listings" />
 
 {{-- Articles Section --}}
-<div class="bg-[#F9F9F8] py-[80px]">
+<div class="bg-[#F9F9F8] py-[96px]">
     <div class="max-w-[1204px] mx-auto px-4 lg:px-0">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-[40px] gap-4">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-[43px] gap-4">
             <div>
                 <h2 class="text-[32px] font-medium leading-[1.28] tracking-[-0.64px] text-[#1E1D1D] font-['General_Sans',_sans-serif]">
                     Inside <span class="text-[#1447D4]">the UAE:</span> Tips, Insights & Living
                 </h2>
             </div>
 
-            <a href="#" class="inline-flex items-center justify-center px-[32px] py-[16px] border border-[#E8E8E7] rounded-[29.5px] text-[16px] font-medium text-[#1E1D1D] bg-white hover:bg-gray-50 transition tracking-[-0.48px] shadow-sm font-['General_Sans',_sans-serif]">
+            <a href="#" class="h-[52px] inline-flex items-center justify-center px-[32px] py-[16px] border border-[#E8E8E7] rounded-[29.5px] text-[16px] font-medium text-[#1E1D1D] bg-white hover:bg-gray-50 transition tracking-[-0.48px] shadow-sm font-['General_Sans',_sans-serif]">
                 View more articles
             </a>
         </div>
@@ -533,10 +533,10 @@
 </div>
 
 {{-- About Section --}}
-<div class="bg-white py-[80px]">
+<div class="bg-white py-[96px]">
     <div class="max-w-[1204px] mx-auto px-4 lg:px-0">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-[120px] items-center">
-            <div class="relative rounded-[14px] overflow-hidden aspect-square shadow-sm">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-[80px] items-center">
+            <div class="relative rounded-[14px] overflow-hidden aspect-square shadow-sm w-[586px] h-[586px]">
                 <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop"
                      alt="Cozy Living Room"
                      class="w-full h-full object-cover">
