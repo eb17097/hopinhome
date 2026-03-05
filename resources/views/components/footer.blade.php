@@ -1,5 +1,5 @@
-<footer class="bg-white pt-16 pb-8 border-t border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<footer class="bg-white border-t border-[#E8E8E7]">
+    <div class="max-w-[1204px] py-[96px] mx-auto">
 
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
 
@@ -8,7 +8,7 @@
                     <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopInHome Logo" class="h-12 w-auto">
                 </div>
 
-                <div class="bg-gray-50 border border-gray-100 rounded-xl p-6 max-w-sm">
+                <div class="border border-[#E8E8E7] rounded-xl p-6 max-w-sm">
                     <p class="text-base text-gray-500 mb-4">Follow us for the latest insights</p>
                     <div class="flex space-x-5 text-gray-400">
                         <a href="#" class="hover:text-blue-700 transition"><img src="{{ asset('images/facebook-darkblue.svg') }}" alt="Facebook" class="w-6 h-6"></a>
@@ -43,7 +43,7 @@
     </div>
 
     <div class="border-t">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="max-w-[1204px] mx-auto border-gray-100 p-[22px] flex flex-col md:flex-row justify-between items-center gap-4">
             <p class="text-gray-500 text-sm opacity-80">
                 © 2026 HopInHome.com
             </p>

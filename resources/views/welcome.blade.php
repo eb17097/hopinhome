@@ -535,9 +535,9 @@
 {{-- About Section --}}
 <div class="bg-white py-[96px]">
     <div class="max-w-[1204px] mx-auto px-4 lg:px-0">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-[80px] items-center">
-            <div class="relative rounded-[14px] overflow-hidden aspect-square shadow-sm w-[586px] h-[586px]">
-                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop"
+        <div class="flex gap-[80px] items-center">
+            <div class="relative rounded-[14px] aspect-square shadow-sm w-[586px] h-[586px]">
+                <img src="{{ asset('images/about_landing_img.png') }}"
                      alt="Cozy Living Room"
                      class="w-full h-full object-cover">
             </div>
@@ -547,7 +547,7 @@
                     About <span class="text-[#1447D4]">HopInHome</span>
                 </h2>
 
-                <div class="space-y-6 text-[18px] text-[#464646] leading-[1.5] font-['General_Sans',_sans-serif]">
+                <div class="space-y-6 text-[18px] text-[#464646] leading-[1.5] font-['General_Sans',_sans-serif] w-[474px]">
                     <p>
                         At HopInHome our mission is to make renting <span class="font-medium text-[#1E1D1D]">easier and more transparent</span>.
                         We help renters navigate one of the most stressful parts of moving by providing verified listings,
@@ -561,7 +561,7 @@
                 </div>
 
                 <div class="mt-8">
-                    <a href="#" class="inline-flex items-center justify-center px-[32px] py-[16px] border border-[#1447D4] rounded-[29.5px] text-[16px] font-medium text-[#1447D4] hover:bg-blue-50 transition duration-300 font-['General_Sans',_sans-serif] tracking-[-0.48px]">
+                    <a href="#" class="inline-flex items-center min-w-[160px] h-[52px] justify-center px-[32px] py-[16px] border border-[#1447D4] rounded-[29.5px] text-[16px] font-medium text-[#1447D4] hover:bg-blue-50 transition duration-300 font-['General_Sans',_sans-serif] tracking-[-0.48px]">
                         Learn more
                     </a>
                 </div>
@@ -571,9 +571,9 @@
 </div>
 
 {{-- CTA Section --}}
-<div class="bg-white pb-[80px]">
+<div class="bg-white pb-[128px]">
     <div class="max-w-[1204px] mx-auto px-4 lg:px-0">
-        <div class="relative bg-[#1447D4] rounded-[14px] px-[80px] py-[100px] overflow-hidden">
+        <div class="relative bg-[#1447D4] rounded-[14px] px-[100px] py-[96px] overflow-hidden">
             {{-- Decorative pattern --}}
             <div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
                 <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover scale-150">
@@ -586,11 +586,11 @@
                     Reach the <br /> Right Renters
                 </h2>
 
-                <p class="text-[#F9F9F8] text-[18px] leading-[1.5] mb-10 font-['General_Sans',_sans-serif]">
+                <p class="text-[#F9F9F8] text-[18px] leading-[1.5] mb-8 font-['General_Sans',_sans-serif]">
                     Publish your listing and connect with people<br>who value clarity and honesty.
                 </p>
 
-                <a href="#" class="inline-flex items-center justify-center px-[32px] py-[16px] bg-white text-[#1E1D1D] text-[16px] font-medium rounded-[29.5px] hover:bg-gray-50 transition shadow-sm font-['General_Sans',_sans-serif] tracking-[-0.48px]">
+                <a href="#" class="inline-flex items-center min-w-[160px] h-[52px] justify-center px-[32px] py-[16px] bg-white text-[#1E1D1D] text-[16px] font-medium rounded-[29.5px] hover:bg-gray-50 transition shadow-sm font-['General_Sans',_sans-serif] tracking-[-0.48px]">
                     Learn more
                 </a>
             </div>
