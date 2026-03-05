@@ -134,7 +134,7 @@
                                  x-transition:enter-start="opacity-0"
                                  x-transition:enter-end="opacity-100"
                                  @click.away="openFilter = null"
-                                 class="absolute top-[47px] left-0 w-[378px] bg-white rounded-b-[12px] rounded-tr-[12px] shadow-[0px_10px_30px_rgba(0,0,0,0.1)] border border-[#E8E8E7] z-30 pt-12 pb-6 px-5"
+                                 class="absolute top-[47px] left-0 w-[378px] bg-white rounded-b-[10px] rounded-tr-[10px] shadow-[0px_10px_30px_rgba(0,0,0,0.08)] border border-[#E8E8E7] z-30 pt-[64px] pb-[14px] px-4"
                                  x-cloak>
                                 <div class="flex items-center gap-[8px]">
                                     @foreach(['Studio', '1', '2', '3', '4', '5+'] as $val)
