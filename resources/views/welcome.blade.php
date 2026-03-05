@@ -39,7 +39,7 @@
                         {{-- Location Input --}}
                         <div class="relative flex-grow">
                             <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center px-[16px] gap-[12px] cursor-pointer"
-                                 @click="openFilter = openFilter === 'location' ? null : 'location'">
+                                 @click.stop="openFilter = openFilter === 'location' ? null : 'location'">
                                 <img src="{{ asset('images/location_on.svg') }}" class="size-[20px] opacity-70" alt="Location">
                                 <div class="flex items-center flex-grow">
                                     <span x-show="location" class="text-[16px] text-[#1E1D1D]" x-text="location"></span>
@@ -85,7 +85,7 @@
                         {{-- Property Type --}}
                         <div class="relative flex-1">
                             <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center justify-between px-[16px] cursor-pointer"
-                                 @click="openFilter = openFilter === 'propertyType' ? null : 'propertyType'">
+                                 @click.stop="openFilter = openFilter === 'propertyType' ? null : 'propertyType'">
                                 <span class="text-[16px] text-[#1E1D1D]" x-text="propertyType"></span>
                                 <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform" :class="openFilter === 'propertyType' ? 'rotate-180' : ''" alt="">
                             </div>
@@ -121,7 +121,7 @@
                         {{-- Bedrooms --}}
                         <div class="relative flex-1">
                             <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center justify-between px-[16px] cursor-pointer"
-                                 @click="openFilter = openFilter === 'bedrooms' ? null : 'bedrooms'">
+                                 @click.stop="openFilter = openFilter === 'bedrooms' ? null : 'bedrooms'">
                                 <span class="text-[16px] text-[#1E1D1D]" x-text="bedrooms"></span>
                                 <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform" :class="openFilter === 'bedrooms' ? 'rotate-180' : ''" alt="">
                             </div>
@@ -148,7 +148,7 @@
                         {{-- Price --}}
                         <div class="relative flex-1">
                             <div class="bg-white border border-[#E8E8E7] h-[48px] rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] flex items-center justify-between px-[16px] cursor-pointer"
-                                 @click="openFilter = openFilter === 'price' ? null : 'price'">
+                                 @click.stop="openFilter = openFilter === 'price' ? null : 'price'">
                                 <span class="text-[16px] text-[#1E1D1D]" x-text="price"></span>
                                 <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform" :class="openFilter === 'price' ? 'rotate-180' : ''" alt="">
                             </div>
