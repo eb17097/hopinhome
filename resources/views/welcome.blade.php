@@ -130,14 +130,14 @@
                             <div x-show="openFilter === 'bedrooms'" 
                                  x-transition 
                                  @click.away="openFilter = null"
-                                 class="absolute top-full left-0 mt-2 w-full min-w-[200px] bg-white rounded-[6px] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] border border-[#E8E8E7] z-30 p-4"
+                                 class="absolute top-full left-0 mt-2 w-[378px] bg-white rounded-[6px] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] border border-[#E8E8E7] z-30 p-5"
                                  x-cloak>
-                                <div class="grid grid-cols-3 gap-2">
+                                <div class="flex items-center gap-2 flex-wrap">
                                     @foreach(['Studio', '1', '2', '3', '4', '5+'] as $val)
                                         <button type="button" 
                                                 @click="bedrooms = '{{ $val }}'; openFilter = null"
-                                                class="py-2 border border-[#E8E8E7] rounded-[4px] text-[14px] font-medium transition-all hover:border-[#1447D4]"
-                                                :class="bedrooms === '{{ $val }}' ? 'bg-[#1447D4] text-white border-[#1447D4]' : 'text-[#1E1D1D]'">
+                                                class="h-[42px] {{ $val === 'Studio' ? 'px-6' : 'w-[42px]' }} border border-[#E8E8E7] rounded-full text-[14px] font-medium transition-all hover:border-[#1447D4] flex items-center justify-center"
+                                                :class="bedrooms === '{{ $val }}' ? 'bg-[#1447D4] text-white border-[#1447D4]' : 'bg-white text-[#1E1D1D] border-[#E8E8E7]'">
                                             {{ $val }}
                                         </button>
                                     @endforeach
