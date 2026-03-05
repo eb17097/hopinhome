@@ -147,9 +147,9 @@
                                 <div class="flex items-center gap-[8px] flex-grow overflow-hidden">
                                     {{-- Selected Location Tag --}}
                                     <template x-if="location">
-                                        <div class="flex items-center gap-2 bg-[#F9F9F8] border border-[#E8E8E7] rounded-[4px] px-2 py-1 h-[32px] shrink-0">
-                                            <span class="text-[16px] text-[#464646] font-normal truncate" x-text="location"></span>
-                                            <button type="button" @click.stop="location = ''; locationQuery = ''" class="flex items-center justify-center hover:bg-gray-200 rounded-[2px] size-5 transition-colors">
+                                        <div class="flex items-center gap-2 bg-[#F9F9F8] border border-[#E8E8E7] rounded-[4px] px-2 py-1 h-[32px] min-w-0">
+                                            <span class="text-[16px] text-[#464646] font-normal truncate block min-w-0" x-text="location"></span>
+                                            <button type="button" @click.stop="location = ''; locationQuery = ''" class="flex items-center justify-center hover:bg-gray-200 rounded-[2px] size-5 transition-colors shrink-0">
                                                 <img src="{{ asset('images/close.svg') }}" class="h-[16px] w-[16px] opacity-60" alt="Clear">
                                             </button>
                                         </div>
@@ -161,7 +161,7 @@
                                         x-model="locationQuery"
                                         @focus="openFilter = 'location'"
                                         placeholder="Enter City or Location"
-                                        class="flex-grow bg-transparent border-none focus:ring-0 p-0 text-[16px] text-[#1E1D1D] placeholder-[#707070] font-normal"
+                                        class="flex-grow min-w-0 bg-transparent border-none focus:ring-0 p-0 text-[16px] text-[#1E1D1D] placeholder-[#707070] font-normal"
                                     >
                                 </div>
                             </div>
