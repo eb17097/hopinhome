@@ -30,9 +30,16 @@
         <div x-data="{
             openFilter: null,
             location: '',
-            propertyType: 'Property type',
+            selectedPropertyTypes: [],
             bedrooms: 'Bedrooms',
-            price: 'Price'
+            price: 'Price',
+            togglePropertyType(type) {
+                if (this.selectedPropertyTypes.includes(type)) {
+                    this.selectedPropertyTypes = this.selectedPropertyTypes.filter(t => t !== type);
+                } else {
+                    this.selectedPropertyTypes.push(type);
+                }
+            }
         }" class="bg-[#FBFBFB]/90 backdrop-blur-[6.05px] p-[12px] rounded-[14px] shadow-sm mx-auto w-full max-w-[720px] text-left border border-white/20 relative z-20">
             <form action="#" method="GET" style="margin-bottom:0;" @submit.prevent>
                 <div class="flex flex-col gap-[12px]">
@@ -92,7 +99,7 @@
                                 class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200 select-none"
                                 :class="openFilter === 'propertyType' ? 'rounded-t-[6px] border-b-white shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
                             >
-                                <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="propertyType"></span>
+                                <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="selectedPropertyTypes.length > 0 ? selectedPropertyTypes.join(', ') : 'Property type'"></span>
                                 <img src="{{ asset('images/chevron.svg') }}" 
                                      class="size-[16px] opacity-60 transition-transform duration-200" 
                                      :class="openFilter === 'propertyType' ? 'rotate-180' : ''" alt="">
@@ -128,11 +135,11 @@
                                         @endphp
                                         @foreach($types as $type)
                                             <div class="flex flex-col items-center justify-center gap-3 p-4 border rounded-[10px] cursor-pointer transition-all relative group h-[120px]"
-                                                 @click="propertyType = '{{ $type['name'] }}'; openFilter = null"
-                                                 :class="propertyType === '{{ $type['name'] }}' ? 'border-[#1447D4] bg-white' : 'border-[#E8E8E7] hover:border-[#1447D4]'">
+                                                 @click="togglePropertyType('{{ $type['name'] }}')"
+                                                 :class="selectedPropertyTypes.includes('{{ $type['name'] }}') ? 'border-[#1447D4] bg-white' : 'border-[#E8E8E7] hover:border-[#1447D4]'">
                                                 
                                                 {{-- Selection Badge --}}
-                                                <div x-show="propertyType === '{{ $type['name'] }}'" 
+                                                <div x-show="selectedPropertyTypes.includes('{{ $type['name'] }}')" 
                                                      class="absolute -top-2 -right-2 size-6 bg-[#1447D4] rounded-full flex items-center justify-center shadow-sm z-10">
                                                     <img src="{{ asset('images/check.svg') }}" class="size-3 brightness-0 invert" alt="">
                                                 </div>
@@ -140,11 +147,11 @@
                                                 <div class="size-[48px] flex items-center justify-center">
                                                     <img src="{{ asset('images/' . $type['icon']) }}" 
                                                          class="w-full h-full object-contain transition-colors" 
-                                                         :class="propertyType === '{{ $type['name'] }}' ? 'brightness-0 saturate-100 invert-[21%] sepia-[86%] saturate-[4198%] hue-rotate-[222deg] brightness-[89%] contrast-[103%]' : ''"
+                                                         :class="selectedPropertyTypes.includes('{{ $type['name'] }}') ? 'brightness-0 saturate-100 invert-[21%] sepia-[86%] saturate-[4198%] hue-rotate-[222deg] brightness-[89%] contrast-[103%]' : ''"
                                                          alt="{{ $type['name'] }}">
                                                 </div>
                                                 <span class="text-[14px] font-medium transition-colors text-center leading-tight"
-                                                      :class="propertyType === '{{ $type['name'] }}' ? 'text-[#1447D4]' : 'text-[#1E1D1D]'">
+                                                      :class="selectedPropertyTypes.includes('{{ $type['name'] }}') ? 'text-[#1447D4]' : 'text-[#1E1D1D]'">
                                                     {{ $type['name'] }}
                                                 </span>
                                             </div>
