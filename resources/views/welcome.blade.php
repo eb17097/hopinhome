@@ -25,7 +25,7 @@
         </p>
 
         {{-- Filters Section --}}
-        <div x-data="{ 
+        <div x-data="{
             openFilter: null,
             location: '',
             propertyType: 'Property type',
@@ -48,8 +48,8 @@
                             </div>
 
                             {{-- Location Dropdown --}}
-                            <div x-show="openFilter === 'location'" 
-                                 x-transition 
+                            <div x-show="openFilter === 'location'"
+                                 x-transition
                                  @click.away="openFilter = null"
                                  class="absolute top-full left-0 mt-2 w-full bg-white rounded-[6px] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] border border-[#E8E8E7] z-30 py-4 overflow-hidden"
                                  x-cloak>
@@ -91,8 +91,8 @@
                             </div>
 
                             {{-- Property Type Dropdown --}}
-                            <div x-show="openFilter === 'propertyType'" 
-                                 x-transition 
+                            <div x-show="openFilter === 'propertyType'"
+                                 x-transition
                                  @click.away="openFilter = null"
                                  class="absolute top-full left-0 mt-2 w-[600px] bg-white rounded-[6px] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] border border-[#E8E8E7] z-30 p-4 grid grid-cols-3 gap-3"
                                  x-cloak>
@@ -121,23 +121,23 @@
                         {{-- Bedrooms --}}
                         <div class="relative" :style="openFilter === 'bedrooms' ? 'filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.06)) drop-shadow(0 2px 4px rgba(0,0,0,0.02))' : ''">
                             {{-- Trigger Button --}}
-                            <div 
+                            <div
                                 @click.stop="openFilter = openFilter === 'bedrooms' ? null : 'bedrooms'"
                                 class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200"
                                 :class="openFilter === 'bedrooms' ? 'rounded-t-[6px] border-b-white' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
                             >
                                 <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="bedrooms"></span>
-                                <img src="{{ asset('images/chevron.svg') }}" 
-                                     class="size-[16px] opacity-60 transition-transform duration-200" 
+                                <img src="{{ asset('images/chevron.svg') }}"
+                                     class="size-[16px] opacity-60 transition-transform duration-200"
                                      :class="openFilter === 'bedrooms' ? 'rotate-180' : ''" alt="">
                             </div>
 
                             <template x-if="openFilter === 'bedrooms'">
                                 <div class="absolute top-0 left-0 w-full">
                                     {{-- Stem - Connecting piece --}}
-                                    <div 
-                                        class="absolute z-30 left-0 bg-white border-l border-r border-[#E8E8E7] w-full" 
-                                        style="top: 47px; height: 16px;"
+                                    <div
+                                        class="absolute z-30 left-0 bg-white border-l border-r border-[#E8E8E7] w-full"
+                                        style="top: 45px; height: 16px;"
                                     >
                                         {{-- Flawless Inner Curve Fillet --}}
                                         <div class="absolute bottom-0 -right-[12px] size-[12px] overflow-hidden pointer-events-none">
@@ -146,14 +146,14 @@
                                     </div>
 
                                     {{-- Dropdown Panel --}}
-                                    <div 
-                                        class="absolute z-10 top-[62px] left-0 bg-white border border-[#E8E8E7] rounded-b-[10px] rounded-tr-[10px] p-5 flex items-center gap-[12px] w-max"
+                                    <div
+                                        class="absolute z-10 top-[60px] left-0 bg-white border border-[#E8E8E7] rounded-b-[8px] rounded-tr-[8px] p-5 flex items-center gap-[12px] w-max"
                                         @click.away="openFilter = null"
                                     >
                                         @foreach(['Studio', '1', '2', '3', '4', '5+'] as $val)
-                                            <button type="button" 
+                                            <button type="button"
                                                     @click="bedrooms = '{{ $val }}'; openFilter = null"
-                                                    class="flex items-center justify-center transition-all duration-150 text-[15px] font-medium focus:outline-none {{ $val === 'Studio' ? 'px-6 py-[11px]' : 'w-[46px] h-[46px]' }} rounded-full"
+                                                    class="flex items-center justify-center transition-all duration-150 text-[16px] font-medium focus:outline-none {{ $val === 'Studio' ? 'px-6 py-[7px]' : 'w-[40px] h-[40px]' }} rounded-full"
                                                     :class="bedrooms === '{{ $val }}' ? 'bg-[#1447D4] text-white shadow-sm' : 'bg-white border border-[#E2E2E2] text-[#222222] hover:border-[#222222] hover:bg-gray-50'">
                                                 {{ $val }}
                                             </button>
@@ -172,8 +172,8 @@
                             </div>
 
                             {{-- Price Dropdown --}}
-                            <div x-show="openFilter === 'price'" 
-                                 x-transition 
+                            <div x-show="openFilter === 'price'"
+                                 x-transition
                                  @click.away="openFilter = null"
                                  class="absolute top-full left-0 mt-2 w-full min-w-[260px] bg-white rounded-[6px] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] border border-[#E8E8E7] z-30 p-5"
                                  x-cloak>
