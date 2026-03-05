@@ -576,9 +576,9 @@
         <div class="relative bg-[#1447D4] rounded-[14px] px-[100px] py-[96px] overflow-hidden">
             {{-- Decorative pattern --}}
             <div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
-                <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover scale-150">
-                    <circle cx="400" cy="200" r="200" fill="white"/>
-                </svg>
+                <div class="absolute w-[730px] -bottom-[290px] -right-[110px]">
+                    <img src="{{ asset('images/hopinhome_symbol_white.svg') }}" alt="" class="w-full h-auto">
+                </div>
             </div>
 
             <div class="relative z-10 max-w-[500px]">
