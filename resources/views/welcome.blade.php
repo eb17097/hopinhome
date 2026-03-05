@@ -116,7 +116,7 @@
             <form action="#" method="GET" style="margin-bottom:0;" @submit.prevent>
                 <div class="flex flex-col gap-[12px]">
                     {{-- Top Row --}}
-                    <div class="grid grid-cols-3 gap-[12px]">
+                    <div class="grid grid-cols-3 gap-[12px] relative" :class="openFilter === 'location' ? 'z-50' : 'z-30'">
                         {{-- Location Input --}}
                         <div class="relative col-span-2" :style="openFilter === 'location' ? 'filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.06)) drop-shadow(0 2px 4px rgba(0,0,0,0.02))' : ''">
                             {{-- Trigger Button --}}
@@ -133,7 +133,7 @@
                             </div>
 
                             <template x-if="openFilter === 'location'">
-                                <div class="absolute top-0 left-0 w-full">
+                                <div class="absolute top-0 left-0 w-full z-30">
                                     {{-- Stem --}}
                                     <div 
                                         class="absolute z-30 left-0 bg-white border-l border-r border-[#E8E8E7] w-full" 
@@ -183,7 +183,7 @@
                     </div>
 
                     {{-- Bottom Row --}}
-                    <div class="grid grid-cols-3 gap-[12px]">
+                    <div class="grid grid-cols-3 gap-[12px] relative" :class="openFilter && openFilter !== 'location' ? 'z-40' : 'z-20'">
                         {{-- Property Type --}}
                         <div class="relative" :style="openFilter === 'propertyType' ? 'filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.06)) drop-shadow(0 2px 4px rgba(0,0,0,0.02))' : ''">
                             {{-- Trigger Button --}}
