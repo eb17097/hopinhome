@@ -122,12 +122,22 @@
                             {{-- Trigger Button --}}
                             <div 
                                 @click.stop="openFilter = openFilter === 'location' ? null : 'location'"
-                                class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center px-[16px] gap-[12px] cursor-pointer transition-all duration-200 select-none rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]"
+                                class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center px-[12px] gap-[8px] cursor-pointer transition-all duration-200 select-none rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]"
                             >
                                 <img src="{{ asset('images/location_on.svg') }}" class="size-[20px] opacity-70" alt="Location">
-                                <div class="flex items-center flex-grow overflow-hidden">
-                                    <span x-show="location" class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="location"></span>
-                                    <span x-show="!location" class="text-[16px] text-[#707070] truncate font-normal">Enter City or Location</span>
+                                
+                                <div class="flex items-center gap-[8px] flex-grow overflow-hidden">
+                                    {{-- Selected Location Tag --}}
+                                    <template x-if="location">
+                                        <div class="flex items-center gap-2 bg-[#F9F9F8] border border-[#E8E8E7] rounded-[4px] px-2 py-1 h-[32px] shrink-0">
+                                            <span class="text-[16px] text-[#464646] font-normal truncate" x-text="location"></span>
+                                            <button type="button" @click.stop="location = ''" class="flex items-center justify-center">
+                                                <img src="{{ asset('images/close.svg') }}" class="size-3 opacity-60" alt="Clear">
+                                            </button>
+                                        </div>
+                                    </template>
+                                    
+                                    <span class="text-[16px] text-[#707070] truncate font-normal">Enter City or Location</span>
                                 </div>
                             </div>
 
