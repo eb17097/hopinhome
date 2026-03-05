@@ -145,10 +145,19 @@
                                                 </div>
 
                                                 <div class="size-[48px] flex items-center justify-center">
-                                                    <img src="{{ asset('images/' . $type['icon']) }}" 
-                                                         class="w-full h-full object-contain transition-colors" 
-                                                         :class="selectedPropertyTypes.includes('{{ $type['name'] }}') ? 'brightness-0 saturate-100 invert-[21%] sepia-[86%] saturate-[4198%] hue-rotate-[222deg] brightness-[89%] contrast-[103%]' : ''"
-                                                         alt="{{ $type['name'] }}">
+                                                    <div class="w-full h-full transition-colors duration-200"
+                                                         :style="{ 
+                                                            'mask-image': 'url({{ asset('images/') }}/' + '{{ $type['icon'] }}' + ')',
+                                                            '-webkit-mask-image': 'url({{ asset('images/') }}/' + '{{ $type['icon'] }}' + ')',
+                                                            'mask-size': 'contain',
+                                                            '-webkit-mask-size': 'contain',
+                                                            'mask-repeat': 'no-repeat',
+                                                            '-webkit-mask-repeat': 'no-repeat',
+                                                            'mask-position': 'center',
+                                                            '-webkit-mask-position': 'center',
+                                                            'background-color': selectedPropertyTypes.includes('{{ $type['name'] }}') ? '#1447D4' : '#04247B'
+                                                         }">
+                                                    </div>
                                                 </div>
                                                 <span class="text-[14px] font-medium transition-colors text-center leading-tight"
                                                       :class="selectedPropertyTypes.includes('{{ $type['name'] }}') ? 'text-[#1447D4]' : 'text-[#1E1D1D]'">
