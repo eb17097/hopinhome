@@ -74,7 +74,7 @@
             },
             selectedPropertyTypes: [],
             selectedBedrooms: [],
-            minPrice: 100000,
+            minPrice: 0,
             maxPrice: 1000000,
             minRange: 0,
             maxRange: 1000000,
@@ -100,14 +100,18 @@
                 return result.join(', ');
             },
             get formattedPrice() {
-                if (this.minPrice === this.minRange && !this.maxPrice) return 'Price';
-                let min = this.minPrice ? this.minPrice.toLocaleString() : '0';
-                let max = this.maxPrice ? this.maxPrice.toLocaleString() : 'Any';
+                const min = this.minPrice || 0;
+                const max = this.maxPrice || this.maxRange;
 
-                if (this.maxPrice) {
-                    return `${min} - ${max} AED`;
+                if (min === this.minRange && max === this.maxRange) {
+                    return 'Price';
                 }
-                return `From ${min} AED`;
+
+                if (max === this.maxRange) {
+                    return `From ${min.toLocaleString()} AED`;
+                }
+
+                return `${min.toLocaleString()} - ${max.toLocaleString()} AED`;
             },
             get minPercent() {
                 return ((this.minPrice - this.minRange) / (this.maxRange - this.minRange)) * 100;
