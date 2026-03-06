@@ -10,8 +10,17 @@
 <div x-data="{
         isSliderOpen: false,
         isVideoModalOpen: false,
+        isPhotoTourOpen: false,
         currentImageIndex: 0,
         images: {{ $imageUrls }},
+        openPhotoTour() {
+            this.isPhotoTourOpen = true;
+            document.body.style.overflow = 'hidden';
+        },
+        closePhotoTour() {
+            this.isPhotoTourOpen = false;
+            document.body.style.overflow = 'auto';
+        },
         openSlider(index) {
             this.currentImageIndex = index;
             this.isSliderOpen = true;
@@ -19,7 +28,9 @@
         },
         closeSlider() {
             this.isSliderOpen = false;
-            document.body.style.overflow = 'auto';
+            if (!this.isPhotoTourOpen && !this.isVideoModalOpen) {
+                document.body.style.overflow = 'auto';
+            }
         },
         nextImage() {
             this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
@@ -36,10 +47,12 @@
             if (this.$refs.videoPlayer) {
                 this.$refs.videoPlayer.pause();
             }
-            document.body.style.overflow = 'auto';
+            if (!this.isPhotoTourOpen) {
+                document.body.style.overflow = 'auto';
+            }
         }
     }"
-    @keydown.escape.window="isSliderOpen ? closeSlider() : (isVideoModalOpen ? closeVideoModal() : null)"
+    @keydown.escape.window="isSliderOpen ? closeSlider() : (isPhotoTourOpen ? closePhotoTour() : (isVideoModalOpen ? closeVideoModal() : null))"
     @keydown.arrow-right.window="if(isSliderOpen) nextImage()"
     @keydown.arrow-left.window="if(isSliderOpen) prevImage()"
     class="mt-6 relative">
@@ -49,22 +62,22 @@
         {{-- Main Image --}}
         <div class="col-span-2">
             @if($listing->images->first())
-                <img @click="openSlider(0)" src="{{ $imageUrls[0] }}" alt="{{ $listing->name }}" class="w-full h-[499px] object-cover rounded-tl-[14px] rounded-bl-[14px] cursor-pointer">
+                <img @click="openPhotoTour()" src="{{ $imageUrls[0] }}" alt="{{ $listing->name }}" class="w-full h-[499px] object-cover rounded-tl-[14px] rounded-bl-[14px] cursor-pointer">
             @else
                 <div class="w-full h-[499px] bg-gray-200 rounded-tl-[14px] rounded-bl-[14px]"></div>
             @endif
         </div>
-        
+
         {{-- Side Images --}}
         <div class="col-span-1 grid grid-rows-2 gap-[8px]">
             @if($imageUrls->get(1))
-                <img @click="openSlider(1)" src="{{ $imageUrls[1] }}" alt="{{ $listing->name }}" class="w-full h-[245.5px] object-cover rounded-tr-[14px] cursor-pointer">
+                <img @click="openPhotoTour()" src="{{ $imageUrls[1] }}" alt="{{ $listing->name }}" class="w-full h-[245.5px] object-cover rounded-tr-[14px] cursor-pointer">
             @else
                 <div class="w-full h-[245.5px] bg-gray-200 rounded-tr-[14px]"></div>
             @endif
 
             @if($imageUrls->get(2))
-                <img @click="openSlider(2)" src="{{ $imageUrls[2] }}" alt="{{ $listing->name }}" class="w-full h-[245.5px] object-cover rounded-br-[14px] cursor-pointer">
+                <img @click="openPhotoTour()" src="{{ $imageUrls[2] }}" alt="{{ $listing->name }}" class="w-full h-[245.5px] object-cover rounded-br-[14px] cursor-pointer">
             @else
                 <div class="w-full h-[245.5px] bg-gray-200 rounded-br-[14px]"></div>
             @endif
@@ -86,16 +99,53 @@
     </div>
 
     @if($imageUrls->count() > 3)
-    <button @click="openSlider(3)" class="absolute bottom-[24px] right-[24px] backdrop-blur-[3px] bg-black/30 text-white font-medium text-[16px] py-[6px] px-[12px] rounded-[4px] flex items-center space-x-[4px]">
+    <button @click="openPhotoTour()" class="absolute bottom-[24px] right-[24px] backdrop-blur-[3px] bg-black/30 text-white font-medium text-[16px] py-[6px] px-[12px] rounded-[4px] flex items-center space-x-[4px]">
         <img src="{{ asset('images/filter.svg') }}" alt="All photos" class="w-[16px] h-[16px]">
         <span>{{ $imageUrls->count() }}</span>
     </button>
     @endif
 
+    {{-- Photo Tour Modal --}}
+    <template x-if="isPhotoTourOpen">
+        <div class="fixed w-[1360px] mx-auto inset-0 bg-white z-[60] flex flex-col overflow-hidden">
+            {{-- Header --}}
+            <div class="h-[64px] border-b border-[#E8E8E7] flex items-center px-[24px] flex-shrink-0">
+                <button @click="closePhotoTour()" class="p-2 -ml-2 hover:bg-gray-100 rounded-full transition">
+                    <img src="{{ asset('images/close.svg') }}" alt="Close" class="w-6 h-6">
+                </button>
+                <h2 class="absolute left-1/2 -translate-x-1/2 text-[18px] font-semibold text-[#1B1B18]">Photo tour</h2>
+            </div>
+
+            {{-- Content --}}
+            <div class="flex-1 overflow-y-auto bg-white py-[40px]">
+                <div class="max-w-[1032px] mx-auto px-[24px]">
+                    <div class="flex flex-col gap-[8px]">
+                        @foreach($imageUrls as $index => $url)
+                            @if($index % 3 == 0)
+                                {{-- Full width image --}}
+                                <img @click="openSlider({{ $index }})" src="{{ $url }}" alt="Photo {{ $index + 1 }}" class="w-full h-[580px] object-cover rounded-[12px] cursor-pointer hover:opacity-95 transition">
+                            @else
+                                {{-- Two images side by side --}}
+                                @if($index % 3 == 1)
+                                    <div class="grid grid-cols-2 gap-[8px]">
+                                        <img @click="openSlider({{ $index }})" src="{{ $url }}" alt="Photo {{ $index + 1 }}" class="w-full h-[380px] object-cover rounded-[12px] cursor-pointer hover:opacity-95 transition">
+                                        @if(isset($imageUrls[$index + 1]))
+                                            <img @click="openSlider({{ $index + 1 }})" src="{{ $imageUrls[$index + 1] }}" alt="Photo {{ $index + 2 }}" class="w-full h-[380px] object-cover rounded-[12px] cursor-pointer hover:opacity-95 transition">
+                                        @endif
+                                    </div>
+                                @endif
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
     {{-- Full-Screen Slider Modal --}}
     <template x-if="isSliderOpen">
-        <div class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center" @click.self="closeSlider()">
-            <button @click="closeSlider()" class="absolute top-10 left-10 z-50">
+        <div class="fixed inset-0 bg-black/90 z-[70] flex items-center justify-center" @click.self="closeSlider()">
+            <button @click="closeSlider()" class="absolute top-10 left-10 z-[80]">
                 <img src="{{ asset('images/close_white.svg') }}" alt="Close" class="w-6 h-6">
             </button>
             <div class="absolute top-10 right-10 text-white text-lg z-50">
@@ -112,7 +162,7 @@
             </button>
         </div>
     </template>
-    
+
     <!-- Video Modal -->
     @if($listing->video_url)
     <template x-if="isVideoModalOpen">
