@@ -108,30 +108,30 @@
     {{-- Photo Tour Modal --}}
     <template x-if="isPhotoTourOpen">
         <div class="fixed inset-0 bg-black/60 z-[60] flex justify-center" @click.self="closePhotoTour()">
-            <div class="w-full max-w-[1360px] h-full bg-white flex flex-col overflow-hidden">
+            <div class="w-full max-w-[1360px] bg-white flex flex-col overflow-hidden my-[40px] rounded-[14px]">
                 {{-- Header --}}
                 <div class="h-[64px] border-b border-[#E8E8E7] flex items-center px-[24px] flex-shrink-0">
                     <button @click="closePhotoTour()" class="p-2 -ml-2 hover:bg-gray-100 rounded-full transition">
                         <img src="{{ asset('images/close.svg') }}" alt="Close" class="w-6 h-6">
                     </button>
-                    <h2 class="absolute left-1/2 -translate-x-1/2 text-[18px] font-semibold text-[#1B1B18]">Photo tour</h2>
+                    <h2 class="absolute left-1/2 -translate-x-1/2 text-[18px] font-medium text-[#1B1B18]">Photo tour</h2>
                 </div>
 
                 {{-- Content --}}
-                <div class="flex-1 overflow-y-auto bg-white py-[40px]">
-                    <div class="max-w-[1032px] mx-auto px-[24px]">
+                <div class="flex-1 overflow-y-auto bg-white py-[48px]">
+                    <div class="max-w-[792px] mx-auto px-[24px]">
                         <div class="flex flex-col gap-[8px]">
                             @foreach($imageUrls as $index => $url)
                                 @if($index % 3 == 0)
                                     {{-- Full width image --}}
-                                    <img @click="openSlider({{ $index }})" src="{{ $url }}" alt="Photo {{ $index + 1 }}" class="w-full h-[580px] object-cover rounded-[12px] cursor-pointer hover:opacity-95 transition">
+                                    <img @click="openSlider({{ $index }})" src="{{ $url }}" alt="Photo {{ $index + 1 }}" class="w-full h-[499px] object-cover cursor-pointer hover:opacity-95 transition">
                                 @else
                                     {{-- Two images side by side --}}
                                     @if($index % 3 == 1)
                                         <div class="grid grid-cols-2 gap-[8px]">
-                                            <img @click="openSlider({{ $index }})" src="{{ $url }}" alt="Photo {{ $index + 1 }}" class="w-full h-[380px] object-cover rounded-[12px] cursor-pointer hover:opacity-95 transition">
+                                            <img @click="openSlider({{ $index }})" src="{{ $url }}" alt="Photo {{ $index + 1 }}" class="w-full h-[239px] object-cover cursor-pointer hover:opacity-95 transition">
                                             @if(isset($imageUrls[$index + 1]))
-                                                <img @click="openSlider({{ $index + 1 }})" src="{{ $imageUrls[$index + 1] }}" alt="Photo {{ $index + 2 }}" class="w-full h-[380px] object-cover rounded-[12px] cursor-pointer hover:opacity-95 transition">
+                                                <img @click="openSlider({{ $index + 1 }})" src="{{ $imageUrls[$index + 1] }}" alt="Photo {{ $index + 2 }}" class="w-full h-[239px] object-cover rounded-[12px] cursor-pointer hover:opacity-95 transition">
                                             @endif
                                         </div>
                                     @endif
