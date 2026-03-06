@@ -6,13 +6,13 @@
     </div>
     <div class="flex items-center space-x-[20px]">
         <button class="p-[4px] rounded-full hover:bg-gray-100 flex items-center justify-center">
+            <img src="{{ asset('images/flag.svg') }}" alt="Report" class="w-[25px] h-[25px]">
+        </button>
+        <button class="p-[4px] rounded-full hover:bg-gray-100 flex items-center justify-center">
             <img src="{{ asset('images/share.svg') }}" alt="Share" class="w-[25px] h-[25px]">
         </button>
         <button class="p-[4px] rounded-full hover:bg-gray-100 flex items-center justify-center">
             <img src="{{ asset('images/favorite.svg') }}" alt="Favorite" class="w-[25px] h-[25px]">
-        </button>
-        <button class="p-[4px] rounded-full hover:bg-gray-100 flex items-center justify-center">
-            <img src="{{ asset('images/flag.svg') }}" alt="Report" class="w-[25px] h-[25px]">
         </button>
     </div>
 </div>

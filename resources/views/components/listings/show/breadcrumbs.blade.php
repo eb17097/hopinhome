@@ -6,11 +6,11 @@
             <a href="/" class="hover:underline">Home</a>
         </li>
         <li class="flex items-center">
-            <img src="{{ asset('images/arrow_forward_dark_blue.svg') }}" class="h-3 w-3 mx-2" alt=">">
+            <img src="{{ asset('images/arrow_forward_gray.svg') }}" class="h-3 w-3 mx-2" alt=">">
             <a href="#" class="hover:underline">{{ $listing->city ?? 'Dubai' }}</a>
         </li>
         <li class="flex items-center">
-            <img src="{{ asset('images/arrow_forward_dark_blue.svg') }}" class="h-3 w-3 mx-2" alt=">">
+            <img src="{{ asset('images/arrow_forward_gray.svg') }}" class="h-3 w-3 mx-2" alt=">">
             <span class="font-medium text-black">Apartments for Rent</span>
         </li>
     </ol>

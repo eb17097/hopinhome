@@ -19,7 +19,7 @@
 <x-header />
 
 <main>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pt-6 pb-20">
+    <div class="max-w-[1204px] mt-[40px] mx-auto">
 
         <x-listings.show.breadcrumbs :listing="$listing" />
 
