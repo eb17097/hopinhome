@@ -112,7 +112,7 @@
                 {{-- Header --}}
                 <div class="h-[64px] border-b border-[#E8E8E7] flex items-center px-[24px] flex-shrink-0">
                     <button @click="closePhotoTour()" class="p-2 -ml-2 hover:bg-gray-100 rounded-full transition">
-                        <img src="{{ asset('images/close.svg') }}" alt="Close" class="w-6 h-6">
+                        <img src="{{ asset('images/close_blue.svg') }}" alt="Close" class="w-6 h-6">
                     </button>
                     <h2 class="absolute left-1/2 -translate-x-1/2 text-[18px] font-medium text-[#1B1B18]">Photo tour</h2>
                 </div>
@@ -156,10 +156,10 @@
             <div class="relative w-full h-full flex items-center justify-center">
                 <img :src="images[currentImageIndex]" class="max-w-[938px] max-h-[592px] w-full object-contain">
             </div>
-            <button @click="prevImage()" class="absolute left-10 top-1/2 -translate-y-1/2 bg-white/20 rounded-full p-3 text-white z-50 hover:bg-white/30 transition">
+            <button @click="prevImage()" class="absolute left-[64px] top-1/2 -translate-y-1/2 bg-white/20 rounded-full p-3 text-white z-50 hover:bg-white/30 transition">
                 <img src="{{ asset('images/arrow_left_white_notail.svg') }}" alt="Previous" class="w-6 h-6">
             </button>
-            <button @click="nextImage()" class="absolute right-10 top-1/2 -translate-y-1/2 bg-white/20 rounded-full p-3 text-white z-50 hover:bg-white/30 transition">
+            <button @click="nextImage()" class="absolute right-[64px] top-1/2 -translate-y-1/2 bg-white/20 rounded-full p-3 text-white z-50 hover:bg-white/30 transition">
                 <img src="{{ asset('images/arrow1.svg') }}" alt="Next" class="w-6 h-6">
             </button>
         </div>
