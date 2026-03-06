@@ -147,14 +147,14 @@
     {{-- Full-Screen Slider Modal --}}
     <template x-if="isSliderOpen">
         <div class="fixed inset-0 bg-black/90 z-[70] flex items-center justify-center" @click.self="closeSlider()">
-            <button @click="closeSlider()" class="absolute top-10 left-10 z-[80]">
+            <button @click="closeSlider()" class="absolute left-[64px] top-[62px] z-[80]">
                 <img src="{{ asset('images/close_white.svg') }}" alt="Close" class="w-6 h-6">
             </button>
-            <div class="absolute top-10 right-10 text-white text-lg z-50">
+            <div class="absolute right-[64px] top-[62px] text-white text-lg z-50">
                 <span x-text="currentImageIndex + 1"></span> / <span x-text="images.length"></span>
             </div>
             <div class="relative w-full h-full flex items-center justify-center">
-                <img :src="images[currentImageIndex]" class="max-w-[80vw] max-h-[80vh] object-contain">
+                <img :src="images[currentImageIndex]" class="max-w-[938px] max-h-[592px] w-full object-contain">
             </div>
             <button @click="prevImage()" class="absolute left-10 top-1/2 -translate-y-1/2 bg-white/20 rounded-full p-3 text-white z-50 hover:bg-white/30 transition">
                 <img src="{{ asset('images/arrow_left_white_notail.svg') }}" alt="Previous" class="w-6 h-6">
