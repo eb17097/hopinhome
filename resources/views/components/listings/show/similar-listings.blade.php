@@ -1,8 +1,8 @@
 @props(['similarListings'])
 
-<div class="bg-[#F9F9F8] py-[96px]">
+<div class="bg-[#F9F9F8] pb-[96px] pt-[101px] mt-[112px]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-end mb-[40px]">
+        <div class="flex justify-between items-end mb-[32px]">
             <h2 class="text-[40px] font-medium text-black tracking-[-0.8px] leading-[1.2]">Explore similar properties</h2>
             <a href="#" class="px-[32px] py-[16px] bg-white rounded-[100px] border border-[#E8E8E7] text-black font-medium text-[16px] leading-[1.2] tracking-[-0.32px] hover:bg-gray-50 transition shadow-sm">
                 View more properties like this
@@ -12,11 +12,11 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-visible relative group">
         @if($similarListings->isNotEmpty())
-            <div 
+            <div
                 x-ref="carousel"
-                x-data="{ 
-                    isDown: false, 
-                    startX: 0, 
+                x-data="{
+                    isDown: false,
+                    startX: 0,
                     scrollLeft: 0,
                     moved: false,
                     velocity: 0,
@@ -29,7 +29,7 @@
                         this.startX = e.pageX - $el.offsetLeft;
                         this.scrollLeft = $el.scrollLeft;
                         this.lastX = e.pageX;
-                        
+
                         // Stop any ongoing animations
                         if (this.animationId) cancelAnimationFrame(this.animationId);
                     },
@@ -40,11 +40,11 @@
                     handleMouseUp(e) {
                         if (!this.isDown) return;
                         this.isDown = false;
-                        
+
                         const cardWidth = 380 + 32;
                         const momentum = -this.velocity * 10;
                         const target = Math.round(($el.scrollLeft + momentum) / cardWidth) * cardWidth;
-                        
+
                         this.animateTo(target);
 
                         if (this.moved && e) {
@@ -60,7 +60,7 @@
                             const progress = Math.min((now - startTime) / duration, 1);
                             // Ease out cubic
                             const ease = 1 - Math.pow(1 - progress, 3);
-                            
+
                             $el.scrollLeft = start + (target - start) * ease;
 
                             if (progress < 1) {
@@ -75,7 +75,7 @@
                         if (!this.isDown) return;
                         const x = e.pageX - $el.offsetLeft;
                         const walk = (x - this.startX) * 1.5;
-                        
+
                         this.velocity = e.pageX - this.lastX;
                         this.lastX = e.pageX;
 
