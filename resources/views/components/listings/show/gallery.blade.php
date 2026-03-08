@@ -98,9 +98,9 @@
         @endif
     </div>
 
-    @if($imageUrls->count() > 3)
-    <button @click="openPhotoTour()" class="absolute bottom-[24px] right-[24px] backdrop-blur-[3px] bg-black/30 text-white font-medium text-[16px] py-[6px] px-[12px] rounded-[4px] flex items-center space-x-[4px]">
-        <img src="{{ asset('images/filter.svg') }}" alt="All photos" class="w-[16px] h-[16px]">
+    @if($imageUrls->count() > 0)
+    <button @click="openPhotoTour()" class="absolute bottom-[24px] right-[24px] backdrop-blur-[3px] bg-black/20 text-white font-medium text-[16px] w-[51px] h-[26px] rounded-[4px] flex items-center justify-center gap-[4px] hover:bg-black/40 transition">
+        <img src="{{ asset('images/gallery_img_count.svg') }}" alt="All photos" class="w-[16px] h-[16px]">
         <span>{{ $imageUrls->count() }}</span>
     </button>
     @endif
