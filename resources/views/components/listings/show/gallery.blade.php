@@ -85,10 +85,10 @@
     </div>
 
     {{-- Overlay Buttons --}}
-    <div class="absolute bottom-[24px] left-[24px] flex space-x-[16px]">
-        <a href="#location" @click.prevent="document.getElementById('location').scrollIntoView({ behavior: 'smooth' })" class="backdrop-blur-[3px] bg-black/30 text-white font-medium text-[14px] py-[10px] px-[16px] rounded-[4px] flex items-center space-x-[8px] hover:bg-black/50 transition">
-            <img src="{{ asset('images/location_on.svg') }}" alt="Map" class="w-[28px] h-[28px]">
-            <span>View map</span>
+    <div class="absolute bottom-[24px] left-[24px] flex space-x-[16px] h-[40px]">
+        <a href="#location" @click.prevent="document.getElementById('location').scrollIntoView({ behavior: 'smooth' })" class="justify-end w-[119px] text-white font-medium text-[14px] py-[10px] pr-[16px] rounded-[4px] flex items-center hover:opacity-90 transition bg-cover bg-center" style="background-image: url('{{ asset('images/view-map-btn.png') }}')">
+            <img src="{{ asset('images/location_white.svg') }}" alt="Map" class="w-[28px] h-[28px]">
+            <span class="ml-[5px]">View map</span>
         </a>
         @if($listing->video_url)
         <button @click="openVideoModal()" class="backdrop-blur-[3px] bg-black/30 text-white font-medium text-[14px] py-[10px] px-[16px] rounded-[4px] flex items-center space-x-[8px] hover:bg-black/50 transition">
