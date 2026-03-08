@@ -46,10 +46,29 @@
             this.isVideoModalOpen = false;
             if (this.$refs.videoPlayer) {
                 this.$refs.videoPlayer.pause();
+                this.videoIsPlaying = false;
             }
             if (!this.isPhotoTourOpen) {
                 document.body.style.overflow = 'auto';
             }
+        },
+        videoIsPlaying: false,
+        videoCurrentTime: 0,
+        videoDuration: 0,
+        toggleVideo() {
+            if (this.$refs.videoPlayer.paused) {
+                this.$refs.videoPlayer.play();
+                this.videoIsPlaying = true;
+            } else {
+                this.$refs.videoPlayer.pause();
+                this.videoIsPlaying = false;
+            }
+        },
+        formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes}:${secs.toString().padStart(2, '0')}`;
         }
     }"
     @keydown.escape.window="isSliderOpen ? closeSlider() : (isPhotoTourOpen ? closePhotoTour() : (isVideoModalOpen ? closeVideoModal() : null))"
@@ -168,15 +187,66 @@
     <!-- Video Modal -->
     @if($listing->video_url)
     <template x-if="isVideoModalOpen">
-        <div x-init="$watch('isVideoModalOpen', value => { if (value) { $nextTick(() => $refs.videoPlayer.play()) } })" class="fixed z-50 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-            <div class="flex items-center justify-center min-h-screen p-4 text-center">
-                <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity" aria-hidden="true" @click="closeVideoModal()"></div>
-                <div class="inline-block bg-black rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 w-full max-w-4xl" @click.stop>
-                    <div class="relative">
-                        <video x-ref="videoPlayer" class="w-full h-auto" src="{{ Str::startsWith($listing->video_url, 'http') ? $listing->video_url : Storage::url($listing->video_url) }}" controls></video>
-                        <button @click="closeVideoModal()" class="absolute top-4 right-4 text-white">
-                            <img src="{{ asset('images/close_white.svg') }}" alt="Close" class="w-6 h-6">
+        <div class="fixed inset-0 bg-black/60 z-[60] flex items-center justify-center" @click.self="closeVideoModal()">
+            <div class="w-full max-w-[408px] bg-white rounded-[14px] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col" @click.stop>
+                {{-- Header --}}
+                <div class="h-[64px] border-b border-[#E8E8E7] flex items-center px-[24px] relative flex-shrink-0">
+                    <button @click="closeVideoModal()" class="p-2 -ml-2 hover:bg-gray-100 rounded-full transition">
+                        <img src="{{ asset('images/close_blue.svg') }}" alt="Close" class="w-6 h-6">
+                    </button>
+                    <h2 class="absolute left-1/2 -translate-x-1/2 text-[18px] font-medium text-[#1B1B18]">Video tour</h2>
+                </div>
+
+                {{-- Content --}}
+                <div class="p-[16px]">
+                    <div class="relative aspect-[9/16] bg-black rounded-[10px] overflow-hidden group">
+                        <video
+                            x-ref="videoPlayer"
+                            class="w-full h-full object-cover"
+                            src="{{ Str::startsWith($listing->video_url, 'http') ? $listing->video_url : Storage::url($listing->video_url) }}"
+                            @click="toggleVideo()"
+                            @timeupdate="videoCurrentTime = $el.currentTime"
+                            @loadedmetadata="videoDuration = $el.duration"
+                            @ended="videoIsPlaying = false"
+                        ></video>
+
+                        {{-- Agent Overlay --}}
+                        <div class="absolute top-[16px] left-[16px] flex items-center gap-[12px] z-10">
+                            <div class="w-[40px] h-[40px] rounded-full overflow-hidden border-2 border-white">
+                                <img src="{{ $listing->user->profile_photo_url ?? asset('images/user-placeholder.svg') }}" alt="{{ $listing->user->name }}" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex items-center gap-[4px]">
+                                <span class="text-white font-medium text-[16px] shadow-sm">{{ $listing->user->name }}</span>
+                                @if($listing->user->is_agent)
+                                    <img src="{{ asset('images/verified_user.svg') }}" alt="Verified" class="w-[16px] h-[16px]">
+                                @endif
+                            </div>
+                        </div>
+
+                        {{-- Center Play Button --}}
+                        <button
+                            @click="toggleVideo()"
+                            class="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            :class="!videoIsPlaying && 'opacity-100'"
+                        >
+                            <div class="w-[64px] h-[64px] rounded-full bg-white/20 flex items-center justify-center border border-white/30">
+                                <img :src="videoIsPlaying ? '{{ asset('images/pause.svg') }}' : '{{ asset('images/video_tour_play_button.svg') }}'" alt="Play" class="w-[64px] h-[64px] brightness-0 invert">
+                            </div>
                         </button>
+
+                        {{-- Bottom Controls --}}
+                        <div class="absolute bottom-0 left-0 right-0 p-[16px] pt-[40px] bg-gradient-to-t from-black/60 to-transparent">
+                            {{-- Progress Bar --}}
+                            <div class="relative h-[4px] bg-white/30 rounded-full mb-[12px] cursor-pointer" @click="const rect = $el.getBoundingClientRect(); $refs.videoPlayer.currentTime = (($event.clientX - rect.left) / rect.width) * videoDuration">
+                                <div class="absolute top-0 left-0 h-full bg-white rounded-full" :style="`width: ${(videoCurrentTime / videoDuration) * 100}%` "></div>
+                                <div class="absolute top-1/2 -translate-y-1/2 w-[12px] h-[12px] bg-white rounded-full shadow-md" :style="`left: ${(videoCurrentTime / videoDuration) * 100}%` "></div>
+                            </div>
+                            {{-- Time --}}
+                            <div class="flex justify-between text-white text-[12px] font-medium">
+                                <span x-text="formatTime(videoCurrentTime)">0:00</span>
+                                <span x-text="formatTime(videoDuration)">0:00</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
