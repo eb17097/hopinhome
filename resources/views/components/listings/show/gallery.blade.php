@@ -224,9 +224,9 @@
                         </div>
 
                         {{-- Center Play Button --}}
-                        <button
-                            @click="toggleVideo()"
-                            class="absolute inset-0 flex items-center justify-center transition-opacity duration-300"
+                        <button 
+                            @click="toggleVideo()" 
+                            class="absolute inset-0 flex items-center justify-center bg-black/40 transition-opacity duration-300"
                             x-show="!videoIsPlaying"
                             x-transition
                         >
