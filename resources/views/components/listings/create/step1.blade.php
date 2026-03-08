@@ -7,6 +7,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         @foreach($propertyTypes as $type)
             <div
+                dusk="property-type-{{ \Illuminate\Support\Str::slug($type) }}"
                 @click="formData.property_type = '{{ $type }}'"
                 :class="{
                     'border-[#1447d4] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)]': formData.property_type === '{{ $type }}',
