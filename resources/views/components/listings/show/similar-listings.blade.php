@@ -3,7 +3,7 @@
 <div class="bg-[#F9F9F8] pb-[96px] pt-[101px] mt-[112px]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-end mb-[32px]">
-            <h2 class="text-[40px] font-medium text-black tracking-[-0.8px] leading-[1.2]">Explore similar properties</h2>
+            <h2 class="text-[32px] font-medium text-black tracking-[-0.64px] leading-[1.28]">Explore similar properties</h2>
             <a href="#" class="px-[32px] py-[16px] bg-white rounded-[100px] border border-[#E8E8E7] text-black font-medium text-[16px] leading-[1.2] tracking-[-0.32px] hover:bg-gray-50 transition shadow-sm">
                 View more properties like this
             </a>
@@ -96,7 +96,7 @@
                 @mouseup="handleMouseUp($event)"
                 @mousemove="handleMouseMove($event)"
                 @click.capture="handleChildClick($event)"
-                class="carousel-container flex gap-x-[32px] overflow-x-auto pb-8 no-scrollbar snap-x snap-mandatory select-none"
+                class="carousel-container flex gap-x-[32px] overflow-x-auto no-scrollbar snap-x snap-mandatory select-none"
             >
                 @foreach($similarListings as $similar)
                     <div class="flex-shrink-0 snap-start snap-always" draggable="false">
