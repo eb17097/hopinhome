@@ -26,7 +26,7 @@
         <x-listings.show.header :listing="$listing" />
         <x-listings.show.gallery :listing="$listing" />
 
-        <div class="flex gap-x-[60px] mt-[40px]">
+        <div class="flex gap-x-[72px] mt-[32px]">
             {{-- Main Content --}}
             <div class="w-[746px]">
                 <x-listings.show.details :listing="$listing" />

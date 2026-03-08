@@ -91,9 +91,9 @@
             <span class="ml-[5px]">View map</span>
         </a>
         @if($listing->video_url)
-        <button @click="openVideoModal()" class="backdrop-blur-[3px] bg-black/30 text-white font-medium text-[14px] py-[10px] px-[16px] rounded-[4px] flex items-center space-x-[8px] hover:bg-black/50 transition">
+        <button @click="openVideoModal()" class="justify-end backdrop-blur-[3px] w-[165px] bg-black/20 text-white font-medium text-[14px] py-[11px] pr-[16px] rounded-[4px] flex items-center hover:bg-black/50 transition">
             <img src="{{ asset('images/play_arrow.svg') }}" alt="Video" class="w-[30px] h-[30px]">
-            <span>Watch video tour</span>
+            <span class="ml-[4px]">Watch video tour</span>
         </button>
         @endif
     </div>
