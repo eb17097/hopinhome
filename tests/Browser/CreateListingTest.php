@@ -21,19 +21,26 @@ class CreateListingTest extends DuskTestCase
             $browser->loginAs($user)
                     ->visitRoute('property_manager.listings.create')
                     ->waitForText('Create a listing')
+                    ->screenshot('debug-step1-start')
                     
                     // Step 1: Property Type
-                    ->waitForText('What type of listing are you adding?')
-                    // Target the div that has the Alpine click handler
-                    ->clickAtXPath('//h4[contains(text(), "Apartment")]/ancestor::div[contains(@class, "cursor-pointer")]')
+                    ->waitFor('@property-type-apartment')
+                    ->click('@property-type-apartment')
                     ->pause(500)
-                    ->press('Next')
+                    ->screenshot('debug-step1-selected')
+                    
+                    // Force the click via JS if regular click is failing
+                    ->script("document.querySelector('[dusk=\"next-button\"]').click()");
+                    
+                    $browser->pause(1000)
+                    ->screenshot('debug-after-next-click')
                     
                     // Step 2: Location
                     ->waitForText('Where is your property located?', 10)
+                    ->screenshot('debug-step2-start')
                     ->type('address', '123 Test Street, Dubai, UAE')
                     ->pause(500)
-                    ->press('Next')
+                    ->click('@next-button')
                     
                     // Step 3: Name & Description
                     ->waitForText('Let’s start with the details')

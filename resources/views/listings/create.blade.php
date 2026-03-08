@@ -105,6 +105,7 @@
                             <div x-show="step === 1" class="w-10"></div> {{-- Spacer --}}
 
                             <button type="button" x-show="step < 10" @click="step++"
+                                    dusk="next-button"
                                     class="bg-[#1447d4] hover:bg-[#04247b] text-white font-medium px-10 py-2.5 rounded-full transition-all text-[16px] tracking-[-0.48px] w-[149px] h-[40px] flex items-center justify-center">
                                 Next
                             </button>

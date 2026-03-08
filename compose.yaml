@@ -97,6 +97,7 @@ services:
         image: selenium/standalone-chromium
         extra_hosts:
             - 'host.docker.internal:host-gateway'
+            - 'laravel.test:host-gateway'
         volumes:
             - '/dev/shm:/dev/shm'
         networks:
