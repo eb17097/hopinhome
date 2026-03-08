@@ -63,8 +63,9 @@
                 position: location,
                 map: map,
                 icon: {
-                    url: "{{ asset('images/map-location-icon.svg') }}",
-                    scaledSize: new google.maps.Size(40, 40)
+                    url: "{{ asset('images/location_pin_blue.svg') }}",
+                    scaledSize: new google.maps.Size(48, 48),
+                    anchor: new google.maps.Point(24, 43)
                 },
                 title: "{{ $listing->address }}",
             });
