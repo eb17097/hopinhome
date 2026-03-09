@@ -4,14 +4,14 @@
     {{-- Stars --}}
     <div class="flex gap-[4px] mb-6">
         @for ($i = 0; $i < 5; $i++)
-            <img src="{{ $i < $review->rating ? asset('images/star_filled.svg') : asset('images/star.svg') }}" 
+            <img src="{{ $i < $review->rating ? asset('images/star_filled.svg') : asset('images/star.svg') }}"
                  alt="Star" class="w-[21px] h-[21px]">
         @endfor
     </div>
 
     {{-- Report Flag --}}
     <button class="absolute top-6 right-6">
-        <img src="{{ asset('images/flag.svg') }}" alt="Report" class="w-[25px] h-[25px] opacity-60">
+        <img src="{{ asset('images/flag.svg') }}" alt="Report" class="w-[25px] h-[25px]">
     </button>
 
     {{-- Comment --}}
