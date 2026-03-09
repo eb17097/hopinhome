@@ -50,12 +50,12 @@
                                 class="flex items-center justify-between px-[16px] py-[20px] border rounded-[10px] text-left transition-all group"
                             >
                                 <span class="text-[16px] text-black" x-text="r"></span>
-                                <div 
-                                    :class="reason === r ? 'bg-electric-blue border-electric-blue' : 'border-[#E8E8E7]'"
-                                    class="w-[24px] h-[24px] rounded-full border flex items-center justify-center transition-colors"
-                                >
+                                <div class="w-[24px] h-[24px]">
                                     <template x-if="reason === r">
-                                        <img src="{{ asset('images/checkmark.svg') }}" class="w-[12px] h-[12px] invert brightness-200">
+                                        <img src="{{ asset('images/white_checkmark_on_blue.svg') }}" class="w-full h-full">
+                                    </template>
+                                    <template x-if="reason !== r">
+                                        <div class="w-full h-full rounded-full border border-[#E8E8E7]"></div>
                                     </template>
                                 </div>
                             </button>
