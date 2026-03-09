@@ -21,7 +21,7 @@
     prev() {
         this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
     }
-}" class="bg-white rounded-lg shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)] flex items-center group overflow-hidden relative">
+}" class="h-[238px] bg-white rounded-lg shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)] flex items-center group overflow-hidden relative">
 
     <!-- Main Card Link -->
     <a href="{{ route('listings.show', $listing->id) }}" class="absolute inset-0 z-0" aria-label="View listing details"></a>
@@ -82,12 +82,12 @@
     </div>
 
     <!-- Content Section -->
-    <div class="p-6 flex-grow flex flex-col justify-between relative z-10 pointer-events-none">
+    <div class="pt-[24px] pb-[20px] pl-[26px] pr-[20px] flex-grow flex flex-col justify-between relative z-10 pointer-events-none h-full">
         <div>
-            <div class="flex justify-between items-start mb-2">
+            <div class="flex justify-between items-start mb-[18px]">
                 <div>
-                    <h3 class="text-xl font-medium text-gray-900 leading-tight">{{ $listing->name }}</h3>
-                    <p class="text-sm text-gray-500">{{ $listing->address }}</p>
+                    <h3 class="text-[20px] leading-[1.28] tracking-[-0.4px] font-medium text-gray-900">{{ $listing->name }}</h3>
+                    <p class="text-[14px] text-gray-600">{{ $listing->address }}</p>
                 </div>
             </div>
 
@@ -111,12 +111,12 @@
             </div>
         </div>
 
-        <div class="flex items-end justify-between pt-4 border-t border-gray-100">
+        <div class="flex items-end justify-between">
             <div>
                 <span class="text-2xl font-semibold text-gray-900">AED {{ number_format($listing->price) }}</span>
-                <span class="text-sm font-medium text-gray-900"> / {{ $listing->payment_option }}</span>
+                <span class="text-sm font-medium text-gray-900"> {{ $listing->payment_option }}</span>
             </div>
-            <span class="text-xs text-gray-400">{{ $listing->utilities_option }}</span>
+            <span class="text-[12px] text-gray-600">{{ $listing->utilities_option }}</span>
         </div>
     </div>
 </div>
