@@ -1,6 +1,7 @@
 <div x-data="{
         show: false,
         isLoading: false,
+        step: 'form',
         new_password: '',
         new_password_confirmation: '',
         showNewPassword: false,
@@ -28,11 +29,9 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    this.show = false;
+                    this.step = 'success';
                     this.new_password = '';
                     this.new_password_confirmation = '';
-                    // Optional: show a success message or toast
-                    alert('Password reset successfully');
                 } else {
                     this.errors = data.errors || { message: data.message };
                 }
@@ -41,6 +40,16 @@
             } finally {
                 this.isLoading = false;
             }
+        },
+
+        close() {
+            this.show = false;
+            setTimeout(() => {
+                this.step = 'form';
+                this.new_password = '';
+                this.new_password_confirmation = '';
+                this.errors = {};
+            }, 300);
         }
      }"
      @open-reset-password-modal.window="show = true"
@@ -56,7 +65,7 @@
          x-transition:leave="ease-in duration-200"
          x-transition:leave-start="opacity-100"
          x-transition:leave-end="opacity-0"
-         @click="show = false"
+         @click="close()"
          class="fixed inset-0 bg-black bg-opacity-40"></div>
 
     {{-- Modal panel --}}
@@ -67,12 +76,12 @@
          x-transition:leave="ease-in duration-200"
          x-transition:leave-start="opacity-100 scale-100"
          x-transition:leave-end="opacity-0 scale-95"
-         class="inline-block w-full max-w-[444px] h-[458px] overflow-hidden text-left align-middle transition-all transform bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] rounded-[14px] relative z-10">
+         class="inline-block w-full max-w-[444px] overflow-hidden text-left align-middle transition-all transform bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] rounded-[14px] relative z-10">
 
         {{-- Header --}}
         <div class="px-6 py-4 border-b border-[#e8e8e7] flex items-center justify-between relative">
-            <button @click="show = false" class="text-[#1447d4] hover:opacity-70 transition-opacity z-10">
-                <img src="{{ asset('images/close.svg') }}" class="w-6 h-6 brightness-0 [filter:invert(22%)_sepia(77%)_saturate(5734%)_hue-rotate(219deg)_brightness(85%)_contrast(95%)]" alt="Close">
+            <button @click="close()" class="text-[#1447d4] hover:opacity-70 transition-opacity z-10">
+                <img src="{{ asset('images/close_blue.svg') }}" class="w-[25px] h-[25px]" alt="Close">
             </button>
             <h3 class="absolute inset-0 flex items-center justify-center text-[18px] font-medium text-[#1e1d1d] pointer-events-none">
                 Reset password
@@ -80,7 +89,8 @@
             <div class="w-6"></div>
         </div>
 
-        <div class="pt-[32px] pb-[40px] px-[24px]">
+        {{-- Form Step --}}
+        <div x-show="step === 'form'" class="pt-[32px] pb-[40px] px-[24px]">
             <h4 class="text-[20px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-[6px]">Set your new password</h4>
             <p class="text-[16px] text-[#464646] leading-[1.5] mb-[24px]">Enter a new password for your account.</p>
 
@@ -127,6 +137,16 @@
                     </svg>
                 </button>
             </div>
+        </div>
+
+        {{-- Success Step --}}
+        <div x-show="step === 'success'" style="display: none;" class="pt-[32px] pb-[40px] px-[24px]">
+            <h4 class="text-[20px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-[6px]">Your new password is set</h4>
+            <p class="text-[16px] text-[#464646] leading-[1.5] mb-[24px]">The new password is set for your account.</p>
+
+            <button @click="close()" class="w-full h-[52px] bg-[#1447d4] hover:bg-[#04247b] text-white font-medium rounded-[8px] transition-all text-[16px] flex items-center justify-center">
+                Log In
+            </button>
         </div>
     </div>
 </div>
