@@ -1,29 +1,29 @@
 @php
     $user = auth()->user();
     $settings = $user->notificationSettings;
-    
+
     $hasPhoto = $user->profile_photo_url ? true : false;
     $hasBio = !empty($user->bio);
     $hasEmailVerified = $user->hasVerifiedEmail();
-    
+
     $initialNotifications = $settings && (
-        $settings->push_enabled || 
-        $settings->email_enabled || 
-        $settings->marketing_enabled || 
-        $settings->announcements_enabled || 
+        $settings->push_enabled ||
+        $settings->email_enabled ||
+        $settings->marketing_enabled ||
+        $settings->announcements_enabled ||
         $settings->newsletter_enabled
     );
 @endphp
 
-<div x-data="{ 
+<div x-data="{
         hasPhoto: {{ $hasPhoto ? 'true' : 'false' }},
         hasBio: {{ $hasBio ? 'true' : 'false' }},
         hasEmailVerified: true,
         hasNotifications: {{ $initialNotifications ? 'true' : 'false' }},
         get completedCount() {
-            return (this.hasEmailVerified ? 1 : 0) + 
-                   (this.hasBio ? 1 : 0) + 
-                   (this.hasPhoto ? 1 : 0) + 
+            return (this.hasEmailVerified ? 1 : 0) +
+                   (this.hasBio ? 1 : 0) +
+                   (this.hasPhoto ? 1 : 0) +
                    (this.hasNotifications ? 1 : 0);
         },
         get progressPercent() {
@@ -31,9 +31,9 @@
         }
      }"
      @notifications-updated.window="hasNotifications = $event.detail.hasNotifications"
-     class="bg-white border border-[#e8e8e7] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] p-6">
-    
-    <div class="flex justify-between items-center mb-6">
+     class="bg-white border border-[#e8e8e7] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] py-[28px] px-[24px] mt-[40px]">
+
+    <div class="flex justify-between items-center mb-[16px]">
         <h3 class="text-[18px] font-medium text-[#1e1d1d] tracking-[-0.36px]">Setup checklist</h3>
         <div class="flex items-center gap-3">
             <span class="text-[14px] text-[#464646]" x-text="completedCount + '/4'"></span>
@@ -51,7 +51,7 @@
         </div>
 
         {{-- Bio --}}
-        <div @click="$dispatch('open-edit-bio-modal')" 
+        <div @click="$dispatch('open-edit-bio-modal')"
              class="rounded-[4px] h-[55px] px-4 flex items-center gap-4 cursor-pointer hover:bg-gray-100 transition-colors"
              :class="hasBio ? 'bg-[#f9f9f8]' : 'bg-white border border-[#e8e8e7]'">
             <template x-if="hasBio">
@@ -64,7 +64,7 @@
         </div>
 
         {{-- Photo --}}
-        <div @click="$dispatch('open-profile-photo-modal')" 
+        <div @click="$dispatch('open-profile-photo-modal')"
              class="rounded-[4px] h-[55px] px-4 flex items-center gap-4 cursor-pointer hover:bg-gray-100 transition-colors"
              :class="hasPhoto ? 'bg-[#f9f9f8]' : 'bg-white border border-[#e8e8e7]'">
             <template x-if="hasPhoto">
@@ -77,8 +77,8 @@
         </div>
 
         {{-- Notifications --}}
-        <div @click="$dispatch('open-notifications-modal')" 
-             class="rounded-[4px] h-[73px] px-4 flex items-center gap-4 cursor-pointer hover:bg-gray-100 transition-colors"
+        <div @click="$dispatch('open-notifications-modal')"
+             class="rounded-[4px] h-[73px] px-4 flex items-center gap-4 cursor-pointer hover:bg-gray-100 transition-colors pr-[25px]"
              :class="hasNotifications ? 'bg-[#f9f9f8]' : 'bg-white border border-[#e8e8e7]'">
             <template x-if="hasNotifications">
                 <img alt="checkmark" class="w-[23px] h-[23px]" src="{{ asset('images/white_checkmark_on_green.svg') }}">
