@@ -1,6 +1,6 @@
 @props(['listing'])
 
-<div class="flex justify-between items-end mb-[24px]">
+<div x-data="{}" class="flex justify-between items-end mb-[24px]">
     <div>
         <h1 class="text-[32px] font-medium text-black tracking-[-0.64px] leading-[1.28]">{{ $listing->name }}</h1>
     </div>
