@@ -42,15 +42,15 @@
 
 <x-listings.find-ideal-home />
 <div>
-    <div class="bg-white pb-20 pt-8">
+    <div class="bg-white pb-[128px] pt-[96px]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                <div class="lg:col-span-8 space-y-12">
+            <div class="flex gap-[80px]">
+                <div class="w-[744px]">
                     <x-listings.why-rent-in-dubai />
                     <x-listings.popular-areas />
                     <x-listings.faq-section />
                 </div>
-                <div class="lg:col-span-4">
+                <div class="w-[380px]">
                     <x-listings.uae-insights-section />
                 </div>
             </div>
