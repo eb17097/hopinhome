@@ -1,6 +1,6 @@
 <div>
     <h3 class="text-[32px] font-medium text-gray-900 mt-[53px] mb-[24px]">Popular areas to rent apartments in Dubai</h3>
-    <p class="mb-6 leading-relaxed">
+    <p class="mb-[20px] leading-relaxed">
         Choosing the right neighborhood is key to finding the perfect apartment. Some of the most in-demand areas include:
     </p>
     <ul class="list-disc pl-5">
@@ -11,7 +11,7 @@
         <li><a href="#" class="text-blue-600 hover:underline">Palm Jumeirah</a> – Luxury beachfront apartments</li>
         <li><a href="#" class="text-blue-600 hover:underline">Deira & Bur Dubai</a> – Central locations with competitive rental prices</li>
     </ul>
-    <p class="mt-6 leading-relaxed">
+    <p class="mt-[20px] leading-relaxed">
         Each area offers a unique lifestyle, price range, and community atmosphere.
     </p>
 </div>
