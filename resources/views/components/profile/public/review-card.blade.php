@@ -4,7 +4,7 @@
     {{-- Stars --}}
     <div class="flex gap-[4px] mb-6">
         @for ($i = 0; $i < 5; $i++)
-            <img src="{{ $i < $review->rating ? asset('images/star_filled.svg') : asset('images/star.svg') }}"
+            <img src="{{ $i < $review->rating ? asset('images/star_blue.svg') : asset('images/star_blue_empty.svg') }}"
                  alt="Star" class="w-[21px] h-[21px]">
         @endfor
     </div>

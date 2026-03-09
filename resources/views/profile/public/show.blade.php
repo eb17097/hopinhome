@@ -58,8 +58,8 @@
 
             {{-- Show More Reviews --}}
             <div class="mt-[20px] flex justify-center">
-                <button class="flex items-center gap-2 px-8 py-4 border border-light-gray rounded-full text-[16px] font-medium text-[#1e1d1d] min-w-[280px] justify-center">
-                    <img src="{{ asset('images/arrow_downward.svg') }}" alt="Arrow Down" class="w-4 h-4">
+                <button class="h-[52px] flex items-center gap-2 px-8 py-4 border border-light-gray rounded-full text-[16px] font-medium text-[#1e1d1d] min-w-[280px] justify-center">
+                    <img src="{{ asset('images/arrow_downward_gray.svg') }}" alt="Arrow Down" class="w-[17px] h-[17px]">
                     Show all reviews
                 </button>
             </div>

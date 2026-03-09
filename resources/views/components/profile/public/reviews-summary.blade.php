@@ -4,9 +4,10 @@
     {{-- Left: Score --}}
     <div class="w-[30%] flex flex-col items-center justify-center py-10">
         <div class="flex gap-1 mb-2">
-            @for ($i = 0; $i < 5; $i++)
-                <img src="{{ asset('images/star_filled.svg') }}" alt="Star" class="w-7 h-7" onerror="this.src='{{ asset('images/star.svg') }}'">
+            @for ($i = 0; $i < 4; $i++)
+                <img src="{{ asset('images/star_blue.svg') }}" alt="Star" class="w-7 h-7" onerror="this.src='{{ asset('images/star.svg') }}'">
             @endfor
+                <img src="{{ asset('images/star_filled.svg') }}" alt="Star" class="w-7 h-7" onerror="this.src='{{ asset('images/star.svg') }}'">
         </div>
         <div class="text-[64px] font-medium text-electric-blue leading-none">{{ number_format($user->rating, 1) }}</div>
         <div class="text-[14px] font-medium text-[#464646] mt-2 text-center">Based on {{ $user->review_count }} reviews</div>
