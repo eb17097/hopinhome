@@ -1,4 +1,4 @@
-<div x-data="{ 
+<div x-data="{
         show: false,
         isLoading: false,
         new_password: '',
@@ -6,11 +6,11 @@
         showNewPassword: false,
         showConfirmPassword: false,
         errors: {},
-        
+
         async handleReset() {
             this.isLoading = true;
             this.errors = {};
-            
+
             try {
                 const response = await fetch('{{ route('ajax.password.update') }}', {
                     method: 'POST',
@@ -42,33 +42,33 @@
                 this.isLoading = false;
             }
         }
-     }" 
+     }"
      @open-reset-password-modal.window="show = true"
-     x-show="show" 
-     class="fixed inset-0 z-[60] flex items-center justify-center" 
+     x-show="show"
+     class="fixed inset-0 z-[60] flex items-center justify-center"
      style="display: none;">
-    
+
     {{-- Background overlay --}}
-    <div x-show="show" 
-         x-transition:enter="ease-out duration-300" 
-         x-transition:enter-start="opacity-0" 
-         x-transition:enter-end="opacity-100" 
-         x-transition:leave="ease-in duration-200" 
-         x-transition:leave-start="opacity-100" 
-         x-transition:leave-end="opacity-0" 
+    <div x-show="show"
+         x-transition:enter="ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="ease-in duration-200"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
          @click="show = false"
          class="fixed inset-0 bg-black bg-opacity-40"></div>
 
     {{-- Modal panel --}}
-    <div x-show="show" 
-         x-transition:enter="ease-out duration-300" 
-         x-transition:enter-start="opacity-0 scale-95" 
-         x-transition:enter-end="opacity-100 scale-100" 
-         x-transition:leave="ease-in duration-200" 
-         x-transition:leave-start="opacity-100 scale-100" 
-         x-transition:leave-end="opacity-0 scale-95" 
-         class="inline-block w-full max-w-[560px] overflow-hidden text-left align-middle transition-all transform bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] rounded-[14px] relative z-10">
-        
+    <div x-show="show"
+         x-transition:enter="ease-out duration-300"
+         x-transition:enter-start="opacity-0 scale-95"
+         x-transition:enter-end="opacity-100 scale-100"
+         x-transition:leave="ease-in duration-200"
+         x-transition:leave-start="opacity-100 scale-100"
+         x-transition:leave-end="opacity-0 scale-95"
+         class="inline-block w-full max-w-[444px] h-[458px] overflow-hidden text-left align-middle transition-all transform bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] rounded-[14px] relative z-10">
+
         {{-- Header --}}
         <div class="px-6 py-4 border-b border-[#e8e8e7] flex items-center justify-between relative">
             <button @click="show = false" class="text-[#1447d4] hover:opacity-70 transition-opacity z-10">
@@ -80,16 +80,16 @@
             <div class="w-6"></div>
         </div>
 
-        <div class="p-8">
-            <h4 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-2">Set your new password</h4>
-            <p class="text-[16px] text-[#464646] leading-[1.5] mb-8">Enter a new password for your account.</p>
-            
-            <div class="space-y-6">
+        <div class="pt-[32px] pb-[40px] px-[24px]">
+            <h4 class="text-[20px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-[6px]">Set your new password</h4>
+            <p class="text-[16px] text-[#464646] leading-[1.5] mb-[24px]">Enter a new password for your account.</p>
+
+            <div>
                 {{-- New Password --}}
                 <div>
-                    <label class="block text-[16px] font-medium text-[#1e1d1d] mb-2">New password</label>
+                    <label class="block text-[14px] font-medium text-[#1e1d1d] mb-[6px]">New password</label>
                     <div class="relative">
-                        <input :type="showNewPassword ? 'text' : 'password'" 
+                        <input :type="showNewPassword ? 'text' : 'password'"
                                x-model="new_password"
                                class="w-full h-[52px] px-4 border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors text-[16px]"
                                placeholder="••••••••••••">
@@ -105,7 +105,7 @@
 
                         {{-- Confirm Password --}}
                         <div>
-                        <label class="block text-[16px] font-medium text-[#1e1d1d] mb-2">Confirm new password</label>
+                        <label class="block text-[14px] font-medium text-[#1e1d1d] mb-[6px] mt-[16px]">Confirm new password</label>
                         <div class="relative">
                         <input :type="showConfirmPassword ? 'text' : 'password'"
                                x-model="new_password_confirmation"
@@ -117,9 +117,9 @@
                         </button>
                         </div>
                         </div>
-                <button @click="handleReset" 
+                <button @click="handleReset"
                         :disabled="isLoading"
-                        class="w-full h-[52px] bg-[#1447d4] hover:bg-[#04247b] text-white font-medium rounded-[8px] transition-all text-[16px] flex items-center justify-center disabled:opacity-70">
+                        class="mt-[16px] w-full h-[52px] bg-[#1447d4] hover:bg-[#04247b] text-white font-medium rounded-[8px] transition-all text-[16px] flex items-center justify-center disabled:opacity-70">
                     <span x-show="!isLoading">Reset password</span>
                     <svg x-show="isLoading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="display: none;">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
