@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <div style="margin-top:69px;" class="lg:col-span-4 space-y-8">
+        <div style="margin-top:69px;" class="lg:col-span-4">
 
             <x-listings.we-got-your-back />
 
