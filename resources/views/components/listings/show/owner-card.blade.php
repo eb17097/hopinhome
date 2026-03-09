@@ -4,7 +4,7 @@
 @endphp
 
 <div class="w-full bg-white rounded-[8px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)]">
-    <div class="p-[16px] pt-[24px]">
+    <div class="p-[16px]">
         {{-- Profile Header --}}
         <div class="flex items-center gap-[12px]">
             <img src="{{ $listing->user->getProfilePhotoUrl() }}" alt="{{ $listing->user->name }}" class="w-[64px] h-[64px] rounded-full border border-[#E8E8E7] object-cover">
@@ -19,15 +19,15 @@
 
         {{-- Rating Section --}}
         <div class="mt-[12px] flex items-center gap-[12px]">
-            <div class="inline-flex items-center gap-[8px] px-[7px] py-[2px] border border-[#E8E8E7] rounded-[8px]">
+            <div class="h-[27px] inline-flex items-center gap-[8px] px-[7px] py-[2px] border border-[#E8E8E7] rounded-[4px]">
                 <div class="flex items-center gap-[4px]">
                     @for ($i = 0; $i < 5; $i++)
-                        <img src="{{ asset('images/star_filled.svg') }}" alt="Star" class="w-[18px] h-[18px]">
+                        <img src="{{ asset('images/star_blue.svg') }}" alt="Star" class="w-[18px] h-[18px]">
                     @endfor
                 </div>
                 <p class="text-[18px] font-semibold text-electric-blue tracking-[-0.36px] leading-[1.28]">5.0</p>
             </div>
-            <p class="text-[14px] text-[#464646]">1 review</p>
+            <p class="text-[14px] text-[#464646] font-medium">1 review</p>
         </div>
 
         {{-- Bio Section --}}
