@@ -57,7 +57,7 @@
 
     <x-listings.show.similar-listings :listing="$listing" />
 
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pt-[96px]">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-[96px]">
         <div class="flex gap-x-[60px]">
             <div class="w-[746px]">
                 <x-listings.faq-section />
