@@ -42,7 +42,7 @@
 
             {{-- Sidebar --}}
             <div class="w-[390px]">
-                <div class="sticky top-[120px] flex flex-col gap-6">
+                <div class="sticky top-[120px] flex flex-col gap-[24px]">
                     <x-listings.show.booking-card :listing="$listing" />
                     @if ($listing->user && $listing->user->is_agent)
                         <x-listings.show.agent-card :listing="$listing" />
