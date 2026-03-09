@@ -3,9 +3,9 @@
         background-image: none !important;
     }
 </style>
-<div class="bg-white py-4 pb-6 shadow-sm relative z-10">
+<div class="bg-white py-[32px] shadow-sm relative z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-lg font-medium text-gray-900 mb-4">Search & Filters</div>
+        <div class="text-lg font-medium text-gray-900 mb-[16px]">Search & Filters</div>
         <div class="flex flex-wrap gap-3 items-center">
             <!-- Location Input -->
             <div class="relative flex items-center bg-white border border-gray-200 rounded-lg shadow-sm w-full md:w-auto min-w-[250px] h-[45px] px-3 py-2">
