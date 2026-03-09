@@ -110,22 +110,22 @@
                         {{-- Push Notifications --}}
                         <div class="flex items-center gap-[12px]">
                             <button @click="pushNotifications = !pushNotifications"
-                                    class="relative inline-flex h-[26px] w-[44px] flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
+                                    class="relative inline-flex h-[26px] w-[44px] shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
                                     :class="pushNotifications ? 'bg-[#1447d4]' : 'bg-[#e8e8e7]'">
-                                <span class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
-                                      :class="pushNotifications ? 'translate-x-5' : 'translate-x-0'"></span>
+                                <span class="pointer-events-none inline-block h-[20px] w-[20px] transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                                      :class="pushNotifications ? 'translate-x-[19px]' : 'translate-x-[1px]'"></span>
                             </button>
                             <span class="text-[14px] text-[#1e1d1d] font-medium">Push notifications</span>
                         </div>
                         {{-- Email Notifications --}}
                         <div class="flex items-center gap-[12px]">
                             <button @click="emailNotifications = !emailNotifications"
-                                    class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
+                                    class="relative inline-flex h-[26px] w-[44px] shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
                                     :class="emailNotifications ? 'bg-[#1447d4]' : 'bg-[#e8e8e7]'">
-                                <span class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
-                                :class="emailNotifications ? 'translate-x-5' : 'translate-x-0'"></span>
+                                <span class="pointer-events-none inline-block h-[20px] w-[20px] transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                                :class="emailNotifications ? 'translate-x-[19px]' : 'translate-x-[1px]'"></span>
                             </button>
-                            <span class="text-[16px] text-[#1e1d1d]">Email notifications</span>
+                            <span class="text-[14px] text-[#1e1d1d] font-medium">Email notifications</span>
                         </div>
                     </div>
                 </div>
@@ -136,42 +136,42 @@
                         {{-- Select All --}}
                         <div class="flex items-center gap-[12px]">
                             <button @click="selectAll = !selectAll; toggleSelectAll()"
-                                    class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
+                                    class="relative inline-flex h-[26px] w-[44px] shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
                                     :class="selectAll ? 'bg-[#1447d4]' : 'bg-[#e8e8e7]'">
-                                <span class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
-                                :class="selectAll ? 'translate-x-5' : 'translate-x-0'"></span>
+                                <span class="pointer-events-none inline-block h-[20px] w-[20px] transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                                :class="selectAll ? 'translate-x-[19px]' : 'translate-x-[1px]'"></span>
                             </button>
-                            <span class="text-[16px] text-[#1e1d1d]">Select all</span>
+                            <span class="text-[14px] text-[#1e1d1d] font-medium">Select all</span>
                         </div>
                         {{-- Marketing --}}
                         <div class="flex items-center gap-[12px]">
                             <button @click="marketing = !marketing; updateSelectAll()"
-                                    class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
+                                    class="relative inline-flex h-[26px] w-[44px] shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
                                     :class="marketing ? 'bg-[#1447d4]' : 'bg-[#e8e8e7]'">
-                                <span class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
-                                      :class="marketing ? 'translate-x-5' : 'translate-x-0'"></span>
+                                <span class="pointer-events-none inline-block h-[20px] w-[20px] transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                                      :class="marketing ? 'translate-x-[19px]' : 'translate-x-[1px]'"></span>
                             </button>
-                            <span class="text-[16px] text-[#1e1d1d]">Marketing</span>
+                            <span class="text-[14px] text-[#1e1d1d] font-medium">Marketing</span>
                         </div>
                         {{-- Announcements --}}
                         <div class="flex items-center gap-[12px]">
                             <button @click="announcements = !announcements; updateSelectAll()"
-                                    class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
+                                    class="relative inline-flex h-[26px] w-[44px] shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
                                     :class="announcements ? 'bg-[#1447d4]' : 'bg-[#e8e8e7]'">
-                                <span class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
-                                      :class="announcements ? 'translate-x-5' : 'translate-x-0'"></span>
+                                <span class="pointer-events-none inline-block h-[20px] w-[20px] transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                                      :class="announcements ? 'translate-x-[19px]' : 'translate-x-[1px]'"></span>
                             </button>
-                            <span class="text-[16px] text-[#1e1d1d]">Announcements & updates</span>
+                            <span class="text-[14px] text-[#1e1d1d] font-medium">Announcements & updates</span>
                         </div>
                         {{-- Monthly newsletter --}}
                         <div class="flex items-center gap-[12px]">
                             <button @click="newsletter = !newsletter; updateSelectAll()"
-                                    class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
+                                    class="relative inline-flex h-[26px] w-[44px] shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
                                     :class="newsletter ? 'bg-[#1447d4]' : 'bg-[#e8e8e7]'">
-                                <span class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
-                                      :class="newsletter ? 'translate-x-5' : 'translate-x-0'"></span>
+                                <span class="pointer-events-none inline-block h-[20px] w-[20px] transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                                      :class="newsletter ? 'translate-x-[19px]' : 'translate-x-[1px]'"></span>
                             </button>
-                            <span class="text-[16px] text-[#1e1d1d]">Monthly newsletter</span>
+                            <span class="text-[14px] text-[#1e1d1d] font-medium">Monthly newsletter</span>
                         </div>
                     </div>
                 </div>
@@ -179,7 +179,7 @@
                 <div class="mt-[40px]">
                     <button @click="saveSettings()"
                             :disabled="loading"
-                            class="w-full h-[52px] bg-[#1447d4] hover:bg-[#04247b] text-white font-medium rounded-[8px] transition-all text-[16px] flex items-center justify-center disabled:opacity-70">
+                            class="h-[51px] leading-[1.18] tracking-[-0.48px] w-full bg-[#1447d4] hover:bg-[#04247b] text-white font-medium rounded-[8px] transition-all text-[16px] flex items-center justify-center disabled:opacity-70">
                         <span x-show="!loading">Save changes</span>
                         <svg x-show="loading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="display: none;">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
