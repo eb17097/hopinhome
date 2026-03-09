@@ -21,9 +21,9 @@
 
     <form method="POST" action="{{ route('logout') }}" class="w-full">
         @csrf
-        <button type="submit" class="h-[48px] flex items-center justify-between w-full p-4 rounded-[4px] hover:bg-red-50 text-[#ed0707] group transition-colors">
+        <button type="submit" class="h-[48px] flex items-center justify-between w-full p-4 rounded-[4px] hover:bg-[#f9f9f8] group transition-colors">
             <span class="font-medium text-[16px] leading-[1.5]">Sign out</span>
-            <img alt="arrow forward" class="w-[18px] h-[18px]" src="{{ asset('images/arrow_forward_red.svg') }}">
+            <img alt="arrow forward" class="w-[18px] h-[18px]" src="{{ asset('images/arrow_forward_black.svg') }}">
         </button>
     </form>
 </div>
