@@ -2,8 +2,8 @@
 
 @php
     $images = $listing->images->map(function($image) {
-        return Str::startsWith($image->image_url, 'http') 
-            ? $image->image_url 
+        return Str::startsWith($image->image_url, 'http')
+            ? $image->image_url
             : Illuminate\Support\Facades\Storage::url($image->image_url);
     });
 
@@ -12,8 +12,8 @@
     }
 @endphp
 
-<div x-data="{ 
-    currentIndex: 0, 
+<div x-data="{
+    currentIndex: 0,
     images: {{ $images->toJson() }},
     next() {
         this.currentIndex = (this.currentIndex + 1) % this.images.length;
@@ -22,7 +22,7 @@
         this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
     }
 }" class="bg-white rounded-lg shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)] flex items-center group overflow-hidden relative">
-    
+
     <!-- Main Card Link -->
     <a href="{{ route('listings.show', $listing->id) }}" class="absolute inset-0 z-0" aria-label="View listing details"></a>
 
@@ -30,7 +30,7 @@
     <div class="relative w-[380px] h-[238px] flex-shrink-0 z-10">
         <div class="w-full h-full relative overflow-hidden bg-gray-100">
             <template x-for="(image, index) in images" :key="index">
-                <img 
+                <img
                     x-show="currentIndex === index"
                     class="w-full h-full object-cover absolute inset-0"
                     draggable="false"
@@ -53,15 +53,15 @@
 
         <!-- Image Navigation (Arrows) -->
         <div class="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
-            <button 
-                @click.stop.prevent="prev()" 
+            <button
+                @click.stop.prevent="prev()"
                 class="pointer-events-auto focus:outline-none"
                 x-show="images.length > 1"
             >
                 <img src="{{ asset('images/arrow_left_white_notail.svg') }}" alt="Previous" class="w-6 h-6">
             </button>
-            <button 
-                @click.stop.prevent="next()" 
+            <button
+                @click.stop.prevent="next()"
                 class="pointer-events-auto focus:outline-none"
                 x-show="images.length > 1"
             >
@@ -72,7 +72,7 @@
         <!-- Image Navigation (Dots) -->
         <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20" x-show="images.length > 1">
             <template x-for="(image, index) in images" :key="index">
-                <button 
+                <button
                     @click.stop.prevent="currentIndex = index"
                     class="size-[7px] rounded-full transition-all duration-300 focus:outline-none"
                     :class="currentIndex === index ? 'bg-white w-[14px]' : 'bg-white/60'"
@@ -104,7 +104,7 @@
                     <img src="{{ asset('images/bathtub_gray.svg') }}" alt="Baths Icon" class="w-5 h-5 text-gray-400">
                     <span>{{ $listing->bathrooms }} bath</span>
                 </div>
-                <div class="flex items-center gap-1 ml-auto text-gray-400 text-xs">
+                <div class="flex items-center gap-1">
                     <img src="{{ asset('images/floor_gray.svg') }}" alt="Images Icon" class="w-5 h-5">
                     <span>{{ $listing->floor_number }}/{{ $listing->total_floors }}</span>
                 </div>
