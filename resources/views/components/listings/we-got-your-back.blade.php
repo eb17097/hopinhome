@@ -1,6 +1,6 @@
-<div class="bg-navy-blue rounded-[8px] p-8 text-white relative overflow-hidden flex flex-col justify-between min-h-[263px]">
+<div class="bg-navy-blue rounded-[8px] pt-[58px] px-[24px] pb-[48px] text-white relative overflow-hidden flex flex-col justify-between h-[364px]">
     <!-- Background Graphic (Logo Mark) -->
-    <div class="absolute -bottom-24 -right-16 w-80 h-80 opacity-[0.07] pointer-events-none">
+    <div class="absolute -bottom-[160px] -right-16 w-80 h-80 opacity-[0.07] pointer-events-none">
         <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full rotate-[-10deg]">
             <path d="M17.489 22.2789L17.9823 27.2133C16.6858 27.615 15.3082 27.8312 13.8801 27.8312C12.452 27.8312 11.0744 27.615 9.77783 27.2133L10.2713 22.2789H17.489Z" fill="white"/>
             <path d="M5.00179 16.6149L4.43089 22.2792H2.7855C1.0367 19.9509 0 17.0548 0 13.9158C0 8.978 2.56522 4.64096 6.43244 2.17095L5.00179 16.6149Z" fill="white"/>
@@ -11,14 +11,14 @@
     </div>
 
     <div class="relative z-10">
-        <h3 style="font-weight: 500;" class="text-[32px] leading-tight mb-4">We’ve got your back</h3>
-        <p class="text-white/80 text-[16px] leading-relaxed">
+        <h3 style="font-weight: 500;" class="text-[32px] leading-tight mb-[12px]">We’ve got your back</h3>
+        <p class="text-[18px] leading-[1.5] font-normal text-[#F9F9F8]">
             From honest listings to practical insights, HopInHome helps you make rental decisions with clarity and peace of mind.
         </p>
     </div>
 
     <div class="relative z-10">
-        <button class="border border-white rounded-full px-8 py-2.5 text-[16px] font-medium hover:bg-white hover:text-navy-blue transition-colors duration-200">
+        <button class="h-[52px] border border-white rounded-full px-8 py-2.5 text-[16px] font-medium hover:bg-white hover:text-navy-blue transition-colors duration-200">
             Learn more
         </button>
     </div>
