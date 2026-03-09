@@ -67,25 +67,25 @@
             {{-- Step 2: Please tell us more --}}
             <template x-if="step === 2">
                 <div>
-                    <h3 class="text-[24px] font-medium text-black mb-[8px]">Please tell us more</h3>
-                    <p class="text-[14px] text-gray-500 mb-[24px]">Any extra information will help us make this a safer platform for everyone.</p>
+                    <h3 class="text-[20px] font-medium text-black mb-[4px] leading-[1.28] tracking-[-0.4px]">Please tell us more</h3>
+                    <p class="text-[14px] text-gray-500 mb-[16px]">Any extra information will help us make this a safer platform for everyone.</p>
 
                     <textarea
                         x-model="comment"
                         placeholder="Write your comment here..."
-                        class="w-full h-[320px] p-[16px] border border-[#E8E8E7] rounded-[10px] focus:ring-electric-blue focus:border-electric-blue text-[16px] placeholder:text-gray-400 resize-none"
+                        class="w-full h-[320px] p-[24px] border border-[#E8E8E7] rounded-[10px] focus:ring-electric-blue focus:border-electric-blue text-[16px] placeholder:text-gray-400 resize-none"
                     ></textarea>
                 </div>
             </template>
 
             {{-- Step 3: We've Received Your Report --}}
             <template x-if="step === 3">
-                <div class="py-[20px]">
-                    <div class="flex items-center gap-[12px] mb-[16px]">
-                        <h3 class="text-[24px] font-medium text-black">We’ve Received Your Report</h3>
-                        <img src="{{ asset('images/white_checkmark_on_blue.svg') }}" class="w-[24px] h-[24px]">
+                <div class="py-[16px]">
+                    <div class="flex items-center gap-[6px] mb-[12px]">
+                        <h3 class="text-[20px] font-medium text-black">We’ve Received Your Report</h3>
+                        <img src="{{ asset('images/check_circle_small.svg') }}" class="w-[20px] h-[20px]">
                     </div>
-                    <p class="text-[18px] text-gray-600 leading-relaxed">
+                    <p class="text-[16px] leading-[1.5] text-gray-600 leading-relaxed">
                         Thank you for helping keep HopInHome safe and transparent. Our team will review your report and take action if needed.
                     </p>
                 </div>
@@ -98,7 +98,7 @@
             <div>
                 <template x-if="step === 2">
                     <button @click="step = 1" class="flex items-center gap-[8px] text-gray-500 hover:text-black transition-colors">
-                        <img src="{{ asset('images/arrow_left_blue.svg') }}" class="w-[16px] h-[16px] opacity-60">
+                        <img src="{{ asset('images/arrow_back_gray.svg') }}" class="w-[16px] h-[16px]">
                         <span class="text-[16px] font-medium">Back</span>
                     </button>
                 </template>
@@ -119,7 +119,7 @@
                 <template x-if="step === 2">
                     <button
                         @click="submit()"
-                        class="bg-electric-blue text-white px-[32px] py-[14px] rounded-full text-[16px] font-medium hover:bg-opacity-90 transition-all"
+                        class="bg-electric-blue text-white h-[40px] w-[149px] leading-[1.22] tracking-[-0.48px] rounded-full text-[16px] font-medium hover:bg-opacity-90 transition-all"
                     >
                         Submit report
                     </button>
@@ -128,7 +128,7 @@
                 <template x-if="step === 3">
                     <button
                         @click="$dispatch('close-modal', 'report-listing')"
-                        class="bg-electric-blue text-white px-[64px] py-[14px] rounded-full text-[16px] font-medium hover:bg-opacity-90 transition-all"
+                        class="bg-electric-blue text-white w-[149px] h-[40px] rounded-full text-[16px] font-medium hover:bg-opacity-90 transition-all"
                     >
                         OK
                     </button>
