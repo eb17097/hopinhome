@@ -104,79 +104,79 @@
             </div>
 
             <div class="pt-[32px] pb-[40px] px-[24px]">
-                <div class="mb-8">
-                    <h4 class="text-[18px] font-medium text-[#1e1d1d] mb-4">Choose where you get notified</h4>
+                <div class="mb-[32px]">
+                    <h4 class="text-[18px] font-medium text-[#1e1d1d] mb-[12px]">Choose where you get notified</h4>
                     <div class="space-y-4">
                         {{-- Push Notifications --}}
-                        <div class="flex items-center justify-between">
-                            <span class="text-[16px] text-[#1e1d1d]">Push notifications</span>
+                        <div class="flex items-center gap-[12px]">
                             <button @click="pushNotifications = !pushNotifications"
-                                    class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
+                                    class="relative inline-flex h-[26px] w-[44px] flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
                                     :class="pushNotifications ? 'bg-[#1447d4]' : 'bg-[#e8e8e7]'">
                                 <span class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
                                       :class="pushNotifications ? 'translate-x-5' : 'translate-x-0'"></span>
                             </button>
+                            <span class="text-[14px] text-[#1e1d1d] font-medium">Push notifications</span>
                         </div>
                         {{-- Email Notifications --}}
-                        <div class="flex items-center justify-between">
-                            <span class="text-[16px] text-[#1e1d1d]">Email notifications</span>
+                        <div class="flex items-center gap-[12px]">
                             <button @click="emailNotifications = !emailNotifications"
                                     class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
                                     :class="emailNotifications ? 'bg-[#1447d4]' : 'bg-[#e8e8e7]'">
                                 <span class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
-                                      :class="emailNotifications ? 'translate-x-5' : 'translate-x-0'"></span>
+                                :class="emailNotifications ? 'translate-x-5' : 'translate-x-0'"></span>
                             </button>
+                            <span class="text-[16px] text-[#1e1d1d]">Email notifications</span>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <h4 class="text-[18px] font-medium text-[#1e1d1d] mb-4">Choose which notifications you receive</h4>
+                    <h4 class="text-[18px] font-medium text-[#1e1d1d] mb-[12px]">Choose which notifications you receive</h4>
                     <div class="space-y-4">
                         {{-- Select All --}}
-                        <div class="flex items-center justify-between">
-                            <span class="text-[16px] text-[#1e1d1d]">Select all</span>
+                        <div class="flex items-center gap-[12px]">
                             <button @click="selectAll = !selectAll; toggleSelectAll()"
                                     class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
                                     :class="selectAll ? 'bg-[#1447d4]' : 'bg-[#e8e8e7]'">
                                 <span class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
-                                      :class="selectAll ? 'translate-x-5' : 'translate-x-0'"></span>
+                                :class="selectAll ? 'translate-x-5' : 'translate-x-0'"></span>
                             </button>
+                            <span class="text-[16px] text-[#1e1d1d]">Select all</span>
                         </div>
                         {{-- Marketing --}}
-                        <div class="flex items-center justify-between">
-                            <span class="text-[16px] text-[#1e1d1d]">Marketing</span>
+                        <div class="flex items-center gap-[12px]">
                             <button @click="marketing = !marketing; updateSelectAll()"
                                     class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
                                     :class="marketing ? 'bg-[#1447d4]' : 'bg-[#e8e8e7]'">
                                 <span class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
                                       :class="marketing ? 'translate-x-5' : 'translate-x-0'"></span>
                             </button>
+                            <span class="text-[16px] text-[#1e1d1d]">Marketing</span>
                         </div>
                         {{-- Announcements --}}
-                        <div class="flex items-center justify-between">
-                            <span class="text-[16px] text-[#1e1d1d]">Announcements & updates</span>
+                        <div class="flex items-center gap-[12px]">
                             <button @click="announcements = !announcements; updateSelectAll()"
                                     class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
                                     :class="announcements ? 'bg-[#1447d4]' : 'bg-[#e8e8e7]'">
                                 <span class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
                                       :class="announcements ? 'translate-x-5' : 'translate-x-0'"></span>
                             </button>
+                            <span class="text-[16px] text-[#1e1d1d]">Announcements & updates</span>
                         </div>
                         {{-- Monthly newsletter --}}
-                        <div class="flex items-center justify-between">
-                            <span class="text-[16px] text-[#1e1d1d]">Monthly newsletter</span>
+                        <div class="flex items-center gap-[12px]">
                             <button @click="newsletter = !newsletter; updateSelectAll()"
                                     class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
                                     :class="newsletter ? 'bg-[#1447d4]' : 'bg-[#e8e8e7]'">
                                 <span class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
                                       :class="newsletter ? 'translate-x-5' : 'translate-x-0'"></span>
                             </button>
+                            <span class="text-[16px] text-[#1e1d1d]">Monthly newsletter</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-10">
+                <div class="mt-[40px]">
                     <button @click="saveSettings()"
                             :disabled="loading"
                             class="w-full h-[52px] bg-[#1447d4] hover:bg-[#04247b] text-white font-medium rounded-[8px] transition-all text-[16px] flex items-center justify-center disabled:opacity-70">
