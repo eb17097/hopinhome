@@ -65,6 +65,8 @@
         </div>
     </div>
 
+    <x-modals.report-listing-modal :listing="$listing" />
+
 </main>
 
 <x-footer />
