@@ -1,6 +1,6 @@
 @props(['listing'])
 
-<x-modal name="share-listing" class="w-[586px]">
+<x-modal name="share-listing" maxWidth="sm:max-w-[586px]" class="rounded-[14px]">
     <div x-data="{
         copied: false,
         url: '{{ route('listings.show', $listing) }}',
@@ -11,7 +11,7 @@
             });
         }
     }"
-    class="bg-white rounded-[14px] overflow-hidden w-[586px]"
+    class="w-full"
     >
         {{-- Modal Header --}}
         <div class="flex items-center justify-between px-[24px] py-[22px] border-b border-[#E8E8E7]">
