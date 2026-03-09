@@ -102,12 +102,12 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-lg font-medium text-gray-900 mb-[16px]">Search & Filters</div>
         <div class="flex flex-wrap gap-3 items-center">
-            
+
             <!-- Location Input -->
-            <div class="relative w-full md:w-auto min-w-[320px]">
-                <div 
+            <div class="relative w-full md:w-auto min-w-[320px] max-w-[320px]">
+                <div
                     class="relative flex items-center bg-white border rounded-lg shadow-sm h-[45px] px-3 py-2 transition-all duration-200"
-                    :class="isLocationDropdownOpen ? 'border-[#1447D4] rounded-b-none shadow-none z-30' : (openFilter === 'location' ? 'border-[#1447D4] shadow-none' : 'border-gray-200')"
+                    :class="isLocationDropdownOpen ? 'border-gray-200 rounded-b-none shadow-none z-30' : (openFilter === 'location' ? 'border-gray-200 shadow-none' : 'border-gray-200')"
                     @click.stop="$refs.locationInput.focus()"
                 >
                     <img src="{{ asset('images/location_on.svg') }}" alt="Location Icon" class="w-5 h-5 text-gray-400 mr-2">
@@ -118,12 +118,12 @@
                                 <img src="{{ asset('images/close.svg') }}" @click.stop="location = ''; locationQuery = ''" alt="Close Icon" class="w-4 h-4 ml-1 cursor-pointer opacity-60 hover:opacity-100">
                             </span>
                         </template>
-                        <input 
+                        <input
                             x-ref="locationInput"
-                            type="text" 
+                            type="text"
                             x-model="locationQuery"
                             @focus="openFilter = 'location'"
-                            placeholder="Enter City or Location" 
+                            placeholder="Enter City or Location"
                             class="flex-grow border-none focus:ring-0 text-gray-700 placeholder-gray-500 text-sm p-0 bg-transparent"
                         >
                     </div>
@@ -158,10 +158,10 @@
 
             <!-- Property Type Dropdown -->
             <div class="relative">
-                <div 
+                <div
                     @click.stop="openFilter = openFilter === 'propertyType' ? null : 'propertyType'"
                     class="relative block w-[170px] h-[45px] py-2.5 px-4 bg-white border rounded-lg shadow-sm text-sm text-gray-700 cursor-pointer select-none transition-all duration-200"
-                    :class="openFilter === 'propertyType' ? 'border-[#1447D4] rounded-b-none z-30' : 'border-gray-200'"
+                    :class="openFilter === 'propertyType' ? 'border-gray-200 border-b-white rounded-b-none z-30' : 'border-gray-200'"
                 >
                     <span class="truncate pr-4 block" x-text="selectedPropertyTypes.length > 0 ? selectedPropertyTypes.join(', ') : 'Property type'"></span>
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -195,7 +195,7 @@
                                 <div class="flex flex-col items-center justify-center gap-2 p-3 border rounded-[8px] cursor-pointer transition-all relative group h-[100px]"
                                      @click="togglePropertyType('{{ $type['name'] }}')"
                                      :class="selectedPropertyTypes.includes('{{ $type['name'] }}') ? 'border-[#1447D4] bg-blue-50/30' : 'border-gray-100 hover:border-[#1447D4]'">
-                                    
+
                                     <div x-show="selectedPropertyTypes.includes('{{ $type['name'] }}')" class="absolute -top-1.5 -right-1.5 size-5 bg-[#1447D4] rounded-full flex items-center justify-center shadow-sm z-10">
                                         <img src="{{ asset('images/check.svg') }}" class="size-2.5 brightness-0 invert" alt="">
                                     </div>
@@ -227,10 +227,10 @@
 
             <!-- Bedrooms Dropdown -->
             <div class="relative">
-                <div 
+                <div
                     @click.stop="openFilter = openFilter === 'bedrooms' ? null : 'bedrooms'"
                     class="relative block w-[170px] h-[45px] py-2.5 px-4 bg-white border rounded-lg shadow-sm text-sm text-gray-700 cursor-pointer select-none transition-all duration-200"
-                    :class="openFilter === 'bedrooms' ? 'border-[#1447D4] rounded-b-none z-30' : 'border-gray-200'"
+                    :class="openFilter === 'bedrooms' ? 'border-gray-200 border-b-white rounded-b-none z-30' : 'border-gray-200'"
                 >
                     <span class="truncate pr-4 block" x-text="formattedBedrooms"></span>
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -265,10 +265,10 @@
 
             <!-- Price Dropdown -->
             <div class="relative">
-                <div 
+                <div
                     @click.stop="openFilter = openFilter === 'price' ? null : 'price'"
                     class="relative block w-[170px] h-[45px] py-2.5 px-4 bg-white border rounded-lg shadow-sm text-sm text-gray-700 cursor-pointer select-none transition-all duration-200"
-                    :class="openFilter === 'price' ? 'border-[#1447D4] rounded-b-none z-30' : 'border-gray-200'"
+                    :class="openFilter === 'price' ? 'border-gray-200 border-b-white rounded-b-none z-30' : 'border-gray-200'"
                 >
                     <span class="truncate pr-4 block" x-text="formattedPrice"></span>
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
