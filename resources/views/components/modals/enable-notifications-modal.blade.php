@@ -27,7 +27,7 @@
              class="inline-block w-full max-w-[444px] my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] rounded-[14px]">
 
             {{-- Header --}}
-            <div class="px-6 py-4 border-b border-[#e8e8e7] flex items-center justify-between relative">
+            <div class="px-[24px] py-[21px] border-b border-[#e8e8e7] flex items-center justify-between relative">
                 <button @click="show = false" class="text-[#1447d4] hover:opacity-70 transition-opacity z-10">
                     <img src="{{ asset('images/close_blue.svg') }}" class="w-[25px] h-[25px]" alt="Close">
                 </button>
@@ -39,9 +39,14 @@
 
             <div class="pt-[32px] pb-[40px] px-[24px]">
                 <h4 class="text-[20px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-[6px]">Stay up to date</h4>
-                <p class="text-[16px] text-[#464646] leading-[1.5] mb-6">Turn on notifications to receive messages, updates, and important alerts.</p>
+                <p class="text-[16px] text-[#464646] leading-[1.5] mb-[8px]">Turn on notifications to receive messages, updates, and important alerts.</p>
 
-                <p class="text-[16px] font-medium text-[#1e1d1d] mb-10">You can change your preferences at any time.</p>
+                <div class="bg-[#f9f9f8] rounded-[6px] h-[53px] flex items-center px-[14px] mb-[32px]">
+                    <div class="flex-shrink-0 mr-3">
+                        <img src="{{ asset('images/contact_support_blue.svg') }}" class="w-[28px] h-[28px]" alt="Support">
+                    </div>
+                    <p class="text-[15px] text-[#464646]">You can change your preferences at any time.</p>
+                </div>
 
                 <div class="space-y-4">
                     <button @click="show = false; $dispatch('open-notification-preferences-modal')"
