@@ -25,8 +25,8 @@
             @endphp
             <div class="flex items-center gap-3">
                 <div class="flex items-center gap-1 w-8">
-                    <span class="text-[16px] font-medium text-[#464646]">{{ $star }}</span>
-                    <img src="{{ asset('images/star_filled.svg') }}" alt="Star" class="w-[14px] h-[14px] opacity-70">
+                    <span class="w-[11px] text-[16px] font-medium text-[#464646]">{{ $star }}</span>
+                    <img src="{{ asset('images/star.svg') }}" alt="Star" class="w-[14px] h-[14px]">
                 </div>
                 <div class="flex-grow bg-[#d9d9d9] h-[5px] rounded-full overflow-hidden">
                     <div class="bg-navy-blue h-full rounded-full" style="width: {{ $percentage }}%"></div>
