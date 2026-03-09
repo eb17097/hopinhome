@@ -11,7 +11,10 @@
         >
             <img src="{{ asset('images/flag.svg') }}" alt="Report" class="w-[25px] h-[25px]">
         </button>
-        <button class="p-[4px] rounded-full hover:bg-gray-100 flex items-center justify-center">
+        <button 
+            @click="$dispatch('open-modal', 'share-listing')"
+            class="p-[4px] rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors"
+        >
             <img src="{{ asset('images/share.svg') }}" alt="Share" class="w-[25px] h-[25px]">
         </button>
         <button class="p-[4px] rounded-full hover:bg-gray-100 flex items-center justify-center">

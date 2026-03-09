@@ -66,6 +66,7 @@
     </div>
 
     <x-modals.report-listing-modal :listing="$listing" />
+    <x-modals.share-listing-modal :listing="$listing" />
 
 </main>
 
