@@ -1,9 +1,9 @@
 @php use Illuminate\Support\Facades\Auth; @endphp
-<div class="w-full h-full bg-white flex flex-col py-6">
+<div class="w-full h-full bg-white flex flex-col">
     {{-- Home Section --}}
-    <div class="px-2 mb-6">
-        <p class="text-[12px] font-medium text-[#464646] uppercase px-2 mb-4 leading-[1.5]">Home</p>
-        <div class="space-y-1">
+    <div class="px-[8px] mb-6">
+        <p class="text-[12px] font-medium text-[#464646] px-2 mb-[4px] leading-[1.5]">Home</p>
+        <div>
             <a href="{{ route('property_manager.index') }}" class="flex items-center space-x-[10px] p-2 rounded-[4px] {{ request()->routeIs('property_manager.index') ? 'bg-[#f6f6f5] text-[#1e1d1d]' : 'hover:bg-gray-50 text-[#1e1d1d]' }} transition-colors">
                 <img alt="speed" class="w-[18px] h-[18px]" src="{{ asset('images/speed.svg') }}">
                 <span class="font-medium text-[14px] leading-[1.3]">Dashboard</span>

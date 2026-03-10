@@ -33,15 +33,13 @@
                      x-transition:leave-end="-translate-x-full"
                      id="property-manager-sidebar"
                      class="relative w-[232px] h-screen bg-white border-r border-light-gray shadow-[0px_0px_64px_0px_rgba(0,0,0,0.03)] pb-8 overflow-y-auto shrink-0">
-                    <div class="flex justify-between items-center px-4 pt-[27px] pb-4">
-                        <div class="flex items-center gap-2">
-                            <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopInHome Logo" class="h-6 w-auto">
-                        </div>
+                    <div class="flex justify-between items-center px-[16px] py-[27px]">
+                        <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopInHome Logo" class="h-[20px] w-auto">
                         <button @click="sidebarOpen = false" class="text-gray-400 hover:text-gray-600 transition-colors">
                             <img src="{{ asset('images/left_panel_close.svg') }}" alt="Close" class="h-6 w-6">
                         </button>
                     </div>
-                    <div class="pt-4">
+                    <div class="pt-4 border-t">
                         <x-property_manager.property-manager-sidebar />
                     </div>
                 </div>
