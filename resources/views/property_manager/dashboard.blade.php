@@ -39,7 +39,7 @@
                                     <p class="text-[14px] text-[#464646]">Profile views</p>
                                     <div class="flex items-end justify-between">
                                         <span class="text-[32px] font-medium text-[#1e1d1d] leading-[1.28]">21</span>
-                                        <span class="bg-like-green text-white text-[12px] font-medium px-[3px] pr-[4px] py-[1px] leading-[1.5] rounded-[3px]">+43%</span>
+                                        <span class="bg-like-green text-white text-[12px] font-medium px-[3px] pr-[4px] py-[1px] leading-[1.5] rounded-[3px] mb-[8px]">+43%</span>
                                     </div>
                                 </div>
                                 <!-- Message Requests Card -->
@@ -47,7 +47,7 @@
                                     <p class="text-[14px] text-[#464646]">Message requests</p>
                                     <div class="flex items-end justify-between">
                                         <span class="text-[32px] font-medium text-[#1e1d1d] leading-[1.28]">21</span>
-                                        <span class="bg-[#ed0707] text-white text-[12px] font-medium px-[3px] pr-[4px] py-[1px] leading-[1.5] rounded-[3px]">-6%</span>
+                                        <span class="bg-[#ed0707] text-white text-[12px] font-medium px-[3px] pr-[4px] py-[1px] leading-[1.5] rounded-[3px] mb-[8px]">-6%</span>
                                     </div>
                                 </div>
                             </div>
@@ -92,16 +92,16 @@
                     {{-- Credits Section --}}
                     <div class="bg-white border border-light-gray rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] overflow-hidden">
                         {{-- Header --}}
-                        <div class="px-6 py-[20px] border-b border-light-gray flex justify-between items-center">
+                        <div class="px-6 py-[11px] border-b border-light-gray flex justify-between items-center">
                             <h2 class="text-[18px] font-medium text-[#1e1d1d]">Credits</h2>
-                            <button class="h-[40px] px-[18px] border border-light-gray rounded-full text-[14px] font-medium text-[#1e1d1d] hover:bg-gray-50 transition">
+                            <button class="min-w-[160px] h-[40px] px-[18px] border border-light-gray rounded-full text-[14px] font-medium text-[#1e1d1d] hover:bg-gray-50 transition">
                                 Show details
                             </button>
                         </div>
 
                         {{-- Body --}}
                         <div class="p-6">
-                            <div class="flex gap-6 mb-6">
+                            <div class="flex gap-[16px] mb-[20px]">
                                 <x-property_manager.property-manager-listing-credits />
                                 <x-property_manager.property-manager-boost-credits />
                             </div>

@@ -1,7 +1,7 @@
 <div class="flex-1 bg-[#0a1739] border border-[#283351] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] overflow-hidden">
-    <div class="p-6">
+    <div class="p-[14px]">
         {{-- Header Section --}}
-        <div class="flex justify-between items-center mb-6">
+        <div class="flex justify-between items-center mb-[6px]">
             <div class="flex items-center space-x-3">
                 <div class="w-10 h-10 bg-[#122557] rounded-[6px] flex items-center justify-center">
                     <img src="{{ asset('images/bolt.svg') }}" alt="Boost Icon" class="w-6 h-6">

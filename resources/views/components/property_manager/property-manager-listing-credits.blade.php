@@ -1,8 +1,8 @@
-<div class="flex-1 bg-white border border-light-gray rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] overflow-hidden">
-    <div class="p-6">
+<div class="flex-1 bg-white border border-light-gray rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] overflow-hidden" style="background: #F9F9F8;">
+    <div class="p-[14px]">
         {{-- Header Section --}}
-        <div class="flex justify-between items-center mb-6">
-            <div class="flex items-center space-x-3">
+        <div class="flex justify-between items-center mb-[6px]">
+            <div class="flex items-center space-x-[10px]">
                 <div class="w-10 h-10 bg-[#f4f4f3] rounded-[6px] flex items-center justify-center">
                     <img src="{{ asset('images/toll.svg') }}" alt="Credit Icon" class="w-6 h-6">
                 </div>
