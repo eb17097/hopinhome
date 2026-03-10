@@ -63,7 +63,7 @@
                         @if($listings->isNotEmpty())
                             <div class="bg-white border border-light-gray rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] overflow-hidden">
                                 {{-- Header --}}
-                                <div class="px-6 py-4 border-b border-light-gray flex justify-between items-center">
+                                <div class="px-[24px] py-[20px] border-b border-light-gray flex justify-between items-center">
                                     <h3 class="text-[18px] font-medium text-[#1e1d1d]">My listings</h3>
                                     <a href="{{ route('property_manager.listings.index') }}">
                                         <img src="{{ asset('images/arrow_forward.svg') }}" alt="Arrow Forward" class="w-[18px] h-[18px] brightness-0 opacity-70">
