@@ -6,17 +6,17 @@
                 <div class="w-10 h-10 bg-[#f4f4f3] rounded-[6px] flex items-center justify-center">
                     <img src="{{ asset('images/toll.svg') }}" alt="Credit Icon" class="w-6 h-6">
                 </div>
-                <h3 class="text-[18px] font-semibold text-[#1e1d1d]">Listing credits</h3>
+                <h3 class="text-[18px] font-medium text-[#1e1d1d]">Listing credits</h3>
             </div>
-            <img src="{{ asset('images/info.svg') }}" alt="Info" class="w-5 h-5 opacity-40">
+            <img src="{{ asset('images/info_gray.svg') }}" alt="Info" class="w-5 h-5">
         </div>
 
         {{-- Values Section --}}
         <div class="flex justify-between items-end mb-2">
             <span class="text-[14px] text-[#464646]">Remaining</span>
             <div class="flex items-baseline space-x-1">
-                <span class="text-[32px] font-bold text-[#1e1d1d] leading-none">49</span>
-                <span class="text-[18px] text-[#1e1d1d] opacity-50">/ 200</span>
+                <span class="text-[32px] font-medium text-[#1e1d1d] leading-none">49</span>
+                <span class="text-[18px] font-medium">/ 200</span>
             </div>
         </div>
 
@@ -26,7 +26,7 @@
         </div>
 
         {{-- Action Button --}}
-        <button class="w-full bg-electric-blue text-white h-[51px] rounded-[6px] text-[16px] font-semibold hover:opacity-90 transition">
+        <button class="w-full bg-electric-blue text-white h-[51px] rounded-[6px] text-[16px] font-medium hover:opacity-90 transition">
             Get more listing credits
         </button>
     </div>
