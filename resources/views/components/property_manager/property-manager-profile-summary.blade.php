@@ -2,7 +2,7 @@
 
 <div @click="$dispatch('open-profile-photo-modal')" class="bg-[#f9f9f8] rounded-[6px] p-4 flex items-center justify-between cursor-pointer hover:bg-gray-100 transition-colors">
     <div class="flex items-center space-x-4">
-        <div class="w-16 h-16 rounded-full border border-light-gray overflow-hidden shrink-0">
+        <div class="w-[64px] h-[64px] rounded-full border border-light-gray overflow-hidden shrink-0">
             <img alt="profile picture" class="h-full w-full object-cover" src="{{ Auth::user()->getProfilePhotoUrl() }}">
         </div>
         <div>
