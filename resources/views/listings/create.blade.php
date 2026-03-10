@@ -48,9 +48,9 @@
 
                     {{-- Header Area with Stepper --}}
                     <div class="max-w-[728px] mx-auto">
-                        <div class="flex justify-between items-center mb-4">
+                        <div class="flex justify-between items-center my-[20px]">
                             <button type="button" class="text-[14px] text-[#464646] underline decoration-solid">Save & exit</button>
-                            <h1 class="text-[18px] font-medium text-[#1e1d1d] tracking-[-0.36px]">Create a listing</h1>
+                            <h1 class="text-[18px] font-medium text-[#1e1d1d] leading-[1.28] tracking-[-0.36px]">Create a listing</h1>
                             <div class="w-6">
                                 <img src="{{ asset('images/info.svg') }}" alt="Info" class="w-6 h-6">
                             </div>
@@ -63,7 +63,7 @@
                     </div>
 
                     {{-- Content Area --}}
-                    <div class="max-w-[728px] mx-auto py-16 pt-8 pb-24">
+                    <div class="max-w-[728px] mx-auto pt-[40px] pb-[108px]">
                         {{-- Display Validation Errors --}}
                         @if ($errors->any())
                             <div class="mb-8 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-[6px]" role="alert">

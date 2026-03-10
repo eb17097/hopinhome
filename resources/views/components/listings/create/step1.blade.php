@@ -13,7 +13,7 @@
                     'border-[#1447d4] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)]': formData.property_type === '{{ $type }}',
                     'border-[#e8e8e7]': formData.property_type !== '{{ $type }}'
                 }"
-                class="border rounded-[6px] p-6 flex items-center justify-between cursor-pointer transition-all bg-white group hover:border-[#1447d4]">
+                class="border rounded-[6px] p-6 flex items-center justify-between cursor-pointer transition-all bg-white group hover:border-[#E8E8E7]">
                 <div class="flex items-center space-x-4">
                     <div class="w-12 h-12 shrink-0 flex items-center justify-center">
                         @switch($type)
@@ -27,7 +27,7 @@
                         @endswitch
                     </div>
                     <div>
-                        <h4 class="text-[16px] font-medium text-[#1e1d1d]">{{ $type }}</h4>
+                        <h4 class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">{{ $type }}</h4>
                         <p class="text-[14px] text-[#464646]">
                             @switch($type)
                                 @case('Apartment') Self-contained residential unit @break
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="relative w-6 h-6 shrink-0">
-                    <div x-show="formData.property_type !== '{{ $type }}'" class="w-6 h-6 rounded-full border border-[#e8e8e7]"></div>
+                    <div x-show="formData.property_type !== '{{ $type }}'" class="w-6 h-6 rounded-full border border-[#919191]"></div>
                     <img x-show="formData.property_type === '{{ $type }}'" src="{{ asset('images/white_checkmark_on_blue.svg') }}" class="w-6 h-6" alt="Selected">
                 </div>
             </div>

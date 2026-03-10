@@ -1,5 +1,5 @@
 <div>
-    <h3 class="text-2xl font-medium text-black tracking-tight">Let’s start with the details</h3>
+    <h3 class="text-[22px] font-medium text-black tracking-tight">Let’s start with the details</h3>
     <p class="text-base text-gray-600 mt-2">Fill in the basic information about your property.</p>
 
     <div class="mt-8">

@@ -1,11 +1,11 @@
 <div>
     <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-2">Where is your property located?</h3>
-    <p class="text-[16px] text-[#464646] mb-8">Choose the location on the map or type the address.</p>
+    <p class="text-[16px] text-[#464646] mb-8">Enter the address of your property.</p>
 
-    <div class="space-y-6">
+    <div class="space-y-[20px]">
         {{-- Address Input with Autocomplete --}}
         <div>
-            <label for="address-input" class="block text-[14px] font-medium text-[#1e1d1d] mb-2">Address</label>
+            <label for="address-input" class="block text-[14px] font-medium text-[#1e1d1d] mb-[6px]">Address</label>
             <div class="relative">
                 <input
                     type="text"
@@ -35,11 +35,6 @@
                 </button>
             </div>
         </div>
-
-        <p class="text-[14px] text-[#464646] flex items-center gap-2 mb-6">
-            <img src="{{ asset('images/info.svg') }}" class="w-4 h-4 opacity-60" alt="">
-            You can drag the marker to pin the exact location.
-        </p>
     </div>
 
     <script>

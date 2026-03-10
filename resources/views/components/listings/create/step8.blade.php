@@ -1,5 +1,5 @@
 <div>
-    <h3 class="text-2xl font-medium text-black tracking-tight">Add a video tour (optional)</h3>
+    <h3 class="text-[22px] font-medium text-black tracking-tight">Add a video tour (optional)</h3>
     <p class="text-base text-gray-600 mt-2">A video tour makes it easier to understand the space, layout, and surroundings.</p>
 
     <div class="mt-10" x-data="videoUploader()">

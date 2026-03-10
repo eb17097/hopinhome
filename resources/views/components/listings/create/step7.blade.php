@@ -1,5 +1,5 @@
 <div>
-    <h3 class="text-2xl font-medium text-black tracking-tight">Add photos</h3>
+    <h3 class="text-[22px] font-medium text-black tracking-tight">Add photos</h3>
     <p class="text-base text-gray-600 mt-2">Adding photos helps renters understand the property better and makes your listing more attractive and trustworthy.</p>
 
     <div class="mt-8" x-data="photoUploader()">
