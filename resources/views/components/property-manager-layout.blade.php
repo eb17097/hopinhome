@@ -45,7 +45,7 @@
                 </div>
                 <main class="flex-1 h-screen overflow-y-auto transition-all duration-300 ease-in-out bg-white">
                     <x-property_manager.property-manager-header />
-                    <div class="px-[24px] pt-[26px] pb-[112px]">
+                    <div>
                         {{ $slot }}
                     </div>
                 </main>
