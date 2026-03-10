@@ -92,9 +92,9 @@
                     {{-- Credits Section --}}
                     <div class="bg-white border border-light-gray rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] overflow-hidden">
                         {{-- Header --}}
-                        <div class="px-6 py-4 border-b border-light-gray flex justify-between items-center">
-                            <h2 class="text-[18px] font-semibold text-[#1e1d1d]">Credits</h2>
-                            <button class="px-[18px] h-[38px] border border-light-gray rounded-full text-[14px] font-medium text-[#1e1d1d] hover:bg-gray-50 transition">
+                        <div class="px-6 py-[20px] border-b border-light-gray flex justify-between items-center">
+                            <h2 class="text-[18px] font-medium text-[#1e1d1d]">Credits</h2>
+                            <button class="h-[40px] px-[18px] border border-light-gray rounded-full text-[14px] font-medium text-[#1e1d1d] hover:bg-gray-50 transition">
                                 Show details
                             </button>
                         </div>
