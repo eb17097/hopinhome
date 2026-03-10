@@ -90,23 +90,26 @@
                     </div>
 
                     {{-- Credits Section --}}
-                    <div>
-                        <div class="flex justify-between items-center mb-6">
-                            <h2 class="text-[24px] font-semibold text-[#1e1d1d]">Credits</h2>
-                            <button class="px-6 h-[46px] border border-light-gray rounded-full text-[14px] font-medium text-[#1e1d1d] hover:bg-gray-50 transition">
+                    <div class="bg-white border border-light-gray rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] overflow-hidden">
+                        {{-- Header --}}
+                        <div class="px-6 py-4 border-b border-light-gray flex justify-between items-center">
+                            <h2 class="text-[18px] font-semibold text-[#1e1d1d]">Credits</h2>
+                            <button class="px-[18px] h-[38px] border border-light-gray rounded-full text-[14px] font-medium text-[#1e1d1d] hover:bg-gray-50 transition">
                                 Show details
                             </button>
                         </div>
 
-                        <div class="flex gap-8 mb-6">
-                            <x-property_manager.property-manager-listing-credits />
+                        {{-- Body --}}
+                        <div class="p-6">
+                            <div class="flex gap-6 mb-6">
+                                <x-property_manager.property-manager-listing-credits />
+                                <x-property_manager.property-manager-boost-credits />
+                            </div>
 
-                            <x-property_manager.property-manager-boost-credits />
+                            <p class="text-center text-[14px] text-[#464646]">
+                                Credits reset automatically every billing cycle <span class="font-semibold text-[#1e1d1d]">on the 15th.</span>
+                            </p>
                         </div>
-
-                        <p class="text-center text-[14px] text-[#464646]">
-                            Credits reset automatically every billing cycle <span class="font-semibold text-[#1e1d1d]">on the 15th.</span>
-                        </p>
                     </div>
 
                     <x-property_manager.property-manager-reviews />
