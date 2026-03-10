@@ -10,7 +10,7 @@
             @endfor
                 <img src="{{ asset('images/star_filled.svg') }}" alt="Star" class="w-[28px] h-[28px]" onerror="this.src='{{ asset('images/star.svg') }}'">
         </div>
-        <div class="text-[64px] font-medium text-electric-blue leading-none">{{ number_format($user->rating, 1) }}</div>
+        <div class="leading-[1.3] text-[64px] font-medium text-electric-blue leading-none">{{ number_format($user->rating, 1) }}</div>
         <div class="text-[14px] font-medium text-[#464646] mt-2 text-center">Based on {{ $user->review_count }} reviews</div>
     </div>
 

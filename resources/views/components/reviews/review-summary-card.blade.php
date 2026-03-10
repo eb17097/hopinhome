@@ -29,7 +29,7 @@
                 @endif
             @endfor
         </div>
-        <div class="text-[64px] font-medium text-electric-blue leading-none">{{ number_format($rating, 1) }}</div>
+        <div class="leading-[1.3] text-[64px] font-medium text-electric-blue leading-none">{{ number_format($rating, 1) }}</div>
         <div class="text-[14px] font-medium text-[#464646] mt-2 text-center">Based on {{ $reviewCount }} reviews</div>
     </div>
 

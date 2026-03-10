@@ -90,7 +90,7 @@
                     </div>
 
                     {{-- Credits Section --}}
-                    <div class="bg-white border border-light-gray rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] overflow-hidden">
+                    <div class="bg-white border border-light-gray rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)]">
                         {{-- Header --}}
                         <div class="px-6 py-[11px] border-b border-light-gray flex justify-between items-center">
                             <h2 class="text-[18px] font-medium text-[#1e1d1d]">Credits</h2>
