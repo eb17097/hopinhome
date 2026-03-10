@@ -3,8 +3,8 @@
         {{-- Header Section --}}
         <div class="flex justify-between items-center mb-[6px]">
             <div class="flex items-center space-x-[10px]">
-                <div class="w-10 h-10 bg-[#f4f4f3] rounded-[6px] flex items-center justify-center">
-                    <img src="{{ asset('images/toll.svg') }}" alt="Credit Icon" class="w-6 h-6">
+                <div class="w-10 h-10 bg-[#E8E8E8] rounded-[6px] flex items-center justify-center">
+                    <img src="{{ asset('images/toll_blue.svg') }}" alt="Credit Icon" class="w-[28px] h-[28px]">
                 </div>
                 <h3 class="text-[18px] font-medium text-[#1e1d1d]">Listing credits</h3>
             </div>

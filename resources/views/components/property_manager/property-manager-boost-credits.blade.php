@@ -3,8 +3,8 @@
         {{-- Header Section --}}
         <div class="flex justify-between items-center mb-[6px]">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 bg-[#122557] rounded-[6px] flex items-center justify-center">
-                    <img src="{{ asset('images/bolt.svg') }}" alt="Boost Icon" class="w-6 h-6">
+                <div class="w-10 h-10 bg-[#283351] rounded-[6px] flex items-center justify-center border border-[#3B4561]">
+                    <img src="{{ asset('images/bolt_yellow.svg') }}" alt="Boost Icon" class="w-6 h-6">
                 </div>
                 <h3 class="text-[18px] font-medium text-white">Boost credits</h3>
             </div>
