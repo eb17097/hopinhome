@@ -16,8 +16,8 @@
                             <h2 class="text-[22px] font-medium text-black">Dashboard</h2>
                         </div>
 
-                        <div class="bg-white border border-light-gray rounded-[8px] shadow-[0px_2px_8px_0px_rgba(0,0,0,0.04)] p-6">
-                            <div class="flex justify-between items-center mb-6">
+                        <div class="bg-white border border-light-gray rounded-[8px] shadow-[0px_2px_8px_0px_rgba(0,0,0,0.04)] p-6 pt-[20px]">
+                            <div class="flex justify-between items-center mb-[16px]">
                                 <div class="flex items-baseline space-x-2">
                                     <h3 class="text-[18px] font-medium text-[#1e1d1d]">Analytics</h3>
                                     <span class="text-[14px] text-[#464646]">Last 7 days</span>
@@ -25,29 +25,29 @@
                                 <img src="{{ asset('images/arrow_forward.svg') }}" alt="Arrow" class="w-[18px] h-[18px] brightness-0 opacity-70">
                             </div>
 
-                            <div class="grid grid-cols-3 gap-6">
+                            <div class="grid grid-cols-3 gap-[10px]">
                                 <!-- Listing Views Card -->
-                                <div class="border border-light-gray rounded-[6px] p-4 h-[96px] flex flex-col justify-between relative overflow-hidden" style="background: radial-gradient(117.68% 96% at 0% 100%, rgba(16, 168, 16, 0.05) 0%, rgba(16, 168, 16, 0) 100%), #fff;">
+                                <div class="border border-light-gray rounded-[6px] pt-[18px] px-[14px] pb-[10px] h-[96px] flex flex-col justify-between relative overflow-hidden" style="background: radial-gradient(117.68% 96% at 0% 100%, rgba(16, 168, 16, 0.05) 0%, rgba(16, 168, 16, 0) 100%), #fff;">
                                     <p class="text-[14px] text-[#464646]">Listing views</p>
                                     <div class="flex items-end justify-between">
-                                        <span class="text-[32px] font-medium text-[#1e1d1d] leading-none">310</span>
-                                        <span class="bg-like-green text-white text-[12px] font-medium px-2 py-0.5 rounded-[3px]">+24%</span>
+                                        <span class="text-[32px] font-medium text-[#1e1d1d] leading-[1.28] tracking-[-0.64px]">310</span>
+                                        <span class="bg-like-green text-white text-[12px] font-medium px-[3px] pr-[4px] py-[1px] leading-[1.5] rounded-[3px] mb-[8px]">+24%</span>
                                     </div>
                                 </div>
                                 <!-- Profile Views Card -->
-                                <div class="border border-light-gray rounded-[6px] p-4 h-[96px] flex flex-col justify-between relative overflow-hidden" style="background: radial-gradient(117.68% 96% at 0% 100%, rgba(16, 168, 16, 0.05) 0%, rgba(16, 168, 16, 0) 100%), #fff;">
+                                <div class="border border-light-gray rounded-[6px] pt-[18px] px-[14px] pb-[10px] h-[96px] flex flex-col justify-between relative overflow-hidden" style="background: radial-gradient(117.68% 96% at 0% 100%, rgba(16, 168, 16, 0.05) 0%, rgba(16, 168, 16, 0) 100%), #fff;">
                                     <p class="text-[14px] text-[#464646]">Profile views</p>
                                     <div class="flex items-end justify-between">
-                                        <span class="text-[32px] font-medium text-[#1e1d1d] leading-none">21</span>
-                                        <span class="bg-like-green text-white text-[12px] font-medium px-2 py-0.5 rounded-[3px]">+43%</span>
+                                        <span class="text-[32px] font-medium text-[#1e1d1d] leading-[1.28]">21</span>
+                                        <span class="bg-like-green text-white text-[12px] font-medium px-[3px] pr-[4px] py-[1px] leading-[1.5] rounded-[3px]">+43%</span>
                                     </div>
                                 </div>
                                 <!-- Message Requests Card -->
-                                <div class="border border-light-gray rounded-[6px] p-4 h-[96px] flex flex-col justify-between relative overflow-hidden" style="background: radial-gradient(117.68% 96% at 0% 100%, rgba(237, 7, 7, 0.05) 0%, rgba(237, 7, 7, 0) 100%), #fff;">
+                                <div class="border border-light-gray rounded-[6px] pt-[18px] px-[14px] pb-[10px] h-[96px] flex flex-col justify-between relative overflow-hidden" style="background: radial-gradient(117.68% 96% at 0% 100%, rgba(237, 7, 7, 0.05) 0%, rgba(237, 7, 7, 0) 100%), #fff;">
                                     <p class="text-[14px] text-[#464646]">Message requests</p>
                                     <div class="flex items-end justify-between">
-                                        <span class="text-[32px] font-medium text-[#1e1d1d] leading-none">21</span>
-                                        <span class="bg-[#ed0707] text-white text-[12px] font-medium px-2 py-0.5 rounded-[3px]">-6%</span>
+                                        <span class="text-[32px] font-medium text-[#1e1d1d] leading-[1.28]">21</span>
+                                        <span class="bg-[#ed0707] text-white text-[12px] font-medium px-[3px] pr-[4px] py-[1px] leading-[1.5] rounded-[3px]">-6%</span>
                                     </div>
                                 </div>
                             </div>
