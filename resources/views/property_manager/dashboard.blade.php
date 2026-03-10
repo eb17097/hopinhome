@@ -79,7 +79,7 @@
 
                                 {{-- Footer --}}
                                 <div class="p-6 border-t border-light-gray">
-                                    <a href="{{ route('property_manager.listings.index') }}" class="w-full border border-light-gray rounded-[6px] py-4 flex justify-center items-center text-[18px] font-medium text-[#1e1d1d] hover:bg-gray-50 transition-colors">
+                                    <a href="{{ route('property_manager.listings.index') }}" class="leading-[1.18] tracking-[-0.48px] h-[51px] w-full border border-light-gray rounded-[6px] py-4 flex justify-center items-center text-[16px] font-medium text-[#1e1d1d] hover:bg-gray-50 transition-colors">
                                         View all listings
                                     </a>
                                 </div>
