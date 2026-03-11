@@ -27,11 +27,11 @@
 
             {{-- Map Controls Overlay --}}
             <div class="absolute bottom-4 right-4 flex flex-col gap-2">
-                <button type="button" onclick="zoomIn()" class="w-10 h-10 bg-white rounded-[6px] shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors border border-[#e8e8e7]">
-                    <img src="{{ asset('images/add_zoom.svg') }}" class="w-4 h-4" alt="Zoom In">
+                <button type="button" onclick="zoomIn()" class="flex items-center justify-center">
+                    <img src="{{ asset('images/location_zoom_in_blue.svg') }}" class="w-12 h-12" alt="Zoom In">
                 </button>
-                <button type="button" onclick="zoomOut()" class="w-10 h-10 bg-white rounded-[6px] shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors border border-[#e8e8e7]">
-                    <img src="{{ asset('images/remove.svg') }}" class="w-4 h-4" alt="Zoom Out">
+                <button type="button" onclick="zoomOut()" class="flex items-center justify-center">
+                    <img src="{{ asset('images/location_zoom_out_blue.svg') }}" class="w-12 h-12" alt="Zoom Out">
                 </button>
             </div>
         </div>

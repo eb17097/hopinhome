@@ -5,26 +5,26 @@
     <div class="mt-8">
         <label for="listing-name" class="block text-sm font-medium text-gray-700">Listing name</label>
         <div class="mt-1">
-            <input type="text" name="name" id="listing-name" x-model="formData.name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="e.g. Cozy Apartment with Great Views">
+            <input type="text" name="name" id="listing-name" x-model="formData.name" class="h-[51px] p-[18px] shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full text-[16px] border-gray-300 rounded-[6px]" placeholder="e.g. Cozy Apartment with Great Views">
         </div>
     </div>
 
-    <div class="mt-4 bg-off-white p-4 rounded-md flex items-start space-x-3">
+    <div class="mt-[10px] h-[53px] bg-off-white p-4 rounded-md flex items-center space-x-[8px]">
         <img src="{{ asset('images/contact_support_blue.svg') }}" alt="Support" class="h-7 w-7">
         <p class="text-sm text-gray-600">This will be the primary title of the listing.</p>
     </div>
 
-    <div class="mt-8">
+    <div class="mt-[24px]">
         <div class="flex justify-between">
             <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
             <span class="text-sm text-gray-500">1500 characters remaining</span>
         </div>
         <div class="mt-1">
-            <textarea id="description" name="description" rows="4" x-model="formData.description" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Write a description here"></textarea>
+            <textarea id="description" name="description" rows="4" x-model="formData.description" class="leading-[1.5] p-[18px] shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full text-[16px] border-gray-300 rounded-[6px]" placeholder="Write a description here"></textarea>
         </div>
     </div>
 
-    <div class="mt-4 bg-off-white p-4 rounded-md flex items-start space-x-3">
+    <div class="mt-[10px] h-[53px] bg-off-white p-4 rounded-md flex items-center space-x-[8px]">
         <img src="{{ asset('images/contact_support_blue.svg') }}" alt="Support" class="h-7 w-7">
         <p class="text-sm text-gray-600">
             <span class="font-medium text-black">Suggestion:</span>

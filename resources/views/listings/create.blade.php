@@ -95,9 +95,9 @@
                     </div>
 
                     {{-- Sticky Footer Navigation --}}
-                    <div class="fixed bottom-0 left-[232px] w-[calc(100%-232px)] right-0 bg-white justify-center flex items-center z-40 transition-all duration-300"
+                    <div class="fixed bottom-0 left-[232px] w-[calc(100%-232px)] right-0 justify-center flex items-center z-40 transition-all duration-300"
                          :class="{'left-0': !sidebarOpen}">
-                        <div class="w-[776px] h-[88px] flex border-t border-[#e8e8e7] justify-between items-center mr-[24px]">
+                        <div class="w-[776px] h-[88px] flex border-t border-[#e8e8e7] justify-between items-center mr-[24px] bg-white">
                             <button type="button" x-show="step > 1" @click="step--" class="flex items-center gap-2 group">
                                 <img src="{{ asset('images/arrow_forward.svg') }}" alt="Back" class="w-4 h-4 transform rotate-180 opacity-60 group-hover:opacity-100 transition-opacity">
                                 <span class="text-[16px] font-medium text-[#707070] group-hover:text-[#1e1d1d] transition-colors tracking-[-0.48px]">Back</span>
