@@ -41,7 +41,7 @@
             step = 'reset_password';
             resetToken = urlParams.get('reset_token');
             email = urlParams.get('email');
-            
+
             // Clean up the URL for security/cleanliness
             const cleanUrl = window.location.origin + window.location.pathname;
             window.history.replaceState({}, document.title, cleanUrl);
@@ -68,34 +68,38 @@
          x-transition:leave-start="opacity-100 transform scale-100"
          x-transition:leave-end="opacity-0 transform scale-95">
 
-        <div class="p-8">
-            <button x-show="step === 'email'" @click="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; }, 300)" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
+        <div>
             <button x-show="step === 'verify_email' || step === 'password' || step === 'finish_signup'" @click="step = 'email'; error = ''; passwordError = ''; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; verifyCode = ['', '', '', '', '', '']" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600 z-10">
                  <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
 
             <!-- Email/Phone Step -->
-            <div x-show="step === 'email'">
-                <h2 class="text-center text-xl font-medium text-gray-900 mb-6 mt-2">Log in or sign up</h2>
-                <div class="space-y-3">
-                    <a href="{{ route('auth.google') }}" class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors">
-                        <img src="{{ asset('images/google.svg') }}" alt="Google icon" class="h-5 w-5">
+            <div class="pb-[40px]" x-show="step === 'email'">
+
+                <div class="px-[24px] mb-[32px] py-[21px] border-b border-[#e8e8e7] flex items-center justify-between relative">
+                    <button x-show="step === 'email'" @click="showModal = false; setTimeout(() => { step = 'email'; email = ''; emailError = ''; error = ''; passwordError = ''; showPassword = false; verifyCode = ['', '', '', '', '', '']; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; }, 300)" class="text-[#1e1d1d] hover:opacity-70 transition-opacity z-10">
+                        <img src="{{ asset('images/close_blue.svg') }}" class="w-6 h-6" alt="Close">
+                    </button>
+                    <h2 class="absolute inset-0 flex items-center justify-center text-[18px] font-medium text-[#1e1d1d] pointer-events-none">Log in or sign up</h2>
+                </div>
+
+                <div class="px-[24px] space-y-[16px]">
+                    <a href="{{ route('auth.google') }}" class="h-[52px] w-full flex items-center justify-center gap-[6px] px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors">
+                        <img src="{{ asset('images/google.svg') }}" alt="Google icon" class="h-[17px] w-[17px]">
                         Continue with Google
                     </a>
-                    <button class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium opacity-50 pointer-events-none cursor-not-allowed transition-colors">
-                        <img src="{{ asset('images/facebook.svg') }}" alt="Facebook icon" class="h-5 w-5">
+                    <button class="h-[52px] w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium opacity-50 pointer-events-none cursor-not-allowed transition-colors">
+                        <img src="{{ asset('images/facebook.svg') }}" alt="Facebook icon" class="h-[17px] w-[17px]">
                         Continue with Facebook
                     </button>
-                    <button class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium opacity-50 pointer-events-none cursor-not-allowed transition-colors">
-                        <img src="{{ asset('images/apple.svg') }}" alt="Apple icon" class="h-5 w-5">
+                    <button class="h-[52px] w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-200 rounded-lg text-gray-700 font-medium opacity-50 pointer-events-none cursor-not-allowed transition-colors">
+                        <img src="{{ asset('images/apple.svg') }}" alt="Apple icon" class="h-[17px] w-[17px]">
                         Continue with Apple
                     </button>
                 </div>
-                <div class="flex items-center my-6"><hr class="flex-grow border-gray-200"><span class="px-3 text-gray-400 text-sm">or</span><hr class="flex-grow border-gray-200"></div>
+                <div class="flex items-center my-10 px-[24px]"><hr class="flex-grow border-gray-200"><span class="px-[8px] text-gray-400 text-[14px]">or</span><hr class="flex-grow border-gray-200"></div>
 
-                <form @submit.prevent="
+                <form class="px-[24px]" @submit.prevent="
                     if (email.trim() === '') {
                         emailError = 'Email address is required.';
                     } else {
@@ -150,10 +154,10 @@
                 ">
                     <div>
                         <label for="email-phone" class="block text-sm font-medium text-gray-700 mb-1.5">Email address or phone number</label>
-                        <input x-model="email" @input="emailError = ''" type="text" id="email-phone" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" placeholder="Enter your email or phone">
+                        <input x-model="email" @input="emailError = ''" type="text" id="email-phone" class="h-[51px] w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" placeholder="Enter your email or phone">
                         <div x-show="emailError" x-text="emailError" class="text-red-500 text-sm mt-2"></div>
                     </div>
-                    <button type="submit" :disabled="isLoading" class="w-full bg-electric-blue text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors mt-3 flex justify-center items-center disabled:opacity-70">
+                    <button type="submit" :disabled="isLoading" class="h-[51px] w-full bg-electric-blue text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors mt-3 flex justify-center items-center disabled:opacity-70">
                         <span x-show="!isLoading">Continue</span>
                         <svg x-show="isLoading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="display: none;">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -161,7 +165,7 @@
                         </svg>
                     </button>
                 </form>
-                <p class="text-xs text-gray-500 text-center mt-6">By continuing, you agree to our <a href="#" class="text-electric-blue hover:underline">Terms</a> & <a href="#" class="text-electric-blue hover:underline">Privacy Policy</a>.</p>
+                <p class="text-[14px] text-gray-600 text-center">By continuing, you agree to our <a href="#" class="underline">Terms</a> & <a href="#" class="underline">Privacy Policy</a>.</p>
             </div>
 
             <!-- Verify Email Step (Sign Up) -->
@@ -461,7 +465,7 @@
                     isLoading = true;
                     error = '';
                     passwordError = '';
-                    
+
                     fetch('/ajax/login', {
                         method: 'POST',
                         headers: {
@@ -583,7 +587,7 @@
                 <div class="px-8 py-4 border-b border-gray-100 flex items-center justify-center">
                     <h2 class="text-[16px] font-medium text-[#1e1d1d]">Forgot password?</h2>
                 </div>
-                
+
                 <div class="p-8 pt-6">
                     <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-2">Check your email</h3>
                     <p class="text-[16px] text-[#464646] mb-8 leading-[1.5]">We've sent a reset link to your email.</p>
@@ -601,7 +605,7 @@
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                     </button>
                 </div>
-                
+
                 <div class="p-8 pt-6">
                     <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-1">Set your new password</h3>
                     <p class="text-[16px] text-[#464646] mb-6 leading-[1.5]">Enter a new password for your account.</p>
@@ -687,7 +691,7 @@
                 <div class="px-8 py-4 border-b border-gray-100 flex items-center justify-center">
                     <h2 class="text-[16px] font-medium text-[#1e1d1d]">Reset password</h2>
                 </div>
-                
+
                 <div class="p-8 pt-6">
                     <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-2">Your new password is set</h3>
                     <p class="text-[16px] text-[#464646] mb-8 leading-[1.5]">The new password is set for your account.</p>
