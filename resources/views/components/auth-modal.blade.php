@@ -69,7 +69,7 @@
          x-transition:leave-end="opacity-0 transform scale-95">
 
         <div>
-            <button x-show="step === 'verify_email' || step === 'password' || step === 'finish_signup'" @click="step = 'email'; error = ''; passwordError = ''; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; verifyCode = ['', '', '', '', '', '']" class="absolute top-4 left-[24px] text-gray-400 hover:text-gray-600 z-10">
+            <button x-show="step === 'verify_email' || step === 'password' || step === 'finish_signup'" @click="step = 'email'; error = ''; passwordError = ''; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; verifyCode = ['', '', '', '', '', '']" class="absolute top-[21px] left-[24px] text-gray-400 hover:text-gray-600 z-10">
                 <img src="{{ asset('images/close_blue.svg') }}" class="w-6 h-6" alt="Close">
             </button>
 
@@ -169,14 +169,14 @@
             </div>
 
             <!-- Verify Email Step (Sign Up) -->
-            <div x-show="step === 'verify_email'" style="display: none;" class="-mt-8 -mx-8 bg-white relative">
-                <div class="px-8 py-[21px] border-b border-gray-100 flex items-center justify-center">
-                    <h2 class="text-[18px] font-medium text-[#1e1d1d]">Sign up</h2>
+            <div x-show="step === 'verify_email'" style="display: none;" class="bg-white relative">
+                <div class="px-[24px] py-[21px] border-b border-gray-100 flex items-center justify-center">
+                    <h2 class="text-[18px] font-medium text-[#1e1d1d] leading-[1.28]">Sign up</h2>
                 </div>
 
-                <div class="p-8 pt-6">
-                    <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-2">Verify your email</h3>
-                    <p class="text-[16px] text-[#464646] mb-8 leading-[1.5]">We sent a 6-digit code to <span class="font-medium text-[#1e1d1d]" x-text="email"></span>.</p>
+                <div class="p-8 pt-[32px]">
+                    <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-[6px]">Verify your email</h3>
+                    <p class="text-[16px] text-[#464646] mb-[24px] leading-[1.5]">We sent a 6-digit code to <span class="font-medium text-[#1e1d1d]" x-text="email"></span>.</p>
 
                     <form @submit.prevent="
                         const code = verifyCode.join('');
@@ -208,13 +208,13 @@
                         });
                     ">
                         <div>
-                            <label class="block text-[14px] font-medium text-[#1e1d1d] mb-3">Verification code</label>
+                            <label class="block text-[14px] font-medium text-[#1e1d1d] mb-[8px]">Verification code</label>
                             <div class="flex items-center gap-2">
                                 <template x-for="(code, index) in verifyCode" :key="index">
                                     <div class="flex items-center gap-2">
                                         <input type="text" maxlength="1"
-                                               class="otp-input w-[52px] h-[52px] text-center text-[20px] font-medium border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors"
-                                               :class="{'bg-[#f2f2f2]': verifyCode[index] !== ''}"
+                                               class="otp-input w-[51px] h-[51px] text-center text-[20px] font-medium border border-[#1447d4] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors"
+                                               :class="{'bg-[#E8E8E7] border-[#E8E8E7]': verifyCode[index] !== ''}"
                                                x-model="verifyCode[index]"
                                                @input="
                                                   otpError = '';
@@ -733,7 +733,7 @@
                     ">
                         <div>
                             <label class="block text-[14px] font-medium text-[#1e1d1d] mb-3">Verification code</label>
-                            <div class="flex items-center gap-2">
+                            <div class="flex items-center gap-2 border border-[#E8E8E7]">
                                 <template x-for="(code, index) in verifyCode" :key="index">
                                     <div class="flex items-center gap-2">
                                         <input type="text" maxlength="1"
