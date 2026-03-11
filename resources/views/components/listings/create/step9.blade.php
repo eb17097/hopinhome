@@ -45,6 +45,7 @@
                     name="price" 
                     id="price" 
                     x-model.number="formData.price" 
+                    min="0"
                     class="w-full px-4 py-3 border border-[#e8e8e7] rounded-[6px] focus:ring-2 focus:ring-[#1447d4] focus:border-transparent transition-all outline-none text-[16px]" 
                     placeholder="500,000"
                 >

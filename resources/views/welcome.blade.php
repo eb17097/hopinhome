@@ -362,6 +362,7 @@
                                                 <div class="relative">
                                                     <input type="number"
                                                            x-model.number="minPrice"
+                                                           min="0"
                                                            @input="if(minPrice > (maxPrice || maxRange)) minPrice = (maxPrice || maxRange)"
                                                            class="w-full border border-[#E8E8E7] rounded-[8px] px-4 py-3 text-[15px] font-medium text-[#1E1D1D] focus:ring-0 focus:border-[#1447D4] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
                                                     <span class="absolute right-4 top-1/2 -translate-y-1/2 text-[#707070] text-[14px]">AED</span>
@@ -372,6 +373,7 @@
                                                 <div class="relative">
                                                     <input type="number"
                                                            x-model.number="maxPrice"
+                                                           min="0"
                                                            @input="if(maxPrice < minPrice) maxPrice = minPrice"
                                                            class="w-full border border-[#E8E8E7] rounded-[8px] px-4 py-3 text-[15px] font-medium text-[#1E1D1D] focus:ring-0 focus:border-[#1447D4] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                                                            placeholder="Any">
