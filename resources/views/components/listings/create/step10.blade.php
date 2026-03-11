@@ -20,7 +20,7 @@
     <div class="space-y-10">
         {{-- Listing Duration --}}
         <div>
-            <label class="block text-[18px] font-medium text-[#1e1d1d] mb-1">Listing duration</label>
+            <label class="block text-[16px] font-medium text-[#1e1d1d] mb-1">Listing duration</label>
             <p class="text-[16px] text-[#464646] mb-[20px]">Choose the total amount of days to show this listing before having to extend it.</p>
 
             <div class="grid grid-cols-3 gap-4">
@@ -31,8 +31,12 @@
 
                     {{-- Credit count badge --}}
                     <div class="absolute top-[4px] right-[8px] flex items-center gap-0.5">
-                        <span class="text-[16px] font-medium leading-[1.3]">{{ $duration / 30 }}</span>
-                        <img src="{{ asset('images/toll_gray.svg') }}" alt="" class="w-[13px] h-[13px]">
+                        <span class="text-[16px] font-medium leading-[1.3]"
+                              :class="formData.duration === {{ $duration }} ? 'text-[#1447d4]' : 'text-[#464646]'">
+                            {{ $duration / 30 }}
+                        </span>
+                        <img :src="formData.duration === {{ $duration }} ? '{{ asset('images/toll_blue.svg') }}' : '{{ asset('images/toll_gray.svg') }}'"
+                             alt="" class="w-[13px] h-[13px]">
                     </div>
 
                     <p class="leading-[1.5] text-[20px] font-medium text-[#1e1d1d]">{{ $duration }} days</p>
@@ -50,7 +54,7 @@
 
         {{-- Renewal Settings --}}
         <div>
-            <label class="block text-[18px] font-medium text-[#1e1d1d] mb-1">Renewal settings</label>
+            <label class="block text-[16px] font-medium text-[#1e1d1d] mb-1">Renewal settings</label>
             <p class="text-[16px] text-[#464646] mb-[20px]">Listing renewal acts as a republished listing that counts as published today.</p>
 
             <div class="grid grid-cols-3 gap-4">
@@ -77,9 +81,9 @@
 
         {{-- Total Cost Summary --}}
         <div class="flex justify-between items-center">
-            <span class="text-[18px] font-medium text-[#1e1d1d]">Listing cost</span>
+            <span class="text-[20px] font-medium text-[#1e1d1d]">Listing cost</span>
             <div class="flex items-center gap-2">
-                <span class="text-[22px] font-medium text-[#1e1d1d]"
+                <span class="text-[20px] font-medium text-[#1e1d1d]"
                       x-text="(formData.duration / 30) * (formData.renewal_type === 'Monthly' ? 1 : (formData.renewal_type === 'Bi-weekly' ? 2 : 4))">
                     0
                 </span>
