@@ -2,12 +2,11 @@
     <h3 class="text-[22px] font-medium text-black tracking-tight">Add a video tour (optional)</h3>
     <p class="text-base text-gray-600 mt-2">A video tour makes it easier to understand the space, layout, and surroundings.</p>
 
-    <div class="mt-10" x-data="videoUploader()">
-        <div class="flex items-center justify-between mb-1.5">
+    <div class="mt-[32px]" x-data="videoUploader()">
+        <div class="flex items-center justify-between mb-[6px]">
             <label for="video_file" class="block text-sm font-medium text-black">Video tour</label>
             <button x-show="videoPreviewUrl" type="button" @click="removeVideo" class="text-sm font-medium text-red-600 hover:text-red-800 flex items-center gap-1" x-cloak>
                 <img src="{{ asset('images/delete.svg') }}" class="w-4 h-4" alt="">
-                Remove video
             </button>
         </div>
         <div class="relative">
@@ -23,7 +22,7 @@
                 </label>
             </div>
 
-            <div class="mt-4" x-show="videoPreviewUrl" x-cloak>
+            <div x-show="videoPreviewUrl" x-cloak>
                 <video :src="videoPreviewUrl" controls class="w-full rounded-md"></video>
             </div>
         </div>
@@ -47,7 +46,7 @@
         }
     </script>
 
-    <div class="mt-4 mt-6 bg-off-white p-[14px] rounded-md flex items-center space-x-3">
+    <div class="mt-4 mt-[16px] bg-off-white p-[14px] rounded-md flex items-center space-x-[8px] h-[53px]">
         <img src="{{ asset('images/contact_support_blue.svg') }}" alt="Support" class="h-7 w-7">
         <p class="text-sm text-gray-600 leading-[1.5]">
             <span class="font-medium text-black">Suggestion:</span>
