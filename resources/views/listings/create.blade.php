@@ -15,11 +15,13 @@
     <div class="bg-white">
         <div class="max-w-[1440px] mx-auto">
 
-                                    <form action="{{ route('property_manager.listings.store') }}" method="POST" enctype="multipart/form-data">
+                                    <form id="listing-creation-form" action="{{ route('property_manager.listings.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div id="listing-form-container"
                                              x-data="{
                                                 step: 1,
+                                                showExitModal: false,
+                                                nextUrl: null,
                                                 formData: {
                                                     property_type: '',
                                                     address: '',
@@ -42,14 +44,42 @@
                                                     price: '',
                                                     duration: 30,
                                                     renewal_type: 'Monthly'
+                                                },
+                                                saveAsDraft() {
+                                                    let form = document.getElementById('listing-creation-form');
+                                                    let statusInput = document.createElement('input');
+                                                    statusInput.type = 'hidden';
+                                                    statusInput.name = 'status';
+                                                    statusInput.value = 'Draft';
+                                                    form.appendChild(statusInput);
+                                                    
+                                                    if (this.nextUrl) {
+                                                        let redirectInput = document.createElement('input');
+                                                        redirectInput.type = 'hidden';
+                                                        redirectInput.name = 'redirect_to';
+                                                        redirectInput.value = this.nextUrl;
+                                                        form.appendChild(redirectInput);
+                                                    }
+                                                    form.submit();
+                                                },
+                                                initInterceptors() {
+                                                    document.addEventListener('click', (e) => {
+                                                        const link = e.target.closest('a');
+                                                        if (link && !link.hasAttribute('data-no-intercept') && link.href && !link.href.startsWith('#') && !link.href.startsWith('javascript:') && !link.href.includes(window.location.pathname) && link.target !== '_blank') {
+                                                            e.preventDefault();
+                                                            this.nextUrl = link.href;
+                                                            this.showExitModal = true;
+                                                        }
+                                                    });
                                                 }
                                              }"
-                                             x-init="window.listingForm = $data">
+                                             x-init="window.listingForm = $data; initInterceptors()"
+                                             @save-as-draft="saveAsDraft()">
 
                     {{-- Header Area with Stepper --}}
                     <div class="max-w-[728px] mx-auto">
                         <div class="flex justify-between items-center my-[20px]">
-                            <button type="button" class="text-[14px] text-[#464646] underline decoration-solid">Save & exit</button>
+                            <button type="button" @click="showExitModal = true" class="text-[14px] text-[#464646] underline decoration-solid">Save & exit</button>
                             <h1 class="text-[18px] font-medium text-[#1e1d1d] leading-[1.28] tracking-[-0.36px]">Create a listing</h1>
                             <div class="w-6">
                                 <img src="{{ asset('images/info.svg') }}" alt="Info" class="w-6 h-6">
@@ -61,6 +91,8 @@
                             <div class="bg-[#1447d4] h-full transition-all duration-500" :style="'width:' + (step / 10 * 100) + '%'"></div>
                         </div>
                     </div>
+
+                    <x-modals.exit-listing-creation show="showExitModal" />
 
                     {{-- Content Area --}}
                     <div class="max-w-[728px] mx-auto pt-[40px] pb-[108px]">

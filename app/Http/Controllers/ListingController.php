@@ -32,26 +32,29 @@ class ListingController extends Controller
             'features' => $features,
             'amenities' => $amenities,
         ]);
+
+        $isDraft = $request->input('status') === 'Draft';
         
         try {
-            $validatedData = $request->validate([
-                'name' => 'required|string|max:255',
-                'property_type' => 'required|string',
-                'address' => 'required|string',
-                'description' => 'required|string',
-                'bedrooms' => 'required|string',
-                'bathrooms' => 'required|integer|min:0',
-                'area' => 'required|integer|min:0',
+            $rules = [
+                'name' => $isDraft ? 'nullable|string|max:255' : 'required|string|max:255',
+                'property_type' => $isDraft ? 'nullable|string' : 'required|string',
+                'address' => $isDraft ? 'nullable|string' : 'required|string',
+                'description' => $isDraft ? 'nullable|string' : 'required|string',
+                'bedrooms' => $isDraft ? 'nullable|string' : 'required|string',
+                'bathrooms' => $isDraft ? 'nullable|integer|min:0' : 'required|integer|min:0',
+                'area' => $isDraft ? 'nullable|integer|min:0' : 'required|integer|min:0',
                 'floor_number' => 'nullable|integer|min:0',
                 'total_floors' => 'nullable|integer|min:0',
-                'construction_year' => 'required|integer|min:0',
-                'payment_option' => 'required|string',
-                'utilities_option' => 'required|string',
-                'price' => 'required|numeric|min:0',
-                'duration' => 'required|integer|min:0',
-                'renewal_type' => 'required|string',
+                'construction_year' => $isDraft ? 'nullable|integer|min:0' : 'required|integer|min:0',
+                'payment_option' => $isDraft ? 'nullable|string' : 'required|string',
+                'utilities_option' => $isDraft ? 'nullable|string' : 'required|string',
+                'price' => $isDraft ? 'nullable|numeric|min:0' : 'required|numeric|min:0',
+                'duration' => $isDraft ? 'nullable|integer|min:0' : 'required|integer|min:0',
+                'renewal_type' => $isDraft ? 'nullable|string' : 'required|string',
                 'latitude' => 'nullable|numeric',
                 'longitude' => 'nullable|numeric',
+                'status' => 'nullable|string',
                 'video_file' => 'nullable|file|mimes:mp4,mov,avi,wmv|max:51200', // 50MB Max
                 'photos' => 'nullable|array',
                 'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -59,7 +62,16 @@ class ListingController extends Controller
                 'features.*' => 'exists:features,id',
                 'amenities' => 'nullable|array',
                 'amenities.*' => 'exists:amenities,id',
-            ]);
+            ];
+
+            $validatedData = $request->validate($rules);
+
+            // Ensure status is set correctly
+            if ($isDraft) {
+                $validatedData['status'] = 'Draft';
+            } else {
+                $validatedData['status'] = 'Active';
+            }
 
             // Handle video upload
             if ($request->hasFile('video_file')) {
@@ -98,6 +110,11 @@ class ListingController extends Controller
             DB::commit();
 
             Log::info('--- Listing Creation SUCCESS ---', ['listing_id' => $listing->id]);
+            
+            if ($request->filled('redirect_to')) {
+                return redirect($request->input('redirect_to'))->with('success', 'Listing saved as draft!');
+            }
+            
             return redirect()->route('property_manager.index')->with('success', 'New listing created successfully!');
 
         } catch (\Illuminate\Validation\ValidationException $e) {
