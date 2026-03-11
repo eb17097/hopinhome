@@ -1,6 +1,6 @@
 @props(['name' => 'otp-input', 'model' => 'verifyCode'])
 
-<div class="flex items-center gap-2" x-id="['otp-inputs']">
+<div class="flex items-center justify-between p-[14px] border border-[#1447d4] rounded-[8px]" x-id="['otp-inputs']">
     <template x-for="(code, index) in {{ $model }}" :key="index">
         <div class="flex items-center gap-2">
             <input type="text"
