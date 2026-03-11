@@ -10,7 +10,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-[18px] gap-x-12">
             @foreach($features as $feature)
                 <div class="flex items-center">
                     <input type="checkbox" :id="'feature_' + {{ $feature->id }}" :value="{{ $feature->id }}" x-model="formData.features" class="hidden">
