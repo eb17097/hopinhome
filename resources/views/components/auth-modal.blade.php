@@ -153,7 +153,7 @@
                     }
                 ">
                     <div>
-                        <label for="email-phone" class="block text-sm font-medium text-gray-700 mb-1.5">Email address or phone number</label>
+                        <label for="email-phone" class="block text-sm font-medium text-gray-700 mb-[6px]">Email address or phone number</label>
                         <input x-model="email" @input="emailError = ''" type="text" id="email-phone" class="h-[51px] w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" placeholder="Enter your email or phone">
                         <div x-show="emailError" x-text="emailError" class="text-red-500 text-sm mt-2"></div>
                     </div>
@@ -451,13 +451,13 @@
 
             <!-- Password Step (For Existing Users) -->
             <div x-show="step === 'password'" style="display: none;" class="bg-white relative">
-                 <div class="px-8 py-4 border-b border-gray-100 flex items-center justify-center">
+                 <div class="px-8 py-4 border-b border-gray-200 flex items-center justify-center">
                     <h2 class="text-[16px] font-medium text-[#1e1d1d]">Log in</h2>
                 </div>
 
-                <div class="p-8 pt-6">
-                    <p class="text-[20px] font-medium leading-[1.28] tracking-[-0.4px] text-[#464646] mb-8">Enter your password to continue.</p>
-                    <form @submit.prevent="
+                <div class="px-[24px] pt-[32px] pb-[40px]">
+                    <p class="text-[20px] font-medium leading-[1.28] tracking-[-0.4px] text-[#464646] mb-[24px]">Enter your password to continue</p>
+                    <form class="mb-0" @submit.prevent="
                     if ($refs.password.value.trim() === '') {
                         passwordError = 'Password is required.';
                         return;
@@ -521,7 +521,7 @@
                                    class="block text-sm font-medium text-gray-700 mb-1.5">Password</label>
                             <div class="relative">
                                 <input x-ref="password" :type="showPassword ? 'text' : 'password'" id="password"
-                                       class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                       class="h-[51px] w-full px-[18px] py-[14px] border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                                        placeholder="Your password" @input="passwordError = ''">
                                 <button type="button" @click="showPassword = !showPassword"
                                         class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-400 hover:text-gray-600">
@@ -546,7 +546,7 @@
                         <div x-show="error && !passwordError" x-text="error" class="text-red-500 text-sm mt-2"></div>
                         <button type="submit"
                                 :disabled="isLoading"
-                                class="w-full bg-electric-blue text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors mt-6 flex justify-center items-center disabled:opacity-70">
+                                class="w-full bg-electric-blue text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors mt-[16px] flex justify-center items-center disabled:opacity-70">
                             <span x-show="!isLoading">Log in</span>
                             <svg x-show="isLoading" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="display: none;">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -577,7 +577,7 @@
                                 isLoading = false;
                                 error = 'An error occurred. Please try again.';
                             });
-                        " class="block w-full text-center text-sm text-electric-blue hover:underline mt-6">Forgot password?</button>
+                        " class="block w-full text-center text-sm underline mt-[16px]">Forgot password?</button>
                     </form>
                 </div>
             </div>
