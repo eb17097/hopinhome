@@ -3,17 +3,17 @@
     <p class="text-base text-gray-600 mt-2">Adding photos helps renters understand the property better and makes your listing more attractive and trustworthy.</p>
 
     <div class="mt-8" x-data="photoUploader()">
+        <div class="flex justify-between items-center mb-[6px]" x-show="previews.length > 0">
+            <h4 class="text-sm font-medium text-black">Uploaded photos</h4>
+            <span class="text-sm text-gray-500" x-text="(20 - previews.length) + ' photos remaining'"></span>
+        </div>
+
         <!-- Reorder instruction banner (only when photos exist) -->
-        <div class="mb-6 bg-off-white p-4 rounded-md flex items-center space-x-3" x-show="previews.length > 0">
+        <div class="mb-6 bg-off-white p-4 rounded-md flex items-center space-x-[8px]" x-show="previews.length > 0">
             <img src="{{ asset('images/contact_support_blue.svg') }}" alt="Support" class="h-6 w-6">
             <p class="text-sm text-gray-600">
                 Click on the arrows to <span class="font-medium text-black">reorder the photos.</span> The first photo will be your cover photo.
             </p>
-        </div>
-
-        <div class="flex justify-between items-center mb-4" x-show="previews.length > 0">
-            <h4 class="text-sm font-medium text-black">Uploaded photos</h4>
-            <span class="text-sm text-gray-500" x-text="(20 - previews.length) + ' photos remaining'"></span>
         </div>
 
         <!-- Label for initial state -->
@@ -29,11 +29,11 @@
                 <div class="flex items-stretch space-x-0">
                     <!-- Image Area -->
                     <div class="relative flex-1" style="border: 1px solid lightgray; border-radius: 3px; overflow: hidden;">
-                        <img :src="preview" class="w-full h-full object-cover">
+                        <img :src="preview" class="w-full max-w-[474px] h-full object-cover">
 
                         <!-- Cover photo badge -->
                         <template x-if="index === 0">
-                            <div class="absolute top-3 left-3 bg-black/40 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded">
+                            <div class="h-[22px] absolute top-[5px] left-[5px] bg-black/40 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded">
                                 Cover photo
                             </div>
                         </template>
