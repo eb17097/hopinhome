@@ -5,7 +5,7 @@
             <p class="text-[16px] text-[#464646] mb-8">Set up publishing settings.</p>
         </div>
         {{-- Credits Available Badge --}}
-        <div class="bg-white border border-[#e8e8e7] rounded-[6px] px-4 py-2 flex items-center gap-3">
+        <div class="border bg-[#F9F9F8] border-[#e8e8e7] rounded-[6px] px-4 py-2 flex items-center gap-3">
             <span class="text-[14px] font-medium text-[#464646]">Listing credits available</span>
             <div class="flex items-center gap-1">
                 <span class="text-[18px] font-medium text-[#1e1d1d]">12</span>
