@@ -209,46 +209,8 @@
                     ">
                         <div>
                             <label class="block text-[14px] font-medium text-[#1e1d1d] mb-[8px]">Verification code</label>
-                            <div class="flex items-center gap-2">
-                                <template x-for="(code, index) in verifyCode" :key="index">
-                                    <div class="flex items-center gap-2">
-                                        <input type="text" maxlength="1"
-                                               class="otp-input w-[51px] h-[51px] text-center text-[20px] font-medium border border-[#1447d4] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors"
-                                               :class="{'bg-[#E8E8E7] border-[#E8E8E7]': verifyCode[index] !== ''}"
-                                               x-model="verifyCode[index]"
-                                               @input="
-                                                  otpError = '';
-                                                  if ($event.target.value.length === 1 && index < 5) {
-                                                      let inputs = document.querySelectorAll('.otp-input');
-                                                      if (inputs[index + 1]) inputs[index + 1].focus();
-                                                  }
-                                               "
-                                               @keydown.backspace="
-                                                  if ($event.target.value.length === 0 && index > 0) {
-                                                      let inputs = document.querySelectorAll('.otp-input');
-                                                      if (inputs[index - 1]) inputs[index - 1].focus();
-                                                  }
-                                               "
-                                               @paste.prevent="
-                                                  otpError = '';
-                                                  let paste = ($event.clipboardData || window.clipboardData).getData('text');
-                                                  paste = paste.replace(/\D/g, '').substring(0, 6);
-                                                  for (let i = 0; i < paste.length; i++) {
-                                                      if (index + i < 6) {
-                                                          verifyCode[index + i] = paste[i];
-                                                      }
-                                                  }
-                                                  setTimeout(() => {
-                                                      let inputs = document.querySelectorAll('.otp-input');
-                                                      let focusIndex = Math.min(index + paste.length, 5);
-                                                      if (inputs[focusIndex]) inputs[focusIndex].focus();
-                                                  }, 10);
-                                               "
-                                        >
-                                        <span x-show="index === 2" class="w-4 text-center text-gray-400">-</span>
-                                    </div>
-                                </template>
-                            </div>
+                            <x-otp-input name="otp-input-signup" />
+                            
                             <div x-show="otpError || otpSuccessMessage"
                                  x-text="otpError || otpSuccessMessage"
                                  class="text-sm mt-3 font-medium"
@@ -292,7 +254,7 @@
                                                             startResendTimer();
                                                             // Focus the first input after clearing
                                                             setTimeout(() => {
-                                                                let inputs = document.querySelectorAll('.otp-input');
+                                                                let inputs = document.querySelectorAll('.otp-input-signup');
                                                                 if (inputs[0]) inputs[0].focus();
                                                             }, 10);
                                                         } else {
@@ -733,46 +695,8 @@
                     ">
                         <div>
                             <label class="block text-[14px] font-medium text-[#1e1d1d] mb-3">Verification code</label>
-                            <div class="flex items-center gap-2 border border-[#E8E8E7]">
-                                <template x-for="(code, index) in verifyCode" :key="index">
-                                    <div class="flex items-center gap-2">
-                                        <input type="text" maxlength="1"
-                                               class="otp-input-2fa w-[52px] h-[52px] text-center text-[20px] font-medium border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors"
-                                               :class="{'bg-[#f2f2f2]': verifyCode[index] !== ''}"
-                                               x-model="verifyCode[index]"
-                                               @input="
-                                                  otpError = '';
-                                                  if ($event.target.value.length === 1 && index < 5) {
-                                                      let inputs = document.querySelectorAll('.otp-input-2fa');
-                                                      if (inputs[index + 1]) inputs[index + 1].focus();
-                                                  }
-                                               "
-                                               @keydown.backspace="
-                                                  if ($event.target.value.length === 0 && index > 0) {
-                                                      let inputs = document.querySelectorAll('.otp-input-2fa');
-                                                      if (inputs[index - 1]) inputs[index - 1].focus();
-                                                  }
-                                               "
-                                               @paste.prevent="
-                                                  otpError = '';
-                                                  let paste = ($event.clipboardData || window.clipboardData).getData('text');
-                                                  paste = paste.replace(/\D/g, '').substring(0, 6);
-                                                  for (let i = 0; i < paste.length; i++) {
-                                                      if (index + i < 6) {
-                                                          verifyCode[index + i] = paste[i];
-                                                      }
-                                                  }
-                                                  setTimeout(() => {
-                                                      let inputs = document.querySelectorAll('.otp-input-2fa');
-                                                      let focusIndex = Math.min(index + paste.length, 5);
-                                                      if (inputs[focusIndex]) inputs[focusIndex].focus();
-                                                  }, 10);
-                                               "
-                                        >
-                                        <span x-show="index === 2" class="w-4 text-center text-gray-400">-</span>
-                                    </div>
-                                </template>
-                            </div>
+                            <x-otp-input name="otp-input-2fa" />
+
                             <div x-show="otpError || otpSuccessMessage"
                                  x-text="otpError || otpSuccessMessage"
                                  class="text-sm mt-3 font-medium"
