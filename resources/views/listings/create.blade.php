@@ -12,7 +12,7 @@
             -moz-appearance: textfield;
         }
     </style>
-    <div class="bg-white min-h-screen">
+    <div class="bg-white">
         <div class="max-w-[1440px] mx-auto">
 
                                     <form action="{{ route('property_manager.listings.store') }}" method="POST" enctype="multipart/form-data">
