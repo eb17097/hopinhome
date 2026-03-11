@@ -456,7 +456,7 @@
                 </div>
 
                 <div class="p-8 pt-6">
-                    <p class="text-[16px] text-[#464646] mb-8">Enter your password to continue to <span class="font-medium text-[#1e1d1d]" x-text="email"></span>.</p>
+                    <p class="text-[20px] font-medium leading-[1.28] tracking-[-0.4px] text-[#464646] mb-8">Enter your password to continue.</p>
                     <form @submit.prevent="
                     if ($refs.password.value.trim() === '') {
                         passwordError = 'Password is required.';
