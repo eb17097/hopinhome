@@ -36,7 +36,7 @@
                       });
                    "
             >
-            <span x-show="index === 2" class="w-4 text-center text-gray-400">-</span>
+            <div x-show="index === 2" class="w-[14px] h-[2px] bg-gray-400"></div>
         </div>
     </template>
 </div>
