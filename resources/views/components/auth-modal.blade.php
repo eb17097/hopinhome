@@ -69,8 +69,8 @@
          x-transition:leave-end="opacity-0 transform scale-95">
 
         <div>
-            <button x-show="step === 'verify_email' || step === 'password' || step === 'finish_signup'" @click="step = 'email'; error = ''; passwordError = ''; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; verifyCode = ['', '', '', '', '', '']" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600 z-10">
-                 <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            <button x-show="step === 'verify_email' || step === 'password' || step === 'finish_signup'" @click="step = 'email'; error = ''; passwordError = ''; otpError = ''; otpSuccessMessage = ''; clearInterval(resendInterval); resendTimer = 60; registerError = ''; verifyCode = ['', '', '', '', '', '']" class="absolute top-4 left-[24px] text-gray-400 hover:text-gray-600 z-10">
+                <img src="{{ asset('images/close_blue.svg') }}" class="w-6 h-6" alt="Close">
             </button>
 
             <!-- Email/Phone Step -->
@@ -170,8 +170,8 @@
 
             <!-- Verify Email Step (Sign Up) -->
             <div x-show="step === 'verify_email'" style="display: none;" class="-mt-8 -mx-8 bg-white relative">
-                <div class="px-8 py-4 border-b border-gray-100 flex items-center justify-center">
-                    <h2 class="text-[16px] font-medium text-[#1e1d1d]">Sign up</h2>
+                <div class="px-8 py-[21px] border-b border-gray-100 flex items-center justify-center">
+                    <h2 class="text-[18px] font-medium text-[#1e1d1d]">Sign up</h2>
                 </div>
 
                 <div class="p-8 pt-6">
@@ -450,7 +450,7 @@
             </div>
 
             <!-- Password Step (For Existing Users) -->
-            <div x-show="step === 'password'" style="display: none;" class="-mt-8 -mx-8 bg-white relative">
+            <div x-show="step === 'password'" style="display: none;" class="bg-white relative">
                  <div class="px-8 py-4 border-b border-gray-100 flex items-center justify-center">
                     <h2 class="text-[16px] font-medium text-[#1e1d1d]">Log in</h2>
                 </div>
