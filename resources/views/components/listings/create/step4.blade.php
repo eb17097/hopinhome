@@ -1,20 +1,20 @@
 <div>
     <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-2">More property details</h3>
-    <p class="text-[16px] text-[#464646] mb-8">Choose the property type.</p>
+    <p class="text-[16px] text-[#464646] mb-8">Fill in more information about your property.</p>
 
     <input type="hidden" name="bedrooms" x-model="formData.bedrooms">
     <input type="hidden" name="bathrooms" x-model="formData.bathrooms">
 
-    <div class="flex flex-wrap gap-x-12 gap-y-8">
+    <div class="flex flex-wrap gap-x-12 gap-y-[38px]">
         {{-- Bedrooms --}}
-        <div class="flex-1 min-w-[300px]">
-            <label class="block text-[14px] font-medium text-[#1e1d1d] mb-4">Bedrooms</label>
-            <div class="flex flex-wrap gap-2">
+        <div class="w-[348px]">
+            <label class="block text-[14px] font-medium text-[#1e1d1d] mb-[12px]">Bedrooms</label>
+            <div class="flex flex-wrap gap-[11px]">
                 @foreach(['Studio', '1', '2', '3', '4', '5+'] as $option)
                     <button type="button"
                             @click="formData.bedrooms = '{{ $option }}'"
                             :class="{ 'bg-[#1447d4] text-white border-[#1447d4] shadow-md': formData.bedrooms === '{{ $option }}', 'bg-white text-[#1e1d1d] border-[#e8e8e7]': formData.bedrooms !== '{{ $option }}' }"
-                            class="border rounded-full h-10 min-w-[40px] px-4 flex items-center justify-center text-[16px] font-medium transition-all hover:border-[#1447d4]">
+                            class="shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] border rounded-full h-10 min-w-[40px] px-[10px] flex items-center justify-center text-[16px] font-medium transition-all hover:border-[#1447d4]">
                         {{ $option }}
                     </button>
                 @endforeach
