@@ -64,7 +64,10 @@
                      class="h-[96px] border rounded-[6px] px-[24px] pb-[24px] pt-[22px] text-center cursor-pointer transition-all hover:border-[#1447d4] relative group">
 
                     {{-- Multiplier badge --}}
-                    <span class="absolute top-[4px] right-[8px] opacity-80 text-[16px] leading-[1.3] font-medium">x{{ $type === 'Monthly' ? '1' : ($type === 'Bi-weekly' ? '2' : '4') }}</span>
+                    <span class="absolute top-[4px] right-[8px] text-[16px] leading-[1.3] font-medium transition-colors"
+                          :class="formData.renewal_type === '{{ $type }}' ? 'text-[#1447d4]' : 'text-[#464646] opacity-80'">
+                        x{{ $type === 'Monthly' ? '1' : ($type === 'Bi-weekly' ? '2' : '4') }}
+                    </span>
 
                     <p class="leading-[1.5] text-[20px] font-medium text-[#1e1d1d]">{{ $type }}</p>
                     <p class="leading-[1.5] text-[14px] text-[#464646]">
@@ -83,10 +86,18 @@
         <div class="flex justify-between items-center">
             <span class="text-[20px] font-medium text-[#1e1d1d]">Listing cost</span>
             <div class="flex items-center gap-2">
-                <span class="text-[20px] font-medium text-[#1e1d1d]"
-                      x-text="(formData.duration / 30) * (formData.renewal_type === 'Monthly' ? 1 : (formData.renewal_type === 'Bi-weekly' ? 2 : 4))">
-                    0
-                </span>
+                <div class="text-[20px] font-medium tracking-[-0.4px]">
+                    <span class="text-[#707070]">
+                        <span x-text="formData.duration / 30">1</span>
+                        x
+                        <span x-text="formData.renewal_type === 'Monthly' ? 1 : (formData.renewal_type === 'Bi-weekly' ? 2 : 4)">1</span>
+                        =
+                    </span>
+                    <span class="text-[#1e1d1d]"
+                          x-text="(formData.duration / 30) * (formData.renewal_type === 'Monthly' ? 1 : (formData.renewal_type === 'Bi-weekly' ? 2 : 4))">
+                        0
+                    </span>
+                </div>
                 <img src="{{ asset('images/toll.svg') }}" alt="Toll" class="w-[22px] h-[22px]">
             </div>
         </div>
