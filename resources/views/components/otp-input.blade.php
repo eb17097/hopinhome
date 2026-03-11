@@ -2,7 +2,7 @@
 
 <div class="flex items-center justify-between p-[14px] border border-[#1447d4] rounded-[8px]" x-id="['otp-inputs']">
     <template x-for="(code, index) in {{ $model }}" :key="index">
-        <div class="flex items-center gap-2">
+        <div class="flex items-center">
             <input type="text"
                    maxlength="1"
                    :data-index="index"
@@ -36,7 +36,9 @@
                       });
                    "
             >
-            <div x-show="index === 2" class="w-[14px] h-[2px] bg-gray-400"></div>
+            <div x-show="index === 2" class="flex items-center justify-center w-[14px] mx-1">
+                <div class="w-full h-[2px] bg-gray-400 rounded-full"></div>
+            </div>
         </div>
     </template>
 </div>
