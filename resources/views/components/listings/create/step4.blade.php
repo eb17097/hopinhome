@@ -14,7 +14,7 @@
                     <button type="button"
                             @click="formData.bedrooms = '{{ $option }}'"
                             :class="{ 'bg-[#1447d4] text-white border-[#1447d4] shadow-md': formData.bedrooms === '{{ $option }}', 'bg-white text-[#1e1d1d] border-[#e8e8e7]': formData.bedrooms !== '{{ $option }}' }"
-                            class="shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] border rounded-full h-10 min-w-[40px] px-[10px] flex items-center justify-center text-[16px] font-medium transition-all hover:border-[#1447d4]">
+                            class="shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] border rounded-full h-10 min-w-[40px] {{ $option === 'Studio' ? 'px-[16px]' : 'px-[10px]' }} flex items-center justify-center text-[16px] font-medium transition-all hover:border-[#1447d4]">
                         {{ $option }}
                     </button>
                 @endforeach
