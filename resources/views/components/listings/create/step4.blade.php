@@ -5,11 +5,11 @@
     <input type="hidden" name="bedrooms" x-model="formData.bedrooms">
     <input type="hidden" name="bathrooms" x-model="formData.bathrooms">
 
-    <div class="flex flex-wrap gap-x-12 gap-y-[38px]">
+    <div class="flex flex-wrap gap-x-[32px]">
         {{-- Bedrooms --}}
         <div class="w-[348px]">
             <label class="block text-[14px] font-medium text-[#1e1d1d] mb-[12px]">Bedrooms</label>
-            <div class="flex flex-wrap gap-[11px]">
+            <div class="flex justify-between pr-[6px]">
                 @foreach(['Studio', '1', '2', '3', '4', '5+'] as $option)
                     <button type="button"
                             @click="formData.bedrooms = '{{ $option }}'"
@@ -23,14 +23,14 @@
 
         {{-- Bathrooms --}}
         <div class="w-[244px]">
-            <label class="block text-[14px] font-medium text-[#1e1d1d] mb-4">Bathrooms</label>
-            <div class="flex flex-wrap gap-2">
+            <label class="block text-[14px] font-medium text-[#1e1d1d] mb-[12px]">Bathrooms</label>
+            <div class="flex justify-between">
                 @foreach([1, 2, 3, 4, '5+'] as $option)
                     @php $val = is_numeric($option) ? $option : 5 @endphp
                     <button type="button"
                             @click="formData.bathrooms = {{ $val }}"
                             :class="{ 'bg-[#1447d4] text-white border-[#1447d4] shadow-md': formData.bathrooms == {{ $val }}, 'bg-white text-[#1e1d1d] border-[#e8e8e7]': formData.bathrooms != {{ $val }} }"
-                            class="border rounded-full h-10 w-10 flex items-center justify-center text-[16px] font-medium transition-all hover:border-[#1447d4]">
+                            class="shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] border rounded-full h-10 w-10 flex items-center justify-center text-[16px] font-medium transition-all hover:border-[#1447d4]">
                         {{ $option }}
                     </button>
                 @endforeach
@@ -38,13 +38,13 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-8 mt-10">
+    <div class="flex mt-[34px] space-x-[32px]">
         {{-- Area --}}
-        <div class="md:col-span-6">
-            <label for="area" class="block text-[14px] font-medium text-[#1e1d1d] mb-2">Area</label>
+        <div class="w-[348px]">
+            <label for="area" class="block text-[14px] font-medium text-[#1e1d1d] mb-[6px]">Area</label>
             <div class="relative">
                 <input type="number" name="area" id="area" x-model.number="formData.area"
-                       class="w-full px-4 py-3 border border-[#e8e8e7] rounded-[6px] focus:ring-2 focus:ring-[#1447d4] focus:border-transparent transition-all outline-none text-[16px]"
+                       class="h-[51px] leading-[1.3] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] w-full px-[18px] py-[14px] border border-[#e8e8e7] rounded-[6px] focus:ring-2 focus:ring-[#1447d4] focus:border-transparent transition-all outline-none text-[16px]"
                        placeholder="500">
                 <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-[#464646] text-[16px]">
                     sqft
@@ -53,25 +53,25 @@
         </div>
 
         {{-- Floor number --}}
-        <div class="md:col-span-3">
-            <label for="floor-number" class="block text-[14px] font-medium text-[#1e1d1d] mb-2">Floor number</label>
+        <div class="w-[158px]">
+            <label for="floor-number" class="block text-[14px] font-medium text-[#1e1d1d] mb-[6px]">Floor number</label>
             <input type="number" name="floor_number" id="floor-number" x-model.number="formData.floor_number"
-                   class="w-full px-4 py-3 border border-[#e8e8e7] rounded-[6px] focus:ring-2 focus:ring-[#1447d4] focus:border-transparent transition-all outline-none text-[16px]"
+                   class="h-[51px] leading-[1.3] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] w-full px-[18px] py-[14px] border border-[#e8e8e7] rounded-[6px] focus:ring-2 focus:ring-[#1447d4] focus:border-transparent transition-all outline-none text-[16px]"
                    placeholder="3">
         </div>
 
         {{-- Total floors --}}
-        <div class="md:col-span-3">
-            <label for="total-floors" class="block text-[14px] font-medium text-[#1e1d1d] mb-2">Total floors</label>
+        <div class="w-[158px]">
+            <label for="total-floors" class="block text-[14px] font-medium text-[#1e1d1d] mb-[6px]">Total floors</label>
             <input type="number" name="total_floors" id="total-floors" x-model.number="formData.total_floors"
-                   class="w-full px-4 py-3 border border-[#e8e8e7] rounded-[6px] focus:ring-2 focus:ring-[#1447d4] focus:border-transparent transition-all outline-none text-[16px]"
+                   class="h-[51px] leading-[1.3] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] w-full px-[18px] py-[14px] border border-[#e8e8e7] rounded-[6px] focus:ring-2 focus:ring-[#1447d4] focus:border-transparent transition-all outline-none text-[16px]"
                    placeholder="5">
         </div>
     </div>
 
     {{-- Construction Year --}}
     <div class="mt-10">
-        <label for="construction-year" class="block text-[14px] font-medium text-[#1e1d1d] mb-4">Building construction year</label>
+        <label for="construction-year" class="block text-[14px] font-medium text-[#1e1d1d] mb-[8px]">Building construction year (optional)</label>
         <div class="flex items-center gap-4">
             <button type="button" @click="formData.construction_year--"
                     class="w-[51px] h-[51px] bg-[#f9f9f8] rounded-[6px] flex items-center justify-center border border-[#e8e8e7] hover:bg-gray-100 transition-colors">
