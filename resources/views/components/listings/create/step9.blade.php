@@ -38,7 +38,7 @@
 
         {{-- Price Input --}}
         <div>
-            <label for="price" class="block text-[14px] font-medium text-[#1e1d1d] mb-2">Price per <span x-text="formData.payment_option.toLowerCase()">year</span></label>
+            <label for="price" class="block text-[14px] font-medium text-[#1e1d1d] mb-2">Price per <span x-text="{ 'Yearly': 'year', 'Monthly': 'month', 'Weekly': 'week' }[formData.payment_option] || 'year'"></span></label>
             <div class="relative">
                 <input
                     type="number"
@@ -46,10 +46,10 @@
                     id="price"
                     x-model.number="formData.price"
                     min="0"
-                    class="w-full px-4 py-3 border border-[#e8e8e7] rounded-[6px] focus:ring-2 focus:ring-[#1447d4] focus:border-transparent transition-all outline-none text-[16px]"
+                    class="w-full px-[18px] py-[14px] h-[51px] border border-[#e8e8e7] rounded-[6px] focus:ring-2 focus:ring-[#1447d4] focus:border-transparent transition-all outline-none text-[16px]"
                     placeholder="500,000"
                 >
-                <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-[#464646] text-[16px] font-medium">
+                <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-[#464646] text-[16px] font-normal">
                     AED
                 </div>
             </div>
