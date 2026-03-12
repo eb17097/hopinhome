@@ -24,7 +24,7 @@ class PublicProfileController extends Controller
         $realUser->license_number = '31139';
         $realUser->member_since = $realUser->created_at->year;
         $realUser->response_time = 'less than 2 hours';
-        $realUser->total_listings = $realUser->listings()->count() ?: 136;
+        $realUser->total_listings = $realUser->listings()->where('status', 'Active')->count() ?: 136;
         $realUser->rating = 4.7;
         $realUser->review_count = 15;
         $realUser->reviews_stats = [
@@ -60,8 +60,8 @@ class PublicProfileController extends Controller
             ],
         ]);
 
-        // Fetch real listings for this user
-        $listings = $user->listings()->with('images')->take(3)->get();
+        // Fetch real active listings for this user
+        $listings = $user->listings()->where('status', 'Active')->with('images')->take(3)->get();
         
         if ($listings->isEmpty()) {
             $listings = collect([

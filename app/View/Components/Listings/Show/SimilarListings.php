@@ -25,6 +25,7 @@ class SimilarListings extends Component
     public function render(): View|Closure|string
     {
         $this->similarListings = \App\Models\Listing::where('id', '!=', $this->listing->id)
+            ->where('status', 'Active')
             ->with('images') // Eager load images to avoid N+1 issues
             ->inRandomOrder()
             ->take(4)

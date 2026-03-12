@@ -137,6 +137,10 @@ class ListingController extends Controller
     // 3. Show a single listing
     public function show(Listing $listing)
     {
+        if ($listing->status !== 'Active' && (!auth()->check() || auth()->id() !== $listing->user_id)) {
+            abort(404);
+        }
+
         $listing->load(['images', 'features', 'amenities', 'user']);
         return view('listings.show', ['listing' => $listing]);
     }

@@ -40,8 +40,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/', function () {
-    // Fetch all listings from the database (latest first)
-    $listings = Listing::latest()->get();
+    // Fetch all active listings from the database (latest first)
+    $listings = Listing::where('status', 'Active')->latest()->get();
 
     return view('welcome', ['listings' => $listings]);
 })->name('home');
