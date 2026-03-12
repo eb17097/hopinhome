@@ -113,7 +113,7 @@
                     <img src="{{ asset('images/location_on.svg') }}" alt="Location Icon" class="w-5 h-5 text-gray-400 mr-2">
                     <div class="flex items-center space-x-2 flex-grow overflow-hidden">
                         <template x-if="location">
-                            <span class="bg-gray-50 border border-gray-200 rounded-md px-2 py-1 text-sm text-gray-700 flex items-center shrink-0">
+                            <span class="bg-gray-50 border border-gray-200 rounded-md px-2 py-1 text-[16px] text-gray-700 flex items-center shrink-0">
                                 <span x-text="location"></span>
                                 <img src="{{ asset('images/close.svg') }}" @click.stop="location = ''; locationQuery = ''" alt="Close Icon" class="w-4 h-4 ml-1 cursor-pointer opacity-60 hover:opacity-100">
                             </span>
@@ -124,7 +124,7 @@
                             x-model="locationQuery"
                             @focus="openFilter = 'location'"
                             placeholder="Enter City or Location"
-                            class="flex-grow border-none focus:ring-0 text-gray-700 placeholder-gray-500 text-sm p-0 bg-transparent"
+                            class="flex-grow border-none focus:ring-0 text-gray-700 placeholder-gray-500 text-[16px] p-0 bg-transparent"
                         >
                     </div>
                 </div>
@@ -160,10 +160,10 @@
             <div class="relative">
                 <div
                     @click.stop="openFilter = openFilter === 'propertyType' ? null : 'propertyType'"
-                    class="relative block w-[170px] h-[45px] py-2.5 px-4 bg-white border rounded-lg shadow-sm text-sm text-gray-700 cursor-pointer select-none transition-all duration-200"
+                    class="relative block w-[170px] h-[45px] py-[11px] px-4 bg-white border rounded-lg shadow-sm text-sm text-gray-700 cursor-pointer select-none transition-all duration-200"
                     :class="openFilter === 'propertyType' ? 'border-gray-200 border-b-white rounded-b-none z-30' : 'border-gray-200'"
                 >
-                    <span class="truncate pr-4 block" x-text="selectedPropertyTypes.length > 0 ? selectedPropertyTypes.join(', ') : 'Property type'"></span>
+                    <span class="leading-[1.3] text-[16px] truncate pr-4 block" x-text="selectedPropertyTypes.length > 0 ? selectedPropertyTypes.join(', ') : 'Property type'"></span>
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                         <img src="{{ asset('images/chevron.svg') }}" alt="Dropdown Arrow" class="w-4 h-4 text-gray-500 transition-transform" :class="openFilter === 'propertyType' ? 'rotate-180' : ''">
                     </div>
@@ -229,10 +229,10 @@
             <div class="relative">
                 <div
                     @click.stop="openFilter = openFilter === 'bedrooms' ? null : 'bedrooms'"
-                    class="relative block w-[170px] h-[45px] py-2.5 px-4 bg-white border rounded-lg shadow-sm text-sm text-gray-700 cursor-pointer select-none transition-all duration-200"
+                    class="relative block w-[170px] h-[45px] py-[11px] px-4 bg-white border rounded-lg shadow-sm text-sm text-gray-700 cursor-pointer select-none transition-all duration-200"
                     :class="openFilter === 'bedrooms' ? 'border-gray-200 border-b-white rounded-b-none z-30' : 'border-gray-200'"
                 >
-                    <span class="truncate pr-4 block" x-text="formattedBedrooms"></span>
+                    <span class="leading-[1.3] text-[16px] truncate pr-4 block" x-text="formattedBedrooms"></span>
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                         <img src="{{ asset('images/chevron.svg') }}" alt="Dropdown Arrow" class="w-4 h-4 text-gray-500 transition-transform" :class="openFilter === 'bedrooms' ? 'rotate-180' : ''">
                     </div>
@@ -267,10 +267,10 @@
             <div class="relative">
                 <div
                     @click.stop="openFilter = openFilter === 'price' ? null : 'price'"
-                    class="relative block w-[170px] h-[45px] py-2.5 px-4 bg-white border rounded-lg shadow-sm text-sm text-gray-700 cursor-pointer select-none transition-all duration-200"
+                    class="relative block w-[170px] h-[45px] py-[11px] px-4 bg-white border rounded-lg shadow-sm text-sm text-gray-700 cursor-pointer select-none transition-all duration-200"
                     :class="openFilter === 'price' ? 'border-gray-200 border-b-white rounded-b-none z-30' : 'border-gray-200'"
                 >
-                    <span class="truncate pr-4 block" x-text="formattedPrice"></span>
+                    <span class="leading-[1.3] text-[16px] truncate pr-4 block" x-text="formattedPrice"></span>
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                         <img src="{{ asset('images/chevron.svg') }}" alt="Dropdown Arrow" class="w-4 h-4 text-gray-500 transition-transform" :class="openFilter === 'price' ? 'rotate-180' : ''">
                     </div>
@@ -318,7 +318,7 @@
             </div>
 
             <!-- More filters Button -->
-            <button class="w-[170px] justify-center relative flex items-center gap-1.5 py-2.5 px-4 bg-[#F9F9F8] border border-gray-200 rounded-lg text-sm font-medium text-[#1447D4] hover:bg-gray-100 transition shadow-sm h-[45px]">
+            <button class="w-[170px] justify-center relative flex items-center gap-1.5 py-2.5 px-4 bg-[#F9F9F8] border border-gray-200 rounded-lg text-[16px] font-medium text-[#1447D4] hover:bg-gray-100 transition shadow-sm h-[45px]">
                 <img src="{{ asset('images/tune.svg') }}" alt="Tune Icon" class="w-[18px] h-[18px]">
                 More filters
                 <span class="absolute top-[-10px] right-[-10px] bg-[#1447D4] text-white text-[12px] w-6 h-6 flex items-center justify-center rounded-full border-2 border-white">
@@ -327,7 +327,7 @@
             </button>
 
             <!-- Search Button -->
-            <button class="flex-1 bg-[#1447D4] text-white px-8 py-2.5 rounded-lg justify-center font-medium hover:bg-blue-700 transition shadow-sm flex items-center gap-2 h-[45px]">
+            <button class="text-[16px] flex-1 bg-[#1447D4] text-white px-8 py-2.5 rounded-lg justify-center font-medium hover:bg-blue-700 transition shadow-sm flex items-center gap-2 h-[45px]">
                 <img src="{{ asset('images/search.svg') }}" alt="Search Icon" class="w-4 h-4 brightness-0 invert">
                 Search
             </button>
