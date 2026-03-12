@@ -1,6 +1,6 @@
 @props(['selector'])
 
-<p class="text-[14px] text-[#464646] text-center mt-6">
+<p class="text-[14px] text-[#464646] text-center">
     Didn't receive a code?
     <button @click="resendOtp('{{ $selector }}')"
             :disabled="resendTimer > 0 || isResending"
