@@ -26,6 +26,40 @@
                 }
             }, 1000);
         },
+        resendOtp(inputSelector) {
+            if (this.resendTimer > 0 || this.isResending) return;
+            this.otpError = '';
+            this.otpSuccessMessage = '';
+            this.isResending = true;
+            fetch('{{ route('ajax.send-otp') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')
+                },
+                body: JSON.stringify({ email: this.email })
+            })
+            .then(res => res.json())
+            .then(data => {
+                this.isResending = false;
+                if (data.status === 'success') {
+                    this.otpSuccessMessage = 'A new code has been sent!';
+                    this.verifyCode = ['', '', '', '', '', ''];
+                    this.startResendTimer();
+                    setTimeout(() => {
+                        let inputs = document.querySelectorAll(inputSelector);
+                        if (inputs[0]) inputs[0].focus();
+                    }, 10);
+                } else {
+                    this.otpError = data.message || 'Failed to resend.';
+                }
+            })
+            .catch(err => {
+                this.isResending = false;
+                this.otpError = 'An error occurred while resending the code.';
+            });
+        },
         firstName: '',
         lastName: '',
         password: '',
@@ -229,54 +263,7 @@
                         </button>
                     </form>
 
-                    <p class="text-[14px] text-[#464646] text-center mt-6">
-                        Didn't receive a code?
-                                                <button @click="
-                                                    if (resendTimer > 0 || isResending) return;
-                                                    otpError = '';
-                                                    otpSuccessMessage = '';
-                                                    isResending = true;
-                                                    fetch('{{ route('ajax.send-otp') }}', {
-                                                        method: 'POST',
-                                                        headers: {
-                                                            'Content-Type': 'application/json',
-                                                            'Accept': 'application/json',
-                                                            'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')
-                                                        },
-                                                        body: JSON.stringify({ email: email })
-                                                    })
-                                                    .then(res => res.json())
-                                                    .then(data => {
-                                                        isResending = false;
-                                                        if (data.status === 'success') {
-                                                            otpSuccessMessage = 'A new code has been sent!';
-                                                            verifyCode = ['', '', '', '', '', ''];
-                                                            startResendTimer();
-                                                            // Focus the first input after clearing
-                                                            setTimeout(() => {
-                                                                let inputs = document.querySelectorAll('.otp-input-signup');
-                                                                if (inputs[0]) inputs[0].focus();
-                                                            }, 10);
-                                                        } else {
-                                                            otpError = data.message || 'Failed to resend.';
-                                                        }
-                                                    })
-                                                    .catch(err => {
-                                                        isResending = false;
-                                                        otpError = 'An error occurred while resending the code.';
-                                                    });
-                                                "
-                                                :disabled="resendTimer > 0 || isResending"
-                                                class="underline decoration-solid transition-colors relative"
-                                                :class="{'text-gray-400 cursor-not-allowed': resendTimer > 0 || isResending, 'text-[#464646] hover:text-black': resendTimer === 0 && !isResending}">
-                                                    <span :class="{'opacity-0': isResending && resendTimer === 0}">Resend <span x-show="resendTimer > 0" x-text="`in 0:${resendTimer < 10 ? '0' : ''}${resendTimer}`"></span></span>
-                                                    <div x-show="isResending && resendTimer === 0" class="absolute inset-0 flex items-center justify-center">
-                                                        <svg class="animate-spin h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                                        </svg>
-                                                    </div>
-                                                </button>                    </p>
+                    <x-auth.resend-section selector=".otp-input-signup" />
                 </div>
             </div>
 
@@ -715,56 +702,7 @@
                         </button>
                     </form>
 
-                    <p class="text-[14px] text-[#464646] text-center mt-6">
-                        Didn't receive a code?
-                        <button @click="
-                            if (resendTimer > 0 || isResending) return;
-                            otpError = '';
-                            otpSuccessMessage = '';
-                            isResending = true;
-                            // Since this is 2FA login resend, we can just use the standard send-otp endpoint,
-                            // as it just generates a code and emails it to the requested email.
-                            fetch('{{ route('ajax.send-otp') }}', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Accept': 'application/json',
-                                    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')
-                                },
-                                body: JSON.stringify({ email: email })
-                            })
-                            .then(res => res.json())
-                            .then(data => {
-                                isResending = false;
-                                if (data.status === 'success') {
-                                    otpSuccessMessage = 'A new code has been sent!';
-                                    verifyCode = ['', '', '', '', '', ''];
-                                    startResendTimer();
-                                    setTimeout(() => {
-                                        let inputs = document.querySelectorAll('.otp-input-2fa');
-                                        if (inputs[0]) inputs[0].focus();
-                                    }, 10);
-                                } else {
-                                    otpError = data.message || 'Failed to resend.';
-                                }
-                            })
-                            .catch(err => {
-                                isResending = false;
-                                otpError = 'An error occurred while resending the code.';
-                            });
-                        "
-                        :disabled="resendTimer > 0 || isResending"
-                        class="underline decoration-solid transition-colors relative"
-                        :class="{'text-gray-400 cursor-not-allowed': resendTimer > 0 || isResending, 'text-[#464646] hover:text-black': resendTimer === 0 && !isResending}">
-                            <span :class="{'opacity-0': isResending && resendTimer === 0}">Resend <span x-show="resendTimer > 0" x-text="`in 0:${resendTimer < 10 ? '0' : ''}${resendTimer}`"></span></span>
-                            <div x-show="isResending && resendTimer === 0" class="absolute inset-0 flex items-center justify-center">
-                                <svg class="animate-spin h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                            </div>
-                        </button>
-                    </p>
+                    <x-auth.resend-section selector=".otp-input-2fa" />
                 </div>
             </div>
         </div>
