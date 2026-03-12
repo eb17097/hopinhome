@@ -22,6 +22,7 @@ document.addEventListener('alpine:init', () => {
         lastName: '',
         country: '',
         agreeTerms: false,
+        receiveUpdates: false,
         registerError: '',
 
         init() {
@@ -55,6 +56,7 @@ document.addEventListener('alpine:init', () => {
             this.lastName = '';
             this.country = '';
             this.agreeTerms = false;
+            this.receiveUpdates = false;
             clearInterval(this.resendInterval);
             this.resendTimer = 60;
         },
