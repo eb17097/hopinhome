@@ -1,7 +1,7 @@
-@props(['title' => 'Verify your email', 'type' => 'signup'])
+@props(['modal_header' => 'Sign up', 'type' => 'signup', 'modal_title' => 'Verifiy your email'])
 
-<x-auth.step-layout :title="$title" :showBack="true" :backStep="$type === '2fa' ? 'password' : 'email'">
-    <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-[6px]">{{ $title }}</h3>
+<x-auth.step-layout :title="$modal_header" :showBack="true" :backStep="$type === '2fa' ? 'password' : 'email'">
+    <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-[6px]">{{ $modal_title }}</h3>
     <p class="text-[16px] text-[#464646] mb-[24px] leading-[1.5]">
         We sent a 6-digit code to <span class="font-medium text-[#1e1d1d]" x-text="email"></span>.
     </p>
@@ -10,7 +10,7 @@
         <div>
             <label class="block text-[14px] font-medium text-[#1e1d1d] mb-[8px]">Verification code</label>
             <x-otp-input :name="$type === '2fa' ? 'otp-input-2fa' : 'otp-input-signup'" />
-            
+
             <div x-show="otpError || otpSuccessMessage"
                  x-text="otpError || otpSuccessMessage"
                  class="text-sm mt-3 font-medium"

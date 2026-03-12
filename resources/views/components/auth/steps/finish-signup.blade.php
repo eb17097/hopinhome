@@ -1,29 +1,29 @@
 <x-auth.step-layout title="Sign up" :showBack="true">
-    <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-1">Set up your profile</h3>
+    <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-[6px]">Set up your profile</h3>
     <p class="text-[16px] text-[#464646] mb-6 leading-[1.5]">Enter your details to get started</p>
 
-    <form @submit.prevent="handleRegister">
+    <form @submit.prevent="handleRegister" class="mb-0">
         <div class="space-y-4">
             <div class="flex gap-4">
                 <div class="flex-1">
-                    <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">First name</label>
-                    <input x-model="firstName" type="text" class="w-full px-4 py-3 border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors" placeholder="John" @input="registerError = ''">
+                    <label class="block text-[14px] font-medium text-[#1e1d1d] mb-[6px]">First name</label>
+                    <input x-model="firstName" type="text" class="shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] h-[51px] w-full px-[18px] py-[14px] border border-[#e8e8e7] rounded-[6px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors" placeholder="John" @input="registerError = ''">
                 </div>
                 <div class="flex-1">
-                    <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">Last name</label>
-                    <input x-model="lastName" type="text" class="w-full px-4 py-3 border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors" placeholder="Your last name" @input="registerError = ''">
+                    <label class="block text-[14px] font-medium text-[#1e1d1d] mb-[6px]">Last name</label>
+                    <input x-model="lastName" type="text" class="shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] h-[51px] w-full px-[18px] py-[14px] border border-[#e8e8e7] rounded-[6px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors" placeholder="Your last name" @input="registerError = ''">
                 </div>
             </div>
 
             <div>
-                <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">Email address</label>
-                <input x-model="email" type="email" readonly class="w-full px-4 py-3 border border-[#e8e8e7] bg-gray-50 rounded-[8px] text-gray-500 cursor-not-allowed outline-none">
+                <label class="block text-[14px] font-medium text-[#1e1d1d] mb-[6px]">Email address</label>
+                <input x-model="email" type="email" readonly class="shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] h-[51px] w-full px-[18px] py-[14px] border border-[#e8e8e7] bg-gray-50 rounded-[6px] text-gray-500 cursor-not-allowed outline-none">
             </div>
 
             <div>
-                <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">Password</label>
+                <label class="block text-[14px] font-medium text-[#1e1d1d] mb-[6px]">Password</label>
                 <div class="relative">
-                    <input x-model="password" :type="showRegisterPassword ? 'text' : 'password'" class="w-full h-[52px] px-4 border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors text-[16px]" placeholder="••••••••••••" @input="registerError = ''">
+                    <input x-model="password" :type="showRegisterPassword ? 'text' : 'password'" class="shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] h-[51px] w-full h-[52px] px-4 border border-[#e8e8e7] rounded-[6px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors text-[16px]" placeholder="••••••••••••" @input="registerError = ''">
                     <button type="button" @click="showRegisterPassword = !showRegisterPassword" class="absolute inset-y-0 right-0 px-4 flex items-center">
                         <img x-show="!showRegisterPassword" src="{{ asset('images/pass_visibility_visible.svg') }}" class="w-5 h-5" alt="Show password">
                         <img x-show="showRegisterPassword" src="{{ asset('images/pass_visibility_off.svg') }}" class="w-5 h-5" alt="Hide password" style="display: none;">
@@ -32,9 +32,9 @@
             </div>
 
             <div>
-                <label class="block text-[14px] font-medium text-[#1e1d1d] mb-1.5">Country</label>
+                <label class="block text-[14px] font-medium text-[#1e1d1d] mb-[6px]">Country</label>
                 <div class="relative">
-                    <select x-model="country" class="w-full px-4 py-3 pl-10 border border-[#e8e8e7] rounded-[8px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors appearance-none bg-white">
+                    <select x-model="country" class="shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] h-[51px] w-full px-[18px] py-[14px] pl-10 border border-[#e8e8e7] rounded-[6px] focus:border-[#1447d4] focus:ring-1 focus:ring-[#1447d4] outline-none transition-colors appearance-none bg-white">
                         <option value="" disabled selected>Select a country</option>
                         <option value="United Arab Emirates">United Arab Emirates</option>
                         <option value="United States">United States</option>
