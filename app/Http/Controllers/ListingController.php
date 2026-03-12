@@ -142,9 +142,34 @@ class ListingController extends Controller
     }
 
     // 4. Show all listings
-    public function index()
+    public function index(Request $request)
     {
-        $listings = Listing::latest()->get();
+        $query = Listing::query()->where('status', 'Active');
+
+        if ($request->filled('location')) {
+            $query->where(function($q) use ($request) {
+                $q->where('address', 'like', '%' . $request->location . '%')
+                  ->orWhere('name', 'like', '%' . $request->location . '%');
+            });
+        }
+
+        if ($request->filled('property_types')) {
+            $query->whereIn('property_type', $request->property_types);
+        }
+
+        if ($request->filled('bedrooms')) {
+            $query->whereIn('bedrooms', $request->bedrooms);
+        }
+
+        if ($request->filled('min_price')) {
+            $query->where('price', '>=', $request->min_price);
+        }
+
+        if ($request->filled('max_price')) {
+            $query->where('price', '<=', $request->max_price);
+        }
+
+        $listings = $query->latest()->get();
         return view('listings.index', ['listings' => $listings]);
     }
 

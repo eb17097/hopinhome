@@ -58,3 +58,9 @@ When making changes or adding features, adhere to the following:
 -   **Server-Side vs. Client-Side Classes:** I must use Blade's server-side logic (e.g., `class="{{ $condition ? 'class-a' : 'class-b' }}"`) for applying initial styles, not Alpine.js's `:class` with PHP variables.
 -   **Multiple Headers:** The application has distinct headers for the landing page (`landing-header.blade.php`), internal pages (`header.blade.php`), and authenticated users (`navigation.blade.php`). I need to be mindful of which one I am editing.
 -   **Asset Paths:** All images and SVGs should be placed in the `public/images` directory and referenced using the `asset()` helper in Blade files.
+-   **Environment (Sail):** This project uses **Laravel Sail** (`./vendor/bin/sail`) for local development and running commands like `php artisan` and `composer`.
+-   **Database & Testing:**
+    -   The main database connection might point to an external AWS RDS instance.
+    -   Running tests with `RefreshDatabase` might fail if the `testing` database does not exist on the remote host.
+    -   For local feature tests, prefer using an in-memory database: `DB_CONNECTION=sqlite DB_DATABASE=:memory: ./vendor/bin/sail php artisan test`.
+    -   Ensure `ListingFactory` (created in `database/factories/`) is kept up to date for tests.

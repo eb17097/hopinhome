@@ -30,7 +30,7 @@
 
 <div x-data="{
     openFilter: null,
-    location: 'Dubai',
+    location: '{{ request('location', 'Dubai') }}',
     locationQuery: '',
     locations: [
         { name: 'Dubai, United Arab Emirates', area: '', icon: '{{ asset('images/world_one.svg') }}' },
@@ -48,10 +48,10 @@
     get isLocationDropdownOpen() {
         return this.openFilter === 'location' && (this.locationQuery.length > 0 || !this.location);
     },
-    selectedPropertyTypes: [],
-    selectedBedrooms: [],
-    minPrice: 0,
-    maxPrice: 1000000,
+    selectedPropertyTypes: @js(request('property_types', [])),
+    selectedBedrooms: @js(request('bedrooms', [])),
+    minPrice: {{ request('min_price', 0) }},
+    maxPrice: {{ request('max_price', 1000000) }},
     minRange: 0,
     maxRange: 1000000,
     get formattedBedrooms() {
@@ -101,7 +101,16 @@
 }" class="bg-white py-[32px] shadow-sm relative z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-lg font-medium text-gray-900 mb-[16px]">Search & Filters</div>
-        <div class="flex flex-wrap gap-3 items-center">
+        <form action="{{ route('listings.index') }}" method="GET" class="flex flex-wrap gap-3 items-center">
+
+            <!-- Hidden Inputs for Arrays -->
+            <template x-for="type in selectedPropertyTypes">
+                <input type="hidden" name="property_types[]" :value="type">
+            </template>
+            <template x-for="bed in selectedBedrooms">
+                <input type="hidden" name="bedrooms[]" :value="bed">
+            </template>
+            <input type="hidden" name="location" x-model="location">
 
             <!-- Location Input -->
             <div class="relative w-full md:w-auto min-w-[320px] max-w-[320px]">
@@ -292,14 +301,14 @@
                                 <div class="flex-1">
                                     <p class="text-[12px] text-gray-700 mb-1.5 font-medium">Min Price</p>
                                     <div class="relative">
-                                        <input type="number" x-model.number="minPrice" min="0" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-medium text-gray-900 focus:ring-0 focus:border-[#1447D4] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+                                        <input type="number" name="min_price" x-model.number="minPrice" min="0" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-medium text-gray-900 focus:ring-0 focus:border-[#1447D4] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
                                         <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-[12px]">AED</span>
                                     </div>
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-[12px] text-gray-700 mb-1.5 font-medium">Max Price</p>
                                     <div class="relative">
-                                        <input type="number" x-model.number="maxPrice" min="0" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-medium text-gray-900 focus:ring-0 focus:border-[#1447D4] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" placeholder="Any">
+                                        <input type="number" name="max_price" x-model.number="maxPrice" min="0" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-medium text-gray-900 focus:ring-0 focus:border-[#1447D4] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" placeholder="Any">
                                         <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-[12px]">AED</span>
                                     </div>
                                 </div>
@@ -318,7 +327,7 @@
             </div>
 
             <!-- More filters Button -->
-            <button class="w-[170px] justify-center relative flex items-center gap-1.5 py-2.5 px-4 bg-[#F9F9F8] border border-gray-200 rounded-lg text-[16px] font-medium text-[#1447D4] hover:bg-gray-100 transition shadow-sm h-[45px]">
+            <button type="button" class="w-[170px] justify-center relative flex items-center gap-1.5 py-2.5 px-4 bg-[#F9F9F8] border border-gray-200 rounded-lg text-[16px] font-medium text-[#1447D4] hover:bg-gray-100 transition shadow-sm h-[45px]">
                 <img src="{{ asset('images/tune.svg') }}" alt="Tune Icon" class="w-[18px] h-[18px]">
                 More filters
                 <span class="absolute top-[-10px] right-[-10px] bg-[#1447D4] text-white text-[12px] w-6 h-6 flex items-center justify-center rounded-full border-2 border-white">
@@ -327,10 +336,10 @@
             </button>
 
             <!-- Search Button -->
-            <button class="text-[16px] flex-1 bg-[#1447D4] text-white px-8 py-2.5 rounded-lg justify-center font-medium hover:bg-blue-700 transition shadow-sm flex items-center gap-2 h-[45px]">
+            <button type="submit" class="text-[16px] flex-1 bg-[#1447D4] text-white px-8 py-2.5 rounded-lg justify-center font-medium hover:bg-blue-700 transition shadow-sm flex items-center gap-2 h-[45px]">
                 <img src="{{ asset('images/search.svg') }}" alt="Search Icon" class="w-4 h-4 brightness-0 invert">
                 Search
             </button>
-        </div>
+        </form>
     </div>
 </div>
