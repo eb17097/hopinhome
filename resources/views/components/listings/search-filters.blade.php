@@ -1,3 +1,9 @@
+@php
+    $currentLocation = request()->route('location') ?: request('location', 'Dubai');
+    $currentPropertyTypes = request()->route('property_type') ? explode(',', request()->route('property_type')) : request('property_types', []);
+    $currentBedrooms = request()->route('bedrooms') ? explode(',', request()->route('bedrooms')) : request('bedrooms', []);
+@endphp
+
 <style>
     .form-select {
         background-image: none !important;
@@ -30,7 +36,7 @@
 
 <div x-data="{
     openFilter: null,
-    location: '{{ request('location', 'Dubai') }}',
+    location: '{{ $currentLocation }}',
     locationQuery: '',
     locations: [
         { name: 'Dubai, United Arab Emirates', area: '', icon: '{{ asset('images/world_one.svg') }}' },
@@ -48,12 +54,43 @@
     get isLocationDropdownOpen() {
         return this.openFilter === 'location' && (this.locationQuery.length > 0 || !this.location);
     },
-    selectedPropertyTypes: @js(request('property_types', [])),
-    selectedBedrooms: @js(request('bedrooms', [])),
+    selectedPropertyTypes: @js($currentPropertyTypes),
+    selectedBedrooms: @js($currentBedrooms),
     minPrice: {{ request('min_price', 0) }},
     maxPrice: {{ request('max_price', 1000000) }},
     minRange: 0,
     maxRange: 1000000,
+
+    slugify(text) {
+        if (!text) return 'all';
+        return text.toString().toLowerCase()
+            .replace(/\s+/g, '-')           // Replace spaces with -
+            .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+            .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+            .replace(/^-+/, '')             // Trim - from start of text
+            .replace(/-+$/, '');            // Trim - from end of text
+    },
+
+    performSearch() {
+        let locSlug = this.slugify(this.location);
+        let typeSlug = this.selectedPropertyTypes.length > 0 ? this.selectedPropertyTypes.map(t => this.slugify(t)).join(',') : 'all';
+        let bedSlug = this.selectedBedrooms.length > 0 ? this.selectedBedrooms.join(',') : 'all';
+
+        let url = `/listings/search/${locSlug}/${typeSlug}/${bedSlug}`;
+        
+        // Append prices as query params
+        let params = new URLSearchParams();
+        if (this.minPrice > this.minRange) params.append('min_price', this.minPrice);
+        if (this.maxPrice < this.maxRange) params.append('max_price', this.maxPrice);
+        
+        let queryString = params.toString();
+        if (queryString) {
+            url += '?' + queryString;
+        }
+
+        window.location.href = url;
+    },
+
     get formattedBedrooms() {
         if (this.selectedBedrooms.length === 0) return 'Bedrooms';
         let sorted = [...this.selectedBedrooms].sort((a, b) => {
@@ -101,16 +138,7 @@
 }" class="bg-white py-[32px] shadow-sm relative z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-lg font-medium text-gray-900 mb-[16px]">Search & Filters</div>
-        <form action="{{ route('listings.index') }}" method="GET" class="flex flex-wrap gap-3 items-center">
-
-            <!-- Hidden Inputs for Arrays -->
-            <template x-for="type in selectedPropertyTypes">
-                <input type="hidden" name="property_types[]" :value="type">
-            </template>
-            <template x-for="bed in selectedBedrooms">
-                <input type="hidden" name="bedrooms[]" :value="bed">
-            </template>
-            <input type="hidden" name="location" x-model="location">
+        <div class="flex flex-wrap gap-3 items-center">
 
             <!-- Location Input -->
             <div class="relative w-full md:w-auto min-w-[320px] max-w-[320px]">
@@ -301,14 +329,14 @@
                                 <div class="flex-1">
                                     <p class="text-[12px] text-gray-700 mb-1.5 font-medium">Min Price</p>
                                     <div class="relative">
-                                        <input type="number" name="min_price" x-model.number="minPrice" min="0" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-medium text-gray-900 focus:ring-0 focus:border-[#1447D4] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+                                        <input type="number" x-model.number="minPrice" min="0" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-medium text-gray-900 focus:ring-0 focus:border-[#1447D4] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
                                         <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-[12px]">AED</span>
                                     </div>
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-[12px] text-gray-700 mb-1.5 font-medium">Max Price</p>
                                     <div class="relative">
-                                        <input type="number" name="max_price" x-model.number="maxPrice" min="0" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-medium text-gray-900 focus:ring-0 focus:border-[#1447D4] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" placeholder="Any">
+                                        <input type="number" x-model.number="maxPrice" min="0" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-medium text-gray-900 focus:ring-0 focus:border-[#1447D4] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" placeholder="Any">
                                         <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-[12px]">AED</span>
                                     </div>
                                 </div>
@@ -336,10 +364,10 @@
             </button>
 
             <!-- Search Button -->
-            <button type="submit" class="text-[16px] flex-1 bg-[#1447D4] text-white px-8 py-2.5 rounded-lg justify-center font-medium hover:bg-blue-700 transition shadow-sm flex items-center gap-2 h-[45px]">
+            <button @click="performSearch" class="text-[16px] flex-1 bg-[#1447D4] text-white px-8 py-2.5 rounded-lg justify-center font-medium hover:bg-blue-700 transition shadow-sm flex items-center gap-2 h-[45px]">
                 <img src="{{ asset('images/search.svg') }}" alt="Search Icon" class="w-4 h-4 brightness-0 invert">
                 Search
             </button>
-        </form>
+        </div>
     </div>
 </div>

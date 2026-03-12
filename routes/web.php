@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\AjaxAuthController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\ListingSearchController;
 use App\Http\Controllers\RenterController;
 use App\Http\Controllers\PropertyManagerController;
 use App\Http\Controllers\ProfileController;
@@ -46,8 +47,9 @@ Route::get('/', function () {
     return view('welcome', ['listings' => $listings]);
 })->name('home');
 
-// IMPORTANT: Define specific routes like 'create' before parameterized routes like '{listing}'
+// Listing Routes
 Route::get('/listings/create', [ListingController::class, 'create'])->name('listings.create')->middleware('auth');
+Route::get('/listings/search/{location?}/{property_type?}/{bedrooms?}', [ListingSearchController::class, 'index'])->name('listings.search');
 Route::get('/listings/{listing}', [ListingController::class, 'show'])->name('listings.show');
 Route::get('/listings', [ListingController::class, 'index'])->name('listings.index');
 

@@ -12,9 +12,10 @@
 
     @foreach($areas as $area)
         @php
-            $isActive = $currentLocation === $area['name'];
+            $slug = strtolower(str_replace(' ', '-', $area['name']));
+            $isActive = $currentLocation === $area['name'] || request()->route('location') === $slug;
         @endphp
-        <a href="{{ route('listings.index', ['location' => $area['name']]) }}" 
+        <a href="{{ route('listings.search', ['location' => $slug]) }}" 
            class="h-[40px] px-[18px] py-[10px] rounded-full text-base font-normal flex items-center justify-center transition-colors duration-300 whitespace-nowrap {{ $isActive ? 'bg-electric-blue text-white border border-electric-blue' : 'bg-white text-electric-blue border border-electric-blue hover:bg-blue-50' }}">
             {{ $area['name'] }}
         </a>
