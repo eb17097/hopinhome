@@ -91,6 +91,13 @@
         window.location.href = url;
     },
 
+    get displayPropertyTypes() {
+        if (this.selectedPropertyTypes.length === 0) return 'Property type';
+        return this.selectedPropertyTypes.map(t => {
+            return t.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        }).join(', ');
+    },
+
     get formattedBedrooms() {
         if (this.selectedBedrooms.length === 0) return 'Bedrooms';
         let sorted = [...this.selectedBedrooms].sort((a, b) => {
@@ -200,7 +207,7 @@
                     class="relative block w-[170px] h-[45px] py-[11px] px-4 bg-white border rounded-lg shadow-sm text-sm text-gray-700 cursor-pointer select-none transition-all duration-200"
                     :class="openFilter === 'propertyType' ? 'border-gray-200 border-b-white rounded-b-none z-30' : 'border-gray-200'"
                 >
-                    <span class="leading-[1.3] text-[16px] truncate pr-4 block" x-text="selectedPropertyTypes.length > 0 ? selectedPropertyTypes.join(', ') : 'Property type'"></span>
+                    <span class="leading-[1.3] text-[16px] truncate pr-4 block" x-text="displayPropertyTypes"></span>
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                         <img src="{{ asset('images/chevron.svg') }}" alt="Dropdown Arrow" class="w-4 h-4 text-gray-500 transition-transform" :class="openFilter === 'propertyType' ? 'rotate-180' : ''">
                     </div>
@@ -231,9 +238,9 @@
                             @foreach($types as $type)
                                 <div class="flex flex-col items-center justify-center gap-2 p-3 border rounded-[8px] cursor-pointer transition-all relative group h-[100px]"
                                      @click="togglePropertyType('{{ $type['name'] }}')"
-                                     :class="selectedPropertyTypes.includes('{{ $type['name'] }}') ? 'border-[#1447D4] bg-blue-50/30' : 'border-gray-100 hover:border-[#1447D4]'">
+                                     :class="selectedPropertyTypes.includes('{{ $type['name'] }}') || selectedPropertyTypes.includes(slugify('{{ $type['name'] }}')) ? 'border-[#1447D4] bg-blue-50/30' : 'border-gray-100 hover:border-[#1447D4]'">
 
-                                    <div x-show="selectedPropertyTypes.includes('{{ $type['name'] }}')" class="absolute -top-1.5 -right-1.5 size-5 bg-[#1447D4] rounded-full flex items-center justify-center shadow-sm z-10">
+                                    <div x-show="selectedPropertyTypes.includes('{{ $type['name'] }}') || selectedPropertyTypes.includes(slugify('{{ $type['name'] }}'))" class="absolute -top-1.5 -right-1.5 size-5 bg-[#1447D4] rounded-full flex items-center justify-center shadow-sm z-10">
                                         <img src="{{ asset('images/check.svg') }}" class="size-2.5 brightness-0 invert" alt="">
                                     </div>
 
@@ -248,11 +255,11 @@
                                                 '-webkit-mask-repeat': 'no-repeat',
                                                 'mask-position': 'center',
                                                 '-webkit-mask-position': 'center',
-                                                'background-color': selectedPropertyTypes.includes('{{ $type['name'] }}') ? '#1447D4' : '#04247B'
+                                                'background-color': selectedPropertyTypes.includes('{{ $type['name'] }}') || selectedPropertyTypes.includes(slugify('{{ $type['name'] }}')) ? '#1447D4' : '#04247B'
                                              }">
                                         </div>
                                     </div>
-                                    <span class="text-[13px] font-medium text-center leading-tight" :class="selectedPropertyTypes.includes('{{ $type['name'] }}') ? 'text-[#1447D4]' : 'text-gray-700'">
+                                    <span class="text-[13px] font-medium text-center leading-tight" :class="selectedPropertyTypes.includes('{{ $type['name'] }}') || selectedPropertyTypes.includes(slugify('{{ $type['name'] }}')) ? 'text-[#1447D4]' : 'text-gray-700'">
                                         {{ $type['name'] }}
                                     </span>
                                 </div>
