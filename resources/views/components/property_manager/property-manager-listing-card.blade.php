@@ -47,7 +47,7 @@
                     <span>Active</span>
                 </div>
             @else
-                <div class="bg-gray-200 text-gray-700 text-[14px] font-medium px-4 py-1.5 rounded-full">
+                <div class="h-[26px] bg-gray-200 text-gray-700 text-[14px] font-medium px-[12px] rounded-full flex items-center space-x-[2px]">
                     {{ $listing->status }}
                 </div>
             @endif

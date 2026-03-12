@@ -50,6 +50,10 @@
                 <button type="button" @click="$dispatch('save-as-draft'); {{ $show }} = false" class="w-full h-[51px] bg-[#1447d4] hover:bg-[#04247b] text-white font-medium rounded-[6px] transition-colors text-[16px] tracking-[-0.48px] flex items-center justify-center">
                     Save as draft
                 </button>
+
+                <button type="button" @click="window.location.href = nextUrl || '{{ route('property_manager.index') }}'" class="w-full h-[51px] border border-[#e8e8e7] hover:bg-gray-50 text-[#1e1d1d] font-medium rounded-[6px] transition-colors text-[16px] tracking-[-0.48px] flex items-center justify-center">
+                    Discard and exit
+                </button>
                 
                 <button type="button" @click="{{ $show }} = false; nextUrl = null;" class="w-full text-center text-[14px] text-[#464646] underline decoration-solid leading-[1.5]">
                     Cancel
