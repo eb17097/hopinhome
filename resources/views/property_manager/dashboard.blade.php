@@ -118,7 +118,7 @@
                 </div>
 
                 {{-- Right Column (Sticky) --}}
-                <div class="min-w-[358px] space-y-[24px] mt-[53px]">
+                <div class="min-w-[358px] space-y-[24px] mt-[77px]">
                     <x-property_manager.property-manager-profile-summary />
 
                     <x-property_manager.property-manager-setup-checklist />

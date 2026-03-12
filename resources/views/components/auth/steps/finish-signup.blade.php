@@ -62,7 +62,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                 </label>
-                <span class="ml-[8px] text-[14px] font-medium">I agree to the Terms of Service and Privacy Policy.</span>
+                <span class="ml-[8px] text-[14px] font-medium transition-colors" :class="agreeTerms ? 'text-[#1e1d1d]' : 'text-gray-500'">I agree to the Terms of Service and Privacy Policy.</span>
             </div>
             <div class="flex items-center">
                 <label class="relative flex items-center justify-center w-[24px] h-[24px] mt-0.5">
@@ -72,7 +72,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                 </label>
-                <span class="ml-[8px] text-[14px] font-medium">I want to receive updates and offers from HopInHome.</span>
+                <span class="ml-[8px] text-[14px] font-medium transition-colors" :class="receiveUpdates ? 'text-[#1e1d1d]' : 'text-gray-500'">I want to receive updates and offers from HopInHome.</span>
             </div>
         </div>
 
