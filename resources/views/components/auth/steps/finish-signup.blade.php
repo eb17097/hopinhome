@@ -53,16 +53,26 @@
             </div>
 
             <div class="mt-6 space-y-4">
-                <label class="flex items-start gap-3 cursor-pointer group">
-                    <div class="relative flex items-center justify-center w-5 h-5 mt-0.5">
+                <div class="flex">
+                    <label class="relative flex items-center justify-center w-5 h-5 mt-0.5">
                         <input type="checkbox" x-model="agreeTerms" class="peer sr-only">
                         <div class="w-5 h-5 border border-gray-300 rounded bg-white peer-checked:bg-[#1447d4] peer-checked:border-[#1447d4] transition-colors"></div>
                         <svg class="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
-                    </div>
-                    <span class="text-[14px] text-[#1e1d1d]">I agree to the Terms of Service and Privacy Policy.</span>
-                </label>
+                    </label>
+                    <span class="text-[14px] font-medium">I agree to the Terms of Service and Privacy Policy.</span>
+                </div>
+                <div class="flex">
+                    <label class="relative flex items-center justify-center w-5 h-5 mt-0.5">
+                        <input type="checkbox" x-model="agreeTerms" class="peer sr-only">
+                        <div class="w-5 h-5 border border-gray-300 rounded bg-white peer-checked:bg-[#1447d4] peer-checked:border-[#1447d4] transition-colors"></div>
+                        <svg class="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </label>
+                    <span class="text-[14px] font-medium">I want to receive updates and offers from HopInHome.</span>
+                </div>
             </div>
         </div>
 
