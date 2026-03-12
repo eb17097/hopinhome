@@ -132,9 +132,37 @@
                 } else {
                     this.selectedBedrooms.push(val);
                 }
+            },
+            slugify(text) {
+                if (!text) return 'all';
+                return text.toString().toLowerCase()
+                    .replace(/\s+/g, '-')           // Replace spaces with -
+                    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+                    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+                    .replace(/^-+/, '')             // Trim - from start of text
+                    .replace(/-+$/, '');            // Trim - from end of text
+            },
+            performSearch() {
+                let locSlug = this.slugify(this.location);
+                let typeSlug = this.selectedPropertyTypes.length > 0 ? this.selectedPropertyTypes.map(t => this.slugify(t)).join(',') : 'all';
+                let bedSlug = this.selectedBedrooms.length > 0 ? this.selectedBedrooms.join(',') : 'all';
+
+                let url = `/listings/search/${locSlug}/${typeSlug}/${bedSlug}`;
+                
+                // Append prices as query params
+                let params = new URLSearchParams();
+                if (this.minPrice > this.minRange) params.append('min_price', this.minPrice);
+                if (this.maxPrice < this.maxRange) params.append('max_price', this.maxPrice);
+                
+                let queryString = params.toString();
+                if (queryString) {
+                    url += '?' + queryString;
+                }
+
+                window.location.href = url;
             }
         }" class="bg-[#FBFBFB]/90 backdrop-blur-[6.05px] p-[12px] rounded-[14px] shadow-sm mx-auto w-full max-w-[720px] text-left border border-white/20 relative z-20">
-            <form action="#" method="GET" style="margin-bottom:0;" @submit.prevent>
+            <form action="#" method="GET" style="margin-bottom:0;" @submit.prevent="performSearch">
                 <div class="flex flex-col gap-[12px]">
                     {{-- Top Row --}}
                     <div class="grid grid-cols-3 gap-[12px] relative" :class="openFilter === 'location' ? 'z-50' : 'z-30'">
@@ -198,7 +226,7 @@
                         </div>
 
                         {{-- Search Button --}}
-                        <button class="bg-[#1447D4] text-white h-[48px] rounded-[6px] font-medium text-[16px] flex items-center justify-center gap-2 hover:bg-[#0F36A9] transition-all w-full">
+                        <button type="submit" class="bg-[#1447D4] text-white h-[48px] rounded-[6px] font-medium text-[16px] flex items-center justify-center gap-2 hover:bg-[#0F36A9] transition-all w-full">
                             <img src="{{ asset('images/search.svg') }}" class="size-[18px] brightness-0 invert" alt="Search">
                             <span>Search properties</span>
                         </button>
@@ -443,7 +471,8 @@
             @endphp
 
             @foreach($cities as $city)
-                <a href="{{ route('listings.index', ['city' => $city['name']]) }}" class="group block">
+                @php $citySlug = strtolower(str_replace(' ', '-', $city['name'])); @endphp
+                <a href="{{ route('listings.search', ['location' => $citySlug]) }}" class="group block">
                     <div class="overflow-hidden rounded-[6px] aspect-[277/172] mb-3">
                         <img src="{{ $city['image'] }}"
                              alt="{{ $city['name'] }}"
@@ -470,13 +499,14 @@
                     ['name' => 'Villa', 'icon' => 'villa.svg', 'count' => '150+ listings'],
                     ['name' => 'House', 'icon' => 'house.svg', 'count' => '300+ listings'],
                     ['name' => 'Townhouse', 'icon' => 'townhouse.svg', 'count' => '100+ listings'],
-                    ['name' => 'Hotel Apt', 'icon' => 'hotel_apartment.svg', 'count' => '100+ listings'],
+                    ['name' => 'Hotel Apartment', 'icon' => 'hotel_apartment.svg', 'count' => '100+ listings'],
                     ['name' => 'Penthouse', 'icon' => 'penthouse.svg', 'count' => '50+ listings'],
                 ];
             @endphp
 
             @foreach($types as $type)
-                <a href="#" class="group p-[20px] bg-white border border-[#E8E8E7] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] hover:shadow-lg transition flex flex-col items-center text-center">
+                @php $typeSlug = strtolower(str_replace(' ', '-', $type['name'])); @endphp
+                <a href="{{ route('listings.search', ['location' => 'all', 'property_type' => $typeSlug]) }}" class="group p-[20px] bg-white border border-[#E8E8E7] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] hover:shadow-lg transition flex flex-col items-center text-center">
                     <div class="size-[63px] mb-[18px]">
                         <div class="w-full h-full bg-[#04247B]"
                              style="mask-image: url('{{ asset('images/' . $type['icon']) }}'); -webkit-mask-image: url('{{ asset('images/' . $type['icon']) }}'); mask-size: contain; -webkit-mask-size: contain; mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat; mask-position: center; -webkit-mask-position: center;">
