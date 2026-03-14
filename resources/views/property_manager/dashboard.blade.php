@@ -9,7 +9,7 @@
         <div class="mx-auto">
             <div class="flex gap-[35px]">
                 {{-- Left Column (Wider) --}}
-                <div class="min-w-[768px] space-y-[24px] pl-[24px] pt-[24px]">
+                <div class="min-w-[768px] space-y-[24px] pl-[24px] pt-[24px] pb-[24px]">
                     <div>
                         <div class="flex items-center space-x-2 mb-[21px]">
                             <img src="{{ asset('images/speed.svg') }}" alt="Dashboard Icon" class="w-[30px] h-[30px]">
