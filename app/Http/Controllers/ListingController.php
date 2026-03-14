@@ -180,7 +180,8 @@ class ListingController extends Controller
     // 5. Show user's listings
     public function myListings()
     {
-        return redirect()->route('property_manager.index');
+        $listings = auth()->user()->listings()->latest()->paginate(10);
+        return view('property_manager.listings', compact('listings'));
     }
 
     public function destroy(Listing $listing)
