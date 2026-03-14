@@ -39,7 +39,7 @@
             </button>
 
             {{-- Change Profile Picture --}}
-            <button @click="$dispatch('open-change-profile-photo-modal')" class="h-[76px] bg-white border border-light-gray rounded-[6px] p-6 flex items-center justify-between hover:bg-gray-50 transition-colors group">
+            <button @click="$dispatch('open-profile-photo-modal')" class="h-[76px] bg-white border border-light-gray rounded-[6px] p-6 flex items-center justify-between hover:bg-gray-50 transition-colors group">
                 <span class="text-[16px] font-medium text-[#1e1d1d]">Change profile picture</span>
                 <img src="{{ asset('images/arrow_forward.svg') }}" alt="Arrow" class="w-[18px] h-[18px] opacity-90 group-hover:opacity-100 transition-opacity">
             </button>
