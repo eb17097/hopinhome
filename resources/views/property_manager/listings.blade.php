@@ -159,10 +159,14 @@
                                         <img src="{{ asset('images/edit_square.svg') }}" class="w-[18px] h-[18px]" alt="">
                                         <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">Edit listing</span>
                                     </a>
-                                    <a href="{{ route('listings.show', $listing) }}" class="flex items-center space-x-[10px] px-[14px] py-[10px] hover:bg-gray-50 transition-colors">
-                                        <img src="{{ asset('images/delete_black.svg') }}" class="w-[18px] h-[18px]" alt="">
-                                        <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">Delete listing</span>
-                                    </a>
+                                    <form action="{{ route('property_manager.listings.destroy', $listing) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this listing?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="w-full flex items-center space-x-[10px] px-[14px] py-[10px] hover:bg-gray-50 transition-colors">
+                                            <img src="{{ asset('images/delete_black.svg') }}" class="w-[18px] h-[18px]" alt="">
+                                            <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">Delete listing</span>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

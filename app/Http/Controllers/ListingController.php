@@ -343,6 +343,6 @@ class ListingController extends Controller
 
         $listing->delete();
 
-        return redirect()->route('property_manager.index')->with('success', 'Listing deleted successfully.');
+        return redirect()->route('property_manager.listings.index')->with('success', 'Listing deleted successfully.');
     }
 }
