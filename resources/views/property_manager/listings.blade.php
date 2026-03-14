@@ -138,7 +138,7 @@
                     <div class="flex-1 flex justify-end">
                         <div x-data="{ open: false }" class="relative">
                             <button @click="open = !open" @click.away="open = false" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                                <img src="{{ asset('images/dots.svg') }}" class="w-[24px] h-[24px]" alt="">
+                                <img src="{{ asset('images/dots_vertical.svg') }}" class="w-[24px] h-[24px]" alt="">
                             </button>
                             <div x-show="open"
                                  x-cloak
@@ -146,15 +146,19 @@
                                  x-transition:enter-start="opacity-0 scale-95"
                                  x-transition:enter-end="opacity-100 scale-100"
                                  class="absolute right-0 mt-2 w-[249px] bg-white rounded-[8px] border border-light-gray shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] z-[100] overflow-hidden">
-                                <div class="py-2">
+                                <div class="px-[14px] py-[6px]">
                                     <a href="{{ route('listings.show', $listing) }}" class="flex items-center space-x-[10px] px-[14px] py-[10px] hover:bg-gray-50 transition-colors">
                                         <img src="{{ asset('images/apartment_black.svg') }}" class="w-[18px] h-[18px]" alt="">
                                         <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">View listing</span>
                                     </a>
-                                    <button class="w-full flex items-center space-x-[10px] px-[14px] py-[10px] hover:bg-gray-50 transition-colors text-left">
-                                        <img src="{{ asset('images/bolt.svg') }}" class="w-[18px] h-[18px]" alt="">
-                                        <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">Boost listing</span>
-                                    </button>
+                                    <div class="flex items-center space-x-[10px] py-[10px] cursor-pointer hover:bg-gray-50 transition-colors rounded-[4px]">
+                                        <div class="w-[18px] h-[18px] bg-gray-200 rounded-sm flex items-center justify-center text-[10px]">E</div>
+                                        <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">Edit listing</span>
+                                    </div>
+                                    <div class="flex items-center space-x-[10px] py-[10px] cursor-pointer hover:bg-gray-50 transition-colors rounded-[4px]">
+                                        <div class="w-[18px] h-[18px] bg-gray-200 rounded-sm flex items-center justify-center text-[10px]">D</div>
+                                        <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">Delete listing</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
