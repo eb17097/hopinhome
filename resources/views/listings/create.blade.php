@@ -22,33 +22,42 @@
                 @if(isset($listing))
                     @method('PUT')
                 @endif
+                @php
+                    $oldFeatures = old('features');
+                    if (is_string($oldFeatures)) $oldFeatures = json_decode($oldFeatures, true);
+                    $featuresVal = $oldFeatures ?? (isset($listing) ? $listing->features->pluck('id')->toArray() : []);
+
+                    $oldAmenities = old('amenities');
+                    if (is_string($oldAmenities)) $oldAmenities = json_decode($oldAmenities, true);
+                    $amenitiesVal = $oldAmenities ?? (isset($listing) ? $listing->amenities->pluck('id')->toArray() : []);
+                @endphp
                 <div id="listing-form-container"
                      x-data="{
                         step: 1,
                         showExitModal: false,
                         nextUrl: null,
                         formData: {
-                            property_type: '{{ old('property_type', $listing->property_type ?? '') }}',
-                            address: '{{ old('address', $listing->address ?? '') }}',
-                            latitude: {{ old('latitude', $listing->latitude ?? 25.1972) }},
-                            longitude: {{ old('longitude', $listing->longitude ?? 55.2744) }},
+                            property_type: {{ json_encode(old('property_type', $listing->property_type ?? '')) }},
+                            address: {{ json_encode(old('address', $listing->address ?? '')) }},
+                            latitude: {{ old('latitude', $listing->latitude ?? 25.1972) ?: 25.1972 }},
+                            longitude: {{ old('longitude', $listing->longitude ?? 55.2744) ?: 55.2744 }},
                             name: {{ json_encode(old('name', $listing->name ?? '')) }},
                             description: {{ json_encode(old('description', $listing->description ?? '')) }},
-                            bedrooms: '{{ old('bedrooms', $listing->bedrooms ?? 'Studio') }}',
-                            bathrooms: {{ old('bathrooms', $listing->bathrooms ?? 1) }},
-                            area: '{{ old('area', $listing->area ?? '') }}',
-                            floor_number: '{{ old('floor_number', $listing->floor_number ?? '') }}',
-                            total_floors: '{{ old('total_floors', $listing->total_floors ?? '') }}',
-                            construction_year: {{ old('construction_year', $listing->construction_year ?? 'new Date().getFullYear()') }},
-                            features: {!! json_encode(old('features', isset($listing) ? $listing->features->pluck('id')->toArray() : [])) !!},
-                            amenities: {!! json_encode(old('amenities', isset($listing) ? $listing->amenities->pluck('id')->toArray() : [])) !!},
+                            bedrooms: {{ json_encode(old('bedrooms', $listing->bedrooms ?? 'Studio')) }},
+                            bathrooms: {{ old('bathrooms', $listing->bathrooms ?? 1) ?: 1 }},
+                            area: {{ json_encode(old('area', $listing->area ?? '')) }},
+                            floor_number: {{ json_encode(old('floor_number', $listing->floor_number ?? '')) }},
+                            total_floors: {{ json_encode(old('total_floors', $listing->total_floors ?? '')) }},
+                            construction_year: {!! is_numeric($year = old('construction_year', $listing->construction_year ?? '')) ? $year : 'new Date().getFullYear()' !!},
+                            features: {{ json_encode($featuresVal) }},
+                            amenities: {{ json_encode($amenitiesVal) }},
                             photos: [],
-                            video_url: '{{ $listing->video_url ?? '' }}',
-                            payment_option: '{{ old('payment_option', $listing->payment_option ?? 'Yearly') }}',
-                            utilities_option: '{{ old('utilities_option', $listing->utilities_option ?? 'Included') }}',
-                            price: '{{ old('price', $listing->price ?? '') }}',
-                            duration: {{ old('duration', $listing->duration ?? 30) }},
-                            renewal_type: '{{ old('renewal_type', $listing->renewal_type ?? 'Monthly') }}'
+                            video_url: {{ json_encode($listing->video_url ?? '') }},
+                            payment_option: {{ json_encode(old('payment_option', $listing->payment_option ?? 'Yearly')) }},
+                            utilities_option: {{ json_encode(old('utilities_option', $listing->utilities_option ?? 'Included')) }},
+                            price: {{ json_encode(old('price', $listing->price ?? '')) }},
+                            duration: {{ old('duration', $listing->duration ?? 30) ?: 30 }},
+                            renewal_type: {{ json_encode(old('renewal_type', $listing->renewal_type ?? 'Monthly')) }}
                         },
                                                 saveAsDraft() {
                                                     let form = document.getElementById('listing-creation-form');

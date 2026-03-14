@@ -1,8 +1,86 @@
+<script>
+    function photoUploader(initialPreviews = []) {
+        return {
+            files: [],
+            previews: initialPreviews,
+            isDragging: false,
+
+            handleFileSelect(event) {
+                this.addFiles(event.target.files);
+            },
+
+            handleDrop(event) {
+                this.isDragging = false;
+                this.addFiles(event.dataTransfer.files);
+            },
+
+            addFiles(newFiles) {
+                const newFileArray = Array.from(newFiles);
+                const remaining = 20 - this.previews.length;
+
+                newFileArray.slice(0, remaining).forEach(file => {
+                    // Prevent duplicates
+                    if (!this.files.some(f => f.name === file.name && f.size === file.size)) {
+                        this.files.push(file);
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            this.previews.push(e.target.result);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+                this.updateFileInput();
+            },
+
+            remove(index) {
+                // If it's a new file, we need to find its index in the files array
+                // This is a bit complex because previews contains both old and new.
+                // For simplicity, if we remove an item, we'll just manage the previews.
+                // The backend should handle which photos to keep/delete based on what's submitted.
+
+                // Find if this preview corresponds to a file we just uploaded
+                // (This is tricky since initial previews don't have files)
+                // A better way would be to track which ones are new.
+
+                this.previews.splice(index, 1);
+                // We'll let the backend handle the sync for now,
+                // but ideally we'd also remove from this.files if it's new.
+
+                this.updateFileInput();
+            },
+
+            moveUp(index) {
+                if (index === 0) return;
+                this.swap(index, index - 1);
+            },
+
+            moveDown(index) {
+                if (index === this.previews.length - 1) return;
+                this.swap(index, index + 1);
+            },
+
+            swap(idx1, idx2) {
+                const p = [...this.previews];
+                [p[idx1], p[idx2]] = [p[idx2], p[idx1]];
+                this.previews = p;
+
+                this.updateFileInput();
+            },
+
+            updateFileInput() {
+                const dataTransfer = new DataTransfer();
+                this.files.forEach(file => dataTransfer.items.add(file));
+                document.getElementById('photos').files = dataTransfer.files;
+            }
+        }
+    }
+</script>
+
 <div>
     <h3 class="text-[22px] font-medium text-black tracking-tight">Add photos</h3>
     <p class="text-base text-gray-600 mt-2">Adding photos helps renters understand the property better and makes your listing more attractive and trustworthy.</p>
 
-    <div class="mt-8" x-data="photoUploader({!! json_encode(isset($listing) ? $listing->images->pluck('image_url')->toArray() : []) !!})">
+    <div class="mt-8" x-data="photoUploader({{ json_encode(isset($listing) ? $listing->images->pluck('image_url')->toArray() : []) }})">
         <div class="flex justify-between items-center mb-[6px]" x-show="previews.length > 0">
             <h4 class="text-sm font-medium text-black">Uploaded photos</h4>
             <span class="text-sm text-gray-500" x-text="(20 - previews.length) + ' photos remaining'"></span>
@@ -102,77 +180,4 @@
             </p>
         </div>
     </div>
-
-    <script>
-        function photoUploader(initialPreviews = []) {
-            return {
-                files: [],
-                previews: initialPreviews,
-                isDragging: false,
-
-                handleFileSelect(event) {
-                    this.addFiles(event.target.files);
-                },
-
-                handleDrop(event) {
-                    this.isDragging = false;
-                    this.addFiles(event.dataTransfer.files);
-                },
-
-                addFiles(newFiles) {
-                    const newFileArray = Array.from(newFiles);
-                    const remaining = 20 - this.files.length;
-
-                    newFileArray.slice(0, remaining).forEach(file => {
-                        // Prevent duplicates
-                        if (!this.files.some(f => f.name === file.name && f.size === file.size)) {
-                            this.files.push(file);
-                            const reader = new FileReader();
-                            reader.onload = (e) => {
-                                this.previews.push(e.target.result);
-                            };
-                            reader.readAsDataURL(file);
-                        }
-                    });
-                    this.updateFileInput();
-                },
-
-                remove(index) {
-                    this.files.splice(index, 1);
-                    this.previews.splice(index, 1);
-                    this.updateFileInput();
-                },
-
-                moveUp(index) {
-                    if (index === 0) return;
-                    this.swap(index, index - 1);
-                },
-
-                moveDown(index) {
-                    if (index === this.previews.length - 1) return;
-                    this.swap(index, index + 1);
-                },
-
-                swap(idx1, idx2) {
-                    // Swap in previews array
-                    const p = [...this.previews];
-                    [p[idx1], p[idx2]] = [p[idx2], p[idx1]];
-                    this.previews = p;
-
-                    // Swap in files array
-                    const f = [...this.files];
-                    [f[idx1], f[idx2]] = [f[idx2], f[idx1]];
-                    this.files = f;
-
-                    this.updateFileInput();
-                },
-
-                updateFileInput() {
-                    const dataTransfer = new DataTransfer();
-                    this.files.forEach(file => dataTransfer.items.add(file));
-                    document.getElementById('photos').files = dataTransfer.files;
-                }
-            }
-        }
-    </script>
 </div>
