@@ -1,9 +1,9 @@
 <x-property-manager-layout>
     <div class="px-6 py-[24px]">
-        <div class="flex justify-between items-center mb-[40px]">
+        <div class="flex justify-between items-center mb-[24px]">
             <div class="flex items-center space-x-[10px]">
                 <img src="{{ asset('images/apartment_black.svg') }}" alt="" class="w-[30px] h-[30px]">
-                <h1 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px]">My listings</h1>
+                <h1 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] leading-[1.28]">My listings</h1>
             </div>
             <a href="{{ route('property_manager.listings.create') }}" class="bg-electric-blue text-white px-[32px] py-[10.5px] rounded-full flex items-center space-x-[6px] hover:opacity-90 transition-opacity">
                 <img src="{{ asset('images/add.svg') }}" alt="" class="w-[17px] h-[17px] brightness-0 invert">
@@ -12,16 +12,16 @@
         </div>
 
         <!-- Search and Filters -->
-        <form action="{{ route('property_manager.listings.index') }}" method="GET" id="filter-form" class="mb-[24px]">
+        <form action="{{ route('property_manager.listings.index') }}" method="GET" id="filter-form" class="mb-[16px]">
             <div class="flex items-end gap-[16px]">
                 <div class="flex-1">
-                    <label class="block text-[15px] font-medium text-[#1e1d1d] mb-[10px]">Search</label>
+                    <label class="block text-[15px] font-medium text-[#1e1d1d] mb-[6px] leading-[1.3]">Search</label>
                     <div class="relative">
-                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Search listings by name" class="w-full h-[44px] px-[14px] border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-1 focus:ring-electric-blue placeholder:text-[#464646] text-[15px]">
+                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Search listings by name" class="leading-[1.3] py-[12px] w-full h-[44px] px-[14px] border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-1 focus:ring-electric-blue placeholder:text-[#464646] text-[15px]">
                     </div>
                 </div>
                 <div class="w-[163px]">
-                    <label class="block text-[15px] font-medium text-[#1e1d1d] mb-[10px]">Status</label>
+                    <label class="block text-[15px] font-medium text-[#1e1d1d] mb-[6px] leading-[1.3]">Status</label>
                     <x-custom-select
                         name="status"
                         :options="array_merge(['All status' => 'All status'], array_combine($statuses, $statuses))"
@@ -29,25 +29,25 @@
                     />
                 </div>
                 <div class="w-[163px]">
-                    <label class="block text-[15px] font-medium text-[#1e1d1d] mb-[10px]">Property type</label>
+                    <label class="block text-[15px] font-medium text-[#1e1d1d] mb-[6px] leading-[1.3]">Property type</label>
                     <x-custom-select
                         name="property_type"
                         :options="array_merge(['All types' => 'All types'], array_combine($propertyTypes, $propertyTypes))"
                         :selected="request('property_type', 'All types')"
                     />
                 </div>
-                <button type="submit" class="bg-electric-blue text-white h-[44px] px-[32px] rounded-[6px] font-medium tracking-[-0.48px] hover:opacity-90 transition-opacity text-[16px] border border-electric-blue">
+                <button type="submit" class="w-[180px] bg-electric-blue text-white h-[44px] px-[32px] rounded-[6px] font-medium tracking-[-0.48px] hover:opacity-90 transition-opacity text-[16px] border border-electric-blue">
                     Search
                 </button>
             </div>
 
             <!-- Sorting and Count -->
             <div class="flex justify-between items-center mt-[24px]">
-                <p class="text-[15px] font-medium text-[#1e1d1d]">
+                <p class="text-[15px] font-medium text-[#1e1d1d] leading-[1.3]">
                     Showing {{ $listings->firstItem() ?? 0 }}-{{ $listings->lastItem() ?? 0 }} of {{ $listings->total() }} results
                 </p>
-                <div class="flex items-center space-x-[16px]">
-                    <span class="text-[15px] font-medium text-[#1e1d1d]">Sort by</span>
+                <div class="flex items-center space-x-[12px]">
+                    <span class="text-[15px] font-medium text-[#1e1d1d] leading-[1.3]">Sort by</span>
                     <div class="w-[180px]">
                         <x-custom-select
                             name="sort"
