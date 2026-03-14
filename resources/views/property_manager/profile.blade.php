@@ -1,29 +1,29 @@
 <x-property-manager-layout>
-    <div class="px-6 py-8 max-w-[1024px]">
+    <div class="p-[24px] max-w-[768px]">
         {{-- Header Section --}}
-        <div class="flex items-center space-x-2 mb-8">
+        <div class="flex items-center space-x-[10px] mb-[20px]">
             <img src="{{ asset('images/account_circle.svg') }}" alt="Profile" class="w-[30px] h-[30px]">
             <h1 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px]">Profile settings</h1>
         </div>
 
         {{-- User Info Card --}}
-        <div class="bg-[#f9f9f8] rounded-[6px] p-6 mb-6">
-            <div class="flex items-center space-x-4 mb-6">
+        <div class="bg-[#f9f9f8] rounded-[6px] mb-6">
+            <div class="flex items-center space-x-[12px] mb-[16px] px-[24px] pt-[24px]">
                 <div class="w-[64px] h-[64px] rounded-full border border-light-gray overflow-hidden">
                     <img src="{{ Auth::user()->profile_photo_url ?? asset('images/user-placeholder.svg') }}" alt="{{ Auth::user()->name }}" class="w-full h-full object-cover">
                 </div>
                 <div>
                     <div class="flex items-center space-x-1">
-                        <h2 class="text-[18px] font-medium text-[#1e1d1d] tracking-[-0.36px]">{{ Auth::user()->name }}</h2>
+                        <h2 class="text-[18px] font-medium text-[#1e1d1d] tracking-[-0.36px] leading-[1.28]">{{ Auth::user()->name }}</h2>
                         @if(Auth::user()->email_verified_at)
                             <img src="{{ asset('images/verified_user.svg') }}" alt="Verified" class="w-[18px] h-[18px]">
                         @endif
                     </div>
-                    <p class="text-[14px] text-[#1e1d1d]">{{ Auth::user()->email }} • {{ Auth::user()->email_verified_at ? 'verified' : 'unverified' }}</p>
+                    <p class="text-[14px] text-[#1e1d1d] font-medium leading-[1.5]">{{ Auth::user()->email }} • {{ Auth::user()->email_verified_at ? 'verified' : 'unverified' }}</p>
                 </div>
             </div>
-            
-            <div class="border-t border-light-gray pt-4">
+
+            <div class="border-t border-light-gray pt-4 px-[24px] pb-[24px]">
                 <p class="text-[16px] text-[#464646] leading-[1.5]">
                     {{ Auth::user()->bio ?? 'No bio provided.' }}
                 </p>
@@ -93,7 +93,7 @@
                 </button>
             </form>
         </div>
-        
+
         <div class="border-t border-light-gray my-6"></div>
     </div>
 </x-property-manager-layout>
