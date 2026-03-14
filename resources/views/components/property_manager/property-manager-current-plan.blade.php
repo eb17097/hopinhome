@@ -8,7 +8,7 @@
     <div class="flex h-[182px]">
         {{-- Left Column: Plan Info --}}
         <div class="w-1/3 p-[24px] border-r border-light-gray flex flex-col">
-            <h4 class="leading-[1.28] text-[24px] font-medium text-[#1e1d1d]">Starter plan</h4>
+            <h4 class="leading-[1.28] text-[20px] tracking-[-0.4px] font-medium text-[#1e1d1d]">Starter plan</h4>
             <div class="h-[24px] w-[158px] mt-2 inline-flex items-center justify-center bg-like-green rounded-full">
                 <span class="text-[14px] font-medium text-white">Subscription active</span>
             </div>
