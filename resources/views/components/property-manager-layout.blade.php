@@ -13,6 +13,7 @@
         <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet">
         <style>
             body { font-family: 'General Sans', sans-serif; }
+            [x-cloak] { display: none !important; }
         </style>
 
         <!-- Scripts -->
@@ -24,19 +25,14 @@
 
 
             <div class="flex overflow-hidden">
-                <div x-show="sidebarOpen"
-                     x-transition:enter="transition ease-out duration-300"
-                     x-transition:enter-start="-translate-x-full"
-                     x-transition:enter-end="translate-x-0"
-                     x-transition:leave="transition ease-in duration-300"
-                     x-transition:leave-start="translate-x-0"
-                     x-transition:leave-end="-translate-x-full"
-                     id="property-manager-sidebar"
-                     class="relative w-[232px] h-screen bg-white border-r border-light-gray shadow-[0px_0px_64px_0px_rgba(0,0,0,0.03)] pb-8 overflow-y-auto shrink-0">
-                    <div class="border-b h-[74px] flex justify-between items-center px-[16px] py-[27px]">
-                        <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopInHome Logo" class="h-[20px] w-auto">
-                        <button @click="sidebarOpen = false" class="text-gray-400 hover:text-gray-600 transition-colors">
-                            <img src="{{ asset('images/left_panel_close.svg') }}" alt="Close" class="h-6 w-6">
+                <div id="property-manager-sidebar"
+                     class="relative h-screen bg-white border-r border-light-gray shadow-[0px_0px_64px_0px_rgba(0,0,0,0.03)] pb-8 overflow-y-auto shrink-0 transition-all duration-300 ease-in-out"
+                     :class="sidebarOpen ? 'w-[232px]' : 'w-[51px]'">
+                    <div class="border-b h-[74px] flex items-center px-[16px] py-[27px] transition-all duration-300 ease-in-out"
+                         :class="sidebarOpen ? 'justify-between' : 'justify-center'">
+                        <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopInHome Logo" class="h-[20px] w-auto transition-all duration-300" x-show="sidebarOpen" x-cloak>
+                        <button @click="sidebarOpen = !sidebarOpen" class="text-gray-400 hover:text-gray-600 transition-colors shrink-0">
+                            <img src="{{ asset('images/left_panel_close.svg') }}" alt="Toggle" class="h-6 w-6 transition-transform duration-300" :class="!sidebarOpen && 'rotate-180'">
                         </button>
                     </div>
                     <div class="pt-4">
