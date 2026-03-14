@@ -14,37 +14,42 @@
     </style>
     <div class="bg-white">
         <div class="max-w-[1440px] mx-auto">
-
-                                    <form id="listing-creation-form" action="{{ route('property_manager.listings.store') }}" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        <div id="listing-form-container"
-                                             x-data="{
-                                                step: 1,
-                                                showExitModal: false,
-                                                nextUrl: null,
-                                                formData: {
-                                                    property_type: '',
-                                                    address: '',
-                                                    latitude: 25.1972,
-                                                    longitude: 55.2744,
-                                                    name: '',
-                                                    description: '',
-                                                    bedrooms: 'Studio',
-                                                    bathrooms: 1,
-                                                    area: '',
-                                                    floor_number: '',
-                                                    total_floors: '',
-                                                    construction_year: new Date().getFullYear(),
-                                                    features: [],
-                                                    amenities: [],
-                                                    photos: [],
-                                                    video_url: '',
-                                                    payment_option: 'Yearly',
-                                                    utilities_option: 'Included',
-                                                    price: '',
-                                                    duration: 30,
-                                                    renewal_type: 'Monthly'
-                                                },
+            <form id="listing-creation-form" 
+                  action="{{ isset($listing) ? route('property_manager.listings.update', $listing) : route('property_manager.listings.store') }}" 
+                  method="POST" 
+                  enctype="multipart/form-data">
+                @csrf
+                @if(isset($listing))
+                    @method('PUT')
+                @endif
+                <div id="listing-form-container"
+                     x-data="{
+                        step: 1,
+                        showExitModal: false,
+                        nextUrl: null,
+                        formData: {
+                            property_type: '{{ old('property_type', $listing->property_type ?? '') }}',
+                            address: '{{ old('address', $listing->address ?? '') }}',
+                            latitude: {{ old('latitude', $listing->latitude ?? 25.1972) }},
+                            longitude: {{ old('longitude', $listing->longitude ?? 55.2744) }},
+                            name: {{ json_encode(old('name', $listing->name ?? '')) }},
+                            description: {{ json_encode(old('description', $listing->description ?? '')) }},
+                            bedrooms: '{{ old('bedrooms', $listing->bedrooms ?? 'Studio') }}',
+                            bathrooms: {{ old('bathrooms', $listing->bathrooms ?? 1) }},
+                            area: '{{ old('area', $listing->area ?? '') }}',
+                            floor_number: '{{ old('floor_number', $listing->floor_number ?? '') }}',
+                            total_floors: '{{ old('total_floors', $listing->total_floors ?? '') }}',
+                            construction_year: {{ old('construction_year', $listing->construction_year ?? 'new Date().getFullYear()') }},
+                            features: {!! json_encode(old('features', isset($listing) ? $listing->features->pluck('id')->toArray() : [])) !!},
+                            amenities: {!! json_encode(old('amenities', isset($listing) ? $listing->amenities->pluck('id')->toArray() : [])) !!},
+                            photos: [],
+                            video_url: '{{ $listing->video_url ?? '' }}',
+                            payment_option: '{{ old('payment_option', $listing->payment_option ?? 'Yearly') }}',
+                            utilities_option: '{{ old('utilities_option', $listing->utilities_option ?? 'Included') }}',
+                            price: '{{ old('price', $listing->price ?? '') }}',
+                            duration: {{ old('duration', $listing->duration ?? 30) }},
+                            renewal_type: '{{ old('renewal_type', $listing->renewal_type ?? 'Monthly') }}'
+                        },
                                                 saveAsDraft() {
                                                     let form = document.getElementById('listing-creation-form');
                                                     let statusInput = document.createElement('input');
@@ -80,7 +85,7 @@
                     <div class="max-w-[728px] mx-auto">
                         <div class="flex justify-between items-center my-[20px]">
                             <button type="button" @click="showExitModal = true" class="text-[14px] text-[#464646] underline decoration-solid">Save & exit</button>
-                            <h1 class="text-[18px] font-medium text-[#1e1d1d] leading-[1.28] tracking-[-0.36px]">Create a listing</h1>
+                            <h1 class="text-[18px] font-medium text-[#1e1d1d] leading-[1.28] tracking-[-0.36px]">{{ isset($listing) ? 'Edit listing' : 'Create a listing' }}</h1>
                             <div class="w-6">
                                 <img src="{{ asset('images/info.svg') }}" alt="Info" class="w-6 h-6">
                             </div>
@@ -114,8 +119,8 @@
                         <div x-show="step === 4" style="display: none;"><x-listings.create.step4 /></div>
                         <div x-show="step === 5" style="display: none;"><x-listings.create.step5 :features="$features" /></div>
                         <div x-show="step === 6" style="display: none;"><x-listings.create.step6 :amenities="$amenities" /></div>
-                        <div x-show="step === 7" style="display: none;"><x-listings.create.step7 /></div>
-                        <div x-show="step === 8" style="display: none;"><x-listings.create.step8 /></div>
+                        <div x-show="step === 7" style="display: none;"><x-listings.create.step7 :listing="$listing ?? null" /></div>
+                        <div x-show="step === 8" style="display: none;"><x-listings.create.step8 :listing="$listing ?? null" /></div>
                         <div x-show="step === 9" style="display: none;"><x-listings.create.step9 /></div>
                         <div x-show="step === 10" style="display: none;"><x-listings.create.step10 /></div>
 

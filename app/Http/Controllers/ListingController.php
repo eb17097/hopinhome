@@ -19,6 +19,20 @@ class ListingController extends Controller
         return view('listings.create', compact('propertyTypes', 'features', 'amenities'));
     }
 
+    public function edit(Listing $listing)
+    {
+        if (auth()->id() !== $listing->user_id) {
+            abort(403);
+        }
+
+        $propertyTypes = ['Apartment', 'Villa', 'House', 'Townhouse', 'Hotel apartment', 'Penthouse'];
+        $features = \App\Models\Feature::all();
+        $amenities = \App\Models\Amenity::all();
+        $listing->load(['features', 'amenities', 'images']);
+
+        return view('listings.create', compact('listing', 'propertyTypes', 'features', 'amenities'));
+    }
+
     public function store(Request $request)
     {
         Log::info('--- Starting Listing Creation Process ---');
@@ -133,6 +147,112 @@ class ListingController extends Controller
     
     // ... (other methods)
     // ... (other methods remain unchanged)
+
+    public function update(Request $request, Listing $listing)
+    {
+        if (auth()->id() !== $listing->user_id) {
+            abort(403);
+        }
+
+        Log::info('--- Starting Listing Update Process ---', ['listing_id' => $listing->id]);
+        
+        // Decode JSON strings for features and amenities
+        $features = json_decode($request->input('features'), true) ?? [];
+        $amenities = json_decode($request->input('amenities'), true) ?? [];
+
+        $request->merge([
+            'features' => $features,
+            'amenities' => $amenities,
+        ]);
+
+        $isDraft = $request->input('status') === 'Draft' || ($listing->status === 'Draft' && !$request->has('status'));
+
+        try {
+            $rules = [
+                'name' => $isDraft ? 'nullable|string|max:255' : 'required|string|max:255',
+                'property_type' => $isDraft ? 'nullable|string' : 'required|string',
+                'address' => $isDraft ? 'nullable|string' : 'required|string',
+                'description' => $isDraft ? 'nullable|string' : 'required|string',
+                'bedrooms' => $isDraft ? 'nullable|string' : 'required|string',
+                'bathrooms' => $isDraft ? 'nullable|integer|min:0' : 'required|integer|min:0',
+                'area' => $isDraft ? 'nullable|integer|min:0' : 'required|integer|min:0',
+                'floor_number' => 'nullable|integer|min:0',
+                'total_floors' => 'nullable|integer|min:0',
+                'construction_year' => $isDraft ? 'nullable|integer|min:0' : 'required|integer|min:0',
+                'payment_option' => $isDraft ? 'nullable|string' : 'required|string',
+                'utilities_option' => $isDraft ? 'nullable|string' : 'required|string',
+                'price' => $isDraft ? 'nullable|numeric|min:0' : 'required|numeric|min:0',
+                'duration' => $isDraft ? 'nullable|integer|min:0' : 'required|integer|min:0',
+                'renewal_type' => $isDraft ? 'nullable|string' : 'required|string',
+                'latitude' => 'nullable|numeric',
+                'longitude' => 'nullable|numeric',
+                'status' => 'nullable|string',
+                'video_file' => 'nullable|file|mimes:mp4,mov,avi,wmv|max:51200',
+                'photos' => 'nullable|array',
+                'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'features' => 'nullable|array',
+                'features.*' => 'exists:features,id',
+                'amenities' => 'nullable|array',
+                'amenities.*' => 'exists:amenities,id',
+            ];
+
+            $validatedData = $request->validate($rules);
+
+            if ($request->has('status')) {
+                $validatedData['status'] = $request->input('status');
+            } elseif (!$isDraft && $listing->status === 'Draft') {
+                $validatedData['status'] = 'Active';
+            }
+
+            // Handle video upload
+            if ($request->hasFile('video_file')) {
+                $videoFile = $request->file('video_file');
+                $videoS3Path = $videoFile->storePublicly('videos', 's3');
+                $videoUrl = Storage::disk('s3')->url($videoS3Path);
+                $validatedData['video_url'] = $videoUrl;
+            }
+
+            DB::beginTransaction();
+
+            $listing->update($validatedData);
+
+            if ($request->hasFile('photos')) {
+                // For simplicity, we just add new photos. 
+                // A better implementation would handle deletions/reordering.
+                $lastSequence = $listing->images()->max('sequence') ?? -1;
+                foreach ($request->file('photos') as $index => $photo) {
+                    $path = $photo->storePublicly('apartments', 's3');
+                    $url = Storage::disk('s3')->url($path);
+                    $listing->images()->create(['image_url' => $url, 'sequence' => $lastSequence + $index + 1]);
+                }
+            }
+
+            if (isset($validatedData['features'])) {
+                $listing->features()->sync($validatedData['features']);
+            }
+            if (isset($validatedData['amenities'])) {
+                $listing->amenities()->sync($validatedData['amenities']);
+            }
+
+            DB::commit();
+
+            Log::info('--- Listing Update SUCCESS ---', ['listing_id' => $listing->id]);
+
+            if ($request->filled('redirect_to')) {
+                return redirect($request->input('redirect_to'))->with('success', 'Listing updated!');
+            }
+
+            return redirect()->route('property_manager.listings.index')->with('success', 'Listing updated successfully!');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('--- Listing Update FAILED ---', [
+                'error_message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            return redirect()->back()->with('error', 'There was an error updating your listing.')->withInput();
+        }
+    }
 
     // 3. Show a single listing
     public function show(Listing $listing)

@@ -155,7 +155,7 @@
                                         <img src="{{ asset('images/bolt.svg') }}" class="w-[18px] h-[18px]" alt="">
                                         <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">Boost listing</span>
                                     </a>
-                                    <a href="{{ route('listings.show', $listing) }}" class="flex items-center space-x-[10px] px-[14px] py-[10px] hover:bg-gray-50 transition-colors">
+                                    <a href="{{ route('property_manager.listings.edit', $listing) }}" class="flex items-center space-x-[10px] px-[14px] py-[10px] hover:bg-gray-50 transition-colors">
                                         <img src="{{ asset('images/edit_square.svg') }}" class="w-[18px] h-[18px]" alt="">
                                         <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">Edit listing</span>
                                     </a>

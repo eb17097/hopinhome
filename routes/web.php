@@ -87,6 +87,8 @@ Route::middleware(['auth', 'role:property_manager'])->prefix('property-manager')
     Route::get('/security', [PropertyManagerController::class, 'security'])->name('security');
     Route::get('/listings/create', [ListingController::class, 'create'])->name('listings.create');
     Route::post('/listings', [ListingController::class, 'store'])->name('listings.store');
+    Route::get('/listings/{listing}/edit', [ListingController::class, 'edit'])->name('listings.edit');
+    Route::put('/listings/{listing}', [ListingController::class, 'update'])->name('listings.update');
     Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->name('listings.destroy');
     Route::get('/listings', [ListingController::class, 'myListings'])->name('listings.index');
 });

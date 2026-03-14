@@ -2,7 +2,7 @@
     <h3 class="text-[22px] font-medium text-black tracking-tight">Add a video tour (optional)</h3>
     <p class="text-base text-gray-600 mt-2">A video tour makes it easier to understand the space, layout, and surroundings.</p>
 
-    <div class="mt-[32px]" x-data="videoUploader()">
+    <div class="mt-[32px]" x-data="videoUploader('{{ $listing->video_url ?? '' }}')">
         <div class="flex items-center justify-between mb-[6px]">
             <label for="video_file" class="block text-sm font-medium text-black">Video tour</label>
             <button x-show="videoPreviewUrl" type="button" @click="removeVideo" class="text-sm font-medium text-red-600 hover:text-red-800 flex items-center gap-1" x-cloak>
@@ -29,9 +29,9 @@
     </div>
 
     <script>
-        function videoUploader() {
+        function videoUploader(initialUrl = '') {
             return {
-                videoPreviewUrl: null,
+                videoPreviewUrl: initialUrl,
                 handleFileSelect(event) {
                     const file = event.target.files[0];
                     if (file) {

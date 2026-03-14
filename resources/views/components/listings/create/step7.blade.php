@@ -2,7 +2,7 @@
     <h3 class="text-[22px] font-medium text-black tracking-tight">Add photos</h3>
     <p class="text-base text-gray-600 mt-2">Adding photos helps renters understand the property better and makes your listing more attractive and trustworthy.</p>
 
-    <div class="mt-8" x-data="photoUploader()">
+    <div class="mt-8" x-data="photoUploader({!! json_encode(isset($listing) ? $listing->images->pluck('image_url')->toArray() : []) !!})">
         <div class="flex justify-between items-center mb-[6px]" x-show="previews.length > 0">
             <h4 class="text-sm font-medium text-black">Uploaded photos</h4>
             <span class="text-sm text-gray-500" x-text="(20 - previews.length) + ' photos remaining'"></span>
@@ -104,10 +104,10 @@
     </div>
 
     <script>
-        function photoUploader() {
+        function photoUploader(initialPreviews = []) {
             return {
                 files: [],
-                previews: [],
+                previews: initialPreviews,
                 isDragging: false,
 
                 handleFileSelect(event) {
