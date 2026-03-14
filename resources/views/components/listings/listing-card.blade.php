@@ -82,7 +82,7 @@
     </div>
 
     <!-- Content Section -->
-    <div class="pt-[24px] pb-[20px] pl-[26px] pr-[20px] flex-grow flex flex-col justify-between relative z-10 pointer-events-none h-full">
+    <div class="pt-[24px] pb-[20px] pl-[26px] pr-[20px] flex-grow flex flex-col justify-between relative z-10 pointer-events-none h-full min-w-0">
         <div>
             <div class="flex justify-between items-start mb-[18px]">
                 <div class="min-w-0">

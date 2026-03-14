@@ -34,9 +34,9 @@
                     @endphp
                     <img src="{{ $imageUrl }}" alt="{{ $listing->name }}" class="w-full h-full object-cover">
                 </div>
-                <div class="flex flex-col justify-center">
+                <div class="flex flex-col justify-center min-w-0">
                     <p class="text-[16px] leading-[1.3] text-gray-500 mb-[4px]">{{ $listing->property_type ?? 'Apartment' }} for rent</p>
-                    <h3 class="text-[18px] leading-[1.28] tracking-[-0.36px] font-medium text-black mb-[8px]">{{ $listing->name }}</h3>
+                    <h3 class="text-[18px] leading-[1.28] tracking-[-0.36px] font-medium text-black mb-[8px] truncate" title="{{ $listing->name }}">{{ $listing->name }}</h3>
                     <p class="text-[14px] leading-[1.5] text-gray-500">
                         {{ $listing->area }} sqft • {{ $listing->bedrooms }} beds • {{ $listing->bathrooms }} bath
                     </p>
