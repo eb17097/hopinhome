@@ -29,7 +29,8 @@
             </div>
         @endforeach
 
-        <div class="relative bg-white border border-light-gray rounded-[6px] px-[16px] py-[14px] flex items-center gap-[10px]">
+        <div @click="$dispatch('open-notification-preferences-modal')"
+             class="relative bg-white border border-light-gray rounded-[6px] px-[16px] py-[14px] flex items-center gap-[10px] cursor-pointer hover:bg-gray-50 transition-colors">
             <div class="w-6 h-6 rounded-full border border-light-gray flex items-center justify-center shrink-0">
                 <div class="w-5 h-5 rounded-full border border-light-gray/20"></div>
             </div>
