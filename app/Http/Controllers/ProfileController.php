@@ -48,9 +48,13 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request)
     {
+        $confirmationPhrase = 'Delete my account';
+
         if ($request->expectsJson()) {
             $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
-                'password' => ['required', 'current_password'],
+                'confirmation' => ['required', 'string', 'regex:/^' . $confirmationPhrase . '$/i'],
+            ], [
+                'confirmation.regex' => 'Please type "' . $confirmationPhrase . '" exactly to confirm.'
             ]);
 
             if ($validator->fails()) {
@@ -59,8 +63,8 @@ class ProfileController extends Controller
                 ], 422);
             }
         } else {
-            $request->validateWithBag('userDeletion', [
-                'password' => ['required', 'current_password'],
+            $request->validate([
+                'confirmation' => ['required', 'string', 'regex:/^' . $confirmationPhrase . '$/i'],
             ]);
         }
 

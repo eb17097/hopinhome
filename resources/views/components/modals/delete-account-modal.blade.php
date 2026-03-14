@@ -1,8 +1,7 @@
 <div x-data="{
         show: false,
         isLoading: false,
-        password: '',
-        showPassword: false,
+        confirmation: '',
         errors: {},
 
         async handleDelete() {
@@ -18,7 +17,7 @@
                         'Accept': 'application/json'
                     },
                     body: JSON.stringify({
-                        password: this.password
+                        confirmation: this.confirmation
                     })
                 });
 
@@ -39,7 +38,7 @@
         close() {
             this.show = false;
             setTimeout(() => {
-                this.password = '';
+                this.confirmation = '';
                 this.errors = {};
             }, 300);
         }
@@ -85,26 +84,22 @@
         <div class="pt-[32px] pb-[40px] px-[24px]">
             <h4 class="text-[20px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-[6px]">Are you sure?</h4>
             <p class="text-[16px] text-[#464646] leading-[1.5] mb-[24px]">
-                Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.
+                Once your account is deleted, all of its resources and data will be permanently deleted. Please type <strong class="text-[#ed0707]">Delete my account</strong> to confirm.
             </p>
 
             <div>
-                {{-- Password --}}
+                {{-- Confirmation Input --}}
                 <div>
-                    <label class="block text-[14px] font-medium text-[#1e1d1d] mb-[6px]">Password</label>
+                    <label class="block text-[14px] font-medium text-[#1e1d1d] mb-[6px]">Confirmation</label>
                     <div class="relative">
-                        <input :type="showPassword ? 'text' : 'password'"
-                               x-model="password"
+                        <input type="text"
+                               x-model="confirmation"
                                @keyup.enter="handleDelete"
                                class="w-full h-[52px] px-4 border border-[#e8e8e7] rounded-[8px] focus:border-[#ed0707] focus:ring-1 focus:ring-[#ed0707] outline-none transition-colors text-[16px]"
-                               placeholder="••••••••••••">
-                        <button type="button" @click="showPassword = !showPassword" class="absolute inset-y-0 right-0 px-4 flex items-center">
-                            <img x-show="!showPassword" src="{{ asset('images/pass_visibility_visible.svg') }}" class="w-5 h-5" alt="Show password">
-                            <img x-show="showPassword" src="{{ asset('images/pass_visibility_off.svg') }}" class="w-5 h-5" alt="Hide password" style="display: none;">
-                        </button>
+                               placeholder="Delete my account">
                     </div>
-                    <template x-if="errors.password">
-                        <p class="mt-2 text-sm text-[#ed0707]" x-text="errors.password[0]"></p>
+                    <template x-if="errors.confirmation">
+                        <p class="mt-2 text-sm text-[#ed0707]" x-text="errors.confirmation[0]"></p>
                     </template>
                 </div>
 
