@@ -31,7 +31,7 @@
             <img alt="profile picture" class="h-full w-full object-cover" src="{{ Auth::user()->profile_photo_url ?? asset('images/user-placeholder.svg') }}">
         </a>
 
-        <button @click="$dispatch('toggle-sidebar')" class="bg-light-gray rounded-full p-2 hover:bg-gray-200 transition-colors">
+        <button @click="$dispatch('open-property-manager-menu')" class="bg-light-gray rounded-full p-2 hover:bg-gray-200 transition-colors">
             <img src="{{ asset('images/dehaze.svg') }}" alt="Menu" class="w-6 h-6">
         </button>
     </div>

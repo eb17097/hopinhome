@@ -66,5 +66,6 @@
         <x-modals.notification-preferences-modal />
         <x-modals.regional-preferences-modal />
         <x-modals.reset-password-modal />
+        <x-modals.property-manager-menu-modal />
     </body>
 </html>
