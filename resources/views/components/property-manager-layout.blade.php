@@ -14,24 +14,16 @@
         <style>
             body { font-family: 'General Sans', sans-serif; }
             [x-cloak] { display: none !important; }
-            
-            /* Custom thin scrollbar for the sidebar */
+
+            /* Hide scrollbar for Chrome, Safari and Opera */
             #property-manager-sidebar::-webkit-scrollbar {
-                width: 3px;
+                display: none;
             }
-            #property-manager-sidebar::-webkit-scrollbar-track {
-                background: transparent;
-            }
-            #property-manager-sidebar::-webkit-scrollbar-thumb {
-                background: #e5e7eb;
-                border-radius: 10px;
-            }
-            #property-manager-sidebar::-webkit-scrollbar-thumb:hover {
-                background: #d1d5db;
-            }
+
+            /* Hide scrollbar for IE, Edge and Firefox */
             #property-manager-sidebar {
-                scrollbar-width: thin;
-                scrollbar-color: #e5e7eb transparent;
+                -ms-overflow-style: none;  /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
             }
         </style>
 
@@ -51,7 +43,7 @@
                          :class="sidebarOpen ? 'justify-between' : 'justify-center'">
                         <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopInHome Logo" class="h-[20px] w-auto transition-all duration-300" x-show="sidebarOpen" x-cloak>
                         <button @click="sidebarOpen = !sidebarOpen" class="text-gray-400 hover:text-gray-600 transition-colors shrink-0">
-                            <img src="{{ asset('images/left_panel_close.svg') }}" alt="Toggle" class="h-6 w-6 transition-transform duration-300" :class="!sidebarOpen && 'rotate-180'">
+                            <img src="{{ asset('images/left_panel_close.svg') }}" alt="Toggle" class="h-[20px] w-[20px] transition-transform duration-300" :class="!sidebarOpen && 'rotate-180'">
                         </button>
                     </div>
                     <div class="pt-4">
