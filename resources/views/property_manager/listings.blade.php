@@ -14,7 +14,7 @@
         <!-- Search and Filters -->
         <form action="{{ route('property_manager.listings.index') }}" method="GET" id="filter-form" class="mb-[24px]">
             <div class="flex items-end gap-[16px]">
-                <div class="flex-1 max-w-[606px]">
+                <div class="flex-1">
                     <label class="block text-[15px] font-medium text-[#1e1d1d] mb-[10px]">Search</label>
                     <div class="relative">
                         <input type="text" name="search" value="{{ request('search') }}" placeholder="Search listings by name" class="w-full h-[44px] px-[14px] border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-1 focus:ring-electric-blue placeholder:text-[#464646] text-[15px]">
@@ -22,17 +22,17 @@
                 </div>
                 <div class="w-[163px]">
                     <label class="block text-[15px] font-medium text-[#1e1d1d] mb-[10px]">Status</label>
-                    <x-custom-select 
-                        name="status" 
-                        :options="array_merge(['All status' => 'All status'], array_combine($statuses, $statuses))" 
+                    <x-custom-select
+                        name="status"
+                        :options="array_merge(['All status' => 'All status'], array_combine($statuses, $statuses))"
                         :selected="request('status', 'All status')"
                     />
                 </div>
                 <div class="w-[163px]">
                     <label class="block text-[15px] font-medium text-[#1e1d1d] mb-[10px]">Property type</label>
-                    <x-custom-select 
-                        name="property_type" 
-                        :options="array_merge(['All types' => 'All types'], array_combine($propertyTypes, $propertyTypes))" 
+                    <x-custom-select
+                        name="property_type"
+                        :options="array_merge(['All types' => 'All types'], array_combine($propertyTypes, $propertyTypes))"
                         :selected="request('property_type', 'All types')"
                     />
                 </div>
@@ -49,10 +49,10 @@
                 <div class="flex items-center space-x-[16px]">
                     <span class="text-[15px] font-medium text-[#1e1d1d]">Sort by</span>
                     <div class="w-[180px]">
-                        <x-custom-select 
-                            name="sort" 
+                        <x-custom-select
+                            name="sort"
                             height="h-[39px]"
-                            :options="['latest' => 'Date created (New)', 'oldest' => 'Date created (Old)']" 
+                            :options="['latest' => 'Date created (Desc)', 'oldest' => 'Date created (Asc)']"
                             :selected="request('sort', 'latest')"
                             onchange="this.closest('form').submit()"
                         />
@@ -140,7 +140,7 @@
                             <button @click="open = !open" @click.away="open = false" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
                                 <img src="{{ asset('images/dots.svg') }}" class="w-[24px] h-[24px]" alt="">
                             </button>
-                            <div x-show="open" 
+                            <div x-show="open"
                                  x-cloak
                                  x-transition:enter="transition ease-out duration-200"
                                  x-transition:enter-start="opacity-0 scale-95"
@@ -174,39 +174,39 @@
                 <div class="flex items-center space-x-[16px] text-[15px] text-[#1e1d1d]">
                     <span class="font-medium">Rows per page</span>
                     <div class="w-[89px]">
-                        <x-custom-select 
-                            name="per_page" 
+                        <x-custom-select
+                            name="per_page"
                             height="h-[39px]"
-                            :options="['10' => '10', '20' => '20', '50' => '50']" 
+                            :options="['10' => '10', '20' => '20', '50' => '50']"
                             :selected="request('per_page', '10')"
                             onchange="document.getElementById('filter-form').submit()"
                         />
                     </div>
                 </div>
-                
+
                 <div class="flex items-center space-x-[32px]">
                     <span class="text-[15px] font-medium text-[#1e1d1d]">
                         Page {{ $listings->currentPage() }} of {{ $listings->lastPage() }}
                     </span>
                     <div class="flex space-x-[10px]">
                         {{-- First Page --}}
-                        <a href="{{ $listings->url(1) }}" 
+                        <a href="{{ $listings->url(1) }}"
                            class="w-[39px] h-[39px] flex items-center justify-center bg-white border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] {{ $listings->onFirstPage() ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-50' }}">
                             <img src="{{ asset('images/chevron.svg') }}" class="w-[20px] h-[20px] rotate-90" alt="">
                             <img src="{{ asset('images/chevron.svg') }}" class="w-[20px] h-[20px] rotate-90 -ml-[12px]" alt="">
                         </a>
                         {{-- Previous Page --}}
-                        <a href="{{ $listings->previousPageUrl() }}" 
+                        <a href="{{ $listings->previousPageUrl() }}"
                            class="w-[39px] h-[39px] flex items-center justify-center bg-white border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] {{ $listings->onFirstPage() ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-50' }}">
                             <img src="{{ asset('images/chevron.svg') }}" class="w-[20px] h-[20px] rotate-90" alt="">
                         </a>
                         {{-- Next Page --}}
-                        <a href="{{ $listings->nextPageUrl() }}" 
+                        <a href="{{ $listings->nextPageUrl() }}"
                            class="w-[39px] h-[39px] flex items-center justify-center bg-white border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] {{ $listings->hasMorePages() ? 'hover:bg-gray-50' : 'opacity-50 cursor-not-allowed' }}">
                             <img src="{{ asset('images/chevron.svg') }}" class="w-[20px] h-[20px] -rotate-90" alt="">
                         </a>
                         {{-- Last Page --}}
-                        <a href="{{ $listings->url($listings->lastPage()) }}" 
+                        <a href="{{ $listings->url($listings->lastPage()) }}"
                            class="w-[39px] h-[39px] flex items-center justify-center bg-white border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] {{ $listings->hasMorePages() ? 'hover:bg-gray-50' : 'opacity-50 cursor-not-allowed' }}">
                             <img src="{{ asset('images/chevron.svg') }}" class="w-[20px] h-[20px] -rotate-90" alt="">
                             <img src="{{ asset('images/chevron.svg') }}" class="w-[20px] h-[20px] -rotate-90 -ml-[12px]" alt="">
