@@ -19,8 +19,13 @@
                 <h2 class="text-[15px] font-medium text-[#1e1d1d]">Create a listing</h2>
             @elseif(request()->routeIs('property_manager.listings.index'))
                 <h2 class="text-[15px] font-medium text-[#1e1d1d]">Listings</h2>
-            @else
-                <h2 class="text-[15px] font-medium text-[#1e1d1d]">Page</h2>
+            @elseif(request()->routeIs('property_manager.listings.edit'))
+                <a href="{{ route('property_manager.listings.index') }}" class="text-[15px] font-medium text-[#1e1d1d] opacity-60 hover:opacity-100 transition-opacity">Listings</a>
+                <img src="{{ asset('images/chevron.svg') }}" class="w-4 h-4 transform -rotate-90 opacity-60" alt="">
+                <h2 class="text-[15px] font-medium text-[#1e1d1d] truncate max-w-[400px]" title="Edit Listing #{{ request()->route('listing')->id }} - {{ request()->route('listing')->name ?? request()->route('listing')->address }}">
+                    P-0000{{ request()->route('listing')->id }}: {{ request()->route('listing')->name ?? request()->route('listing')->address }}
+                </h2>
+            @else                <h2 class="text-[15px] font-medium text-[#1e1d1d]">Page</h2>
             @endif
         @endif
     </div>
