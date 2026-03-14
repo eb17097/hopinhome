@@ -11,7 +11,7 @@
     <div class="p-4">
         <div class="flex items-start space-x-4">
             <a href="{{ route('listings.show', $listing->id) }}" class="flex items-start space-x-4 group">
-                <img src="{{ $listing->images->first()?->image_url ?? asset('images/placeholder_image_1.png') }}" alt="{{ $listing->name }}" class="w-20 h-20 object-cover rounded-md group-hover:opacity-75 transition-opacity">
+                <img src="{{ $listing->images->first()?->image_url ?? asset('images/placeholder.png') }}" alt="{{ $listing->name }}" class="w-20 h-20 object-cover rounded-md group-hover:opacity-75 transition-opacity">
                 <div class="flex-1">
                     <div class="flex justify-between items-start">
                         <div>
@@ -43,7 +43,7 @@
             <div class="flex items-center space-x-4">
                 <a href="{{ route('listings.show', $listing->id) }}" class="text-sm font-medium text-electric-blue hover:underline">View</a>
                 <a href="#" class="text-sm font-medium text-gray-700 hover:underline">Edit</a>
-                
+
                 <form x-on:submit.prevent="showDeleteModal = true" method="POST" action="{{ route('listings.destroy', $listing->id) }}">
                     @csrf
                     @method('DELETE')

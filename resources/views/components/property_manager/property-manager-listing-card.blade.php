@@ -4,7 +4,7 @@
     <div class="flex items-center space-x-[16px] min-w-0 pr-[16px]">
         {{-- Thumbnail --}}
         <div class="w-[85px] h-[85px] rounded-[4px] overflow-hidden border border-light-gray shrink-0">
-            <img src="{{ $listing->images->first()?->image_url ?? asset('images/placeholder_image_1.png') }}" alt="{{ $listing->name }}" class="w-full h-full object-cover">
+            <img src="{{ $listing->images->first()?->image_url ?? asset('images/placeholder.png') }}" alt="{{ $listing->name }}" class="w-full h-full object-cover">
         </div>
 
         {{-- Info --}}

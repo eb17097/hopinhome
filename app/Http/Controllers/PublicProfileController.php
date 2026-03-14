@@ -16,8 +16,8 @@ class PublicProfileController extends Controller
         $realUser = User::findOrFail($id);
 
         // Map role to display name
-        $realUser->display_role = $realUser->role === 'property_manager' 
-            ? 'Property manager' 
+        $realUser->display_role = $realUser->role === 'property_manager'
+            ? 'Property manager'
             : str_replace('_', ' ', ucfirst($realUser->role));
 
         // Enhance the real user with mock data for fields not yet in DB
@@ -62,7 +62,7 @@ class PublicProfileController extends Controller
 
         // Fetch real active listings for this user
         $listings = $user->listings()->where('status', 'Active')->with('images')->take(3)->get();
-        
+
         if ($listings->isEmpty()) {
             $listings = collect([
                 (object) [
@@ -77,7 +77,7 @@ class PublicProfileController extends Controller
                     'price' => 400000,
                     'payment_option' => 'Monthly',
                     'utilities_option' => 'Utilities included',
-                    'images' => collect([(object)['image_url' => asset('images/placeholder_image_1.png')]])
+                    'images' => collect([(object)['image_url' => asset('images/placeholder.png')]])
                 ],
                 (object) [
                     'id' => 2,
