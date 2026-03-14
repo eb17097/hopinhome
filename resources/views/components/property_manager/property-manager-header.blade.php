@@ -37,7 +37,7 @@
             </button>
 
             {{-- Dropdown Menu --}}
-            <div x-show="open" 
+            <div x-show="open"
                  x-cloak
                  x-transition:enter="transition ease-out duration-200"
                  x-transition:enter-start="opacity-0 scale-95 translate-y-[-10px]"
@@ -46,17 +46,17 @@
                  x-transition:leave-start="opacity-100 scale-100 translate-y-0"
                  x-transition:leave-end="opacity-0 scale-95 translate-y-[-10px]"
                  class="absolute right-0 mt-2 w-[326px] bg-white rounded-[8px] border border-light-gray shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] z-[110] p-6 overflow-hidden">
-                
+
                 <div class="flex flex-col gap-4">
                     {{-- Settings Section --}}
                     <div class="flex flex-col">
                         <p class="text-[12px] font-medium text-[#464646] mb-1">Settings</p>
                         <div class="flex flex-col">
-                            <a href="{{ route('profile.edit') }}" class="flex items-center gap-[10px] py-[10px] rounded-[4px] hover:bg-gray-50 transition-colors">
+                            <a href="{{ route('profile.edit') }}" class="flex items-center gap-[10px] py-[10px] rounded-[4px] transition-colors">
                                 <img src="{{ asset('images/account_circle.svg') }}" class="w-[18px] h-[18px]" alt="">
                                 <span class="text-[16px] font-medium text-[#1e1d1d]">Profile settings</span>
                             </a>
-                            <button @click.prevent="$dispatch('open-regional-preferences-modal'); open = false" class="flex items-center gap-[10px] py-[10px] rounded-[4px] hover:bg-gray-50 transition-colors text-left w-full">
+                            <button @click.prevent="$dispatch('open-regional-preferences-modal'); open = false" class="flex items-center gap-[10px] py-[10px] rounded-[4px] transition-colors text-left w-full">
                                 <img src="{{ asset('images/language_sidebar.svg') }}" class="w-[18px] h-[18px]" alt="">
                                 <span class="text-[16px] font-medium text-[#1e1d1d]">Regional preferences</span>
                             </button>
@@ -67,10 +67,10 @@
                     <div class="flex flex-col">
                         <p class="text-[12px] font-medium text-[#464646] mb-1">Articles</p>
                         <div class="flex flex-col">
-                            <a href="#" class="py-[10px] rounded-[4px] hover:bg-gray-50 transition-colors text-[16px] font-medium text-[#1e1d1d]">Insights</a>
-                            <a href="#" class="py-[10px] rounded-[4px] hover:bg-gray-50 transition-colors text-[16px] font-medium text-[#1e1d1d]">News</a>
-                            <a href="#" class="py-[10px] rounded-[4px] hover:bg-gray-50 transition-colors text-[16px] font-medium text-[#1e1d1d]">Community articles</a>
-                            <a href="#" class="py-[10px] rounded-[4px] hover:bg-gray-50 transition-colors text-[16px] font-medium text-[#1e1d1d]">Tips & Resources</a>
+                            <a href="#" class="py-[10px] rounded-[4px] transition-colors text-[16px] font-medium text-[#1e1d1d]">Insights</a>
+                            <a href="#" class="py-[10px] rounded-[4px] transition-colors text-[16px] font-medium text-[#1e1d1d]">News</a>
+                            <a href="#" class="py-[10px] rounded-[4px] transition-colors text-[16px] font-medium text-[#1e1d1d]">Community articles</a>
+                            <a href="#" class="py-[10px] rounded-[4px] transition-colors text-[16px] font-medium text-[#1e1d1d]">Tips & Resources</a>
                         </div>
                     </div>
 
@@ -82,7 +82,7 @@
                             </svg>
                             Switch to renter
                         </a>
-                        
+
                         <form method="POST" action="{{ route('logout') }}" class="w-full">
                             @csrf
                             <button type="submit" class="border border-light-gray bg-white text-[#1e1d1d] font-medium h-[51px] rounded-[6px] flex items-center justify-center hover:bg-gray-50 transition-all text-[16px] tracking-[-0.48px] w-full">
