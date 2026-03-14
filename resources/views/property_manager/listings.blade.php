@@ -22,31 +22,19 @@
                 </div>
                 <div class="w-[163px]">
                     <label class="block text-[15px] font-medium text-[#1e1d1d] mb-[10px]">Status</label>
-                    <div class="relative">
-                        <select name="status" class="w-full h-[44px] px-[14px] border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] appearance-none bg-white focus:outline-none focus:ring-1 focus:ring-electric-blue text-[15px]">
-                            <option value="All status">All status</option>
-                            @foreach($statuses as $status)
-                                <option value="{{ $status }}" {{ request('status') === $status ? 'selected' : '' }}>{{ $status }}</option>
-                            @endforeach
-                        </select>
-                        <div class="absolute right-[14px] top-1/2 -translate-y-1/2 pointer-events-none">
-                            <img src="{{ asset('images/chevron.svg') }}" class="w-[20px] h-[20px] opacity-60" alt="">
-                        </div>
-                    </div>
+                    <x-custom-select 
+                        name="status" 
+                        :options="array_merge(['All status' => 'All status'], array_combine($statuses, $statuses))" 
+                        :selected="request('status', 'All status')"
+                    />
                 </div>
                 <div class="w-[163px]">
                     <label class="block text-[15px] font-medium text-[#1e1d1d] mb-[10px]">Property type</label>
-                    <div class="relative">
-                        <select name="property_type" class="w-full h-[44px] px-[14px] border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] appearance-none bg-white focus:outline-none focus:ring-1 focus:ring-electric-blue text-[15px]">
-                            <option value="All types">All types</option>
-                            @foreach($propertyTypes as $type)
-                                <option value="{{ $type }}" {{ request('property_type') === $type ? 'selected' : '' }}>{{ $type }}</option>
-                            @endforeach
-                        </select>
-                        <div class="absolute right-[14px] top-1/2 -translate-y-1/2 pointer-events-none">
-                            <img src="{{ asset('images/chevron.svg') }}" class="w-[20px] h-[20px] opacity-60" alt="">
-                        </div>
-                    </div>
+                    <x-custom-select 
+                        name="property_type" 
+                        :options="array_merge(['All types' => 'All types'], array_combine($propertyTypes, $propertyTypes))" 
+                        :selected="request('property_type', 'All types')"
+                    />
                 </div>
                 <button type="submit" class="bg-electric-blue text-white h-[44px] px-[32px] rounded-[6px] font-medium tracking-[-0.48px] hover:opacity-90 transition-opacity text-[16px] border border-electric-blue">
                     Search
@@ -60,14 +48,14 @@
                 </p>
                 <div class="flex items-center space-x-[16px]">
                     <span class="text-[15px] font-medium text-[#1e1d1d]">Sort by</span>
-                    <div class="relative w-[159px]">
-                        <select name="sort" onchange="this.form.submit()" class="w-full h-[39px] px-[14px] border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] appearance-none bg-white focus:outline-none focus:ring-1 focus:ring-electric-blue text-[15px]">
-                            <option value="latest" {{ request('sort') === 'latest' ? 'selected' : '' }}>Date created (New)</option>
-                            <option value="oldest" {{ request('sort') === 'oldest' ? 'selected' : '' }}>Date created (Old)</option>
-                        </select>
-                        <div class="absolute right-[14px] top-1/2 -translate-y-1/2 pointer-events-none">
-                            <img src="{{ asset('images/chevron.svg') }}" class="w-[20px] h-[20px] opacity-60" alt="">
-                        </div>
+                    <div class="w-[180px]">
+                        <x-custom-select 
+                            name="sort" 
+                            height="h-[39px]"
+                            :options="['latest' => 'Date created (New)', 'oldest' => 'Date created (Old)']" 
+                            :selected="request('sort', 'latest')"
+                            onchange="this.closest('form').submit()"
+                        />
                     </div>
                 </div>
             </div>
@@ -185,15 +173,14 @@
             <div class="mt-[40px] flex justify-between items-center pb-[40px]">
                 <div class="flex items-center space-x-[16px] text-[15px] text-[#1e1d1d]">
                     <span class="font-medium">Rows per page</span>
-                    <div class="relative w-[89px]">
-                        <select name="per_page" form="filter-form" onchange="this.form.submit()" class="w-full h-[39px] px-[14px] border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] appearance-none bg-white focus:outline-none focus:ring-1 focus:ring-electric-blue text-[15px]">
-                            <option value="10" {{ request('per_page') == 10 ? 'selected' : '' }}>10</option>
-                            <option value="20" {{ request('per_page') == 20 ? 'selected' : '' }}>20</option>
-                            <option value="50" {{ request('per_page') == 50 ? 'selected' : '' }}>50</option>
-                        </select>
-                        <div class="absolute right-[14px] top-1/2 -translate-y-1/2 pointer-events-none">
-                            <img src="{{ asset('images/chevron.svg') }}" class="w-[20px] h-[20px] opacity-60" alt="">
-                        </div>
+                    <div class="w-[89px]">
+                        <x-custom-select 
+                            name="per_page" 
+                            height="h-[39px]"
+                            :options="['10' => '10', '20' => '20', '50' => '50']" 
+                            :selected="request('per_page', '10')"
+                            onchange="document.getElementById('filter-form').submit()"
+                        />
                     </div>
                 </div>
                 
