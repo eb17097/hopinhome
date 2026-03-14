@@ -33,13 +33,13 @@
         {{-- Action Cards Grid --}}
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {{-- Edit Bio --}}
-            <button @click="$dispatch('open-edit-bio-modal')" class="bg-white border border-light-gray rounded-[6px] p-6 flex items-center justify-between hover:bg-gray-50 transition-colors group">
+            <button @click="$dispatch('open-edit-bio-modal')" class="h-[76px] bg-white border border-light-gray rounded-[6px] p-6 flex items-center justify-between hover:bg-gray-50 transition-colors group">
                 <span class="text-[16px] font-medium text-[#1e1d1d]">Edit bio</span>
                 <img src="{{ asset('images/arrow_forward.svg') }}" alt="Arrow" class="w-[18px] h-[18px] opacity-90 group-hover:opacity-100 transition-opacity">
             </button>
 
             {{-- Change Profile Picture --}}
-            <button @click="$dispatch('open-change-profile-photo-modal')" class="bg-white border border-light-gray rounded-[6px] p-6 flex items-center justify-between hover:bg-gray-50 transition-colors group">
+            <button @click="$dispatch('open-change-profile-photo-modal')" class="h-[76px] bg-white border border-light-gray rounded-[6px] p-6 flex items-center justify-between hover:bg-gray-50 transition-colors group">
                 <span class="text-[16px] font-medium text-[#1e1d1d]">Change profile picture</span>
                 <img src="{{ asset('images/arrow_forward.svg') }}" alt="Arrow" class="w-[18px] h-[18px] opacity-90 group-hover:opacity-100 transition-opacity">
             </button>
@@ -49,8 +49,8 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {{-- Payments & Subscriptions --}}
-            <a href="#" class="bg-white border border-light-gray rounded-[6px] p-6 flex flex-col hover:bg-gray-50 transition-colors group">
-                <div class="flex items-center justify-between mb-2">
+            <a href="#" class="h-[124px] bg-white border border-light-gray rounded-[6px] p-6 flex flex-col hover:bg-gray-50 transition-colors group">
+                <div class="flex items-center justify-between mb-[6px]">
                     <span class="text-[16px] font-medium text-[#1e1d1d]">Payments & Subscriptions</span>
                     <img src="{{ asset('images/arrow_forward.svg') }}" alt="Arrow" class="w-[18px] h-[18px] opacity-90 group-hover:opacity-100 transition-opacity">
                 </div>
@@ -58,8 +58,8 @@
             </a>
 
             {{-- Message templates --}}
-            <a href="#" class="bg-white border border-light-gray rounded-[6px] p-6 flex flex-col hover:bg-gray-50 transition-colors group">
-                <div class="flex items-center justify-between mb-2">
+            <a href="#" class="h-[124px] bg-white border border-light-gray rounded-[6px] p-6 flex flex-col hover:bg-gray-50 transition-colors group">
+                <div class="flex items-center justify-between mb-[6px]">
                     <span class="text-[16px] font-medium text-[#1e1d1d]">Message templates</span>
                     <img src="{{ asset('images/arrow_forward.svg') }}" alt="Arrow" class="w-[18px] h-[18px] opacity-90 group-hover:opacity-100 transition-opacity">
                 </div>
@@ -71,19 +71,19 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {{-- Notification preferences --}}
-            <button @click="$dispatch('open-notification-preferences-modal')" class="bg-white border border-light-gray rounded-[6px] p-6 flex items-center justify-between hover:bg-gray-50 transition-colors group text-left">
+            <button @click="$dispatch('open-notification-preferences-modal')" class="h-[76px] bg-white border border-light-gray rounded-[6px] p-6 flex items-center justify-between hover:bg-gray-50 transition-colors group text-left">
                 <span class="text-[16px] font-medium text-[#1e1d1d]">Notification preferences</span>
                 <img src="{{ asset('images/arrow_forward.svg') }}" alt="Arrow" class="w-[18px] h-[18px] opacity-90 group-hover:opacity-100 transition-opacity">
             </button>
 
             {{-- Regional preferences --}}
-            <button @click="$dispatch('open-regional-preferences-modal')" class="bg-white border border-gray rounded-[6px] p-6 flex items-center justify-between hover:bg-gray-50 transition-colors group text-left">
+            <button @click="$dispatch('open-regional-preferences-modal')" class="h-[76px] bg-white border border-light-gray rounded-[6px] p-6 flex items-center justify-between hover:bg-gray-50 transition-colors group text-left">
                 <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">Regional preferences</span>
                 <img src="{{ asset('images/arrow_forward.svg') }}" alt="Arrow" class="w-[18px] h-[18px] opacity-90 group-hover:opacity-100 transition-opacity">
             </button>
 
             {{-- Account security --}}
-            <a href="{{ route('property_manager.security') }}" class="bg-white border border-light-gray rounded-[6px] p-6 flex items-center justify-between hover:bg-gray-50 transition-colors group">
+            <a href="{{ route('property_manager.security') }}" class="h-[76px] bg-white border border-light-gray rounded-[6px] p-6 flex items-center justify-between hover:bg-gray-50 transition-colors group">
                 <span class="text-[16px] font-medium text-[#1e1d1d]">Account security</span>
                 <img src="{{ asset('images/arrow_forward.svg') }}" alt="Arrow" class="w-[18px] h-[18px] opacity-90 group-hover:opacity-100 transition-opacity">
             </a>
@@ -91,7 +91,7 @@
             {{-- Sign out --}}
             <form method="POST" action="{{ route('logout') }}" class="w-full">
                 @csrf
-                <button type="submit" class="bg-white border border-light-gray rounded-[6px] p-6 flex items-center justify-between hover:bg-red-50 transition-colors group w-full text-left">
+                <button type="submit" class="h-[76px] bg-white border border-light-gray rounded-[6px] p-6 flex items-center justify-between hover:bg-red-50 transition-colors group w-full text-left">
                     <span class="text-[16px] font-medium text-[#1e1d1d]">Sign out</span>
                     <img src="{{ asset('images/arrow_forward.svg') }}" alt="Arrow" class="w-[18px] h-[18px] opacity-90 group-hover:opacity-100 transition-opacity">
                 </button>
