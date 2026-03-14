@@ -48,7 +48,9 @@
                 <div class="w-[744px]">
                     <x-listings.why-rent-in-dubai />
                     <x-listings.popular-areas />
-                    <x-listings.faq-section />
+                    <div class="pt-[96px]">
+                        <x-listings.faq-section />
+                    </div>
                 </div>
                 <div class="w-[380px]">
                     <x-listings.uae-insights-section />

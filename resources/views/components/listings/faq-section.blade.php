@@ -1,5 +1,5 @@
 <div x-data="{ activeAccordion: 1 }">
-    <h3 class="mt-[80px] text-[32px] font-medium text-black tracking-[-0.64px] leading-[1.28] mb-[24px]">Frequently asked questions</h3>
+    <h3 class="text-[32px] font-medium text-black tracking-[-0.64px] leading-[1.28] mb-[24px]">Frequently asked questions</h3>
 
     <div class="border-t border-gray-200">
         <div class="border-b border-gray-200">
