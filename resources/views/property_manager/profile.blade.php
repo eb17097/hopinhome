@@ -49,7 +49,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {{-- Payments & Subscriptions --}}
-            <a href="#" class="h-[124px] bg-white border border-light-gray rounded-[6px] p-6 flex flex-col hover:bg-gray-50 transition-colors group">
+            <a href="#" class="h-[124px] opacity-60 pointer-events-none border border-light-gray rounded-[6px] p-6 flex flex-col hover:bg-gray-50 transition-colors group">
                 <div class="flex items-center justify-between mb-[6px]">
                     <span class="text-[16px] font-medium text-[#1e1d1d]">Payments & Subscriptions</span>
                     <img src="{{ asset('images/arrow_forward.svg') }}" alt="Arrow" class="w-[18px] h-[18px] opacity-90 group-hover:opacity-100 transition-opacity">
@@ -58,7 +58,7 @@
             </a>
 
             {{-- Message templates --}}
-            <a href="#" class="h-[124px] bg-white border border-light-gray rounded-[6px] p-6 flex flex-col hover:bg-gray-50 transition-colors group">
+            <a href="#" class="h-[124px] opacity-60 pointer-events-none bg-white border border-light-gray rounded-[6px] p-6 flex flex-col hover:bg-gray-50 transition-colors group">
                 <div class="flex items-center justify-between mb-[6px]">
                     <span class="text-[16px] font-medium text-[#1e1d1d]">Message templates</span>
                     <img src="{{ asset('images/arrow_forward.svg') }}" alt="Arrow" class="w-[18px] h-[18px] opacity-90 group-hover:opacity-100 transition-opacity">
