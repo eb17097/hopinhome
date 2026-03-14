@@ -84,8 +84,8 @@
     </div>
 
     <div class="p-[20px] relative z-10 pointer-events-none">
-        <h3 class="font-medium text-[20px] text-[#1E1D1D] tracking-[-0.4px] leading-[1.28] truncate">{{ $listing->name }}</h3>
-        <p class="text-[14px] text-[#464646] leading-[1.5] mt-1 truncate">{{ $listing->address }}</p>
+        <h3 class="font-medium text-[20px] text-[#1E1D1D] tracking-[-0.4px] leading-[1.28] truncate" title="{{ $listing->name }}">{{ $listing->name }}</h3>
+        <p class="text-[14px] text-[#464646] leading-[1.5] mt-1 truncate" title="{{ $listing->address }}">{{ $listing->address }}</p>
 
         <div class="flex items-center gap-x-[16px] text-[14px] text-[#464646] mt-[18px]">
             <div class="flex items-end gap-[3px]">

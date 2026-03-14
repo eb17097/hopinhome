@@ -12,11 +12,11 @@
         <div class="flex items-start space-x-4">
             <a href="{{ route('listings.show', $listing->id) }}" class="flex items-start space-x-4 group">
                 <img src="{{ $listing->images->first()?->image_url ?? asset('images/placeholder.png') }}" alt="{{ $listing->name }}" class="w-20 h-20 object-cover rounded-md group-hover:opacity-75 transition-opacity">
-                <div class="flex-1">
+                <div class="flex-1 min-w-0">
                     <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-lg font-medium text-black group-hover:text-electric-blue transition-colors">{{ $listing->name }}</h3>
-                            <p class="text-sm text-gray-600">{{ $listing->address }}</p>
+                        <div class="min-w-0">
+                            <h3 class="text-lg font-medium text-black group-hover:text-electric-blue transition-colors truncate" title="{{ $listing->name }}">{{ $listing->name }}</h3>
+                            <p class="text-sm text-gray-600 truncate" title="{{ $listing->address }}">{{ $listing->address }}</p>
                         </div>
                     </div>
                 </div>

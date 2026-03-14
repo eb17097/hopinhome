@@ -1,8 +1,8 @@
 @props(['listing'])
 
-<div x-data="{}" class="flex justify-between items-end mb-[24px]">
-    <div>
-        <h1 class="text-[32px] font-medium text-black tracking-[-0.64px] leading-[1.28]">{{ $listing->name }}</h1>
+<div x-data="{}" class="flex justify-between items-end mb-[24px] space-x-4">
+    <div class="min-w-0">
+        <h1 class="text-[32px] font-medium text-black tracking-[-0.64px] leading-[1.28] truncate" title="{{ $listing->name }}">{{ $listing->name }}</h1>
     </div>
     <div class="flex items-center space-x-[20px]">
         <button 

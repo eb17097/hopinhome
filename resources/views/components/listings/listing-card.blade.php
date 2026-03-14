@@ -85,9 +85,9 @@
     <div class="pt-[24px] pb-[20px] pl-[26px] pr-[20px] flex-grow flex flex-col justify-between relative z-10 pointer-events-none h-full">
         <div>
             <div class="flex justify-between items-start mb-[18px]">
-                <div>
-                    <h3 class="text-[20px] leading-[1.28] tracking-[-0.4px] font-medium text-gray-900">{{ $listing->name }}</h3>
-                    <p class="text-[14px] text-gray-600">{{ $listing->address }}</p>
+                <div class="min-w-0">
+                    <h3 class="text-[20px] leading-[1.28] tracking-[-0.4px] font-medium text-gray-900 truncate" title="{{ $listing->name }}">{{ $listing->name }}</h3>
+                    <p class="text-[14px] text-gray-600 truncate" title="{{ $listing->address }}">{{ $listing->address }}</p>
                 </div>
             </div>
 
