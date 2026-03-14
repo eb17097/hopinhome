@@ -4,7 +4,7 @@
         <div class="flex justify-between items-center mb-[6px]">
             <div class="flex items-center space-x-3">
                 <div class="w-10 h-10 bg-[#283351] rounded-[6px] flex items-center justify-center border border-[#3B4561]">
-                    <img src="{{ asset('images/bolt_yellow.svg') }}" alt="Boost Icon" class="w-6 h-6">
+                    <img src="{{ asset('images/bolt_yellow.svg') }}" alt="Boost Icon" class="w-[28px] h-[28px]">
                 </div>
                 <h3 class="text-[18px] font-medium text-white">Boost credits</h3>
             </div>
@@ -44,7 +44,7 @@
             <span class="text-[14px] text-white">Remaining</span>
             <div class="flex items-baseline space-x-1">
                 <span class="text-[32px] font-medium text-white leading-none">120</span>
-                <span class="text-[18px] font-medium text-white">/ 150</span>
+                <span class="text-[16px] font-medium text-white">/ 150</span>
             </div>
         </div>
 

@@ -4,7 +4,7 @@
 
     {{-- Left: Score --}}
     <div class="w-[30%] flex flex-col items-center justify-center w-[300px] py-10">
-        <div class="flex gap-1 mb-2">
+        <div class="flex mb-2">
             @for ($i = 0; $i < 4; $i++)
                 <img src="{{ asset('images/star_blue.svg') }}" alt="Star" class="w-[28px] h-[28px]" onerror="this.src='{{ asset('images/star.svg') }}'">
             @endfor

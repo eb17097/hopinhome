@@ -17,13 +17,13 @@
 ])>
     {{-- Left: Score Summary --}}
     <div class="w-[30%] flex flex-col items-center justify-center min-w-[236px] py-10">
-        <div class="flex gap-1 mb-2">
+        <div class="flex mb-2">
             @for ($i = 1; $i <= 5; $i++)
                 @if ($i <= floor($rating))
                     <img src="{{ asset('images/star_blue.svg') }}" alt="Star" class="w-[28px] h-[28px]">
                 @elseif ($i == ceil($rating) && $rating != floor($rating))
                     {{-- Using star_filled as a placeholder for half star if it looks better, or just use star_blue for full stars for now --}}
-                    <img src="{{ asset('images/star_blue.svg') }}" alt="Star" class="w-[28px] h-[28px]">
+                    <img src="{{ asset('images/star_filled.svg') }}" alt="Star" class="w-[28px] h-[28px]">
                 @else
                     <img src="{{ asset('images/star_filled.svg') }}" alt="Star" class="w-[28px] h-[28px]">
                 @endif

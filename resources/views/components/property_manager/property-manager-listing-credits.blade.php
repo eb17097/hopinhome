@@ -44,7 +44,7 @@
             <span class="text-[14px] text-[#464646]">Remaining</span>
             <div class="flex items-baseline space-x-1">
                 <span class="text-[32px] font-medium text-[#1e1d1d] leading-none">49</span>
-                <span class="text-[18px] font-medium">/ 200</span>
+                <span class="text-[16px] font-medium">/ 200</span>
             </div>
         </div>
 

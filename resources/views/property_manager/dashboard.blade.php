@@ -107,7 +107,7 @@
                             </div>
 
                             <p class="text-center text-[14px] text-[#464646]">
-                                Credits reset automatically every billing cycle <span class="font-semibold text-[#1e1d1d]">on the 15th.</span>
+                                Credits reset automatically every billing cycle <span class="font-medium text-[#1e1d1d]">on the 15th.</span>
                             </p>
                         </div>
                     </div>
