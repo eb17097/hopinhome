@@ -64,23 +64,23 @@
         <!-- Table -->
         <div class="bg-white border border-light-gray rounded-[8px] shadow-[0px_2px_8px_0px_rgba(0,0,0,0.04)]">
             <div class="bg-[#f9f9f8] border-b border-light-gray h-[50px] flex items-center px-[24px]">
-                <div class="w-[450px] text-[14px] font-medium text-[#1e1d1d]">Property</div>
+                <div class="flex-1 min-w-0 text-[14px] font-medium text-[#1e1d1d]">Property</div>
                 <div class="w-[150px] text-[14px] font-medium text-[#1e1d1d]">Property type</div>
                 <div class="w-[100px] text-[14px] font-medium text-[#1e1d1d]">Views</div>
                 <div class="w-[100px] text-[14px] font-medium text-[#1e1d1d]">Messages</div>
                 <div class="w-[150px] text-[14px] font-medium text-[#1e1d1d]">Status</div>
                 <div class="w-[150px] text-[14px] font-medium text-[#1e1d1d]">Created</div>
-                <div class="flex-1"></div>
+                <div class="w-[40px]"></div>
             </div>
 
             @forelse($listings as $listing)
                 <div class="border-b border-light-gray last:border-b-0 h-[124px] flex items-center px-[24px] group hover:bg-gray-50/50 transition-colors">
-                    <div class="w-[450px] flex items-center space-x-[16px]">
+                    <div class="flex items-center space-x-[16px] flex-1 min-w-0">
                         <div class="w-[100px] h-[100px] rounded-[4px] overflow-hidden border border-light-gray shrink-0">
                             <img src="{{ $listing->images->first()?->image_url ?? asset('images/placeholder.png') }}" alt="" class="w-full h-full object-cover">
                         </div>
-                        <div class="space-y-[4px] min-w-0">
-                            <h3 class="text-[16px] font-medium text-[#1e1d1d] truncate max-w-[300px] leading-[1.5]" title="{{ $listing->name ?? $listing->address }}">
+                        <div class="flex-1 space-y-[4px] min-w-0 pr-[16px]">
+                            <h3 class="text-[16px] font-medium text-[#1e1d1d] truncate leading-[1.5]" title="{{ $listing->name ?? $listing->address }}">
                                 {{ $listing->name ?? $listing->address }}
                             </h3>
                             <p class="text-[15px] font-medium text-[#1e1d1d] leading-[1.3]">
@@ -135,7 +135,7 @@
                     <div class="w-[150px] text-[15px] text-[#464646] font-normal leading-[1.3]">
                         {{ $listing->created_at->format('M d, Y') }}
                     </div>
-                    <div class="flex-1 flex justify-end">
+                    <div class="flex justify-end">
                         <div x-data="{ open: false }" class="relative">
                             <button @click="open = !open" @click.away="open = false" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
                                 <img src="{{ asset('images/dots_vertical.svg') }}" class="min-w-[24px] w-[24px] h-[24px]" alt="">
