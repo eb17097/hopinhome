@@ -9,6 +9,10 @@
 
             @if(request()->routeIs('property_manager.profile'))
                 <h2 class="text-[15px] font-medium text-[#1e1d1d]">Profile settings</h2>
+            @elseif(request()->routeIs('property_manager.security'))
+                <a href="{{ route('property_manager.profile') }}" class="text-[15px] font-medium text-[#1e1d1d] opacity-60 hover:opacity-100 transition-opacity">Profile settings</a>
+                <img src="{{ asset('images/chevron.svg') }}" class="w-4 h-4 transform -rotate-90 opacity-60" alt="">
+                <h2 class="text-[15px] font-medium text-[#1e1d1d]">Account security</h2>
             @elseif(request()->routeIs('property_manager.listings.create'))
                 <a href="{{ route('property_manager.listings.index') }}" class="text-[15px] font-medium text-[#1e1d1d] opacity-60 hover:opacity-100 transition-opacity">Listings</a>
                 <img src="{{ asset('images/chevron.svg') }}" class="w-4 h-4 transform -rotate-90 opacity-60" alt="">
