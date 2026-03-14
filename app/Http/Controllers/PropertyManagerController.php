@@ -26,4 +26,12 @@ class PropertyManagerController extends Controller
     {
         return view('property_manager.security');
     }
+
+    /**
+     * Display the property manager profile page.
+     */
+    public function profile()
+    {
+        return view('property_manager.profile');
+    }
 }

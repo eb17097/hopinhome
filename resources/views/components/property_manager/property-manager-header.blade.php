@@ -7,12 +7,16 @@
             <a href="{{ route('property_manager.index') }}" class="text-[15px] font-medium text-[#1e1d1d] opacity-60 hover:opacity-100 transition-opacity">Dashboard</a>
             <img src="{{ asset('images/chevron.svg') }}" class="w-4 h-4 transform -rotate-90 opacity-60" alt="">
 
-            @if(request()->routeIs('property_manager.listings.create'))
-                <a href="{{ route('property_manager.index') }}" class="text-[15px] font-medium text-[#1e1d1d] opacity-60 hover:opacity-100 transition-opacity">Listings</a>
+            @if(request()->routeIs('property_manager.profile'))
+                <h2 class="text-[15px] font-medium text-[#1e1d1d]">Profile settings</h2>
+            @elseif(request()->routeIs('property_manager.listings.create'))
+                <a href="{{ route('property_manager.listings.index') }}" class="text-[15px] font-medium text-[#1e1d1d] opacity-60 hover:opacity-100 transition-opacity">Listings</a>
                 <img src="{{ asset('images/chevron.svg') }}" class="w-4 h-4 transform -rotate-90 opacity-60" alt="">
                 <h2 class="text-[15px] font-medium text-[#1e1d1d]">Create a listing</h2>
-            @else
+            @elseif(request()->routeIs('property_manager.listings.index'))
                 <h2 class="text-[15px] font-medium text-[#1e1d1d]">Listings</h2>
+            @else
+                <h2 class="text-[15px] font-medium text-[#1e1d1d]">Page</h2>
             @endif
         @endif
     </div>
@@ -52,7 +56,7 @@
                     <div class="flex flex-col">
                         <p class="text-[12px] font-medium text-[#464646] mb-1">Settings</p>
                         <div class="flex flex-col">
-                            <a href="{{ route('profile.edit') }}" class="flex items-center gap-[10px] py-[10px] rounded-[4px] transition-colors">
+                            <a href="{{ route('property_manager.profile') }}" class="flex items-center gap-[10px] py-[10px] rounded-[4px] transition-colors">
                                 <img src="{{ asset('images/account_circle.svg') }}" class="w-[18px] h-[18px]" alt="">
                                 <span class="text-[16px] font-medium text-[#1e1d1d]">Profile settings</span>
                             </a>
