@@ -21,10 +21,10 @@
             </button>
 
             {{-- Delete account --}}
-            <a href="#" class="bg-white border border-[#ed0707] rounded-[6px] px-6 py-[26px] flex justify-between items-center w-full max-w-[245px] hover:bg-red-50 transition-colors group">
+            <button @click="$dispatch('open-delete-account-modal')" class="bg-white border border-[#ed0707] rounded-[6px] px-6 py-[26px] flex justify-between items-center w-full max-w-[245px] hover:bg-red-50 transition-colors group text-left">
                 <span class="text-[16px] font-medium text-[#ed0707] leading-[1.5]">Delete account</span>
                 <img src="{{ asset('images/arrow_forward_red.svg') }}" class="w-[18px] h-[18px] opacity-60 group-hover:opacity-100 transition-opacity" alt="">
-            </a>
+            </button>
         </div>
     </div>
 </x-property-manager-layout>

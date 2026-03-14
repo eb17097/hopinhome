@@ -32,5 +32,6 @@
         <x-modals.notification-preferences-modal />
         <x-modals.regional-preferences-modal />
         <x-modals.reset-password-modal />
+        <x-modals.delete-account-modal />
     </body>
 </html>
