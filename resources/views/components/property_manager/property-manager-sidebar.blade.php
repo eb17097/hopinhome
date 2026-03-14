@@ -113,12 +113,11 @@
         </div>
     </div>
 
-    <div class="mt-auto transition-all duration-300" :class="sidebarOpen ? 'px-4' : 'px-[8px]'">
+    <div x-show="sidebarOpen" x-cloak class="mt-auto transition-all duration-300 px-4">
         <a href="{{ route('property_manager.listings.create') }}" 
-           class="bg-electric-blue text-white font-medium rounded-[6px] flex items-center justify-center transition-all duration-300 hover:opacity-90"
-           :class="sidebarOpen ? 'w-full h-[40px] space-x-[6px]' : 'w-[40px] h-[40px] mx-auto'">
+           class="bg-electric-blue text-white font-medium rounded-[6px] flex items-center justify-center transition-all duration-300 hover:opacity-90 w-full h-[40px] space-x-[6px]">
             <img alt="add" class="w-4 h-4 brightness-0 invert shrink-0" src="{{ asset('images/add.svg') }}">
-            <span x-show="sidebarOpen" x-cloak class="text-[14px] leading-[1.3] whitespace-nowrap overflow-hidden">Create a listing</span>
+            <span class="text-[14px] leading-[1.3] whitespace-nowrap overflow-hidden">Create a listing</span>
         </a>
     </div>
 </div>

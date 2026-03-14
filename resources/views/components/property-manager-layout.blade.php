@@ -14,6 +14,25 @@
         <style>
             body { font-family: 'General Sans', sans-serif; }
             [x-cloak] { display: none !important; }
+            
+            /* Custom thin scrollbar for the sidebar */
+            #property-manager-sidebar::-webkit-scrollbar {
+                width: 3px;
+            }
+            #property-manager-sidebar::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            #property-manager-sidebar::-webkit-scrollbar-thumb {
+                background: #e5e7eb;
+                border-radius: 10px;
+            }
+            #property-manager-sidebar::-webkit-scrollbar-thumb:hover {
+                background: #d1d5db;
+            }
+            #property-manager-sidebar {
+                scrollbar-width: thin;
+                scrollbar-color: #e5e7eb transparent;
+            }
         </style>
 
         <!-- Scripts -->
