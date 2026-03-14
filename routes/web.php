@@ -71,6 +71,11 @@ Route::get('/dashboard', function () {
     return redirect()->route('home');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware(['auth'])->group(function () {
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
 Route::middleware(['auth', 'role:renter'])->prefix('renter')->name('renter.')->group(function () {
     Route::get('/', [RenterController::class, 'index'])->name('index');
     Route::get('/security', [RenterController::class, 'security'])->name('security');
