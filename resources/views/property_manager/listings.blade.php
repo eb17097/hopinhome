@@ -12,19 +12,22 @@
         </div>
 
         <!-- Search and Filters -->
-        <div class="mb-[24px]">
+        <form action="{{ route('property_manager.listings.index') }}" method="GET" id="filter-form" class="mb-[24px]">
             <div class="flex items-end gap-[16px]">
                 <div class="flex-1 max-w-[606px]">
                     <label class="block text-[15px] font-medium text-[#1e1d1d] mb-[10px]">Search</label>
                     <div class="relative">
-                        <input type="text" placeholder="Search listings by name or owner" class="w-full h-[44px] px-[14px] border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-1 focus:ring-electric-blue placeholder:text-[#464646] text-[15px]">
+                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Search listings by name" class="w-full h-[44px] px-[14px] border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-1 focus:ring-electric-blue placeholder:text-[#464646] text-[15px]">
                     </div>
                 </div>
                 <div class="w-[163px]">
                     <label class="block text-[15px] font-medium text-[#1e1d1d] mb-[10px]">Status</label>
                     <div class="relative">
-                        <select class="w-full h-[44px] px-[14px] border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] appearance-none bg-white focus:outline-none focus:ring-1 focus:ring-electric-blue text-[15px]">
-                            <option>All status</option>
+                        <select name="status" class="w-full h-[44px] px-[14px] border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] appearance-none bg-white focus:outline-none focus:ring-1 focus:ring-electric-blue text-[15px]">
+                            <option value="All status">All status</option>
+                            @foreach($statuses as $status)
+                                <option value="{{ $status }}" {{ request('status') === $status ? 'selected' : '' }}>{{ $status }}</option>
+                            @endforeach
                         </select>
                         <div class="absolute right-[14px] top-1/2 -translate-y-1/2 pointer-events-none">
                             <img src="{{ asset('images/chevron.svg') }}" class="w-[20px] h-[20px] opacity-60" alt="">
@@ -34,37 +37,41 @@
                 <div class="w-[163px]">
                     <label class="block text-[15px] font-medium text-[#1e1d1d] mb-[10px]">Property type</label>
                     <div class="relative">
-                        <select class="w-full h-[44px] px-[14px] border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] appearance-none bg-white focus:outline-none focus:ring-1 focus:ring-electric-blue text-[15px]">
-                            <option>All types</option>
+                        <select name="property_type" class="w-full h-[44px] px-[14px] border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] appearance-none bg-white focus:outline-none focus:ring-1 focus:ring-electric-blue text-[15px]">
+                            <option value="All types">All types</option>
+                            @foreach($propertyTypes as $type)
+                                <option value="{{ $type }}" {{ request('property_type') === $type ? 'selected' : '' }}>{{ $type }}</option>
+                            @endforeach
                         </select>
                         <div class="absolute right-[14px] top-1/2 -translate-y-1/2 pointer-events-none">
                             <img src="{{ asset('images/chevron.svg') }}" class="w-[20px] h-[20px] opacity-60" alt="">
                         </div>
                     </div>
                 </div>
-                <button class="bg-electric-blue text-white h-[44px] px-[32px] rounded-[6px] font-medium tracking-[-0.48px] hover:opacity-90 transition-opacity text-[16px] border border-electric-blue">
+                <button type="submit" class="bg-electric-blue text-white h-[44px] px-[32px] rounded-[6px] font-medium tracking-[-0.48px] hover:opacity-90 transition-opacity text-[16px] border border-electric-blue">
                     Search
                 </button>
             </div>
-        </div>
 
-        <!-- Sorting and Count -->
-        <div class="flex justify-between items-center mb-[16px]">
-            <p class="text-[15px] font-medium text-[#1e1d1d]">
-                Showing {{ $listings->firstItem() ?? 0 }}-{{ $listings->lastItem() ?? 0 }} of {{ $listings->total() }} results
-            </p>
-            <div class="flex items-center space-x-[16px]">
-                <span class="text-[15px] font-medium text-[#1e1d1d]">Sort by</span>
-                <div class="relative w-[159px]">
-                    <select class="w-full h-[39px] px-[14px] border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] appearance-none bg-white focus:outline-none focus:ring-1 focus:ring-electric-blue text-[15px]">
-                        <option>Date created</option>
-                    </select>
-                    <div class="absolute right-[14px] top-1/2 -translate-y-1/2 pointer-events-none">
-                        <img src="{{ asset('images/chevron.svg') }}" class="w-[20px] h-[20px] opacity-60" alt="">
+            <!-- Sorting and Count -->
+            <div class="flex justify-between items-center mt-[24px]">
+                <p class="text-[15px] font-medium text-[#1e1d1d]">
+                    Showing {{ $listings->firstItem() ?? 0 }}-{{ $listings->lastItem() ?? 0 }} of {{ $listings->total() }} results
+                </p>
+                <div class="flex items-center space-x-[16px]">
+                    <span class="text-[15px] font-medium text-[#1e1d1d]">Sort by</span>
+                    <div class="relative w-[159px]">
+                        <select name="sort" onchange="this.form.submit()" class="w-full h-[39px] px-[14px] border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] appearance-none bg-white focus:outline-none focus:ring-1 focus:ring-electric-blue text-[15px]">
+                            <option value="latest" {{ request('sort') === 'latest' ? 'selected' : '' }}>Date created (New)</option>
+                            <option value="oldest" {{ request('sort') === 'oldest' ? 'selected' : '' }}>Date created (Old)</option>
+                        </select>
+                        <div class="absolute right-[14px] top-1/2 -translate-y-1/2 pointer-events-none">
+                            <img src="{{ asset('images/chevron.svg') }}" class="w-[20px] h-[20px] opacity-60" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
 
         <!-- Table -->
         <div class="bg-white border border-light-gray rounded-[8px] shadow-[0px_2px_8px_0px_rgba(0,0,0,0.04)] overflow-hidden">
@@ -179,8 +186,10 @@
                 <div class="flex items-center space-x-[16px] text-[15px] text-[#1e1d1d]">
                     <span class="font-medium">Rows per page</span>
                     <div class="relative w-[89px]">
-                        <select class="w-full h-[39px] px-[14px] border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] appearance-none bg-white focus:outline-none focus:ring-1 focus:ring-electric-blue text-[15px]">
-                            <option>10</option>
+                        <select name="per_page" form="filter-form" onchange="this.form.submit()" class="w-full h-[39px] px-[14px] border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] appearance-none bg-white focus:outline-none focus:ring-1 focus:ring-electric-blue text-[15px]">
+                            <option value="10" {{ request('per_page') == 10 ? 'selected' : '' }}>10</option>
+                            <option value="20" {{ request('per_page') == 20 ? 'selected' : '' }}>20</option>
+                            <option value="50" {{ request('per_page') == 50 ? 'selected' : '' }}>50</option>
                         </select>
                         <div class="absolute right-[14px] top-1/2 -translate-y-1/2 pointer-events-none">
                             <img src="{{ asset('images/chevron.svg') }}" class="w-[20px] h-[20px] opacity-60" alt="">

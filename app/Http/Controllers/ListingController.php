@@ -178,10 +178,40 @@ class ListingController extends Controller
     }
 
     // 5. Show user's listings
-    public function myListings()
+    public function myListings(Request $request)
     {
-        $listings = auth()->user()->listings()->latest()->paginate(10);
-        return view('property_manager.listings', compact('listings'));
+        $query = auth()->user()->listings();
+
+        // Search filter
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        // Status filter
+        if ($request->filled('status') && $request->status !== 'All status') {
+            $query->where('status', $request->status);
+        }
+
+        // Property type filter
+        if ($request->filled('property_type') && $request->property_type !== 'All types') {
+            $query->where('property_type', $request->property_type);
+        }
+
+        // Sorting
+        $sort = $request->get('sort', 'latest');
+        if ($sort === 'oldest') {
+            $query->oldest();
+        } else {
+            $query->latest();
+        }
+
+        $perPage = $request->get('per_page', 10);
+        $listings = $query->paginate($perPage)->withQueryString();
+
+        $statuses = ['Active', 'In review', 'Declined', 'Expired', 'Draft'];
+        $propertyTypes = ['Apartment', 'Villa', 'House', 'Townhouse', 'Hotel apartment', 'Penthouse'];
+
+        return view('property_manager.listings', compact('listings', 'statuses', 'propertyTypes'));
     }
 
     public function destroy(Listing $listing)
