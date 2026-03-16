@@ -35,7 +35,7 @@
                      x-data="{
                         step: 1,
                         stepTitles: {
-                            1: 'Property type',
+                            1: '{{ isset($listing) ? 'Edit listing' : 'Create listing' }}',
                             2: 'Property location',
                             3: 'Property description',
                             4: 'Property details',
