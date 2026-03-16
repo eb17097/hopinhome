@@ -102,7 +102,7 @@
         <input type="file" name="photos[]" id="photos" @change="handleFileSelect" multiple class="sr-only" accept="image/*">
 
         <!-- List of uploaded photos -->
-        <div style="width:520px; margin:auto;" class="space-y-4" x-show="previews.length > 0">
+        <div style="width:514px; margin:auto;" class="space-y-4" x-show="previews.length > 0">
             <template x-for="(preview, index) in previews" :key="index">
                 <div class="flex items-stretch space-x-0">
                     <!-- Image Area -->
