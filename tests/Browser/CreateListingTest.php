@@ -20,7 +20,7 @@ class CreateListingTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
                     ->visitRoute('property_manager.listings.create')
-                    ->waitForText('Create a listing')
+                    ->waitForText('Property type')
                     ->screenshot('debug-step1-start')
                     
                     // Step 1: Property Type

@@ -34,6 +34,18 @@
                 <div id="listing-form-container"
                      x-data="{
                         step: 1,
+                        stepTitles: {
+                            1: 'Property type',
+                            2: 'Property location',
+                            3: 'Property description',
+                            4: 'Property details',
+                            5: 'Property features',
+                            6: 'Building amenities',
+                            7: 'Photos',
+                            8: 'Video tour',
+                            9: 'Price details',
+                            10: 'Publishing settings'
+                        },
                         showExitModal: false,
                         nextUrl: null,
                         formData: {
@@ -94,7 +106,9 @@
                     <div class="max-w-[728px] mx-auto">
                         <div class="flex justify-between items-center my-[20px]">
                             <button type="button" @click="showExitModal = true" class="text-[14px] text-[#464646] underline decoration-solid">Save & exit</button>
-                            <h1 class="text-[18px] font-medium text-[#1e1d1d] leading-[1.28] tracking-[-0.36px]">{{ isset($listing) ? 'Edit listing' : 'Create a listing' }}</h1>
+                            <h1 class="text-[18px] font-medium text-[#1e1d1d] leading-[1.28] tracking-[-0.36px]" x-text="stepTitles[step]">
+                                {{ isset($listing) ? 'Edit listing' : 'Create a listing' }}
+                            </h1>
                             <div class="w-6">
                                 <img src="{{ asset('images/info.svg') }}" alt="Info" class="w-6 h-6">
                             </div>
