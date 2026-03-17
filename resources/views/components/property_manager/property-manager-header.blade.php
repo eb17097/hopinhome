@@ -80,10 +80,10 @@
                     <div class="flex flex-col">
                         <p class="text-[12px] font-medium text-[#464646] mb-1">Articles</p>
                         <div class="flex flex-col">
-                            <a href="#" class="py-[10px] rounded-[4px] transition-colors text-[16px] font-medium text-[#1e1d1d]">Insights</a>
-                            <a href="#" class="py-[10px] rounded-[4px] transition-colors text-[16px] font-medium text-[#1e1d1d]">News</a>
-                            <a href="#" class="py-[10px] rounded-[4px] transition-colors text-[16px] font-medium text-[#1e1d1d]">Community articles</a>
-                            <a href="#" class="py-[10px] rounded-[4px] transition-colors text-[16px] font-medium text-[#1e1d1d]">Tips & Resources</a>
+                            <a href="#" class="opacity-50 pointer-events-none py-[10px] rounded-[4px] transition-colors text-[16px] font-medium text-[#1e1d1d]">Insights</a>
+                            <a href="#" class="opacity-50 pointer-events-none py-[10px] rounded-[4px] transition-colors text-[16px] font-medium text-[#1e1d1d]">News</a>
+                            <a href="#" class="opacity-50 pointer-events-none py-[10px] rounded-[4px] transition-colors text-[16px] font-medium text-[#1e1d1d]">Community articles</a>
+                            <a href="#" class="opacity-50 pointer-events-none py-[10px] rounded-[4px] transition-colors text-[16px] font-medium text-[#1e1d1d]">Tips & Resources</a>
                         </div>
                     </div>
 
