@@ -146,11 +146,16 @@
             get minPercent() { return ((this.minPrice - this.minRange) / (this.maxRange - this.minRange)) * 100; },
             get maxPercent() { return (((this.maxPrice || this.maxRange) - this.minRange) / (this.maxRange - this.minRange)) * 100; },
             togglePropertyType(type) {
-                if (this.selectedPropertyTypes.includes(type)) {
-                    this.selectedPropertyTypes = this.selectedPropertyTypes.filter(t => t !== type);
+                const slug = this.slugify(type);
+                if (this.selectedPropertyTypes.includes(slug)) {
+                    this.selectedPropertyTypes = this.selectedPropertyTypes.filter(t => t !== slug);
                 } else {
-                    this.selectedPropertyTypes.push(type);
+                    this.selectedPropertyTypes.push(slug);
                 }
+            },
+            get displayPropertyTypes() {
+                if (this.selectedPropertyTypes.length === 0) return 'Property type';
+                return this.selectedPropertyTypes.map(t => t.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')).join(', ');
             },
             toggleBedroom(val) {
                 if (this.selectedBedrooms.includes(val)) {
@@ -252,7 +257,7 @@
                             <div @click.stop="openFilter = openFilter === 'propertyType' ? null : 'propertyType'"
                                 class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200 select-none"
                                 :class="openFilter === 'propertyType' ? 'rounded-t-[6px] border-b-white shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'">
-                                <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="selectedPropertyTypes.length > 0 ? selectedPropertyTypes.join(', ') : 'Property type'"></span>
+                                <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="displayPropertyTypes"></span>
                                 <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform duration-200" :class="openFilter === 'propertyType' ? 'rotate-180' : ''" alt="">
                             </div>
                             <template x-if="openFilter === 'propertyType'">
@@ -266,14 +271,14 @@
                                         @foreach([['name'=>'Apartment','icon'=>'apartment_big.svg'],['name'=>'Villa','icon'=>'villa.svg'],['name'=>'House','icon'=>'house.svg'],['name'=>'Townhouse','icon'=>'townhouse.svg'],['name'=>'Hotel Apartment','icon'=>'hotel_apartment.svg'],['name'=>'Penthouse','icon'=>'penthouse.svg']] as $type)
                                             <div class="flex flex-col items-center justify-center gap-3 p-4 border rounded-[10px] cursor-pointer transition-all relative group h-[120px]"
                                                  @click="togglePropertyType('{{ $type['name'] }}')"
-                                                 :class="selectedPropertyTypes.includes('{{ $type['name'] }}') ? 'border-[#1447D4] bg-white' : 'border-[#E8E8E7] hover:border-[#1447D4]'">
-                                                <div x-show="selectedPropertyTypes.includes('{{ $type['name'] }}')" class="absolute -top-2 -right-2 size-6 bg-[#1447D4] rounded-full flex items-center justify-center shadow-sm z-10">
+                                                 :class="selectedPropertyTypes.includes(slugify('{{ $type['name'] }}')) ? 'border-[#1447D4] bg-white' : 'border-[#E8E8E7] hover:border-[#1447D4]'">
+                                                <div x-show="selectedPropertyTypes.includes(slugify('{{ $type['name'] }}'))" class="absolute -top-2 -right-2 size-6 bg-[#1447D4] rounded-full flex items-center justify-center shadow-sm z-10">
                                                     <img src="{{ asset('images/check.svg') }}" class="size-3 brightness-0 invert" alt="">
                                                 </div>
                                                 <div class="size-[48px] flex items-center justify-center">
-                                                    <div class="w-full h-full transition-colors duration-200" :style="{'mask-image': 'url({{ asset('images/') }}/{{ $type['icon'] }})','-webkit-mask-image': 'url({{ asset('images/') }}/{{ $type['icon'] }})','mask-size': 'contain','-webkit-mask-size': 'contain','mask-repeat': 'no-repeat','-webkit-mask-repeat': 'no-repeat','mask-position': 'center','-webkit-mask-position': 'center','background-color': selectedPropertyTypes.includes('{{ $type['name'] }}') ? '#1447D4' : '#04247B'}"></div>
+                                                    <div class="w-full h-full transition-colors duration-200" :style="{'mask-image': 'url({{ asset('images/') }}/{{ $type['icon'] }})','-webkit-mask-image': 'url({{ asset('images/') }}/{{ $type['icon'] }})','mask-size': 'contain','-webkit-mask-size': 'contain','mask-repeat': 'no-repeat','-webkit-mask-repeat': 'no-repeat','mask-position': 'center','-webkit-mask-position': 'center','background-color': selectedPropertyTypes.includes(slugify('{{ $type['name'] }}')) ? '#1447D4' : '#04247B'}"></div>
                                                 </div>
-                                                <span class="text-[14px] font-medium transition-colors text-center leading-tight" :class="selectedPropertyTypes.includes('{{ $type['name'] }}') ? 'text-[#1447D4]' : 'text-[#1E1D1D]'">{{ $type['name'] }}</span>
+                                                <span class="text-[14px] font-medium transition-colors text-center leading-tight" :class="selectedPropertyTypes.includes(slugify('{{ $type['name'] }}')) ? 'text-[#1447D4]' : 'text-[#1E1D1D]'">{{ $type['name'] }}</span>
                                             </div>
                                         @endforeach
                                     </div>
