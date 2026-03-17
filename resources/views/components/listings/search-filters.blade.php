@@ -88,20 +88,15 @@
             componentRestrictions: { country: 'ae' },
             types: ['geocode', 'establishment']
         }, (predictions, status) => {
-            console.log('Search query:', query);
-            console.log('Google Predictions:', predictions);
-
             if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
                 this.locations = predictions.map(p => {
                     let icon = '{{ asset('images/location_loc.svg') }}';
-
-                    console.log(`Type for ${p.description}:`, p.types);
 
                     if (p.types.includes('locality') || p.types.includes('administrative_area_level_1')) {
                         icon = '{{ asset('images/world_one.svg') }}';
                     } else if (p.types.includes('neighborhood') || p.types.includes('sublocality')) {
                         icon = '{{ asset('images/downtown_loc.svg') }}';
-                    } else if (p.types.includes('route') || p.types.includes('street_address')) {
+                    } else if (p.types.includes('route') || p.types.includes('street_address') || p.types.includes('subpremise') || p.types.includes('premise')) {
                         icon = '{{ asset('images/street_loc.svg') }}';
                     }
                     return {
