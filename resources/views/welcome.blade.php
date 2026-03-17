@@ -57,6 +57,7 @@
             location: '',
             locationQuery: '',
             locations: [],
+            recentSearches: [],
             defaultLocations: [
                 { name: 'Dubai, United Arab Emirates', area: '', icon: '{{ asset('images/world_one.svg') }}' },
                 { name: 'Downtown Dubai', area: 'Dubai', icon: '{{ asset('images/downtown_loc.svg') }}' },
@@ -66,25 +67,49 @@
             ],
             autocompleteService: null,
             init() {
-                this.locations = this.defaultLocations;
+                this.loadRecentSearches();
+                this.updateLocationsList();
+                
                 if (window.google && window.google.maps && window.google.maps.places) {
                     this.autocompleteService = new google.maps.places.AutocompleteService();
                 }
                 
                 this.$watch('locationQuery', (value) => {
                     if (value.length < 2) {
-                        this.locations = this.defaultLocations;
+                        this.updateLocationsList();
                         return;
                     }
                     this.fetchPredictions(value);
                 });
+            },
+            loadRecentSearches() {
+                const saved = localStorage.getItem('hopinhome_recent_searches');
+                this.recentSearches = saved ? JSON.parse(saved) : [];
+            },
+            saveSearch(loc) {
+                if (!loc || !loc.name) return;
+                
+                // Remove duplicate if exists
+                let recent = this.recentSearches.filter(s => s.name !== loc.name);
+                // Add to front
+                recent.unshift({
+                    name: loc.name,
+                    area: loc.area || '',
+                    icon: loc.icon || '{{ asset('images/location_loc.svg') }}'
+                });
+                // Keep last 5
+                this.recentSearches = recent.slice(0, 5);
+                localStorage.setItem('hopinhome_recent_searches', JSON.stringify(this.recentSearches));
+            },
+            updateLocationsList() {
+                this.locations = this.recentSearches.length > 0 ? this.recentSearches : this.defaultLocations;
             },
             fetchPredictions(query) {
                 if (!this.autocompleteService) return;
                 
                 this.autocompleteService.getPlacePredictions({
                     input: query,
-                    componentRestrictions: { country: 'ae' }, // Restrict to UAE
+                    componentRestrictions: { country: 'ae' },
                     types: ['geocode', 'establishment']
                 }, (predictions, status) => {
                     if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
@@ -114,6 +139,12 @@
             },
             get isLocationDropdownOpen() {
                 return this.openFilter === 'location' && (this.locationQuery.length > 0 || !this.location);
+            },
+            selectLocation(loc) {
+                this.location = loc.name;
+                this.locationQuery = '';
+                this.openFilter = null;
+                this.saveSearch(loc);
             },
             selectedPropertyTypes: [],
             selectedBedrooms: [],
@@ -251,10 +282,11 @@
                                  @click.away="openFilter = null"
                                  x-cloak
                             >
-                                <div>
+                                <div class="py-2">
+                                    <p class="px-3 py-1 text-[12px] font-medium text-[#707070] uppercase tracking-wider" x-text="locationQuery.length >= 2 ? 'Search results' : (recentSearches.length > 0 ? 'Recent searches' : 'Popular locations')"></p>
                                     <template x-for="loc in filteredLocations" :key="loc.name">
-                                        <div class="flex items-center py-2 px-2 gap-3 hover:bg-[#F9F9F8] cursor-pointer transition-colors"
-                                             @click="location = loc.name; locationQuery = ''; openFilter = null">
+                                        <div class="flex items-center py-2 px-3 gap-3 hover:bg-[#F9F9F8] cursor-pointer transition-colors"
+                                             @click="selectLocation(loc)">
                                             <div class="shrink-0">
                                                 <img :src="loc.icon" class="size-[46px]" alt="">
                                             </div>
