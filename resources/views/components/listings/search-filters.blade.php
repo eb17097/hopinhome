@@ -1,6 +1,12 @@
 @php
     $currentLocation = request()->route('location') ?: request('location', '');
-    if ($currentLocation === 'all') $currentLocation = '';
+    if ($currentLocation === 'all') {
+        $currentLocation = '';
+    } else {
+        // Un-slugify: replace hyphens with spaces and capitalize
+        $currentLocation = str_replace('-', ' ', $currentLocation);
+        $currentLocation = ucwords($currentLocation);
+    }
 
     $currentPropertyTypes = request()->route('property_type') ? explode(',', request()->route('property_type')) : request('property_types', []);
     $currentPropertyTypes = array_filter($currentPropertyTypes, fn($t) => $t !== 'all');
