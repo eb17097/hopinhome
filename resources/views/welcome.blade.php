@@ -376,7 +376,12 @@
     <div class="max-w-[1204px] mx-auto px-4 lg:px-0">
         <h2 class="text-[32px] font-medium leading-[1.28] tracking-[-0.64px] text-[#1E1D1D] mb-8 font-['General_Sans',_sans-serif]">Popular cities in the UAE</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-[32px]">
-            @foreach([['name'=>'Dubai','image'=>'https://images.unsplash.com/photo-1546412414-e1885259563a?q=80&w=800&auto=format&fit=crop'],['name'=>'Abu Dhabi','image'=>'https://images.unsplash.com/photo-1583997052301-0042b33fc598?q=80&w=800&auto=format&fit=crop'],['name'=>'Sharjah','image'=>'https://images.unsplash.com/photo-1578895210405-907db486c111?q=80&w=800&auto=format&fit=crop'],['name'=>'Al Ain','image'=>'https://images.unsplash.com/photo-1546412414-e1885259563a?q=80&w=800&auto=format&fit=crop']] as $city)
+            @foreach([
+                ['name'=>'Dubai','image'=> asset('images/image_24.png')],
+                ['name'=>'Abu Dhabi','image'=> asset('images/image_23.png')],
+                ['name'=>'Sharjah','image'=> asset('images/image_26.png')],
+                ['name'=>'Al Ain','image'=> asset('images/image_25.png')]
+            ] as $city)
                 @php $citySlug = strtolower(str_replace(' ', '-', $city['name'])); @endphp
                 <a href="{{ route('listings.search', ['location' => $citySlug]) }}" class="group block">
                     <div class="overflow-hidden rounded-[6px] aspect-[277/172] mb-3">
@@ -396,7 +401,7 @@
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-[32px]">
             @foreach([['name'=>'Apartment','icon'=>'apartment_big.svg','count'=>'800+ listings'],['name'=>'Villa','icon'=>'villa.svg','count'=>'150+ listings'],['name'=>'House','icon'=>'house.svg','count'=>'300+ listings'],['name'=>'Townhouse','icon'=>'townhouse.svg','count'=>'100+ listings'],['name'=>'Hotel Apartment','icon'=>'hotel_apartment.svg','count'=>'100+ listings'],['name'=>'Penthouse','icon'=>'penthouse.svg','count'=>'50+ listings']] as $type)
                 @php $typeSlug = strtolower(str_replace(' ', '-', $type['name'])); @endphp
-                <a href="{{ route('listings.search', ['location' => 'all', 'property_type' => $typeSlug]) }}" class="group p-[20px] bg-white border border-[#E8E8E7] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] hover:shadow-lg transition flex flex-col items-center text-center">
+                <a href="{{ route('listings.search', ['location' => 'all', 'property_type' => $typeSlug]) }}" class="group px-[17px] py-[19px] bg-white border border-[#E8E8E7] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.06)] hover:shadow-lg transition flex flex-col items-center text-center">
                     <div class="size-[63px] mb-[18px]">
                         <div class="w-full h-full bg-[#04247B]" style="mask-image: url('{{ asset('images/' . $type['icon']) }}'); -webkit-mask-image: url('{{ asset('images/' . $type['icon']) }}'); mask-size: contain; -webkit-mask-size: contain; mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat; mask-position: center; -webkit-mask-position: center;"></div>
                     </div>
