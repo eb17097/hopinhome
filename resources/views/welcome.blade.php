@@ -47,11 +47,11 @@
                 this.loadRecentSearches();
                 this.locations = this.recentSearches.length > 0 ? [...this.recentSearches] : [...this.defaultLocations];
                 this.dropdownTitle = this.recentSearches.length > 0 ? 'Recent searches' : 'Popular locations';
-                
+
                 if (window.google && window.google.maps && window.google.maps.places) {
                     this.autocompleteService = new google.maps.places.AutocompleteService();
                 }
-                
+
                 this.$watch('locationQuery', (value) => {
                     if (value.length < 2) {
                         this.locations = this.recentSearches.length > 0 ? [...this.recentSearches] : [...this.defaultLocations];
@@ -95,9 +95,15 @@
                     componentRestrictions: { country: 'ae' },
                     types: ['geocode', 'establishment']
                 }, (predictions, status) => {
+                    console.log('Search query:', query);
+                    console.log('Google Predictions:', predictions);
+
                     if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
                         this.locations = predictions.map(p => {
                             let icon = '{{ asset('images/location_loc.svg') }}';
+
+                            console.log(`Type for ${p.description}:`, p.types);
+
                             if (p.types.includes('locality') || p.types.includes('administrative_area_level_1')) {
                                 icon = '{{ asset('images/world_one.svg') }}';
                             } else if (p.types.includes('neighborhood') || p.types.includes('sublocality')) {

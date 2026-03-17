@@ -36,7 +36,7 @@
     ],
     autocompleteService: null,
     dropdownTitle: 'Popular locations',
-    
+
     init() {
         this.loadRecentSearches();
         this.updateLocationsList();
@@ -54,7 +54,7 @@
             this.fetchPredictions(value);
         });
     },
-    
+
     loadRecentSearches() {
         try {
             const saved = localStorage.getItem('hopinhome_recent_searches');
@@ -63,7 +63,7 @@
             this.recentSearches = [];
         }
     },
-    
+
     saveSearch(loc) {
         if (!loc || !loc.name) return;
         let recent = this.recentSearches.filter(s => s.name !== loc.name);
@@ -75,12 +75,12 @@
         this.recentSearches = recent.slice(0, 5);
         localStorage.setItem('hopinhome_recent_searches', JSON.stringify(this.recentSearches));
     },
-    
+
     updateLocationsList() {
         this.locations = this.recentSearches.length > 0 ? this.recentSearches : this.defaultLocations;
         this.dropdownTitle = this.recentSearches.length > 0 ? 'Recent searches' : 'Popular locations';
     },
-    
+
     fetchPredictions(query) {
         if (!this.autocompleteService) return;
         this.autocompleteService.getPlacePredictions({
@@ -88,9 +88,15 @@
             componentRestrictions: { country: 'ae' },
             types: ['geocode', 'establishment']
         }, (predictions, status) => {
+            console.log('Search query:', query);
+            console.log('Google Predictions:', predictions);
+
             if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
                 this.locations = predictions.map(p => {
                     let icon = '{{ asset('images/location_loc.svg') }}';
+
+                    console.log(`Type for ${p.description}:`, p.types);
+
                     if (p.types.includes('locality') || p.types.includes('administrative_area_level_1')) {
                         icon = '{{ asset('images/world_one.svg') }}';
                     } else if (p.types.includes('neighborhood') || p.types.includes('sublocality')) {
@@ -109,11 +115,11 @@
             }
         });
     },
-    
+
     get filteredLocations() {
         return Array.isArray(this.locations) ? this.locations.slice(0, 5) : [];
     },
-    
+
     selectLocation(loc) {
         if (!loc) return;
         this.location = loc.name;
@@ -165,7 +171,7 @@
         }
         return result.join(', ');
     },
-    
+
     get formattedPrice() {
         const min = this.minPrice || 0;
         const max = this.maxPrice || this.maxRange;
@@ -173,10 +179,10 @@
         if (max === this.maxRange) return `From ${min.toLocaleString()} AED`;
         return `${min.toLocaleString()} - ${max.toLocaleString()} AED`;
     },
-    
+
     get minPercent() { return ((this.minPrice - this.minRange) / (this.maxRange - this.minRange)) * 100; },
     get maxPercent() { return (((this.maxPrice || this.maxRange) - this.minRange) / (this.maxRange - this.minRange)) * 100; },
-    
+
     togglePropertyType(type) {
         const slug = this.slugify(type);
         if (this.selectedPropertyTypes.includes(slug)) {
@@ -185,7 +191,7 @@
             this.selectedPropertyTypes.push(slug);
         }
     },
-    
+
     toggleBedroom(val) {
         if (this.selectedBedrooms.includes(val)) {
             this.selectedBedrooms = this.selectedBedrooms.filter(b => b !== val);
