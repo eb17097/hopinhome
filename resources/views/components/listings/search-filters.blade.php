@@ -52,11 +52,11 @@
     locations: [],
     recentSearches: [],
     defaultLocations: [
-        { name: 'Dubai, United Arab Emirates', area: '', icon: '{{ asset('images/world_one.svg') }}' },
-        { name: 'Downtown Dubai', area: 'Dubai', icon: '{{ asset('images/downtown_loc.svg') }}' },
-        { name: 'Burj Khalifa', area: 'Dubai', icon: '{{ asset('images/location_loc.svg') }}' },
-        { name: 'Palm Jumeirah', area: 'Dubai', icon: '{{ asset('images/street_loc.svg') }}' },
-        { name: 'Abu Dhabi', area: 'United Arab Emirates', icon: '{{ asset('images/location_loc.svg') }}' }
+        { id: 'default-1', name: 'Dubai, United Arab Emirates', area: '', icon: '{{ asset('images/world_one.svg') }}' },
+        { id: 'default-2', name: 'Downtown Dubai', area: 'Dubai', icon: '{{ asset('images/downtown_loc.svg') }}' },
+        { id: 'default-3', name: 'Burj Khalifa', area: 'Dubai', icon: '{{ asset('images/location_loc.svg') }}' },
+        { id: 'default-4', name: 'Palm Jumeirah', area: 'Dubai', icon: '{{ asset('images/street_loc.svg') }}' },
+        { id: 'default-5', name: 'Abu Dhabi', area: 'United Arab Emirates', icon: '{{ asset('images/location_loc.svg') }}' }
     ],
     autocompleteService: null,
     init() {
@@ -76,13 +76,23 @@
         });
     },
     loadRecentSearches() {
-        const saved = localStorage.getItem('hopinhome_recent_searches');
-        this.recentSearches = saved ? JSON.parse(saved) : [];
+        try {
+            const saved = localStorage.getItem('hopinhome_recent_searches');
+            let searches = saved ? JSON.parse(saved) : [];
+            // Ensure every stored search has a stable ID
+            this.recentSearches = searches.map((s, i) => ({
+                ...s,
+                id: s.id || `recent-${i}-${s.name.replace(/\s+/g, '-')}`
+            }));
+        } catch (e) {
+            this.recentSearches = [];
+        }
     },
     saveSearch(loc) {
         if (!loc || !loc.name) return;
         let recent = this.recentSearches.filter(s => s.name !== loc.name);
         recent.unshift({
+            id: loc.id || `recent-${Date.now()}-${loc.name.replace(/\s+/g, '-')}`,
             name: loc.name,
             area: loc.area || '',
             icon: loc.icon || '{{ asset('images/location_loc.svg') }}'
@@ -101,8 +111,10 @@
             componentRestrictions: { country: 'ae' },
             types: ['geocode', 'establishment']
         }, (predictions, status) => {
+            // Use a local variable to build the results then assign to the reactive property
+            let results = [];
             if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
-                this.locations = predictions.map(prediction => {
+                results = predictions.map(prediction => {
                     let icon = '{{ asset('images/location_loc.svg') }}';
                     const types = prediction.types;
 
@@ -115,16 +127,23 @@
                     }
 
                     return {
+                        id: prediction.place_id,
                         name: prediction.structured_formatting.main_text,
                         area: prediction.structured_formatting.secondary_text,
                         icon: icon
                     };
                 });
             }
+            this.locations = results;
         });
     },
+    get dropdownTitle() {
+        if (this.locationQuery.length >= 2) return 'Search results';
+        if (this.recentSearches.length > 0) return 'Recent searches';
+        return 'Popular locations';
+    },
     get filteredLocations() {
-        return this.locations.slice(0, 5);
+        return Array.isArray(this.locations) ? this.locations.slice(0, 5) : [];
     },
     get isLocationDropdownOpen() {
         return this.openFilter === 'location' && (this.locationQuery.length > 0 || !this.location);
@@ -265,8 +284,8 @@
                      x-cloak
                 >
                     <div class="max-h-[400px] overflow-y-auto py-2">
-                        <p class="px-3 py-1 text-[11px] font-semibold text-[#707070] uppercase tracking-wider" x-text="locationQuery.length >= 2 ? 'Search results' : (recentSearches.length > 0 ? 'Recent searches' : 'Popular locations')"></p>
-                        <template x-for="loc in filteredLocations" :key="loc.name">
+                        <p class="px-3 py-1 text-[11px] font-semibold text-[#707070] uppercase tracking-wider" x-text="dropdownTitle"></p>
+                        <template x-for="loc in filteredLocations" :key="loc.id">
                             <div class="flex items-center py-2 px-3 gap-3 hover:bg-[#F9F9F8] cursor-pointer transition-colors"
                                  @click="selectLocation(loc)">
                                 <div class="shrink-0">
