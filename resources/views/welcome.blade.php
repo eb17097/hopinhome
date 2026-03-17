@@ -93,7 +93,7 @@
                 this.autocompleteService.getPlacePredictions({
                     input: query,
                     componentRestrictions: { country: 'ae' },
-                    types: ['geocode', 'establishment']
+                    types: ['geocode']
                 }, (predictions, status) => {
                     if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
                         this.locations = predictions.map(p => {
