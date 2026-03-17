@@ -39,7 +39,7 @@
                 { id: 'def-2', name: 'Downtown Dubai', area: 'Dubai', icon: '{{ asset('images/downtown_loc.svg') }}' },
                 { id: 'def-3', name: 'Burj Khalifa', area: 'Dubai', icon: '{{ asset('images/location_loc.svg') }}' },
                 { id: 'def-4', name: 'Palm Jumeirah', area: 'Dubai', icon: '{{ asset('images/street_loc.svg') }}' },
-                { id: 'def-5', name: 'Abu Dhabi', area: 'United Arab Emirates', icon: '{{ asset('images/location_loc.svg') }}' }
+                { id: 'def-5', name: 'Abu Dhabi', area: 'United Arab Emirates', icon: '{{ asset('images/world_one.svg') }}' }
             ],
             autocompleteService: null,
             dropdownTitle: 'Popular locations',
@@ -96,12 +96,22 @@
                     types: ['geocode', 'establishment']
                 }, (predictions, status) => {
                     if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
-                        this.locations = predictions.map(p => ({
-                            id: p.place_id,
-                            name: p.structured_formatting.main_text,
-                            area: p.structured_formatting.secondary_text,
-                            icon: '{{ asset('images/location_loc.svg') }}'
-                        }));
+                        this.locations = predictions.map(p => {
+                            let icon = '{{ asset('images/location_loc.svg') }}';
+                            if (p.types.includes('locality') || p.types.includes('administrative_area_level_1')) {
+                                icon = '{{ asset('images/world_one.svg') }}';
+                            } else if (p.types.includes('neighborhood') || p.types.includes('sublocality')) {
+                                icon = '{{ asset('images/downtown_loc.svg') }}';
+                            } else if (p.types.includes('route') || p.types.includes('street_address')) {
+                                icon = '{{ asset('images/street_loc.svg') }}';
+                            }
+                            return {
+                                id: p.place_id,
+                                name: p.structured_formatting.main_text,
+                                area: p.structured_formatting.secondary_text,
+                                icon: icon
+                            };
+                        });
                     } else {
                         this.locations = [];
                     }

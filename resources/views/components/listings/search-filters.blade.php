@@ -32,7 +32,7 @@
         { name: 'Downtown Dubai', area: 'Dubai', icon: '{{ asset('images/downtown_loc.svg') }}' },
         { name: 'Burj Khalifa', area: 'Dubai', icon: '{{ asset('images/location_loc.svg') }}' },
         { name: 'Palm Jumeirah', area: 'Dubai', icon: '{{ asset('images/street_loc.svg') }}' },
-        { name: 'Abu Dhabi', area: 'United Arab Emirates', icon: '{{ asset('images/location_loc.svg') }}' }
+        { name: 'Abu Dhabi', area: 'United Arab Emirates', icon: '{{ asset('images/world_one.svg') }}' }
     ],
     autocompleteService: null,
     dropdownTitle: 'Popular locations',
@@ -89,11 +89,21 @@
             types: ['geocode', 'establishment']
         }, (predictions, status) => {
             if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
-                this.locations = predictions.map(p => ({
-                    name: p.structured_formatting.main_text,
-                    area: p.structured_formatting.secondary_text,
-                    icon: '{{ asset('images/location_loc.svg') }}'
-                }));
+                this.locations = predictions.map(p => {
+                    let icon = '{{ asset('images/location_loc.svg') }}';
+                    if (p.types.includes('locality') || p.types.includes('administrative_area_level_1')) {
+                        icon = '{{ asset('images/world_one.svg') }}';
+                    } else if (p.types.includes('neighborhood') || p.types.includes('sublocality')) {
+                        icon = '{{ asset('images/downtown_loc.svg') }}';
+                    } else if (p.types.includes('route') || p.types.includes('street_address')) {
+                        icon = '{{ asset('images/street_loc.svg') }}';
+                    }
+                    return {
+                        name: p.structured_formatting.main_text,
+                        area: p.structured_formatting.secondary_text,
+                        icon: icon
+                    };
+                });
             } else {
                 this.locations = [];
             }
