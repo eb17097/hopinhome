@@ -28,7 +28,7 @@ class ProfileController extends Controller
         if ($request->hasFile('photo')) {
             // Using public disk for local development consistency unless S3 is explicitly required
             $disk = config('filesystems.default') === 's3' ? 's3' : 'public';
-            $path = $request->file('photo')->store('profiles', $disk);
+            $path = $request->file('photo')->storePublicly('profiles', $disk);
             $user->profile_photo_url = Storage::disk($disk)->url($path);
         }
 
