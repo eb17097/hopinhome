@@ -28,19 +28,18 @@
     locations: [],
     recentSearches: [],
     defaultLocations: [
-        { id: 'def-1', name: 'Dubai, United Arab Emirates', area: '', icon: '{{ asset('images/world_one.svg') }}' },
-        { id: 'def-2', name: 'Downtown Dubai', area: 'Dubai', icon: '{{ asset('images/downtown_loc.svg') }}' },
-        { id: 'def-3', name: 'Burj Khalifa', area: 'Dubai', icon: '{{ asset('images/location_loc.svg') }}' },
-        { id: 'def-4', name: 'Palm Jumeirah', area: 'Dubai', icon: '{{ asset('images/street_loc.svg') }}' },
-        { id: 'def-5', name: 'Abu Dhabi', area: 'United Arab Emirates', icon: '{{ asset('images/location_loc.svg') }}' }
+        { name: 'Dubai, United Arab Emirates', area: '', icon: '{{ asset('images/world_one.svg') }}' },
+        { name: 'Downtown Dubai', area: 'Dubai', icon: '{{ asset('images/downtown_loc.svg') }}' },
+        { name: 'Burj Khalifa', area: 'Dubai', icon: '{{ asset('images/location_loc.svg') }}' },
+        { name: 'Palm Jumeirah', area: 'Dubai', icon: '{{ asset('images/street_loc.svg') }}' },
+        { name: 'Abu Dhabi', area: 'United Arab Emirates', icon: '{{ asset('images/location_loc.svg') }}' }
     ],
     autocompleteService: null,
     dropdownTitle: 'Popular locations',
     
     init() {
         this.loadRecentSearches();
-        this.locations = this.recentSearches.length > 0 ? [...this.recentSearches] : [...this.defaultLocations];
-        this.dropdownTitle = this.recentSearches.length > 0 ? 'Recent searches' : 'Popular locations';
+        this.updateLocationsList();
 
         if (window.google && window.google.maps && window.google.maps.places) {
             this.autocompleteService = new google.maps.places.AutocompleteService();
@@ -48,8 +47,7 @@
 
         this.$watch('locationQuery', (value) => {
             if (value.length < 2) {
-                this.locations = this.recentSearches.length > 0 ? [...this.recentSearches] : [...this.defaultLocations];
-                this.dropdownTitle = this.recentSearches.length > 0 ? 'Recent searches' : 'Popular locations';
+                this.updateLocationsList();
                 return;
             }
             this.dropdownTitle = 'Search results';
@@ -60,13 +58,7 @@
     loadRecentSearches() {
         try {
             const saved = localStorage.getItem('hopinhome_recent_searches');
-            let searches = saved ? JSON.parse(saved) : [];
-            this.recentSearches = searches.map((s, i) => ({
-                id: s.id || `rcn-${Date.now()}-${i}`,
-                name: s.name || '',
-                area: s.area || '',
-                icon: s.icon || '{{ asset('images/location_loc.svg') }}'
-            }));
+            this.recentSearches = saved ? JSON.parse(saved) : [];
         } catch (e) {
             this.recentSearches = [];
         }
@@ -76,13 +68,17 @@
         if (!loc || !loc.name) return;
         let recent = this.recentSearches.filter(s => s.name !== loc.name);
         recent.unshift({
-            id: loc.id.startsWith('rcn-') ? loc.id : `rcn-${Date.now()}`,
             name: loc.name,
             area: loc.area || '',
             icon: loc.icon || '{{ asset('images/location_loc.svg') }}'
         });
         this.recentSearches = recent.slice(0, 5);
         localStorage.setItem('hopinhome_recent_searches', JSON.stringify(this.recentSearches));
+    },
+    
+    updateLocationsList() {
+        this.locations = this.recentSearches.length > 0 ? this.recentSearches : this.defaultLocations;
+        this.dropdownTitle = this.recentSearches.length > 0 ? 'Recent searches' : 'Popular locations';
     },
     
     fetchPredictions(query) {
@@ -94,7 +90,6 @@
         }, (predictions, status) => {
             if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
                 this.locations = predictions.map(p => ({
-                    id: p.place_id,
                     name: p.structured_formatting.main_text,
                     area: p.structured_formatting.secondary_text,
                     icon: '{{ asset('images/location_loc.svg') }}'
@@ -106,7 +101,7 @@
     },
     
     get filteredLocations() {
-        return this.locations.slice(0, 5);
+        return Array.isArray(this.locations) ? this.locations.slice(0, 5) : [];
     },
     
     selectLocation(loc) {
@@ -228,7 +223,7 @@
                 >
                     <div class="max-h-[400px] overflow-y-auto py-2">
                         <p class="px-3 py-1 text-[11px] font-semibold text-[#707070] uppercase tracking-wider" x-text="dropdownTitle"></p>
-                        <template x-for="loc in filteredLocations" :key="loc.id">
+                        <template x-for="(loc, index) in filteredLocations" :key="index">
                             <div class="flex items-center py-2 px-3 gap-3 hover:bg-[#F9F9F8] cursor-pointer transition-colors"
                                  @click="selectLocation(loc)">
                                 <div class="shrink-0">
@@ -318,7 +313,7 @@
                 </div>
                 <template x-if="openFilter === 'price'">
                     <div class="absolute top-0 left-0 w-full">
-                        <div class="absolute z-30 left-0 bg-white border-l border-r border-[#E8E8E7] w-full" style="top: 44px; height: 12px;">
+                        <div class="absolute z-30 left-0 bg-white border-l border-r border-[#E8E8E7] w-full" style="top: 45px; height: 16px;">
                             <div class="absolute bottom-0 -right-[12px] size-[12px] overflow-hidden pointer-events-none">
                                 <div class="absolute top-0 left-0 size-full rounded-bl-[12px] border-b border-l border-[#E8E8E7] shadow-[0_0_0_20px_white]"></div>
                             </div>
