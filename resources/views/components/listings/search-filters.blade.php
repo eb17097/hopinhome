@@ -1,7 +1,12 @@
 @php
-    $currentLocation = request()->route('location') ?: request('location', 'Dubai');
+    $currentLocation = request()->route('location') ?: request('location', '');
+    if ($currentLocation === 'all') $currentLocation = '';
+
     $currentPropertyTypes = request()->route('property_type') ? explode(',', request()->route('property_type')) : request('property_types', []);
+    $currentPropertyTypes = array_filter($currentPropertyTypes, fn($t) => $t !== 'all');
+
     $currentBedrooms = request()->route('bedrooms') ? explode(',', request()->route('bedrooms')) : request('bedrooms', []);
+    $currentBedrooms = array_filter($currentBedrooms, fn($b) => $b !== 'all');
 @endphp
 
 <style>
