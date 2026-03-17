@@ -293,7 +293,24 @@ class ListingController extends Controller
             $query->where('price', '<=', $request->max_price);
         }
 
-        $listings = $query->latest()->get();
+        // Sorting
+        $sort = $request->query('sort', 'popular');
+        switch ($sort) {
+            case 'low-to-high':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'high-to-low':
+                $query->orderBy('price', 'desc');
+                break;
+            case 'newest':
+                $query->orderBy('created_at', 'desc');
+                break;
+            default: // popular
+                $query->orderBy('views_count', 'desc');
+                break;
+        }
+
+        $listings = $query->get();
         return view('listings.index', ['listings' => $listings]);
     }
 

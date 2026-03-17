@@ -1,11 +1,38 @@
+@php
+    $currentSort = request('sort', 'popular');
+    $sortLabels = [
+        'popular' => 'Most popular',
+        'low-to-high' => 'Price: Low to High',
+        'high-to-low' => 'Price: High to Low',
+        'newest' => 'Newest'
+    ];
+    $selectedLabel = $sortLabels[$currentSort] ?? 'Most popular';
+@endphp
+
 <div class="flex justify-between items-center mb-[24px]">
-    <span class="text-gray-600 text-sm">859 properties</span>
+    <span class="text-gray-600 text-sm">{{ $listings->count() }} properties</span>
     <div class="flex items-center gap-2">
         <span class="text-[14px] text-gray-600">Sort by:</span>
         <div class="relative" x-data="{
             open: false,
-            selected: 'Most popular',
-            options: ['Most popular', 'Price: Low to High', 'Price: High to Low', 'Newest']
+            selected: '{{ $selectedLabel }}',
+            options: [
+                { label: 'Most popular', value: 'popular' },
+                { label: 'Price: Low to High', value: 'low-to-high' },
+                { label: 'Price: High to Low', value: 'high-to-low' },
+                { label: 'Newest', value: 'newest' }
+            ],
+            selectOption(option) {
+                this.selected = option.label;
+                this.open = false;
+                
+                // Get current URL
+                let url = new URL(window.location.href);
+                // Set or update the sort parameter
+                url.searchParams.set('sort', option.value);
+                // Redirect immediately
+                window.location.href = url.toString();
+            }
         }">
             <!-- Trigger -->
             <div @click="open = !open"
@@ -25,11 +52,11 @@
                  x-transition:enter-start="opacity-0 scale-95"
                  x-transition:enter-end="opacity-100 scale-100"
                  class="text-[16px] w-[160px] absolute right-0 mt-1 bg-white border border-gray-200 rounded-[4px] shadow-lg z-50 py-1 overflow-hidden">
-                <template x-for="option in options" :key="option">
-                    <div @click="selected = option; open = false; $dispatch('sort-changed', option)"
+                <template x-for="option in options" :key="option.value">
+                    <div @click="selectOption(option)"
                          class="w-[160px] px-4 py-2 text-[16px] cursor-pointer hover:bg-gray-50 transition-colors"
-                         :class="selected === option ? 'text-[#1447D4] font-medium' : 'text-gray-700'">
-                        <span x-text="option"></span>
+                         :class="selected === option.label ? 'text-[#1447D4] font-medium' : 'text-gray-700'">
+                        <span x-text="option.label"></span>
                     </div>
                 </template>
             </div>

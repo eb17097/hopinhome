@@ -14,7 +14,7 @@
 
         <div class="lg:col-span-8">
 
-            <x-listings.listings-header />
+            <x-listings.listings-header :listings="$listings" />
 
             <div class="space-y-6">
 
