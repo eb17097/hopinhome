@@ -18,6 +18,9 @@
     {{-- Scripts & Styles --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    {{-- Google Maps API --}}
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places"></script>
+
     {{-- Additional Head Content --}}
     {{ $head ?? '' }}
 </head>

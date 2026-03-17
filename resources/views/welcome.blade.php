@@ -56,18 +56,61 @@
             openFilter: null,
             location: '',
             locationQuery: '',
-            locations: [
+            locations: [],
+            defaultLocations: [
                 { name: 'Dubai, United Arab Emirates', area: '', icon: '{{ asset('images/world_one.svg') }}' },
                 { name: 'Downtown Dubai', area: 'Dubai', icon: '{{ asset('images/downtown_loc.svg') }}' },
                 { name: 'Burj Khalifa', area: 'Dubai', icon: '{{ asset('images/location_loc.svg') }}' },
                 { name: 'Palm Jumeirah', area: 'Dubai', icon: '{{ asset('images/street_loc.svg') }}' },
                 { name: 'Abu Dhabi', area: 'United Arab Emirates', icon: '{{ asset('images/location_loc.svg') }}' }
             ],
+            autocompleteService: null,
+            init() {
+                this.locations = this.defaultLocations;
+                if (window.google && window.google.maps && window.google.maps.places) {
+                    this.autocompleteService = new google.maps.places.AutocompleteService();
+                }
+                
+                this.$watch('locationQuery', (value) => {
+                    if (value.length < 2) {
+                        this.locations = this.defaultLocations;
+                        return;
+                    }
+                    this.fetchPredictions(value);
+                });
+            },
+            fetchPredictions(query) {
+                if (!this.autocompleteService) return;
+                
+                this.autocompleteService.getPlacePredictions({
+                    input: query,
+                    componentRestrictions: { country: 'ae' }, // Restrict to UAE
+                    types: ['geocode', 'establishment']
+                }, (predictions, status) => {
+                    if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
+                        this.locations = predictions.map(prediction => {
+                            let icon = '{{ asset('images/location_loc.svg') }}';
+                            const types = prediction.types;
+                            
+                            if (types.includes('locality') || types.includes('administrative_area_level_1') || types.includes('country')) {
+                                icon = '{{ asset('images/world_one.svg') }}';
+                            } else if (types.includes('sublocality') || types.includes('neighborhood')) {
+                                icon = '{{ asset('images/downtown_loc.svg') }}';
+                            } else if (types.includes('route') || types.includes('street_address')) {
+                                icon = '{{ asset('images/street_loc.svg') }}';
+                            }
+                            
+                            return {
+                                name: prediction.structured_formatting.main_text,
+                                area: prediction.structured_formatting.secondary_text,
+                                icon: icon
+                            };
+                        });
+                    }
+                });
+            },
             get filteredLocations() {
-                if (!this.locationQuery) return this.locations.slice(0, 5);
-                return this.locations
-                    .filter(loc => loc.name.toLowerCase().includes(this.locationQuery.toLowerCase()))
-                    .slice(0, 5);
+                return this.locations.slice(0, 5);
             },
             get isLocationDropdownOpen() {
                 return this.openFilter === 'location' && (this.locationQuery.length > 0 || !this.location);
