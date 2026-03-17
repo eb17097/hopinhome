@@ -4,7 +4,6 @@
     name="profile-photo"
     title="Change profile picture"
     maxWidth="560px"
-    closeIcon="images/close.svg"
     paddingClass="p-8"
     x-data="profilePhotoModal()"
 >

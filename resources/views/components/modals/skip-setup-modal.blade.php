@@ -2,7 +2,6 @@
     name="skip-setup"
     title="Are you sure?"
     maxWidth="480px"
-    closeIcon="images/close.svg"
     x-data="{
         show: false,
         skipUrl: '',

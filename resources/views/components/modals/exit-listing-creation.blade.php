@@ -1,7 +1,6 @@
 <x-modals.layout
     name="exit-listing-creation"
     title="Exit listing creation"
-    closeIcon="images/close.svg"
     x-data="{
         show: false,
         nextUrl: null,
