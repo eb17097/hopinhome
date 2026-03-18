@@ -33,68 +33,91 @@
      @notifications-updated.window="hasNotifications = $event.detail.hasNotifications"
      class="bg-white border border-[#e8e8e7] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] py-[28px] px-[24px] mt-[40px]">
 
-    <div class="flex justify-between items-center mb-[16px]">
-        <h3 class="text-[18px] font-medium text-[#1e1d1d] tracking-[-0.36px]">Setup checklist</h3>
-        <div class="flex items-center gap-3">
-            <span class="text-[14px] text-[#464646]" x-text="completedCount + '/4'"></span>
-            <div class="w-[110px] bg-[#e8e8e7] rounded-full h-[6px] relative">
-                <div class="bg-[#1447d4] h-full rounded-full transition-all duration-500" :style="'width: ' + progressPercent + '%'"></div>
+    {{-- Checklist State --}}
+    <template x-if="completedCount < 4">
+        <div>
+            <div class="flex justify-between items-center mb-[16px]">
+                <h3 class="text-[18px] font-medium text-[#1e1d1d] tracking-[-0.36px]">Setup checklist</h3>
+                <div class="flex items-center gap-3">
+                    <span class="text-[14px] text-[#464646]" x-text="completedCount + '/4'"></span>
+                    <div class="w-[110px] bg-[#e8e8e7] rounded-full h-[6px] relative">
+                        <div class="bg-[#1447d4] h-full rounded-full transition-all duration-500" :style="'width: ' + progressPercent + '%'"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                {{-- Email Verification --}}
+                <div class="bg-[#f9f9f8] rounded-[4px] h-[55px] px-4 flex items-center gap-4">
+                    <img alt="checkmark" class="w-[23px] h-[23px]" src="{{ asset('images/white_checkmark_on_green.svg') }}">
+                    <span class="font-medium text-[16px] text-[#1e1d1d]">Verify your email address</span>
+                </div>
+
+                {{-- Bio --}}
+                <div @click="$dispatch('open-edit-bio-modal')"
+                     class="rounded-[4px] h-[55px] px-4 flex items-center gap-4 cursor-pointer hover:bg-gray-100 transition-colors"
+                     :class="hasBio ? 'bg-[#f9f9f8]' : 'bg-white border border-[#e8e8e7]'">
+                    <template x-if="hasBio">
+                        <img alt="checkmark" class="w-[23px] h-[23px]" src="{{ asset('images/white_checkmark_on_green.svg') }}">
+                    </template>
+                    <template x-if="!hasBio">
+                        <div class="w-[23px] h-[23px] rounded-full border border-[#e8e8e7]"></div>
+                    </template>
+                    <span class="font-medium text-[16px] text-[#1e1d1d]">Write a bio</span>
+                </div>
+
+                {{-- Photo --}}
+                <div @click="$dispatch('open-profile-photo-modal')"
+                     class="rounded-[4px] h-[55px] px-4 flex items-center gap-4 cursor-pointer hover:bg-gray-100 transition-colors"
+                     :class="hasPhoto ? 'bg-[#f9f9f8]' : 'bg-white border border-[#e8e8e7]'">
+                    <template x-if="hasPhoto">
+                        <img alt="checkmark" class="w-[23px] h-[23px]" src="{{ asset('images/white_checkmark_on_green.svg') }}">
+                    </template>
+                    <template x-if="!hasPhoto">
+                        <div class="w-[23px] h-[23px] rounded-full border border-[#e8e8e7]"></div>
+                    </template>
+                    <span class="font-medium text-[16px] text-[#1e1d1d]">Upload a profile photo</span>
+                </div>
+
+                {{-- Notifications --}}
+                <div @click="$dispatch('open-notifications-modal')"
+                     class="rounded-[4px] h-[73px] px-4 flex items-center gap-4 cursor-pointer hover:bg-gray-100 transition-colors pr-[25px]"
+                     :class="hasNotifications ? 'bg-[#f9f9f8]' : 'bg-white border border-[#e8e8e7]'">
+                    <template x-if="hasNotifications">
+                        <img alt="checkmark" class="w-[23px] h-[23px]" src="{{ asset('images/white_checkmark_on_green.svg') }}">
+                    </template>
+                    <template x-if="!hasNotifications">
+                        <div class="w-[23px] h-[23px] rounded-full border border-[#e8e8e7]"></div>
+                    </template>
+                    <div class="flex-grow">
+                        <span class="font-medium text-[16px] text-[#1e1d1d]">Enable notifications</span>
+                        <p class="text-[14px] text-[#464646]">Stay updated on messages & news</p>
+                    </div>
+                    <img alt="info" class="w-[22px] h-[22px]" src="{{ asset('images/info.svg') }}">
+                </div>
+            </div>
+
+            <div class="text-center mt-6">
+                <button class="text-[14px] text-[#464646] underline decoration-solid">Hide completed steps</button>
             </div>
         </div>
-    </div>
+    </template>
 
-    <div class="space-y-3">
-        {{-- Email Verification --}}
-        <div class="bg-[#f9f9f8] rounded-[4px] h-[55px] px-4 flex items-center gap-4">
-            <img alt="checkmark" class="w-[23px] h-[23px]" src="{{ asset('images/white_checkmark_on_green.svg') }}">
-            <span class="font-medium text-[16px] text-[#1e1d1d]">Verify your email address</span>
-        </div>
-
-        {{-- Bio --}}
-        <div @click="$dispatch('open-edit-bio-modal')"
-             class="rounded-[4px] h-[55px] px-4 flex items-center gap-4 cursor-pointer hover:bg-gray-100 transition-colors"
-             :class="hasBio ? 'bg-[#f9f9f8]' : 'bg-white border border-[#e8e8e7]'">
-            <template x-if="hasBio">
-                <img alt="checkmark" class="w-[23px] h-[23px]" src="{{ asset('images/white_checkmark_on_green.svg') }}">
-            </template>
-            <template x-if="!hasBio">
-                <div class="w-[23px] h-[23px] rounded-full border border-[#e8e8e7]"></div>
-            </template>
-            <span class="font-medium text-[16px] text-[#1e1d1d]">Write a bio</span>
-        </div>
-
-        {{-- Photo --}}
-        <div @click="$dispatch('open-profile-photo-modal')"
-             class="rounded-[4px] h-[55px] px-4 flex items-center gap-4 cursor-pointer hover:bg-gray-100 transition-colors"
-             :class="hasPhoto ? 'bg-[#f9f9f8]' : 'bg-white border border-[#e8e8e7]'">
-            <template x-if="hasPhoto">
-                <img alt="checkmark" class="w-[23px] h-[23px]" src="{{ asset('images/white_checkmark_on_green.svg') }}">
-            </template>
-            <template x-if="!hasPhoto">
-                <div class="w-[23px] h-[23px] rounded-full border border-[#e8e8e7]"></div>
-            </template>
-            <span class="font-medium text-[16px] text-[#1e1d1d]">Upload a profile photo</span>
-        </div>
-
-        {{-- Notifications --}}
-        <div @click="$dispatch('open-notifications-modal')"
-             class="rounded-[4px] h-[73px] px-4 flex items-center gap-4 cursor-pointer hover:bg-gray-100 transition-colors pr-[25px]"
-             :class="hasNotifications ? 'bg-[#f9f9f8]' : 'bg-white border border-[#e8e8e7]'">
-            <template x-if="hasNotifications">
-                <img alt="checkmark" class="w-[23px] h-[23px]" src="{{ asset('images/white_checkmark_on_green.svg') }}">
-            </template>
-            <template x-if="!hasNotifications">
-                <div class="w-[23px] h-[23px] rounded-full border border-[#e8e8e7]"></div>
-            </template>
-            <div class="flex-grow">
-                <span class="font-medium text-[16px] text-[#1e1d1d]">Enable notifications</span>
-                <p class="text-[14px] text-[#464646]">Stay updated on messages & news</p>
+    {{-- Completed State --}}
+    <template x-if="completedCount === 4">
+        <div>
+            <div class="flex items-center gap-[12px] mb-[12px]">
+                <h3 class="text-[32px] font-medium text-[#1e1d1d] tracking-[-0.64px] leading-[1.28]">Setup complete</h3>
+                <img src="{{ asset('images/white_checkmark_on_blue.svg') }}" class="w-[24px] h-[24px]" alt="Completed">
             </div>
-            <img alt="info" class="w-[22px] h-[22px]" src="{{ asset('images/info.svg') }}">
+            <p class="text-[16px] text-[#464646] mb-[32px] leading-[1.5]">
+                You’ve completed all setup tasks. Your profile is ready to go.
+            </p>
+            <a href="{{ route('listings.search') }}"
+               class="tracking-[-0.48px] leading-[1.22] inline-flex items-center justify-center gap-[6px] bg-[#1447d4] text-[#F9F9F8] px-[32px] h-[52px] rounded-full font-medium text-[16px] hover:bg-[#04247b] transition-all">
+                <img src="{{ asset('images/search.svg') }}" class="w-[18px] h-[18px] brightness-0 invert" alt="Search">
+                Find properties
+            </a>
         </div>
-    </div>
-
-    <div class="text-center mt-6">
-        <button class="text-[14px] text-[#464646] underline decoration-solid">Hide completed steps</button>
-    </div>
+    </template>
 </div>
