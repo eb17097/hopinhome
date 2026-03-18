@@ -138,7 +138,7 @@
 
                 {{-- Content --}}
                 <div class="flex-1 overflow-y-auto bg-white py-[48px]">
-                    <div class="max-w-[792px] mx-auto px-[24px]">
+                    <div class="max-w-[792px] mx-auto">
                         <div class="flex flex-col gap-[8px]">
                             @foreach($imageUrls as $index => $url)
                                 @if($index % 3 == 0)
@@ -224,8 +224,8 @@
                         </div>
 
                         {{-- Center Play Button --}}
-                        <button 
-                            @click="toggleVideo()" 
+                        <button
+                            @click="toggleVideo()"
                             class="absolute inset-0 flex items-center justify-center bg-black/40 transition-opacity duration-300"
                             x-show="!videoIsPlaying"
                             x-transition
