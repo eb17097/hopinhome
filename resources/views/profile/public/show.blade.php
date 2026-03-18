@@ -68,7 +68,7 @@
         {{-- Listed Properties Section --}}
         <div class="mt-[64px]">
             <div class="flex items-center gap-[8px] mb-[32px]">
-                <h2 class="text-[32px] font-medium text-[#1e1d1d] tracking-[-0.64px]">Listed properties</h2>
+                <h2 class="text-[32px] leading-[1.28] font-medium text-[#1e1d1d] tracking-[-0.64px]">Listed properties</h2>
                 <div class="relative w-[26px] h-[26px] top-[3px]">
                     <img src="{{ asset('images/ellipse_blue.svg') }}" alt="Background" class="w-full h-full">
                     <span class="absolute inset-0 flex items-center justify-center text-white text-[16px] font-medium">{{ $listings->count() }}</span>
