@@ -1,6 +1,6 @@
 @props(['listing'])
 
-<div>
+<div x-data>
     <h3 class="text-[18px] font-medium text-black tracking-[-0.36px] leading-[1.28]">Location</h3>
     <p class="text-[16px] text-[#464646] leading-[1.5] mt-[8px]">{{ $listing->address }}</p>
 
@@ -9,7 +9,7 @@
 
         {{-- Map Controls Overlay --}}
         <div class="absolute top-4 right-4">
-            <button type="button" onclick="toggleFullscreen()" class="flex items-center justify-center">
+            <button type="button" @click="$dispatch('open-modal', 'location-map')" class="flex items-center justify-center">
                 <img src="{{ asset('images/location_fullscreen.svg') }}" class="w-12 h-12" alt="Fullscreen">
             </button>
         </div>
@@ -24,19 +24,7 @@
         </div>
     </div>
 
-    <style>
-        #map-container:fullscreen {
-            width: 100% !important;
-            height: 100% !important;
-            margin-top: 0 !important;
-            background: white;
-        }
-        #map-container:fullscreen #map {
-            height: 100vh !important;
-            border-radius: 0 !important;
-            border: none !important;
-        }
-    </style>
+    <x-modals.location-map-modal :listing="$listing" />
 
     <script>
         let map;
@@ -73,29 +61,6 @@
 
         function zoomIn() { if(map) map.setZoom(map.getZoom() + 1); }
         function zoomOut() { if(map) map.setZoom(map.getZoom() - 1); }
-
-        function toggleFullscreen() {
-            const container = document.getElementById('map-container');
-            if (!document.fullscreenElement) {
-                if (container.requestFullscreen) {
-                    container.requestFullscreen();
-                } else if (container.webkitRequestFullscreen) {
-                    container.webkitRequestFullscreen();
-                } else if (container.msRequestFullscreen) {
-                    container.msRequestFullscreen();
-                }
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                }
-            }
-        }
-
-        document.addEventListener('fullscreenchange', () => {
-            if (map) {
-                google.maps.event.trigger(map, "resize");
-            }
-        });
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap"></script>
 </div>
