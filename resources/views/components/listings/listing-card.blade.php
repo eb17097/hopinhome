@@ -45,7 +45,7 @@
                 <span class="text-2xl font-semibold text-gray-900">AED {{ number_format($listing->price) }}</span>
                 <span class="text-sm font-medium text-gray-900"> {{ $listing->payment_option }}</span>
             </div>
-            <span class="text-[12px] text-gray-600">{{ $listing->utilities_option }}</span>
+            <span class="text-[12px] text-gray-600">Utilities {{ strtolower($listing->utilities_option) }}</span>
         </div>
     </div>
 </div>

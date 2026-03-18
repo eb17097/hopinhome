@@ -76,7 +76,7 @@ class PublicProfileController extends Controller
                     'total_floors' => 15,
                     'price' => 400000,
                     'payment_option' => 'Monthly',
-                    'utilities_option' => 'Utilities included',
+                    'utilities_option' => 'Included',
                     'images' => collect([(object)['image_url' => asset('images/placeholder.png')]])
                 ],
                 (object) [
@@ -90,7 +90,7 @@ class PublicProfileController extends Controller
                     'total_floors' => 15,
                     'price' => 465000,
                     'payment_option' => 'Monthly',
-                    'utilities_option' => 'Utilities included',
+                    'utilities_option' => 'Included',
                     'images' => collect([(object)['image_url' => asset('images/placeholder_image_4.png')]])
                 ],
                 (object) [
@@ -104,7 +104,7 @@ class PublicProfileController extends Controller
                     'total_floors' => 15,
                     'price' => 400000,
                     'payment_option' => 'Monthly',
-                    'utilities_option' => 'Utilities included',
+                    'utilities_option' => 'Included',
                     'images' => collect([(object)['image_url' => asset('images/placeholder_image_2.png')]])
                 ],
             ]);
