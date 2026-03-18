@@ -8,13 +8,13 @@
         <div id="map" class="h-[421px] rounded-[8px] border border-[#e8e8e7] overflow-hidden bg-gray-50"></div>
 
         {{-- Map Controls Overlay --}}
-        <div class="absolute top-4 right-4">
+        <div class="absolute top-3 right-3">
             <button type="button" @click="$dispatch('open-modal', 'location-map')" class="flex items-center justify-center">
                 <img src="{{ asset('images/location_fullscreen.svg') }}" class="w-12 h-12" alt="Fullscreen">
             </button>
         </div>
 
-        <div class="absolute bottom-4 right-4 flex flex-col gap-2">
+        <div class="absolute bottom-3 right-3 flex flex-col">
             <button type="button" onclick="zoomIn()" class="flex items-center justify-center">
                 <img src="{{ asset('images/location_zoom_in_blue.svg') }}" class="w-12 h-12" alt="Zoom In">
             </button>

@@ -41,8 +41,8 @@
     class="bg-white rounded-[14px] overflow-hidden"
     >
         {{-- Modal Header --}}
-        <div class="flex items-center justify-between px-[24px] py-[21px] border-b border-[#E8E8E7]">
-            <button @click="$dispatch('close-modal', 'location-map')" class="p-1 hover:bg-gray-100 rounded-full transition-colors">
+        <div class="h-[65px] flex items-center justify-between px-[24px] py-[21px] border-b border-[#E8E8E7]">
+            <button @click="$dispatch('close-modal', 'location-map')" class="p-1 relative -left-1 hover:bg-gray-100 rounded-full transition-colors">
                 <img src="{{ asset('images/close_blue.svg') }}" alt="Close" class="w-[25px] h-[25px]">
             </button>
             <h2 class="text-[18px] font-medium text-black leading-[1.28] tracking-[-0.36px]">{{ $listing->address }}</h2>
@@ -50,19 +50,19 @@
         </div>
 
         {{-- Modal Content --}}
-        <div class="px-[24px] pt-[24px] pb-[40px]">
+        <div class="p-[20px]">
             <div class="relative w-full h-[600px] rounded-[14px] overflow-hidden shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)]">
                 <div x-ref="modalMap" class="w-full h-full bg-gray-50"></div>
 
                 {{-- Map Internal Close Button --}}
-                <div class="absolute top-4 right-4">
-                    <button @click="$dispatch('close-modal', 'location-map')" class="w-[40px] h-[40px] bg-white rounded-lg shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors">
-                        <img src="{{ asset('images/close_blue.svg') }}" class="w-6 h-6" alt="Close">
+                <div class="absolute top-3 right-3">
+                    <button type="button" @click="$dispatch('close-modal', 'location-map')" class="flex items-center justify-center">
+                        <img src="{{ asset('images/white_bg_blue_cross.svg') }}" class="w-12 h-12" alt="Close">
                     </button>
                 </div>
 
                 {{-- Map Controls Overlay --}}
-                <div class="absolute bottom-4 right-4 flex flex-col gap-2">
+                <div class="absolute bottom-3 right-3 flex flex-col">
                     <button type="button" @click="zoomIn()" class="flex items-center justify-center">
                         <img src="{{ asset('images/location_zoom_in_blue.svg') }}" class="w-12 h-12" alt="Zoom In">
                     </button>
