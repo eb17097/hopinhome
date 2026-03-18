@@ -14,7 +14,7 @@
     class="w-full"
     >
         {{-- Modal Header --}}
-        <div class="flex items-center justify-between px-[24px] py-[22px] border-b border-[#E8E8E7]">
+        <div class="h-[66px] flex items-center justify-between px-[24px] py-[22px] border-b border-[#E8E8E7]">
             <button @click="$dispatch('close-modal', 'share-listing')" class="p-1 hover:bg-gray-100 rounded-full transition-colors">
                 <img src="{{ asset('images/close_blue.svg') }}" alt="Close" class="w-[25px] h-[25px]">
             </button>
