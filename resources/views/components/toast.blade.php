@@ -3,8 +3,15 @@
     message: 'Settings updated',
     timeout: null,
     init() {
+        // Global listener for AJAX updates
+        window.addEventListener('show-toast', (event) => {
+            this.showToast(event.detail?.message || 'Settings updated');
+        });
+
+        // Session listener for page reloads (Bio, Photo, etc.)
         const sessionStatus = '{{ session('status') }}';
-        if (sessionStatus === 'profile-updated' || sessionStatus === 'profile-photo-updated') {
+        const validStatuses = ['profile-updated', 'profile-photo-updated', 'password-updated', 'settings-updated'];
+        if (validStatuses.includes(sessionStatus)) {
             this.showToast('Settings updated');
         }
     },
@@ -17,7 +24,6 @@
         }, 3000);
     }
 }"
-@show-toast.window="showToast($event.detail.message)"
 x-show="show"
 x-transition:enter="transition ease-out duration-300"
 x-transition:enter-start="opacity-0 translate-y-2"
