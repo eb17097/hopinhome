@@ -4,11 +4,24 @@
     <div x-data="{
         copied: false,
         url: '{{ route('listings.show', $listing) }}',
+        title: '{{ $listing->name }}',
+        text: 'Check out this property on HopInHome: {{ $listing->name }}',
         copyToClipboard() {
             navigator.clipboard.writeText(this.url).then(() => {
                 this.copied = true;
                 setTimeout(() => this.copied = false, 2000);
             });
+        },
+        shareNatively() {
+            if (navigator.share) {
+                navigator.share({
+                    title: this.title,
+                    text: this.text,
+                    url: this.url
+                }).catch(() => {});
+            } else {
+                this.copyToClipboard();
+            }
         }
     }"
     class="w-full"
@@ -61,19 +74,19 @@
 
                 {{-- Social Grid --}}
                 <div class="grid grid-cols-2 gap-y-[20px] gap-x-[24px]">
-                    <a href="https://wa.me/?text={{ urlencode(route('listings.show', $listing)) }}" target="_blank" class="h-[52px] w-[257px] flex items-center justify-center gap-[10px] py-[16px] border border-[#E8E8E7] rounded-[10px] text-black text-[16px] font-medium transition-all hover:bg-gray-50">
+                    <a :href="'https://wa.me/?text=' + encodeURIComponent(text + ' ' + url)" target="_blank" class="h-[52px] w-[257px] flex items-center justify-center gap-[10px] py-[16px] border border-[#E8E8E7] rounded-[10px] text-black text-[16px] font-medium transition-all hover:bg-gray-50">
                         <img src="{{ asset('images/whatsapp_black.svg') }}" class="w-[20px] h-[20px]">
                         <span>WhatsApp</span>
                     </a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('listings.show', $listing)) }}" target="_blank" class="h-[52px] w-[257px] flex items-center justify-center gap-[10px] py-[16px] border border-[#E8E8E7] rounded-[10px] text-black text-[16px] font-medium transition-all hover:bg-gray-50">
+                    <a :href="'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url)" target="_blank" class="h-[52px] w-[257px] flex items-center justify-center gap-[10px] py-[16px] border border-[#E8E8E7] rounded-[10px] text-black text-[16px] font-medium transition-all hover:bg-gray-50">
                         <img src="{{ asset('images/facebook_black.svg') }}" class="w-[20px] h-[20px]">
                         <span>Facebook</span>
                     </a>
-                    <a href="mailto:?subject=Check out this listing: {{ $listing->name }}&body={{ route('listings.show', $listing) }}" class="h-[52px] w-[257px] flex items-center justify-center gap-[10px] py-[16px] border border-[#E8E8E7] rounded-[10px] text-black text-[16px] font-medium transition-all hover:bg-gray-50">
+                    <a :href="'mailto:?subject=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(text + ' ' + url)" class="h-[52px] w-[257px] flex items-center justify-center gap-[10px] py-[16px] border border-[#E8E8E7] rounded-[10px] text-black text-[16px] font-medium transition-all hover:bg-gray-50">
                         <img src="{{ asset('images/mail_black.svg') }}" class="w-[20px] h-[20px]">
                         <span>Email</span>
                     </a>
-                    <button class="h-[52px] w-[257px] flex items-center justify-center gap-[10px] py-[16px] border border-[#E8E8E7] rounded-[10px] text-black text-[16px] font-medium transition-all hover:bg-gray-50">
+                    <button @click="shareNatively()" class="h-[52px] w-[257px] flex items-center justify-center gap-[10px] py-[16px] border border-[#E8E8E7] rounded-[10px] text-black text-[16px] font-medium transition-all hover:bg-gray-50">
                         <img src="{{ asset('images/more_options_dots_black.svg') }}" class="w-[20px] h-[20px]">
                         <span>More options</span>
                     </button>
