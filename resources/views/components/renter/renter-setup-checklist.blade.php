@@ -31,11 +31,11 @@
         }
      }"
      @notifications-updated.window="hasNotifications = $event.detail.hasNotifications"
-     class="bg-white border border-[#e8e8e7] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] py-[28px] px-[24px] mt-[40px]">
+     class="bg-white border border-[#e8e8e7] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] mt-[40px]">
 
     {{-- Checklist State --}}
     <template x-if="completedCount < 4">
-        <div>
+        <div class="py-[28px] px-[24px]">
             <div class="flex justify-between items-center mb-[16px]">
                 <h3 class="text-[18px] font-medium text-[#1e1d1d] tracking-[-0.36px]">Setup checklist</h3>
                 <div class="flex items-center gap-3">
@@ -73,7 +73,7 @@
                     <template x-if="hasPhoto">
                         <img alt="checkmark" class="w-[23px] h-[23px]" src="{{ asset('images/white_checkmark_on_green.svg') }}">
                     </template>
-                    <template x-if="!hasPhoto">
+                    <template x-if="!hasBio">
                         <div class="w-[23px] h-[23px] rounded-full border border-[#e8e8e7]"></div>
                     </template>
                     <span class="font-medium text-[16px] text-[#1e1d1d]">Upload a profile photo</span>
@@ -105,7 +105,7 @@
 
     {{-- Completed State --}}
     <template x-if="completedCount === 4">
-        <div>
+        <div class="py-[40px] px-[24px]">
             <div class="flex items-center gap-[12px] mb-[12px]">
                 <h3 class="text-[32px] font-medium text-[#1e1d1d] tracking-[-0.64px] leading-[1.28]">Setup complete</h3>
                 <img src="{{ asset('images/white_checkmark_on_blue.svg') }}" class="w-[24px] h-[24px]" alt="Completed">
