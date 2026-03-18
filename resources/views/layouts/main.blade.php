@@ -28,5 +28,7 @@
 
     {{ $slot }}
 
+    <x-modals.regional-preferences-modal />
+
 </body>
 </html>

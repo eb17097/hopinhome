@@ -9,7 +9,7 @@
 <div x-show="show"
      @open-{{ $name }}-modal.window="show = true"
      @keydown.escape.window="close()"
-     class="fixed inset-0 z-[60] overflow-y-auto"
+     class="fixed inset-0 z-[62] overflow-y-auto"
      style="display: none;"
      {{ $attributes }}>
 
@@ -33,7 +33,7 @@
              x-transition:leave="ease-in duration-200"
              x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
              x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-             class="inline-block w-full max-w-[{{ $maxWidth }}] overflow-hidden text-left align-middle transition-all transform bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] rounded-[14px] relative z-10">
+             class="inline-block w-full max-w-[{{ $maxWidth }}] overflow-hidden text-left align-middle transition-all transform bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] rounded-[14px] relative z-[62]">
 
             {{-- Header --}}
             <div class="h-[66px] px-6 py-4 border-b border-[#e8e8e7] flex items-center justify-between relative">
