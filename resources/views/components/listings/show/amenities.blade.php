@@ -70,9 +70,9 @@
             @endforeach
         </div>
         <template x-if="showButton">
-            <button @click="open = !open" class="mt-[28px] text-[#1447D4] font-medium flex items-center gap-[8px]">
+            <button @click="open = !open" class="mt-[28px] text-[#1447D4] font-medium flex items-center gap-[4px]">
                 <span class="text-[16px] tracking-[-0.48px] leading-[1.22]" x-text="open ? 'Show less features' : 'Show all features'"></span>
-                <img src="{{ asset('images/arrow_downward.svg') }}" alt="Arrow" class="size-[18px] transition-transform" :class="{ 'transform rotate-180': open }">
+                <img src="{{ asset('images/arrow_downward_smaller.svg') }}" alt="Arrow" class="size-[18px] transition-transform" :class="{ 'transform rotate-180': open }">
             </button>
         </template>
     </div>
@@ -116,9 +116,9 @@
             @endforeach
         </div>
         <template x-if="showButton">
-            <button @click="open = !open" class="mt-[28px] text-[#1447D4] font-medium flex items-center gap-[8px]">
+            <button @click="open = !open" class="mt-[28px] text-[#1447D4] font-medium flex items-center gap-[4px]">
                 <span class="text-[16px] tracking-[-0.48px] leading-[1.22]" x-text="open ? 'Show less amenities' : 'Show all amenities'"></span>
-                <img src="{{ asset('images/arrow_downward.svg') }}" alt="Arrow" class="size-[18px] transition-transform" :class="{ 'transform rotate-180': open }">
+                <img src="{{ asset('images/arrow_downward_smaller.svg') }}" alt="Arrow" class="size-[18px] transition-transform" :class="{ 'transform rotate-180': open }">
             </button>
         </template>
     </div>
