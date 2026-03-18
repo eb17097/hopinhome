@@ -4,7 +4,8 @@
 
 <div x-data="{
     scrolled: window.scrollY > 50,
-    showGlobalMenu: false
+    showGlobalMenu: false,
+    showUserDropdown: false
 }"
 @scroll.window="scrolled = window.scrollY > 50"
 class="z-50 {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
@@ -54,9 +55,100 @@ class="z-50 {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
                         <img alt="profile picture" class="h-full w-full object-cover" src="{{ Auth::user()->profile_photo_url ?? asset('images/user-placeholder.svg') }}">
                     </a>
 
-                    <button class="rounded-full p-2 transition-colors" :class="(scrolled || showGlobalMenu || !@json($isLanding)) ? 'bg-[#e8e8e7] hover:bg-gray-300' : 'bg-white/20 hover:bg-white/30'">
-                        <img src="{{ asset('images/dehaze.svg') }}" alt="Menu" class="w-6 h-6" :class="(!scrolled && !showGlobalMenu && @json($isLanding)) ? 'invert brightness-0' : ''">
-                    </button>
+                    <div class="relative">
+                        <button @click="showUserDropdown = !showUserDropdown"
+                                @click.away="showUserDropdown = false"
+                                class="rounded-full p-2 transition-colors"
+                                :class="(scrolled || showGlobalMenu || !@json($isLanding)) ? 'bg-[#e8e8e7] hover:bg-gray-300' : 'bg-white/20 hover:bg-white/30'">
+                            <img src="{{ asset('images/dehaze.svg') }}" alt="Menu" class="w-6 h-6" :class="(!scrolled && !showGlobalMenu && @json($isLanding)) ? 'invert brightness-0' : ''">
+                        </button>
+
+                        {{-- User Dropdown Menu --}}
+                        <div x-show="showUserDropdown"
+                             x-cloak
+                             x-transition:enter="transition ease-out duration-200"
+                             x-transition:enter-start="opacity-0 scale-95 translate-y-[-10px]"
+                             x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+                             x-transition:leave="transition ease-in duration-75"
+                             x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+                             x-transition:leave-end="opacity-0 scale-95 translate-y-[-10px]"
+                             class="absolute right-0 mt-2 w-[326px] bg-white rounded-[8px] border border-light-gray shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] z-[110] p-6 overflow-hidden">
+
+                            <div class="flex flex-col gap-4">
+                                {{-- Main Section --}}
+                                <div class="flex flex-col">
+                                    <div class="space-y-1">
+                                        <a href="#" class="opacity-50 pointer-events-none flex items-center gap-[10px] py-[10px] rounded-[4px] transition-colors">
+                                            <img src="{{ asset('images/chat.svg') }}" class="w-[18px] h-[18px]" alt="">
+                                            <span class="text-[16px] font-medium text-[#1e1d1d] flex-1">Messages</span>
+                                            <div class="bg-electric-blue flex items-center justify-center px-[3px] h-[18px] min-w-[22px] rounded-[3px]">
+                                                <span class="text-white text-[14px] font-medium leading-[1.3]">17</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="opacity-50 pointer-events-none flex items-center gap-[10px] py-[10px] rounded-[4px] transition-colors">
+                                            <img src="{{ asset('images/notifications.svg') }}" class="w-[18px] h-[18px]" alt="">
+                                            <span class="text-[16px] font-medium text-[#1e1d1d] flex-1">Notifications</span>
+                                            <div class="bg-electric-blue flex items-center justify-center px-[3px] h-[18px] min-w-[22px] rounded-[3px]">
+                                                <span class="text-white text-[14px] font-medium leading-[1.3]">5</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="opacity-50 pointer-events-none flex items-center gap-[10px] py-[10px] rounded-[4px] transition-colors">
+                                            <img src="{{ asset('images/group.svg') }}" class="w-[18px] h-[18px]" alt="">
+                                            <span class="text-[16px] font-medium text-[#1e1d1d]">Landlords</span>
+                                        </a>
+                                        <a href="#" class="opacity-50 pointer-events-none flex items-center gap-[10px] py-[10px] rounded-[4px] transition-colors">
+                                            <img src="{{ asset('images/favorite.svg') }}" class="w-[18px] h-[18px]" alt="">
+                                            <span class="text-[16px] font-medium text-[#1e1d1d]">Saved listings</span>
+                                        </a>
+                                        <a href="{{ route('listings.index') }}" class="flex items-center gap-[10px] py-[10px] rounded-[4px] transition-colors">
+                                            <img src="{{ asset('images/search.svg') }}" class="w-[18px] h-[18px]" alt="">
+                                            <span class="text-[16px] font-medium text-[#1e1d1d]">Search listings</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                {{-- Settings Section --}}
+                                <div class="flex flex-col">
+                                    <p class="text-[12px] font-medium text-[#464646] mb-1">Settings</p>
+                                    <div class="flex flex-col">
+                                        <a href="{{ Auth::user()->isPropertyManager() ? route('property_manager.profile') : route('profile.update') }}" class="flex items-center gap-[10px] py-[10px] rounded-[4px] transition-colors">
+                                            <img src="{{ asset('images/account_circle.svg') }}" class="w-[18px] h-[18px]" alt="">
+                                            <span class="text-[16px] font-medium text-[#1e1d1d]">Profile settings</span>
+                                        </a>
+                                        <button @click.prevent="$dispatch('open-regional-preferences-modal'); showUserDropdown = false" class="flex items-center gap-[10px] py-[10px] rounded-[4px] transition-colors text-left w-full">
+                                            <img src="{{ asset('images/language_sidebar.svg') }}" class="w-[18px] h-[18px]" alt="">
+                                            <span class="text-[16px] font-medium text-[#1e1d1d]">Regional preferences</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {{-- Support Section --}}
+                                <div class="flex flex-col">
+                                    <p class="text-[12px] font-medium text-[#464646] mb-1">Support</p>
+                                    <div class="flex flex-col">
+                                        <a href="#" class="opacity-50 pointer-events-none flex items-center gap-[10px] py-[10px] rounded-[4px] transition-colors">
+                                            <img src="{{ asset('images/contact_support.svg') }}" class="w-[18px] h-[18px]" alt="">
+                                            <span class="text-[16px] font-medium text-[#1e1d1d]">Help center</span>
+                                        </a>
+                                        <a href="#" class="opacity-50 pointer-events-none flex items-center gap-[10px] py-[10px] rounded-[4px] transition-colors">
+                                            <img src="{{ asset('images/headset_mic.svg') }}" class="w-[18px] h-[18px]" alt="">
+                                            <span class="text-[16px] font-medium text-[#1e1d1d]">Support tickets</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                {{-- Footer Section --}}
+                                <div class="flex flex-col gap-4 mt-2">
+                                    <form method="POST" action="{{ route('logout') }}" class="w-full">
+                                        @csrf
+                                        <button type="submit" class="border border-light-gray bg-white text-[#1e1d1d] font-medium h-[51px] rounded-[6px] flex items-center justify-center hover:bg-gray-50 transition-all text-[16px] tracking-[-0.48px] w-full">
+                                            Sign out
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @else
                     <button @click="showGlobalMenu = !showGlobalMenu" class="focus:outline-none flex items-center">
                         @if($isLanding)
