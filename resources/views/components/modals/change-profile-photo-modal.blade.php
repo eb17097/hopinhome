@@ -100,7 +100,7 @@
             </div>
 
             <div class="space-y-4">
-                <button type="button" @click="savePhoto"
+                <button type="button" @click="savePhoto()"
                         class="w-full h-[52px] bg-[#1447d4] hover:bg-[#04247b] text-white font-medium rounded-[8px] transition-all text-[16px]">
                     Save
                 </button>

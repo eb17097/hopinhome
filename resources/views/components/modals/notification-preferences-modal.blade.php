@@ -57,6 +57,7 @@
                                          data.settings.announcements_enabled ||
                                          data.settings.newsletter_enabled
                     });
+                    this.$dispatch('show-toast', { message: 'Settings updated' });
                     this.show = false;
                 } else {
                     console.error('Failed to save settings');

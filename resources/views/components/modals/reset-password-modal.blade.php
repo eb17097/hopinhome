@@ -35,6 +35,7 @@
                     this.step = 'success';
                     this.new_password = '';
                     this.new_password_confirmation = '';
+                    this.$dispatch('show-toast', { message: 'Settings updated' });
                 } else {
                     this.errors = data.errors || { message: data.message };
                 }
