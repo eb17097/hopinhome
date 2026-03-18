@@ -28,12 +28,10 @@ x-transition:leave-end="opacity-0 translate-y-2"
 class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100]"
 style="display: none;"
 >
-    <div class="h-[77px] bg-white border border-[#e8e8e7] rounded-[8px] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] px-4 py-3 flex items-center gap-3 min-w-[240px]">
-        <div class="w-8 h-8 bg-[#f9f9f8] rounded-[6px] flex items-center justify-center">
-            <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 5.5L4.5 9L12.5 1" stroke="#1447D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+    <div class="h-[77px] bg-white border border-[#e8e8e7] rounded-[8px] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] px-[16px] py-[15px] flex items-center gap-[16px] w-[250px]">
+        <div class="w-[46px] h-[46px] bg-[#F4F4F3] rounded-[6px] flex items-center justify-center">
+            <img src="{{ asset('images/gray_bg_blue_check.svg') }}" class="w-[24px] h-[24px]" alt="Success">
         </div>
-        <span class="text-[16px] font-medium text-[#1e1d1d]" x-text="message"></span>
+        <span class="leading-[1.28] tracking-[-0.36px] text-[18px] font-medium text-[#1e1d1d]" x-text="message"></span>
     </div>
 </div>
