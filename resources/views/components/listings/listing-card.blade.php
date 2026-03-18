@@ -47,12 +47,12 @@
         </div>
 
         <!-- Favorite Icon -->
-        <button @click.stop.prevent="" class="absolute top-3 right-3 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none z-20">
+        <button @click.stop.prevent="" class="absolute top-3 right-3 p-2 focus:outline-none z-20">
             <img src="{{ asset('images/favorite_white.svg') }}" alt="Favorite" class="w-8 h-8">
         </button>
 
         <!-- Image Navigation (Arrows) -->
-        <div class="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
+        <div class="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2 pointer-events-none z-20">
             <button
                 @click.stop.prevent="prev()"
                 class="pointer-events-auto focus:outline-none"
@@ -70,7 +70,7 @@
         </div>
 
         <!-- Image Navigation (Dots) -->
-        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20" x-show="images.length > 1">
+        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1.5 z-20" x-show="images.length > 1">
             <template x-for="(image, index) in images" :key="index">
                 <button
                     @click.stop.prevent="currentIndex = index"

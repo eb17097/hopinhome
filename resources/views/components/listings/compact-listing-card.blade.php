@@ -50,14 +50,14 @@
         <div class="absolute inset-0 flex items-center justify-between px-[10px] pointer-events-none">
             <button
                 @click.stop.prevent="prev()"
-                class="pointer-events-auto opacity-0 group-hover:opacity-80 transition-opacity focus:outline-none"
+                class="pointer-events-auto opacity-80 focus:outline-none"
                 x-show="images.length > 1"
             >
                 <img src="{{ asset('images/arrow_left_white_notail.svg') }}" class="size-6" alt="Previous">
             </button>
             <button
                 @click.stop.prevent="next()"
-                class="pointer-events-auto opacity-0 group-hover:opacity-80 transition-opacity focus:outline-none"
+                class="pointer-events-auto opacity-80 focus:outline-none"
                 x-show="images.length > 1"
             >
                 <img src="{{ asset('images/arrow1.svg') }}" class="size-6" alt="Next">
