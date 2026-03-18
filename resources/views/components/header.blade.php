@@ -8,7 +8,7 @@
     showUserDropdown: false
 }"
 @scroll.window="scrolled = window.scrollY > 50"
-class="z-50 {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
+class="z-[61] {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
 
     <nav :class="{
             'bg-white border-b border-[#e8e8e7]': scrolled || showGlobalMenu || !@json($isLanding),
@@ -86,7 +86,7 @@ class="z-50 {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
                                             </div>
                                         </a>
                                         <a href="#" class="opacity-50 pointer-events-none flex items-center gap-[10px] py-[10px] rounded-[4px] transition-colors">
-                                            <img src="{{ asset('images/notifications.svg') }}" class="w-[18px] h-[18px]" alt="">
+                                            <img src="{{ asset('images/notifications_sidebar.svg') }}" class="w-[18px] h-[18px]" alt="">
                                             <span class="text-[16px] font-medium text-[#1e1d1d] flex-1 leading-[1.5]">Notifications</span>
                                             <div class="bg-electric-blue flex items-center justify-center px-[3px] h-[18px] min-w-[22px] rounded-[3px]">
                                                 <span class="text-white text-[14px] font-medium leading-[1.3]">5</span>
@@ -101,7 +101,7 @@ class="z-50 {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
                                             <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">Saved listings</span>
                                         </a>
                                         <a href="{{ route('listings.index') }}" class="flex items-center gap-[10px] py-[10px] rounded-[4px] transition-colors">
-                                            <img src="{{ asset('images/search.svg') }}" class="w-[18px] h-[18px]" alt="">
+                                            <img src="{{ asset('images/black_search.svg') }}" class="w-[18px] h-[18px]" alt="">
                                             <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">Search listings</span>
                                         </a>
                                     </div>
