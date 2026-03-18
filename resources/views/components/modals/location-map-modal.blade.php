@@ -38,7 +38,7 @@
         zoomOut() { if(this.map) this.map.setZoom(this.map.getZoom() - 1); }
     }"
     x-on:open-modal.window="if($event.detail == 'location-map') { setTimeout(() => initModalMap(), 100) }"
-    class="bg-white rounded-[14px] overflow-hidden"
+    class="bg-white rounded-[14px] overflow-hidden h-full"
     >
         {{-- Modal Header --}}
         <div class="h-[65px] flex items-center justify-between px-[24px] py-[21px] border-b border-[#E8E8E7]">
@@ -50,8 +50,8 @@
         </div>
 
         {{-- Modal Content --}}
-        <div class="p-[20px]">
-            <div class="relative w-full h-[600px] rounded-[14px] overflow-hidden shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)]">
+        <div class="p-[20px] h-[calc(100%-65px)]">
+            <div class="relative w-full h-full rounded-[8px] overflow-hidden shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)]">
                 <div x-ref="modalMap" class="w-full h-full bg-gray-50"></div>
 
                 {{-- Map Internal Close Button --}}
