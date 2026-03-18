@@ -1,4 +1,4 @@
-@props(['images', 'name', 'aspectRatio' => 'h-[238px]'])
+@props(['images', 'name', 'aspectRatio' => 'h-[238px]', 'url' => '#'])
 
 @php
     $processedImages = $images->map(function($image) {
@@ -22,6 +22,9 @@
         this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
     }
 }" class="relative w-full {{ $aspectRatio }} flex-shrink-0 z-10">
+    <!-- Image Link -->
+    <a href="{{ $url }}" class="absolute inset-0 z-10" aria-label="View listing details"></a>
+
     <div class="w-full h-full relative overflow-hidden bg-gray-100 rounded-inherit">
         <template x-for="(image, index) in images" :key="index">
             <img
@@ -49,14 +52,14 @@
     <div class="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2 pointer-events-none z-20">
         <button
             @click.stop.prevent="prev()"
-            class="pointer-events-auto focus:outline-none opacity-80"
+            class="pointer-events-auto focus:outline-none relative -left-1 p-1"
             x-show="images.length > 1"
         >
             <img src="{{ asset('images/arrow_left_white_notail.svg') }}" alt="Previous" class="w-6 h-6">
         </button>
         <button
             @click.stop.prevent="next()"
-            class="pointer-events-auto focus:outline-none opacity-80"
+            class="pointer-events-auto focus:outline-none relative -right-1 p-1"
             x-show="images.length > 1"
         >
             <img src="{{ asset('images/arrow1.svg') }}" alt="Next" class="w-6 h-6">

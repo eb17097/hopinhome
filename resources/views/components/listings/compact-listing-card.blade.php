@@ -6,7 +6,7 @@
     <a href="{{ route('listings.show', $listing) }}" class="absolute inset-0 z-0" aria-label="View listing details"></a>
 
     <div class="relative h-[238px] z-10">
-        <x-listings.listing-image-slider :images="$listing->images" :name="$listing->name" aspectRatio="h-[238px]" />
+        <x-listings.listing-image-slider :images="$listing->images" :name="$listing->name" aspectRatio="h-[238px]" :url="route('listings.show', $listing)" />
     </div>
 
     <div class="p-[20px] relative z-10 pointer-events-none">

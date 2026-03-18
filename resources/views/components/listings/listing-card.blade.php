@@ -7,7 +7,7 @@
 
     <!-- Image Section -->
     <div class="w-[380px] h-[238px] min-w-[380px]">
-        <x-listings.listing-image-slider :images="$listing->images" :name="$listing->name" aspectRatio="h-[238px]" />
+        <x-listings.listing-image-slider :images="$listing->images" :name="$listing->name" aspectRatio="h-[238px]" :url="route('listings.show', $listing->id)" />
     </div>
 
     <!-- Content Section -->
