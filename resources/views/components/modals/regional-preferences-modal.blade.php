@@ -32,7 +32,9 @@
                 });
 
                 if (response.ok) {
-                    this.$dispatch('show-toast', { message: 'Settings updated' });
+                    window.dispatchEvent(new CustomEvent('show-toast', {
+                        detail: { message: 'Settings updated' }
+                    }));
                     this.show = false;
                 } else {
                     console.error('Failed to save regional preferences');
