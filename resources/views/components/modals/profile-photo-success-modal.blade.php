@@ -4,7 +4,7 @@
      class="fixed inset-0 z-50 overflow-y-auto" 
      style="display: none;">
     
-    <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+    <div class="flex items-center justify-center min-h-screen px-4 py-4 text-center">
         {{-- Background overlay --}}
         <div x-show="show" 
              x-transition:enter="ease-out duration-300" 
@@ -24,7 +24,7 @@
              x-transition:leave="ease-in duration-200" 
              x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
              x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
-             class="inline-block w-full max-w-[560px] my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] rounded-[14px]">
+             class="inline-block w-full max-w-[560px] overflow-hidden text-left align-middle transition-all transform bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] rounded-[14px]">
             
             {{-- Header --}}
             <div class="px-6 py-4 border-b border-[#e8e8e7] flex items-center justify-between relative">
