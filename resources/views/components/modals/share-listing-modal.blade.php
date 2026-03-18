@@ -47,10 +47,10 @@
                     @endphp
                     <img src="{{ $imageUrl }}" alt="{{ $listing->name }}" class="w-full h-full object-cover">
                 </div>
-                <div class="flex flex-col justify-center min-w-0">
-                    <p class="text-[16px] leading-[1.3] text-gray-500 mb-[4px]">{{ $listing->property_type ?? 'Apartment' }} for rent</p>
-                    <h3 class="text-[18px] leading-[1.28] tracking-[-0.36px] font-medium text-black mb-[8px] truncate" title="{{ $listing->name }}">{{ $listing->name }}</h3>
-                    <p class="text-[14px] leading-[1.5] text-gray-500">
+                <div class="flex flex-col mt-[16px] items-baseline min-w-0">
+                    <p class="text-[16px] leading-[1.3] text-[#464646] mb-[4px]">{{ $listing->property_type ?? 'Apartment' }} for rent</p>
+                    <h3 class="text-[18px] leading-[1.28] tracking-[-0.36px] font-medium text-[#1E1D1D] mb-[8px] truncate" title="{{ $listing->name }}">{{ $listing->name }}</h3>
+                    <p class="text-[14px] leading-[1.5] text-[#464646]">
                         {{ $listing->area }} sqft • {{ $listing->bedrooms }} beds • {{ $listing->bathrooms }} bath
                     </p>
                 </div>
@@ -66,28 +66,28 @@
                 {{-- Copy Link --}}
                 <button
                     @click="copyToClipboard()"
-                    class="h-[52px] w-[538px] w-full flex items-center justify-center gap-[10px] py-[16px] border border-electric-blue rounded-[10px] text-electric-blue text-[16px] font-medium transition-all hover:bg-blue-50"
+                    class="h-[52px] w-[538px] w-full flex items-center justify-center gap-[6px] py-[16px] border border-electric-blue rounded-[6px] text-electric-blue text-[16px] font-medium transition-all hover:bg-blue-50"
                 >
-                    <img src="{{ asset('images/copy_blue.svg') }}" class="w-[20px] h-[20px]">
+                    <img src="{{ asset('images/copy_blue.svg') }}" class="w-[17px] h-[17px]">
                     <span x-text="copied ? 'Link copied!' : 'Copy link'"></span>
                 </button>
 
                 {{-- Social Grid --}}
                 <div class="grid grid-cols-2 gap-y-[20px] gap-x-[24px]">
-                    <a :href="'https://wa.me/?text=' + encodeURIComponent(text + ' ' + url)" target="_blank" class="h-[52px] w-[257px] flex items-center justify-center gap-[10px] py-[16px] border border-[#E8E8E7] rounded-[10px] text-black text-[16px] font-medium transition-all hover:bg-gray-50">
-                        <img src="{{ asset('images/whatsapp_black.svg') }}" class="w-[20px] h-[20px]">
+                    <a :href="'https://wa.me/?text=' + encodeURIComponent(text + ' ' + url)" target="_blank" class="h-[52px] w-[257px] flex items-center justify-center gap-[6px] py-[16px] border border-[#E8E8E7] rounded-[6px] text-black text-[16px] font-medium transition-all hover:bg-gray-50">
+                        <img src="{{ asset('images/whatsapp_black.svg') }}" class="w-[17px] h-[17px]">
                         <span>WhatsApp</span>
                     </a>
-                    <a :href="'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url)" target="_blank" class="h-[52px] w-[257px] flex items-center justify-center gap-[10px] py-[16px] border border-[#E8E8E7] rounded-[10px] text-black text-[16px] font-medium transition-all hover:bg-gray-50">
-                        <img src="{{ asset('images/facebook_black.svg') }}" class="w-[20px] h-[20px]">
+                    <a :href="'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url)" target="_blank" class="h-[52px] w-[257px] flex items-center justify-center gap-[6px] py-[16px] border border-[#E8E8E7] rounded-[6px] text-black text-[16px] font-medium transition-all hover:bg-gray-50">
+                        <img src="{{ asset('images/facebook_black.svg') }}" class="w-[17px] h-[17px]">
                         <span>Facebook</span>
                     </a>
-                    <a :href="'mailto:?subject=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(text + ' ' + url)" class="h-[52px] w-[257px] flex items-center justify-center gap-[10px] py-[16px] border border-[#E8E8E7] rounded-[10px] text-black text-[16px] font-medium transition-all hover:bg-gray-50">
-                        <img src="{{ asset('images/mail_black.svg') }}" class="w-[20px] h-[20px]">
+                    <a :href="'mailto:?subject=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(text + ' ' + url)" class="h-[52px] w-[257px] flex items-center justify-center gap-[6px] py-[16px] border border-[#E8E8E7] rounded-[6px] text-black text-[16px] font-medium transition-all hover:bg-gray-50">
+                        <img src="{{ asset('images/mail_black.svg') }}" class="w-[17px] h-[17px]">
                         <span>Email</span>
                     </a>
-                    <button @click="shareNatively()" class="h-[52px] w-[257px] flex items-center justify-center gap-[10px] py-[16px] border border-[#E8E8E7] rounded-[10px] text-black text-[16px] font-medium transition-all hover:bg-gray-50">
-                        <img src="{{ asset('images/more_options_dots_black.svg') }}" class="w-[20px] h-[20px]">
+                    <button @click="shareNatively()" class="h-[52px] w-[257px] flex items-center justify-center gap-[6px] py-[16px] border border-[#E8E8E7] rounded-[6px] text-black text-[16px] font-medium transition-all hover:bg-gray-50">
+                        <img src="{{ asset('images/more_options_dots_black.svg') }}" class="w-[17px] h-[17px]">
                         <span>More options</span>
                     </button>
                 </div>
