@@ -15,21 +15,23 @@
         images: {{ $imageUrls }},
         openPhotoTour() {
             this.isPhotoTourOpen = true;
-            document.body.style.overflow = 'hidden';
+            document.body.classList.add('overflow-y-hidden');
         },
         closePhotoTour() {
             this.isPhotoTourOpen = false;
-            document.body.style.overflow = 'auto';
+            if (!this.isSliderOpen && !this.isVideoModalOpen) {
+                document.body.classList.remove('overflow-y-hidden');
+            }
         },
         openSlider(index) {
             this.currentImageIndex = index;
             this.isSliderOpen = true;
-            document.body.style.overflow = 'hidden';
+            document.body.classList.add('overflow-y-hidden');
         },
         closeSlider() {
             this.isSliderOpen = false;
             if (!this.isPhotoTourOpen && !this.isVideoModalOpen) {
-                document.body.style.overflow = 'auto';
+                document.body.classList.remove('overflow-y-hidden');
             }
         },
         nextImage() {
@@ -40,7 +42,7 @@
         },
         openVideoModal() {
             this.isVideoModalOpen = true;
-            document.body.style.overflow = 'hidden';
+            document.body.classList.add('overflow-y-hidden');
         },
         closeVideoModal() {
             this.isVideoModalOpen = false;
@@ -48,8 +50,8 @@
                 this.$refs.videoPlayer.pause();
                 this.videoIsPlaying = false;
             }
-            if (!this.isPhotoTourOpen) {
-                document.body.style.overflow = 'auto';
+            if (!this.isPhotoTourOpen && !this.isSliderOpen) {
+                document.body.classList.remove('overflow-y-hidden');
             }
         },
         videoIsPlaying: false,

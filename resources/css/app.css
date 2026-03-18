@@ -39,3 +39,8 @@
     src: url('../fonts/PPFormula-SemiCondensedMedium.woff2') format('woff2');
     font-weight: 500;
 }
+
+body.overflow-y-hidden {
+    overflow: hidden !important;
+    padding-right: var(--scrollbar-width, 0px);
+}
