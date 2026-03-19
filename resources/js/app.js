@@ -6,6 +6,7 @@ window.Cropper = Cropper;
 
 import './auth-modal';
 import './location-search';
+import './property-search';
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
