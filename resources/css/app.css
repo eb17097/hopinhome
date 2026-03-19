@@ -44,3 +44,5 @@ body.overflow-y-hidden {
     overflow: hidden !important;
     padding-right: var(--scrollbar-width, 0px);
 }
+
+[x-cloak] { display: none !important; }

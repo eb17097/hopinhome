@@ -10,6 +10,7 @@ document.addEventListener('alpine:init', () => {
         base.maxPrice = config.maxPrice || 1000000;
         base.minRange = config.minRange || 0;
         base.maxRange = config.maxRange || 1000000;
+        base.isModalOpen = false;
 
         // Wrap the init method
         const originalInit = base.init;
