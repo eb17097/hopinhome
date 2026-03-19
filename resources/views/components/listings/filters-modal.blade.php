@@ -41,10 +41,10 @@
                         </button>
                         <h3 class="text-[20px] font-medium text-[#1E1D1D] flex items-center gap-2">
                             Search & Filters
-                            <span class="bg-[#1447D4] text-white text-[12px] w-6 h-6 flex items-center justify-center rounded-full">3</span>
+                            <span x-show="selectedPropertyTypes.length + selectedBedrooms.length + selectedBathrooms.length > 0" x-text="selectedPropertyTypes.length + selectedBedrooms.length + selectedBathrooms.length" class="bg-[#1447D4] text-white text-[12px] w-6 h-6 flex items-center justify-center rounded-full"></span>
                         </h3>
                     </div>
-                    <button class="text-[16px] text-gray-500 hover:text-gray-700 transition-colors">Clear all</button>
+                    <button @click="clearAll()" class="text-[16px] text-gray-500 hover:text-gray-700 transition-colors">Clear all</button>
                 </div>
 
                 <!-- Content -->
@@ -233,7 +233,7 @@
                     <section>
                         <div class="flex items-center gap-2 mb-4">
                             <h4 class="text-[18px] font-medium text-[#1E1D1D]">Features</h4>
-                            <span class="bg-[#F9F9F8] border border-gray-200 rounded-full px-2 py-0.5 text-[14px] font-medium text-[#1E1D1D]">2</span>
+                            <span x-show="selectedFeatures.length > 0" x-text="selectedFeatures.length" class="bg-[#F9F9F8] border border-gray-200 rounded-full px-2 py-0.5 text-[14px] font-medium text-[#1E1D1D]"></span>
                         </div>
                         <div class="grid grid-cols-3 gap-y-4">
                             @foreach([
@@ -265,7 +265,7 @@
                     <section>
                         <div class="flex items-center gap-2 mb-4">
                             <h4 class="text-[18px] font-medium text-[#1E1D1D]">Building amenities</h4>
-                            <span class="bg-[#F9F9F8] border border-gray-200 rounded-full px-2 py-0.5 text-[14px] font-medium text-[#1E1D1D]">4</span>
+                            <span x-show="selectedAmenities.length > 0" x-text="selectedAmenities.length" class="bg-[#F9F9F8] border border-gray-200 rounded-full px-2 py-0.5 text-[14px] font-medium text-[#1E1D1D]"></span>
                         </div>
                         <div class="grid grid-cols-3 gap-y-4">
                             @foreach([

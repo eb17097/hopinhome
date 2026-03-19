@@ -100,6 +100,24 @@ document.addEventListener('alpine:init', () => {
             }
         };
 
+        base.clearAll = function() {
+            this.location = '';
+            this.locationQuery = '';
+            this.selectedPropertyTypes = [];
+            this.selectedBedrooms = [];
+            this.minPrice = this.minRange;
+            this.maxPrice = this.maxRange;
+            this.utilities = 'Included';
+            this.rentalPeriod = 'Yearly';
+            this.selectedBathrooms = [];
+            this.minArea = this.minAreaRange;
+            this.maxArea = this.maxAreaRange;
+            this.minFloor = 0;
+            this.maxFloor = null;
+            this.selectedFeatures = [];
+            this.selectedAmenities = [];
+        };
+
         // Define Getters
         Object.defineProperty(base, 'displayPropertyTypes', {
             get() {
