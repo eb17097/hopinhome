@@ -35,7 +35,6 @@
         { name: 'Abu Dhabi', area: 'United Arab Emirates', icon: '{{ asset('images/world_one.svg') }}' }
     ],
     autocompleteService: null,
-    dropdownTitle: 'Popular locations',
 
     init() {
         this.loadRecentSearches();
@@ -50,7 +49,6 @@
                 this.updateLocationsList();
                 return;
             }
-            this.dropdownTitle = 'Search results';
             this.fetchPredictions(value);
         });
     },
@@ -78,7 +76,6 @@
 
     updateLocationsList() {
         this.locations = this.recentSearches.length > 0 ? this.recentSearches : this.defaultLocations;
-        this.dropdownTitle = this.recentSearches.length > 0 ? 'Recent searches' : 'Popular locations';
     },
 
     fetchPredictions(query) {
@@ -234,7 +231,6 @@
                      x-cloak
                 >
                     <div class="max-h-[400px] overflow-y-auto py-2">
-                        <p class="px-3 py-1 text-[11px] font-semibold text-[#707070] uppercase tracking-wider" x-text="dropdownTitle"></p>
                         <template x-for="(loc, index) in filteredLocations" :key="index">
                             <div class="flex items-center py-2 px-3 gap-3 hover:bg-[#F9F9F8] cursor-pointer transition-colors"
                                  @click="selectLocation(loc)">
