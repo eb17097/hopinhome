@@ -2,14 +2,11 @@
     <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-2">Where is your property located?</h3>
     <p class="text-[16px] text-[#464646] mb-8">Enter the address of your property.</p>
 
-    <div class="space-y-[20px]" x-data="locationSearch({ 
-        initialLocation: formData.address, 
-        icons: {
-            world: '{{ asset('images/world_one.svg') }}',
-            downtown: '{{ asset('images/downtown_loc.svg') }}',
-            location: '{{ asset('images/location_loc.svg') }}',
-            street: '{{ asset('images/street_loc.svg') }}'
-        }
+    <div class="space-y-[20px]" x-data="locationSearch(formData.address, { 
+        world: '{{ asset('images/world_one.svg') }}',
+        downtown: '{{ asset('images/downtown_loc.svg') }}',
+        location: '{{ asset('images/location_loc.svg') }}',
+        street: '{{ asset('images/street_loc.svg') }}'
     })">
         {{-- Address Input with Autocomplete --}}
         <div>
@@ -24,7 +21,7 @@
                     <img src="{{ asset('images/location_on.svg') }}" class="h-[23px] w-[23px] opacity-40" alt="Location">
 
                     <div class="flex items-center gap-[8px] flex-grow overflow-hidden">
-                        {{-- Selected Location Tag (Optional, but keeping for consistency if preferred) --}}
+                        {{-- Selected Location Tag --}}
                         <div x-show="location" x-cloak class="flex items-center gap-2 bg-[#F9F9F8] border border-[#E8E8E7] rounded-[4px] px-2 py-1 h-[32px] min-w-0">
                             <span class="text-[14px] text-[#464646] font-normal truncate block min-w-0" x-text="location"></span>
                             <button type="button" @click.stop="location = ''; locationQuery = ''; formData.address = ''" class="flex items-center justify-center hover:bg-gray-200 rounded-[2px] size-5 transition-colors shrink-0">
