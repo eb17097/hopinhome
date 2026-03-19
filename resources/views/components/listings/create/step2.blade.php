@@ -2,7 +2,7 @@
     <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-2">Where is your property located?</h3>
     <p class="text-[16px] text-[#464646] mb-8">Enter the address of your property.</p>
 
-    <div class="space-y-[20px]" x-data="locationSearch(formData.address, { 
+    <div class="space-y-[20px]" x-data="locationSearch(formData.address, {
         world: '{{ asset('images/world_one.svg') }}',
         downtown: '{{ asset('images/downtown_loc.svg') }}',
         location: '{{ asset('images/location_loc.svg') }}',
@@ -14,16 +14,14 @@
             <div class="relative">
                 {{-- Trigger Container --}}
                 <div
-                    class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center px-[12px] gap-[8px] cursor-text transition-all duration-200"
+                    class="relative z-20 w-full h-[51px] bg-white border border-[#E8E8E7] flex items-center px-[12px] gap-[8px] cursor-text transition-all duration-200"
                     :class="openFilter === 'location' ? 'border-[#1447D4] rounded-t-[6px] border-b-transparent' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
                     @click.stop="$refs.locationInput.focus()"
                 >
-                    <img src="{{ asset('images/location_on.svg') }}" class="h-[23px] w-[23px] opacity-40" alt="Location">
-
                     <div class="flex items-center gap-[8px] flex-grow overflow-hidden">
                         {{-- Selected Location Tag --}}
-                        <div x-show="location" x-cloak class="flex items-center gap-2 bg-[#F9F9F8] border border-[#E8E8E7] rounded-[4px] px-2 py-1 h-[32px] min-w-0">
-                            <span class="text-[14px] text-[#464646] font-normal truncate block min-w-0" x-text="location"></span>
+                        <div x-show="location" x-cloak class="flex items-center gap-2 bg-[#F9F9F8] border border-[#E8E8E7] rounded-[4px] px-2 py-[6px] h-[32px] min-w-0">
+                            <span class="text-[16px] leading-[1.2] text-[#464646] font-normal truncate block min-w-0" x-text="location"></span>
                             <button type="button" @click.stop="location = ''; locationQuery = ''; formData.address = ''" class="flex items-center justify-center hover:bg-gray-200 rounded-[2px] size-5 transition-colors shrink-0">
                                 <img src="{{ asset('images/close.svg') }}" class="h-[14px] w-[14px] opacity-60" alt="Clear">
                             </button>
@@ -35,10 +33,12 @@
                             type="text"
                             x-model="locationQuery"
                             @focus="openFilter = 'location'"
-                            placeholder="Enter full address"
+                            :placeholder="location ? '' : 'Enter full address'"
                             class="flex-grow min-w-0 bg-transparent border-none focus:ring-0 p-0 placeholder-[#464646] text-[16px] text-[#1E1D1D] font-normal"
                         >
                     </div>
+
+                    <img src="{{ asset('images/gray_search.svg') }}" class="h-[24px] w-[24px] opacity-40 shrink-0" alt="Location">
                 </div>
 
                 {{-- Unified Dropdown Panel --}}
@@ -142,8 +142,8 @@
 
             const geocoder = new google.maps.Geocoder();
             // We search by the specific ID if available, or name/area string
-            const request = loc.id && !loc.id.startsWith('rcn-') 
-                ? { placeId: loc.id } 
+            const request = loc.id && !loc.id.startsWith('rcn-')
+                ? { placeId: loc.id }
                 : { address: loc.name + (loc.area ? ', ' + loc.area : '') };
 
             geocoder.geocode(request, (results, status) => {
