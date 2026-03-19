@@ -12,6 +12,19 @@ document.addEventListener('alpine:init', () => {
         base.maxRange = config.maxRange || 1000000;
         base.isModalOpen = false;
 
+        // New Filter States
+        base.utilities = 'Included';
+        base.rentalPeriod = 'Yearly';
+        base.selectedBathrooms = ['1', '2'];
+        base.minArea = 500;
+        base.maxArea = 10000;
+        base.minAreaRange = 0;
+        base.maxAreaRange = 10000;
+        base.minFloor = 4;
+        base.maxFloor = null;
+        base.selectedFeatures = ['high-speed-internet', 'laundry-room'];
+        base.selectedAmenities = ['free-parking', 'elevator', 'swimming-pool', 'concierge-service'];
+
         // Wrap the init method
         const originalInit = base.init;
         base.init = function() {
@@ -28,6 +41,17 @@ document.addEventListener('alpine:init', () => {
             let params = new URLSearchParams();
             if (this.minPrice > this.minRange) params.append('min_price', this.minPrice);
             if (this.maxPrice < this.maxRange) params.append('max_price', this.maxPrice);
+            
+            // Add new filter params
+            if (this.utilities) params.append('utilities', this.utilities);
+            if (this.rentalPeriod) params.append('rental_period', this.rentalPeriod);
+            if (this.selectedBathrooms.length > 0) params.append('bathrooms', this.selectedBathrooms.join(','));
+            if (this.minArea > this.minAreaRange) params.append('min_area', this.minArea);
+            if (this.maxArea < this.maxAreaRange) params.append('max_area', this.maxArea);
+            if (this.minFloor) params.append('min_floor', this.minFloor);
+            if (this.maxFloor) params.append('max_floor', this.maxFloor);
+            if (this.selectedFeatures.length > 0) params.append('features', this.selectedFeatures.join(','));
+            if (this.selectedAmenities.length > 0) params.append('amenities', this.selectedAmenities.join(','));
             
             let queryString = params.toString();
             if (queryString) url += '?' + queryString;
@@ -49,6 +73,30 @@ document.addEventListener('alpine:init', () => {
                 this.selectedBedrooms = this.selectedBedrooms.filter(b => b !== val);
             } else {
                 this.selectedBedrooms.push(val);
+            }
+        };
+
+        base.toggleBathroom = function(val) {
+            if (this.selectedBathrooms.includes(val)) {
+                this.selectedBathrooms = this.selectedBathrooms.filter(b => b !== val);
+            } else {
+                this.selectedBathrooms.push(val);
+            }
+        };
+
+        base.toggleFeature = function(slug) {
+            if (this.selectedFeatures.includes(slug)) {
+                this.selectedFeatures = this.selectedFeatures.filter(f => f !== slug);
+            } else {
+                this.selectedFeatures.push(slug);
+            }
+        };
+
+        base.toggleAmenity = function(slug) {
+            if (this.selectedAmenities.includes(slug)) {
+                this.selectedAmenities = this.selectedAmenities.filter(a => a !== slug);
+            } else {
+                this.selectedAmenities.push(slug);
             }
         };
 
@@ -100,6 +148,16 @@ document.addEventListener('alpine:init', () => {
 
         Object.defineProperty(base, 'maxPercent', {
             get() { return (((this.maxPrice || this.maxRange) - this.minRange) / (this.maxRange - this.minRange)) * 100; },
+            configurable: true
+        });
+
+        Object.defineProperty(base, 'minAreaPercent', {
+            get() { return ((this.minArea - this.minAreaRange) / (this.maxAreaRange - this.minAreaRange)) * 100; },
+            configurable: true
+        });
+
+        Object.defineProperty(base, 'maxAreaPercent', {
+            get() { return (((this.maxArea || this.maxAreaRange) - this.minAreaRange) / (this.maxAreaRange - this.minAreaRange)) * 100; },
             configurable: true
         });
 
