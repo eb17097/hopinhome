@@ -214,7 +214,7 @@
                                 <p class="text-[16px] text-gray-500 mb-2">Minimum Floor</p>
                                 <div class="flex items-center justify-between bg-white border border-gray-200 rounded-lg h-[45px] px-4 shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]">
                                     <button @click="if(minFloor > 0) minFloor--" class="text-[#1447D4]"><img src="{{ asset('images/gray_minus.svg') }}" class="size-6" alt="-"></button>
-                                    <span x-text="minFloor" class="text-[16px] font-medium text-[#1E1D1D]"></span>
+                                    <span x-text="minFloor" class="text-[16px] font-medium text-[#464646]"></span>
                                     <button @click="minFloor++" class="text-[#1447D4]"><img src="{{ asset('images/gray_plus.svg') }}" class="size-6" alt="+"></button>
                                 </div>
                             </div>
@@ -222,7 +222,7 @@
                                 <p class="text-[16px] text-gray-500 mb-2">Maximum Floor</p>
                                 <div class="flex items-center justify-between bg-white border border-gray-200 rounded-lg h-[45px] px-4 shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]">
                                     <button @click="if(maxFloor > (minFloor || 0)) maxFloor--" class="text-[#1447D4]"><img src="{{ asset('images/gray_minus.svg') }}" class="size-6" alt="-"></button>
-                                    <span x-text="maxFloor || 'Any'" class="text-[16px] font-medium text-gray-400" :class="maxFloor ? 'text-[#1E1D1D]' : ''"></span>
+                                    <span x-text="maxFloor || 'Any'" class="text-[16px] font-medium text-[#464646]"></span>
                                     <button @click="if(!maxFloor) maxFloor = minFloor + 1; else maxFloor++" class="text-[#1447D4]"><img src="{{ asset('images/gray_plus.svg') }}" class="size-6" alt="+"></button>
                                 </div>
                             </div>
