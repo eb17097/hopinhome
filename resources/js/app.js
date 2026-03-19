@@ -5,6 +5,7 @@ import 'cropperjs/dist/cropper.css';
 window.Cropper = Cropper;
 
 import './auth-modal';
+import './location-search';
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;

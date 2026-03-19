@@ -21,116 +21,18 @@
     input[type=range]::-moz-range-thumb { pointer-events: auto; width: 24px; height: 24px; border-radius: 50%; cursor: pointer; border: none; }
 </style>
 
-<div x-data="{
-    openFilter: null,
-    location: '{{ $currentLocation }}',
-    locationQuery: '',
-    locations: [],
-    recentSearches: [],
-    defaultLocations: [
-        { name: 'Dubai, United Arab Emirates', area: '', icon: '{{ asset('images/world_one.svg') }}' },
-        { name: 'Downtown Dubai', area: 'Dubai', icon: '{{ asset('images/downtown_loc.svg') }}' },
-        { name: 'Burj Khalifa', area: 'Dubai', icon: '{{ asset('images/location_loc.svg') }}' },
-        { name: 'Palm Jumeirah', area: 'Dubai', icon: '{{ asset('images/street_loc.svg') }}' },
-        { name: 'Abu Dhabi', area: 'United Arab Emirates', icon: '{{ asset('images/world_one.svg') }}' }
-    ],
-    autocompleteService: null,
-
-    init() {
-        this.loadRecentSearches();
-        this.updateLocationsList();
-
-        if (window.google && window.google.maps && window.google.maps.places) {
-            this.autocompleteService = new google.maps.places.AutocompleteService();
-        }
-
-        this.$watch('locationQuery', (value) => {
-            if (value.length < 2) {
-                this.updateLocationsList();
-                return;
-            }
-            this.fetchPredictions(value);
-        });
-    },
-
-    loadRecentSearches() {
-        try {
-            const saved = localStorage.getItem('hopinhome_recent_searches');
-            this.recentSearches = saved ? JSON.parse(saved) : [];
-        } catch (e) {
-            this.recentSearches = [];
-        }
-    },
-
-    saveSearch(loc) {
-        if (!loc || !loc.name) return;
-        let recent = this.recentSearches.filter(s => s.name !== loc.name);
-        recent.unshift({
-            name: loc.name,
-            area: loc.area || '',
-            icon: loc.icon || '{{ asset('images/location_loc.svg') }}'
-        });
-        this.recentSearches = recent.slice(0, 5);
-        localStorage.setItem('hopinhome_recent_searches', JSON.stringify(this.recentSearches));
-    },
-
-    updateLocationsList() {
-        this.locations = this.recentSearches.length > 0 ? this.recentSearches : this.defaultLocations;
-    },
-
-    fetchPredictions(query) {
-        if (!this.autocompleteService) return;
-        this.autocompleteService.getPlacePredictions({
-            input: query,
-            componentRestrictions: { country: 'ae' },
-            types: ['geocode']
-        }, (predictions, status) => {
-            if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
-                this.locations = predictions.map(p => {
-                    let icon = '{{ asset('images/location_loc.svg') }}';
-
-                    if (p.types.includes('locality') || p.types.includes('administrative_area_level_1')) {
-                        icon = '{{ asset('images/world_one.svg') }}';
-                    } else if (p.types.includes('neighborhood') || p.types.includes('sublocality')) {
-                        icon = '{{ asset('images/downtown_loc.svg') }}';
-                    } else if (p.types.includes('route') || p.types.includes('street_address') || p.types.includes('subpremise') || p.types.includes('premise')) {
-                        icon = '{{ asset('images/street_loc.svg') }}';
-                    }
-                    return {
-                        name: p.structured_formatting.main_text,
-                        area: p.structured_formatting.secondary_text,
-                        icon: icon
-                    };
-                });
-            } else {
-                this.locations = [];
-            }
-        });
-    },
-
-    get filteredLocations() {
-        return Array.isArray(this.locations) ? this.locations.slice(0, 5) : [];
-    },
-
-    selectLocation(loc) {
-        if (!loc) return;
-        this.location = loc.name;
-        this.locationQuery = '';
-        this.saveSearch(loc);
-        this.openFilter = null;
-    },
-
+<div x-data="Object.assign(locationSearch('{{ $currentLocation }}', {
+    world: '{{ asset('images/world_one.svg') }}',
+    downtown: '{{ asset('images/downtown_loc.svg') }}',
+    location: '{{ asset('images/location_loc.svg') }}',
+    street: '{{ asset('images/street_loc.svg') }}'
+}), {
     selectedPropertyTypes: @js($currentPropertyTypes),
     selectedBedrooms: @js($currentBedrooms),
     minPrice: {{ request('min_price', 0) }},
     maxPrice: {{ request('max_price', 1000000) }},
     minRange: 0,
     maxRange: 1000000,
-
-    slugify(text) {
-        if (!text) return 'all';
-        return text.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-').replace(/^-+/, '').replace(/-+$/, '');
-    },
 
     performSearch() {
         let locSlug = this.slugify(this.location);
@@ -191,7 +93,7 @@
             this.selectedBedrooms.push(val);
         }
     }
-}" class="bg-white py-[32px] shadow-sm relative z-[30]">
+})" class="bg-white py-[32px] shadow-sm relative z-[30]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-lg font-medium text-gray-900 mb-[16px]">Search & Filters</div>
         <div class="flex flex-wrap gap-3 items-center">
