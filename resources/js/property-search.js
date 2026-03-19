@@ -25,6 +25,27 @@ document.addEventListener('alpine:init', () => {
         base.selectedFeatures = [];
         base.selectedAmenities = [];
 
+        base.priceLastMoved = 'min';
+        base.areaLastMoved = 'min';
+
+        base.getNearestPriceThumb = function(e) {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const touch = e.touches ? e.touches[0] : e;
+            const pointerX = ((touch.clientX - rect.left) / rect.width) * 100;
+            const distMin = Math.abs(pointerX - this.minPercent);
+            const distMax = Math.abs(pointerX - this.maxPercent);
+            this.priceLastMoved = distMin < distMax ? 'min' : 'max';
+        };
+
+        base.getNearestAreaThumb = function(e) {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const touch = e.touches ? e.touches[0] : e;
+            const pointerX = ((touch.clientX - rect.left) / rect.width) * 100;
+            const distMin = Math.abs(pointerX - this.minAreaPercent);
+            const distMax = Math.abs(pointerX - this.maxAreaPercent);
+            this.areaLastMoved = distMin < distMax ? 'min' : 'max';
+        };
+
         // Wrap the init method
         const originalInit = base.init;
         base.init = function() {
