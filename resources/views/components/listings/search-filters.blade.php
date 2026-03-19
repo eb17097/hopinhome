@@ -209,8 +209,8 @@
                     <img src="{{ asset('images/location_on.svg') }}" alt="Location Icon" class="w-5 h-5 text-gray-400 shrink-0">
                     <div class="flex items-center gap-2 flex-grow overflow-hidden">
                         <span x-show="location" x-cloak class="bg-gray-50 border border-gray-200 rounded-md px-2 py-1 text-[16px] text-gray-700 flex items-center shrink-0 max-w-[200px]">
-                            <span x-text="location" class="truncate" :title="location"></span>
-                            <img src="{{ asset('images/close.svg') }}" @click.stop="location = ''; locationQuery = ''" alt="Close Icon" class="w-4 h-4 ml-1 cursor-pointer opacity-60 hover:opacity-100 shrink-0">
+                            <span x-text="location" class="truncate leading-[1.2]" :title="location"></span>
+                            <img src="{{ asset('images/close.svg') }}" @click.stop="location = ''; locationQuery = ''" alt="Close Icon" class="w-4 h-4 ml-1 cursor-pointer shrink-0">
                         </span>
                         <input
                             x-ref="locationInput"
@@ -218,7 +218,7 @@
                             x-model="locationQuery"
                             @focus="openFilter = 'location'"
                             placeholder="Enter City or Location"
-                            class="flex-grow border-none focus:ring-0 text-gray-700 placeholder-gray-500 text-[16px] p-0 bg-transparent min-w-0"
+                            class="flex-grow border-none focus:ring-0 text-gray-700 placeholder-gray-500 text-[16px] leading-[1.3] p-0 bg-transparent min-w-0 text-[#464646]"
                         >
                     </div>
                 </div>
