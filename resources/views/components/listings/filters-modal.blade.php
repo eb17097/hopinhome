@@ -1,15 +1,15 @@
 <template x-teleport="body">
-    <div 
-        x-show="isModalOpen" 
-        x-cloak 
+    <div
+        x-show="isModalOpen"
+        x-cloak
         @keydown.escape.window="isModalOpen = false"
-        class="fixed inset-0 z-[100] overflow-y-auto" 
-        aria-labelledby="modal-title" 
-        role="dialog" 
+        class="fixed inset-0 z-[100] overflow-y-auto"
+        aria-labelledby="modal-title"
+        role="dialog"
         aria-modal="true"
     >
         <!-- Overlay -->
-        <div 
+        <div
             x-show="isModalOpen"
             x-transition:enter="ease-out duration-300"
             x-transition:enter-start="opacity-0"
@@ -23,7 +23,7 @@
 
         <!-- Modal Panel -->
         <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <div 
+            <div
                 x-show="isModalOpen"
                 x-transition:enter="ease-out duration-300"
                 x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
@@ -85,7 +85,7 @@
                                         </div>
                                     </template>
                                     <div class="size-[48px] flex items-center justify-center">
-                                        <div class="w-full h-full transition-colors duration-200" 
+                                        <div class="w-full h-full transition-colors duration-200"
                                              :style="{'mask-image': 'url({{ asset('images/') }}/{{ $type['icon'] }})','-webkit-mask-image': 'url({{ asset('images/') }}/{{ $type['icon'] }})','mask-size': 'contain','-webkit-mask-size': 'contain','mask-repeat': 'no-repeat','-webkit-mask-repeat': 'no-repeat','mask-position': 'center','-webkit-mask-position': 'center','background-color': selectedPropertyTypes.includes(slugify('{{ $type['name'] }}')) ? '#1447D4' : '#04247B'}"></div>
                                     </div>
                                     <span class="text-[16px] font-medium text-center" :class="selectedPropertyTypes.includes(slugify('{{ $type['name'] }}')) ? 'text-[#1447D4]' : 'text-gray-700'">{{ $type['name'] }}</span>
@@ -99,7 +99,7 @@
                         <h4 class="text-[18px] font-medium text-[#1E1D1D] mb-4">Utilities</h4>
                         <div class="flex gap-4">
                             @foreach(['Included', 'Excluded'] as $option)
-                                <button @click="utilities = '{{ $option }}'" 
+                                <button @click="utilities = '{{ $option }}'"
                                         class="h-[45px] px-6 rounded-full text-[16px] font-medium transition-all shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] border"
                                         :class="utilities === '{{ $option }}' ? 'bg-[#1447D4] text-white border-[#1447D4]' : 'bg-white text-[#1E1D1D] border-gray-100 hover:border-[#1447D4]'">
                                     {{ $option }}
@@ -113,7 +113,7 @@
                         <h4 class="text-[18px] font-medium text-[#1E1D1D] mb-4">Rental period</h4>
                         <div class="flex gap-4">
                             @foreach(['Weekly', 'Monthly', 'Yearly'] as $option)
-                                <button @click="rentalPeriod = '{{ $option }}'" 
+                                <button @click="rentalPeriod = '{{ $option }}'"
                                         class="h-[45px] px-6 rounded-full text-[16px] font-medium transition-all shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] border"
                                         :class="rentalPeriod === '{{ $option }}' ? 'bg-[#1447D4] text-white border-[#1447D4]' : 'bg-white text-[#1E1D1D] border-gray-100 hover:border-[#1447D4]'">
                                     {{ $option }}
@@ -155,7 +155,7 @@
                         <h4 class="text-[18px] font-medium text-[#1E1D1D] mb-4">Bedrooms</h4>
                         <div class="flex flex-wrap gap-3">
                             @foreach(['Studio', '1', '2', '3', '4', '5+'] as $val)
-                                <button @click="toggleBedroom('{{ $val }}')" 
+                                <button @click="toggleBedroom('{{ $val }}')"
                                         class="flex items-center justify-center transition-all duration-150 text-[16px] font-medium focus:outline-none {{ $val === 'Studio' ? 'px-6' : 'size-[45px]' }} rounded-full shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] border"
                                         :class="selectedBedrooms.includes('{{ $val }}') ? 'bg-[#1447D4] text-white border-[#1447D4]' : 'bg-white text-[#1E1D1D] border-gray-100 hover:border-[#1447D4]'">
                                     {{ $val }}
@@ -169,7 +169,7 @@
                         <h4 class="text-[18px] font-medium text-[#1E1D1D] mb-4">Bathrooms</h4>
                         <div class="flex flex-wrap gap-3">
                             @foreach(['1', '2', '3', '4', '5+'] as $val)
-                                <button @click="toggleBathroom('{{ $val }}')" 
+                                <button @click="toggleBathroom('{{ $val }}')"
                                         class="flex items-center justify-center transition-all duration-150 text-[16px] font-medium focus:outline-none size-[45px] rounded-full shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] border"
                                         :class="selectedBathrooms.includes('{{ $val }}') ? 'bg-[#1447D4] text-white border-[#1447D4]' : 'bg-white text-[#1E1D1D] border-gray-100 hover:border-[#1447D4]'">
                                     {{ $val }}
@@ -213,17 +213,17 @@
                             <div>
                                 <p class="text-[16px] text-gray-500 mb-2">Minimum Floor</p>
                                 <div class="flex items-center justify-between bg-white border border-gray-200 rounded-lg h-[45px] px-4 shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]">
-                                    <button @click="if(minFloor > 0) minFloor--" class="text-[#1447D4]"><img src="{{ asset('images/remove.svg') }}" class="size-6" alt="-"></button>
+                                    <button @click="if(minFloor > 0) minFloor--" class="text-[#1447D4]"><img src="{{ asset('images/gray_minus.svg') }}" class="size-6" alt="-"></button>
                                     <span x-text="minFloor" class="text-[16px] font-medium text-[#1E1D1D]"></span>
-                                    <button @click="minFloor++" class="text-[#1447D4]"><img src="{{ asset('images/add.svg') }}" class="size-6" alt="+"></button>
+                                    <button @click="minFloor++" class="text-[#1447D4]"><img src="{{ asset('images/gray_plus.svg') }}" class="size-6" alt="+"></button>
                                 </div>
                             </div>
                             <div>
                                 <p class="text-[16px] text-gray-500 mb-2">Maximum Floor</p>
                                 <div class="flex items-center justify-between bg-white border border-gray-200 rounded-lg h-[45px] px-4 shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]">
-                                    <button @click="if(maxFloor > (minFloor || 0)) maxFloor--" class="text-[#1447D4]"><img src="{{ asset('images/remove.svg') }}" class="size-6" alt="-"></button>
+                                    <button @click="if(maxFloor > (minFloor || 0)) maxFloor--" class="text-[#1447D4]"><img src="{{ asset('images/gray_minus.svg') }}" class="size-6" alt="-"></button>
                                     <span x-text="maxFloor || 'Any'" class="text-[16px] font-medium text-gray-400" :class="maxFloor ? 'text-[#1E1D1D]' : ''"></span>
-                                    <button @click="if(!maxFloor) maxFloor = minFloor + 1; else maxFloor++" class="text-[#1447D4]"><img src="{{ asset('images/add.svg') }}" class="size-6" alt="+"></button>
+                                    <button @click="if(!maxFloor) maxFloor = minFloor + 1; else maxFloor++" class="text-[#1447D4]"><img src="{{ asset('images/gray_plus.svg') }}" class="size-6" alt="+"></button>
                                 </div>
                             </div>
                         </div>
