@@ -1,9 +1,40 @@
 <style>
     select { background-image: none !important; }
     [x-cloak] { display: none !important; }
-    input[type=range] { pointer-events: none; -webkit-appearance: none; appearance: none; background: none; }
-    input[type=range]::-webkit-slider-thumb { pointer-events: auto; -webkit-appearance: none; appearance: none; width: 24px; height: 24px; border-radius: 50%; cursor: pointer; }
-    input[type=range]::-moz-range-thumb { pointer-events: auto; width: 24px; height: 24px; border-radius: 50%; cursor: pointer; border: none; }
+    .range-input {
+        -webkit-appearance: none;
+        appearance: none;
+        width: calc(100% + 36px);
+        height: 36px;
+        background: transparent;
+        pointer-events: none;
+        position: absolute;
+        left: -18px;
+        margin: 0;
+        padding: 0;
+    }
+    .range-input::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: rgba(0,0,0,0.01);
+        pointer-events: auto;
+        cursor: grab;
+    }
+    .range-input::-moz-range-thumb {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: rgba(0,0,0,0.01);
+        pointer-events: auto;
+        cursor: grab;
+        border: none;
+    }
+    .range-input:active::-webkit-slider-thumb {
+        cursor: grabbing;
+    }
 </style>
 <x-main-layout title="Hopinhome">
 
@@ -197,12 +228,30 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="relative h-1.5 bg-[#E8E8E7] rounded-full mb-2 mx-3">
-                                            <div class="absolute h-full bg-[#1447D4] rounded-full" :style="`left: ${minPercent}%; right: ${100 - maxPercent}%`"></div>
-                                            <input type="range" x-model.number="minPrice" :min="minRange" :max="maxRange" step="1000" class="absolute h-6 -top-2 opacity-0 cursor-pointer z-40 pointer-events-auto m-0 p-0" style="width: calc(100% + 20px); left: -10px;" @input="if(minPrice > (maxPrice || maxRange)) minPrice = (maxPrice || maxRange)">
-                                            <input type="range" x-model.number="maxPrice" :min="minRange" :max="maxRange" step="1000" class="absolute h-6 -top-2 opacity-0 cursor-pointer z-40 pointer-events-auto m-0 p-0" style="width: calc(100% + 20px); left: -10px;" @input="if(!maxPrice) maxPrice = maxRange; if(maxPrice < minPrice) maxPrice = minPrice">
-                                            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 size-5 bg-white border-2 border-[#1447D4] rounded-full pointer-events-none shadow-sm transition-transform" :class="minPrice > (maxRange/2) ? 'z-30' : 'z-20'" :style="`left: ${minPercent}%`"></div>
-                                            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 size-5 bg-white border-2 border-[#1447D4] rounded-full pointer-events-none shadow-sm transition-transform" :class="minPrice > (maxRange/2) ? 'z-20' : 'z-30'" :style="`left: ${maxPercent}%`"></div>
+                                        <div class="relative h-[36px] flex items-center mx-3 mb-2"
+                                             @mousemove="getNearestPriceThumb($event)"
+                                             @mousedown="getNearestPriceThumb($event)"
+                                             @touchstart="getNearestPriceThumb($event)">
+                                            <!-- Visual Track Background -->
+                                            <div class="absolute w-full h-1.5 bg-[#E8E8E7] rounded-full"></div>
+
+                                            <!-- Visual Track Active -->
+                                            <div class="absolute h-1.5 bg-[#1447D4] rounded-full z-[39]" :style="`left: ${minPercent}%; right: ${100 - maxPercent}%`"></div>
+
+                                            <!-- Invisible Range Inputs -->
+                                            <input type="range" x-model.number="minPrice" :min="minRange" :max="maxRange" step="1000"
+                                                class="range-input opacity-0"
+                                                :class="priceLastMoved === 'min' ? 'z-[41]' : 'z-[40]'"
+                                                @input="if(minPrice > (maxPrice || maxRange)) minPrice = (maxPrice || maxRange)">
+
+                                            <input type="range" x-model.number="maxPrice" :min="minRange" :max="maxRange" step="1000"
+                                                class="range-input opacity-0"
+                                                :class="priceLastMoved === 'max' ? 'z-[41]' : 'z-[40]'"
+                                                @input="if(!maxPrice) maxPrice = maxRange; if(maxPrice < minPrice) maxPrice = minPrice">
+
+                                            <!-- Visual Thumbs -->
+                                            <div class="absolute -translate-x-1/2 size-5 bg-white border-2 border-[#1447D4] rounded-full pointer-events-none shadow-sm z-[42]" :style="`left: ${minPercent}%`"></div>
+                                            <div class="absolute -translate-x-1/2 size-5 bg-white border-2 border-[#1447D4] rounded-full pointer-events-none shadow-sm z-[42]" :style="`left: ${maxPercent}%`"></div>
                                         </div>
                                     </div>
                                 </div>
