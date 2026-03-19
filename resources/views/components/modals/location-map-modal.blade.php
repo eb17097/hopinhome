@@ -1,6 +1,6 @@
 @props(['listing'])
 
-<x-modal name="location-map" maxWidth="max-w-[1204px]" class="!rounded-[14px]">
+<x-modal name="location-map" maxWidth="max-w-[calc(100%-80px)]" class="!rounded-[14px]">
     <div x-data="{
         map: null,
         initModalMap() {
@@ -50,9 +50,9 @@
         </div>
 
         {{-- Modal Content --}}
-        <div class="p-[20px] h-[calc(100%-65px)]">
+        <div class="p-[20px]">
             <div class="relative w-full h-full rounded-[8px] overflow-hidden shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)]">
-                <div x-ref="modalMap" class="w-full h-full bg-gray-50"></div>
+                <div x-ref="modalMap" class="w-full h-[624px] bg-gray-50"></div>
 
                 {{-- Map Internal Close Button --}}
                 <div class="absolute top-3 right-3">
