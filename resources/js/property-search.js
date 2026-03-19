@@ -2,7 +2,7 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('propertySearch', (config = {}) => {
         // Start with the base location logic
         const base = window.locationSearchLogic(config.initialLocation || '', config.icons || {});
-        
+
         // Add Property Search State
         base.selectedPropertyTypes = config.selectedPropertyTypes || [];
         base.selectedBedrooms = config.selectedBedrooms || [];
@@ -15,15 +15,15 @@ document.addEventListener('alpine:init', () => {
         // New Filter States
         base.utilities = 'Included';
         base.rentalPeriod = 'Yearly';
-        base.selectedBathrooms = ['1', '2'];
+        base.selectedBathrooms = [];
         base.minArea = 500;
         base.maxArea = 10000;
         base.minAreaRange = 0;
         base.maxAreaRange = 10000;
-        base.minFloor = 4;
+        base.minFloor = null;
         base.maxFloor = null;
-        base.selectedFeatures = ['high-speed-internet', 'laundry-room'];
-        base.selectedAmenities = ['free-parking', 'elevator', 'swimming-pool', 'concierge-service'];
+        base.selectedFeatures = [];
+        base.selectedAmenities = [];
 
         // Wrap the init method
         const originalInit = base.init;
@@ -37,11 +37,11 @@ document.addEventListener('alpine:init', () => {
             let typeSlug = this.selectedPropertyTypes.length > 0 ? this.selectedPropertyTypes.map(t => this.slugify(t)).join(',') : 'all';
             let bedSlug = this.selectedBedrooms.length > 0 ? this.selectedBedrooms.join(',') : 'all';
             let url = `/listings/search/${locSlug}/${typeSlug}/${bedSlug}`;
-            
+
             let params = new URLSearchParams();
             if (this.minPrice > this.minRange) params.append('min_price', this.minPrice);
             if (this.maxPrice < this.maxRange) params.append('max_price', this.maxPrice);
-            
+
             // Add new filter params
             if (this.utilities) params.append('utilities', this.utilities);
             if (this.rentalPeriod) params.append('rental_period', this.rentalPeriod);
@@ -52,7 +52,7 @@ document.addEventListener('alpine:init', () => {
             if (this.maxFloor) params.append('max_floor', this.maxFloor);
             if (this.selectedFeatures.length > 0) params.append('features', this.selectedFeatures.join(','));
             if (this.selectedAmenities.length > 0) params.append('amenities', this.selectedAmenities.join(','));
-            
+
             let queryString = params.toString();
             if (queryString) url += '?' + queryString;
             window.location.href = url;
@@ -122,7 +122,7 @@ document.addEventListener('alpine:init', () => {
         Object.defineProperty(base, 'displayPropertyTypes', {
             get() {
                 if (this.selectedPropertyTypes.length === 0) return 'Property type';
-                return this.selectedPropertyTypes.map(t => 
+                return this.selectedPropertyTypes.map(t =>
                     t.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
                 ).join(', ');
             },
@@ -132,7 +132,7 @@ document.addEventListener('alpine:init', () => {
         Object.defineProperty(base, 'formattedBedrooms', {
             get() {
                 if (this.selectedBedrooms.length === 0) return 'Bedrooms';
-                let sorted = [...this.selectedBedrooms].sort((a, b) => 
+                let sorted = [...this.selectedBedrooms].sort((a, b) =>
                     (a === 'Studio' ? -1 : (b === 'Studio' ? 1 : parseInt(a) - parseInt(b)))
                 );
                 let studio = sorted.filter(v => v === 'Studio');
