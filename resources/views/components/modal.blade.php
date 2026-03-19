@@ -46,7 +46,7 @@ $maxWidth = [
     x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
     x-on:keydown.shift.tab.prevent="prevFocusable().focus()"
     x-show="show"
-    class="fixed inset-0 overflow-y-auto z-50"
+    class="fixed inset-0 overflow-y-auto z-[99]"
     style="display: {{ $show ? 'block' : 'none' }};"
     {{ $attributes->whereDoesntStartWith('class') }}
 >
@@ -67,7 +67,7 @@ $maxWidth = [
     <div class="flex items-center justify-center min-h-screen px-4 py-6 text-center sm:p-0">
         <div
             x-show="show"
-            class="inline-block align-middle bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full {{ $maxWidth }} {{ $attributes->get('class') }}"
+            class="z-[99] inline-block align-middle bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full {{ $maxWidth }} {{ $attributes->get('class') }}"
             x-transition:enter="ease-out duration-300"
             x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"

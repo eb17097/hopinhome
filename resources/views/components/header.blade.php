@@ -8,7 +8,7 @@
     showUserDropdown: false
 }"
 @scroll.window="scrolled = window.scrollY > 50"
-class="z-[61] {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
+class="z-[50] {{ $isLanding ? 'fixed top-0 left-0 right-0' : 'sticky top-0' }}">
 
     <nav :class="{
             'bg-white border-b border-[#e8e8e7]': scrolled || showGlobalMenu || !@json($isLanding),

@@ -194,7 +194,7 @@
             this.selectedBedrooms.push(val);
         }
     }
-}" class="bg-white py-[32px] shadow-sm relative z-[60]">
+}" class="bg-white py-[32px] shadow-sm relative z-[30]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-lg font-medium text-gray-900 mb-[16px]">Search & Filters</div>
         <div class="flex flex-wrap gap-3 items-center">
