@@ -204,7 +204,7 @@
                                 :class="openFilter === 'location' ? 'border-[#1447D4] rounded-t-[6px] border-b-transparent shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
                                 @click.stop="$refs.locationInput.focus()"
                             >
-                                <img src="{{ asset('images/location_on.svg') }}" class="size-[20px] opacity-70" alt="Location">
+                                <img src="{{ asset('images/location_on.svg') }}" class="h-[23px] w-[23px]" alt="Location">
 
                                 <div class="flex items-center gap-[8px] flex-grow overflow-hidden">
                                     {{-- Selected Location Tag --}}
@@ -221,7 +221,7 @@
                                         x-model="locationQuery"
                                         @focus="openFilter = 'location'"
                                         placeholder="Enter City or Location"
-                                        class="flex-grow min-w-0 bg-transparent border-none focus:ring-0 p-0 text-[16px] text-[#1E1D1D] placeholder-[#707070] font-normal"
+                                        class="flex-grow min-w-0 bg-transparent border-none focus:ring-0 p-0 placeholder-[#464646] placeholder-opacity-100 text-[18px] text-[#1E1D1D] placeholder-[#707070] font-normal"
                                     >
                                 </div>
                             </div>
@@ -255,8 +255,8 @@
                         </div>
 
                         {{-- Search Button --}}
-                        <button type="submit" class="bg-[#1447D4] text-white h-[48px] rounded-[6px] font-medium text-[16px] flex items-center justify-center gap-2 hover:bg-[#0F36A9] transition-all w-full">
-                            <img src="{{ asset('images/search.svg') }}" class="size-[18px] brightness-0 invert" alt="Search">
+                        <button type="submit" class="bg-[#1447D4] text-[#F9F9F8] h-[48px] rounded-[6px] font-normal text-[18px] flex items-center justify-center gap-2 hover:bg-[#0F36A9] transition-all w-full">
+                            <img src="{{ asset('images/search.svg') }}" class="size-[18px]" alt="Search">
                             <span>Search properties</span>
                         </button>
                     </div>
@@ -266,9 +266,9 @@
                         {{-- Property Type --}}
                         <div class="relative" :style="openFilter === 'propertyType' ? 'filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.06)) drop-shadow(0 2px 4px rgba(0,0,0,0.02))' : ''">
                             <div @click.stop="openFilter = openFilter === 'propertyType' ? null : 'propertyType'"
-                                class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200 select-none"
+                                class="relative z-20 w-full h-[51px] px-[18px] py-[14px] bg-white border border-[#E8E8E7] flex items-center justify-between cursor-pointer transition-all duration-200 select-none"
                                 :class="openFilter === 'propertyType' ? 'rounded-t-[6px] border-b-white shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'">
-                                <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="displayPropertyTypes"></span>
+                                <span class="text-[18px] text-[#464646] leading-[1.3] truncate font-normal" x-text="displayPropertyTypes"></span>
                                 <img src="{{ asset('images/chevron.svg') }}" class="h-[23px] w-[23px] opacity-60 transition-transform duration-200" :class="openFilter === 'propertyType' ? 'rotate-180' : ''" alt="">
                             </div>
                             <template x-if="openFilter === 'propertyType'">
@@ -300,9 +300,9 @@
                         {{-- Bedrooms --}}
                         <div class="relative" :style="openFilter === 'bedrooms' ? 'filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.06)) drop-shadow(0 2px 4px rgba(0,0,0,0.02))' : ''">
                             <div @click.stop="openFilter = openFilter === 'bedrooms' ? null : 'bedrooms'"
-                                class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200 select-none"
+                                class="relative z-20 w-full h-[51px] px-[18px] py-[14px] bg-white border border-[#E8E8E7] flex items-center justify-between cursor-pointer transition-all duration-200 select-none"
                                 :class="openFilter === 'bedrooms' ? 'rounded-t-[6px] border-b-white shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'">
-                                <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="formattedBedrooms"></span>
+                                <span class="text-[18px] text-[#464646] truncate font-normal" x-text="formattedBedrooms"></span>
                                 <img src="{{ asset('images/chevron.svg') }}" class="h-[23px] w-[23px] opacity-60 transition-transform duration-200" :class="openFilter === 'bedrooms' ? 'rotate-180' : ''" alt="">
                             </div>
                             <template x-if="openFilter === 'bedrooms'">
@@ -324,9 +324,9 @@
                         {{-- Price --}}
                         <div class="relative" :style="openFilter === 'price' ? 'filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.06)) drop-shadow(0 2px 4px rgba(0,0,0,0.02))' : ''">
                             <div @click.stop="openFilter = openFilter === 'price' ? null : 'price'"
-                                class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200 select-none"
+                                class="relative z-20 w-full h-[51px] px-[18px] py-[14px] bg-white border border-[#E8E8E7] flex items-center justify-between cursor-pointer transition-all duration-200 select-none"
                                 :class="openFilter === 'price' ? 'rounded-t-[6px] border-b-white shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'">
-                                <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="formattedPrice"></span>
+                                <span class="text-[18px] text-[#464646] truncate font-normal" x-text="formattedPrice"></span>
                                 <img src="{{ asset('images/chevron.svg') }}" class="h-[23px] w-[23px] opacity-60 transition-transform duration-200" :class="openFilter === 'price' ? 'rotate-180' : ''" alt="">
                             </div>
                             <template x-if="openFilter === 'price'">
