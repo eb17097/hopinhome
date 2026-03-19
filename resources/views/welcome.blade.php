@@ -269,7 +269,7 @@
                                 class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200 select-none"
                                 :class="openFilter === 'propertyType' ? 'rounded-t-[6px] border-b-white shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'">
                                 <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="displayPropertyTypes"></span>
-                                <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform duration-200" :class="openFilter === 'propertyType' ? 'rotate-180' : ''" alt="">
+                                <img src="{{ asset('images/chevron.svg') }}" class="h-[23px] w-[23px] opacity-60 transition-transform duration-200" :class="openFilter === 'propertyType' ? 'rotate-180' : ''" alt="">
                             </div>
                             <template x-if="openFilter === 'propertyType'">
                                 <div class="absolute top-0 left-0 w-full">
@@ -303,7 +303,7 @@
                                 class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200 select-none"
                                 :class="openFilter === 'bedrooms' ? 'rounded-t-[6px] border-b-white shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'">
                                 <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="formattedBedrooms"></span>
-                                <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform duration-200" :class="openFilter === 'bedrooms' ? 'rotate-180' : ''" alt="">
+                                <img src="{{ asset('images/chevron.svg') }}" class="h-[23px] w-[23px] opacity-60 transition-transform duration-200" :class="openFilter === 'bedrooms' ? 'rotate-180' : ''" alt="">
                             </div>
                             <template x-if="openFilter === 'bedrooms'">
                                 <div class="absolute top-0 left-0 w-full">
@@ -327,7 +327,7 @@
                                 class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center justify-between px-[16px] cursor-pointer transition-all duration-200 select-none"
                                 :class="openFilter === 'price' ? 'rounded-t-[6px] border-b-white shadow-none' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'">
                                 <span class="text-[16px] text-[#1E1D1D] truncate font-normal" x-text="formattedPrice"></span>
-                                <img src="{{ asset('images/chevron.svg') }}" class="size-[16px] opacity-60 transition-transform duration-200" :class="openFilter === 'price' ? 'rotate-180' : ''" alt="">
+                                <img src="{{ asset('images/chevron.svg') }}" class="h-[23px] w-[23px] opacity-60 transition-transform duration-200" :class="openFilter === 'price' ? 'rotate-180' : ''" alt="">
                             </div>
                             <template x-if="openFilter === 'price'">
                                 <div class="absolute top-0 left-0 w-full">
