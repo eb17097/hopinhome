@@ -30,20 +30,18 @@ document.addEventListener('alpine:init', () => {
 
         base.getNearestPriceThumb = function(e) {
             const rect = e.currentTarget.getBoundingClientRect();
-            const touch = e.touches ? e.touches[0] : e;
+            const touch = (e.touches && e.touches[0]) || e;
             const pointerX = ((touch.clientX - rect.left) / rect.width) * 100;
-            const distMin = Math.abs(pointerX - this.minPercent);
-            const distMax = Math.abs(pointerX - this.maxPercent);
-            this.priceLastMoved = distMin < distMax ? 'min' : 'max';
+            const midpoint = (this.minPercent + this.maxPercent) / 2;
+            this.priceLastMoved = pointerX < midpoint ? 'min' : 'max';
         };
 
         base.getNearestAreaThumb = function(e) {
             const rect = e.currentTarget.getBoundingClientRect();
-            const touch = e.touches ? e.touches[0] : e;
+            const touch = (e.touches && e.touches[0]) || e;
             const pointerX = ((touch.clientX - rect.left) / rect.width) * 100;
-            const distMin = Math.abs(pointerX - this.minAreaPercent);
-            const distMax = Math.abs(pointerX - this.maxAreaPercent);
-            this.areaLastMoved = distMin < distMax ? 'min' : 'max';
+            const midpoint = (this.minAreaPercent + this.maxAreaPercent) / 2;
+            this.areaLastMoved = pointerX < midpoint ? 'min' : 'max';
         };
 
         // Wrap the init method

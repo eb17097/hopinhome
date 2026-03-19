@@ -12,34 +12,32 @@
             .range-input {
                 -webkit-appearance: none;
                 appearance: none;
-                width: calc(100% + 44px);
-                height: 44px;
+                width: 100%;
+                height: 36px;
                 background: transparent;
                 pointer-events: none;
                 position: absolute;
-                left: -22px;
                 margin: 0;
                 padding: 0;
             }
             .range-input::-webkit-slider-thumb {
                 -webkit-appearance: none;
                 appearance: none;
-                width: 44px;
-                height: 44px;
+                width: 36px;
+                height: 36px;
                 border-radius: 50%;
-                background: black;
+                background-color: rgba(0,0,0,0.01);
                 pointer-events: auto;
                 cursor: grab;
             }
             .range-input::-moz-range-thumb {
-                width: 44px;
-                height: 44px;
+                width: 36px;
+                height: 36px;
                 border-radius: 50%;
-                background: black;
+                background-color: rgba(0,0,0,0.01);
                 pointer-events: auto;
                 cursor: grab;
                 border: none;
-                background: none;
             }
             .range-input:active::-webkit-slider-thumb {
                 cursor: grabbing;
@@ -177,26 +175,27 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="relative h-[44px] flex items-center mx-2 mt-4 mb-4" 
-                             @mousemove="getNearestPriceThumb($event)" 
+                        <div class="relative h-[36px] flex items-center mx-2 mt-4 mb-4"
+                             @mousemove="getNearestPriceThumb($event)"
+                             @mousedown="getNearestPriceThumb($event)"
                              @touchstart="getNearestPriceThumb($event)">
                             <!-- Visual Track Background -->
                             <div class="absolute w-full h-1.5 bg-gray-200 rounded-full"></div>
-                            
+
                             <!-- Visual Track Active -->
                             <div class="absolute h-1.5 bg-[#1447D4] rounded-full z-[39]" :style="`left: ${minPercent}%; right: ${100 - maxPercent}%`"></div>
-                            
+
                             <!-- Invisible Range Inputs -->
-                            <input type="range" x-model.number="minPrice" :min="minRange" :max="maxRange" step="1000" 
+                            <input type="range" x-model.number="minPrice" :min="minRange" :max="maxRange" step="1000"
                                 class="range-input opacity-0"
                                 :class="priceLastMoved === 'min' ? 'z-[41]' : 'z-[40]'"
                                 @input="if(minPrice > (maxPrice || maxRange)) minPrice = (maxPrice || maxRange)">
-                            
-                            <input type="range" x-model.number="maxPrice" :min="minRange" :max="maxRange" step="1000" 
+
+                            <input type="range" x-model.number="maxPrice" :min="minRange" :max="maxRange" step="1000"
                                 class="range-input opacity-0"
                                 :class="priceLastMoved === 'max' ? 'z-[41]' : 'z-[40]'"
                                 @input="if(!maxPrice) maxPrice = maxRange; if(maxPrice < minPrice) maxPrice = minPrice">
-                            
+
                             <!-- Visual Thumbs -->
                             <div class="absolute -translate-x-1/2 size-6 bg-white border-2 border-[#1447D4] rounded-full pointer-events-none shadow-sm z-[42]" :style="`left: ${minPercent}%`"></div>
                             <div class="absolute -translate-x-1/2 size-6 bg-white border-2 border-[#1447D4] rounded-full pointer-events-none shadow-sm z-[42]" :style="`left: ${maxPercent}%`"></div>
@@ -250,26 +249,27 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="relative h-[44px] flex items-center mx-2 mt-4 mb-4" 
-                             @mousemove="getNearestAreaThumb($event)" 
+                        <div class="relative h-[36px] flex items-center mx-2 mt-4 mb-4"
+                             @mousemove="getNearestAreaThumb($event)"
+                             @mousedown="getNearestAreaThumb($event)"
                              @touchstart="getNearestAreaThumb($event)">
                             <!-- Visual Track Background -->
                             <div class="absolute w-full h-1.5 bg-gray-200 rounded-full"></div>
-                            
+
                             <!-- Visual Track Active -->
                             <div class="absolute h-1.5 bg-[#1447D4] rounded-full z-[39]" :style="`left: ${minAreaPercent}%; right: ${100 - maxAreaPercent}%`"></div>
-                            
+
                             <!-- Invisible Range Inputs -->
-                            <input type="range" x-model.number="minArea" :min="minAreaRange" :max="maxAreaRange" step="50" 
+                            <input type="range" x-model.number="minArea" :min="minAreaRange" :max="maxAreaRange" step="50"
                                 class="range-input opacity-0"
                                 :class="areaLastMoved === 'min' ? 'z-[41]' : 'z-[40]'"
                                 @input="if(minArea > (maxArea || maxAreaRange)) minArea = (maxArea || maxAreaRange)">
-                            
-                            <input type="range" x-model.number="maxArea" :min="minAreaRange" :max="maxAreaRange" step="50" 
+
+                            <input type="range" x-model.number="maxArea" :min="minAreaRange" :max="maxAreaRange" step="50"
                                 class="range-input opacity-0"
                                 :class="areaLastMoved === 'max' ? 'z-[41]' : 'z-[40]'"
                                 @input="if(!maxArea) maxArea = maxAreaRange; if(maxArea < minArea) maxArea = minArea">
-                            
+
                             <!-- Visual Thumbs -->
                             <div class="absolute -translate-x-1/2 size-6 bg-white border-2 border-[#1447D4] rounded-full pointer-events-none shadow-sm z-[42]" :style="`left: ${minAreaPercent}%`"></div>
                             <div class="absolute -translate-x-1/2 size-6 bg-white border-2 border-[#1447D4] rounded-full pointer-events-none shadow-sm z-[42]" :style="`left: ${maxAreaPercent}%`"></div>
