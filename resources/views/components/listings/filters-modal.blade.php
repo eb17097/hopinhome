@@ -12,11 +12,12 @@
             .range-input {
                 -webkit-appearance: none;
                 appearance: none;
-                width: 100%;
+                width: calc(100% + 36px);
                 height: 36px;
                 background: transparent;
                 pointer-events: none;
                 position: absolute;
+                left: -18px;
                 margin: 0;
                 padding: 0;
             }
