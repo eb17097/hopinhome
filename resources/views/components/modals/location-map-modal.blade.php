@@ -1,6 +1,6 @@
 @props(['listing'])
 
-<x-modal name="location-map" maxWidth="max-w-[calc(100%-80px)]" class="!rounded-[14px]">
+<x-modal name="location-map" maxWidth="max-w-[calc(100%-80px)]" class="!rounded-[14px] my-[40px]">
     <div x-data="{
         map: null,
         initModalMap() {
