@@ -2,21 +2,75 @@
     <h3 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] mb-2">Where is your property located?</h3>
     <p class="text-[16px] text-[#464646] mb-8">Enter the address of your property.</p>
 
-    <div class="space-y-[20px]">
+    <div class="space-y-[20px]" x-data="locationSearch({ 
+        initialLocation: formData.address, 
+        icons: {
+            world: '{{ asset('images/world_one.svg') }}',
+            downtown: '{{ asset('images/downtown_loc.svg') }}',
+            location: '{{ asset('images/location_loc.svg') }}',
+            street: '{{ asset('images/street_loc.svg') }}'
+        }
+    })">
         {{-- Address Input with Autocomplete --}}
         <div>
             <label for="address-input" class="block text-[14px] font-medium text-[#1e1d1d] mb-[6px]">Address</label>
             <div class="relative">
-                <input
-                    type="text"
-                    id="address-input"
-                    x-model="formData.address"
-                    name="address"
-                    class="w-full px-4 py-3 border border-[#e8e8e7] rounded-[6px] focus:ring-2 focus:ring-[#1447d4] focus:border-transparent transition-all outline-none text-[16px]"
-                    placeholder="Enter full address"
+                {{-- Trigger Container --}}
+                <div
+                    class="relative z-20 w-full h-[48px] bg-white border border-[#E8E8E7] flex items-center px-[12px] gap-[8px] cursor-text transition-all duration-200"
+                    :class="openFilter === 'location' ? 'border-[#1447D4] rounded-t-[6px] border-b-transparent' : 'rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]'"
+                    @click.stop="$refs.locationInput.focus()"
                 >
-                <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none opacity-40">
-                    <img src="{{ asset('images/search.svg') }}" class="w-5 h-5" alt="">
+                    <img src="{{ asset('images/location_on.svg') }}" class="h-[23px] w-[23px] opacity-40" alt="Location">
+
+                    <div class="flex items-center gap-[8px] flex-grow overflow-hidden">
+                        {{-- Selected Location Tag (Optional, but keeping for consistency if preferred) --}}
+                        <div x-show="location" x-cloak class="flex items-center gap-2 bg-[#F9F9F8] border border-[#E8E8E7] rounded-[4px] px-2 py-1 h-[32px] min-w-0">
+                            <span class="text-[14px] text-[#464646] font-normal truncate block min-w-0" x-text="location"></span>
+                            <button type="button" @click.stop="location = ''; locationQuery = ''; formData.address = ''" class="flex items-center justify-center hover:bg-gray-200 rounded-[2px] size-5 transition-colors shrink-0">
+                                <img src="{{ asset('images/close.svg') }}" class="h-[14px] w-[14px] opacity-60" alt="Clear">
+                            </button>
+                        </div>
+
+                        <input
+                            x-ref="locationInput"
+                            id="address-input"
+                            type="text"
+                            x-model="locationQuery"
+                            @focus="openFilter = 'location'"
+                            placeholder="Enter full address"
+                            class="flex-grow min-w-0 bg-transparent border-none focus:ring-0 p-0 placeholder-[#464646] text-[16px] text-[#1E1D1D] font-normal"
+                        >
+                    </div>
+                </div>
+
+                {{-- Unified Dropdown Panel --}}
+                <div x-show="openFilter === 'location'"
+                     x-transition:enter="transition ease-out duration-100"
+                     x-transition:enter-start="opacity-0 scale-95"
+                     x-transition:enter-end="opacity-100 scale-100"
+                     class="absolute top-full left-0 w-full bg-white overflow-hidden border border-[#E8E8E7] rounded-b-[10px] z-30 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)]"
+                     @click.stop
+                     @click.away="openFilter = null"
+                     x-cloak
+                >
+                    <div class="py-2">
+                        <template x-for="loc in filteredLocations" :key="loc.id">
+                            <div class="flex items-center py-2 px-3 gap-3 hover:bg-[#F9F9F8] cursor-pointer transition-colors"
+                                 @click="selectLocation(loc); handleLocationSelect(loc)">
+                                <div class="shrink-0">
+                                    <img :src="loc.icon" class="size-[40px]" alt="">
+                                </div>
+                                <div>
+                                    <p class="text-[14px] font-medium text-[#1E1D1D]" x-text="loc.name"></p>
+                                    <p class="text-[12px] text-[#707070]" x-text="loc.area"></p>
+                                </div>
+                            </div>
+                        </template>
+                        <div x-show="filteredLocations.length === 0" class="py-4 px-3 text-center text-[#707070] text-[14px]">
+                            No locations found
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -80,26 +134,36 @@
                 updateLocation(pos.lat(), pos.lng());
                 reverseGeocode(pos);
             });
+        }
 
-            const input = document.getElementById("address-input");
-            autocomplete = new google.maps.places.Autocomplete(input, {
-                fields: ["formatted_address", "geometry"],
-                componentRestrictions: { country: "ae" }
-            });
+        /**
+         * Bridge function: Called by the Alpine dropdown (selectLocation)
+         * to update the Map and Marker.
+         */
+        function handleLocationSelect(loc) {
+            if (!loc || !map || !marker) return;
 
-            autocomplete.addListener("place_changed", () => {
-                const place = autocomplete.getPlace();
-                if (!place.geometry || !place.geometry.location) return;
+            const geocoder = new google.maps.Geocoder();
+            // We search by the specific ID if available, or name/area string
+            const request = loc.id && !loc.id.startsWith('rcn-') 
+                ? { placeId: loc.id } 
+                : { address: loc.name + (loc.area ? ', ' + loc.area : '') };
 
-                map.setCenter(place.geometry.location);
-                map.setZoom(17);
-                marker.setPosition(place.geometry.location);
+            geocoder.geocode(request, (results, status) => {
+                if (status === "OK" && results[0]) {
+                    const place = results[0];
+                    if (!place.geometry || !place.geometry.location) return;
 
-                updateLocation(
-                    place.geometry.location.lat(),
-                    place.geometry.location.lng(),
-                    place.formatted_address
-                );
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(17);
+                    marker.setPosition(place.geometry.location);
+
+                    updateLocation(
+                        place.geometry.location.lat(),
+                        place.geometry.location.lng(),
+                        place.formatted_address
+                    );
+                }
             });
         }
 
