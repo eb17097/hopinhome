@@ -64,6 +64,9 @@ window.locationSearchLogic = (initialLocation = '', defaultIcons = {}) => ({
     },
 
     fetchPredictions(query) {
+        if (!this.autocompleteService && window.google && window.google.maps && window.google.maps.places) {
+            this.autocompleteService = new google.maps.places.AutocompleteService();
+        }
         if (!this.autocompleteService) return;
         this.autocompleteService.getPlacePredictions({
             input: query,
