@@ -41,7 +41,21 @@ class ListingSearchController extends Controller
             $query->whereIn('bedrooms', $bedValues);
         }
 
-        // 4. Price (Query only)
+        // 4. Bathrooms (Query only)
+        if ($request->filled('bathrooms')) {
+            $bathValues = explode(',', $request->query('bathrooms'));
+            $query->where(function($q) use ($bathValues) {
+                foreach ($bathValues as $val) {
+                    if ($val === '5+') {
+                        $q->orWhere('bathrooms', '>=', 5);
+                    } else {
+                        $q->orWhere('bathrooms', $val);
+                    }
+                }
+            });
+        }
+
+        // 5. Price (Query only)
         if ($request->filled('min_price')) {
             $query->where('price', '>=', $request->min_price);
         }

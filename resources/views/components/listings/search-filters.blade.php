@@ -14,6 +14,8 @@
 
     $currentBedrooms = request()->route('bedrooms') ? explode(',', request()->route('bedrooms')) : request('bedrooms', []);
     $currentBedrooms = array_filter($currentBedrooms, fn($b) => $b !== 'all');
+
+    $currentBathrooms = request('bathrooms') ? explode(',', request('bathrooms')) : [];
 @endphp
 
 <style>
@@ -58,6 +60,7 @@
     initialLocation: '{{ $currentLocation }}',
     selectedPropertyTypes: @js($currentPropertyTypes),
     selectedBedrooms: @js($currentBedrooms),
+    selectedBathrooms: @js($currentBathrooms),
     minPrice: {{ request('min_price', 0) }},
     maxPrice: {{ request('max_price', $maxListingPrice ?? 1000000) }},
     maxRange: {{ $maxListingPrice ?? 1000000 }},

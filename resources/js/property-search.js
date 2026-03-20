@@ -15,7 +15,7 @@ document.addEventListener('alpine:init', () => {
         // New Filter States
         base.utilities = 'Included';
         base.rentalPeriod = 'Yearly';
-        base.selectedBathrooms = [];
+        base.selectedBathrooms = config.selectedBathrooms || [];
         base.minArea = 500;
         base.maxArea = 10000;
         base.minAreaRange = 0;
