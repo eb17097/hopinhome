@@ -326,7 +326,7 @@ class ListingController extends Controller
             $featureSlugs = is_array($request->features) ? $request->features : explode(',', $request->features);
             foreach ($featureSlugs as $slug) {
                 $query->whereHas('features', function($q) use ($slug) {
-                    $q->where('name', 'like', '%' . str_replace('-', ' ', $slug) . '%');
+                    $q->whereRaw("LOWER(REPLACE(name, ' ', '-')) = ?", [$slug]);
                 });
             }
         }
@@ -335,7 +335,7 @@ class ListingController extends Controller
             $amenitySlugs = is_array($request->amenities) ? $request->amenities : explode(',', $request->amenities);
             foreach ($amenitySlugs as $slug) {
                 $query->whereHas('amenities', function($q) use ($slug) {
-                    $q->where('name', 'like', '%' . str_replace('-', ' ', $slug) . '%');
+                    $q->whereRaw("LOWER(REPLACE(name, ' ', '-')) = ?", [$slug]);
                 });
             }
         }

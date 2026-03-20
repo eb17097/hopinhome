@@ -84,7 +84,7 @@ class ListingSearchController extends Controller
             $featureSlugs = explode(',', $request->query('features'));
             foreach ($featureSlugs as $slug) {
                 $query->whereHas('features', function($q) use ($slug) {
-                    $q->where('name', 'like', '%' . str_replace('-', ' ', $slug) . '%');
+                    $q->whereRaw("LOWER(REPLACE(name, ' ', '-')) = ?", [$slug]);
                 });
             }
         }
@@ -94,7 +94,7 @@ class ListingSearchController extends Controller
             $amenitySlugs = explode(',', $request->query('amenities'));
             foreach ($amenitySlugs as $slug) {
                 $query->whereHas('amenities', function($q) use ($slug) {
-                    $q->where('name', 'like', '%' . str_replace('-', ' ', $slug) . '%');
+                    $q->whereRaw("LOWER(REPLACE(name, ' ', '-')) = ?", [$slug]);
                 });
             }
         }
