@@ -1,3 +1,5 @@
+@props(['maxListingPrice' => 1000000])
+
 @php
     $currentLocation = request()->route('location') ?: request('location', '');
     if ($currentLocation === 'all') {
