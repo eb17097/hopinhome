@@ -1,10 +1,10 @@
 <div x-data="{ activeAccordion: 1 }">
-    <h3 class="text-[32px] font-medium text-black tracking-[-0.64px] leading-[1.28] mb-[24px]">Frequently asked questions</h3>
+    <h3 class="text-[32px] font-medium text-[#1E1D1D] tracking-[-0.64px] leading-[1.28] mb-[24px]">Frequently asked questions</h3>
 
     <div class="border-t border-gray-200">
         <div class="border-b border-gray-200">
             <button @click="activeAccordion = activeAccordion === 1 ? null : 1" class="flex justify-between items-center w-full py-5 text-left focus:outline-none">
-                <span class="text-gray-900 font-medium">How much does it cost to rent an apartment in Dubai?</span>
+                <span class="text-[#1E1D1D] font-medium leading-[1.28] tracking-[-0.36px] text-[18px]">How much does it cost to rent an apartment in Dubai?</span>
                 <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" :class="activeAccordion === 1 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </button>
             <div x-show="activeAccordion === 1" x-collapse class="pb-5 text-gray-500 leading-relaxed text-sm">
@@ -14,7 +14,7 @@
 
         <div class="border-b border-gray-200">
             <button @click="activeAccordion = activeAccordion === 2 ? null : 2" class="flex justify-between items-center w-full py-5 text-left focus:outline-none">
-                <span class="text-gray-900 font-medium">Is it better to rent a furnished or unfurnished apartment?</span>
+                <span class="text-[#1E1D1D] font-medium leading-[1.28] tracking-[-0.36px] text-[18px]">Is it better to rent a furnished or unfurnished apartment?</span>
                 <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" :class="activeAccordion === 2 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </button>
             <div x-show="activeAccordion === 2" x-collapse class="pb-5 text-gray-500 leading-relaxed text-sm">
@@ -24,7 +24,7 @@
 
         <div class="border-b border-gray-200">
             <button @click="activeAccordion = activeAccordion === 3 ? null : 3" class="flex justify-between items-center w-full py-5 text-left focus:outline-none">
-                <span class="text-gray-900 font-medium">What documents are required to rent an apartment in Dubai?</span>
+                <span class="text-[#1E1D1D] font-medium leading-[1.28] tracking-[-0.36px] text-[18px]">What documents are required to rent an apartment in Dubai?</span>
                 <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" :class="activeAccordion === 3 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </button>
             <div x-show="activeAccordion === 3" x-collapse class="pb-5 text-gray-500 leading-relaxed text-sm">
@@ -34,7 +34,7 @@
 
         <div class="border-b border-gray-200">
             <button @click="activeAccordion = activeAccordion === 4 ? null : 4" class="flex justify-between items-center w-full py-5 text-left focus:outline-none">
-                <span class="text-gray-900 font-medium">Are utility bills included in the rent?</span>
+                <span class="text-[#1E1D1D] font-medium leading-[1.28] tracking-[-0.36px] text-[18px]">Are utility bills included in the rent?</span>
                 <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" :class="activeAccordion === 4 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </button>
             <div x-show="activeAccordion === 4" x-collapse class="pb-5 text-gray-500 leading-relaxed text-sm">
