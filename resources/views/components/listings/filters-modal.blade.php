@@ -1,3 +1,4 @@
+@props(['allFeatures' => collect(), 'allAmenities' => collect()])
 <template x-teleport="body">
     <div 
         x-show="isModalOpen" 
@@ -346,26 +347,17 @@
                             <span x-show="selectedFeatures.length > 0" x-text="selectedFeatures.length" class="bg-[#F9F9F8] border border-gray-200 rounded-full px-2 py-0.5 text-[14px] font-medium text-[#1E1D1D]"></span>
                         </div>
                         <div class="grid grid-cols-3 gap-y-4">
-                            @foreach([
-                                ['name' => 'High-speed internet', 'slug' => 'high-speed-internet'],
-                                ['name' => 'Maid room', 'slug' => 'maid-room'],
-                                ['name' => 'Dishwasher', 'slug' => 'dishwasher'],
-                                ['name' => 'Fully furnished', 'slug' => 'fully-furnished'],
-                                ['name' => 'Laundry room', 'slug' => 'laundry-room'],
-                                ['name' => 'Air conditioner', 'slug' => 'air-conditioner'],
-                                ['name' => 'Pets allowed', 'slug' => 'pets-allowed'],
-                                ['name' => 'Balcony or terrace', 'slug' => 'balcony-or-terrace'],
-                                ['name' => 'Fireplace', 'slug' => 'fireplace'],
-                            ] as $feature)
+                            @foreach($allFeatures as $feature)
+                                @php $fSlug = strtolower(str_replace([' ', '/'], '-', $feature->name)); @endphp
                                 <label class="flex items-center gap-3 cursor-pointer group">
                                     <div class="relative size-6 border-2 rounded transition-colors"
-                                         :class="selectedFeatures.includes('{{ $feature['slug'] }}') ? 'bg-[#1447D4] border-[#1447D4]' : 'bg-white border-gray-200 group-hover:border-[#1447D4]'">
-                                        <template x-if="selectedFeatures.includes('{{ $feature['slug'] }}')">
+                                         :class="selectedFeatures.includes('{{ $fSlug }}') ? 'bg-[#1447D4] border-[#1447D4]' : 'bg-white border-gray-200 group-hover:border-[#1447D4]'">
+                                        <template x-if="selectedFeatures.includes('{{ $fSlug }}')">
                                             <img src="{{ asset('images/check.svg') }}" class="absolute inset-0 m-auto size-3.5 brightness-0 invert" alt="">
                                         </template>
-                                        <input type="checkbox" @change="toggleFeature('{{ $feature['slug'] }}')" :checked="selectedFeatures.includes('{{ $feature['slug'] }}')" class="sr-only">
+                                        <input type="checkbox" @change="toggleFeature('{{ $fSlug }}')" :checked="selectedFeatures.includes('{{ $fSlug }}')" class="sr-only">
                                     </div>
-                                    <span class="text-[14px] font-medium" :class="selectedFeatures.includes('{{ $feature['slug'] }}') ? 'text-[#1E1D1D]' : 'text-gray-500'">{{ $feature['name'] }}</span>
+                                    <span class="text-[14px] font-medium" :class="selectedFeatures.includes('{{ $fSlug }}') ? 'text-[#1E1D1D]' : 'text-gray-500'">{{ $feature->name }}</span>
                                 </label>
                             @endforeach
                         </div>
@@ -378,26 +370,17 @@
                             <span x-show="selectedAmenities.length > 0" x-text="selectedAmenities.length" class="bg-[#F9F9F8] border border-gray-200 rounded-full px-2 py-0.5 text-[14px] font-medium text-[#1E1D1D]"></span>
                         </div>
                         <div class="grid grid-cols-3 gap-y-4">
-                            @foreach([
-                                ['name' => 'Free parking', 'slug' => 'free-parking'],
-                                ['name' => 'Concierge service', 'slug' => 'concierge-service'],
-                                ['name' => 'Security cameras', 'slug' => 'security-cameras'],
-                                ['name' => 'Elevator', 'slug' => 'elevator'],
-                                ['name' => 'Rooftop terrace', 'slug' => 'rooftop-terrace'],
-                                ['name' => 'Gym', 'slug' => 'gym'],
-                                ['name' => 'Swimming pool', 'slug' => 'swimming-pool'],
-                                ['name' => 'Intercom system', 'slug' => 'intercom-system'],
-                                ['name' => 'Bicycle storage', 'slug' => 'bicycle-storage'],
-                            ] as $amenity)
+                            @foreach($allAmenities as $amenity)
+                                @php $aSlug = strtolower(str_replace([' ', '/'], '-', $amenity->name)); @endphp
                                 <label class="flex items-center gap-3 cursor-pointer group">
                                     <div class="relative size-6 border-2 rounded transition-colors"
-                                         :class="selectedAmenities.includes('{{ $amenity['slug'] }}') ? 'bg-[#1447D4] border-[#1447D4]' : 'bg-white border-gray-200 group-hover:border-[#1447D4]'">
-                                        <template x-if="selectedAmenities.includes('{{ $amenity['slug'] }}')">
+                                         :class="selectedAmenities.includes('{{ $aSlug }}') ? 'bg-[#1447D4] border-[#1447D4]' : 'bg-white border-gray-200 group-hover:border-[#1447D4]'">
+                                        <template x-if="selectedAmenities.includes('{{ $aSlug }}')">
                                             <img src="{{ asset('images/check.svg') }}" class="absolute inset-0 m-auto size-3.5 brightness-0 invert" alt="">
                                         </template>
-                                        <input type="checkbox" @change="toggleAmenity('{{ $amenity['slug'] }}')" :checked="selectedAmenities.includes('{{ $amenity['slug'] }}')" class="sr-only">
+                                        <input type="checkbox" @change="toggleAmenity('{{ $aSlug }}')" :checked="selectedAmenities.includes('{{ $aSlug }}')" class="sr-only">
                                     </div>
-                                    <span class="text-[14px] font-medium" :class="selectedAmenities.includes('{{ $amenity['slug'] }}') ? 'text-[#1E1D1D]' : 'text-gray-500'">{{ $amenity['name'] }}</span>
+                                    <span class="text-[14px] font-medium" :class="selectedAmenities.includes('{{ $aSlug }}') ? 'text-[#1E1D1D]' : 'text-gray-500'">{{ $amenity->name }}</span>
                                 </label>
                             @endforeach
                         </div>

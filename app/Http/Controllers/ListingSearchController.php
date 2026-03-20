@@ -120,10 +120,21 @@ class ListingSearchController extends Controller
         $maxListingPrice = Listing::where('status', 'Active')->max('price') ?: 1000000;
         $maxListingArea = Listing::where('status', 'Active')->max('area') ?: 10000;
 
+        // Fetch features and amenities that are actually used in active listings
+        $allFeatures = \App\Models\Feature::whereHas('listings', function($q) {
+            $q->where('status', 'Active');
+        })->orderBy('name')->get();
+
+        $allAmenities = \App\Models\Amenity::whereHas('listings', function($q) {
+            $q->where('status', 'Active');
+        })->orderBy('name')->get();
+
         return view('listings.index', [
             'listings' => $listings,
             'maxListingPrice' => $maxListingPrice,
             'maxListingArea' => $maxListingArea,
+            'allFeatures' => $allFeatures,
+            'allAmenities' => $allAmenities,
             // Pass these back for the filters to stay in sync if needed, 
             // though they usually read from the request.
         ]);

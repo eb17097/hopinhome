@@ -12,4 +12,12 @@ class Amenity extends Model
     protected $fillable = [
         'name',
     ];
+
+    /**
+     * The listings that belong to the amenity.
+     */
+    public function listings()
+    {
+        return $this->belongsToMany(Listing::class, 'amenity_listing');
+    }
 }

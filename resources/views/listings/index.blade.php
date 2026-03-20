@@ -5,6 +5,8 @@
 <x-listings.search-filters 
     :maxListingPrice="$maxListingPrice ?? 1000000" 
     :maxListingArea="$maxListingArea ?? 10000" 
+    :allFeatures="$allFeatures ?? collect()"
+    :allAmenities="$allAmenities ?? collect()"
 />
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[40px] pb-[96px]">

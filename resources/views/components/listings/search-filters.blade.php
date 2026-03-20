@@ -1,4 +1,9 @@
-@props(['maxListingPrice' => 1000000, 'maxListingArea' => 10000])
+@props([
+    'maxListingPrice' => 1000000, 
+    'maxListingArea' => 10000,
+    'allFeatures' => collect(),
+    'allAmenities' => collect()
+])
 
 @php
     $currentLocation = request()->route('location') ?: request('location', '');
@@ -284,5 +289,5 @@
     </div>
     
     <!-- More Filters Modal -->
-    <x-listings.filters-modal />
+    <x-listings.filters-modal :allFeatures="$allFeatures" :allAmenities="$allAmenities" />
 </div>

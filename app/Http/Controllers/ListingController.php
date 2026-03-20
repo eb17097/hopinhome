@@ -360,10 +360,21 @@ class ListingController extends Controller
         $listings = $query->get();
         $maxListingPrice = Listing::where('status', 'Active')->max('price') ?: 1000000;
         $maxListingArea = Listing::where('status', 'Active')->max('area') ?: 10000;
+
+        $allFeatures = \App\Models\Feature::whereHas('listings', function($q) {
+            $q->where('status', 'Active');
+        })->orderBy('name')->get();
+
+        $allAmenities = \App\Models\Amenity::whereHas('listings', function($q) {
+            $q->where('status', 'Active');
+        })->orderBy('name')->get();
+
         return view('listings.index', [
             'listings' => $listings, 
             'maxListingPrice' => $maxListingPrice,
-            'maxListingArea' => $maxListingArea
+            'maxListingArea' => $maxListingArea,
+            'allFeatures' => $allFeatures,
+            'allAmenities' => $allAmenities
         ]);
     }
 
