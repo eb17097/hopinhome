@@ -87,14 +87,53 @@
                     <!-- Location Section -->
                     <section>
                         <h4 class="text-[18px] font-medium text-[#1E1D1D] mb-4">Location</h4>
-                        <div class="relative flex items-center bg-white border border-gray-200 rounded-lg h-[56px] px-4 py-2 transition-all duration-200 gap-3 shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)]">
-                            <img src="{{ asset('images/location_on.svg') }}" alt="Location" class="w-6 h-6 text-gray-400">
-                            <div class="flex items-center gap-2 flex-grow overflow-hidden">
-                                <span x-show="location" class="bg-[#F9F9F8] border border-gray-200 rounded-md px-3 py-1 text-[16px] text-gray-700 flex items-center shrink-0">
-                                    <span x-text="location"></span>
-                                    <img src="{{ asset('images/close.svg') }}" @click="location = ''; locationQuery = ''" alt="Remove" class="w-4 h-4 ml-2 cursor-pointer">
-                                </span>
-                                <input type="text" x-model="locationQuery" placeholder="Enter City or Location" class="flex-grow border-none focus:ring-0 text-gray-700 placeholder-[#464646] text-[16px] p-0 bg-transparent">
+                        <div class="relative w-full">
+                            <div 
+                                class="relative flex items-center bg-white border border-gray-200 rounded-lg h-[56px] px-4 py-2 transition-all duration-200 gap-3 shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)]"
+                                :class="openFilter === 'location' ? 'border-gray-200 rounded-b-none shadow-none z-30' : 'border-gray-200'"
+                                @click.stop="$refs.locationInputModal.focus()"
+                            >
+                                <img src="{{ asset('images/location_on.svg') }}" alt="Location" class="w-6 h-6 text-gray-400">
+                                <div class="flex items-center gap-2 flex-grow overflow-hidden">
+                                    <span x-show="location" x-cloak class="bg-[#F9F9F8] border border-gray-200 rounded-md px-3 py-1 text-[16px] text-gray-700 flex items-center shrink-0">
+                                        <span x-text="location"></span>
+                                        <img src="{{ asset('images/close.svg') }}" @click.stop="location = ''; locationQuery = ''" alt="Remove" class="w-4 h-4 ml-2 cursor-pointer">
+                                    </span>
+                                    <input 
+                                        x-ref="locationInputModal"
+                                        type="text" 
+                                        x-model="locationQuery" 
+                                        @focus="openFilter = 'location'"
+                                        placeholder="Enter City or Location" 
+                                        class="flex-grow border-none focus:ring-0 text-gray-700 placeholder-[#464646] text-[16px] p-0 bg-transparent"
+                                    >
+                                </div>
+                            </div>
+
+                            <!-- Location Dropdown Panel -->
+                            <div x-show="openFilter === 'location'"
+                                 x-transition:enter="transition ease-out duration-100"
+                                 x-transition:enter-start="opacity-0 scale-95"
+                                 x-transition:enter-end="opacity-100 scale-100"
+                                 class="absolute top-full left-0 w-full bg-white overflow-hidden border border-[#E8E8E7] rounded-b-[10px] z-50 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)]"
+                                 @click.stop
+                                 @click.away="openFilter = null"
+                                 x-cloak
+                            >
+                                <div class="max-h-[300px] overflow-y-auto py-2">
+                                    <template x-for="(loc, index) in filteredLocations" :key="index">
+                                        <div class="flex items-center py-2 px-3 gap-3 hover:bg-[#F9F9F8] cursor-pointer transition-colors"
+                                             @click="selectLocation(loc)">
+                                            <div class="shrink-0">
+                                                <img :src="loc.icon" class="size-[36px]" alt="">
+                                            </div>
+                                            <div>
+                                                <p class="text-[14px] font-medium text-[#1E1D1D]" x-text="loc.name"></p>
+                                                <p class="text-[12px] text-[#707070]" x-text="loc.area"></p>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </div>
                             </div>
                         </div>
                     </section>
