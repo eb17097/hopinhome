@@ -322,6 +322,24 @@ class ListingController extends Controller
             $query->where('floor_number', '<=', $request->max_floor);
         }
 
+        if ($request->filled('features')) {
+            $featureSlugs = is_array($request->features) ? $request->features : explode(',', $request->features);
+            foreach ($featureSlugs as $slug) {
+                $query->whereHas('features', function($q) use ($slug) {
+                    $q->where('name', 'like', '%' . str_replace('-', ' ', $slug) . '%');
+                });
+            }
+        }
+
+        if ($request->filled('amenities')) {
+            $amenitySlugs = is_array($request->amenities) ? $request->amenities : explode(',', $request->amenities);
+            foreach ($amenitySlugs as $slug) {
+                $query->whereHas('amenities', function($q) use ($slug) {
+                    $q->where('name', 'like', '%' . str_replace('-', ' ', $slug) . '%');
+                });
+            }
+        }
+
         // Sorting
         $sort = $request->query('sort', 'popular');
         switch ($sort) {

@@ -22,6 +22,9 @@
 
     $currentMinFloor = request('min_floor');
     $currentMaxFloor = request('max_floor');
+
+    $currentFeatures = request('features') ? explode(',', request('features')) : [];
+    $currentAmenities = request('amenities') ? explode(',', request('amenities')) : [];
 @endphp
 
 <style>
@@ -75,6 +78,8 @@
     maxAreaRange: {{ $maxListingArea ?? 10000 }},
     minFloor: {{ $currentMinFloor ?? 'null' }},
     maxFloor: {{ $currentMaxFloor ?? 'null' }},
+    selectedFeatures: @js($currentFeatures),
+    selectedAmenities: @js($currentAmenities),
     icons: {
         world: '{{ asset('images/world_one.svg') }}',
         downtown: '{{ asset('images/downtown_loc.svg') }}',

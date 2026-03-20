@@ -79,7 +79,27 @@ class ListingSearchController extends Controller
             $query->where('floor_number', '<=', $request->max_floor);
         }
 
-        // 8. Sorting
+        // 8. Features (Query only)
+        if ($request->filled('features')) {
+            $featureSlugs = explode(',', $request->query('features'));
+            foreach ($featureSlugs as $slug) {
+                $query->whereHas('features', function($q) use ($slug) {
+                    $q->where('name', 'like', '%' . str_replace('-', ' ', $slug) . '%');
+                });
+            }
+        }
+
+        // 9. Amenities (Query only)
+        if ($request->filled('amenities')) {
+            $amenitySlugs = explode(',', $request->query('amenities'));
+            foreach ($amenitySlugs as $slug) {
+                $query->whereHas('amenities', function($q) use ($slug) {
+                    $q->where('name', 'like', '%' . str_replace('-', ' ', $slug) . '%');
+                });
+            }
+        }
+
+        // 10. Sorting
         $sort = $request->query('sort', 'popular');
         switch ($sort) {
             case 'low-to-high':
