@@ -241,12 +241,12 @@
                                             <div class="absolute h-1.5 bg-[#1447D4] rounded-full z-[39]" :style="`left: ${minPercent}%; right: ${100 - maxPercent}%`"></div>
 
                                             <!-- Invisible Range Inputs -->
-                                            <input type="range" x-model.number="minPrice" :min="minRange" :max="maxRange" step="1000"
+                                            <input type="range" x-model.number="minPrice" :min="minRange" :max="maxRange" step="1"
                                                 class="range-input opacity-0"
                                                 :class="priceLastMoved === 'min' ? 'z-[41]' : 'z-[40]'"
                                                 @input="if(minPrice > (maxPrice || maxRange)) minPrice = (maxPrice || maxRange)">
 
-                                            <input type="range" x-model.number="maxPrice" :min="minRange" :max="maxRange" step="1000"
+                                            <input type="range" x-model.number="maxPrice" :min="minRange" :max="maxRange" step="1"
                                                 class="range-input opacity-0"
                                                 :class="priceLastMoved === 'max' ? 'z-[41]' : 'z-[40]'"
                                                 @input="if(!maxPrice) maxPrice = maxRange; if(maxPrice < minPrice) maxPrice = minPrice">
