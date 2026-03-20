@@ -67,9 +67,11 @@ class ListingSearchController extends Controller
         }
 
         $listings = $query->get();
+        $maxListingPrice = Listing::where('status', 'Active')->max('price') ?: 1000000;
 
         return view('listings.index', [
             'listings' => $listings,
+            'maxListingPrice' => $maxListingPrice,
             // Pass these back for the filters to stay in sync if needed, 
             // though they usually read from the request.
         ]);

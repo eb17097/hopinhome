@@ -61,6 +61,8 @@
         {{-- Filters Section --}}
         <div x-data="propertySearch({
             initialLocation: '',
+            maxPrice: {{ $maxListingPrice ?? 1000000 }},
+            maxRange: {{ $maxListingPrice ?? 1000000 }},
             icons: {
                 world: '{{ asset('images/world_one.svg') }}',
                 downtown: '{{ asset('images/downtown_loc.svg') }}',

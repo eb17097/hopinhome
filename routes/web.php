@@ -43,8 +43,9 @@ Route::middleware('auth')->group(function () {
 Route::get('/', function () {
     // Fetch all active listings from the database (latest first)
     $listings = Listing::where('status', 'Active')->latest()->get();
+    $maxListingPrice = Listing::where('status', 'Active')->max('price') ?: 1000000;
 
-    return view('welcome', ['listings' => $listings]);
+    return view('welcome', ['listings' => $listings, 'maxListingPrice' => $maxListingPrice]);
 })->name('home');
 
 // Listing Routes

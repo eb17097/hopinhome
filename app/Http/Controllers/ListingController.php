@@ -311,7 +311,8 @@ class ListingController extends Controller
         }
 
         $listings = $query->get();
-        return view('listings.index', ['listings' => $listings]);
+        $maxListingPrice = Listing::where('status', 'Active')->max('price') ?: 1000000;
+        return view('listings.index', ['listings' => $listings, 'maxListingPrice' => $maxListingPrice]);
     }
 
     // 5. Show user's listings

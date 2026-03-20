@@ -57,7 +57,8 @@
     selectedPropertyTypes: @js($currentPropertyTypes),
     selectedBedrooms: @js($currentBedrooms),
     minPrice: {{ request('min_price', 0) }},
-    maxPrice: {{ request('max_price', 1000000) }},
+    maxPrice: {{ request('max_price', $maxListingPrice ?? 1000000) }},
+    maxRange: {{ $maxListingPrice ?? 1000000 }},
     icons: {
         world: '{{ asset('images/world_one.svg') }}',
         downtown: '{{ asset('images/downtown_loc.svg') }}',
