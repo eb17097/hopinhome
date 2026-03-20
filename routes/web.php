@@ -44,8 +44,13 @@ Route::get('/', function () {
     // Fetch all active listings from the database (latest first)
     $listings = Listing::where('status', 'Active')->latest()->get();
     $maxListingPrice = Listing::where('status', 'Active')->max('price') ?: 1000000;
+    $maxListingArea = Listing::where('status', 'Active')->max('area') ?: 10000;
 
-    return view('welcome', ['listings' => $listings, 'maxListingPrice' => $maxListingPrice]);
+    return view('welcome', [
+        'listings' => $listings, 
+        'maxListingPrice' => $maxListingPrice,
+        'maxListingArea' => $maxListingArea
+    ]);
 })->name('home');
 
 // Listing Routes

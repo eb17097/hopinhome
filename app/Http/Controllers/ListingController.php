@@ -306,6 +306,14 @@ class ListingController extends Controller
             $query->where('price', '<=', $request->max_price);
         }
 
+        if ($request->filled('min_area')) {
+            $query->where('area', '>=', $request->min_area);
+        }
+
+        if ($request->filled('max_area')) {
+            $query->where('area', '<=', $request->max_area);
+        }
+
         // Sorting
         $sort = $request->query('sort', 'popular');
         switch ($sort) {
@@ -325,7 +333,12 @@ class ListingController extends Controller
 
         $listings = $query->get();
         $maxListingPrice = Listing::where('status', 'Active')->max('price') ?: 1000000;
-        return view('listings.index', ['listings' => $listings, 'maxListingPrice' => $maxListingPrice]);
+        $maxListingArea = Listing::where('status', 'Active')->max('area') ?: 10000;
+        return view('listings.index', [
+            'listings' => $listings, 
+            'maxListingPrice' => $maxListingPrice,
+            'maxListingArea' => $maxListingArea
+        ]);
     }
 
     // 5. Show user's listings

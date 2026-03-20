@@ -16,10 +16,10 @@ document.addEventListener('alpine:init', () => {
         base.utilities = 'Included';
         base.rentalPeriod = 'Yearly';
         base.selectedBathrooms = config.selectedBathrooms || [];
-        base.minArea = 500;
-        base.maxArea = 10000;
-        base.minAreaRange = 0;
-        base.maxAreaRange = 10000;
+        base.minArea = config.minArea !== undefined ? config.minArea : 500;
+        base.maxArea = config.maxArea !== undefined ? config.maxArea : 10000;
+        base.minAreaRange = config.minAreaRange || 0;
+        base.maxAreaRange = config.maxAreaRange || 10000;
         base.minFloor = null;
         base.maxFloor = null;
         base.selectedFeatures = [];

@@ -1,4 +1,4 @@
-@props(['maxListingPrice' => 1000000])
+@props(['maxListingPrice' => 1000000, 'maxListingArea' => 10000])
 
 @php
     $currentLocation = request()->route('location') ?: request('location', '');
@@ -16,6 +16,9 @@
     $currentBedrooms = array_filter($currentBedrooms, fn($b) => $b !== 'all');
 
     $currentBathrooms = request('bathrooms') ? explode(',', request('bathrooms')) : [];
+
+    $currentMinArea = request('min_area', 0);
+    $currentMaxArea = request('max_area', $maxListingArea ?? 10000);
 @endphp
 
 <style>
@@ -64,6 +67,9 @@
     minPrice: {{ request('min_price', 0) }},
     maxPrice: {{ request('max_price', $maxListingPrice ?? 1000000) }},
     maxRange: {{ $maxListingPrice ?? 1000000 }},
+    minArea: {{ $currentMinArea }},
+    maxArea: {{ $currentMaxArea }},
+    maxAreaRange: {{ $maxListingArea ?? 10000 }},
     icons: {
         world: '{{ asset('images/world_one.svg') }}',
         downtown: '{{ asset('images/downtown_loc.svg') }}',

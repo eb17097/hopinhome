@@ -63,7 +63,15 @@ class ListingSearchController extends Controller
             $query->where('price', '<=', $request->max_price);
         }
 
-        // 5. Sorting
+        // 6. Area (Query only)
+        if ($request->filled('min_area')) {
+            $query->where('area', '>=', $request->min_area);
+        }
+        if ($request->filled('max_area')) {
+            $query->where('area', '<=', $request->max_area);
+        }
+
+        // 7. Sorting
         $sort = $request->query('sort', 'popular');
         switch ($sort) {
             case 'low-to-high':
@@ -82,10 +90,12 @@ class ListingSearchController extends Controller
 
         $listings = $query->get();
         $maxListingPrice = Listing::where('status', 'Active')->max('price') ?: 1000000;
+        $maxListingArea = Listing::where('status', 'Active')->max('area') ?: 10000;
 
         return view('listings.index', [
             'listings' => $listings,
             'maxListingPrice' => $maxListingPrice,
+            'maxListingArea' => $maxListingArea,
             // Pass these back for the filters to stay in sync if needed, 
             // though they usually read from the request.
         ]);

@@ -63,6 +63,8 @@
             initialLocation: '',
             maxPrice: {{ $maxListingPrice ?? 1000000 }},
             maxRange: {{ $maxListingPrice ?? 1000000 }},
+            maxArea: {{ $maxListingArea ?? 10000 }},
+            maxAreaRange: {{ $maxListingArea ?? 10000 }},
             icons: {
                 world: '{{ asset('images/world_one.svg') }}',
                 downtown: '{{ asset('images/downtown_loc.svg') }}',

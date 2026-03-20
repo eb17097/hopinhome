@@ -300,12 +300,12 @@
                             <div class="absolute h-1.5 bg-[#1447D4] rounded-full z-[39]" :style="`left: ${minAreaPercent}%; right: ${100 - maxAreaPercent}%`"></div>
 
                             <!-- Invisible Range Inputs -->
-                            <input type="range" x-model.number="minArea" :min="minAreaRange" :max="maxAreaRange" step="50"
+                            <input type="range" x-model.number="minArea" :min="minAreaRange" :max="maxAreaRange" step="1"
                                 class="range-input opacity-0"
                                 :class="areaLastMoved === 'min' ? 'z-[41]' : 'z-[40]'"
                                 @input="if(minArea > (maxArea || maxAreaRange)) minArea = (maxArea || maxAreaRange)">
 
-                            <input type="range" x-model.number="maxArea" :min="minAreaRange" :max="maxAreaRange" step="50"
+                            <input type="range" x-model.number="maxArea" :min="minAreaRange" :max="maxAreaRange" step="1"
                                 class="range-input opacity-0"
                                 :class="areaLastMoved === 'max' ? 'z-[41]' : 'z-[40]'"
                                 @input="if(!maxArea) maxArea = maxAreaRange; if(maxArea < minArea) maxArea = minArea">
