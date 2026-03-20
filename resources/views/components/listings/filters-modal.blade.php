@@ -77,7 +77,7 @@
                         </button>
                         <h3 class="text-[20px] font-medium text-[#1E1D1D] flex items-center gap-2">
                             Search & Filters
-                            <span x-show="selectedPropertyTypes.length + selectedBedrooms.length + selectedBathrooms.length > 0" x-text="selectedPropertyTypes.length + selectedBedrooms.length + selectedBathrooms.length" class="bg-[#1447D4] text-white text-[12px] w-6 h-6 flex items-center justify-center rounded-full"></span>
+                            <span x-show="totalFiltersCount > 0" x-cloak x-text="totalFiltersCount" class="bg-[#1447D4] text-white text-[12px] w-6 h-6 flex items-center justify-center rounded-full"></span>
                         </h3>
                     </div>
                     <button @click="clearAll()" class="text-[16px] text-gray-500 hover:text-gray-700 transition-colors">Clear all</button>

@@ -198,6 +198,25 @@ document.addEventListener('alpine:init', () => {
             configurable: true
         });
 
+        Object.defineProperty(base, 'totalFiltersCount', {
+            get() {
+                let count = 0;
+                if (this.location) count++;
+                if (this.selectedPropertyTypes.length > 0) count++;
+                if (this.utilities !== 'Included') count++;
+                if (this.rentalPeriod !== 'Yearly') count++;
+                if (this.minPrice > this.minRange || (this.maxPrice && this.maxPrice < this.maxRange)) count++;
+                if (this.selectedBedrooms.length > 0) count++;
+                if (this.selectedBathrooms.length > 0) count++;
+                if (this.minArea > this.minAreaRange || (this.maxArea && this.maxArea < this.maxAreaRange)) count++;
+                if ((this.minFloor !== null && this.minFloor > 0) || (this.maxFloor !== null)) count++;
+                if (this.selectedFeatures.length > 0) count++;
+                if (this.selectedAmenities.length > 0) count++;
+                return count;
+            },
+            configurable: true
+        });
+
         return base;
     });
 });
