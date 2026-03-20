@@ -90,7 +90,7 @@
                         <div class="relative w-full">
                             <div 
                                 class="relative flex items-center bg-white border border-gray-200 rounded-lg h-[56px] px-4 py-2 transition-all duration-200 gap-3 shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)]"
-                                :class="openFilter === 'location' ? 'border-gray-200 rounded-b-none shadow-none z-30' : 'border-gray-200'"
+                                :class="openFilter === 'locationModal' ? 'border-gray-200 rounded-b-none shadow-none z-30' : 'border-gray-200'"
                                 @click.stop="$refs.locationInputModal.focus()"
                             >
                                 <img src="{{ asset('images/location_on.svg') }}" alt="Location" class="w-6 h-6 text-gray-400">
@@ -103,7 +103,7 @@
                                         x-ref="locationInputModal"
                                         type="text" 
                                         x-model="locationQuery" 
-                                        @focus="openFilter = 'location'"
+                                        @focus="openFilter = 'locationModal'"
                                         placeholder="Enter City or Location" 
                                         class="flex-grow border-none focus:ring-0 text-gray-700 placeholder-[#464646] text-[16px] p-0 bg-transparent"
                                     >
@@ -111,7 +111,7 @@
                             </div>
 
                             <!-- Location Dropdown Panel -->
-                            <div x-show="openFilter === 'location'"
+                            <div x-show="openFilter === 'locationModal'"
                                  x-transition:enter="transition ease-out duration-100"
                                  x-transition:enter-start="opacity-0 scale-95"
                                  x-transition:enter-end="opacity-100 scale-100"
