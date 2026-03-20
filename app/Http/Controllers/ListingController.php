@@ -314,6 +314,14 @@ class ListingController extends Controller
             $query->where('area', '<=', $request->max_area);
         }
 
+        if ($request->filled('min_floor')) {
+            $query->where('floor_number', '>=', $request->min_floor);
+        }
+
+        if ($request->filled('max_floor')) {
+            $query->where('floor_number', '<=', $request->max_floor);
+        }
+
         // Sorting
         $sort = $request->query('sort', 'popular');
         switch ($sort) {

@@ -71,7 +71,15 @@ class ListingSearchController extends Controller
             $query->where('area', '<=', $request->max_area);
         }
 
-        // 7. Sorting
+        // 7. Floor (Query only)
+        if ($request->filled('min_floor')) {
+            $query->where('floor_number', '>=', $request->min_floor);
+        }
+        if ($request->filled('max_floor')) {
+            $query->where('floor_number', '<=', $request->max_floor);
+        }
+
+        // 8. Sorting
         $sort = $request->query('sort', 'popular');
         switch ($sort) {
             case 'low-to-high':

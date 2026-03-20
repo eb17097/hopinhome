@@ -19,6 +19,9 @@
 
     $currentMinArea = request('min_area', 0);
     $currentMaxArea = request('max_area', $maxListingArea ?? 10000);
+
+    $currentMinFloor = request('min_floor');
+    $currentMaxFloor = request('max_floor');
 @endphp
 
 <style>
@@ -70,6 +73,8 @@
     minArea: {{ $currentMinArea }},
     maxArea: {{ $currentMaxArea }},
     maxAreaRange: {{ $maxListingArea ?? 10000 }},
+    minFloor: {{ $currentMinFloor ?? 'null' }},
+    maxFloor: {{ $currentMaxFloor ?? 'null' }},
     icons: {
         world: '{{ asset('images/world_one.svg') }}',
         downtown: '{{ asset('images/downtown_loc.svg') }}',

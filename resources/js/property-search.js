@@ -20,8 +20,8 @@ document.addEventListener('alpine:init', () => {
         base.maxArea = config.maxArea !== undefined ? config.maxArea : 10000;
         base.minAreaRange = config.minAreaRange || 0;
         base.maxAreaRange = config.maxAreaRange || 10000;
-        base.minFloor = null;
-        base.maxFloor = null;
+        base.minFloor = config.minFloor !== undefined ? config.minFloor : null;
+        base.maxFloor = config.maxFloor !== undefined ? config.maxFloor : null;
         base.selectedFeatures = [];
         base.selectedAmenities = [];
 
