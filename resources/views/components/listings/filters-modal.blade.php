@@ -88,13 +88,13 @@
                         <h4 class="text-[18px] font-medium text-[#1E1D1D] mb-4">Location</h4>
                         <div class="relative w-full">
                             <div
-                                class="relative flex items-center bg-white border border-gray-200 rounded-lg h-[56px] px-4 py-2 transition-all duration-200 gap-3 shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)]"
+                                class="relative flex items-center bg-white border border-gray-200 rounded-lg h-[56px] px-4 py-2 transition-all duration-200 gap-[8px] shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)]"
                                 :class="openFilter === 'locationModal' ? 'border-gray-200 rounded-b-none shadow-none z-30' : 'border-gray-200'"
                                 @click.stop="$refs.locationInputModal.focus()"
                             >
                                 <img src="{{ asset('images/location_on.svg') }}" alt="Location" class="w-6 h-6 text-gray-400">
                                 <div class="flex items-center gap-2 flex-grow overflow-hidden">
-                                    <span x-show="location" x-cloak class="bg-[#F9F9F8] border border-gray-200 rounded-md px-3 py-1 text-[16px] text-gray-700 flex items-center shrink-0">
+                                    <span x-show="location" x-cloak class="leading-[1.2] bg-[#F9F9F8] border border-gray-200 rounded-md px-[10px] py-[6px] text-[16px] text-gray-700 flex items-center shrink-0">
                                         <span x-text="location"></span>
                                         <img src="{{ asset('images/close.svg') }}" @click.stop="location = ''; locationQuery = ''" alt="Remove" class="w-4 h-4 ml-2 cursor-pointer">
                                     </span>
@@ -104,7 +104,7 @@
                                         x-model="locationQuery"
                                         @focus="openFilter = 'locationModal'"
                                         placeholder="Enter City or Location"
-                                        class="flex-grow border-none focus:ring-0 text-gray-700 placeholder-[#464646] text-[16px] p-0 bg-transparent"
+                                        class="flex-grow border-none focus:ring-0 text-gray-700 placeholder-[#464646] leading-[1.3] text-[16px] p-0 bg-transparent"
                                     >
                                 </div>
                             </div>
