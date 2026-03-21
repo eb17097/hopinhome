@@ -168,10 +168,10 @@
                     <!-- Utilities Section -->
                     <section>
                         <h4 class="text-[18px] font-medium text-[#1E1D1D] leading-[1.28] tracking-[-0.36px] mb-[12px]">Utilities</h4>
-                        <div class="flex gap-4">
+                        <div class="flex gap-[11px]">
                             @foreach(['Included', 'Excluded'] as $option)
                                 <button @click="utilities = '{{ $option }}'"
-                                        class="h-[45px] px-6 rounded-full text-[16px] font-medium transition-all shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] border"
+                                        class="h-[40px] w-[151px] px-[20px] py-[10px] leading-[1.22] tracking-[-0.48px] rounded-full text-[16px] font-medium transition-all shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] border"
                                         :class="utilities === '{{ $option }}' ? 'bg-[#1447D4] text-white border-[#1447D4]' : 'bg-white text-[#1E1D1D] border-gray-100 hover:border-[#1447D4]'">
                                     {{ $option }}
                                 </button>
@@ -182,10 +182,10 @@
                     <!-- Rental Period Section -->
                     <section>
                         <h4 class="text-[18px] font-medium text-[#1E1D1D] leading-[1.28] tracking-[-0.36px] mb-[12px]">Rental period</h4>
-                        <div class="flex gap-4">
+                        <div class="flex gap-[10px]">
                             @foreach(['Weekly', 'Monthly', 'Yearly'] as $option)
                                 <button @click="rentalPeriod = '{{ $option }}'"
-                                        class="h-[45px] px-6 rounded-full text-[16px] font-medium transition-all shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] border"
+                                        class="h-[40px] w-[120px] leading-[1.22] tracking-[-0.48px] px-6 rounded-full text-[16px] font-medium transition-all shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] border"
                                         :class="rentalPeriod === '{{ $option }}' ? 'bg-[#1447D4] text-white border-[#1447D4]' : 'bg-white text-[#1E1D1D] border-gray-100 hover:border-[#1447D4]'">
                                     {{ $option }}
                                 </button>
@@ -198,14 +198,14 @@
                         <h4 class="text-[18px] font-medium text-[#1E1D1D] leading-[1.28] tracking-[-0.36px] mb-[12px]">Price</h4>
                         <div class="grid grid-cols-2 gap-8 mb-8">
                             <div>
-                                <p class="text-[16px] text-gray-500 mb-2">Minimum Price</p>
+                                <p class="text-[16px] text-[#464646] mb-[6px]">Minimum Price</p>
                                 <div class="relative flex items-center bg-white border border-gray-200 rounded-lg h-[45px] px-4 shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]">
                                     <input type="number" x-model.number="minPrice" class="w-full border-none focus:ring-0 p-0 text-[16px] font-medium text-[#1E1D1D] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
                                     <span class="text-gray-400 text-[16px] ml-2">AED</span>
                                 </div>
                             </div>
                             <div>
-                                <p class="text-[16px] text-gray-500 mb-2">Maximum Price</p>
+                                <p class="text-[16px] text-[#464646] mb-[6px]">Maximum Price</p>
                                 <div class="relative flex items-center bg-white border border-gray-200 rounded-lg h-[45px] px-4 shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]">
                                     <input type="number" x-model.number="maxPrice" placeholder="Any" class="w-full border-none focus:ring-0 p-0 text-[16px] font-medium text-[#1E1D1D] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
                                     <span class="text-gray-400 text-[16px] ml-2">AED</span>
