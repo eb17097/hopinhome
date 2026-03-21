@@ -85,10 +85,10 @@
                 <div class="px-[24px] py-[40px] space-y-[48px] max-h-[calc(100%-170px)] overflow-y-auto">
                     <!-- Location Section -->
                     <section>
-                        <h4 class="text-[18px] font-medium text-[#1E1D1D] mb-4">Location</h4>
+                        <h4 class="text-[18px] font-medium text-[#1E1D1D] leading-[1.28] tracking-[-0.36px] mb-[12px]">Location</h4>
                         <div class="relative w-full">
                             <div
-                                class="relative flex items-center bg-white border border-gray-200 rounded-lg h-[56px] px-4 py-2 transition-all duration-200 gap-[8px] shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)]"
+                                class="relative flex items-center bg-white border border-gray-200 rounded-lg h-[45px] px-4 py-2 transition-all duration-200 gap-[8px] shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)]"
                                 :class="openFilter === 'locationModal' ? 'border-gray-200 rounded-b-none shadow-none z-30' : 'border-gray-200'"
                                 @click.stop="$refs.locationInputModal.focus()"
                             >
@@ -139,7 +139,7 @@
 
                     <!-- Property Type Section -->
                     <section>
-                        <h4 class="text-[18px] font-medium text-[#1E1D1D] mb-4">Property type</h4>
+                        <h4 class="text-[18px] font-medium text-[#1E1D1D] leading-[1.28] tracking-[-0.36px] mb-[12px]">Property type</h4>
                         <div class="grid grid-cols-3 gap-4">
                             @foreach([
                                 ['name' => 'Apartment', 'icon' => 'apartment_big.svg'],
@@ -169,7 +169,7 @@
 
                     <!-- Utilities Section -->
                     <section>
-                        <h4 class="text-[18px] font-medium text-[#1E1D1D] mb-4">Utilities</h4>
+                        <h4 class="text-[18px] font-medium text-[#1E1D1D] leading-[1.28] tracking-[-0.36px] mb-[12px]">Utilities</h4>
                         <div class="flex gap-4">
                             @foreach(['Included', 'Excluded'] as $option)
                                 <button @click="utilities = '{{ $option }}'"
@@ -183,7 +183,7 @@
 
                     <!-- Rental Period Section -->
                     <section>
-                        <h4 class="text-[18px] font-medium text-[#1E1D1D] mb-4">Rental period</h4>
+                        <h4 class="text-[18px] font-medium text-[#1E1D1D] leading-[1.28] tracking-[-0.36px] mb-[12px]">Rental period</h4>
                         <div class="flex gap-4">
                             @foreach(['Weekly', 'Monthly', 'Yearly'] as $option)
                                 <button @click="rentalPeriod = '{{ $option }}'"
@@ -197,7 +197,7 @@
 
                     <!-- Price Section -->
                     <section>
-                        <h4 class="text-[18px] font-medium text-[#1E1D1D] mb-4">Price</h4>
+                        <h4 class="text-[18px] font-medium text-[#1E1D1D] leading-[1.28] tracking-[-0.36px] mb-[12px]">Price</h4>
                         <div class="grid grid-cols-2 gap-8 mb-8">
                             <div>
                                 <p class="text-[16px] text-gray-500 mb-2">Minimum Price</p>
@@ -243,7 +243,7 @@
 
                     <!-- Bedrooms Section -->
                     <section>
-                        <h4 class="text-[18px] font-medium text-[#1E1D1D] mb-4">Bedrooms</h4>
+                        <h4 class="text-[18px] font-medium text-[#1E1D1D] leading-[1.28] tracking-[-0.36px] mb-[12px]">Bedrooms</h4>
                         <div class="flex flex-wrap gap-3">
                             @foreach(['Studio', '1', '2', '3', '4', '5+'] as $val)
                                 <button @click="toggleBedroom('{{ $val }}')"
@@ -257,7 +257,7 @@
 
                     <!-- Bathrooms Section -->
                     <section>
-                        <h4 class="text-[18px] font-medium text-[#1E1D1D] mb-4">Bathrooms</h4>
+                        <h4 class="text-[18px] font-medium text-[#1E1D1D] leading-[1.28] tracking-[-0.36px] mb-[12px]">Bathrooms</h4>
                         <div class="flex flex-wrap gap-3">
                             @foreach(['1', '2', '3', '4', '5+'] as $val)
                                 <button @click="toggleBathroom('{{ $val }}')"
@@ -271,7 +271,7 @@
 
                     <!-- Area Section -->
                     <section>
-                        <h4 class="text-[18px] font-medium text-[#1E1D1D] mb-4">Area</h4>
+                        <h4 class="text-[18px] font-medium text-[#1E1D1D] leading-[1.28] tracking-[-0.36px] mb-[12px]">Area</h4>
                         <div class="grid grid-cols-2 gap-8 mb-8">
                             <div>
                                 <p class="text-[16px] text-gray-500 mb-2">Minimum Area</p>
@@ -317,7 +317,7 @@
 
                     <!-- Floor Section -->
                     <section>
-                        <h4 class="text-[18px] font-medium text-[#1E1D1D] mb-4">Floor</h4>
+                        <h4 class="text-[18px] font-medium text-[#1E1D1D] leading-[1.28] tracking-[-0.36px] mb-[12px]">Floor</h4>
                         <div class="grid grid-cols-2 gap-8">
                             <div>
                                 <p class="text-[16px] text-gray-500 mb-2">Minimum Floor</p>
@@ -341,7 +341,7 @@
                     <!-- Features Section -->
                     <section>
                         <div class="flex items-center gap-2 mb-4">
-                            <h4 class="text-[18px] font-medium text-[#1E1D1D]">Features</h4>
+                            <h4 class="text-[18px] font-medium text-[#1E1D1D] leading-[1.28] tracking-[-0.36px] mb-[12px]">Features</h4>
                             <span x-show="selectedFeatures.length > 0" x-text="selectedFeatures.length" class="bg-[#F9F9F8] border border-gray-200 rounded-full px-2 py-0.5 text-[14px] font-medium text-[#1E1D1D]"></span>
                         </div>
                         <div class="grid grid-cols-3 gap-y-4">
@@ -364,7 +364,7 @@
                     <!-- Building Amenities Section -->
                     <section>
                         <div class="flex items-center gap-2 mb-4">
-                            <h4 class="text-[18px] font-medium text-[#1E1D1D]">Building amenities</h4>
+                            <h4 class="text-[18px] font-medium text-[#1E1D1D] leading-[1.28] tracking-[-0.36px] mb-[12px]">Building amenities</h4>
                             <span x-show="selectedAmenities.length > 0" x-text="selectedAmenities.length" class="bg-[#F9F9F8] border border-gray-200 rounded-full px-2 py-0.5 text-[14px] font-medium text-[#1E1D1D]"></span>
                         </div>
                         <div class="grid grid-cols-3 gap-y-4">
