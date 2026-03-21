@@ -58,7 +58,7 @@
         ></div>
 
         <!-- Modal Panel -->
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div class="flex min-h-full items-end justify-center text-center sm:items-center">
             <div
                 x-show="isModalOpen"
                 x-transition:enter="ease-out duration-300"
@@ -67,7 +67,7 @@
                 x-transition:leave="ease-in duration-200"
                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                class="relative transform overflow-hidden rounded-[14px] bg-white text-left shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] transition-all sm:my-8 sm:w-full sm:max-w-[792px]"
+                class="h-[calc(100vh-144px)] relative transform overflow-hidden rounded-[14px] bg-white text-left shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] transition-all w-[792px]"
             >
                 <!-- Header -->
                 <div class="h-[65px] px-[24px] py-[20px] border-b border-[#E8E8E7] flex items-center justify-between sticky top-0 bg-white z-10">
@@ -82,7 +82,7 @@
                 </div>
 
                 <!-- Content -->
-                <div class="px-10 py-8 space-y-12 max-h-[70vh] overflow-y-auto">
+                <div class="px-[24px] py-[40px] space-y-[48px] max-h-[calc(100%-170px)] overflow-y-auto">
                     <!-- Location Section -->
                     <section>
                         <h4 class="text-[18px] font-medium text-[#1E1D1D] mb-4">Location</h4>
@@ -386,9 +386,9 @@
                 </div>
 
                 <!-- Footer -->
-                <div class="px-10 py-6 border-t border-gray-100 flex justify-center sticky bottom-0 bg-white z-10">
-                    <button @click="performSearch" class="w-full max-w-[712px] h-[56px] bg-[#1447D4] text-white rounded-full flex items-center justify-center gap-2 text-[18px] font-medium hover:bg-blue-700 transition-colors shadow-lg">
-                        <img src="{{ asset('images/search.svg') }}" alt="Search" class="w-5 h-5 brightness-0 invert">
+                <div class="p-[24px] border-t border-gray-100 flex justify-center sticky bottom-0 bg-white z-[99]">
+                    <button @click="performSearch" class="h-[57px] w-full bg-[#1447D4] text-white rounded-[50px] flex items-center justify-center gap-[6px] text-[18px] leading-[1.18] tracking-[-0.54px] font-medium hover:bg-blue-700 transition-colors">
+                        <img src="{{ asset('images/search.svg') }}" alt="Search" class="w-[18px] h-[18px]">
                         Show properties
                     </button>
                 </div>
