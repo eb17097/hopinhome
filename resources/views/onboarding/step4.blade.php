@@ -1,4 +1,4 @@
-<x-onboarding.layout step="4" :backUrl="route('onboarding.back')" x-data="{ isLoading: false }">
+<x-onboarding.layout step="4" :backUrl="route('onboarding.back')" x-data="onboardingStep()">
     <div class="flex items-center gap-4 mb-4">
         <h1 class="text-[40px] font-medium text-[#1e1d1d] tracking-[-0.8px] leading-[1.28]">You’re all set</h1>
         <img src="{{ asset('images/checkmark.svg') }}" alt="" class="w-7 h-7">
@@ -21,23 +21,7 @@
         <x-onboarding.step-button
             style="margin-left: auto;"
             width="w-full lg:w-56"
-            @click="
-                isLoading = true;
-                fetch('{{ route('onboarding.complete') }}', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    }
-                })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        window.location.href = data.redirect;
-                    }
-                })
-            "
+            @click="submit('{{ route('onboarding.complete') }}')"
         >
             Start exploring
         </x-onboarding.step-button>
