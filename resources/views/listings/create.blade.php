@@ -73,7 +73,7 @@
                         },
                                                 saveAsDraft() {
                                                     let form = document.getElementById('listing-creation-form');
-                                                    
+
                                                     // Add status input
                                                     let statusInput = document.createElement('input');
                                                     statusInput.type = 'hidden';
@@ -183,7 +183,7 @@
 
                             <button type="submit" x-show="step === 10"
                                     class="bg-[#1447d4] hover:bg-[#04247b] text-white font-medium px-10 py-2.5 rounded-full transition-all text-[16px] tracking-[-0.48px] h-[40px] flex items-center justify-center">
-                                Submit Listing
+                                Preview listing
                             </button>
                         </div>
                     </div>
