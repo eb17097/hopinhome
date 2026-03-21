@@ -113,6 +113,17 @@ class OnboardingController extends Controller
         return redirect()->route('onboarding.index');
     }
 
+    public function skip()
+    {
+        $user = Auth::user();
+
+        $user->update([
+            'onboarding_completed' => true,
+        ]);
+
+        return redirect()->route('dashboard');
+    }
+
     public function complete()
     {
         $user = Auth::user();

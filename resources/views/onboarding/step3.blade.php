@@ -27,7 +27,7 @@
 
     <x-slot:actions>
         <div class="flex justify-between items-center gap-8">
-            <button type="button" @click="$dispatch('open-skip-setup-modal', { skipUrl: '{{ route('onboarding.index') }}' })"
+            <button type="button" @click="$dispatch('open-skip-setup-modal', { skipUrl: '{{ route('onboarding.skip') }}' })"
                     class="text-[14px] text-[#464646] underline hover:text-[#1e1d1d] transition-colors">
                 Set up later
             </button>
