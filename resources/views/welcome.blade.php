@@ -157,9 +157,9 @@
                                             <div class="absolute top-0 left-0 size-full rounded-bl-[12px] border-b border-l border-[#E8E8E7] shadow-[0_0_0_20px_white]"></div>
                                         </div>
                                     </div>
-                                    <div class="absolute z-10 top-[60px] left-0 bg-white border border-[#E8E8E7] rounded-b-[12px] rounded-tr-[12px] p-4 grid grid-cols-6 gap-3 w-[832px]" @click.away="openFilter = null">
+                                    <div class="absolute z-10 top-[60px] left-0 bg-white border border-[#E8E8E7] rounded-b-[6px] rounded-tr-[6px] p-4 grid grid-cols-6 gap-3 w-[832px]" @click.away="openFilter = null">
                                         @foreach([['name'=>'Apartment','icon'=>'apartment_big.svg'],['name'=>'Villa','icon'=>'villa.svg'],['name'=>'House','icon'=>'house.svg'],['name'=>'Townhouse','icon'=>'townhouse.svg'],['name'=>'Hotel Apartment','icon'=>'hotel_apartment.svg'],['name'=>'Penthouse','icon'=>'penthouse.svg']] as $type)
-                                            <div class="flex flex-col items-center justify-center gap-3 p-4 border rounded-[10px] cursor-pointer transition-all relative group h-[120px]"
+                                            <div class="flex flex-col items-center justify-center gap-3 py-[19px] px-[17px] border rounded-[6px] cursor-pointer transition-all relative group h-[120px] w-[120px]"
                                                  @click="togglePropertyType('{{ $type['name'] }}')"
                                                  :class="selectedPropertyTypes.includes(slugify('{{ $type['name'] }}')) ? 'border-[#1447D4] bg-white' : 'border-[#E8E8E7] hover:border-[#1447D4]'">
                                                 <div x-show="selectedPropertyTypes.includes(slugify('{{ $type['name'] }}'))" class="absolute -top-2 -right-2 size-6 bg-[#1447D4] rounded-full flex items-center justify-center shadow-sm z-10">
@@ -168,7 +168,7 @@
                                                 <div class="size-[48px] flex items-center justify-center">
                                                     <div class="w-full h-full transition-colors duration-200" :style="{'mask-image': 'url({{ asset('images/') }}/{{ $type['icon'] }})','-webkit-mask-image': 'url({{ asset('images/') }}/{{ $type['icon'] }})','mask-size': 'contain','-webkit-mask-size': 'contain','mask-repeat': 'no-repeat','-webkit-mask-repeat': 'no-repeat','mask-position': 'center','-webkit-mask-position': 'center','background-color': selectedPropertyTypes.includes(slugify('{{ $type['name'] }}')) ? '#1447D4' : '#04247B'}"></div>
                                                 </div>
-                                                <span class="text-[14px] font-medium transition-colors text-center leading-tight" :class="selectedPropertyTypes.includes(slugify('{{ $type['name'] }}')) ? 'text-[#1447D4]' : 'text-[#1E1D1D]'">{{ $type['name'] }}</span>
+                                                <span class="text-[15px] font-medium transition-colors text-center leading-[1.3]" :class="selectedPropertyTypes.includes(slugify('{{ $type['name'] }}')) ? 'text-[#1447D4]' : 'text-[#1E1D1D]'">{{ $type['name'] }}</span>
                                             </div>
                                         @endforeach
                                     </div>
