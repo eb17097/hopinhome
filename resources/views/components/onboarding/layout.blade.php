@@ -44,7 +44,7 @@
 
         <!-- Right Side (Blue) -->
         <div class="hidden lg:block w-1/2 bg-[#1447d4] relative overflow-hidden">
-            <div style="bottom:-20%; right:-25%; width: 120%;" class="absolute opacity-10">
+            <div style="bottom:-25%; right:-25%; width: 120%;" class="absolute opacity-10">
                 <img src="{{ asset('images/hopinhome_symbol_white.svg') }}" alt="" class="w-full h-auto" style="max-height: 80vh;">
             </div>
         </div>
