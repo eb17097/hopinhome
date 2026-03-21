@@ -9,7 +9,7 @@
 
         {{-- Info --}}
         <div class="min-w-0">
-            <h3 class="text-[18px] font-medium text-[#1e1d1d] leading-[1.28] truncate" title="{{ $listing->name }}">{{ $listing->name }}</h3>
+            <h3 class="text-[18px] font-medium text-[#1e1d1d] leading-[1.28] truncate" title="{{ $listing->name ?: 'New listing' }}">{{ $listing->name ?: 'New listing' }}</h3>
             <div class="flex items-baseline mt-[2px]">
                 <span class="text-[16px] font-medium text-[#1e1d1d]">AED {{ number_format($listing->price) }} <span class="text-[#464646] font-normal">{{ $listing->payment_option }}</span></span>
             </div>

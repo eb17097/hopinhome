@@ -80,8 +80,8 @@
                             <img src="{{ $listing->images->first()?->image_url ?? asset('images/placeholder.png') }}" alt="" class="w-full h-full object-cover">
                         </div>
                         <div class="flex-1 space-y-[4px] min-w-0 pr-[16px]">
-                            <h3 class="text-[16px] font-medium text-[#1e1d1d] truncate leading-[1.5]" title="{{ $listing->name ?? $listing->address }}">
-                                {{ $listing->name ?? $listing->address }}
+                            <h3 class="text-[16px] font-medium text-[#1e1d1d] truncate leading-[1.5]" title="{{ $listing->name ?: 'New listing' }}">
+                                {{ $listing->name ?: 'New listing' }}
                             </h3>
                             <p class="text-[15px] font-medium text-[#1e1d1d] leading-[1.3]">
                                 <span class="text-[#1e1d1d]">AED {{ number_format($listing->price) }}</span>
