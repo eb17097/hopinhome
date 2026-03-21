@@ -26,8 +26,11 @@
     </form>
 
     <x-slot:actions>
-        <div class="flex justify-between items-center gap-8">
-            <button type="button" @click="$dispatch('open-skip-setup-modal', { skipUrl: '{{ route('onboarding.skip') }}' })"
+        <div class="flex items-center gap-8" :class="hasPhoto ? 'justify-end' : 'justify-between'">
+            <button type="button" 
+                    x-show="!hasPhoto"
+                    x-cloak
+                    @click="$dispatch('open-skip-setup-modal', { skipUrl: '{{ route('onboarding.skip') }}' })"
                     class="text-[14px] leading-[1.5] text-[#464646] underline hover:text-[#1e1d1d] transition-colors">
                 Set up later
             </button>
