@@ -72,7 +72,9 @@
                 croppedBlob: null,
 
                 triggerUpload() {
-                    document.getElementById('onboarding-photo-input').click();
+                    const input = document.getElementById('onboarding-photo-input');
+                    input.value = '';
+                    input.click();
                 },
 
                 editCurrentPhoto() {
