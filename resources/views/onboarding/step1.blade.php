@@ -1,16 +1,15 @@
 <x-main-layout title="Onboarding - HopinHome">
     <div class="flex h-screen overflow-hidden bg-white" x-data="{ selectedRole: '', isLoading: false }">
         <!-- Left Side -->
-        <div class="w-full lg:w-1/2 flex flex-col p-8 lg:p-16 overflow-y-auto">
-            <!-- Logo -->
-            <div class="mb-12">
-                <a href="{{ route('home') }}">
-                    <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopinHome" class="h-8">
-                </a>
-            </div>
-
-            <!-- Progress Bar -->
+        <div class="w-1/2 flex flex-col p-8 justify-between items-center overflow-y-auto">
             <div class="w-full max-w-[560px] mb-16">
+                <!-- Logo -->
+                <div class="mb-12">
+                    <a href="{{ route('home') }}">
+                        <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopinHome" class="h-8">
+                    </a>
+                </div>
+                <!-- Progress Bar -->
                 <div class="h-1.5 w-full bg-[#e8e8e7] rounded-full overflow-hidden">
                     <div class="h-full bg-[#1447d4] rounded-full" style="width: 25%"></div>
                 </div>
