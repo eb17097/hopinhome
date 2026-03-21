@@ -3,7 +3,7 @@
     <p class="text-[16px] text-[#464646] mb-8 leading-[1.5]">What do you plan to do?</p>
 
     <!-- Options -->
-    <div class="space-y-4 mb-12">
+    <div class="space-y-4">
         <!-- Option 1: Rent -->
         <label @click="selectedRole = 'renter'" class="block relative p-5 border rounded-lg cursor-pointer transition-all duration-200"
             :class="selectedRole === 'renter' ? 'border-[#1447d4] bg-white' : 'border-[#e8e8e7] bg-white hover:border-[#1447d4]'">

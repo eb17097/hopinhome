@@ -8,17 +8,17 @@
 <x-main-layout :title="$title">
     <div class="flex h-screen overflow-hidden bg-white" {{ $attributes }}>
         <!-- Left Side -->
-        <div class="w-full lg:w-1/2 flex flex-col p-8 justify-between items-center overflow-y-auto">
+        <div class="w-1/2 flex flex-col p-8 pb-[64px] justify-between items-center overflow-y-auto">
             <div class="w-full max-w-[560px] mb-16">
                 <!-- Logo & Back Button -->
-                <div class="mb-12 flex items-center gap-6">
+                <div class="mb-[18px] flex items-center gap-6">
                     @if($backUrl)
                         <a href="{{ $backUrl }}" class="hover:opacity-70 transition-opacity">
-                            <img src="{{ asset('images/arrow_left_blue.svg') }}" alt="Back" class="w-6 h-6">
+                            <img src="{{ asset('images/arrow_left_blue.svg') }}" alt="Back" class="w-[25px] h-[25px]">
                         </a>
                     @endif
                     <a href="{{ route('home') }}">
-                        <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopinHome" class="h-8">
+                        <img src="{{ asset('images/hopinhome_logo_blue.svg') }}" alt="HopinHome" class="h-[24px]">
                     </a>
                 </div>
                 <!-- Progress Bar -->
@@ -34,7 +34,7 @@
 
             <!-- Next Button / Actions -->
             @if(isset($actions))
-                <div class="max-w-[560px] w-full mt-auto pt-8 flex flex-col">
+                <div class="max-w-[560px] w-full pt-8 flex flex-col">
                     {{ $actions }}
                 </div>
             @else
