@@ -338,18 +338,18 @@
 
                     <!-- Features Section -->
                     <section>
-                        <div class="flex items-center gap-2 mb-4">
-                            <h4 class="text-[18px] font-medium text-[#1E1D1D] leading-[1.28] tracking-[-0.36px] mb-[12px]">Features</h4>
-                            <span x-show="selectedFeatures.length > 0" x-text="selectedFeatures.length" class="bg-[#F9F9F8] border border-gray-200 rounded-full px-2 py-0.5 text-[14px] font-medium text-[#1E1D1D]"></span>
+                        <div class="flex items-center gap-[6px] mb-[12px]">
+                            <h4 class="text-[18px] font-medium text-[#1E1D1D] leading-[1.28] tracking-[-0.36px]">Features</h4>
+                            <span x-show="selectedFeatures.length > 0" x-text="selectedFeatures.length" class="relative top-[1px] bg-[#E8E8E7] size-[20px] rounded-full flex items-center justify-center leading-[1] text-[14px] font-medium text-[#1E1D1D]"></span>
                         </div>
-                        <div class="grid grid-cols-3 gap-y-4">
+                        <div class="grid grid-cols-3 gap-y-[18px]">
                             @foreach($allFeatures as $feature)
                                 @php $fSlug = strtolower(str_replace([' ', '/'], '-', $feature->name)); @endphp
                                 <label class="flex items-center gap-3 cursor-pointer group">
                                     <div class="relative size-6 border-2 rounded transition-colors"
                                          :class="selectedFeatures.includes('{{ $fSlug }}') ? 'bg-[#1447D4] border-[#1447D4]' : 'bg-white border-gray-200 group-hover:border-[#1447D4]'">
                                         <template x-if="selectedFeatures.includes('{{ $fSlug }}')">
-                                            <img src="{{ asset('images/check.svg') }}" class="absolute inset-0 m-auto size-3.5 brightness-0 invert" alt="">
+                                            <img src="{{ asset('images/check.svg') }}" class="absolute inset-0 m-auto size-4 brightness-0 invert" alt="">
                                         </template>
                                         <input type="checkbox" @change="toggleFeature('{{ $fSlug }}')" :checked="selectedFeatures.includes('{{ $fSlug }}')" class="sr-only">
                                     </div>
@@ -361,18 +361,18 @@
 
                     <!-- Building Amenities Section -->
                     <section>
-                        <div class="flex items-center gap-2 mb-4">
-                            <h4 class="text-[18px] font-medium text-[#1E1D1D] leading-[1.28] tracking-[-0.36px] mb-[12px]">Building amenities</h4>
-                            <span x-show="selectedAmenities.length > 0" x-text="selectedAmenities.length" class="bg-[#F9F9F8] border border-gray-200 rounded-full px-2 py-0.5 text-[14px] font-medium text-[#1E1D1D]"></span>
+                        <div class="flex items-center gap-2 mb-[12px]">
+                            <h4 class="text-[18px] font-medium text-[#1E1D1D] leading-[1.28] tracking-[-0.36px]">Building amenities</h4>
+                            <span x-show="selectedAmenities.length > 0" x-text="selectedAmenities.length" class="relative top-[1px] bg-[#E8E8E7] size-[20px] rounded-full flex items-center justify-center leading-[1] text-[14px] font-medium text-[#1E1D1D]"></span>
                         </div>
-                        <div class="grid grid-cols-3 gap-y-4">
+                        <div class="grid grid-cols-3 gap-y-[18px]">
                             @foreach($allAmenities as $amenity)
                                 @php $aSlug = strtolower(str_replace([' ', '/'], '-', $amenity->name)); @endphp
                                 <label class="flex items-center gap-3 cursor-pointer group">
                                     <div class="relative size-6 border-2 rounded transition-colors"
                                          :class="selectedAmenities.includes('{{ $aSlug }}') ? 'bg-[#1447D4] border-[#1447D4]' : 'bg-white border-gray-200 group-hover:border-[#1447D4]'">
                                         <template x-if="selectedAmenities.includes('{{ $aSlug }}')">
-                                            <img src="{{ asset('images/check.svg') }}" class="absolute inset-0 m-auto size-3.5 brightness-0 invert" alt="">
+                                            <img src="{{ asset('images/check.svg') }}" class="absolute inset-0 m-auto size-4 brightness-0 invert" alt="">
                                         </template>
                                         <input type="checkbox" @change="toggleAmenity('{{ $aSlug }}')" :checked="selectedAmenities.includes('{{ $aSlug }}')" class="sr-only">
                                     </div>
