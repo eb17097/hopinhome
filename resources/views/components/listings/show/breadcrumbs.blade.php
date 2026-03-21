@@ -11,7 +11,7 @@
         </li>
         <li class="flex items-center">
             <img src="{{ asset('images/arrow_forward_gray.svg') }}" class="h-3 w-3 mx-2" alt=">">
-            <span class="font-medium text-black">Apartments for Rent</span>
+            <span>Apartments for Rent</span>
         </li>
     </ol>
 </nav>

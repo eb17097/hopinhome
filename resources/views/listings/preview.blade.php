@@ -18,23 +18,24 @@
 
 {{-- Preview Header --}}
 <header class="bg-white border-b border-[#e8e8e7] h-[64px] sticky top-0 z-50">
-    <div class="max-w-[1440px] mx-auto h-full px-[118px] flex items-center justify-between">
+    <div class="max-w-[1204px] mx-auto h-full flex items-center justify-between relative">
         <div class="flex items-center gap-4">
             <a href="{{ route('property_manager.listings.edit', $listing) }}" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                <img src="{{ asset('images/arrow_forward.svg') }}" class="w-6 h-6 rotate-180" alt="Back">
+                <img src="{{ asset('images/arrow_blue_left.svg') }}" class="w-[25px] h-[25px]" alt="Back">
             </a>
-            <h1 class="text-[18px] font-medium text-[#1e1d1d] tracking-[-0.36px]">Listing preview</h1>
         </div>
 
+        <h1 class="absolute left-1/2 -translate-x-1/2 leading-[1.28] text-[18px] font-medium text-[#1e1d1d] tracking-[-0.36px]">Listing preview</h1>
+
         <div class="flex items-center gap-3">
-            <a href="{{ route('property_manager.listings.index') }}" 
-               class="h-[43px] px-[32px] border border-[#e8e8e7] rounded-full flex items-center justify-center text-[16px] font-medium text-[#1e1d1d] hover:bg-gray-50 transition-colors tracking-[-0.48px]">
+            <a href="{{ route('property_manager.listings.index') }}"
+               class="h-[43px] px-[32px] w-[171px] border border-[#e8e8e7] leading-[1.18] rounded-[22px] flex items-center justify-center text-[16px] font-medium text-[#1e1d1d] hover:bg-gray-50 transition-colors tracking-[-0.48px]">
                 Save as draft
             </a>
             <form action="{{ route('property_manager.listings.publish', $listing) }}" method="POST">
                 @csrf
-                <button type="submit" 
-                        class="h-[43px] px-[32px] bg-[#1447d4] text-white rounded-full flex items-center justify-center text-[16px] font-medium hover:bg-[#04247b] transition-colors tracking-[-0.48px]">
+                <button type="submit"
+                        class="h-[43px] px-[32px] w-[171px] bg-[#1447d4] text-[#F9F9F8] leading-[1.18] rounded-[22px] flex items-center justify-center text-[16px] font-medium hover:bg-[#04247b] transition-colors tracking-[-0.48px]">
                     Publish listing
                 </button>
             </form>
