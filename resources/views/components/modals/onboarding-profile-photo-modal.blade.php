@@ -33,7 +33,7 @@
                 <button @click="show = false" class="text-[#1447d4] hover:opacity-70 transition-opacity z-10">
                     <img src="{{ asset('images/close_blue.svg') }}" class="w-[25px] h-[25px]" alt="Close">
                 </button>
-                <h3 class="absolute inset-0 flex items-center justify-center text-[18px] font-medium text-[#1e1d1d] pointer-events-none">
+                <h3 class="absolute inset-0 flex items-center leading-[1.28] tracking-[-0.36px] justify-center text-[18px] font-medium text-[#1e1d1d] pointer-events-none">
                     Crop photo
                 </h3>
                 <div class="w-6"></div>
@@ -127,7 +127,7 @@
             handleOpen(event) {
                 this.photoPreview = event.detail.preview;
                 this.show = true;
-                
+
                 this.$nextTick(() => {
                     this.initCropper();
                 });
@@ -163,7 +163,7 @@
                                 cropperInstance.zoomTo(0);
                                 const imageData = cropperInstance.getImageData();
                                 const minRatio = imageData.width / imageData.naturalWidth;
-                                
+
                                 self.minZoom = minRatio;
                                 self.maxZoom = minRatio * 3;
                                 self.sliderValue = 0; // Start at absolute min zoom
