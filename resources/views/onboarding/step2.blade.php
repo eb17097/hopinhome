@@ -54,7 +54,7 @@
                         console.error(err);
                     })
                 "
-                :disabled="!bio.trim()"
+                disabled="!bio.trim()"
             >
                 Next
             </x-onboarding.step-button>

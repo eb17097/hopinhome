@@ -35,7 +35,7 @@
                 type="submit"
                 form="onboarding-photo-form"
                 width="w-full lg:w-44"
-                :disabled="!hasPhoto"
+                disabled="!hasPhoto"
             >
                 <span x-text="hasPhoto ? 'Finish setup' : 'Next'">Next</span>
             </x-onboarding.step-button>

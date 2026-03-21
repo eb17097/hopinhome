@@ -103,7 +103,7 @@
                     console.error(err);
                 })
             "
-            :disabled="!selectedRole"
+            disabled="!selectedRole"
         >
             Next
         </x-onboarding.step-button>
