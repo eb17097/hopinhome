@@ -147,10 +147,17 @@
                                  x-transition:enter-end="opacity-100 scale-100"
                                  class="absolute right-0 mt-2 w-[249px] bg-white rounded-[8px] border border-light-gray shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] z-[100] overflow-hidden">
                                 <div>
-                                    <a href="{{ route('listings.show', $listing) }}" class="flex items-center space-x-[10px] px-[14px] py-[10px] hover:bg-gray-50 transition-colors">
-                                        <img src="{{ asset('images/apartment_black.svg') }}" class="w-[18px] h-[18px]" alt="">
-                                        <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">View listing</span>
-                                    </a>
+                                    @if($listing->status === 'Draft')
+                                        <a href="{{ route('property_manager.listings.preview', $listing) }}" class="flex items-center space-x-[10px] px-[14px] py-[10px] hover:bg-gray-50 transition-colors">
+                                            <img src="{{ asset('images/apartment_black.svg') }}" class="w-[18px] h-[18px]" alt="">
+                                            <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">Preview listing</span>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('listings.show', $listing) }}" class="flex items-center space-x-[10px] px-[14px] py-[10px] hover:bg-gray-50 transition-colors">
+                                            <img src="{{ asset('images/apartment_black.svg') }}" class="w-[18px] h-[18px]" alt="">
+                                            <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">View listing</span>
+                                        </a>
+                                    @endif
                                     <a class="flex items-center space-x-[10px] px-[14px] py-[10px] hover:bg-gray-50 transition-colors">
                                         <img src="{{ asset('images/bolt.svg') }}" class="w-[18px] h-[18px]" alt="">
                                         <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">Boost listing</span>

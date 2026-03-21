@@ -1,6 +1,6 @@
 @props(['listing'])
 
-<a href="{{ route('listings.show', $listing) }}" class="px-[24px] py-[12px] border-b border-light-gray last:border-b-0 flex items-center justify-between group hover:bg-gray-50/50 transition-colors block">
+<a href="{{ $listing->status === 'Draft' ? route('property_manager.listings.preview', $listing) : route('listings.show', $listing) }}" class="px-[24px] py-[12px] border-b border-light-gray last:border-b-0 flex items-center justify-between group hover:bg-gray-50/50 transition-colors block">
     <div class="flex items-center space-x-[16px] min-w-0 pr-[16px] w-[440px]">
         {{-- Thumbnail --}}
         <div class="w-[85px] h-[85px] rounded-[4px] overflow-hidden border border-light-gray shrink-0">
