@@ -153,9 +153,7 @@
                                      class="flex flex-col items-center justify-center gap-[18px] px-[17px] py-[19px] border rounded-[8px] cursor-pointer transition-all relative h-[170px] w-[170px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)]"
                                      :class="selectedPropertyTypes.includes(slugify('{{ $type['name'] }}')) ? 'border-[#1447D4] bg-blue-50/30' : 'border-gray-100 hover:border-[#1447D4]'">
                                     <template x-if="selectedPropertyTypes.includes(slugify('{{ $type['name'] }}'))">
-                                        <div class="absolute -top-1.5 -right-1.5 size-6 bg-[#1447D4] rounded-full flex items-center justify-center shadow-sm z-10">
-                                            <img src="{{ asset('images/check.svg') }}" class="size-3 brightness-0 invert" alt="">
-                                        </div>
+                                        <img src="{{ asset('images/white_checkmark_on_blue.svg') }}" class="absolute -top-1.5 -right-1.5 size-[24px] z-10" alt="">
                                     </template>
                                     <div class="size-[48px] flex items-center justify-center">
                                         <div class="w-full h-full transition-colors duration-200"
