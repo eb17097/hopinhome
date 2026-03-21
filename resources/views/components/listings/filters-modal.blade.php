@@ -245,7 +245,7 @@
                         <div class="flex flex-wrap gap-3">
                             @foreach(['Studio', '1', '2', '3', '4', '5+'] as $val)
                                 <button @click="toggleBedroom('{{ $val }}')"
-                                        class="flex items-center justify-center transition-all duration-150 text-[16px] font-medium focus:outline-none {{ $val === 'Studio' ? 'px-6' : 'size-[45px]' }} rounded-full shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] border"
+                                        class="flex items-center justify-center transition-all duration-150 text-[16px] font-medium focus:outline-none {{ $val === 'Studio' ? 'px-[20px]' : 'size-[40px]' }} rounded-full shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] border"
                                         :class="selectedBedrooms.includes('{{ $val }}') ? 'bg-[#1447D4] text-white border-[#1447D4]' : 'bg-white text-[#1E1D1D] border-gray-100 hover:border-[#1447D4]'">
                                     {{ $val }}
                                 </button>
@@ -259,7 +259,7 @@
                         <div class="flex flex-wrap gap-3">
                             @foreach(['1', '2', '3', '4', '5+'] as $val)
                                 <button @click="toggleBathroom('{{ $val }}')"
-                                        class="flex items-center justify-center transition-all duration-150 text-[16px] font-medium focus:outline-none size-[45px] rounded-full shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] border"
+                                        class="flex items-center justify-center transition-all duration-150 text-[16px] font-medium focus:outline-none size-[40px] rounded-full shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] border"
                                         :class="selectedBathrooms.includes('{{ $val }}') ? 'bg-[#1447D4] text-white border-[#1447D4]' : 'bg-white text-[#1E1D1D] border-gray-100 hover:border-[#1447D4]'">
                                     {{ $val }}
                                 </button>
