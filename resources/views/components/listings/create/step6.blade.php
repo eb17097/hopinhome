@@ -17,13 +17,14 @@
                     <div @click="formData.amenities.includes({{ $amenity->id }}) ? formData.amenities = formData.amenities.filter(id => id !== {{ $amenity->id }}) : formData.amenities.push({{ $amenity->id }})"
                          :class="{
                             'bg-[#1447d4] border-[#1447d4]': formData.amenities.includes({{ $amenity->id }}),
-                            'bg-white border-[#e8e8e7]': !formData.amenities.includes({{ $amenity->id }})
+                            'bg-white border-[#919191]': !formData.amenities.includes({{ $amenity->id }})
                          }"
                          class="w-6 h-6 rounded-[4px] border flex items-center justify-center mr-[8px] cursor-pointer transition-all hover:border-[#1447d4]">
                         <img src="{{ asset('images/check.svg') }}" alt="Check" class="w-4 h-4 brightness-0 invert" x-show="formData.amenities.includes({{ $amenity->id }})">
                     </div>
                     <label @click="formData.amenities.includes({{ $amenity->id }}) ? formData.amenities = formData.amenities.filter(id => id !== {{ $amenity->id }}) : formData.amenities.push({{ $amenity->id }})"
-                           class="text-[14px] font-medium cursor-pointer hover:text-[#1e1d1d] transition-colors">
+                           :class="formData.amenities.includes({{ $amenity->id }}) ? 'text-[#1e1d1d]' : 'text-[#464646]'"
+                           class="text-[14px] font-medium cursor-pointer transition-colors">
                         {{ $amenity->name }}
                     </label>
                 </div>

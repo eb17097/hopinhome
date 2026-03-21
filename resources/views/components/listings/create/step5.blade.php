@@ -17,13 +17,14 @@
                     <div @click="formData.features.includes({{ $feature->id }}) ? formData.features = formData.features.filter(id => id !== {{ $feature->id }}) : formData.features.push({{ $feature->id }})"
                          :class="{
                             'bg-[#1447d4] border-[#1447d4]': formData.features.includes({{ $feature->id }}),
-                            'bg-white border-[#e8e8e7]': !formData.features.includes({{ $feature->id }})
+                            'bg-white border-[#919191]': !formData.features.includes({{ $feature->id }})
                          }"
                          class="w-6 h-6 rounded-[4px] border flex items-center justify-center mr-[8px] cursor-pointer transition-all hover:border-[#1447d4]">
                         <img src="{{ asset('images/check.svg') }}" alt="Check" class="w-4 h-4 brightness-0 invert" x-show="formData.features.includes({{ $feature->id }})">
                     </div>
                     <label @click="formData.features.includes({{ $feature->id }}) ? formData.features = formData.features.filter(id => id !== {{ $feature->id }}) : formData.features.push({{ $feature->id }})"
-                           class="text-[14px] font-medium cursor-pointer hover:text-[#1e1d1d] transition-colors leading-[1.3]">
+                           :class="formData.features.includes({{ $feature->id }}) ? 'text-[#1e1d1d]' : 'text-[#464646]'"
+                           class="text-[14px] font-medium cursor-pointer transition-colors leading-[1.3]">
                         {{ $feature->name }}
                     </label>
                 </div>
