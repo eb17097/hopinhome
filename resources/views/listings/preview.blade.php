@@ -47,7 +47,7 @@
     <p class="text-white text-[14px] font-medium">This is a preview of your listing</p>
 </div>
 
-<main>
+<main class="pb-[144px]">
     @include('listings.partials.listing-content', ['isPreview' => true])
 </main>
 
