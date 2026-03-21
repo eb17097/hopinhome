@@ -85,7 +85,8 @@ class ListingController extends Controller
             if ($isDraft) {
                 $validatedData['status'] = 'Draft';
             } else {
-                $validatedData['status'] = 'Active';
+                // We keep it as draft until they actually publish from the preview page
+                $validatedData['status'] = 'Draft';
             }
 
             // Handle video upload
@@ -130,7 +131,11 @@ class ListingController extends Controller
                 return redirect($request->input('redirect_to'))->with('success', 'Listing saved as draft!');
             }
             
-            return redirect()->route('property_manager.index')->with('success', 'New listing created successfully!');
+            if ($isDraft) {
+                return redirect()->route('property_manager.listings.index')->with('success', 'Listing saved as draft!');
+            }
+
+            return redirect()->route('property_manager.listings.preview', $listing);
 
         } catch (\Illuminate\Validation\ValidationException $e) {
             // Laravel's validator handles the redirect. We just log the failure.
@@ -202,8 +207,9 @@ class ListingController extends Controller
 
             if ($request->has('status')) {
                 $validatedData['status'] = $request->input('status');
-            } elseif (!$isDraft && $listing->status === 'Draft') {
-                $validatedData['status'] = 'Active';
+            } else {
+                // We keep it as draft until they actually publish from the preview page
+                $validatedData['status'] = 'Draft';
             }
 
             // Handle video upload
@@ -244,7 +250,11 @@ class ListingController extends Controller
                 return redirect($request->input('redirect_to'))->with('success', 'Listing updated!');
             }
 
-            return redirect()->route('property_manager.listings.index')->with('success', 'Listing updated successfully!');
+            if ($isDraft) {
+                return redirect()->route('property_manager.listings.index')->with('success', 'Listing updated successfully!');
+            }
+
+            return redirect()->route('property_manager.listings.preview', $listing);
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -415,6 +425,27 @@ class ListingController extends Controller
         $propertyTypes = ['Apartment', 'Villa', 'House', 'Townhouse', 'Hotel apartment', 'Penthouse'];
 
         return view('property_manager.listings', compact('listings', 'statuses', 'propertyTypes'));
+    }
+
+    public function preview(Listing $listing)
+    {
+        if (auth()->id() !== $listing->user_id) {
+            abort(403);
+        }
+
+        $listing->load(['images', 'features', 'amenities', 'user']);
+        return view('listings.preview', ['listing' => $listing]);
+    }
+
+    public function publish(Listing $listing)
+    {
+        if (auth()->id() !== $listing->user_id) {
+            abort(403);
+        }
+
+        $listing->update(['status' => 'Active']);
+
+        return redirect()->route('property_manager.index')->with('success', 'Listing published successfully!');
     }
 
     public function destroy(Listing $listing)

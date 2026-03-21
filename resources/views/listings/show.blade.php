@@ -39,55 +39,7 @@
 <x-header />
 
 <main>
-    <div class="max-w-[1204px] mt-[40px] mx-auto">
-
-        <x-listings.show.breadcrumbs :listing="$listing" />
-
-        <x-listings.show.header :listing="$listing" />
-        <x-listings.show.gallery :listing="$listing" />
-
-        <div class="flex gap-x-[72px] mt-[32px]">
-            {{-- Main Content --}}
-            <div class="w-[742px]">
-                <x-listings.show.details :listing="$listing" />
-                <hr class="my-[40px] border-[#E8E8E7]">
-                <x-listings.show.about :listing="$listing" />
-                <hr class="my-[40px] border-[#E8E8E7]">
-                <x-listings.show.amenities :listing="$listing" />
-                <hr class="my-[40px] border-[#E8E8E7]">
-                <x-listings.show.location :listing="$listing" />
-                <hr class="my-[40px] border-[#E8E8E7]">
-                <x-listings.show.regulatory-info :listing="$listing" />
-            </div>
-
-            {{-- Sidebar --}}
-            <div class="w-[390px]">
-                <div class="sticky top-[120px] flex flex-col gap-[24px]">
-                    <x-listings.show.booking-card :listing="$listing" />
-                    @if ($listing->user && $listing->user->is_agent)
-                        <x-listings.show.agent-card :listing="$listing" />
-                    @else
-                        <x-listings.show.owner-card :listing="$listing" />
-                    @endif
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <x-listings.show.similar-listings :listing="$listing" />
-
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-[96px]">
-        <div class="flex gap-x-[60px]">
-            <div class="w-[746px]">
-                <x-listings.faq-section />
-            </div>
-        </div>
-    </div>
-
-    <x-modals.report-listing-modal :listing="$listing" />
-    <x-modals.share-listing-modal :listing="$listing" />
-
+    @include('listings.partials.listing-content')
 </main>
 
 <x-footer />
