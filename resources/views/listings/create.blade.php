@@ -183,7 +183,7 @@
 
                             <button type="submit" x-show="step === 10"
                                     class="bg-[#1447d4] hover:bg-[#04247b] text-white font-medium px-10 py-2.5 rounded-full transition-all text-[16px] tracking-[-0.48px] h-[40px] flex items-center justify-center">
-                                Preview listing
+                                Show Preview
                             </button>
                         </div>
                     </div>
