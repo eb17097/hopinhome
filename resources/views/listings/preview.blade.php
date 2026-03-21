@@ -51,7 +51,5 @@
     @include('listings.partials.listing-content')
 </main>
 
-<x-footer />
-
 </body>
 </html>
