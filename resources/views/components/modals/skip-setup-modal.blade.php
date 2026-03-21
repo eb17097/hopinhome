@@ -9,7 +9,7 @@
             this.show = false;
         }
     }"
-    @open-skip-setup-modal.window="show = true; skipUrl = $event.detail.skipUrl"
+    x-on:open-skip-setup-modal.window="show = true; skipUrl = $event.detail.skipUrl"
 >
     <h2 class="text-[24px] font-medium text-[#1e1d1d] mb-4 leading-[1.28]">
         Do you want to skip the setup?
@@ -21,7 +21,7 @@
     {{-- Actions --}}
     <div class="space-y-4">
         <button type="button"
-                @click="window.location.href = skipUrl"
+                @click="if(skipUrl) { window.location.href = skipUrl }"
                 class="w-full h-[52px] border border-[#1447d4] text-[#1447d4] font-medium rounded-[8px] hover:bg-blue-50 transition-colors text-[16px]">
             Skip setup
         </button>

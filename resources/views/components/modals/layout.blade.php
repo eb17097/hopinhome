@@ -7,11 +7,10 @@
 ])
 
 <div x-show="show"
-     @open-{{ $name }}-modal.window="show = true"
-     @keydown.escape.window="close()"
+     x-on:keydown.escape.window="close()"
      class="fixed inset-0 z-[60] overflow-y-auto"
      style="display: none;"
-     {{ $attributes }}>
+     {{ $attributes->merge(['x-on:open-'.$name.'-modal.window' => 'show = true']) }}>
 
     <div class="flex items-center justify-center min-h-screen px-4 py-4 text-center">
         {{-- Background overlay --}}
