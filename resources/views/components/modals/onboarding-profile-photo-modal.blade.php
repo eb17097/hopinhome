@@ -29,12 +29,15 @@
              class="inline-block w-full max-w-[586px] my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] rounded-[14px]">
 
             {{-- Header --}}
-            <div class="px-6 py-5 flex items-center justify-center relative">
-                <h3 class="text-[18px] font-medium text-[#1e1d1d]">
+            <div class="h-[66px] px-6 py-4 border-b border-[#e8e8e7] flex items-center justify-between relative">
+                <button @click="show = false" class="text-[#1447d4] hover:opacity-70 transition-opacity z-10">
+                    <img src="{{ asset('images/close_blue.svg') }}" class="w-[25px] h-[25px]" alt="Close">
+                </button>
+                <h3 class="absolute inset-0 flex items-center justify-center text-[18px] font-medium text-[#1e1d1d] pointer-events-none">
                     Crop photo
                 </h3>
+                <div class="w-6"></div>
             </div>
-            <div class="w-full h-px bg-[#e8e8e7]"></div>
 
             <div class="p-8">
                 {{-- Crop Area --}}
