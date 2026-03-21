@@ -95,6 +95,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'role:renter'])->prefix('renter')->name('renter.')->group(function () {
     Route::get('/', [RenterController::class, 'index'])->name('index');
     Route::get('/security', [RenterController::class, 'security'])->name('security');
+    Route::post('/mark-setup-complete', [RenterController::class, 'markSetupComplete'])->name('mark-setup-complete');
 });
 
 Route::middleware(['auth', 'role:property_manager'])->prefix('property-manager')->name('property_manager.')->group(function () {

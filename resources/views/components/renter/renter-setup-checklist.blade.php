@@ -20,6 +20,7 @@
         hasBio: {{ $hasBio ? 'true' : 'false' }},
         hasEmailVerified: true,
         hasNotifications: {{ $initialNotifications ? 'true' : 'false' }},
+        alreadySeen: {{ $user->setup_checklist_completed ? 'true' : 'false' }},
         get completedCount() {
             return (this.hasEmailVerified ? 1 : 0) +
                    (this.hasBio ? 1 : 0) +
@@ -28,8 +29,37 @@
         },
         get progressPercent() {
             return (this.completedCount / 4) * 100;
+        },
+        async markComplete() {
+            try {
+                const response = await fetch('{{ route('renter.mark-setup-complete') }}', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (response.ok) {
+                    // Success handled locally by state if needed, 
+                    // but alreadySeen is our primary gate.
+                }
+            } catch (error) {
+                console.error('Failed to mark setup as complete', error);
+            }
+        },
+        init() {
+            if (this.completedCount === 4 && !this.alreadySeen) {
+                this.markComplete();
+            }
+            this.$watch('completedCount', (value) => {
+                if (value === 4 && !this.alreadySeen) {
+                    this.markComplete();
+                }
+            });
         }
      }"
+     x-show="completedCount < 4 || !alreadySeen"
      @notifications-updated.window="hasNotifications = $event.detail.hasNotifications"
      class="bg-white border border-[#e8e8e7] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] mt-[40px]">
 

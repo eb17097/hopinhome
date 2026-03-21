@@ -31,6 +31,7 @@ class User extends Authenticatable
         'measurement_unit',
         'onboarding_step',
         'onboarding_completed',
+        'setup_checklist_completed',
     ];
 
     /**

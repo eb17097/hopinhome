@@ -23,4 +23,18 @@ class RenterController extends Controller
     {
         return view('renter.security');
     }
+
+    /**
+     * Mark the renter setup checklist as complete.
+     */
+    public function markSetupComplete(Request $request)
+    {
+        $user = $request->user();
+        
+        $user->update([
+            'setup_checklist_completed' => true
+        ]);
+
+        return response()->json(['status' => 'success']);
+    }
 }
