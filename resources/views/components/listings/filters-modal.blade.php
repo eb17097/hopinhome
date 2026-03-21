@@ -200,14 +200,14 @@
                             <div>
                                 <p class="text-[16px] text-[#464646] mb-[6px]">Minimum Price</p>
                                 <div class="relative flex items-center bg-white border border-gray-200 rounded-lg h-[45px] px-4 shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]">
-                                    <input type="number" x-model.number="minPrice" class="w-full border-none focus:ring-0 p-0 text-[16px] font-medium text-[#1E1D1D] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+                                    <input type="number" x-model.number="minPrice" class="w-full border-none focus:ring-0 p-0 text-[16px] font-normal leading-[1.3] text-[#1E1D1D] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
                                     <span class="text-gray-400 text-[16px] ml-2">AED</span>
                                 </div>
                             </div>
                             <div>
                                 <p class="text-[16px] text-[#464646] mb-[6px]">Maximum Price</p>
                                 <div class="relative flex items-center bg-white border border-gray-200 rounded-lg h-[45px] px-4 shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]">
-                                    <input type="number" x-model.number="maxPrice" placeholder="Any" class="w-full border-none focus:ring-0 p-0 text-[16px] font-medium text-[#1E1D1D] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+                                    <input type="number" x-model.number="maxPrice" placeholder="Any" class="w-full border-none focus:ring-0 p-0 text-[16px] font-normal leading-[1.3] text-[#1E1D1D] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
                                     <span class="text-gray-400 text-[16px] ml-2">AED</span>
                                 </div>
                             </div>
@@ -274,14 +274,14 @@
                             <div>
                                 <p class="text-[16px] text-gray-500 mb-2">Minimum Area</p>
                                 <div class="relative flex items-center bg-white border border-gray-200 rounded-lg h-[45px] px-4 shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]">
-                                    <input type="number" x-model.number="minArea" class="w-full border-none focus:ring-0 p-0 text-[16px] font-medium text-[#1E1D1D] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+                                    <input type="number" x-model.number="minArea" class="w-full border-none focus:ring-0 p-0 text-[16px] font-normal leading-[1.3] text-[#1E1D1D] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
                                     <span class="text-gray-400 text-[16px] ml-2">sqft</span>
                                 </div>
                             </div>
                             <div>
                                 <p class="text-[16px] text-gray-500 mb-2">Maximum Area</p>
                                 <div class="relative flex items-center bg-white border border-gray-200 rounded-lg h-[45px] px-4 shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)]">
-                                    <input type="number" x-model.number="maxArea" placeholder="Any" class="w-full border-none focus:ring-0 p-0 text-[16px] font-medium text-[#1E1D1D] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+                                    <input type="number" x-model.number="maxArea" placeholder="Any" class="w-full border-none focus:ring-0 p-0 text-[16px] font-normal leading-[1.3] text-[#1E1D1D] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
                                     <span class="text-gray-400 text-[16px] ml-2">sqft</span>
                                 </div>
                             </div>
