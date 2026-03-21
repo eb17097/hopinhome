@@ -48,7 +48,7 @@
 </div>
 
 <main>
-    @include('listings.partials.listing-content')
+    @include('listings.partials.listing-content', ['isPreview' => true])
 </main>
 
 </body>

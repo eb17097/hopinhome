@@ -2,7 +2,7 @@
 
     <x-listings.show.breadcrumbs :listing="$listing" />
 
-    <x-listings.show.header :listing="$listing" />
+    <x-listings.show.header :listing="$listing" :isPreview="$isPreview ?? false" />
     <x-listings.show.gallery :listing="$listing" />
 
     <div class="flex gap-x-[72px] mt-[32px]">
