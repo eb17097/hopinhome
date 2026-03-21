@@ -9,7 +9,7 @@
 
     <x-slot:actions>
         <div class="flex items-center gap-8" :class="data.hasPhoto ? 'justify-end' : 'justify-between'">
-            <button type="button" 
+            <button type="button"
                     x-show="!data.hasPhoto"
                     x-cloak
                     @click="$dispatch('open-skip-setup-modal', { skipUrl: '{{ route('onboarding.skip') }}' })"
@@ -19,7 +19,7 @@
             <x-onboarding.step-button
                 type="submit"
                 form="onboarding-photo-form"
-                width="w-full lg:w-44"
+                width="w-[180px]"
                 disabled="!data.hasPhoto"
             >
                 <span x-text="data.hasPhoto ? 'Finish setup' : 'Next'">Next</span>

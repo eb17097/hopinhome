@@ -20,7 +20,7 @@
     <x-slot:actions>
         <x-onboarding.step-button
             style="margin-left: auto;"
-            width="w-full lg:w-56"
+            width="w-[213px]"
             @click="submit('{{ route('onboarding.complete') }}')"
         >
             Start exploring
