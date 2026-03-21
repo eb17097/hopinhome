@@ -32,15 +32,14 @@
                 {{ $slot }}
             </div>
 
-            <!-- Next Button / Actions -->
-            @if(isset($actions))
+            <!-- Actions Footer -->
+            @isset($actions)
                 <div class="max-w-[560px] w-full pt-[64px] flex flex-col">
                     {{ $actions }}
                 </div>
             @else
-                {{-- Spacer to maintain layout if no actions provided --}}
                 <div class="h-12"></div>
-            @endif
+            @endisset
         </div>
 
         <!-- Right Side (Blue) -->
