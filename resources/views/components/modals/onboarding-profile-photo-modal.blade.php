@@ -39,30 +39,30 @@
                 <div class="w-6"></div>
             </div>
 
-            <div class="p-8">
+            <div class="p-[24px]">
                 {{-- Crop Area --}}
-                <div class="w-full h-[397px] bg-[#f9f9f8] rounded-[8px] overflow-hidden relative mb-12">
+                <div class="w-full h-[397px] bg-[#f9f9f8] rounded-[6px] overflow-hidden relative mb-[24px]">
                     <img id="onboarding-cropper-image" src="" alt="Picture" class="max-w-full" crossorigin="anonymous">
                 </div>
 
                 {{-- Zoom Slider --}}
-                <div class="flex items-center gap-4 mb-12">
-                    <img src="{{ asset('images/zoom_out.svg') }}" class="w-6 h-6 opacity-80 cursor-pointer" alt="-" @click="sliderValue = Math.max(0, sliderValue - 10); updateZoomFromSlider()">
+                <div class="flex items-center gap-[8px] mb-[36px]">
+                    <img src="{{ asset('images/zoom_out.svg') }}" class="w-6 h-6 cursor-pointer" alt="-" @click="sliderValue = Math.max(0, sliderValue - 10); updateZoomFromSlider()">
                     <div class="relative w-full h-1.5 flex items-center">
                         <input type="range" min="0" max="100" x-model="sliderValue" @input="updateZoomFromSlider"
                                class="w-full h-1.5 bg-[#e8e8e7] rounded-lg appearance-none cursor-pointer custom-range-slider-onboarding"
                                :style="'background: linear-gradient(to right, #1447d4 ' + sliderValue + '%, #e8e8e7 ' + sliderValue + '%)'">
                     </div>
-                    <img src="{{ asset('images/zoom_in.svg') }}" class="w-6 h-6 opacity-80 cursor-pointer" alt="+" @click="sliderValue = Math.min(100, Number(sliderValue) + 10); updateZoomFromSlider()">
+                    <img src="{{ asset('images/zoom_in.svg') }}" class="w-6 h-6 cursor-pointer" alt="+" @click="sliderValue = Math.min(100, Number(sliderValue) + 10); updateZoomFromSlider()">
                 </div>
 
                 {{-- Actions --}}
-                <div class="space-y-6">
+                <div class="space-y-[16px] mb-[16px]">
                     <button type="button" @click="confirmCrop"
-                            class="w-full h-[51px] bg-[#1447d4] hover:bg-[#04247b] text-white font-medium rounded-[8px] transition-all text-[16px]">
+                            class="w-full h-[51px] bg-[#1447d4] hover:bg-[#04247b] text-white font-medium rounded-[50px] leading-[1.18] tracking-[-0.48px] transition-all text-[16px]">
                         Confirm
                     </button>
-                    <button type="button" @click="show = false" class="w-full text-center text-[16px] text-[#464646] hover:text-[#1e1d1d] transition-colors">
+                    <button type="button" @click="show = false" class="w-full text-center text-[14px] leading-[1.5] underline text-[#464646] hover:text-[#1e1d1d] transition-colors">
                         Cancel
                     </button>
                 </div>

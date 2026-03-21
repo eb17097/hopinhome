@@ -43,12 +43,12 @@
     </div>
 
     {{-- Action Buttons (Only when photo exists) --}}
-    <div x-show="hasPhoto" class="grid grid-cols-2 gap-6 mb-12">
-        <button type="button" @click="removePhoto" class="flex items-center justify-center gap-[6px] px-[32px] py-[12px] border border-[#ed0707] rounded-[6px] text-[#ed0707] text-[16px] font-medium tracking-[-0.48px] hover:bg-red-50 transition-colors">
+    <div x-show="hasPhoto" class="grid grid-cols-2 gap-[16px] mt-[6px]">
+        <button type="button" @click="removePhoto" class="h-[44px] flex items-center justify-center gap-[6px] px-[32px] py-[12px] border border-[#ed0707] rounded-[50px] text-[#ed0707] text-[16px] font-medium tracking-[-0.48px] hover:bg-red-50 transition-colors">
             <img src="{{ asset('images/red_close.svg') }}" class="w-5 h-5" alt="">
             <span>Remove photo</span>
         </button>
-        <button type="button" @click="editCurrentPhoto" class="flex items-center justify-center gap-[6px] px-[32px] py-[12px] border border-[#e8e8e7] rounded-[6px] text-[#1e1d1d] text-[16px] font-medium tracking-[-0.48px] hover:bg-gray-50 transition-colors">
+        <button type="button" @click="editCurrentPhoto" class="h-[44px] flex items-center justify-center gap-[6px] px-[32px] py-[12px] border border-[#e8e8e7] rounded-[50px] text-[#1e1d1d] text-[16px] font-medium tracking-[-0.48px] hover:bg-gray-50 transition-colors">
             <img src="{{ asset('images/edit_square.svg') }}" class="w-5 h-5" alt="">
             <span>Crop photo</span>
         </button>
