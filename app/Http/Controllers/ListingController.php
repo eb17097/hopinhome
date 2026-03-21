@@ -69,6 +69,7 @@ class ListingController extends Controller
                 'latitude' => 'nullable|numeric',
                 'longitude' => 'nullable|numeric',
                 'status' => 'nullable|string',
+                'current_step' => 'nullable|integer|min:1|max:10',
                 'video_file' => 'nullable|file|mimes:mp4,mov,avi,wmv|max:51200', // 50MB Max
                 'photos' => 'nullable|array',
                 'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -187,6 +188,7 @@ class ListingController extends Controller
                 'latitude' => 'nullable|numeric',
                 'longitude' => 'nullable|numeric',
                 'status' => 'nullable|string',
+                'current_step' => 'nullable|integer|min:1|max:10',
                 'video_file' => 'nullable|file|mimes:mp4,mov,avi,wmv|max:51200',
                 'photos' => 'nullable|array',
                 'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',

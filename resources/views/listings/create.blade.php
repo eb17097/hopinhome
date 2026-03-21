@@ -33,7 +33,7 @@
                 @endphp
                 <div id="listing-form-container"
                      x-data="{
-                        step: 1,
+                        step: {{ old('current_step', $listing->current_step ?? 1) }},
                         stepTitles: {
                             1: '{{ isset($listing) ? 'Edit listing' : 'Create listing' }}',
                             2: 'Property location',
@@ -73,11 +73,20 @@
                         },
                                                 saveAsDraft() {
                                                     let form = document.getElementById('listing-creation-form');
+                                                    
+                                                    // Add status input
                                                     let statusInput = document.createElement('input');
                                                     statusInput.type = 'hidden';
                                                     statusInput.name = 'status';
                                                     statusInput.value = 'Draft';
                                                     form.appendChild(statusInput);
+
+                                                    // Add current step input
+                                                    let stepInput = document.createElement('input');
+                                                    stepInput.type = 'hidden';
+                                                    stepInput.name = 'current_step';
+                                                    stepInput.value = this.step;
+                                                    form.appendChild(stepInput);
 
                                                     if (this.nextUrl) {
                                                         let redirectInput = document.createElement('input');
@@ -148,6 +157,7 @@
                         <div x-show="step === 10" style="display: none;"><x-listings.create.step10 /></div>
 
                         {{-- Hidden inputs to bridge Alpine data with the form submission --}}
+                        <input type="hidden" name="current_step" :value="step">
                         <input type="hidden" name="address" :value="formData.address">
                         <input type="hidden" name="features" :value="JSON.stringify(formData.features)">
                         <input type="hidden" name="amenities" :value="JSON.stringify(formData.amenities)">
