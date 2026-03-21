@@ -6,7 +6,7 @@
 
     <input type="file" id="onboarding-photo-input" name="photo" class="hidden" accept="image/*" @change="handleFileSelect">
 
-    <div class="mb-6">
+    <div class="mb-[16px]">
         <label class="text-[14px] font-medium text-[#1e1d1d] block mb-2">Profile picture</label>
 
         {{-- Upload/Display Box --}}
@@ -55,7 +55,7 @@
     </div>
 
     {{-- Suggestion Box (Only when NO photo exists) --}}
-    <div x-show="!hasPhoto" class="flex items-start gap-4 p-5 bg-[#f9f9f8] rounded-lg mb-12">
+    <div x-show="!hasPhoto" class="flex items-start gap-[8px] pl-[14px] pr-[24px] py-[16px] bg-[#f9f9f8] rounded-lg">
         <img src="{{ asset('images/contact_support_blue.svg') }}" alt="" class="w-7 h-7 shrink-0">
         <p class="text-[14px] leading-[1.5] text-[#464646]">
             <span class="font-medium text-[#1e1d1d]">Suggestion:</span>

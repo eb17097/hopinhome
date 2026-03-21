@@ -1,12 +1,12 @@
 <x-onboarding.layout step="1" x-data="{ selectedRole: '', isLoading: false }">
-    <h1 class="text-[32px] font-medium text-[#1e1d1d] tracking-[-0.64px] mb-2 leading-[1.28]">Let’s get started</h1>
-    <p class="text-[16px] text-[#464646] mb-8 leading-[1.5]">What do you plan to do?</p>
+    <h1 class="text-[32px] font-medium text-[#1e1d1d] tracking-[-0.64px] mb-[12px] leading-[1.28]">Let’s get started</h1>
+    <p class="text-[16px] text-[#464646] mb-[24px] leading-[1.5]">What do you plan to do?</p>
 
     <!-- Options -->
     <div class="space-y-4">
         <!-- Option 1: Rent -->
-        <label @click="selectedRole = 'renter'" class="block relative p-5 border rounded-lg cursor-pointer transition-all duration-200"
-            :class="selectedRole === 'renter' ? 'border-[#1447d4] bg-white' : 'border-[#e8e8e7] bg-white hover:border-[#1447d4]'">
+        <label @click="selectedRole = 'renter'" class="h-[84px] w-[560px] block relative p-[18px] border rounded-[6px] cursor-pointer transition-all duration-200"
+            :class="selectedRole === 'renter' ? 'border-[#1447d4] bg-white shadow-[0_2px_10px_0_rgba(0,0,0,0.10)]' : 'border-[#e8e8e7] bg-white hover:border-[#1447d4]'">
             <input type="radio" name="role_intent" value="renter" class="sr-only" x-model="selectedRole">
             <div class="flex justify-between items-center">
                 <div>
@@ -23,8 +23,8 @@
         </label>
 
         <!-- Option 2: Agent -->
-        <label @click="selectedRole = 'agent'" class="block relative p-5 border rounded-lg cursor-pointer transition-all duration-200"
-            :class="selectedRole === 'agent' ? 'border-[#1447d4] bg-white' : 'border-[#e8e8e7] bg-white hover:border-[#1447d4]'">
+        <label @click="selectedRole = 'agent'" class="h-[84px] w-[560px] block relative p-[18px] border rounded-[6px] cursor-pointer transition-all duration-200"
+            :class="selectedRole === 'agent' ? 'border-[#1447d4] bg-white shadow-[0_2px_10px_0_rgba(0,0,0,0.10)]' : 'border-[#e8e8e7] bg-white hover:border-[#1447d4]'">
             <input type="radio" name="role_intent" value="agent" class="sr-only" x-model="selectedRole">
             <div class="flex justify-between items-center">
                 <div>
@@ -41,8 +41,8 @@
         </label>
 
         <!-- Option 3: Brokerage -->
-        <label @click="selectedRole = 'brokerage'" class="block relative p-5 border rounded-lg cursor-pointer transition-all duration-200"
-            :class="selectedRole === 'brokerage' ? 'border-[#1447d4] bg-white' : 'border-[#e8e8e7] bg-white hover:border-[#1447d4]'">
+        <label @click="selectedRole = 'brokerage'" class="h-[84px] w-[560px] block relative p-[18px] border rounded-[6px] cursor-pointer transition-all duration-200"
+            :class="selectedRole === 'brokerage' ? 'border-[#1447d4] bg-white shadow-[0_2px_10px_0_rgba(0,0,0,0.10)]' : 'border-[#e8e8e7] bg-white hover:border-[#1447d4]'">
             <input type="radio" name="role_intent" value="brokerage" class="sr-only" x-model="selectedRole">
             <div class="flex justify-between items-center">
                 <div>
@@ -59,8 +59,8 @@
         </label>
 
         <!-- Option 4: Owner -->
-        <label @click="selectedRole = 'owner'" class="block relative p-5 border rounded-lg cursor-pointer transition-all duration-200"
-            :class="selectedRole === 'owner' ? 'border-[#1447d4] bg-white' : 'border-[#e8e8e7] bg-white hover:border-[#1447d4]'">
+        <label @click="selectedRole = 'owner'" class="h-[84px] w-[560px] block relative p-[18px] border rounded-[6px] cursor-pointer transition-all duration-200"
+            :class="selectedRole === 'owner' ? 'border-[#1447d4] bg-white shadow-[0_2px_10px_0_rgba(0,0,0,0.10)]' : 'border-[#e8e8e7] bg-white hover:border-[#1447d4]'">
             <input type="radio" name="role_intent" value="owner" class="sr-only" x-model="selectedRole">
             <div class="flex justify-between items-center">
                 <div>

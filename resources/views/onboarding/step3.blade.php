@@ -18,8 +18,8 @@
         })
         .catch(() => { isLoading = false; });
     ">
-        <h1 class="text-[32px] font-medium text-[#1e1d1d] tracking-[-0.64px] mb-2 leading-[1.28]">Upload a profile photo</h1>
-        <p class="text-[16px] text-[#464646] mb-8 leading-[1.5]">This photo is visible only to property managers and helps them recognize you better.</p>
+        <h1 class="text-[32px] font-medium text-[#1e1d1d] tracking-[-0.64px] mb-[12px] leading-[1.28]">Upload a profile photo</h1>
+        <p class="text-[16px] text-[#464646] mb-[24px] leading-[1.5]">This photo is visible only to property managers and helps them recognize you better.</p>
 
         <!-- Profile Picture Field -->
         <x-onboarding.profile-photo-uploader :initialPhoto="auth()->user()->profile_photo_url ? auth()->user()->getProfilePhotoUrl() : null" />
@@ -28,7 +28,7 @@
     <x-slot:actions>
         <div class="flex justify-between items-center gap-8">
             <button type="button" @click="$dispatch('open-skip-setup-modal', { skipUrl: '{{ route('onboarding.skip') }}' })"
-                    class="text-[14px] text-[#464646] underline hover:text-[#1e1d1d] transition-colors">
+                    class="text-[14px] leading-[1.5] text-[#464646] underline hover:text-[#1e1d1d] transition-colors">
                 Set up later
             </button>
             <x-onboarding.step-button

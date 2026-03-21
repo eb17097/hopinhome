@@ -9,7 +9,7 @@
     <div class="flex h-screen overflow-hidden bg-white" {{ $attributes }}>
         <!-- Left Side -->
         <div class="w-1/2 flex flex-col p-8 pb-[64px] justify-between items-center overflow-y-auto">
-            <div class="w-full max-w-[560px] mb-16">
+            <div class="w-full max-w-[560px] mb-[74px]">
                 <!-- Logo & Back Button -->
                 <div class="mb-[18px] flex items-center gap-6">
                     @if($backUrl)
@@ -34,7 +34,7 @@
 
             <!-- Next Button / Actions -->
             @if(isset($actions))
-                <div class="max-w-[560px] w-full pt-8 flex flex-col">
+                <div class="max-w-[560px] w-full pt-[64px] flex flex-col">
                     {{ $actions }}
                 </div>
             @else
