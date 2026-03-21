@@ -148,6 +148,7 @@
                         <div x-show="step === 10" style="display: none;"><x-listings.create.step10 /></div>
 
                         {{-- Hidden inputs to bridge Alpine data with the form submission --}}
+                        <input type="hidden" name="address" :value="formData.address">
                         <input type="hidden" name="features" :value="JSON.stringify(formData.features)">
                         <input type="hidden" name="amenities" :value="JSON.stringify(formData.amenities)">
                         <input type="hidden" name="latitude" :value="formData.latitude">

@@ -7,7 +7,7 @@
         downtown: '{{ asset('images/downtown_loc.svg') }}',
         location: '{{ asset('images/location_loc.svg') }}',
         street: '{{ asset('images/street_loc.svg') }}'
-    })">
+    })" x-init="$watch('formData.address', value => location = value)">
         {{-- Address Input with Autocomplete --}}
         <div>
             <label for="address-input" class="block text-[14px] font-medium text-[#1e1d1d] mb-[6px]">Address</label>
