@@ -76,7 +76,7 @@
                     </button>
                     <h3 class="text-[18px] font-medium text-[#1E1D1D] flex items-center gap-2 relative">
                         Search & Filters
-                        <span x-show="totalFiltersCount > 0" x-cloak x-text="totalFiltersCount" class="absolute -right-[32px] bg-[#1447D4] text-white text-[14px] w-[20px] h-[20px] font-medium leading-[1] flex items-center justify-center rounded-full"></span>
+                        <span x-show="totalFiltersCount > 0" x-cloak x-text="totalFiltersCount" class="absolute -right-[28px] bg-[#1447D4] text-white text-[14px] w-[20px] h-[20px] font-medium leading-[1] flex items-center justify-center rounded-full"></span>
                     </h3>
                     <button @click="clearAll()" class="text-[16px] text-[#464646] leading-[1.3]">Clear all</button>
                 </div>
@@ -140,7 +140,7 @@
                     <!-- Property Type Section -->
                     <section>
                         <h4 class="text-[18px] font-medium text-[#1E1D1D] leading-[1.28] tracking-[-0.36px] mb-[12px]">Property type</h4>
-                        <div class="grid grid-cols-3 gap-4">
+                        <div class="flex flex-wrap gap-4">
                             @foreach([
                                 ['name' => 'Apartment', 'icon' => 'apartment_big.svg'],
                                 ['name' => 'Villa', 'icon' => 'villa.svg'],
@@ -150,7 +150,7 @@
                                 ['name' => 'Penthouse', 'icon' => 'penthouse.svg'],
                             ] as $type)
                                 <div @click="togglePropertyType('{{ $type['name'] }}')"
-                                     class="flex flex-col items-center justify-center gap-3 p-6 border rounded-[8px] cursor-pointer transition-all relative h-[160px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)]"
+                                     class="flex flex-col items-center justify-center gap-[18px] px-[17px] py-[19px] border rounded-[8px] cursor-pointer transition-all relative h-[170px] w-[170px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)]"
                                      :class="selectedPropertyTypes.includes(slugify('{{ $type['name'] }}')) ? 'border-[#1447D4] bg-blue-50/30' : 'border-gray-100 hover:border-[#1447D4]'">
                                     <template x-if="selectedPropertyTypes.includes(slugify('{{ $type['name'] }}'))">
                                         <div class="absolute -top-1.5 -right-1.5 size-6 bg-[#1447D4] rounded-full flex items-center justify-center shadow-sm z-10">
@@ -161,7 +161,7 @@
                                         <div class="w-full h-full transition-colors duration-200"
                                              :style="{'mask-image': 'url({{ asset('images/') }}/{{ $type['icon'] }})','-webkit-mask-image': 'url({{ asset('images/') }}/{{ $type['icon'] }})','mask-size': 'contain','-webkit-mask-size': 'contain','mask-repeat': 'no-repeat','-webkit-mask-repeat': 'no-repeat','mask-position': 'center','-webkit-mask-position': 'center','background-color': selectedPropertyTypes.includes(slugify('{{ $type['name'] }}')) ? '#1447D4' : '#04247B'}"></div>
                                     </div>
-                                    <span class="text-[16px] font-medium text-center" :class="selectedPropertyTypes.includes(slugify('{{ $type['name'] }}')) ? 'text-[#1447D4]' : 'text-gray-700'">{{ $type['name'] }}</span>
+                                    <span class="leading-[1.3] text-[16px] font-medium text-center" :class="selectedPropertyTypes.includes(slugify('{{ $type['name'] }}')) ? 'text-[#1447D4]' : 'text-[#1E1D1D]'">{{ $type['name'] }}</span>
                                 </div>
                             @endforeach
                         </div>
