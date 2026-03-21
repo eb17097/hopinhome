@@ -1,23 +1,5 @@
-<x-onboarding.layout step="3" :backUrl="route('onboarding.back')" x-data="{ isLoading: false, hasPhoto: {{ auth()->user()->profile_photo_url ? 'true' : 'false' }} }" @photo-updated="hasPhoto = $event.detail.hasPhoto">
-    <form id="onboarding-photo-form" @submit.prevent="
-        isLoading = true;
-        const formData = new FormData($el);
-        fetch('{{ route('onboarding.step3') }}', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.status === 'success') {
-                window.location.href = data.redirect;
-            }
-        })
-        .catch(() => { isLoading = false; });
-    ">
+<x-onboarding.layout step="3" :backUrl="route('onboarding.back')" x-data="onboardingStep({ hasPhoto: {{ auth()->user()->profile_photo_url ? 'true' : 'false' }} })" @photo-updated="data.hasPhoto = $event.detail.hasPhoto">
+    <form id="onboarding-photo-form" @submit.prevent="submit('{{ route('onboarding.step3') }}', { isFormData: true, formData: new FormData($el) })">
         <h1 class="text-[32px] font-medium text-[#1e1d1d] tracking-[-0.64px] mb-[12px] leading-[1.28]">Upload a profile photo</h1>
         <p class="text-[16px] text-[#464646] mb-[24px] leading-[1.5]">This photo is visible only to property managers and helps them recognize you better.</p>
 
@@ -26,9 +8,9 @@
     </form>
 
     <x-slot:actions>
-        <div class="flex items-center gap-8" :class="hasPhoto ? 'justify-end' : 'justify-between'">
+        <div class="flex items-center gap-8" :class="data.hasPhoto ? 'justify-end' : 'justify-between'">
             <button type="button" 
-                    x-show="!hasPhoto"
+                    x-show="!data.hasPhoto"
                     x-cloak
                     @click="$dispatch('open-skip-setup-modal', { skipUrl: '{{ route('onboarding.skip') }}' })"
                     class="text-[14px] leading-[1.5] text-[#464646] underline hover:text-[#1e1d1d] transition-colors">
@@ -38,9 +20,9 @@
                 type="submit"
                 form="onboarding-photo-form"
                 width="w-full lg:w-44"
-                disabled="!hasPhoto"
+                disabled="!data.hasPhoto"
             >
-                <span x-text="hasPhoto ? 'Finish setup' : 'Next'">Next</span>
+                <span x-text="data.hasPhoto ? 'Finish setup' : 'Next'">Next</span>
             </x-onboarding.step-button>
         </div>
     </x-slot:actions>
