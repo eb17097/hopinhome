@@ -1,12 +1,12 @@
 @props(['allFeatures' => collect(), 'allAmenities' => collect()])
 <template x-teleport="body">
-    <div 
-        x-show="isModalOpen" 
-        x-cloak 
+    <div
+        x-show="isModalOpen"
+        x-cloak
         @keydown.escape.window="isModalOpen = false"
-        class="fixed inset-0 z-[100] overflow-y-auto" 
-        aria-labelledby="modal-title" 
-        role="dialog" 
+        class="fixed inset-0 z-[100] overflow-y-auto"
+        aria-labelledby="modal-title"
+        role="dialog"
         aria-modal="true"
     >
         <style>
@@ -70,17 +70,15 @@
                 class="relative transform overflow-hidden rounded-[14px] bg-white text-left shadow-[0px_4px_16px_0px_rgba(0,0,0,0.1)] transition-all sm:my-8 sm:w-full sm:max-w-[792px]"
             >
                 <!-- Header -->
-                <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between sticky top-0 bg-white z-10">
-                    <div class="flex items-center gap-4">
-                        <button @click="isModalOpen = false" class="text-[#1447D4] hover:text-blue-700 transition-colors">
-                            <img src="{{ asset('images/arrow_left_blue.svg') }}" alt="Back" class="w-6 h-6">
-                        </button>
-                        <h3 class="text-[20px] font-medium text-[#1E1D1D] flex items-center gap-2">
-                            Search & Filters
-                            <span x-show="totalFiltersCount > 0" x-cloak x-text="totalFiltersCount" class="bg-[#1447D4] text-white text-[12px] w-6 h-6 flex items-center justify-center rounded-full"></span>
-                        </h3>
-                    </div>
-                    <button @click="clearAll()" class="text-[16px] text-gray-500 hover:text-gray-700 transition-colors">Clear all</button>
+                <div class="h-[65px] px-[24px] py-[20px] border-b border-[#E8E8E7] flex items-center justify-between sticky top-0 bg-white z-10">
+                    <button @click="isModalOpen = false" class="text-[#1447D4] hover:text-blue-700 transition-colors">
+                        <img src="{{ asset('images/arrow_left_blue.svg') }}" alt="Back" class="w-[25px] h-[25px]">
+                    </button>
+                    <h3 class="text-[18px] font-medium text-[#1E1D1D] flex items-center gap-2 relative">
+                        Search & Filters
+                        <span x-show="totalFiltersCount > 0" x-cloak x-text="totalFiltersCount" class="absolute -right-[32px] bg-[#1447D4] text-white text-[14px] w-[20px] h-[20px] font-medium leading-[1] flex items-center justify-center rounded-full"></span>
+                    </h3>
+                    <button @click="clearAll()" class="text-[16px] text-[#464646] leading-[1.3]">Clear all</button>
                 </div>
 
                 <!-- Content -->
@@ -89,7 +87,7 @@
                     <section>
                         <h4 class="text-[18px] font-medium text-[#1E1D1D] mb-4">Location</h4>
                         <div class="relative w-full">
-                            <div 
+                            <div
                                 class="relative flex items-center bg-white border border-gray-200 rounded-lg h-[56px] px-4 py-2 transition-all duration-200 gap-3 shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)]"
                                 :class="openFilter === 'locationModal' ? 'border-gray-200 rounded-b-none shadow-none z-30' : 'border-gray-200'"
                                 @click.stop="$refs.locationInputModal.focus()"
@@ -100,12 +98,12 @@
                                         <span x-text="location"></span>
                                         <img src="{{ asset('images/close.svg') }}" @click.stop="location = ''; locationQuery = ''" alt="Remove" class="w-4 h-4 ml-2 cursor-pointer">
                                     </span>
-                                    <input 
+                                    <input
                                         x-ref="locationInputModal"
-                                        type="text" 
-                                        x-model="locationQuery" 
+                                        type="text"
+                                        x-model="locationQuery"
                                         @focus="openFilter = 'locationModal'"
-                                        placeholder="Enter City or Location" 
+                                        placeholder="Enter City or Location"
                                         class="flex-grow border-none focus:ring-0 text-gray-700 placeholder-[#464646] text-[16px] p-0 bg-transparent"
                                     >
                                 </div>
