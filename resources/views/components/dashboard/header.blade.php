@@ -1,31 +1,42 @@
-@php use Illuminate\Support\Facades\Auth; @endphp
+@php 
+    use Illuminate\Support\Facades\Auth;
+    $user = Auth::user();
+    $isOwner = $user->isBusinessOwner();
+    $dashboardRoute = $isOwner ? route('business_owner.index') : route('property_manager.index');
+    $profileRoute = $isOwner ? route('business_owner.profile') : route('property_manager.profile');
+    $securityRoute = $isOwner ? route('business_owner.security') : route('property_manager.security');
+    
+    // For now owner doesn't have listings index, using placeholder
+    $listingsIndexRoute = $isOwner ? '#' : route('property_manager.listings.index');
+@endphp
 <nav class="bg-white border-b border-light-gray h-[74px] flex items-center px-6 justify-between">
     <div class="flex items-center space-x-[5px]">
-        @if(request()->routeIs('property_manager.index'))
+        @if(request()->url() == $dashboardRoute)
             <h2 class="text-[15px] font-medium text-[#1e1d1d]">Dashboard</h2>
         @else
-            <a href="{{ route('property_manager.index') }}" class="text-[15px] font-medium text-[#1e1d1d] opacity-60 hover:opacity-100 transition-opacity">Dashboard</a>
+            <a href="{{ $dashboardRoute }}" class="text-[15px] font-medium text-[#1e1d1d] opacity-60 hover:opacity-100 transition-opacity">Dashboard</a>
             <img src="{{ asset('images/chevron.svg') }}" class="w-4 h-4 transform -rotate-90 opacity-60" alt="">
 
-            @if(request()->routeIs('property_manager.profile'))
+            @if(request()->url() == $profileRoute)
                 <h2 class="text-[15px] font-medium text-[#1e1d1d]">Profile settings</h2>
-            @elseif(request()->routeIs('property_manager.security'))
-                <a href="{{ route('property_manager.profile') }}" class="text-[15px] font-medium text-[#1e1d1d] opacity-60 hover:opacity-100 transition-opacity">Profile settings</a>
+            @elseif(request()->url() == $securityRoute)
+                <a href="{{ $profileRoute }}" class="text-[15px] font-medium text-[#1e1d1d] opacity-60 hover:opacity-100 transition-opacity">Profile settings</a>
                 <img src="{{ asset('images/chevron.svg') }}" class="w-4 h-4 transform -rotate-90 opacity-60" alt="">
                 <h2 class="text-[15px] font-medium text-[#1e1d1d]">Account security</h2>
             @elseif(request()->routeIs('property_manager.listings.create'))
-                <a href="{{ route('property_manager.listings.index') }}" class="text-[15px] font-medium text-[#1e1d1d] opacity-60 hover:opacity-100 transition-opacity">Listings</a>
+                <a href="{{ $listingsIndexRoute }}" class="text-[15px] font-medium text-[#1e1d1d] opacity-60 hover:opacity-100 transition-opacity">Listings</a>
                 <img src="{{ asset('images/chevron.svg') }}" class="w-4 h-4 transform -rotate-90 opacity-60" alt="">
                 <h2 class="text-[15px] font-medium text-[#1e1d1d]">Create a listing</h2>
             @elseif(request()->routeIs('property_manager.listings.index'))
                 <h2 class="text-[15px] font-medium text-[#1e1d1d]">Listings</h2>
             @elseif(request()->routeIs('property_manager.listings.edit'))
-                <a href="{{ route('property_manager.listings.index') }}" class="text-[15px] font-medium text-[#1e1d1d] opacity-60 hover:opacity-100 transition-opacity">Listings</a>
+                <a href="{{ $listingsIndexRoute }}" class="text-[15px] font-medium text-[#1e1d1d] opacity-60 hover:opacity-100 transition-opacity">Listings</a>
                 <img src="{{ asset('images/chevron.svg') }}" class="w-4 h-4 transform -rotate-90 opacity-60" alt="">
                 <h2 class="text-[15px] font-medium text-[#1e1d1d] truncate max-w-[400px]" title="Edit Listing #{{ request()->route('listing')->id }} - {{ request()->route('listing')->name ?? request()->route('listing')->address }}">
                     P-0000{{ request()->route('listing')->id }}: {{ request()->route('listing')->name ?? request()->route('listing')->address }}
                 </h2>
-            @else                <h2 class="text-[15px] font-medium text-[#1e1d1d]">Page</h2>
+            @else
+                <h2 class="text-[15px] font-medium text-[#1e1d1d]">Page</h2>
             @endif
         @endif
     </div>
@@ -65,7 +76,7 @@
                     <div class="flex flex-col">
                         <p class="text-[12px] font-medium text-[#464646] mb-1">Settings</p>
                         <div class="flex flex-col">
-                            <a href="{{ route('property_manager.profile') }}" class="flex items-center gap-[10px] py-[10px] rounded-[4px] transition-colors">
+                            <a href="{{ $profileRoute }}" class="flex items-center gap-[10px] py-[10px] rounded-[4px] transition-colors">
                                 <img src="{{ asset('images/account_circle.svg') }}" class="w-[18px] h-[18px]" alt="">
                                 <span class="text-[16px] font-medium text-[#1e1d1d]">Profile settings</span>
                             </a>

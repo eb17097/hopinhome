@@ -1,21 +1,39 @@
-@php use Illuminate\Support\Facades\Auth; @endphp
+@php 
+    use Illuminate\Support\Facades\Auth;
+    $user = Auth::user();
+    $isPM = $user->isPropertyManager();
+    $isOwner = $user->isBusinessOwner();
+    
+    $dashboardRoute = $isOwner ? route('business_owner.index') : route('property_manager.index');
+    $listingsRoute = $isOwner ? '#' : route('property_manager.listings.index'); // Placeholder for owner listings for now
+    $profileRoute = $isOwner ? route('business_owner.profile') : route('property_manager.profile');
+    $createListingRoute = $isOwner ? '#' : route('property_manager.listings.create');
+@endphp
 <div class="w-full h-full bg-white flex flex-col transition-all duration-300">
     {{-- Home Section --}}
     <div class="px-[8px] mb-[16px]">
         <p x-show="sidebarOpen" x-cloak class="text-[12px] font-medium text-[#464646] px-2 mb-[4px] leading-[1.5] transition-opacity duration-300">Home</p>
         <div class="space-y-1">
-            <a href="{{ route('property_manager.index') }}"
-               class="flex items-center rounded-[4px] p-2 transition-all duration-300 {{ request()->routeIs('property_manager.index') ? 'bg-[#f6f6f5] text-[#1e1d1d]' : 'hover:bg-gray-50 text-[#1e1d1d]' }}"
+            <a href="{{ $dashboardRoute }}"
+               class="flex items-center rounded-[4px] p-2 transition-all duration-300 {{ request()->url() == $dashboardRoute ? 'bg-[#f6f6f5] text-[#1e1d1d]' : 'hover:bg-gray-50 text-[#1e1d1d]' }}"
                :class="sidebarOpen ? 'space-x-[10px]' : 'justify-center'">
                 <img alt="speed" class="w-[18px] h-[18px] shrink-0" src="{{ asset('images/speed.svg') }}">
                 <span x-show="sidebarOpen" x-cloak class="font-medium text-[14px] leading-[1.3] whitespace-nowrap overflow-hidden">Dashboard</span>
             </a>
-            <a href="{{ route('property_manager.listings.index') }}"
-               class="flex items-center rounded-[4px] p-2 transition-all duration-300 {{ request()->routeIs('property_manager.listings.index') ? 'bg-[#f6f6f5] text-[#1e1d1d]' : 'hover:bg-gray-50 text-[#1e1d1d]' }}"
+            <a href="{{ $listingsRoute }}"
+               class="flex items-center rounded-[4px] p-2 transition-all duration-300 {{ request()->url() == $listingsRoute ? 'bg-[#f6f6f5] text-[#1e1d1d]' : 'hover:bg-gray-50 text-[#1e1d1d]' }}"
                :class="sidebarOpen ? 'space-x-[10px]' : 'justify-center'">
                 <img alt="apartment" class="w-[18px] h-[18px] shrink-0" src="{{ asset('images/apartment_black.svg') }}">
                 <span x-show="sidebarOpen" x-cloak class="font-medium text-[14px] leading-[1.3] whitespace-nowrap overflow-hidden">Listings</span>
             </a>
+            @if($isOwner)
+            <a href="#"
+               class="flex items-center rounded-[4px] p-2 transition-all duration-300 hover:bg-gray-50 text-[#1e1d1d]"
+               :class="sidebarOpen ? 'space-x-[10px]' : 'justify-center'">
+                <img alt="group" class="w-[18px] h-[18px] shrink-0" src="{{ asset('images/group.svg') }}">
+                <span x-show="sidebarOpen" x-cloak class="font-medium text-[14px] leading-[1.3] whitespace-nowrap overflow-hidden">Agents</span>
+            </a>
+            @endif
             <a href="#"
                class="opacity-50 pointer-events-none flex items-center rounded-[4px] p-2 transition-all duration-300 hover:bg-gray-50 text-[#1e1d1d]"
                :class="sidebarOpen ? 'space-x-[10px]' : 'justify-center'">
@@ -49,12 +67,14 @@
                 <img alt="analytics" class="w-[18px] h-[18px] shrink-0" src="{{ asset('images/leaderboard.svg') }}">
                 <span x-show="sidebarOpen" x-cloak class="font-medium text-[14px] leading-[1.3] whitespace-nowrap overflow-hidden">Analytics</span>
             </a>
+            @if($isPM)
             <a href="#"
                class="opacity-50 pointer-events-none flex items-center rounded-[4px] p-2 transition-all duration-300 hover:bg-gray-50 text-[#1e1d1d]"
                :class="sidebarOpen ? 'space-x-[10px]' : 'justify-center'">
                 <img alt="reviews" class="w-[18px] h-[18px] shrink-0" src="{{ asset('images/star.svg') }}">
                 <span x-show="sidebarOpen" x-cloak class="font-medium text-[14px] leading-[1.3] whitespace-nowrap overflow-hidden">Reviews</span>
             </a>
+            @endif
             <a href="#"
                class="opacity-50 pointer-events-none flex items-center rounded-[4px] p-2 transition-all duration-300 hover:bg-gray-50 text-[#1e1d1d]"
                :class="sidebarOpen ? 'space-x-[10px]' : 'justify-center'">
@@ -68,8 +88,8 @@
     <div class="px-[8px] mb-[16px]">
         <p x-show="sidebarOpen" x-cloak class="text-[12px] font-medium text-[#464646] px-2 mb-[4px] leading-[1.5] transition-opacity duration-300">Settings</p>
         <div class="space-y-1">
-            <a href="{{ route('property_manager.profile') }}"
-               class="flex items-center rounded-[4px] p-2 transition-all duration-300 {{ request()->routeIs('property_manager.profile') || request()->routeIs('property_manager.security') ? 'bg-[#f6f6f5] text-[#1e1d1d]' : 'hover:bg-gray-50 text-[#1e1d1d]' }}"
+            <a href="{{ $profileRoute }}"
+               class="flex items-center rounded-[4px] p-2 transition-all duration-300 {{ request()->url() == $profileRoute ? 'bg-[#f6f6f5] text-[#1e1d1d]' : 'hover:bg-gray-50 text-[#1e1d1d]' }}"
                :class="sidebarOpen ? 'space-x-[10px]' : 'justify-center'">
                 <img alt="account circle" class="w-[18px] h-[18px] shrink-0" src="{{ asset('images/account_circle.svg') }}">
                 <span x-show="sidebarOpen" x-cloak class="font-medium text-[14px] leading-[1.3] whitespace-nowrap overflow-hidden">Profile settings</span>
@@ -114,8 +134,8 @@
     </div>
 
     <div x-show="sidebarOpen" x-cloak class="mt-auto transition-all duration-300 px-4">
-        <a href="{{ route('property_manager.listings.create') }}"
-           class="bg-electric-blue text-white font-medium rounded-[50px] flex items-center justify-center transition-all duration-300 hover:opacity-90 w-full h-[40px] space-x-[6px]">
+        <a href="{{ $createListingRoute }}"
+           class="bg-electric-blue text-white font-medium rounded-[50px] flex items-center justify-center transition-all duration-300 hover:opacity-90 w-full h-[40px] space-x-[6px] {{ $isOwner ? 'opacity-50 pointer-events-none' : '' }}">
             <img alt="add" class="w-4 h-4 brightness-0 invert shrink-0" src="{{ asset('images/add.svg') }}">
             <span class="text-[14px] leading-[1.3] whitespace-nowrap overflow-hidden">Create a listing</span>
         </a>
