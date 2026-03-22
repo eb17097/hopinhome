@@ -5,7 +5,7 @@
     $isOwner = $user->isBusinessOwner();
     
     $dashboardRoute = $isOwner ? route('business_owner.index') : route('property_manager.index');
-    $listingsRoute = $isOwner ? '#' : route('property_manager.listings.index'); // Placeholder for owner listings for now
+    $listingsRoute = $isOwner ? route('business_owner.listings.index') : route('property_manager.listings.index');
     $profileRoute = $isOwner ? route('business_owner.profile') : route('property_manager.profile');
     $createListingRoute = $isOwner ? '#' : route('property_manager.listings.create');
 @endphp
