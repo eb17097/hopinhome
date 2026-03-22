@@ -54,13 +54,8 @@
                         </div>
                     </div>
 
-                    {{-- Agents Section (Placeholder for now) --}}
-                    <div id="agents-section">
-                        <div class="bg-white border border-light-gray rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] p-6">
-                            <h3 class="text-[18px] font-medium text-[#1e1d1d] mb-4">Agents</h3>
-                            <p class="text-[#464646]">Agents management will be implemented here.</p>
-                        </div>
-                    </div>
+                    {{-- Agents Section --}}
+                    <x-business_owner.agents-block />
 
                     <!-- My listings section -->
                     <div>
