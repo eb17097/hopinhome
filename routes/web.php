@@ -84,6 +84,8 @@ Route::get('/dashboard', function () {
         return redirect()->route('renter.index');
     } elseif ($user->isPropertyManager()) {
         return redirect()->route('property_manager.index');
+    } elseif ($user->isBusinessOwner()) {
+        return redirect()->route('business_owner.index');
     }
     return redirect()->route('home');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -97,6 +99,12 @@ Route::middleware(['auth', 'role:renter'])->prefix('renter')->name('renter.')->g
     Route::get('/', [RenterController::class, 'index'])->name('index');
     Route::get('/security', [RenterController::class, 'security'])->name('security');
     Route::post('/mark-setup-complete', [RenterController::class, 'markSetupComplete'])->name('mark-setup-complete');
+});
+
+Route::middleware(['auth', 'role:business_owner'])->prefix('business-owner')->name('business_owner.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\BusinessOwnerController::class, 'index'])->name('index');
+    Route::get('/profile', [\App\Http\Controllers\BusinessOwnerController::class, 'profile'])->name('profile');
+    Route::get('/security', [\App\Http\Controllers\BusinessOwnerController::class, 'security'])->name('security');
 });
 
 Route::middleware(['auth', 'role:property_manager'])->prefix('property-manager')->name('property_manager.')->group(function () {
