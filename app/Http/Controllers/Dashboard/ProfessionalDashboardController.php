@@ -62,9 +62,9 @@ class ProfessionalDashboardController extends Controller
             'boost_limit' => $request->boostLimit,
         ]);
 
-        // Generate a signed URL for acceptance (placeholder for actual registration flow)
+        // Generate a signed URL for acceptance
         $invitationUrl = URL::temporarySignedRoute(
-            'home', // Temporary redirect to home until we build the accept page
+            'invitation.accept',
             now()->addDays(7),
             ['email' => $agent->email]
         );

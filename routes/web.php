@@ -28,6 +28,9 @@ Route::post('/ajax/reset-password', [AjaxAuthController::class, 'resetPassword']
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
+// Invitation Routes
+Route::get('/invitation/accept', [\App\Http\Controllers\Auth\InvitationController::class, 'accept'])->name('invitation.accept');
+
 Route::middleware('auth')->group(function () {
     Route::get('/onboarding', [OnboardingController::class, 'index'])->name('onboarding.index');
     Route::get('/onboarding/back', [OnboardingController::class, 'back'])->name('onboarding.back');
