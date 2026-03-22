@@ -105,6 +105,7 @@ Route::middleware(['auth', 'role:business_owner'])->prefix('business-owner')->na
     Route::get('/', [\App\Http\Controllers\Dashboard\ProfessionalDashboardController::class, 'index'])->name('index');
     Route::get('/profile', [\App\Http\Controllers\Dashboard\ProfessionalDashboardController::class, 'profile'])->name('profile');
     Route::get('/settings', [\App\Http\Controllers\Dashboard\ProfessionalDashboardController::class, 'businessSettings'])->name('settings');
+    Route::get('/settings/security', [\App\Http\Controllers\Dashboard\ProfessionalDashboardController::class, 'businessSecurity'])->name('settings.security');
     Route::get('/security', [\App\Http\Controllers\Dashboard\ProfessionalDashboardController::class, 'security'])->name('security');
 });
 
