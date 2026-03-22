@@ -32,7 +32,7 @@
             <div class="p-[24px] pt-[33px]">
                 {{-- Social Auth Buttons --}}
                 <div class="space-y-[16px]">
-                    <a href="{{ route('auth.google', ['invitation_token' => request()->get('signature')]) }}" 
+                    <a href="{{ route('auth.google', ['invitation_email' => $user->email, 'invitation_token' => request()->get('signature')]) }}" 
                        class="flex items-center justify-center gap-[10px] w-full h-[52px] border border-[#e8e8e7] rounded-full hover:bg-gray-50 transition-colors">
                         <img src="{{ asset('images/google_icon.svg') }}" alt="" class="w-[18px] h-[18px]">
                         <span class="text-[16px] font-medium tracking-[-0.48px]">Continue with Google</span>
