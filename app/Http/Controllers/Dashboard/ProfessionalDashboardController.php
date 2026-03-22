@@ -16,11 +16,7 @@ class ProfessionalDashboardController extends Controller
         $user = Auth::user();
         $listings = $user->listings()->latest()->get();
         
-        if ($user->isBusinessOwner()) {
-            return view('business_owner.dashboard', compact('listings'));
-        }
-        
-        return view('property_manager.dashboard', compact('listings'));
+        return view('dashboard.index', compact('listings'));
     }
 
     /**
