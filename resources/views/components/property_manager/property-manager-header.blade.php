@@ -30,23 +30,23 @@
         @endif
     </div>
 
-    <div class="flex items-center space-x-6">
+    <div class="flex items-center">
         <a href="{{ route('home') }}" class="text-[15px] leading-[1.3] font-medium text-[#1e1d1d] hover:text-black transition-colors">Go to homepage</a>
 
-        <div class="relative cursor-pointer">
+        <div class="ml-[22px] relative cursor-pointer">
             <img src="{{ asset('images/notifications.svg') }}" alt="Notifications" class="w-[22px] h-[22px]">
             <div class="absolute -top-2 -right-2 flex items-center justify-center w-[18px] h-[18px] rounded-full text-white text-[10px] font-medium bg-electric-blue border-2 border-white">
                 <span>5</span>
             </div>
         </div>
 
-        <a href="#" class="w-[44px] h-[44px] rounded-full border border-light-gray overflow-hidden">
+        <a href="#" class="ml-[22px] mr-[16px] w-[44px] h-[44px] rounded-full border border-light-gray overflow-hidden">
             <img alt="profile picture" class="h-full w-full object-cover" src="{{ Auth::user()->profile_photo_url ?? asset('images/user-placeholder.svg') }}">
         </a>
 
-        <div x-data="{ open: false }" class="relative">
-            <button @click="open = !open" @click.away="open = false" class="bg-light-gray rounded-full p-2 hover:bg-gray-200 transition-colors">
-                <img src="{{ asset('images/dehaze.svg') }}" alt="Menu" class="w-6 h-6">
+        <div x-data="{ open: false }" class="relative h-[44px]">
+            <button @click="open = !open" @click.away="open = false">
+                <img src="{{ asset('images/gray_blue_hamburger.svg') }}" alt="Menu" class="w-[44px] h-[44px]">
             </button>
 
             {{-- Dropdown Menu --}}
