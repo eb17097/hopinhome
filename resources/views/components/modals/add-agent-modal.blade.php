@@ -1,18 +1,24 @@
 @props(['name' => 'add-agent'])
 
-<x-modals.layout 
-    :name="$name" 
-    title="Add an agent" 
+<x-modals.layout
+    :name="$name"
+    title="Add an agent"
     maxWidth="444px"
     paddingClass="pt-[24px] pb-[32px] px-[24px]"
->
-    <div x-data="{
+    x-data="{
+        show: false,
         fullName: '',
         email: '',
         licenseNumber: '',
         listingLimit: '50',
-        boostLimit: '10'
-    }">
+        boostLimit: '10',
+
+        close() {
+            this.show = false;
+        }
+    }"
+>
+    <div>
         {{-- Available Seats --}}
         <div class="bg-[#f9f9f8] rounded-[6px] p-[14px] flex justify-between items-center mb-[24px]">
             <span class="text-[16px] text-[#1e1d1d] font-normal">Available seats</span>
@@ -53,7 +59,7 @@
 
         {{-- Info Box --}}
         <div class="bg-[#f9f9f8] rounded-[6px] p-[14px] flex items-start space-x-3 mb-[24px]">
-            <img src="{{ asset('images/info_blue.svg') }}" class="w-5 h-5 mt-0.5 shrink-0" alt="">
+            <img src="{{ asset('images/contact_support_blue.svg') }}" class="w-5 h-5 mt-0.5 shrink-0" alt="">
             <p class="text-[14px] leading-[1.5] text-[#464646]">
                 Credit limits <span class="font-bold text-[#1e1d1d]">reset</span> every billing cycle. Unused credits do not roll over to the next month
             </p>
