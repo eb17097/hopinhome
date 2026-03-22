@@ -139,17 +139,6 @@
                 <img alt="language" class="w-[18px] h-[18px] shrink-0" src="{{ asset('images/language_sidebar.svg') }}">
                 <span x-show="sidebarOpen" x-cloak class="font-medium text-[14px] leading-[1.3] whitespace-nowrap overflow-hidden">Regional settings</span>
             </a>
-            <form method="POST" action="{{ route('logout') }}" class="w-full">
-                @csrf
-                <button type="submit"
-                        class="flex items-center w-full rounded-[4px] p-2 transition-all duration-300 hover:bg-red-50 text-red-600 text-left"
-                        :class="sidebarOpen ? 'space-x-[10px]' : 'justify-center'">
-                    <div class="w-[18px] h-[18px] flex items-center justify-center shrink-0">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
-                    </div>
-                    <span x-show="sidebarOpen" x-cloak class="font-medium text-[14px] leading-[1.3] whitespace-nowrap overflow-hidden">Sign out</span>
-                </button>
-            </form>
         </div>
     </div>
 
