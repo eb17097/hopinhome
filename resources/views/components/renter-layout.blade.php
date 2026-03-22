@@ -19,7 +19,7 @@
             body { font-family: 'General Sans', sans-serif; }
         </style>
     </head>
-    <body class="font-sans antialiased bg-white">
+    <body class="font-sans antialiased bg-white select-none">
         <div x-data="{}" class="min-h-screen">
             <x-header />
             {{ $slot }}

@@ -31,7 +31,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @php use Illuminate\Support\Facades\Auth; @endphp
     </head>
-    <body class="font-sans antialiased bg-white">
+    <body class="font-sans antialiased bg-white select-none">
         <div x-data="{ sidebarOpen: true }" @toggle-sidebar.window="sidebarOpen = !sidebarOpen" class="min-h-screen bg-white">
 
 
