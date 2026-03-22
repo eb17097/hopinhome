@@ -30,6 +30,7 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
 
 // Invitation Routes
 Route::get('/invitation/accept', [\App\Http\Controllers\Auth\InvitationController::class, 'accept'])->name('invitation.accept');
+Route::post('/invitation/complete', [\App\Http\Controllers\Auth\InvitationController::class, 'complete'])->name('invitation.complete');
 
 Route::middleware('auth')->group(function () {
     Route::get('/onboarding', [OnboardingController::class, 'index'])->name('onboarding.index');
