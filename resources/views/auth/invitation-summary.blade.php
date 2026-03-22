@@ -36,13 +36,13 @@
                 </h1>
 
                 {{-- Business Card (Static) --}}
-                <div class="w-full bg-[#04247b] rounded-[6px] p-[14px] flex items-center space-x-[12px] mb-[24px] text-left">
+                <div class="bg-[#04247B] rounded-[6px] p-[14px] flex items-center space-x-[12px] mb-[24px] text-left">
                     <div class="w-[40px] h-[40px] rounded-[4px] bg-white/10 flex items-center justify-center shrink-0 overflow-hidden">
                         <img src="{{ asset('images/apartment_blue.svg') }}" class="w-[24px] h-[24px] brightness-0 invert" alt="">
                     </div>
                     <div>
                         <div class="text-[16px] font-medium text-white leading-[1.3]">Azure Crescent Realty</div>
-                        <div class="text-[12px] text-white/70 leading-[1.5]">16 agents • 560 active listings</div>
+                        <div class="text-[12px] text-white leading-[1.5]">16 agents • 560 active listings</div>
                     </div>
                 </div>
 
@@ -55,7 +55,7 @@
                 <div class="w-full space-y-[16px]">
                     <form action="{{ route('invitation.finalize') }}" method="POST">
                         @csrf
-                        <button type="submit" 
+                        <button type="submit"
                                 class="w-full h-[51px] bg-[#1447d4] text-white rounded-full text-[16px] font-medium tracking-[-0.48px] hover:bg-opacity-90 transition-all">
                             Accept invitation
                         </button>
