@@ -5,7 +5,7 @@
                 <img src="{{ asset('images/group.svg') }}" alt="" class="w-[30px] h-[30px] brightness-0">
                 <h1 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] leading-[1.28]">Agents</h1>
             </div>
-            <button class="bg-electric-blue text-white px-[32px] py-[10.5px] rounded-full flex items-center space-x-[6px] hover:opacity-90 transition-opacity">
+            <button @click="$dispatch('open-add-agent-modal')" class="bg-electric-blue text-white px-[32px] py-[10.5px] rounded-full flex items-center space-x-[6px] hover:opacity-90 transition-opacity">
                 <img src="{{ asset('images/add.svg') }}" alt="" class="w-[17px] h-[17px] brightness-0 invert">
                 <span class="text-[16px] font-medium tracking-[-0.48px] leading-[1.18]">Add agent</span>
             </button>

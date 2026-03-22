@@ -57,7 +57,7 @@
                     @if(Auth::user()->isBusinessOwner())
                         {{-- 3. Agents (Owner) --}}
                         <x-business_owner.agents-block />
-                        
+
                         {{-- 4. Credits (Owner) --}}
                         <div class="bg-white border border-light-gray rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)]">
                             <div class="px-6 py-[11px] border-b border-light-gray flex justify-between items-center">

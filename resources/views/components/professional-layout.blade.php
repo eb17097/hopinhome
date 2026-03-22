@@ -68,5 +68,6 @@
         <x-modals.regional-preferences-modal />
         <x-modals.reset-password-modal />
         <x-modals.delete-account-modal />
+        <x-modals.add-agent-modal />
     </body>
 </html>
