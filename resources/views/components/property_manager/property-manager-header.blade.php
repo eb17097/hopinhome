@@ -31,16 +31,16 @@
     </div>
 
     <div class="flex items-center space-x-6">
-        <a href="{{ route('home') }}" class="text-[15px] font-medium text-[#1e1d1d] hover:text-black transition-colors">Go to homepage</a>
+        <a href="{{ route('home') }}" class="text-[15px] leading-[1.3] font-medium text-[#1e1d1d] hover:text-black transition-colors">Go to homepage</a>
 
         <div class="relative cursor-pointer">
-            <img src="{{ asset('images/notifications.svg') }}" alt="Notifications" class="w-5 h-5 opacity-70">
+            <img src="{{ asset('images/notifications.svg') }}" alt="Notifications" class="w-[22px] h-[22px]">
             <div class="absolute -top-2 -right-2 flex items-center justify-center w-[18px] h-[18px] rounded-full text-white text-[10px] font-medium bg-electric-blue border-2 border-white">
                 <span>5</span>
             </div>
         </div>
 
-        <a href="#" class="w-8 h-8 rounded-full border border-light-gray overflow-hidden">
+        <a href="#" class="w-[44px] h-[44px] rounded-full border border-light-gray overflow-hidden">
             <img alt="profile picture" class="h-full w-full object-cover" src="{{ Auth::user()->profile_photo_url ?? asset('images/user-placeholder.svg') }}">
         </a>
 
