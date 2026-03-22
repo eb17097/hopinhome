@@ -424,7 +424,7 @@ class ListingController extends Controller
         $statuses = ['Active', 'In review', 'Declined', 'Expired', 'Draft'];
         $propertyTypes = ['Apartment', 'Villa', 'House', 'Townhouse', 'Hotel apartment', 'Penthouse'];
 
-        return view('property_manager.listings', compact('listings', 'statuses', 'propertyTypes'));
+        return view('dashboard.listings', compact('listings', 'statuses', 'propertyTypes'));
     }
 
     public function preview(Listing $listing)
