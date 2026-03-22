@@ -102,15 +102,15 @@ Route::middleware(['auth', 'role:renter'])->prefix('renter')->name('renter.')->g
 });
 
 Route::middleware(['auth', 'role:business_owner'])->prefix('business-owner')->name('business_owner.')->group(function () {
-    Route::get('/', [\App\Http\Controllers\BusinessOwnerController::class, 'index'])->name('index');
-    Route::get('/profile', [\App\Http\Controllers\BusinessOwnerController::class, 'profile'])->name('profile');
-    Route::get('/security', [\App\Http\Controllers\BusinessOwnerController::class, 'security'])->name('security');
+    Route::get('/', [\App\Http\Controllers\Dashboard\ProfessionalDashboardController::class, 'index'])->name('index');
+    Route::get('/profile', [\App\Http\Controllers\Dashboard\ProfessionalDashboardController::class, 'profile'])->name('profile');
+    Route::get('/security', [\App\Http\Controllers\Dashboard\ProfessionalDashboardController::class, 'security'])->name('security');
 });
 
 Route::middleware(['auth', 'role:property_manager'])->prefix('property-manager')->name('property_manager.')->group(function () {
-    Route::get('/', [PropertyManagerController::class, 'index'])->name('index');
-    Route::get('/profile', [PropertyManagerController::class, 'profile'])->name('profile');
-    Route::get('/security', [PropertyManagerController::class, 'security'])->name('security');
+    Route::get('/', [\App\Http\Controllers\Dashboard\ProfessionalDashboardController::class, 'index'])->name('index');
+    Route::get('/profile', [\App\Http\Controllers\Dashboard\ProfessionalDashboardController::class, 'profile'])->name('profile');
+    Route::get('/security', [\App\Http\Controllers\Dashboard\ProfessionalDashboardController::class, 'security'])->name('security');
     Route::get('/listings/create', [ListingController::class, 'create'])->name('listings.create');
     Route::post('/listings', [ListingController::class, 'store'])->name('listings.store');
     Route::get('/listings/{listing}/edit', [ListingController::class, 'edit'])->name('listings.edit');
