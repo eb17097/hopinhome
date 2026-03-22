@@ -25,6 +25,8 @@ class CheckUserRole
                     $redirectUrl = route('renter.index');
                 } elseif ($user->isPropertyManager()) {
                     $redirectUrl = route('property_manager.index');
+                } elseif ($user->isBusinessOwner()) {
+                    $redirectUrl = route('business_owner.index');
                 }
             }
 

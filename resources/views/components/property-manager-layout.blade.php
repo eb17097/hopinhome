@@ -47,11 +47,11 @@
                         </button>
                     </div>
                     <div class="pt-4">
-                        <x-property_manager.property-manager-sidebar />
+                        <x-dashboard.sidebar />
                     </div>
                 </div>
                 <main class="flex-1 h-screen overflow-y-auto transition-all duration-300 ease-in-out bg-white">
-                    <x-property_manager.property-manager-header />
+                    <x-dashboard.header />
                     <div>
                         {{ $slot }}
                     </div>

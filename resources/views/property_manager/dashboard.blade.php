@@ -73,7 +73,7 @@
                                 {{-- Listing Rows --}}
                                 <div>
                                     @foreach($listings as $listing)
-                                        <x-property_manager.property-manager-listing-card :listing="$listing" />
+                                        <x-dashboard.listing-card :listing="$listing" />
                                     @endforeach
                                 </div>
 
@@ -102,8 +102,8 @@
                         {{-- Body --}}
                         <div class="p-6">
                             <div class="flex gap-[16px] mb-[20px]">
-                                <x-property_manager.property-manager-listing-credits />
-                                <x-property_manager.property-manager-boost-credits />
+                                <x-dashboard.listing-credits />
+                                <x-dashboard.boost-credits />
                             </div>
 
                             <p class="text-center text-[14px] text-[#464646]">
@@ -112,16 +112,16 @@
                         </div>
                     </div>
 
-                    <x-property_manager.property-manager-reviews />
+                    <x-dashboard.reviews />
 
-                    <x-property_manager.property-manager-current-plan />
+                    <x-dashboard.current-plan />
                 </div>
 
                 {{-- Right Column (Sticky) --}}
                 <div class="min-w-[358px] space-y-[24px] mt-[77px]">
-                    <x-property_manager.property-manager-profile-summary />
+                    <x-dashboard.profile-summary />
 
-                    <x-property_manager.property-manager-setup-checklist />
+                    <x-dashboard.setup-checklist />
                 </div>
             </div>
         </div>
