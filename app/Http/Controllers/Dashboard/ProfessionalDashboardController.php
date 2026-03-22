@@ -60,6 +60,7 @@ class ProfessionalDashboardController extends Controller
             'status' => 'invited',
             'listing_limit' => $request->listingLimit,
             'boost_limit' => $request->boostLimit,
+            'onboarding_step' => 2,
         ]);
 
         // Generate a signed URL for acceptance

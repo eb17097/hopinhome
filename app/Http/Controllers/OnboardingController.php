@@ -16,6 +16,12 @@ class OnboardingController extends Controller
             return redirect()->route('dashboard');
         }
 
+        // Skip Step 1 for invited agents who already have their role set
+        if ($user->onboarding_step === 1 && $user->isBusinessAgent()) {
+            $user->update(['onboarding_step' => 2]);
+            return redirect()->route('onboarding.index');
+        }
+
         return view('onboarding.step' . $user->onboarding_step);
     }
 
