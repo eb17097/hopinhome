@@ -12,11 +12,10 @@ use Illuminate\Validation\Rules\Password;
 class InvitationController extends Controller
 {
     /**
-     * Display the invitation acceptance page.
+     * Display the invitation acceptance page (Step 1: Auth choice).
      */
     public function accept(Request $request)
     {
-        // Verification happens here for the GET request
         if (!$request->hasValidSignature()) {
             abort(403, 'The invitation link is invalid or has expired.');
         }
@@ -32,12 +31,10 @@ class InvitationController extends Controller
     }
 
     /**
-     * Complete the invitation by setting a password.
+     * Handle password-based invitation completion.
      */
     public function complete(Request $request)
     {
-        // We'll trust the request for now as long as the user status is 'invited'
-        // and matches the email. For added security, we ensure the email is provided.
         $request->validate([
             'email' => 'required|email|exists:users,email',
             'password' => ['required', 'confirmed', Password::min(8)],
@@ -45,21 +42,49 @@ class InvitationController extends Controller
 
         $user = User::where('email', $request->email)
             ->where('status', 'invited')
-            ->first();
+            ->firstOrFail();
 
-        if (!$user) {
-            return redirect()->route('home')->withErrors(['email' => 'This invitation has already been accepted or is no longer valid.']);
-        }
-
-        // Update and activate the user
+        // Save password but stay in 'invited' status for final acceptance
         $user->update([
             'password' => Hash::make($request->password),
-            'status' => 'active',
-            'email_verified_at' => now(),
+            'email_verified_at' => now(), // They verified by clicking the email link
         ]);
 
         Auth::login($user);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('invitation.summary');
+    }
+
+    /**
+     * Display the final invitation summary (The Figma design).
+     */
+    public function summary()
+    {
+        $user = Auth::user();
+
+        // Ensure only invited users can see this
+        if ($user->status !== 'invited') {
+            return redirect()->route('dashboard');
+        }
+
+        return view('auth.invitation-summary', compact('user'));
+    }
+
+    /**
+     * Finalize the invitation (The "Accept invitation" button).
+     */
+    public function finalize()
+    {
+        $user = Auth::user();
+
+        if ($user->status !== 'invited') {
+            return redirect()->route('dashboard');
+        }
+
+        $user->update([
+            'status' => 'active',
+        ]);
+
+        return redirect()->route('onboarding.index');
     }
 }

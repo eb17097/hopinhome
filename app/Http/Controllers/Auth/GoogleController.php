@@ -62,14 +62,13 @@ class GoogleController extends Controller
                     // "Claim" the record
                     $user->update([
                         'google_id' => $googleUser->id,
-                        'status' => 'active',
                         'email_verified_at' => now(),
                     ]);
 
                     Auth::login($user);
                     session()->forget(['invitation_email', 'invitation_token']);
                     
-                    return redirect()->intended(route('dashboard'));
+                    return redirect()->route('invitation.summary');
                 }
             }
 
