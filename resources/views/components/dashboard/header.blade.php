@@ -19,6 +19,8 @@
 
             @if(request()->url() == $profileRoute)
                 <h2 class="text-[15px] font-medium text-[#1e1d1d]">Profile settings</h2>
+            @elseif(request()->routeIs('business_owner.settings'))
+                <h2 class="text-[15px] font-medium text-[#1e1d1d]">Business settings</h2>
             @elseif(request()->url() == $securityRoute)
                 <a href="{{ $profileRoute }}" class="text-[15px] font-medium text-[#1e1d1d] opacity-60 hover:opacity-100 transition-opacity">Profile settings</a>
                 <img src="{{ asset('images/chevron.svg') }}" class="w-4 h-4 transform -rotate-90 opacity-60" alt="">

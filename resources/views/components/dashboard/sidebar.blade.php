@@ -126,8 +126,8 @@
             </a>
             @endif
             @if($isOwner)
-            <a href="#"
-               class="opacity-50 pointer-events-none flex items-center rounded-[4px] p-2 transition-all duration-300 hover:bg-gray-50 text-[#1e1d1d]"
+            <a href="{{ route('business_owner.settings') }}"
+               class="flex items-center rounded-[4px] p-2 transition-all duration-300 {{ request()->routeIs('business_owner.settings') ? 'bg-[#f6f6f5] text-[#1e1d1d]' : 'hover:bg-gray-50 text-[#1e1d1d]' }}"
                :class="sidebarOpen ? 'space-x-[10px]' : 'justify-center'">
                 <img alt="business case" class="w-[18px] h-[18px] shrink-0" src="{{ asset('images/business_case.svg') }}">
                 <span x-show="sidebarOpen" x-cloak class="font-medium text-[14px] leading-[1.3] whitespace-nowrap overflow-hidden">Business settings</span>

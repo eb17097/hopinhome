@@ -28,6 +28,14 @@ class ProfessionalDashboardController extends Controller
     }
 
     /**
+     * Display the business owner settings page.
+     */
+    public function businessSettings()
+    {
+        return view('dashboard.business-settings');
+    }
+
+    /**
      * Display the professional security page.
      */
     public function security()
