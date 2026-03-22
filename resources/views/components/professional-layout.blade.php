@@ -16,12 +16,12 @@
             [x-cloak] { display: none !important; }
 
             /* Hide scrollbar for Chrome, Safari and Opera */
-            #property-manager-sidebar::-webkit-scrollbar {
+            #professional-sidebar::-webkit-scrollbar {
                 display: none;
             }
 
             /* Hide scrollbar for IE, Edge and Firefox */
-            #property-manager-sidebar {
+            #professional-sidebar {
                 -ms-overflow-style: none;  /* IE and Edge */
                 scrollbar-width: none;  /* Firefox */
             }
@@ -36,7 +36,7 @@
 
 
             <div class="flex overflow-hidden">
-                <div id="property-manager-sidebar"
+                <div id="professional-sidebar"
                      class="relative h-screen bg-white border-r border-light-gray shadow-[0px_0px_64px_0px_rgba(0,0,0,0.03)] pb-8 overflow-y-auto shrink-0 transition-all duration-300 ease-in-out"
                      :class="sidebarOpen ? 'w-[232px]' : 'w-[51px]'">
                     <div class="border-b h-[74px] flex items-center px-[16px] py-[27px] transition-all duration-300 ease-in-out"
@@ -59,6 +59,7 @@
             </div>
 
         </div>
+        {{-- Shared Dashboard Modals --}}
         <x-modals.change-profile-photo-modal />
         <x-modals.profile-photo-success-modal />
         <x-modals.edit-bio-modal />

@@ -1,4 +1,4 @@
-<x-property-manager-layout>
+<x-professional-layout>
     <div class="px-6 py-[24px]">
         <div class="flex justify-between items-center mb-[24px]">
             <div class="flex items-center space-x-[10px]">
@@ -235,4 +235,4 @@
             </div>
         @endif
     </div>
-</x-property-manager-layout>
+</x-professional-layout>

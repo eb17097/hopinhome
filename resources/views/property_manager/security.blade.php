@@ -1,4 +1,4 @@
-<x-property-manager-layout>
+<x-professional-layout>
     <div class="p-6">
         <div class="flex items-center gap-[10px] mb-[50px]">
             <img src="{{ asset('images/account_circle.svg') }}" class="w-[30px] h-[30px]" alt="">
@@ -27,4 +27,4 @@
             </button>
         </div>
     </div>
-</x-property-manager-layout>
+</x-professional-layout>

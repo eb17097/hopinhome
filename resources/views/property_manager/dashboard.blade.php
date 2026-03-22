@@ -1,4 +1,4 @@
-<x-property-manager-layout>
+<x-professional-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Property Manager Dashboard') }}
@@ -126,4 +126,4 @@
             </div>
         </div>
     </div>
-</x-property-manager-layout>
+</x-professional-layout>

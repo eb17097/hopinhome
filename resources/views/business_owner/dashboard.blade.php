@@ -1,4 +1,4 @@
-<x-business-owner-layout>
+<x-professional-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Business Owner Dashboard') }}
@@ -123,4 +123,4 @@
             </div>
         </div>
     </div>
-</x-business-owner-layout>
+</x-professional-layout>

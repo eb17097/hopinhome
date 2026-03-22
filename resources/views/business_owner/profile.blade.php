@@ -1,4 +1,4 @@
-<x-business-owner-layout>
+<x-professional-layout>
     <div class="p-[24px] max-w-[768px]">
         {{-- Header Section --}}
         <div class="flex items-center space-x-[10px] mb-[20px]">
@@ -76,4 +76,4 @@
             </form>
         </div>
     </div>
-</x-business-owner-layout>
+</x-professional-layout>
