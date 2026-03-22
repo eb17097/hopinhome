@@ -1,30 +1,43 @@
+@php
+    $user = auth()->user();
+    $isOwner = $user->isBusinessOwner();
+    $isPM = $user->isPropertyManager();
+@endphp
 <x-professional-layout>
     <div class="px-6 py-[24px]">
         <div class="flex justify-between items-center mb-[24px]">
             <div class="flex items-center space-x-[10px]">
                 <img src="{{ asset('images/apartment_black.svg') }}" alt="" class="w-[30px] h-[30px]">
-                <h1 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] leading-[1.28]">{{ Auth::user()->isBusinessOwner() ? __('Listings') : __('My listings') }}</h1>
+                <h1 class="text-[22px] font-medium text-[#1e1d1d] tracking-[-0.44px] leading-[1.28]">Listings</h1>
             </div>
-            @if(Auth::user()->isPropertyManager())
-            <a href="{{ route('property_manager.listings.create') }}" class="bg-electric-blue text-white px-[32px] py-[10.5px] rounded-full flex items-center space-x-[6px] hover:opacity-90 transition-opacity">
+            <a href="{{ $isPM ? route('property_manager.listings.create') : '#' }}" class="bg-electric-blue text-white px-[32px] py-[10.5px] rounded-full flex items-center space-x-[6px] hover:opacity-90 transition-opacity">
                 <img src="{{ asset('images/add.svg') }}" alt="" class="w-[17px] h-[17px] brightness-0 invert">
-                <span class="text-[16px] font-medium tracking-[-0.48px] leading-[1.18]">Create a listing</span>
+                <span class="text-[16px] font-medium tracking-[-0.48px] leading-[1.18]">Create a new listing</span>
             </a>
-            @endif
         </div>
 
         <!-- Search and Filters -->
         @php
-            $route = Auth::user()->isBusinessOwner() ? '#' : route('property_manager.listings.index');
+            $route = $isOwner ? route('business_owner.agents.index') : route('property_manager.listings.index'); // Placeholder for owner
         @endphp
         <form action="{{ $route }}" method="GET" id="filter-form" class="mb-[16px]">
             <div class="flex items-end gap-[16px]">
                 <div class="flex-1">
                     <label class="block text-[15px] font-medium text-[#1e1d1d] mb-[6px] leading-[1.3]">Search</label>
                     <div class="relative">
-                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Search listings by name" class="leading-[1.3] py-[12px] w-full h-[44px] px-[14px] border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-1 focus:ring-electric-blue placeholder:text-[#464646] text-[15px]">
+                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Search listings by name or owner" class="leading-[1.3] py-[12px] w-full h-[44px] px-[14px] border border-light-gray rounded-[6px] shadow-[0px_2px_6px_0px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-1 focus:ring-electric-blue placeholder:text-[#464646] text-[15px]">
                     </div>
                 </div>
+                @if($isOwner)
+                <div class="w-[163px]">
+                    <label class="block text-[15px] font-medium text-[#1e1d1d] mb-[6px] leading-[1.3]">Agent</label>
+                    <x-custom-select
+                        name="agent"
+                        :options="['All agents' => 'All agents', 'Sarah Johnson' => 'Sarah Johnson', 'Lauren Whitfield' => 'Lauren Whitfield']"
+                        :selected="request('agent', 'All agents')"
+                    />
+                </div>
+                @endif
                 <div class="w-[163px]">
                     <label class="block text-[15px] font-medium text-[#1e1d1d] mb-[6px] leading-[1.3]">Status</label>
                     <x-custom-select
@@ -57,7 +70,7 @@
                         <x-custom-select
                             name="sort"
                             height="h-[39px]"
-                            :options="['latest' => 'Date created (Desc)', 'oldest' => 'Date created (Asc)']"
+                            :options="['latest' => 'Date created', 'oldest' => 'Date created (Asc)']"
                             :selected="request('sort', 'latest')"
                             onchange="this.closest('form').submit()"
                         />
@@ -70,19 +83,35 @@
         <div class="bg-white border border-light-gray rounded-[8px] shadow-[0px_2px_8px_0px_rgba(0,0,0,0.04)]">
             <div class="bg-[#f9f9f8] border-b border-light-gray h-[50px] flex items-center px-[24px]">
                 <div class="flex-1 min-w-0 text-[14px] font-medium text-[#1e1d1d]">Property</div>
-                <div class="w-[150px] text-[14px] font-medium text-[#1e1d1d]">Property type</div>
-                <div class="w-[100px] text-[14px] font-medium text-[#1e1d1d]">Views</div>
-                <div class="w-[100px] text-[14px] font-medium text-[#1e1d1d]">Messages</div>
-                <div class="w-[150px] text-[14px] font-medium text-[#1e1d1d]">Status</div>
-                <div class="w-[150px] text-[14px] font-medium text-[#1e1d1d]">Created</div>
+                @if($isOwner)
+                <div class="w-[150px] text-[14px] font-medium text-[#1e1d1d]">Agent</div>
+                @endif
+                <div class="w-[120px] text-[14px] font-medium text-[#1e1d1d]">Property type</div>
+                <div class="w-[80px] text-[14px] font-medium text-[#1e1d1d]">Views</div>
+                <div class="w-[80px] text-[14px] font-medium text-[#1e1d1d]">Messages</div>
+                <div class="w-[120px] text-[14px] font-medium text-[#1e1d1d]">Status</div>
+                <div class="w-[120px] text-[14px] font-medium text-[#1e1d1d]">Created</div>
                 <div class="w-[40px]"></div>
             </div>
 
             @forelse($listings as $listing)
                 <div class="border-b border-light-gray last:border-b-0 h-[124px] flex items-center px-[24px] group hover:bg-gray-50/50 transition-colors">
                     <div class="flex items-center space-x-[16px] flex-1 min-w-0">
-                        <div class="w-[100px] h-[100px] rounded-[4px] overflow-hidden border border-light-gray shrink-0">
+                        <div class="w-[100px] h-[100px] rounded-[4px] overflow-hidden border border-light-gray shrink-0 relative">
                             <img src="{{ $listing->images->first()?->image_url ?? asset('images/placeholder.png') }}" alt="" class="w-full h-full object-cover">
+                            @if($listing->is_boosted && $isOwner)
+                                <div x-data="{ open: false }" class="absolute bottom-1 left-1">
+                                    <div @mouseenter="open = true" @mouseleave="open = false" class="bg-[#122557] rounded-[4px] px-1.5 py-0.5 flex items-center space-x-1 cursor-help">
+                                        <img src="{{ asset('images/bolt.svg') }}" class="w-3 h-3 brightness-0 invert" alt="">
+                                        <span class="text-white text-[10px] font-medium">Boosted</span>
+                                    </div>
+                                    {{-- Tooltip from Figma: 10x boosted for 3 more days --}}
+                                    <div x-show="open" x-cloak class="absolute bottom-full left-0 mb-2 w-[180px] bg-white rounded-[6px] shadow-lg p-2 text-[12px] text-[#1e1d1d] z-50 border border-light-gray">
+                                        <span class="font-bold">10x</span> boosted for <span class="font-bold">3 more days</span>
+                                        <div class="absolute bottom-[-5px] left-4 w-2 h-2 bg-white border-r border-b border-light-gray rotate-45"></div>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                         <div class="flex-1 space-y-[4px] min-w-0 pr-[16px]">
                             <h3 class="text-[16px] font-medium text-[#1e1d1d] truncate leading-[1.5]" title="{{ $listing->name ?: 'New listing' }}">
@@ -92,7 +121,7 @@
                                 <span class="text-[#1e1d1d]">AED {{ number_format($listing->price) }}</span>
                                 <span class="text-[#464646] font-normal"> Yearly</span>
                             </p>
-                            @if($listing->is_boosted)
+                            @if($listing->is_boosted && !$isOwner)
                                 <div class="inline-flex items-center space-x-[4px] px-[12px] h-[26px] rounded-full text-[14px] font-medium text-white shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] mt-[8px]" style="background: linear-gradient(-29.56deg, #0a1739 0%, #122557 99.42%)">
                                     <img src="{{ asset('images/bolt.svg') }}" class="w-[14px] h-[14px] brightness-0 invert" alt="">
                                     <span>Boosted</span>
@@ -100,18 +129,33 @@
                             @endif
                         </div>
                     </div>
-                    <div class="w-[150px]">
+                    
+                    @if($isOwner)
+                    <div class="w-[150px] flex items-center space-x-2">
+                        <div class="w-6 h-6 rounded-full border border-light-gray overflow-hidden shrink-0">
+                            <img src="{{ $listing->user->profile_photo_url ?? asset('images/user-placeholder.svg') }}" alt="" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex items-center space-x-1 min-w-0">
+                            <span class="text-[14px] font-medium text-[#1e1d1d] truncate">{{ $listing->user->name }}</span>
+                            @if($listing->user->email_verified_at)
+                                <img src="{{ asset('images/verified_user.svg') }}" alt="Verified" class="w-3.5 h-3.5">
+                            @endif
+                        </div>
+                    </div>
+                    @endif
+
+                    <div class="w-[120px]">
                         <span class="bg-[#f9f9f8] px-[10px] py-[4px] rounded-[4px] text-[14px] text-[#464646] font-normal leading-[1.3]">
                             {{ $listing->property_type ?? 'Apartment' }}
                         </span>
                     </div>
-                    <div class="w-[100px] text-[15px] text-[#464646] font-normal leading-[1.3]">
+                    <div class="w-[80px] text-[15px] text-[#464646] font-normal leading-[1.3]">
                         {{ $listing->views_count ?: '-' }}
                     </div>
-                    <div class="w-[100px] text-[15px] text-[#464646] font-normal leading-[1.3]">
+                    <div class="w-[80px] text-[15px] text-[#464646] font-normal leading-[1.3]">
                         {{ $listing->comments_count ?: '-' }}
                     </div>
-                    <div class="w-[150px]">
+                    <div class="w-[120px]">
                         @if($listing->status === 'In review')
                             <div class="inline-flex items-center space-x-[4px] bg-[#ffd900] h-[26px] px-[12px] rounded-full text-[14px] font-medium text-[#1e1d1d] leading-[1.3]">
                                 <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -137,7 +181,7 @@
                             </div>
                         @endif
                     </div>
-                    <div class="w-[150px] text-[15px] text-[#464646] font-normal leading-[1.3]">
+                    <div class="w-[120px] text-[15px] text-[#464646] font-normal leading-[1.3]">
                         {{ $listing->created_at->format('M d, Y') }}
                     </div>
                     <div class="flex justify-end">
@@ -163,10 +207,11 @@
                                             <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">View listing</span>
                                         </a>
                                     @endif
-                                    <a class="flex items-center space-x-[10px] px-[14px] py-[10px] hover:bg-gray-50 transition-colors">
+                                    <a class="flex items-center space-x-[10px] px-[14px] py-[10px] hover:bg-gray-50 transition-colors cursor-pointer">
                                         <img src="{{ asset('images/bolt.svg') }}" class="w-[18px] h-[18px]" alt="">
                                         <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">Boost listing</span>
                                     </a>
+                                    @if($isPM)
                                     <a href="{{ route('property_manager.listings.edit', $listing) }}" class="flex items-center space-x-[10px] px-[14px] py-[10px] hover:bg-gray-50 transition-colors">
                                         <img src="{{ asset('images/edit_square.svg') }}" class="w-[18px] h-[18px]" alt="">
                                         <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">Edit listing</span>
@@ -179,6 +224,7 @@
                                             <span class="text-[16px] font-medium text-[#1e1d1d] leading-[1.5]">Delete listing</span>
                                         </button>
                                     </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -187,7 +233,7 @@
             @empty
                 <div class="h-[200px] flex flex-col items-center justify-center space-y-4">
                     <p class="text-[#464646] text-[16px]">No listings found.</p>
-                    @if(Auth::user()->isPropertyManager())
+                    @if($isPM)
                     <a href="{{ route('property_manager.listings.create') }}" class="text-electric-blue font-medium hover:underline">Create your first listing</a>
                     @endif
                 </div>
