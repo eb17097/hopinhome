@@ -10,23 +10,16 @@
             <div class="flex gap-[35px]">
                 {{-- Left Column (Wider) --}}
                 <div class="w-[768px] space-y-[24px] pl-[24px] pt-[24px] pb-[112px]">
+                    {{-- 1. Analytics (Shared) --}}
                     <div>
                         <div class="flex items-center space-x-2 mb-[21px]">
                             <img src="{{ asset('images/speed.svg') }}" alt="Dashboard Icon" class="w-[30px] h-[30px]">
                             <h2 class="text-[22px] font-medium text-[#1E1D1D]">Dashboard</h2>
                         </div>
-
                         <x-dashboard.analytics />
                     </div>
 
-                    {{-- Conditional Section: Agents for Owners, Reviews for PMs --}}
-                    @if(Auth::user()->isBusinessOwner())
-                        <x-business_owner.agents-block />
-                    @else
-                        <x-dashboard.reviews />
-                    @endif
-
-                    <!-- My listings section -->
+                    {{-- 2. My Listings (Shared) --}}
                     <div>
                         @if($listings->isNotEmpty())
                             <div class="bg-white border border-light-gray rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] overflow-hidden">
@@ -60,36 +53,60 @@
                         @endif
                     </div>
 
-                    {{-- Credits Section --}}
-                    <div class="bg-white border border-light-gray rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)]">
-                        {{-- Header --}}
-                        <div class="px-6 py-[11px] border-b border-light-gray flex justify-between items-center">
-                            <h2 class="text-[18px] font-medium leading-[1.28] tracking-[-0.36px] text-[#1e1d1d]">Credits</h2>
-                            <button class="min-w-[160px] h-[40px] px-[18px] border border-light-gray rounded-full text-[16px] leading-[1.5] font-medium text-[#1e1d1d] hover:bg-gray-50 transition">
-                                Show details
-                            </button>
-                        </div>
-
-                        {{-- Body --}}
-                        <div class="p-6">
-                            <div class="flex gap-[16px] mb-[20px]">
-                                <x-dashboard.listing-credits />
-                                <x-dashboard.boost-credits />
+                    {{-- Role-Specific Sequence --}}
+                    @if(Auth::user()->isBusinessOwner())
+                        {{-- 3. Agents (Owner) --}}
+                        <x-business_owner.agents-block />
+                        
+                        {{-- 4. Credits (Owner) --}}
+                        <div class="bg-white border border-light-gray rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)]">
+                            <div class="px-6 py-[11px] border-b border-light-gray flex justify-between items-center">
+                                <h2 class="text-[18px] font-medium leading-[1.28] tracking-[-0.36px] text-[#1e1d1d]">Credits</h2>
+                                <button class="min-w-[160px] h-[40px] px-[18px] border border-light-gray rounded-full text-[16px] leading-[1.5] font-medium text-[#1e1d1d] hover:bg-gray-50 transition">
+                                    Show details
+                                </button>
                             </div>
-
-                            <p class="text-center text-[14px] text-[#464646]">
-                                Credits reset automatically every billing cycle <span class="font-medium text-[#1e1d1d]">on the 15th.</span>
-                            </p>
+                            <div class="p-6">
+                                <div class="flex gap-[16px] mb-[20px]">
+                                    <x-dashboard.listing-credits />
+                                    <x-dashboard.boost-credits />
+                                </div>
+                                <p class="text-center text-[14px] text-[#464646]">
+                                    Credits reset automatically every billing cycle <span class="font-medium text-[#1e1d1d]">on the 15th.</span>
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    @else
+                        {{-- 3. Credits (Manager) --}}
+                        <div class="bg-white border border-light-gray rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)]">
+                            <div class="px-6 py-[11px] border-b border-light-gray flex justify-between items-center">
+                                <h2 class="text-[18px] font-medium leading-[1.28] tracking-[-0.36px] text-[#1e1d1d]">Credits</h2>
+                                <button class="min-w-[160px] h-[40px] px-[18px] border border-light-gray rounded-full text-[16px] leading-[1.5] font-medium text-[#1e1d1d] hover:bg-gray-50 transition">
+                                    Show details
+                                </button>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex gap-[16px] mb-[20px]">
+                                    <x-dashboard.listing-credits />
+                                    <x-dashboard.boost-credits />
+                                </div>
+                                <p class="text-center text-[14px] text-[#464646]">
+                                    Credits reset automatically every billing cycle <span class="font-medium text-[#1e1d1d]">on the 15th.</span>
+                                </p>
+                            </div>
+                        </div>
 
+                        {{-- 4. Reviews (Manager) --}}
+                        <x-dashboard.reviews />
+                    @endif
+
+                    {{-- 5. Current Plan (Shared) --}}
                     <x-dashboard.current-plan />
                 </div>
 
                 {{-- Right Column (Sticky) --}}
                 <div class="min-w-[358px] space-y-[24px] mt-[77px]">
                     <x-dashboard.profile-summary />
-
                     <x-dashboard.setup-checklist />
                 </div>
             </div>
