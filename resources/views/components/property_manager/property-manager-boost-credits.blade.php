@@ -1,4 +1,4 @@
-<div class="flex-1 bg-[#0a1739] border border-[#283351] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)]">
+<div class="flex-1 bg-[linear-gradient(294deg,#0A1739_0%,#122557_99.42%)] border border-[#283351] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)]">
     <div class="px-[14px] pt-[12px]">
         {{-- Header Section --}}
         <div class="flex justify-between items-center -mb-[7px]">
