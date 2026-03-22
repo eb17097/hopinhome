@@ -69,14 +69,12 @@
                 <img alt="analytics" class="w-[18px] h-[18px] shrink-0" src="{{ asset('images/leaderboard.svg') }}">
                 <span x-show="sidebarOpen" x-cloak class="font-medium text-[14px] leading-[1.3] whitespace-nowrap overflow-hidden">Analytics</span>
             </a>
-            @if($isPM)
             <a href="#"
                class="opacity-50 pointer-events-none flex items-center rounded-[4px] p-2 transition-all duration-300 hover:bg-gray-50 text-[#1e1d1d]"
                :class="sidebarOpen ? 'space-x-[10px]' : 'justify-center'">
-                <img alt="reviews" class="w-[18px] h-[18px] shrink-0" src="{{ asset('images/star.svg') }}">
+                <img alt="reviews" class="w-[18px] h-[18px] shrink-0" src="{{ asset('images/sidebar_star.svg') }}">
                 <span x-show="sidebarOpen" x-cloak class="font-medium text-[14px] leading-[1.3] whitespace-nowrap overflow-hidden">Reviews</span>
             </a>
-            @endif
             <a href="#"
                class="opacity-50 pointer-events-none flex items-center rounded-[4px] p-2 transition-all duration-300 hover:bg-gray-50 text-[#1e1d1d]"
                :class="sidebarOpen ? 'space-x-[10px]' : 'justify-center'">
