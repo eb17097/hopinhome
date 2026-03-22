@@ -20,6 +20,14 @@ class ProfessionalDashboardController extends Controller
     }
 
     /**
+     * Display the business owner agents page.
+     */
+    public function agents()
+    {
+        return view('dashboard.agents');
+    }
+
+    /**
      * Display the professional profile page.
      */
     public function profile()

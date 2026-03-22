@@ -17,7 +17,9 @@
             <a href="{{ $dashboardRoute }}" class="text-[15px] font-medium text-[#1e1d1d] opacity-60 hover:opacity-100 transition-opacity">Dashboard</a>
             <img src="{{ asset('images/chevron.svg') }}" class="w-4 h-4 transform -rotate-90 opacity-60" alt="">
 
-            @if(request()->url() == $profileRoute)
+            @if(request()->routeIs('business_owner.agents.index'))
+                <h2 class="text-[15px] font-medium text-[#1e1d1d]">Agents</h2>
+            @elseif(request()->url() == $profileRoute)
                 <h2 class="text-[15px] font-medium text-[#1e1d1d]">Profile settings</h2>
             @elseif(request()->routeIs('business_owner.settings'))
                 <h2 class="text-[15px] font-medium text-[#1e1d1d]">Business settings</h2>
