@@ -34,6 +34,10 @@ class User extends Authenticatable
         'onboarding_step',
         'onboarding_completed',
         'setup_checklist_completed',
+        'business_owner_id',
+        'status',
+        'listing_limit',
+        'boost_limit',
     ];
 
     /**

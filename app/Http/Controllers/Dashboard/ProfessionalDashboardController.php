@@ -29,7 +29,10 @@ class ProfessionalDashboardController extends Controller
      */
     public function agents()
     {
-        return view('dashboard.agents');
+        $user = Auth::user();
+        $agents = $user->agents()->latest()->paginate(10);
+        
+        return view('dashboard.agents', compact('agents'));
     }
 
     /**
