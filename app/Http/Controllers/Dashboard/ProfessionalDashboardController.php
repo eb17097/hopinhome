@@ -24,13 +24,7 @@ class ProfessionalDashboardController extends Controller
      */
     public function profile()
     {
-        $user = Auth::user();
-        
-        if ($user->isBusinessOwner()) {
-            return view('business_owner.profile');
-        }
-        
-        return view('property_manager.profile');
+        return view('dashboard.profile');
     }
 
     /**
@@ -38,12 +32,6 @@ class ProfessionalDashboardController extends Controller
      */
     public function security()
     {
-        $user = Auth::user();
-        
-        if ($user->isBusinessOwner()) {
-            return view('business_owner.security');
-        }
-        
-        return view('property_manager.security');
+        return view('dashboard.security');
     }
 }

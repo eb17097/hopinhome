@@ -25,7 +25,7 @@
 
             <div class="border-t border-light-gray pt-4 px-[24px] pb-[24px]">
                 <p class="text-[16px] text-[#464646] leading-[1.5]">
-                    {{ Auth::user()->bio ?? 'No bio provided.' }}
+                    {{ Auth::user()->bio ?? 'Tell renters about yourself...' }}
                 </p>
             </div>
         </div>
@@ -83,7 +83,10 @@
             </button>
 
             {{-- Account security --}}
-            <a href="{{ route('property_manager.security') }}" class="h-[76px] bg-white border border-light-gray rounded-[6px] p-6 flex items-center justify-between hover:bg-gray-50 transition-colors group">
+            @php
+                $securityRoute = Auth::user()->isBusinessOwner() ? route('business_owner.security') : route('property_manager.security');
+            @endphp
+            <a href="{{ $securityRoute }}" class="h-[76px] bg-white border border-light-gray rounded-[6px] p-6 flex items-center justify-between hover:bg-gray-50 transition-colors group">
                 <span class="text-[16px] font-medium text-[#1e1d1d]">Account security</span>
                 <img src="{{ asset('images/arrow_forward.svg') }}" alt="Arrow" class="w-[18px] h-[18px] opacity-90 group-hover:opacity-100 transition-opacity">
             </a>
@@ -97,6 +100,5 @@
                 </button>
             </form>
         </div>
-
     </div>
 </x-professional-layout>
