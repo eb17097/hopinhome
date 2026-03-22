@@ -37,12 +37,11 @@ class GoogleController extends Controller
     {
         try {
             $googleUser = Socialite::driver('google')->user();
-            
-            // Check if we are in an invitation flow
             $invitationEmail = session('invitation_email');
             
+            // 1. Handle Explicit Invitation Flow (via invite link)
             if ($invitationEmail) {
-                // Security: Ensure the Google email matches the invited email
+                // Security check: Match Google email with invited email
                 if (strtolower($googleUser->email) !== strtolower($invitationEmail)) {
                     $token = session('invitation_token');
                     session()->forget(['invitation_email', 'invitation_token']);
@@ -53,39 +52,32 @@ class GoogleController extends Controller
                     ])->withErrors(['email' => 'Please use the Google account associated with ' . $invitationEmail]);
                 }
 
-                // Find the invited record
-                $user = User::where('email', $invitationEmail)
-                    ->where('status', 'invited')
-                    ->first();
-
-                if ($user) {
-                    // "Claim" the record
-                    $user->update([
+                $invitedUser = User::where('email', $invitationEmail)->where('status', 'invited')->first();
+                if ($invitedUser) {
+                    $invitedUser->update([
                         'google_id' => $googleUser->id,
-                        'email_verified_at' => now(),
+                        'email_verified_at' => now()
                     ]);
-
-                    Auth::login($user);
-                    session()->forget(['invitation_email', 'invitation_token']);
                     
+                    Auth::login($invitedUser);
+                    session()->forget(['invitation_email', 'invitation_token']);
                     return redirect()->route('invitation.summary');
                 }
             }
 
-            // Standard Login/Registration Flow
+            // 2. Standard Login/Registration Flow
+            // Find user by Google ID first
             $user = User::where('google_id', $googleUser->id)->first();
-
-            if ($user) {
-                Auth::login($user);
-            } else {
-                $existingUser = User::where('email', $googleUser->email)->first();
-
-                if ($existingUser) {
-                    // Link to existing user if they have the same email
-                    $existingUser->update(['google_id' => $googleUser->id]);
-                    Auth::login($existingUser);
+            
+            if (!$user) {
+                // Fallback to searching by email if Google ID not linked yet
+                $user = User::where('email', $googleUser->email)->first();
+                
+                if ($user) {
+                    // Link existing account to this Google ID
+                    $user->update(['google_id' => $googleUser->id]);
                 } else {
-                    // Create new user (default to Renter)
+                    // Create a completely new Renter account
                     $user = User::create([
                         'name' => $googleUser->name,
                         'email' => $googleUser->email,
@@ -94,8 +86,15 @@ class GoogleController extends Controller
                         'password' => bcrypt(Str::random(16)),
                         'email_verified_at' => now(),
                     ]);
-                    Auth::login($user);
                 }
+            }
+
+            Auth::login($user);
+
+            // 3. Final Security/Handshake Check
+            // If they are an invited agent who hasn't accepted yet, show summary
+            if ($user->status === 'invited') {
+                return redirect()->route('invitation.summary');
             }
 
             return redirect()->intended(route('dashboard'));
