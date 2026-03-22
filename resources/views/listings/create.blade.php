@@ -1,4 +1,4 @@
-<x-property-manager-layout>
+<x-professional-layout>
     <style>
         /* Chrome, Safari, Edge, Opera */
         input::-webkit-outer-spin-button,
@@ -191,4 +191,4 @@
             </form>
         </div>
     </div>
-</x-property-manager-layout>
+</x-professional-layout>
