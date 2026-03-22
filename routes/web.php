@@ -104,6 +104,7 @@ Route::middleware(['auth', 'role:renter'])->prefix('renter')->name('renter.')->g
 Route::middleware(['auth', 'role:business_owner'])->prefix('business-owner')->name('business_owner.')->group(function () {
     Route::get('/', [\App\Http\Controllers\Dashboard\ProfessionalDashboardController::class, 'index'])->name('index');
     Route::get('/agents', [\App\Http\Controllers\Dashboard\ProfessionalDashboardController::class, 'agents'])->name('agents.index');
+    Route::post('/agents/invite', [\App\Http\Controllers\Dashboard\ProfessionalDashboardController::class, 'sendInvite'])->name('agents.invite');
     Route::get('/listings', [ListingController::class, 'myListings'])->name('listings.index');
     Route::get('/profile', [\App\Http\Controllers\Dashboard\ProfessionalDashboardController::class, 'profile'])->name('profile');
     Route::get('/settings', [\App\Http\Controllers\Dashboard\ProfessionalDashboardController::class, 'businessSettings'])->name('settings');

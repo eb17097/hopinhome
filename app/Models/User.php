@@ -97,9 +97,30 @@ class User extends Authenticatable
         return $this->role === 'business_owner';
     }
 
+    public function isBusinessAgent(): bool
+    {
+        return $this->role === 'business_agent';
+    }
+
     public function isAdmin(): bool
     {
         return $this->role === 'admin';
+    }
+
+    /**
+     * Get the agents for the business owner.
+     */
+    public function agents()
+    {
+        return $this->hasMany(User::class, 'business_owner_id');
+    }
+
+    /**
+     * Get the business owner for the agent.
+     */
+    public function businessOwner()
+    {
+        return $this->belongsTo(User::class, 'business_owner_id');
     }
 
     /**

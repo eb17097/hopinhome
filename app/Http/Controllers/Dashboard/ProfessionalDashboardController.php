@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Mail\AgentInvitation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 
 class ProfessionalDashboardController extends Controller
 {
@@ -25,6 +30,49 @@ class ProfessionalDashboardController extends Controller
     public function agents()
     {
         return view('dashboard.agents');
+    }
+
+    /**
+     * Send an invitation to an agent.
+     */
+    public function sendInvite(Request $request)
+    {
+        $request->validate([
+            'fullName' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'licenseNumber' => 'nullable|string|max:255',
+            'listingLimit' => 'nullable|integer|min:0',
+            'boostLimit' => 'nullable|integer|min:0',
+        ]);
+
+        $user = Auth::user();
+
+        // Create the "invited" agent user
+        $agent = User::create([
+            'name' => $request->fullName,
+            'email' => $request->email,
+            'password' => bcrypt(Str::random(16)), // Placeholder password
+            'role' => 'business_agent',
+            'business_owner_id' => $user->id,
+            'status' => 'invited',
+            'listing_limit' => $request->listingLimit,
+            'boost_limit' => $request->boostLimit,
+        ]);
+
+        // Generate a signed URL for acceptance (placeholder for actual registration flow)
+        $invitationUrl = URL::temporarySignedRoute(
+            'home', // Temporary redirect to home until we build the accept page
+            now()->addDays(7),
+            ['email' => $agent->email]
+        );
+
+        // Send the invitation email
+        Mail::to($agent->email)->send(new AgentInvitation($agent->name, $invitationUrl));
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Invitation sent successfully to ' . $agent->email,
+        ]);
     }
 
     /**
