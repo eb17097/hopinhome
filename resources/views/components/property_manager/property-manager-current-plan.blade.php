@@ -10,7 +10,7 @@
         <div class="w-1/3 p-[24px] border-r border-light-gray flex flex-col">
             <h4 class="leading-[1.28] text-[20px] tracking-[-0.4px] font-medium text-[#1e1d1d]">Starter plan</h4>
             <div class="h-[24px] w-[158px] mt-2 inline-flex items-center justify-center bg-like-green rounded-full">
-                <span class="text-[14px] font-medium text-white">Subscription active</span>
+                <span class="text-[14px] leading-[1.3] font-medium text-white">Subscription active</span>
             </div>
 
             <div class="flex items-baseline mt-[6px]">
@@ -42,7 +42,7 @@
 
         {{-- Right Column: Actions --}}
         <div class="w-1/3 p-8 flex flex-col items-center justify-center space-y-[14px]">
-            <button class="w-full h-[45px] bg-electric-blue text-white rounded-[6px] text-[16px] font-medium hover:opacity-90 transition">
+            <button class="leading-[1.22] tracking-[-0.45px] w-full h-[45px] bg-electric-blue text-white rounded-[50px] text-[15px] font-medium hover:opacity-90 transition">
                 Upgrade plan
             </button>
             <a href="#" class="text-[14px] text-[#464646] underline hover:text-black transition">

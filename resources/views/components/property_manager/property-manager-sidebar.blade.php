@@ -115,7 +115,7 @@
 
     <div x-show="sidebarOpen" x-cloak class="mt-auto transition-all duration-300 px-4">
         <a href="{{ route('property_manager.listings.create') }}"
-           class="bg-electric-blue text-white font-medium rounded-[6px] flex items-center justify-center transition-all duration-300 hover:opacity-90 w-full h-[40px] space-x-[6px]">
+           class="bg-electric-blue text-white font-medium rounded-[50px] flex items-center justify-center transition-all duration-300 hover:opacity-90 w-full h-[40px] space-x-[6px]">
             <img alt="add" class="w-4 h-4 brightness-0 invert shrink-0" src="{{ asset('images/add.svg') }}">
             <span class="text-[14px] leading-[1.3] whitespace-nowrap overflow-hidden">Create a listing</span>
         </a>

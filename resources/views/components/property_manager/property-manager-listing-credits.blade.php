@@ -1,12 +1,12 @@
-<div class="flex-1 bg-white border border-light-gray rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)]" style="background: #F9F9F8;">
-    <div class="p-[14px]">
+<div class="flex-1 bg-white border border-[#E8E8E7] rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)]" style="background: #F9F9F8;">
+    <div class="px-[14px] pt-[12px]">
         {{-- Header Section --}}
-        <div class="flex justify-between items-center mb-[6px]">
+        <div class="flex justify-between items-center -mb-[7px]">
             <div class="flex items-center space-x-[10px]">
                 <div class="w-10 h-10 bg-[#E8E8E8] rounded-[6px] flex items-center justify-center">
                     <img src="{{ asset('images/toll_blue.svg') }}" alt="Credit Icon" class="w-[28px] h-[28px]">
                 </div>
-                <h3 class="text-[18px] font-medium text-[#1e1d1d]">Listing credits</h3>
+                <h3 class="text-[18px] font-medium text-[#1e1d1d] leading-[1.28] tracking-[-0.36px]">Listing credits</h3>
             </div>
             <div x-data="{ open: false }" class="relative">
                 <img
@@ -40,21 +40,23 @@
         </div>
 
         {{-- Values Section --}}
-        <div class="flex justify-between items-end mb-2">
+        <div class="flex justify-between items-end mb-[7px]">
             <span class="text-[14px] text-[#464646]">Remaining</span>
-            <div class="flex items-baseline space-x-1">
-                <span class="text-[32px] font-medium text-[#1e1d1d] leading-none">49</span>
-                <span class="text-[16px] font-medium">/ 200</span>
+            <div class="flex items-baseline">
+                <span class="text-[32px] font-medium text-[#1E1D1D] leading-[1.3]">49</span>
+                <span class="text-[16px] font-medium text-[#1E1D1D] leading-[1.5]">/ 200</span>
             </div>
         </div>
 
         {{-- Progress Bar --}}
-        <div class="w-full h-1.5 bg-[#e5e7eb] rounded-full overflow-hidden mb-8">
+        <div class="w-full h-[6px] bg-[#e5e7eb] rounded-full overflow-hidden mb-[20px]">
             <div class="h-full bg-electric-blue rounded-full" style="width: 24.5%;"></div>
         </div>
+    </div>
 
+    <div class="px-[14px] pb-[14px] pt-[11px] border-t border-[#E8E8E7]">
         {{-- Action Button --}}
-        <button class="w-full bg-electric-blue text-white h-[51px] rounded-[6px] text-[16px] font-medium hover:opacity-90 transition">
+        <button class="w-full bg-electric-blue text-white h-[51px] rounded-[50px] text-[16px] font-medium hover:opacity-90 transition">
             Get more listing credits
         </button>
     </div>
