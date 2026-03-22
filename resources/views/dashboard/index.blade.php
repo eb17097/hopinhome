@@ -25,7 +25,7 @@
                             <div class="bg-white border border-light-gray rounded-[6px] shadow-[0px_1px_6px_0px_rgba(0,0,0,0.08)] overflow-hidden">
                                 {{-- Header --}}
                                 <div class="px-[24px] py-[20px] border-b border-light-gray flex justify-between items-center">
-                                    <h3 class="text-[18px] font-medium text-[#1e1d1d]">My listings</h3>
+                                    <h3 class="text-[18px] font-medium text-[#1e1d1d]">{{ Auth::user()->isBusinessOwner() ? __('Listings') : __('My listings') }}</h3>
                                     @php
                                         $listingsRoute = Auth::user()->isPropertyManager() ? route('property_manager.listings.index') : '#';
                                     @endphp
